@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C536193C1D824AE50065707C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C536193B1D824AE50065707C /* main.m */; };
+		C536193F1D824AE50065707C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C536193E1D824AE50065707C /* AppDelegate.m */; };
+		C53619421D824AE50065707C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53619411D824AE50065707C /* ViewController.m */; };
+		C53619471D824AE50065707C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53619461D824AE50065707C /* Assets.xcassets */; };
+		C536194A1D824AE50065707C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C53619481D824AE50065707C /* LaunchScreen.storyboard */; };
+		DA195DD1935BD39C86FE01EF /* libPods-WhipMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F39F3D994B33A096173313 /* libPods-WhipMe.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A5F39F3D994B33A096173313 /* libPods-WhipMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhipMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53619371D824AE50065707C /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C536193B1D824AE50065707C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C536193D1D824AE50065707C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C536193E1D824AE50065707C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C53619401D824AE50065707C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C53619411D824AE50065707C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C53619461D824AE50065707C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C53619491D824AE50065707C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C536194B1D824AE50065707C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF6C43584D49514DF296E091 /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
+		F490E32DB55DEA4C35E3E645 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C53619341D824AE50065707C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA195DD1935BD39C86FE01EF /* libPods-WhipMe.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42D84382CF32F881039FD09C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5F39F3D994B33A096173313 /* libPods-WhipMe.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4CB2A9E4EA13794AE4748FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF6C43584D49514DF296E091 /* Pods-WhipMe.debug.xcconfig */,
+				F490E32DB55DEA4C35E3E645 /* Pods-WhipMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C536192E1D824AE50065707C = {
+			isa = PBXGroup;
+			children = (
+				C53619391D824AE50065707C /* WhipMe */,
+				C53619381D824AE50065707C /* Products */,
+				B4CB2A9E4EA13794AE4748FE /* Pods */,
+				42D84382CF32F881039FD09C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C53619381D824AE50065707C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C53619371D824AE50065707C /* WhipMe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C53619391D824AE50065707C /* WhipMe */ = {
+			isa = PBXGroup;
+			children = (
+				C536193D1D824AE50065707C /* AppDelegate.h */,
+				C536193E1D824AE50065707C /* AppDelegate.m */,
+				C53619401D824AE50065707C /* ViewController.h */,
+				C53619411D824AE50065707C /* ViewController.m */,
+				C536193A1D824AE50065707C /* Supporting Files */,
+			);
+			path = WhipMe;
+			sourceTree = "<group>";
+		};
+		C536193A1D824AE50065707C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C53619461D824AE50065707C /* Assets.xcassets */,
+				C53619481D824AE50065707C /* LaunchScreen.storyboard */,
+				C536194B1D824AE50065707C /* Info.plist */,
+				C536193B1D824AE50065707C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C53619361D824AE50065707C /* WhipMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C536194E1D824AE50065707C /* Build configuration list for PBXNativeTarget "WhipMe" */;
+			buildPhases = (
+				870EF5113CA232DBD12E2B53 /* [CP] Check Pods Manifest.lock */,
+				C53619331D824AE50065707C /* Sources */,
+				C53619341D824AE50065707C /* Frameworks */,
+				C53619351D824AE50065707C /* Resources */,
+				9DB3F18ACDAD0A46107397A6 /* [CP] Embed Pods Frameworks */,
+				D53A41ECF8F541351BE1059A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WhipMe;
+			productName = WhipMe;
+			productReference = C53619371D824AE50065707C /* WhipMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C536192F1D824AE50065707C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = sely;
+				TargetAttributes = {
+					C53619361D824AE50065707C = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = C53619321D824AE50065707C /* Build configuration list for PBXProject "WhipMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C536192E1D824AE50065707C;
+			productRefGroup = C53619381D824AE50065707C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C53619361D824AE50065707C /* WhipMe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C53619351D824AE50065707C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C536194A1D824AE50065707C /* LaunchScreen.storyboard in Resources */,
+				C53619471D824AE50065707C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		870EF5113CA232DBD12E2B53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9DB3F18ACDAD0A46107397A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D53A41ECF8F541351BE1059A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C53619331D824AE50065707C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C53619421D824AE50065707C /* ViewController.m in Sources */,
+				C536193F1D824AE50065707C /* AppDelegate.m in Sources */,
+				C536193C1D824AE50065707C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C53619481D824AE50065707C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C53619491D824AE50065707C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C536194C1D824AE50065707C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C536194D1D824AE50065707C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C536194F1D824AE50065707C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF6C43584D49514DF296E091 /* Pods-WhipMe.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WhipMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.WhipMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C53619501D824AE50065707C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F490E32DB55DEA4C35E3E645 /* Pods-WhipMe.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WhipMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.WhipMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C53619321D824AE50065707C /* Build configuration list for PBXProject "WhipMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C536194C1D824AE50065707C /* Debug */,
+				C536194D1D824AE50065707C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C536194E1D824AE50065707C /* Build configuration list for PBXNativeTarget "WhipMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C536194F1D824AE50065707C /* Debug */,
+				C53619501D824AE50065707C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C536192F1D824AE50065707C /* Project object */;
+}
