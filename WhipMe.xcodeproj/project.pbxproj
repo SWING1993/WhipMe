@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9095C0BE301C52FE790347CA /* libPods-WhipMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDED1ED6254C5B5A20FEEB /* libPods-WhipMe.a */; };
+		777E688F8585D034806D61D2 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC238C3D356A5C11A7A369C1 /* Pods_WhipMe.framework */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21F51D82566A0044943E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F41D82566A0044943E /* ViewController.swift */; };
 		E4AB21F81D82566A0044943E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F61D82566A0044943E /* Main.storyboard */; };
@@ -16,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		70CDED1ED6254C5B5A20FEEB /* libPods-WhipMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhipMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +25,7 @@
 		E4AB21F91D82566A0044943E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4AB21FC1D82566A0044943E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC238C3D356A5C11A7A369C1 /* Pods_WhipMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhipMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9095C0BE301C52FE790347CA /* libPods-WhipMe.a in Frameworks */,
+				777E688F8585D034806D61D2 /* Pods_WhipMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +52,7 @@
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				70CDED1ED6254C5B5A20FEEB /* libPods-WhipMe.a */,
+				FC238C3D356A5C11A7A369C1 /* Pods_WhipMe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
