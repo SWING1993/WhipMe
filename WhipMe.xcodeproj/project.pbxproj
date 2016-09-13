@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9095C0BE301C52FE790347CA /* libPods-WhipMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CDED1ED6254C5B5A20FEEB /* libPods-WhipMe.a */; };
+		C532CF951D87D76400840E65 /* chatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF941D87D76400840E65 /* chatView.swift */; };
+		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE231D82994B00012FB4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE221D82994B00012FB4 /* RootViewController.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
@@ -26,6 +28,8 @@
 		70CDED1ED6254C5B5A20FEEB /* libPods-WhipMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhipMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
+		C532CF941D87D76400840E65 /* chatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatView.swift; sourceTree = "<group>"; };
+		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C546FE221D82994B00012FB4 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 		C546FE151D82989700012FB4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C532CF961D87D77200840E65 /* chatModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 		C546FE1A1D82989700012FB4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C532CF941D87D76400840E65 /* chatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -395,9 +401,11 @@
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				C546FE231D82994B00012FB4 /* RootViewController.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
+				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
+				C532CF951D87D76400840E65 /* chatView.swift in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
