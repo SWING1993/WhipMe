@@ -16,12 +16,14 @@ let KContentFont: UIFont = UIFont.systemFontOfSize(16.0)
 let KButtonFont: UIFont = UIFont.systemFontOfSize(18.0)
 
 let KColorBackGround: UIColor = Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
-let KColorBlack: UIColor = Define.RGBColorFloat(47.0, g: 49.0, b: 61.0)
-let KColorLight: UIColor = Define.RGBColorFloat(130.0, g: 131.0, b: 138.0)
+let KColorBlack: UIColor = Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
+let KColorGray: UIColor = Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)
+let KColorLight: UIColor = Define.RGBColorFloat(182.0, g: 182.0, b: 182.0)
 let KColorGary: UIColor = Define.RGBColorFloat(98.0, g: 98.0, b: 98.0)
+let KColorBlue: UIColor = Define.RGBColorFloat(119.0, g: 218.0, b: 246.0)
 let KColorRed: UIColor = Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
-let KColorNavigation: UIColor = Define.RGBColorFloat(33.0, g: 32.0, b: 37.0)
-
+let KColorNavigation: UIColor = Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
+let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
 
 class Define: NSObject {
     

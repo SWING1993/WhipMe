@@ -15,6 +15,8 @@
 		C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */; };
 		C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2E1D829D8200012FB4 /* MemberViewController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
+		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
+		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
 		E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */; };
@@ -32,6 +34,8 @@
 		C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleController.swift; sourceTree = "<group>"; };
 		C546FE2E1D829D8200012FB4 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Size.swift"; sourceTree = "<group>"; };
+		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Draw.swift"; sourceTree = "<group>"; };
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AB21F21D82566A0044943E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4AB21F91D82566A0044943E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		C546FE301D82A33200012FB4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C5D669A11D864203008EE189 /* iTools */,
 				C546FE311D82A33200012FB4 /* Config */,
 			);
 			path = Utils;
@@ -216,6 +221,15 @@
 				C546FE321D82A35600012FB4 /* Define.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		C5D669A11D864203008EE189 /* iTools */ = {
+			isa = PBXGroup;
+			children = (
+				C5D669A21D86436B008EE189 /* UIView+Size.swift */,
+				C5D669A41D864695008EE189 /* UIImage+Draw.swift */,
+			);
+			path = iTools;
 			sourceTree = "<group>";
 		};
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
@@ -380,9 +394,11 @@
 			files = (
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				C546FE231D82994B00012FB4 /* RootViewController.swift in Sources */,
+				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
+				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
