@@ -10,6 +10,8 @@ import UIKit
 
 class PrivateChatController: RootViewController {
     
+    var arrayNavButton: NSMutableArray?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,26 +23,36 @@ class PrivateChatController: RootViewController {
         super.didReceiveMemoryWarning()
     }
     
-    private func setup() {
-        
-        let viewNavTar: UIView = UIView.init(frame: CGRectMake(0, 0, 132.0, 30.0))
-        viewNavTar.backgroundColor = UIColor.whiteColor()
-        viewNavTar.layer.cornerRadius = 4.0
-        viewNavTar.layer.masksToBounds = true
-        viewNavTar.layer.borderColor = UIColor.whiteColor().CGColor
-        viewNavTar.layer.borderWidth = 1.0
-        self.navigationItem.titleView = viewNavTar;
+    func setup() {
         
         let titles_nav: NSArray = ["私信","通知"]
+        let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
+        segmentedView.frame = CGRectMake(0, 0, 132.0, 30.0)
+        segmentedView.backgroundColor = KColorNavigation
+        segmentedView.layer.cornerRadius = segmentedView.height/2.0
+        segmentedView.layer.masksToBounds = true
+        segmentedView.layer.borderColor = UIColor.whiteColor().CGColor
+        segmentedView.layer.borderWidth = 1.0
+        segmentedView.tintColor = UIColor.whiteColor()
+        segmentedView.selectedSegmentIndex = 0
+        segmentedView.addTarget(self, action:#selector(clickWithNavItem), forControlEvents: UIControlEvents.ValueChanged)
+        self.navigationItem.titleView = segmentedView
         
+        let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(clickWithRightBarItem))
+        rightBarItem.tintColor = UIColor.whiteColor()
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.whiteColor()], forState: UIControlState.Normal)
+        self.navigationItem.rightBarButtonItem = rightBarItem
         
-        
-        for i in 0 ..< titles_nav.count {
-            let itemButton: UIButton = UIButton.init(type: UIButtonType.Custom)
-            itemButton.frame = CGRectMake(CGFloat(i)*66.0, 0, 66.0, 30.0)
-            
-        }
         
     }
+    
+    func clickWithNavItem(sender: UISegmentedControl) {
+       
+        print(sender.numberOfSegments+sender.selectedSegmentIndex)
 
+    }
+
+    func clickWithRightBarItem() {
+        print(NSStringFromClass(self.classForCoder))
+    }
 }

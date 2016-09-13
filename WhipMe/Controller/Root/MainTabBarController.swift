@@ -23,18 +23,21 @@ class MainTabBarController: UITabBarController {
         navChat.title = "私聊";
         navMember.title = "我的";
         
-        navIndex.tabBarItem.image = UIImage.init(named: "")
-        navFriend.tabBarItem.image = UIImage.init(named: "")
-        navChat.tabBarItem.image = UIImage.init(named: "")
-        navMember.tabBarItem.image = UIImage.init(named: "")
+        navIndex.tabBarItem.image = UIImage.init(named: "button_we_off")
+        navFriend.tabBarItem.image = UIImage.init(named: "button_friend_off")
+        navChat.tabBarItem.image = UIImage.init(named: "button_chat_off")
+        navMember.tabBarItem.image = UIImage.init(named: "button_my_off")
         
-        navIndex.tabBarItem.selectedImage = UIImage.init(named: "")
-        navFriend.tabBarItem.selectedImage = UIImage.init(named: "")
-        navChat.tabBarItem.selectedImage = UIImage.init(named: "")
-        navMember.tabBarItem.selectedImage = UIImage.init(named: "")
+        navIndex.tabBarItem.selectedImage = UIImage.init(named: "button_we_on")
+        navFriend.tabBarItem.selectedImage = UIImage.init(named: "button_friend_on")
+        navChat.tabBarItem.selectedImage = UIImage.init(named: "button_chat_on")
+        navMember.tabBarItem.selectedImage = UIImage.init(named: "button_my_on")
+        
         
         Define.screenSize()
         self.viewControllers = [navIndex,navFriend,navChat,navMember];
+        self.tabBar.tintColor = UIColor.blackColor()
+        self.selectedIndex  = 2;
     }
 
     override func didReceiveMemoryWarning() {

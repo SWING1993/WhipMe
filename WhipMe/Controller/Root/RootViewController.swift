@@ -19,7 +19,7 @@ class RootViewController: UIViewController {
         
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.barTintColor = KColorGary
+        self.navigationController?.navigationBar.barTintColor = KColorNavigation
         
         self.navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.whiteColor()]
         
