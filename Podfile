@@ -3,7 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 target "WhipMe" do
 
-pod 'Masonry'
+pod 'SnapKit', '~> 0.15.0'
 pod 'SVProgressHUD'
 pod 'Alamofire'
 pod 'SDWebImage'
