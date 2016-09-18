@@ -4,6 +4,8 @@ use_frameworks!
 target "WhipMe" do
 
 pod 'SnapKit'
+pod 'DZNEmptyDataSet'
+
 #pod 'SVProgressHUD'
 #pod 'Alamofire'
 #pod 'SDWebImage'

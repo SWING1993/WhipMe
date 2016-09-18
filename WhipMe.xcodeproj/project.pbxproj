@@ -19,6 +19,11 @@
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
+		E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDB1D8E741F00A619A6 /* FirstAddCustomCell.swift */; };
+		E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */; };
+		E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */; };
+		E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */; };
 		E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BE21D87D2C300802C6B /* SnapKit.framework */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -43,6 +48,12 @@
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
+		E4189EDB1D8E741F00A619A6 /* FirstAddCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstAddCustomCell.swift; sourceTree = "<group>"; };
+		E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondAddCustomCell.swift; sourceTree = "<group>"; };
+		E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThirdAddCustomCell Cell.swift"; sourceTree = "<group>"; };
+		E4189EE21D8E7D0600A619A6 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
 		E48C0BE21D87D2C300802C6B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
@@ -93,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				C546FE1E1D82992B00012FB4 /* Root */,
-				C546FE101D82989700012FB4 /* Chat */,
-				C546FE111D82989700012FB4 /* FriendCircle */,
 				C546FE121D82989700012FB4 /* Index */,
+				C546FE111D82989700012FB4 /* FriendCircle */,
+				C546FE101D82989700012FB4 /* Chat */,
 				C546FE131D82989700012FB4 /* Member */,
 			);
 			path = Controller;
@@ -121,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
+				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -176,9 +188,9 @@
 		C546FE191D82989700012FB4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4189ED91D8E73C200A619A6 /* Index */,
 				C546FE1A1D82989700012FB4 /* Chat */,
 				C546FE1B1D82989700012FB4 /* FriendCircle */,
-				C546FE1C1D82989700012FB4 /* Index */,
 				C546FE1D1D82989700012FB4 /* Member */,
 			);
 			path = Views;
@@ -200,13 +212,6 @@
 			path = FriendCircle;
 			sourceTree = "<group>";
 		};
-		C546FE1C1D82989700012FB4 /* Index */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Index;
-			sourceTree = "<group>";
-		};
 		C546FE1D1D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +231,7 @@
 		C546FE301D82A33200012FB4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E4189EE11D8E7CE400A619A6 /* ThirdParty */,
 				E48C0BEB1D87E32C00802C6B /* Extension */,
 				C5D669A11D864203008EE189 /* iTools */,
 				C546FE311D82A33200012FB4 /* Config */,
@@ -257,6 +263,33 @@
 				016FC22642FF3694F4358528 /* Pods_WhipMe.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4189ED91D8E73C200A619A6 /* Index */ = {
+			isa = PBXGroup;
+			children = (
+				E4189EDA1D8E73EE00A619A6 /* Custom_add */,
+			);
+			path = Index;
+			sourceTree = "<group>";
+		};
+		E4189EDA1D8E73EE00A619A6 /* Custom_add */ = {
+			isa = PBXGroup;
+			children = (
+				E4189EDB1D8E741F00A619A6 /* FirstAddCustomCell.swift */,
+				E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */,
+				E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */,
+			);
+			path = Custom_add;
+			sourceTree = "<group>";
+		};
+		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				E4189EE21D8E7D0600A619A6 /* UIPlaceHolderTextView.h */,
+				E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
@@ -425,9 +458,11 @@
 			files = (
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				C546FE231D82994B00012FB4 /* RootViewController.swift in Sources */,
+				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
+				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
@@ -436,7 +471,10 @@
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
+				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
+				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
+				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

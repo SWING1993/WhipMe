@@ -33,7 +33,8 @@ class RecommendCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
-        
+        self.selectionStyle = .none
+
         if bgView == nil {
             bgView = UIView.init()
             bgView.backgroundColor = UIColor.white
@@ -210,5 +211,9 @@ class RecommendCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    class func cellReuseIdentifier() -> String {
+        return "FirstAddCustomCell"
     }
 }
