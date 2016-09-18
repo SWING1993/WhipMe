@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 class FriendCircleController: RootViewController {
     
-    private let recommendTable: UITableView = UITableView()
+    fileprivate let recommendTable: UITableView = UITableView()
 
     
     override func viewDidLoad() {
@@ -19,28 +19,28 @@ class FriendCircleController: RootViewController {
         prepareTableView()
     }
     
-    private func setup() {
+    fileprivate func setup() {
         let titles_nav: NSArray = ["推荐","关注"]
         let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
-        segmentedView.frame = CGRectMake(0, 0, 132.0, 30.0)
+        segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
         segmentedView.backgroundColor = KColorNavigation
         segmentedView.layer.cornerRadius = segmentedView.height/2.0
         segmentedView.layer.masksToBounds = true
-        segmentedView.layer.borderColor = UIColor.whiteColor().CGColor
+        segmentedView.layer.borderColor = UIColor.white.cgColor
         segmentedView.layer.borderWidth = 1.0
-        segmentedView.tintColor = UIColor.whiteColor()
+        segmentedView.tintColor = UIColor.white
         segmentedView.selectedSegmentIndex = 0
-        segmentedView.addTarget(self, action:#selector(clickWithNavItem), forControlEvents: UIControlEvents.ValueChanged)
+        segmentedView.addTarget(self, action:#selector(clickWithNavItem), for: UIControlEvents.valueChanged)
         self.navigationItem.titleView = segmentedView
         
-        let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(clickWithRightBarItem))
-        rightBarItem.tintColor = UIColor.whiteColor()
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.whiteColor()], forState: UIControlState.Normal)
+        let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
+        rightBarItem.tintColor = UIColor.white
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
     }
     
-    func clickWithNavItem(sender: UISegmentedControl) {
+    func clickWithNavItem(_ sender: UISegmentedControl) {
         print(sender.numberOfSegments+sender.selectedSegmentIndex)
     }
     
@@ -52,14 +52,14 @@ class FriendCircleController: RootViewController {
         
     }
  
-    private func prepareTableView() {
-        recommendTable.registerClass(RecommendCell.self, forCellReuseIdentifier: "Cell")
+    fileprivate func prepareTableView() {
+        recommendTable.register(RecommendCell.self, forCellReuseIdentifier: "Cell")
         recommendTable.dataSource = self
         recommendTable.delegate = self
-        recommendTable.separatorStyle = .None
+        recommendTable.separatorStyle = .none
         view.addSubview(recommendTable)
         recommendTable.translatesAutoresizingMaskIntoConstraints = false
-        recommendTable.snp_makeConstraints { (make) in
+        recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
 //        recommendTable.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { 
@@ -78,19 +78,19 @@ class FriendCircleController: RootViewController {
 extension FriendCircleController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     /// Returns the number of sections.
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
     
     /// Prepares the cells within the tableView.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
-        cell.selectionStyle = .None
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        cell.selectionStyle = .none
 //        let item: Item = items[indexPath.section]
 //        cell.pictrueView.sd_setImageWithURL(NSURL.init(string: item.thumb_hd))
 //        cell.contentLabel.text = item.content
@@ -130,7 +130,7 @@ extension FriendCircleController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension FriendCircleController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 450
     }
     

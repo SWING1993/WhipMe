@@ -15,41 +15,41 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.edgesForExtendedLayout = UIRectEdge()
         
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.barTintColor = KColorNavigation
         
-        self.navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
         
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
         
-        backBarItem = UIBarButtonItem.init(title: "返回", style: UIBarButtonItemStyle.Plain, target:self, action:Selector(clickWithBack()))
-        backBarItem?.tintColor = UIColor.whiteColor()
-        backBarItem?.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.whiteColor()], forState: UIControlState.Normal)
+//        backBarItem = UIBarButtonItem.init(title: "返回", style: UIBarButtonItemStyle.plain, target:self, action:Selector(clickWithBack()))
+        backBarItem?.tintColor = UIColor.white
+        backBarItem?.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.backBarButtonItem = backBarItem
         
         self.navigationItem.title = NSStringFromClass(self.classForCoder)
         
     }
     
-    func clickWithBack() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+//    func clickWithBack() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func delete(sender: AnyObject?) {
-        print(NSStringFromClass(self.classForCoder))
-    }
+//    override func delete(_ sender: AnyObject?) {
+//        print(NSStringFromClass(self.classForCoder))
+//    }
     
 }

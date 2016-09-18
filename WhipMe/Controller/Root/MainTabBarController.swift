@@ -34,9 +34,8 @@ class MainTabBarController: UITabBarController {
         navMember.tabBarItem.selectedImage = UIImage.init(named: "button_my_on")
         
         
-        Define.screenSize()
         self.viewControllers = [navIndex,navFriend,navChat,navMember];
-        self.tabBar.tintColor = UIColor.blackColor()
+        self.tabBar.tintColor = UIColor.black
         self.selectedIndex  = 2;
     }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
 		C532CF951D87D76400840E65 /* chatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF941D87D76400840E65 /* chatView.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE231D82994B00012FB4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE221D82994B00012FB4 /* RootViewController.swift */; };
@@ -18,8 +19,6 @@
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
-		E48C0BDF1D87D2B100802C6B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BDE1D87D2B100802C6B /* Alamofire.framework */; };
-		E48C0BE11D87D2B900802C6B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BE01D87D2B900802C6B /* RxSwift.framework */; };
 		E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BE21D87D2C300802C6B /* SnapKit.framework */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -63,8 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */,
-				E48C0BE11D87D2B900802C6B /* RxSwift.framework in Frameworks */,
-				E48C0BDF1D87D2B100802C6B /* Alamofire.framework in Frameworks */,
+				8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +336,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -551,6 +550,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -566,6 +566,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-.WhipMe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

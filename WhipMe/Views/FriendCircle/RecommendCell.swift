@@ -36,11 +36,11 @@ class RecommendCell: UITableViewCell {
         
         if bgView == nil {
             bgView = UIView.init()
-            bgView.backgroundColor = UIColor.whiteColor()
+            bgView.backgroundColor = UIColor.white
             bgView.layer.cornerRadius = 5.0
             bgView.layer.masksToBounds = true
             self.addSubview(bgView)
-            bgView.snp_makeConstraints { (make) in
+            bgView.snp.makeConstraints { (make) in
                 make.top.equalTo(9)
                 make.bottom.equalTo(0)
                 make.left.equalTo(9)
@@ -50,24 +50,23 @@ class RecommendCell: UITableViewCell {
         
         if avatarV == nil {
             avatarV = UIImageView.init()
-            avatarV.backgroundColor = UIColor.randomColor()
+            avatarV.backgroundColor = UIColor.random()
             avatarV.layer.cornerRadius = 36.0/2
             avatarV.layer.masksToBounds = true
             bgView.addSubview(avatarV)
-            avatarV.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(18)
-                make.left.equalTo(18)
-                make.size.equalTo(CGSizeMake(36, 36))
+            avatarV.snp.makeConstraints({ (make) in
+                make.left.top.equalTo(18)
+                make.height.width.equalTo(36)
             })
         }
        
         if nickNameL == nil {
             nickNameL = UILabel.init()
-            nickNameL.backgroundColor = UIColor.randomColor()
+            nickNameL.backgroundColor = UIColor.random()
             bgView.addSubview(nickNameL)
-            nickNameL.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(avatarV.snp_top)
-                make.left.equalTo(avatarV.snp_right).offset(9)
+            nickNameL.snp.makeConstraints({ (make) in
+                make.top.equalTo(avatarV.snp.top)
+                make.left.equalTo(avatarV.snp.right).offset(9)
                 make.width.equalTo(140)
                 make.height.equalTo(18)
             })
@@ -75,11 +74,11 @@ class RecommendCell: UITableViewCell {
         
         if topicL == nil {
             topicL = UILabel.init()
-            topicL.backgroundColor = UIColor.randomColor()
+            topicL.backgroundColor = UIColor.random()
             bgView.addSubview(topicL)
-            topicL.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(nickNameL.snp_bottom)
-                make.left.equalTo(avatarV.snp_right).offset(9)
+            topicL.snp.makeConstraints({ (make) in
+                make.top.equalTo(nickNameL.snp.bottom)
+                make.left.equalTo(avatarV.snp.right).offset(9)
                 make.width.equalTo(140)
                 make.height.equalTo(18)
             })
@@ -87,10 +86,10 @@ class RecommendCell: UITableViewCell {
         
         if timeL == nil {
             timeL = UILabel.init()
-            timeL.backgroundColor = UIColor.randomColor()
+            timeL.backgroundColor = UIColor.random()
             bgView.addSubview(timeL)
-            timeL.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(nickNameL.snp_top)
+            timeL.snp.makeConstraints({ (make) in
+                make.top.equalTo(nickNameL.snp.top)
                 make.right.equalTo(-9)
                 make.width.equalTo(100)
                 make.height.equalTo(18)
@@ -99,10 +98,10 @@ class RecommendCell: UITableViewCell {
         
         if pageView == nil {
             pageView = UILabel.init()
-            pageView.backgroundColor = UIColor.randomColor()
+            pageView.backgroundColor = UIColor.random()
             bgView.addSubview(pageView)
-            pageView.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(nickNameL.snp_bottom)
+            pageView.snp.makeConstraints({ (make) in
+                make.top.equalTo(nickNameL.snp.bottom)
                 make.right.equalTo(-9)
                 make.width.equalTo(100)
                 make.height.equalTo(18)
@@ -111,10 +110,10 @@ class RecommendCell: UITableViewCell {
         
         if contentL == nil {
             contentL = UILabel.init()
-            contentL.backgroundColor = UIColor.randomColor()
+            contentL.backgroundColor = UIColor.random()
             bgView.addSubview(contentL)
-            contentL.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(avatarV.snp_bottom).offset(14)
+            contentL.snp.makeConstraints({ (make) in
+                make.top.equalTo(avatarV.snp.bottom).offset(14)
                 make.right.equalTo(-15)
                 make.left.equalTo(15)
                 make.height.equalTo(40)
@@ -123,46 +122,46 @@ class RecommendCell: UITableViewCell {
         
         if pictrueView == nil {
             pictrueView = UIImageView.init()
-            pictrueView.backgroundColor = UIColor.randomColor()
-            pictrueView.contentMode = UIViewContentMode.ScaleAspectFill
+            pictrueView.backgroundColor = UIColor.random()
+            pictrueView.contentMode = UIViewContentMode.scaleAspectFill
             pictrueView.clipsToBounds = true
             bgView.addSubview(pictrueView)
-            pictrueView.snp_makeConstraints { (make) in
+            pictrueView.snp.makeConstraints { (make) in
                 make.leftMargin.equalTo(0.5)
                 make.rightMargin.equalTo(-0.5)
                 make.height.equalTo(Define.screenWidth()/2)
-                make.top.equalTo(contentL.snp_bottom).offset(15)
+                make.top.equalTo(contentL.snp.bottom).offset(15)
             }
         }
         
         if locationB == nil {
-            locationB = UIButton.init(type: UIButtonType.Custom)
-            locationB.backgroundColor = UIColor.randomColor()
+            locationB = UIButton.init(type: UIButtonType.custom)
+            locationB.backgroundColor = UIColor.random()
             bgView.addSubview(locationB)
-            locationB.snp_makeConstraints(closure: { (make) in
+            locationB.snp.makeConstraints({ (make) in
                 make.left.equalTo(9)
                 make.right.equalTo(-9)
-                make.top.equalTo(pictrueView.snp_bottom).offset(9)
+                make.top.equalTo(pictrueView.snp.bottom).offset(9)
                 make.height.equalTo(15)
             })
         }
         
         let line = UIView.init()
-        line.backgroundColor = UIColor.randomColor()
+        line.backgroundColor = UIColor.random()
         bgView.addSubview(line)
-        line.snp_makeConstraints { (make) in
+        line.snp.makeConstraints { (make) in
             make.left.equalTo(9)
             make.right.equalTo(-9)
-            make.top.equalTo(locationB.snp_bottom).offset(20)
+            make.top.equalTo(locationB.snp.bottom).offset(20)
             make.height.equalTo(0.5)
         }
         
         if likeB == nil {
-            likeB = UIButton.init(type: UIButtonType.Custom)
-            likeB.backgroundColor = UIColor.randomColor()
+            likeB = UIButton.init(type: UIButtonType.custom)
+            likeB.backgroundColor = UIColor.random()
             bgView.addSubview(likeB)
-            likeB.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(line.snp_bottom).offset(15)
+            likeB.snp.makeConstraints({ (make) in
+                make.top.equalTo(line.snp.bottom).offset(15)
                 make.left.equalTo(9)
                 make.width.equalTo(100)
                 make.height.equalTo(15)
@@ -170,11 +169,11 @@ class RecommendCell: UITableViewCell {
         }
         
         if commentB == nil {
-            commentB = UIButton.init(type: UIButtonType.Custom)
-            commentB.backgroundColor = UIColor.randomColor()
+            commentB = UIButton.init(type: UIButtonType.custom)
+            commentB.backgroundColor = UIColor.random()
             bgView.addSubview(commentB)
-            commentB.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(line.snp_bottom).offset(15)
+            commentB.snp.makeConstraints({ (make) in
+                make.top.equalTo(line.snp.bottom).offset(15)
                 make.centerX.equalTo(bgView)
                 make.width.equalTo(100)
                 make.height.equalTo(15)
@@ -183,11 +182,11 @@ class RecommendCell: UITableViewCell {
 
         
         if shareB == nil {
-            shareB = UIButton.init(type: UIButtonType.Custom)
-            shareB.backgroundColor = UIColor.randomColor()
+            shareB = UIButton.init(type: UIButtonType.custom)
+            shareB.backgroundColor = UIColor.random()
             bgView.addSubview(shareB)
-            shareB.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(line.snp_bottom).offset(15)
+            shareB.snp.makeConstraints({ (make) in
+                make.top.equalTo(line.snp.bottom).offset(15)
                 make.right.equalTo(-9)
                 make.width.equalTo(100)
                 make.height.equalTo(15)
@@ -207,7 +206,7 @@ class RecommendCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

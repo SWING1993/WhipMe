@@ -9,11 +9,11 @@
 import UIKit
 import Foundation
 
-let KNumFont: UIFont = UIFont.systemFontOfSize(10.0)
-let KTimeFont: UIFont = UIFont.systemFontOfSize(12.0)
-let KTitleFont: UIFont = UIFont.systemFontOfSize(14.0)
-let KContentFont: UIFont = UIFont.systemFontOfSize(16.0)
-let KButtonFont: UIFont = UIFont.systemFontOfSize(18.0)
+let KNumFont: UIFont = UIFont.systemFont(ofSize: 10.0)
+let KTimeFont: UIFont = UIFont.systemFont(ofSize: 12.0)
+let KTitleFont: UIFont = UIFont.systemFont(ofSize: 14.0)
+let KContentFont: UIFont = UIFont.systemFont(ofSize: 16.0)
+let KButtonFont: UIFont = UIFont.systemFont(ofSize: 18.0)
 
 let KColorBackGround: UIColor = Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
 let KColorBlack: UIColor = Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
@@ -27,57 +27,57 @@ let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
 
 class Define: NSObject {
     
-    class func RGBColorFloat(r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {
+    class func RGBColorFloat(_ r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {
         return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
     }
     
-    class func RGBColorAlphaFloat(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) ->UIColor {
+    class func RGBColorAlphaFloat(_ r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) ->UIColor {
         return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
     }
     
     //iPhone的屏幕的物理高度
     class func screenHeight() ->CGFloat {
-        return UIScreen.mainScreen().bounds.height
+        return UIScreen.main.bounds.height
     }
     
     //iPhone的屏幕的物理宽度
     class func screenWidth() ->CGFloat {
-        return UIScreen.mainScreen().bounds.width
+        return UIScreen.main.bounds.width
     }
     
     //iPhone的屏幕的ScreenBounds
     class func screenBounds() ->CGRect {
-        return UIScreen.mainScreen().bounds
+        return UIScreen.main.bounds
     }
     
     //iPhone的屏幕的ScreenFrame
     class func screenFrame() ->CGRect {
-        return UIScreen.mainScreen().applicationFrame
+        return UIScreen.main.applicationFrame
     }
     
     //iPhone的屏幕的ScreenSize
     class func screenSize() ->CGSize {
-        return UIScreen.mainScreen().bounds.size
+        return UIScreen.main.bounds.size
     }
     
     //是否为3.5寸的iPhone
     class func isiPhone4x_3_5() ->Bool {
-        return UIScreen.mainScreen().bounds.height == 480 ? true : false
+        return UIScreen.main.bounds.height == 480 ? true : false
     }
     
     //是否为4.0寸的iPhone
     class func iphone5x_4_0() ->Bool {
-        return UIScreen.mainScreen().bounds.height == 568 ? true : false
+        return UIScreen.main.bounds.height == 568 ? true : false
     }
     
     //是否为4.7寸的iPhone
     class func iphone6_4_7() ->Bool {
-        return UIScreen.mainScreen().bounds.height == 667 ? true : false
+        return UIScreen.main.bounds.height == 667 ? true : false
     }
     
     //是否为5.5寸的iPhone
     class func iphone6Plus_5_5() ->Bool {
-        return UIScreen.mainScreen().bounds.height == 736 ? true : false
+        return UIScreen.main.bounds.height == 736 ? true : false
     }
     
     

@@ -11,14 +11,14 @@ import UIKit
 
 extension UIImage {
     
-    class func imageWithDraw(color: UIColor, sizeMake: CGRect) -> UIImage {
+    class func imageWithDraw(_ color: UIColor, sizeMake: CGRect) -> UIImage {
         
-        let rect: CGRect = CGRectMake(0, 0, sizeMake.size.width, sizeMake.size.height)
+        let rect: CGRect = CGRect(x: 0, y: 0, width: sizeMake.size.width, height: sizeMake.size.height)
         UIGraphicsBeginImageContext(rect.size)
-        let context: CGContextRef = UIGraphicsGetCurrentContext()!
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
-        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return img
     }
