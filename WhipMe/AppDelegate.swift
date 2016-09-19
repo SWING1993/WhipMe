@@ -7,45 +7,73 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+        customizeAppearance()
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
+    
         window?.rootViewController = MainTabBarController();
+        
         window?.backgroundColor = UIColor.white;
         window?.makeKeyAndVisible();
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
+    func customizeAppearance() {
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
+        let navigationBarAppearance: UINavigationBar = UINavigationBar.appearance()
+        
+        navigationBarAppearance.barStyle = UIBarStyle.blackTranslucent
+        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.barTintColor = KColorNavigation
+        navigationBarAppearance.titleTextAttributes =  [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
+        navigationBarAppearance.tintColor = UIColor.white
+        
+        let barButtonAppearance: UIBarButtonItem = UIBarButtonItem.appearance()
+        barButtonAppearance.tintColor = UIColor.white
+        barButtonAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60.0), for: UIBarMetrics.default)
+        
+        //去除 TabBar 自带的顶部阴影
+        let tabBarAppearance: UITabBar = UITabBar.appearance()
+        tabBarAppearance.shadowImage = UIImage.init()
+        tabBarAppearance.tintColor = UIColor.black
+        
+        let tabBarItem: UITabBarItem = UITabBarItem.appearance()
+        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:KColorLight], for: UIControlState.normal)
+        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:UIColor.black], for: UIControlState.selected)
+    }
+    
+
+    
 
 }
 

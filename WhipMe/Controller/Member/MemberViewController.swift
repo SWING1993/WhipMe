@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberViewController: RootViewController {
+class MemberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class FriendCircleController: RootViewController {
+class FriendCircleController: UIViewController {
     
     fileprivate var recommendTable: UITableView!
 

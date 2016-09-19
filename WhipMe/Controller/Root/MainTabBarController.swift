@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController {
         
         self.viewControllers = [navIndex,navFriend,navChat,navMember];
         self.tabBar.tintColor = UIColor.black
-        self.selectedIndex  = 0;
+        self.selectedIndex  = 2;
     }
 
     override func didReceiveMemoryWarning() {
