@@ -9,12 +9,19 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
+        
+        /// Required - 添加 JMessage SDK 监听。这个动作放在启动前
+        JMessage.add(self, with: JMSGConversation.init())
+        /// Required - 启动 JMessage SDK
+        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+        
+        
         customizeAppearance()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -72,8 +79,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:UIColor.black], for: UIControlState.selected)
     }
     
+    func registerUserNotification() {
+        
+        let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
+        JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
+    }
 
+    func registerJPushStatusNotification() {
+        
+    }
     
-
+    // MARK:- Notificatioin
+    
+    /** 建立连接 */
+    func networkDidSetup(notification: NSNotification) {
+        print("建立连接")
+    }
+    
+    /** 正在连接中 */
+    func networkIsConnecting(notification: NSNotification) {
+        print("正在连接中...")
+    }
+    
+    /** 关闭连接 */
+    func networkDidClose(notification: NSNotification) {
+        print("正在连接中...")
+    }
+    
+    /** 注册成功 */
+    func networkDidRegister(notification: NSNotification) {
+        print("注册成功")
+    }
+    
+    /** 登录成功 */
+    func networkDidLogin(notification: NSNotification) {
+        print("登录成功")
+    }
+    
+    /** 收到消息 */
+    func receivePushMessage(notification: NSNotification) {
+        print("收到消息")
+        
+        let info = notification.userInfo as! [String: AnyObject]
+        
+        print("The message -"+info.description)
+        
+    }
+    
 }
 

@@ -9,5 +9,7 @@
 #import <BlocksKit/BlocksKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 
+#import <JMessage/JMessage.h>
+
 //
 #import "UIColor+Expanded.h"

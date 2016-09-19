@@ -109,6 +109,10 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row+indexPath.section)
+        
+        let controller: ChatConversationController = ChatConversationController()
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
 }
