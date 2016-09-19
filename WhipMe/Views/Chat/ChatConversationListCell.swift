@@ -114,7 +114,7 @@ class ChatConversationListCell: UITableViewCell {
         if model.object(forKey: "title") == nil {
             lblNickname.text = "标题"
         } else {
-            lblNickname.text = model.object(forKey: "title") as! String
+            lblNickname.text = model.object(forKey: "title") as? String
         }
     
         lblBrief.text = "人若只如初见"

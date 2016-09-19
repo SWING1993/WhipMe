@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
+		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
+		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
@@ -16,6 +18,8 @@
 		C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */; };
 		C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2E1D829D8200012FB4 /* MemberViewController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
+		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
+		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
 		C59B2A1B1D8F831C0055F026 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1A1D8F831C0055F026 /* UIKit.framework */; };
 		C59B2A1D1D8F83280055F026 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1C1D8F83280055F026 /* Security.framework */; };
@@ -50,6 +54,8 @@
 		016FC22642FF3694F4358528 /* Pods_WhipMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhipMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
+		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
+		C506DC311D8FE46F00785BE8 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -59,6 +65,8 @@
 		C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleController.swift; sourceTree = "<group>"; };
 		C546FE2E1D829D8200012FB4 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
+		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
 		C59B2A1A1D8F831C0055F026 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C59B2A1C1D8F83280055F026 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -100,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */,
+				C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */,
 				C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */,
 				C59B2A2F1D8F83900055F026 /* AudioToolbox.framework in Frameworks */,
 				C59B2A2D1D8F83820055F026 /* CFNetwork.framework in Frameworks */,
@@ -113,6 +123,7 @@
 				C59B2A1D1D8F83280055F026 /* Security.framework in Frameworks */,
 				C59B2A1B1D8F831C0055F026 /* UIKit.framework in Frameworks */,
 				E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */,
+				C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */,
 				8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +138,14 @@
 				A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C506DC301D8FE46F00785BE8 /* JMessage */ = {
+			isa = PBXGroup;
+			children = (
+				C506DC311D8FE46F00785BE8 /* JMessage.framework */,
+			);
+			path = JMessage;
 			sourceTree = "<group>";
 		};
 		C53619581D825C180065707C /* Supporting Files */ = {
@@ -158,6 +177,7 @@
 				C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */,
 				C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */,
 				C59B2A341D8F98EE0055F026 /* FriendsListController.swift */,
+				C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -299,6 +319,8 @@
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */,
+				C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */,
 				C59B2A301D8F83950055F026 /* MobileCoreServices.framework */,
 				C59B2A2E1D8F83900055F026 /* AudioToolbox.framework */,
 				C59B2A2C1D8F83820055F026 /* CFNetwork.framework */,
@@ -340,6 +362,7 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C506DC301D8FE46F00785BE8 /* JMessage */,
 				E4189EE21D8E7D0600A619A6 /* UIPlaceHolderTextView.h */,
 				E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */,
 			);
@@ -418,7 +441,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "-";
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
@@ -426,6 +449,11 @@
 						DevelopmentTeam = BG6HSL32ZA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -520,6 +548,7 @@
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
+				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
@@ -564,8 +593,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -609,8 +640,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -629,6 +662,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -637,6 +671,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -654,8 +689,6 @@
 					"\"DZNEmptyDataSet\"",
 					"-framework",
 					"\"SnapKit\"",
-					"-all_load",
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -669,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -686,8 +720,6 @@
 					"\"DZNEmptyDataSet\"",
 					"-framework",
 					"\"SnapKit\"",
-					"-all_load",
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
 				PRODUCT_NAME = "$(TARGET_NAME)";

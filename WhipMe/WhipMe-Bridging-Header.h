@@ -7,6 +7,7 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "UIPlaceHolderTextView.h"
 
+#import <JMessage/JMessage.h>
 
 //
 #import "UIColor+Expanded.h"

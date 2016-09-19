@@ -27,6 +27,10 @@ let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
 
 let kNaviHeight: CGFloat = 64.0
 
+let JMESSAGE_APPKEY: String = "e21f0175ea90c6692ca05a39"
+let CHANNEL: String = "appstore"
+
+
 class Define: NSObject {
     
     class func RGBColorFloat(_ r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {
