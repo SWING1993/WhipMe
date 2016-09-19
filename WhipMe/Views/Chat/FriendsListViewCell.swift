@@ -1,5 +1,5 @@
 //
-//  ChatConversationListCell.swift
+//  FriendsListViewCell.swift
 //  WhipMe
 //
 //  Created by anve on 16/9/19.
@@ -7,18 +7,13 @@
 //
 
 import UIKit
-//import JMessage
 
-class ChatConversationListCell: UITableViewCell {
+class FriendsListViewCell: UITableViewCell {
 
-    var conversationId: String!
-//    var cellWithConversation: JMSGConversation!
-    
     var imageLogo: UIImageView!
     var lblNickname: UILabel!
     var lblBrief: UILabel!
-    var lblTime: UILabel!
-    var btnUnRead: UIButton!
+    var btnStatus: UIButton!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,7 +33,6 @@ class ChatConversationListCell: UITableViewCell {
     }
 
     private func setup() {
-        
         imageLogo = UIImageView.init()
         imageLogo.backgroundColor = KColorLight
         imageLogo.contentMode = UIViewContentMode.scaleToFill
@@ -47,8 +41,10 @@ class ChatConversationListCell: UITableViewCell {
         imageLogo.layer.masksToBounds = true
         self.contentView.addSubview(imageLogo)
         imageLogo.snp.makeConstraints { (make) in
+            
+            let origin: CGFloat = Define.screenWidth() == 320.0 ? 15.0 : 20.0;
             make.size.equalTo(CGSize.init(width: 42.0, height: 42.0))
-            make.left.equalTo(self.contentView).offset(20.0)
+            make.left.equalTo(self.contentView).offset(origin)
             make.centerY.equalTo(self.contentView)
         }
         
@@ -61,11 +57,12 @@ class ChatConversationListCell: UITableViewCell {
         self.contentView.addSubview(lblNickname)
         lblNickname.snp.makeConstraints { (make) in
             make.height.equalTo(20.0)
-            make.left.equalTo(imageLogo.snp.right).offset(15.0)
-            make.right.equalTo(self.contentView).offset(-80.0);
+            let origin: CGFloat = Define.screenWidth() == 320.0 ? 15.0 : 30.0;
+            make.left.equalTo(imageLogo.snp.right).offset(origin);
+            make.right.equalTo(self.contentView).offset(-90.0);
             make.top.equalTo(imageLogo.snp.top);
         }
-
+        
         lblBrief = UILabel.init()
         lblBrief.backgroundColor = UIColor.clear
         lblBrief.textColor = KColorLight
@@ -76,67 +73,51 @@ class ChatConversationListCell: UITableViewCell {
         lblBrief.snp.makeConstraints { (make) in
             make.height.equalTo(20.0);
             make.left.equalTo(lblNickname.snp.left);
-            make.right.equalTo(self.contentView).offset(-20.0);
+            make.right.equalTo(lblNickname.snp.right);
             make.top.equalTo(lblNickname.snp.bottom).offset(2.0);
         }
-
-        lblTime = UILabel.init()
-        lblTime.backgroundColor = UIColor.clear
-        lblTime.textColor = KColorLight
-        lblTime.font = KTimeFont
-        lblTime.textAlignment = NSTextAlignment.right
-        lblTime.isUserInteractionEnabled = false
-        self.contentView.addSubview(lblTime)
-        lblTime.snp.makeConstraints { (make) in
-            make.height.equalTo(12.0);
-            make.left.equalTo(lblNickname.snp.right).offset(10.0);
-            make.right.equalTo(self.contentView).offset(-20);
-            make.top.equalTo(lblNickname.snp.top);
-        }
-
-        btnUnRead = UIButton.init(type: UIButtonType.custom)
-        btnUnRead.backgroundColor = KColorRed
-        btnUnRead.setTitleColor(UIColor.white, for: UIControlState.normal)
-        btnUnRead.titleLabel?.font = KTitleFont
-        btnUnRead.isUserInteractionEnabled = true
-        btnUnRead.layer.masksToBounds = true
-        btnUnRead.layer.cornerRadius = 10.0
-        self.contentView.addSubview(btnUnRead)
-        btnUnRead.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize.init(width: 20.0, height: 20.0));
-            make.right.equalTo(self.contentView).offset(-20.0);
+        
+        btnStatus = UIButton.init(type: UIButtonType.custom)
+        btnStatus.backgroundColor = UIColor.white
+        btnStatus.setTitleColor(UIColor.white, for: UIControlState.normal)
+        btnStatus.titleLabel?.font = KTitleFont
+        btnStatus.isUserInteractionEnabled = false
+        btnStatus.layer.masksToBounds = true
+        btnStatus.layer.cornerRadius = 30/2.0
+        btnStatus.layer.borderWidth = 0.5
+        self.contentView.addSubview(btnStatus)
+        btnStatus.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 78.0, height: 30.0));
+            make.right.equalTo(self.contentView).offset(-15.0);
             make.bottom.equalTo(imageLogo.snp.bottom);
         }
     }
     
     public func setCellWithModel(model: NSDictionary) {
-       
-        if model.object(forKey: "title") == nil {
-            lblNickname.text = "标题"
-        } else {
-            lblNickname.text = model.object(forKey: "title") as! String
-        }
-    
-        lblBrief.text = "人若只如初见"
-    
-        lblTime.text = "10分钟前"
         
-        let count : UInt32 = arc4random()%3
-        btnUnRead.isHidden = count > 0 ? false : true
-        btnUnRead.setTitle(recountUnReadCount(unReadCount: count), for: UIControlState.normal)
+        let statue: UInt32 = arc4random()%3;
+        let color: UIColor = statue != 1 ? KColorBlue : KColorLight;
+        btnStatus.setTitle(stringByStatu(statu: statue), for: UIControlState.normal)
+        btnStatus.setTitleColor(color, for: UIControlState.normal)
+        btnStatus.layer.borderColor = color.cgColor
         
+        lblNickname.text = "张三李少"
+        lblBrief.text = "生活就像强奸，反抗不了，就只能学会享受"
         imageLogo.image = UIImage.init(named: "system_monitoring")
     }
     
-    private func recountUnReadCount(unReadCount: UInt32) -> String {
-        var str: String = ""
-        if (unReadCount <= 0) {
-            str = "";
-        } else if (unReadCount > 99) {
-            str = "99+";
-        } else {
-            str = String(unReadCount)
+    func stringByStatu(statu: UInt32) -> String {
+        var title: String = ""
+        switch statu {
+        case 1:
+            title = "取消关注"
+            break
+        case 2:
+            title = "相互关注"
+            break
+        default:
+            title = "关注"
         }
-        return str;
+        return title
     }
 }

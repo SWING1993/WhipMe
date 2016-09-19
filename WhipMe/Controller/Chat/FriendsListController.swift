@@ -1,50 +1,53 @@
 //
-//  PrivateChatViewController.swift
+//  FriendsListController.swift
 //  WhipMe
 //
-//  Created by anve on 16/9/9.
+//  Created by anve on 16/9/19.
 //  Copyright © 2016年 -. All rights reserved.
 //
 
 import UIKit
 
-class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var arrayNavButton: NSMutableArray!
-    var tableViewWM: UITableView!
+
+public enum WMFriendsListViewModel : NSInteger {
+    case none
+    case addFriend
+    case friendList
+}
+
+class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var arrayContent: NSMutableArray!
+    var tableViewWM: UITableView!
     
-    private let identifier_cell: String = "chatConversationListCell"
+    public var controlModel: WMFriendsListViewModel?
+    private let identifier_cell: String = "friendsListViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = KColorBackGround
         
-        setup()
         
+        
+        setup()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     private func setup() {
-        
-        let titles_nav: NSArray = ["私信","通知"]
-        let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
-        segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
-        segmentedView.backgroundColor = KColorNavigation
-        segmentedView.layer.cornerRadius = segmentedView.height/2.0
-        segmentedView.layer.masksToBounds = true
-        segmentedView.layer.borderColor = UIColor.white.cgColor
-        segmentedView.layer.borderWidth = 1.0
-        segmentedView.tintColor = UIColor.white
-        segmentedView.selectedSegmentIndex = 0
-        segmentedView.addTarget(self, action:#selector(clickWithNavItem), for: UIControlEvents.valueChanged)
-        self.navigationItem.titleView = segmentedView
-        
-        let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
-        rightBarItem.tintColor = UIColor.white
+
+        let flag: Bool = controlModel == WMFriendsListViewModel.addFriend ? true : false
+        let str_title: String = flag ? "添加好友" : "好友列表"
+       
+        self.navigationItem.title = str_title;
+        let rightBarItem: UIBarButtonItem!
+        if flag {
+            rightBarItem = UIBarButtonItem.init(title: "取消", style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithCancel))
+        } else {
+            rightBarItem = UIBarButtonItem.init(image: UIImage.init(named: "add_friend"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
+        }
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
@@ -64,7 +67,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         tableViewWM?.showsHorizontalScrollIndicator = false
         tableViewWM.translatesAutoresizingMaskIntoConstraints = false
         tableViewWM?.tableFooterView = UIView.init(frame: CGRect.zero)
-        tableViewWM.register(ChatConversationListCell.classForCoder(), forCellReuseIdentifier: identifier_cell)
+        tableViewWM.register(FriendsListViewCell.classForCoder(), forCellReuseIdentifier: identifier_cell)
         self.view.addSubview(tableViewWM)
         tableViewWM.snp.makeConstraints { (make) in
             make.top.left.equalTo(10.0)
@@ -74,17 +77,15 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func clickWithNavItem(_ sender: UISegmentedControl) {
-       
-        print(sender.numberOfSegments+sender.selectedSegmentIndex)
-
-    }
-
     func clickWithRightBarItem() {
         print(NSStringFromClass(self.classForCoder))
-        let controller : FriendsListController = FriendsListController()
+        let controller : AddFriendsController = AddFriendsController()
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func clickWithCancel() {
+        print(self.classForCoder)
     }
     
     /** UITableViewDelegate and Datasource */
@@ -100,7 +101,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ChatConversationListCell = ChatConversationListCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
+        let cell: FriendsListViewCell = FriendsListViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
         
         cell.setCellWithModel(model: NSDictionary.init())
         

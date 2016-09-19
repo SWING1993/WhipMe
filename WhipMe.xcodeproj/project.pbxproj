@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
+		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
@@ -28,6 +29,8 @@
 		C59B2A2D1D8F83820055F026 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A2C1D8F83820055F026 /* CFNetwork.framework */; };
 		C59B2A2F1D8F83900055F026 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A2E1D8F83900055F026 /* AudioToolbox.framework */; };
 		C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A301D8F83950055F026 /* MobileCoreServices.framework */; };
+		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
+		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
@@ -47,6 +50,7 @@
 		016FC22642FF3694F4358528 /* Pods_WhipMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhipMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
+		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 		C59B2A2C1D8F83820055F026 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C59B2A2E1D8F83900055F026 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C59B2A301D8F83950055F026 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
+		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */,
+				C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */,
+				C59B2A341D8F98EE0055F026 /* FriendsListController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				C5920D381D8F8141007B199E /* ChatConversationListCell.swift */,
+				C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -512,15 +521,18 @@
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
+				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
+				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
+				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
