@@ -21,6 +21,7 @@ class IndexViewController: RootViewController {
 
     }
     fileprivate func setup() {
+        self.view.backgroundColor = KColorBackGround
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
         self.navigationItem.rightBarButtonItem = addBtn

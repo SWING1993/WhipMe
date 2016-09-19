@@ -32,7 +32,7 @@ class RecommendCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        self.backgroundColor = UIColor.white
         self.selectionStyle = .none
 
         if bgView == nil {

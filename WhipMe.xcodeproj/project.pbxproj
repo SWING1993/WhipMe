@@ -19,6 +19,7 @@
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
 		E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDB1D8E741F00A619A6 /* FirstAddCustomCell.swift */; };
 		E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */; };
@@ -48,6 +49,7 @@
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
 		E4189EDB1D8E741F00A619A6 /* FirstAddCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstAddCustomCell.swift; sourceTree = "<group>"; };
 		E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondAddCustomCell.swift; sourceTree = "<group>"; };
@@ -265,9 +267,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E408D9901D8FB76D006F2A75 /* Hot_add */ = {
+			isa = PBXGroup;
+			children = (
+				E408D9911D8FB786006F2A75 /* HotAddCell.swift */,
+			);
+			path = Hot_add;
+			sourceTree = "<group>";
+		};
 		E4189ED91D8E73C200A619A6 /* Index */ = {
 			isa = PBXGroup;
 			children = (
+				E408D9901D8FB76D006F2A75 /* Hot_add */,
 				E4189EDA1D8E73EE00A619A6 /* Custom_add */,
 			);
 			path = Index;
@@ -369,6 +380,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WPXQYZSK2Q;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -463,6 +475,7 @@
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
+				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
@@ -581,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -598,6 +612,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

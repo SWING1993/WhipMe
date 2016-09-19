@@ -8,10 +8,41 @@
 
 import UIKit
 
-class ThirdAddCustomCell_Cell: UITableViewCell {
+class ThirdAddCustomCell: UITableViewCell {
+
+    var bgView : UIView!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = KColorBackGround
+        self.selectionStyle = .none
+        
+        if bgView == nil {
+            bgView = UIView.init()
+            bgView.backgroundColor = UIColor.white
+            bgView.layer.cornerRadius = 5.0
+            bgView.layer.masksToBounds = true
+            self.addSubview(bgView)
+            bgView.snp.makeConstraints { (make) in
+                make.top.equalTo(9)
+                make.bottom.equalTo(-9)
+                make.left.equalTo(9)
+                make.right.equalTo(-9)
+            }
+            
+            let titleLabel = UILabel.init()
+            titleLabel.text = "找监护人"
+            titleLabel.textColor = UIColor.black
+            titleLabel.font = UIFont.systemFont(ofSize: 12)
+            bgView.addSubview(titleLabel)
+            titleLabel.snp.makeConstraints({ (make) in
+                make.height.equalTo(30)
+                make.left.equalTo(15)
+                make.right.equalTo(-15)
+                make.top.equalTo(5)
+            })
+        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +58,14 @@ class ThirdAddCustomCell_Cell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    class func cellHeight() -> CGFloat {
+        return 176
+    }
+    
+    class func cellReuseIdentifier() -> String {
+        return "ThirdAddCustomCell"
     }
 
 }

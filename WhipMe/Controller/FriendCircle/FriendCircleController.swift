@@ -19,6 +19,7 @@ class FriendCircleController: RootViewController {
     }
     
     fileprivate func setup() {
+        self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         prepareTableView()
         prepareSegmented()
     }
@@ -45,6 +46,7 @@ class FriendCircleController: RootViewController {
     
     fileprivate func prepareTableView() {
         recommendTable = UITableView.init()
+        recommendTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: "Cell")
         recommendTable.dataSource = self
         recommendTable.delegate = self

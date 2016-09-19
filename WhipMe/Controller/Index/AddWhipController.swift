@@ -7,10 +7,15 @@
 //
 
 import UIKit
-
+import RxSwift
+import RxCocoa
 class AddWhipController: UIViewController {
 
-    fileprivate var myTable: UITableView!
+    var disposeBag = DisposeBag()
+
+    
+    fileprivate var customTable: UITableView!
+    fileprivate var hotTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,24 +29,46 @@ class AddWhipController: UIViewController {
     }
     
     fileprivate func setup() {
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         prepareSegmented()
         prepareTableView()
     }
     
     fileprivate func prepareTableView() {
-        myTable = UITableView.init()
-        myTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
-        myTable.register(SecondAddCustomCell.self, forCellReuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
-        myTable.dataSource = self
-        myTable.delegate = self
-        myTable.showsVerticalScrollIndicator = false
-        myTable.separatorStyle = .none
-        view.addSubview(myTable)
-        myTable.translatesAutoresizingMaskIntoConstraints = false
-        myTable.snp.makeConstraints { (make) in
+        customTable = UITableView.init()
+        customTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+
+        customTable.tag = 100
+        customTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
+        customTable.register(SecondAddCustomCell.self, forCellReuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
+        customTable.register(ThirdAddCustomCell.self, forCellReuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
+        customTable.dataSource = self
+        customTable.delegate = self
+        customTable.showsVerticalScrollIndicator = false
+        customTable.separatorStyle = .none
+        view.addSubview(customTable)
+        customTable.translatesAutoresizingMaskIntoConstraints = false
+        customTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+        
+        hotTable = UITableView.init()
+        hotTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        hotTable.tag = 101
+        hotTable.register(HotAddCell.self, forCellReuseIdentifier: HotAddCell.cellReuseIdentifier())
+        hotTable.dataSource = self
+        hotTable.delegate = self
+        hotTable.showsVerticalScrollIndicator = false
+        hotTable.separatorStyle = .none
+        view.addSubview(hotTable)
+        hotTable.translatesAutoresizingMaskIntoConstraints = false
+        hotTable.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+        
+        customTable.isHidden = true
+        hotTable.isHidden = false
+
     }
     
     fileprivate func prepareSegmented() {
@@ -60,7 +87,15 @@ class AddWhipController: UIViewController {
     }
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
-        print(sender.numberOfSegments+sender.selectedSegmentIndex)
+        
+        if sender.selectedSegmentIndex == 0 {
+            customTable.isHidden = true
+            hotTable.isHidden = false
+        }
+        if sender.selectedSegmentIndex == 1 {
+            customTable.isHidden = false
+            hotTable.isHidden = true
+        }
     }
 
 }
@@ -70,35 +105,39 @@ extension AddWhipController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        else if section == 1 {
-            return 4
-        }
-        else if section == 2 {
-            return 1
-        }
-        else {
-            return 0
-        }
+        return 1
     }
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 && indexPath.section == 0 {
-            let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
+        if tableView.tag == 100 {
+            if indexPath.row == 0 && indexPath.section == 0 {
+                let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
+                return cell
+            }
+            if indexPath.section == 1 {
+                let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
+                cell.setBackMyClosure { (inputText:IndexPath) -> Void in
+                    print(inputText);
+                }
+                return cell
+            }
+            if indexPath.section == 2 {
+                let cell: ThirdAddCustomCell = ThirdAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
+                return cell
+            }
+        }
+        
+        if tableView.tag == 101 {
+            let cell: HotAddCell = HotAddCell.init(style: UITableViewCellStyle.default, reuseIdentifier: HotAddCell.cellReuseIdentifier())
             return cell
         }
-        if indexPath.section == 1 {
-            let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
-            return cell
-        }
+        
         let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "subtitlecell")
         return cell
     }
@@ -107,14 +146,24 @@ extension AddWhipController:UITableViewDataSource {
 
 /// UITableViewDelegate methods.
 extension AddWhipController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 && indexPath.section == 0 {
-            return FirstAddCustomCell.cellHeight()
+        if tableView.tag == 100 {
+            if indexPath.row == 0 && indexPath.section == 0 {
+                return FirstAddCustomCell.cellHeight()
+            }
+            if indexPath.section == 1 {
+                return SecondAddCustomCell.cellHeight()
+            }
+            
+            if indexPath.section == 2 {
+                return ThirdAddCustomCell.cellHeight()
+            }
         }
-        if indexPath.section == 1 {
-            return SecondAddCustomCell.cellHeight()
+        
+        if tableView.tag == 101 {
+            return HotAddCell.cellHeight()
         }
+        
         return 0
     }
     
