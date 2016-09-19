@@ -25,6 +25,8 @@ let KColorRed: UIColor = Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
 let KColorNavigation: UIColor = Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
 let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
 
+let kNaviHeight: CGFloat = 64.0
+
 class Define: NSObject {
     
     class func RGBColorFloat(_ r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class IndexViewController: RootViewController {
+class IndexViewController: UIViewController {
     
     fileprivate var myTable: UITableView!
 

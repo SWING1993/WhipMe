@@ -8,12 +8,16 @@
 
 import UIKit
 
-class PrivateChatController: RootViewController {
+class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var arrayNavButton: NSMutableArray?
+    var arrayNavButton: NSMutableArray!
+    var tableViewWM: UITableView!
+    
+    private let identifier_cell: String = "tableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = KColorBackGround
         
         setup()
         
@@ -43,6 +47,29 @@ class PrivateChatController: RootViewController {
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
+        tableViewWM = UITableView.init()
+        tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableViewWM?.separatorColor = KColorLine
+        tableViewWM?.layoutMargins = UIEdgeInsets.zero
+        tableViewWM?.separatorInset = UIEdgeInsets.zero
+        tableViewWM?.backgroundColor = UIColor.white
+        tableViewWM?.layer.cornerRadius = 4.0
+        tableViewWM?.layer.masksToBounds = true
+        tableViewWM?.delegate = self
+        tableViewWM?.dataSource = self
+        tableViewWM?.showsVerticalScrollIndicator = true
+        tableViewWM?.showsHorizontalScrollIndicator = false
+        tableViewWM.translatesAutoresizingMaskIntoConstraints = false
+        tableViewWM?.tableFooterView = UIView.init(frame: CGRect.zero)
+        tableViewWM.register(ChatConversationListCell.classForCoder(), forCellReuseIdentifier: identifier_cell)
+        self.view.addSubview(tableViewWM)
+        tableViewWM.snp.makeConstraints { (make) in
+            make.top.equalTo(10.0)
+            make.left.equalTo(10.0)
+            make.right.equalTo(-10.0)
+            make.height.equalTo(Define.screenHeight() - kNaviHeight - 69.0)
+        }
+        
         
     }
     
@@ -55,4 +82,29 @@ class PrivateChatController: RootViewController {
     func clickWithRightBarItem() {
         print(NSStringFromClass(self.classForCoder))
     }
+    
+    /** UITableViewDelegate and Datasource */
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ChatConversationListCell = ChatConversationListCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
+        
+        cell.setCellWithModel(model: NSDictionary.init())
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row+indexPath.section)
+    }
+    
 }
