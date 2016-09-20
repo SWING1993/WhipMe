@@ -457,7 +457,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WPXQYZSK2Q;
+						DevelopmentTeam = BG6HSL32ZA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -686,7 +686,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG6HSL32ZA;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -718,7 +717,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG6HSL32ZA;
 				FRAMEWORK_SEARCH_PATHS = (
