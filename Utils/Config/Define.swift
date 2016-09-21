@@ -30,9 +30,24 @@ let kNaviHeight: CGFloat = 64.0
 let JMESSAGE_APPKEY: String = "e21f0175ea90c6692ca05a39"
 let CHANNEL: String = "appstore"
 
-
 class Define: NSObject {
     
+    class func kUserName() -> String {
+        return "username"
+    }
+    
+    class func kPassword() -> String {
+        return "password"
+        let window = UIApplication.shared.delegate?.window??.rootViewController
+        print("\(window)")
+        
+    }
+    
+    class func kBADGE() -> String {
+        return "badge"
+    }
+    
+    // rdg 颜色的定义
     class func RGBColorFloat(_ r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {
         return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
     }

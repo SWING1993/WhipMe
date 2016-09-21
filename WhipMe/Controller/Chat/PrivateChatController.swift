@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewDataSource, JMessageDelegate {
     
     var arrayNavButton: NSMutableArray!
     var tableViewWM: UITableView!
@@ -87,7 +87,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    /** UITableViewDelegate and Datasource */
+    // MARK: - UITableViewDelegate and Datasource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -113,6 +113,58 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         let controller: ChatConversationController = ChatConversationController()
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    // MARK: - Action 方法
+    
+    func getConversationList() {
+        JMSGConversation.allConversations { (result: Any?,error: Error?) in
+            
+            
+            
+            
+        }
+    }
+    
+    // MARK: - JMessageDelegate
+    
+    // JMSGDBMigrateDelegate 数据库升级通知
+    func onDBMigrateStart() {
+        print("onDBmigrateStart in appdelegate")
+    }
+    
+    func onDBMigrateFinishedWithError(_ error: Error!) {
+        print("onDBmigrateFinish in appdelegate")
+        //        NotificationCenter.default.post(name: kDBMigrateFinishNotification, object: nil);
+    }
+    
+    // JMSGMessageDelegate 消息相关的变更通知
+    // 发送消息结果返回回调
+    func onSendMessageResponse(_ message: JMSGMessage!, error: Error!) {
+        print("Action -- onSendMessageResponse \(message) , error:\(error)")
+    }
+    
+    // 接收消息(服务器端下发的)回调
+    func onReceive(_ message: JMSGMessage!, error: Error!) {
+        print("Action -- onReceivemessage \(message), error:\(error)")
+        
+//        NotificationCenter.default.post(name: kDBMigrateFinishNotification, object: nil);
+    }
+    
+    // 接收消息媒体文件下载失败的回调
+    func onReceiveMessageDownloadFailed(_ message: JMSGMessage!) {
+        print("Action -- onReceiveMessageDownloadFailed \(message)")
+    }
+
+    // JMSGConversationDelegate 会话相关变更通知
+    // 会话信息变更通知
+    func onConversationChanged(_ conversation: JMSGConversation!) {
+        print("Action -- onConversationChanged")
+    }
+    
+    // 当前剩余的全局未读数
+    func onUnreadChanged(_ newCount: UInt) {
+        print("Action -- onUnreadChanged")
     }
     
 }
