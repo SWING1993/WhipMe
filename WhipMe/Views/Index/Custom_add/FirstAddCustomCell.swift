@@ -33,7 +33,7 @@ class FirstAddCustomCell: UITableViewCell {
                 make.top.equalTo(kTopMargin)
                 make.bottom.equalTo(kBottomMargin)
                 make.left.equalTo(kLeftMargin)
-                make.right.equalTo(-kRightMargin)
+                make.right.equalTo(kRightMargin)
             }
         }
         if titleT == nil {

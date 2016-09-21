@@ -10,10 +10,11 @@ import UIKit
 
 class HotAddCell: UITableViewCell {
 
-    var bgView : UIView!
+    fileprivate var bgView : UIView!
     var cellImage : UIImageView!
-    var titleT : UILabel!
-    
+    var titleL : UILabel!
+    var subTitleL : UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,32 +41,51 @@ class HotAddCell: UITableViewCell {
                 make.top.equalTo(kTopMargin)
                 make.bottom.equalTo(kBottomMargin)
                 make.left.equalTo(kLeftMargin)
-                make.right.equalTo(-kRightMargin)
+                make.right.equalTo(kRightMargin)
             }
         }
         
         if cellImage == nil {
+            
             cellImage = UIImageView.init()
+            cellImage.image = UIImage.init(named: "zaoqi")
             self.addSubview(cellImage)
             cellImage.snp.makeConstraints({ (make) in
-                make.height.width.equalTo(25)
+                make.height.width.equalTo(20)
                 make.centerY.equalTo(bgView)
-                make.left.equalTo(15)
+                make.left.equalTo(20)
             })
         }
         
-        if titleT == nil {
-            titleT = UILabel.init()
-            titleT.textColor = KColorBlack
-            titleT.font = UIFont.systemFont(ofSize: 12)
-            bgView.addSubview(titleT)
-            titleT.snp.makeConstraints({ (make) in
+        if titleL == nil {
+            titleL = UILabel.init()
+            titleL.textColor = KColorBlack
+            titleL.text = "早起"
+            titleL.font = UIFont.systemFont(ofSize: 16)
+            bgView.addSubview(titleL)
+            titleL.snp.makeConstraints({ (make) in
                 make.height.equalTo(50)
-                make.left.equalTo(cellImage.snp.right).offset(10)
-                make.width.equalTo(60)
+                make.left.equalTo(cellImage.snp.right).offset(20)
+                make.width.equalTo(100)
                 make.centerY.equalTo(bgView)
             })
         }
+        
+        if subTitleL == nil {
+            subTitleL = UILabel.init()
+            subTitleL.textColor = KColorGray
+            subTitleL.text = "已有10086位参加"
+            subTitleL.textAlignment = .right
+            subTitleL.font = UIFont.systemFont(ofSize: 8)
+            bgView.addSubview(subTitleL)
+            subTitleL.snp.makeConstraints({ (make) in
+                make.height.equalTo(50)
+                make.right.equalTo(-15)
+                make.width.equalTo(100)
+                make.centerY.equalTo(bgView)
+            })
+        }
+
      
     }
     

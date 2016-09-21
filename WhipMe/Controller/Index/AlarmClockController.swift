@@ -12,7 +12,8 @@ class AlarmClockController: UIViewController {
 
     
     var alarmClockTable = UITableView.init()
-    
+    var myCostomAM = CustomAddM.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,6 +30,7 @@ class AlarmClockController: UIViewController {
         self.view.backgroundColor = KColorBackGround
         alarmClockTable = UITableView.init()
         alarmClockTable.register(WeekCell.self, forCellReuseIdentifier: WeekCell.cellReuseIdentifier())
+        alarmClockTable.separatorStyle = .none
         alarmClockTable.delegate = self
         alarmClockTable.dataSource = self
         alarmClockTable.isScrollEnabled = false
@@ -37,10 +39,10 @@ class AlarmClockController: UIViewController {
         alarmClockTable.rowHeight = 58.0
         self.view.addSubview(alarmClockTable)
         alarmClockTable.snp.makeConstraints { (make) in
-            make.height.equalTo(148)
-            make.top.equalTo(5)
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.height.equalTo(174)
+            make.top.equalTo(0)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
         }
     }
 }
@@ -48,20 +50,26 @@ class AlarmClockController: UIViewController {
 extension AlarmClockController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-            
-        case 0:
-//            myCostomAM.privacy = PrivacyType.all
-            break
-            
         case 1:
-//            myCostomAM.privacy = PrivacyType.myFollow
+            weak var weakSelf = self
+            weak var weakCell = alarmClockTable.cellForRow(at: indexPath)
+            SGHDateView.sharedInstance.pickerMode = .time
+            SGHDateView.sharedInstance.show();
+            SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+                weakCell?.textLabel?.text = "点击设置"
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
+            }
+            SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                weakCell?.textLabel?.text = formatter.string(from: date as Date)
+                self.myCostomAM.alarmClock = date as NSDate?
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
+            }
             break
             
-        case 2:
-//            myCostomAM.privacy = PrivacyType.mySelf
-            break
-            
-        default:
+          default:
             break
         }
     }
@@ -79,8 +87,46 @@ extension AlarmClockController: UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: WeekCell = WeekCell.init(style: UITableViewCellStyle.default, reuseIdentifier: WeekCell.cellReuseIdentifier())
+        if indexPath.row == 0 {
+            let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell1")
+            cell.backgroundColor = KColorBackGround
+            cell.selectionStyle = .none
+            cell.textLabel?.layer.cornerRadius = 5.0
+            cell.textLabel?.layer.masksToBounds = true
+            cell.textLabel?.backgroundColor = UIColor.white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+            cell.textLabel?.text = "   早起"
+            cell.textLabel?.snp.remakeConstraints({ (make) in
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(kRightMargin)
+            })
+            return cell
+        }
+        else if indexPath.row == 1 {
+            let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell2")
+            cell.backgroundColor = KColorBackGround
+            cell.selectionStyle = .none
+            cell.textLabel?.layer.cornerRadius = 5.0
+            cell.textLabel?.layer.masksToBounds = true
+            cell.textLabel?.backgroundColor = UIColor.white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+            cell.textLabel?.text = "点击设置"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.snp.remakeConstraints({ (make) in
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(kRightMargin)
+            })
+            return cell
+        }
+        else if indexPath.row == 2 {
+            let cell: WeekCell = WeekCell.init(style: UITableViewCellStyle.default, reuseIdentifier: WeekCell.cellReuseIdentifier())
+            return cell
+        }
+        let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         return cell
     }
-
 }

@@ -18,7 +18,8 @@ class AddWhipController: UIViewController {
     
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
-
+    fileprivate var submitBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,6 +33,10 @@ class AddWhipController: UIViewController {
     
     fileprivate func setup() {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        self.submitBtn = UIBarButtonItem.init()
+        self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
+            
+        }
         prepareSegmented()
         prepareTableView()
     }
@@ -89,14 +94,15 @@ class AddWhipController: UIViewController {
     }
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
-        
         if sender.selectedSegmentIndex == 0 {
             customTable.isHidden = true
             hotTable.isHidden = false
+            self.navigationItem.rightBarButtonItem = nil
         }
         if sender.selectedSegmentIndex == 1 {
             customTable.isHidden = false
             hotTable.isHidden = true
+            self.navigationItem.rightBarButtonItem = self.submitBtn
         }
     }
 }

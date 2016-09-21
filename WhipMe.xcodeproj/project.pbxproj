@@ -35,6 +35,8 @@
 		C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A301D8F83950055F026 /* MobileCoreServices.framework */; };
 		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
 		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
+		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
+		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
@@ -90,6 +92,8 @@
 		C59B2A301D8F83950055F026 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
 		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
+		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		C546FE0F1D82989700012FB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C5A1869D1D921A0D000866AB /* Login */,
 				C546FE1E1D82992B00012FB4 /* Root */,
 				C546FE121D82989700012FB4 /* Index */,
 				C546FE111D82989700012FB4 /* FriendCircle */,
@@ -320,6 +325,15 @@
 				C546FE321D82A35600012FB4 /* Define.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		C5A1869D1D921A0D000866AB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C5A186A41D921A4D000866AB /* LoginViewController.swift */,
+				C5A186A61D921A56000866AB /* RegisterViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		C5D669A11D864203008EE189 /* iTools */ = {
@@ -488,7 +502,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WPXQYZSK2Q;
+						DevelopmentTeam = BG6HSL32ZA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -601,9 +615,11 @@
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
+				C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
+				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
@@ -668,7 +684,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -709,7 +725,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -739,6 +755,8 @@
 					"\"DZNEmptyDataSet\"",
 					"-framework",
 					"\"SnapKit\"",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -770,6 +788,8 @@
 					"\"DZNEmptyDataSet\"",
 					"-framework",
 					"\"SnapKit\"",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
