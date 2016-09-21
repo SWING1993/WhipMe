@@ -24,10 +24,10 @@ class ThirdAddCustomCell: UITableViewCell {
             bgView.layer.masksToBounds = true
             self.addSubview(bgView)
             bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(9)
-                make.bottom.equalTo(-9)
-                make.left.equalTo(9)
-                make.right.equalTo(-9)
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(-kRightMargin)
             }
             
             let titleLabel = UILabel.init()

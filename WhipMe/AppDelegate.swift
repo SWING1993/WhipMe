@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         
-        /// Required - 添加 JMessage SDK 监听。这个动作放在启动前
-        JMessage.add(self, with: JMSGConversation.init())
-        /// Required - 启动 JMessage SDK
-        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+//        /// Required - 添加 JMessage SDK 监听。这个动作放在启动前
+//        JMessage.add(self, with: JMSGConversation.init())
+//        /// Required - 启动 JMessage SDK
+//        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
         
         
         customizeAppearance()

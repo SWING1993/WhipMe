@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 //定义闭包类型（特定的函数类型函数类型）
 typealias InputClosureType = (IndexPath) -> Void
@@ -23,12 +25,59 @@ class SecondAddCustomCell: UITableViewCell {
     
     var bgView : UIView!
     var table : UITableView!
+    var myCostomAM = CustomAddM.init()
+    
+    let itmes = ["开始时间", "结束时间", "闹钟设置", "隐私习惯"]
+    
+    class func getStartTimeK() -> String {
+        return "getStartTimeK";
+    }
+    class func getEndTimeK() -> String {
+        return "getEndTimeK";
+    }
+    class func getAlarmClockK() -> String {
+        return "getAlarmClockK";
+    }
+    class func getPrivacyK() -> String {
+        return "getPrivacyK";
+    }
+    
+    func setStartTime(notification:Notification) -> Void {
+        let costomAM:CustomAddM = notification.object as! CustomAddM
+        myCostomAM.startTime = costomAM.startTime
+        table.reloadData()
+    }
+    
+    func setEndTime(notification:Notification) -> Void {
+        let costomAM:CustomAddM = notification.object as! CustomAddM
+        myCostomAM.endTime = costomAM.endTime
+        table.reloadData()
+    }
+
+    
+    func setAlarmClock(notification:Notification) -> Void {
+        let costomAM:CustomAddM = notification.object as! CustomAddM
+        myCostomAM.alarmClock = costomAM.alarmClock
+        table.reloadData()
+    }
+
+    func setPrivacy(notification:Notification) -> Void {
+        let costomAM:CustomAddM = notification.object as! CustomAddM
+        myCostomAM.privacy = costomAM.privacy
+        table.reloadData()
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = KColorBackGround
         self.selectionStyle = .none
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setStartTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setEndTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setAlarmClock), name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setPrivacy), name: NSNotification.Name(rawValue: SecondAddCustomCell.getPrivacyK()), object: nil)
+    
         
         if bgView == nil {
             bgView = UIView.init()
@@ -37,11 +86,10 @@ class SecondAddCustomCell: UITableViewCell {
             bgView.layer.masksToBounds = true
             self.addSubview(bgView)
             bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(9)
-                make.bottom.equalTo(0)
-                make.left.equalTo(9)
-                make.right.equalTo(-9)
-            }
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(-kRightMargin)            }
         }
         
         if table == nil {
@@ -103,33 +151,60 @@ extension SecondAddCustomCell:UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
+        cell.textLabel?.text = itmes[indexPath.row]
+
+        cell.detailTextLabel?.text = "未设置"
+
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "开始时间"
-            cell.detailTextLabel?.text = "2016.08.16"
+            if myCostomAM.startTime != nil {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy.MM.dd"
+                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.startTime as! Date)
+            }
+            else {
+                cell.detailTextLabel?.text = "未设置"
+            }
             break
-            
         case 1:
-            cell.textLabel?.text = "结束时间"
-            cell.detailTextLabel?.text = "未设置"
+            if myCostomAM.endTime != nil {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy.MM.dd"
+                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.endTime as! Date)
+            }
+            else {
+                cell.detailTextLabel?.text = "未设置"
+            }
             break
-
         case 2:
-            cell.textLabel?.text = "闹钟设置"
-            cell.detailTextLabel?.text = "未设置"
+            if myCostomAM.alarmClock != nil {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.alarmClock as! Date)
+            }
+            else {
+                cell.detailTextLabel?.text = "未设置"
+            }
             break
-
         case 3:
-            cell.textLabel?.text = "隐私习惯"
-            cell.detailTextLabel?.text = "所有人可见"
-            break
-
+            if myCostomAM.privacy == PrivacyType.all {
+                cell.detailTextLabel?.text = "所有人可见"
+            }
             
+            else if myCostomAM.privacy == PrivacyType.myFollow {
+                cell.detailTextLabel?.text = "仅我关注的人可见"
+            }
+            
+            else if myCostomAM.privacy == PrivacyType.mySelf {
+                cell.detailTextLabel?.text = "仅自己可见"
+            }
+            else {
+                cell.detailTextLabel?.text = "未设置"
+            }
+            break
         default:
             break
-            
         }
-       
         return cell
     }
 }

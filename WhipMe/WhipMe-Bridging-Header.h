@@ -8,7 +8,7 @@
 #import "UIPlaceHolderTextView.h"
 #import <BlocksKit/BlocksKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-
+#import "CustomIOSAlertView.h"
 #import <JMessage/JMessage.h>
 
 //

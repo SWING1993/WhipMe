@@ -13,6 +13,8 @@ class AddWhipController: UIViewController {
 
     var disposeBag = DisposeBag()
 
+    var myCostomAM = CustomAddM.init()
+
     
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
@@ -97,7 +99,6 @@ class AddWhipController: UIViewController {
             hotTable.isHidden = true
         }
     }
-
 }
 
 /// TableViewDataSource methods.
@@ -118,12 +119,68 @@ extension AddWhipController:UITableViewDataSource {
         if tableView.tag == 100 {
             if indexPath.row == 0 && indexPath.section == 0 {
                 let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
+                
+                cell.titleChangedBlock =  { (value) -> Void in
+                    print("title:" + value)
+                }
+                
+                cell.contentChangedBlock =  { (value) -> Void in
+                    print("content:" + value)
+                }
                 return cell
             }
             if indexPath.section == 1 {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
                 cell.setBackMyClosure { (inputText:IndexPath) -> Void in
                     print(inputText);
+                    
+                    if inputText.row == 0 {
+                        
+                        SGHDateView.sharedInstance.pickerMode = .date
+                        SGHDateView.sharedInstance.show();
+                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+                            self.myCostomAM.startTime = nil
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
+                        }
+                        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+                            self.myCostomAM.startTime = date as NSDate?
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
+                        }
+                    }
+                    
+                    if inputText.row == 1 {
+                        SGHDateView.sharedInstance.pickerMode = .date
+                        SGHDateView.sharedInstance.show();
+                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+                            self.myCostomAM.endTime = nil
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
+                        }
+                        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+                            self.myCostomAM.endTime = date as NSDate?
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
+                        }
+                    }
+                    
+                    if inputText.row == 2 {
+//                        SGHDateView.sharedInstance.pickerMode = .time
+//                        SGHDateView.sharedInstance.show();
+//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+//                            self.myCostomAM.alarmClock = nil
+//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: self.myCostomAM)
+//                        }
+//                        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+//                            self.myCostomAM.alarmClock = date as NSDate?
+//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: self.myCostomAM)
+//                        }
+                        let alarmC = AlarmClockController.init()
+                        self.navigationController?.pushViewController(alarmC, animated: true)
+                    }
+
+                    if inputText.row == 3 {
+                        let privacyC = PrivacyViewController.init()
+                        self.navigationController?.pushViewController(privacyC, animated: true)
+                    }
+                    
                 }
                 return cell
             }
@@ -166,13 +223,14 @@ extension AddWhipController: UITableViewDelegate {
         
         return 0
     }
+}
+
+extension AddWhipController: UIScrollViewDelegate {
     
-    //    /// Sets the tableView header height.
-    //    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return 200
-    //    }
-    //    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 15
-    //    }
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y != 0 {
+            let cell = self.customTable.cellForRow(at: IndexPath.init(row: 0, section: 0))
+            cell?.resignFirstResponder()
+        }
+    }
 }

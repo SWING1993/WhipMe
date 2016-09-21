@@ -8,6 +8,18 @@
 
 import UIKit
 
+enum PrivacyType {
+    case all
+    case mySelf
+    case myFollow
+}
+
 class CustomAddM: NSObject {
 
+    var startTime:NSDate?
+    var endTime:NSDate?
+    var alarmClock:NSDate?
+    var privacy:PrivacyType?
+
+    
 }

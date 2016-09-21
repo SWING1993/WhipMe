@@ -27,6 +27,12 @@ let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
 
 let kNaviHeight: CGFloat = 64.0
 
+let kLeftMargin: CGFloat = 9.0
+let kRightMargin: CGFloat = -9.0
+let kTopMargin :CGFloat = 4.5
+let kBottomMargin :CGFloat = -4.5
+
+
 let JMESSAGE_APPKEY: String = "e21f0175ea90c6692ca05a39"
 let CHANNEL: String = "appstore"
 
@@ -85,6 +91,4 @@ class Define: NSObject {
     class func iphone6Plus_5_5() ->Bool {
         return UIScreen.main.bounds.height == 736 ? true : false
     }
-    
-    
 }

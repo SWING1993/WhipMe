@@ -77,14 +77,5 @@ extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 450
     }
-    
-    //    /// Sets the tableView header height.
-    //    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return 200
-    //    }
-    //    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 15
-    //    }
-    
 }
 

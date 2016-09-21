@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FirstAddCustomCell: UITableViewCell {
     var bgView : UIView!
     var titleT : UITextField!
     var contentT : UIPlaceHolderTextView!
-
+    var disposeBag = DisposeBag()
+    var titleChangedBlock : ((String) -> Void)?
+    var contentChangedBlock : ((String) -> Void)?
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = KColorBackGround
@@ -25,10 +30,10 @@ class FirstAddCustomCell: UITableViewCell {
             bgView.layer.masksToBounds = true
             self.addSubview(bgView)
             bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(9)
-                make.bottom.equalTo(0)
-                make.left.equalTo(9)
-                make.right.equalTo(-9)
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(-kRightMargin)
             }
         }
         if titleT == nil {
@@ -68,6 +73,24 @@ class FirstAddCustomCell: UITableViewCell {
                 make.top.equalTo(titleT.snp.bottom).offset(1)
             })
         }
+    
+        let titleChange = titleT.rx.text
+        titleChange
+            .bindNext({ (value) in
+                if self.titleChangedBlock != nil {
+                    self.titleChangedBlock!(value)
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        let contentChange = contentT.rx.text
+        contentChange
+            .bindNext({ (value) in
+                if self.contentChangedBlock != nil {
+                    self.contentChangedBlock!(value)
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -93,5 +116,11 @@ class FirstAddCustomCell: UITableViewCell {
         return "FirstAddCustomCell"
     }
     
-
+    override func resignFirstResponder() ->Bool {
+        super.resignFirstResponder()
+        self.titleT.resignFirstResponder()
+        self.contentT.resignFirstResponder()
+        return true
+    }
 }
+
