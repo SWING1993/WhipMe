@@ -105,6 +105,13 @@ class AddWhipController: UIViewController {
             self.navigationItem.rightBarButtonItem = self.submitBtn
         }
     }
+    
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder()
+        let cell = self.customTable.cellForRow(at: IndexPath.init(row: 0, section: 0))
+        cell?.resignFirstResponder()
+        return true
+    }
 }
 
 /// TableViewDataSource methods.
@@ -139,9 +146,8 @@ extension AddWhipController:UITableViewDataSource {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
                 cell.setBackMyClosure { (inputText:IndexPath) -> Void in
                     print(inputText);
-                    
+                    _ = self.resignFirstResponder()
                     if inputText.row == 0 {
-                        
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.cancelBlock = { () -> Void in
@@ -235,8 +241,7 @@ extension AddWhipController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y != 0 {
-            let cell = self.customTable.cellForRow(at: IndexPath.init(row: 0, section: 0))
-            cell?.resignFirstResponder()
+            _ = self.resignFirstResponder()
         }
     }
 }

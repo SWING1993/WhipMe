@@ -64,6 +64,7 @@ class FriendCircleController: UIViewController {
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
         print(sender.numberOfSegments+sender.selectedSegmentIndex)
+        recommendTable.reloadData()
     }
     
     func clickWithRightBarItem() {

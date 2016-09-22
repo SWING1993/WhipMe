@@ -502,7 +502,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BG6HSL32ZA;
+						DevelopmentTeam = WPXQYZSK2Q;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -758,7 +758,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipmes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -791,7 +791,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipmes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
