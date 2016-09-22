@@ -61,6 +61,9 @@
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
 		E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8781D92586900A4C14D /* AlarmClockController.swift */; };
 		E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B87B1D92594D00A4C14D /* WeekCell.swift */; };
+		E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */; };
+		E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8841D93690C00A4C14D /* StoreUserValue.m */; };
+		E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8881D93693E00A4C14D /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +131,12 @@
 		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGHDateView.swift; sourceTree = "<group>"; };
 		E4C9B8781D92586900A4C14D /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		E4C9B87B1D92594D00A4C14D /* WeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
+		E4C9B8811D93690C00A4C14D /* NSObject+StoreValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+StoreValue.h"; sourceTree = "<group>"; };
+		E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+StoreValue.m"; sourceTree = "<group>"; };
+		E4C9B8831D93690C00A4C14D /* StoreUserValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreUserValue.h; sourceTree = "<group>"; };
+		E4C9B8841D93690C00A4C14D /* StoreUserValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreUserValue.m; sourceTree = "<group>"; };
+		E4C9B8871D93693E00A4C14D /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
+		E4C9B8881D93693E00A4C14D /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +417,7 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E4C9B8801D93690C00A4C14D /* StoreValue */,
 				C506DC301D8FE46F00785BE8 /* JMessage */,
 				E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */,
 				E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */,
@@ -474,6 +484,19 @@
 				E4C9B87B1D92594D00A4C14D /* WeekCell.swift */,
 			);
 			path = AlarmClockCell;
+			sourceTree = "<group>";
+		};
+		E4C9B8801D93690C00A4C14D /* StoreValue */ = {
+			isa = PBXGroup;
+			children = (
+				E4C9B8871D93693E00A4C14D /* FastCoder.h */,
+				E4C9B8881D93693E00A4C14D /* FastCoder.m */,
+				E4C9B8811D93690C00A4C14D /* NSObject+StoreValue.h */,
+				E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */,
+				E4C9B8831D93690C00A4C14D /* StoreUserValue.h */,
+				E4C9B8841D93690C00A4C14D /* StoreUserValue.m */,
+			);
+			path = StoreValue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,9 +629,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
+				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
+				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E4C9B8601D90EABC00A4C14D /* CustomAddM.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
@@ -638,6 +663,7 @@
 				C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
+				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 			);

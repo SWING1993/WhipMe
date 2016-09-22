@@ -35,7 +35,7 @@ class AddWhipController: UIViewController {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         self.submitBtn = UIBarButtonItem.init()
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            
+            CustomAddM.savePlan(value: self.myCostomAM)
         }
         prepareSegmented()
         prepareTableView()
@@ -144,7 +144,17 @@ extension AddWhipController:UITableViewDataSource {
             }
             if indexPath.section == 1 {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
-                cell.setBackMyClosure { (inputText:IndexPath) -> Void in
+                
+                weak var weakSelf = self
+                cell.privacydBlock = { (value:CustomAddM) -> Void in
+                    weakSelf?.myCostomAM.privacy = value.privacy
+                }
+                
+                cell.alarmClockBlock = { (value:CustomAddM) -> Void in
+                    weakSelf?.myCostomAM.alarmClock = value.alarmClock
+                }
+
+                cell.backClosure = { (inputText:IndexPath) -> Void in
                     print(inputText);
                     _ = self.resignFirstResponder()
                     if inputText.row == 0 {
@@ -174,16 +184,6 @@ extension AddWhipController:UITableViewDataSource {
                     }
                     
                     if inputText.row == 2 {
-//                        SGHDateView.sharedInstance.pickerMode = .time
-//                        SGHDateView.sharedInstance.show();
-//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
-//                            self.myCostomAM.alarmClock = nil
-//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: self.myCostomAM)
-//                        }
-//                        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-//                            self.myCostomAM.alarmClock = date as NSDate?
-//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: self.myCostomAM)
-//                        }
                         let alarmC = AlarmClockController.init()
                         self.navigationController?.pushViewController(alarmC, animated: true)
                     }

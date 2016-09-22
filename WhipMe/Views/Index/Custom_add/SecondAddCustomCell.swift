@@ -11,17 +11,19 @@ import RxCocoa
 import RxSwift
 
 //定义闭包类型（特定的函数类型函数类型）
-typealias InputClosureType = (IndexPath) -> Void
+//typealias InputClosureType = (IndexPath) -> Void
 
 class SecondAddCustomCell: UITableViewCell {
     
     //接收上个页面穿过来的闭包块
-    var backClosure:InputClosureType?
+    var backClosure:((IndexPath) -> Void)?
+//    //闭包变量的Seter方法
+//    func setBackMyClosure(tempClosure:@escaping  InputClosureType) {
+//        self.backClosure = tempClosure
+//    }
     
-    //闭包变量的Seter方法
-    func setBackMyClosure(tempClosure:@escaping  InputClosureType) {
-        self.backClosure = tempClosure
-    }
+    var alarmClockBlock : ((CustomAddM) -> Void)?
+    var privacydBlock : ((CustomAddM) -> Void)?
     
     var bgView : UIView!
     var table : UITableView!
@@ -59,12 +61,18 @@ class SecondAddCustomCell: UITableViewCell {
         let costomAM:CustomAddM = notification.object as! CustomAddM
         myCostomAM.alarmClock = costomAM.alarmClock
         table.reloadData()
+        if self.alarmClockBlock != nil {
+            self.alarmClockBlock!(self.myCostomAM)
+        }
     }
 
     func setPrivacy(notification:Notification) -> Void {
         let costomAM:CustomAddM = notification.object as! CustomAddM
         myCostomAM.privacy = costomAM.privacy
         table.reloadData()
+        if self.privacydBlock != nil {
+            self.alarmClockBlock!(self.myCostomAM)
+        }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

@@ -10,6 +10,8 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "CustomIOSAlertView.h"
 #import <JMessage/JMessage.h>
+#import "FastCoder.h"
 
 //
 #import "UIColor+Expanded.h"
+#import "NSObject+StoreValue.h"
