@@ -27,9 +27,9 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         self.view.backgroundColor = KColorBackGround
         
-        
-        
         setup()
+        
+        queryByFriends()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +74,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             make.right.bottom.equalTo(-10.0)
         }
         
-        
     }
     
     func clickWithRightBarItem() {
@@ -88,7 +87,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         print(self.classForCoder)
     }
     
-    /** UITableViewDelegate and Datasource */
+    // BACK: - UITableViewDelegate and Datasource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -103,7 +102,8 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FriendsListViewCell = FriendsListViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
         
-        cell.setCellWithModel(model: NSDictionary.init())
+        let model: JMSGUser = self.arrayContent.object(at: indexPath.row) as! JMSGUser
+        cell.setCellWithModel(model: model)
         
         return cell
     }
@@ -112,4 +112,14 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         print(indexPath.row+indexPath.section)
     }
     
+    // BACK: - network Data
+    func queryByFriends() {
+        let lists: NSArray = ["youye","youye1","youye2"]
+        JMSGUser.addUsers(toBlacklist: lists as! [String], appKey: JMESSAGE_APPKEY) { (result, error) in
+            self.arrayContent.removeAllObjects()
+            self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            
+            self.tableViewWM.reloadData()
+        }
+    }
 }

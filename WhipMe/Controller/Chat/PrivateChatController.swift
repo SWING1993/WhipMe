@@ -12,7 +12,6 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     
     var arrayNavButton: NSMutableArray!
     var tableViewWM: UITableView!
-    var arrayContent: NSMutableArray!
     
     private let identifier_cell: String = "chatConversationListCell"
     
@@ -21,11 +20,15 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.backgroundColor = KColorBackGround
         
         setup()
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getConversationList()
     }
     
     private func setup() {
@@ -47,8 +50,6 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         rightBarItem.tintColor = UIColor.white
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
-        
-        arrayContent = NSMutableArray.init(capacity: 0)
         
         tableViewWM = UITableView.init()
         tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -118,10 +119,21 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Action 方法
     
     func getConversationList() {
-        JMSGConversation.allConversations { (result: Any?,error: Error?) in
+        
+        JMSGConversation.allConversations { (result, error) in
             
+            print("resutl : \(result) error is \(error)")
             
+            self.arrayContent.removeAllObjects()
+            if (result != nil) {
+                self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            }
             
+            self.tableViewWM.reloadData()
+//            let sortKey: NSSortDescriptor = NSSortDescriptor.init(key: "latestMessage.timestamp", ascending: true)
+//            self.arrayContent.sorted(by: { (model1 JMSGConversation, model2 JMSGConversation) -> Bool in
+//                return model1 < model2
+//            })
             
         }
     }
@@ -135,7 +147,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     
     func onDBMigrateFinishedWithError(_ error: Error!) {
         print("onDBmigrateFinish in appdelegate")
-        //        NotificationCenter.default.post(name: kDBMigrateFinishNotification, object: nil);
+        getConversationList()
     }
     
     // JMSGMessageDelegate 消息相关的变更通知
@@ -148,7 +160,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     func onReceive(_ message: JMSGMessage!, error: Error!) {
         print("Action -- onReceivemessage \(message), error:\(error)")
         
-//        NotificationCenter.default.post(name: kDBMigrateFinishNotification, object: nil);
+        getConversationList()
     }
     
     // 接收消息媒体文件下载失败的回调
@@ -166,5 +178,13 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     func onUnreadChanged(_ newCount: UInt) {
         print("Action -- onUnreadChanged")
     }
+    
+    // MARK: - 懒加载
+    lazy var arrayContent: NSMutableArray! = {
+        print("只走一次")
+        var arrayContent = NSMutableArray()
+        return arrayContent
+    }()
+    
     
 }

@@ -18,4 +18,8 @@ class MemberViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func setup() {
+        
+    }
 }
