@@ -12,7 +12,10 @@ class MemberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "我的"
+        self.view.backgroundColor = KColorBackGround
         
+        setup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -21,5 +24,17 @@ class MemberViewController: UIViewController {
     
     func setup() {
         
+        
+        let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "add_superintendent"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
+        rightBarItem.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = rightBarItem
+        
+        
+    }
+    
+    func clickWithRightBarItem() {
+        let controller: UserInfoViewController = UserInfoViewController()
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

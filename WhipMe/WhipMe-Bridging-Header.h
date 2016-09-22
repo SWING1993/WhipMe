@@ -13,3 +13,4 @@
 
 //
 #import "UIColor+Expanded.h"
+#import "UIImage+Orientation.h"
