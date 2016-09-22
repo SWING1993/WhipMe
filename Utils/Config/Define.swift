@@ -44,9 +44,6 @@ class Define: NSObject {
     
     class func kPassword() -> String {
         return "password"
-        let window = UIApplication.shared.delegate?.window??.rootViewController
-        print("\(window)")
-        
     }
     
     class func kBADGE() -> String {

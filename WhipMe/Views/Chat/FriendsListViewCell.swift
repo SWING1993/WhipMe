@@ -93,7 +93,7 @@ class FriendsListViewCell: UITableViewCell {
         }
     }
     
-    public func setCellWithModel(model: NSDictionary) {
+    public func setCellWithModel(model: JMSGUser) {
         
         let statue: UInt32 = arc4random()%3;
         let color: UIColor = statue != 1 ? KColorBlue : KColorLight;
