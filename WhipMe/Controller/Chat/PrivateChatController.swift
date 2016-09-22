@@ -122,10 +122,12 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         
         JMSGConversation.allConversations { (result, error) in
             
-            print("resutl : \(result)")
+            print("resutl : \(result) error is \(error)")
             
             self.arrayContent.removeAllObjects()
-            self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            if (result != nil) {
+                self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            }
             
             self.tableViewWM.reloadData()
 //            let sortKey: NSSortDescriptor = NSSortDescriptor.init(key: "latestMessage.timestamp", ascending: true)

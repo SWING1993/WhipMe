@@ -35,6 +35,8 @@
 		C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A301D8F83950055F026 /* MobileCoreServices.framework */; };
 		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
 		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
+		C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */; };
+		C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */; };
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
@@ -86,6 +88,8 @@
 		C59B2A301D8F83950055F026 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
 		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
+		C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = WhipMe/Controller/Member/UserInfoModel.swift; sourceTree = SOURCE_ROOT; };
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				C546FE2E1D829D8200012FB4 /* MemberViewController.swift */,
+				C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 		C546FE181D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -586,10 +592,12 @@
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
+				C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
+				C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,

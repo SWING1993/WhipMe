@@ -15,21 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-        JMessage.add(self, with: nil)
-        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+//        JMessage.add(self, with: nil)
+//        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
         
         registerUserNotification()
         customizeAppearance()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
     
-        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
-        print("username is \(userName)")
-        if (userName != nil) {
+//        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
+//        print("username is \(userName)")
+//        if (userName != nil) {
             setupMainController()
-        } else {
-            setupLoginController()
-        }
+//        } else {
+//            setupLoginController()
+//        }
         window?.backgroundColor = UIColor.white;
         window?.makeKeyAndVisible();
         return true
