@@ -14,7 +14,7 @@ class WeekCell: UITableViewCell {
     
     fileprivate var bgView : UIView!
     fileprivate let kBtnWidth = (Define.screenWidth() - 2*kLeftMargin)/7
-    fileprivate let tagItems = [7 ,1 ,2 ,3, 4, 5, 6]
+    fileprivate let tagItems = [1 ,2 ,3, 4, 5, 6,7]
     fileprivate let btnTitles = ["七", "一", "二", "三", "四", "五", "六"]
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

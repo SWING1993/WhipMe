@@ -13,9 +13,8 @@ class AddWhipController: UIViewController {
 
     var disposeBag = DisposeBag()
 
-    var myCostomAM = CustomAddM.init()
+    var myCostomAM = PlanM.init()
 
-    
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
     fileprivate var submitBtn: UIBarButtonItem!
@@ -35,7 +34,12 @@ class AddWhipController: UIViewController {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         self.submitBtn = UIBarButtonItem.init()
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            CustomAddM.savePlan(value: self.myCostomAM)
+            PlanM.savePlan(value: self.myCostomAM)
+            let time = self.myCostomAM.alarmClock?.timeIntervalSinceNow
+            if time != nil {
+                AppDelegate.registerNotification(alertItme: time!)
+            }
+            _ = self.navigationController?.popViewController(animated: true)
         }
         prepareSegmented()
         prepareTableView()
@@ -75,7 +79,6 @@ class AddWhipController: UIViewController {
         
         customTable.isHidden = true
         hotTable.isHidden = false
-
     }
     
     fileprivate func prepareSegmented() {
@@ -133,12 +136,16 @@ extension AddWhipController:UITableViewDataSource {
             if indexPath.row == 0 && indexPath.section == 0 {
                 let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
                 
+                weak var weakSelf = self
                 cell.titleChangedBlock =  { (value) -> Void in
                     print("title:" + value)
+                    weakSelf?.myCostomAM.title = value
+                    
                 }
                 
                 cell.contentChangedBlock =  { (value) -> Void in
                     print("content:" + value)
+                    weakSelf?.myCostomAM.title = value
                 }
                 return cell
             }
@@ -146,11 +153,11 @@ extension AddWhipController:UITableViewDataSource {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
                 
                 weak var weakSelf = self
-                cell.privacydBlock = { (value:CustomAddM) -> Void in
+                cell.privacydBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.privacy = value.privacy
                 }
                 
-                cell.alarmClockBlock = { (value:CustomAddM) -> Void in
+                cell.alarmClockBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.alarmClock = value.alarmClock
                 }
 

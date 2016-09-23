@@ -100,7 +100,4 @@ class HotAddCell: UITableViewCell {
     class func cellReuseIdentifier() -> String {
         return "HotAddCell"
     }
-
-
-
 }

@@ -12,7 +12,7 @@ class PrivacyViewController: UIViewController {
 
     var myPrivacyTable: UITableView!
     let items = ["所有人可见","仅我关注的人可见","仅自己可见"]
-    var myCostomAM = CustomAddM.init()
+    var myCostomAM = PlanM.init()
     
     
     override func viewDidLoad() {

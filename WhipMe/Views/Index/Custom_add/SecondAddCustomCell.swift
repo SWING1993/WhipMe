@@ -22,12 +22,12 @@ class SecondAddCustomCell: UITableViewCell {
 //        self.backClosure = tempClosure
 //    }
     
-    var alarmClockBlock : ((CustomAddM) -> Void)?
-    var privacydBlock : ((CustomAddM) -> Void)?
+    var alarmClockBlock : ((PlanM) -> Void)?
+    var privacydBlock : ((PlanM) -> Void)?
     
     var bgView : UIView!
     var table : UITableView!
-    var myCostomAM = CustomAddM.init()
+    var myCostomAM = PlanM.init()
     
     let itmes = ["开始时间", "结束时间", "闹钟设置", "隐私习惯"]
     
@@ -45,20 +45,20 @@ class SecondAddCustomCell: UITableViewCell {
     }
     
     func setStartTime(notification:Notification) -> Void {
-        let costomAM:CustomAddM = notification.object as! CustomAddM
+        let costomAM:PlanM = notification.object as! PlanM
         myCostomAM.startTime = costomAM.startTime
         table.reloadData()
     }
     
     func setEndTime(notification:Notification) -> Void {
-        let costomAM:CustomAddM = notification.object as! CustomAddM
+        let costomAM:PlanM = notification.object as! PlanM
         myCostomAM.endTime = costomAM.endTime
         table.reloadData()
     }
 
     
     func setAlarmClock(notification:Notification) -> Void {
-        let costomAM:CustomAddM = notification.object as! CustomAddM
+        let costomAM:PlanM = notification.object as! PlanM
         myCostomAM.alarmClock = costomAM.alarmClock
         table.reloadData()
         if self.alarmClockBlock != nil {
@@ -67,7 +67,7 @@ class SecondAddCustomCell: UITableViewCell {
     }
 
     func setPrivacy(notification:Notification) -> Void {
-        let costomAM:CustomAddM = notification.object as! CustomAddM
+        let costomAM:PlanM = notification.object as! PlanM
         myCostomAM.privacy = costomAM.privacy
         table.reloadData()
         if self.privacydBlock != nil {

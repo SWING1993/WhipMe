@@ -49,6 +49,8 @@
 		E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDD1D8E744800A619A6 /* SecondAddCustomCell.swift */; };
 		E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */; };
 		E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */; };
+		E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3BF1D95030C00B17581 /* LeftTextCell.swift */; };
+		E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3C11D95032200B17581 /* CenterTextCell.swift */; };
 		E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BE21D87D2C300802C6B /* SnapKit.framework */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -56,7 +58,7 @@
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
 		E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */; };
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
-		E4C9B8601D90EABC00A4C14D /* CustomAddM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B85F1D90EABC00A4C14D /* CustomAddM.swift */; };
+		E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B85F1D90EABC00A4C14D /* PlanM.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
 		E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8781D92586900A4C14D /* AlarmClockController.swift */; };
@@ -113,6 +115,8 @@
 		E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThirdAddCustomCell Cell.swift"; sourceTree = "<group>"; };
 		E4189EE21D8E7D0600A619A6 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		E425F3BF1D95030C00B17581 /* LeftTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTextCell.swift; sourceTree = "<group>"; };
+		E425F3C11D95032200B17581 /* CenterTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterTextCell.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
 		E48C0BE21D87D2C300802C6B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
@@ -125,7 +129,7 @@
 		E4AB21FC1D82566A0044943E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4C9B8591D90D09600A4C14D /* SelectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
-		E4C9B85F1D90EABC00A4C14D /* CustomAddM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddM.swift; sourceTree = "<group>"; };
+		E4C9B85F1D90EABC00A4C14D /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGHDateView.swift; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 				E408D9901D8FB76D006F2A75 /* Hot_add */,
 				E4189EDA1D8E73EE00A619A6 /* Custom_add */,
 				E4C9B8591D90D09600A4C14D /* SelectedCell.swift */,
+				E425F3BF1D95030C00B17581 /* LeftTextCell.swift */,
+				E425F3C11D95032200B17581 /* CenterTextCell.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -473,7 +479,7 @@
 		E4C9B85E1D90EA8F00A4C14D /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				E4C9B85F1D90EABC00A4C14D /* CustomAddM.swift */,
+				E4C9B85F1D90EABC00A4C14D /* PlanM.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -634,7 +640,8 @@
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
-				E4C9B8601D90EABC00A4C14D /* CustomAddM.swift in Sources */,
+				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
+				E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
@@ -656,6 +663,7 @@
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */,
+				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,

@@ -23,7 +23,7 @@ class SGHDateView: NSObject {
     func show() {
         self.picker.datePickerMode = pickerMode!
         let alertView = CustomIOSAlertView.init()
-        alertView?.containerView = picker
+        alertView?.containerView = contentView()
         alertView?.buttonTitles = ["取消","确定"]
         alertView?.delegate = self
         
@@ -49,7 +49,7 @@ class SGHDateView: NSObject {
     fileprivate func contentView() -> UIView {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kWidth, height: kHeight))
         picker.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
-        picker.frame = CGRect.init(x: 0, y: 0, width: 290, height: 200)
+        picker.frame = CGRect.init(x: 10, y: 10, width: kWidth - 20, height: kHeight - 20)
         view.addSubview(picker)
         return view
     }

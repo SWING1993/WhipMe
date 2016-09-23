@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
@@ -15,14 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
+        window = UIWindow.init(frame: UIScreen.main.bounds)
+
 //        JMessage.add(self, with: nil)
 //        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
         
         registerUserNotification()
         customizeAppearance()
-        
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-    
+      
 //        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
 //        print("username is \(userName)")
 //        if (userName != nil) {
@@ -33,6 +33,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         window?.backgroundColor = UIColor.white;
         window?.makeKeyAndVisible();
         return true
+    }
+    
+    class func registerNotification(alertItme:TimeInterval) -> Void {
+
+        DispatchQueue.global().async {
+            if #available(iOS 10.0, *) {
+                print(Date.init(timeIntervalSinceNow: alertItme))
+                // 使用 UNUserNotificationCenter 来管理通知
+                
+                let tagItems = [1 ,2 ,3, 4, 5, 6,7]
+
+                for (_, value) in tagItems.enumerated() {
+                    let center = UNUserNotificationCenter.current()
+                    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
+                    let content = UNMutableNotificationContent.init()
+                    content.title = NSString.localizedUserNotificationString(forKey: "Hello", arguments: nil)
+                    content.body = NSString.localizedUserNotificationString(forKey: "Hello,今天星期" + String(value), arguments: nil)
+                    content.sound = UNNotificationSound.default()
+                    //                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: alertItme, repeats: false)
+                    var components = DateComponents.init()
+                    components.weekday = value
+                    components.hour = 18
+                    components.minute = 0
+                    let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
+                    let request = UNNotificationRequest.init(identifier: String(value), content: content, trigger: trigger)
+                    center.add(request, withCompletionHandler: { (error) in
+                        
+                    })
+                }
+                /*
+                let center = UNUserNotificationCenter.current()
+                //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
+                let content = UNMutableNotificationContent.init()
+                content.title = NSString.localizedUserNotificationString(forKey: "Hello", arguments: nil)
+                content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
+                content.sound = UNNotificationSound.default()
+//                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: alertItme, repeats: false)
+                var components = DateComponents.init()
+                components.weekday = 6
+                components.hour = 17
+                components.minute = 0
+                let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
+                
+                let request = UNNotificationRequest.init(identifier: "fiveSecond", content: content, trigger: trigger)
+                center.add(request, withCompletionHandler: { (error) in
+
+                })
+ */
+            } else {
+                // Fallback on earlier versions
+                let notification = UILocalNotification.init()
+                let date = Date.init(timeIntervalSinceNow: alertItme)
+                print(Date.init(timeIntervalSinceNow: alertItme))
+                notification.fireDate = date
+                notification.timeZone = NSTimeZone.local
+                notification.repeatInterval = .day
+                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -45,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("cancelAllLocalNotifications")
-        application.cancelAllLocalNotifications()
+//        application.cancelAllLocalNotifications()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -118,17 +177,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     }
     
     func registerUserNotification() {
+        
         let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
         JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
+        
+        //iOS 10 使用以下方法注册，才能得到授权
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            //            center.delegate = self
+            center.requestAuthorization(options: [.alert ,.badge ,.sound], completionHandler: { (granted, error) in
+                
+            })
+            center.getNotificationSettings(completionHandler: { (settings) in
+                
+            })
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func resetApplicationBadge() {
         
-        print("Action - resetApplicationBadge")
-        
-        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
-        UIApplication.shared.applicationIconBadgeNumber = badge
-        JPUSHService.setBadge(badge)
+//        print("Action - resetApplicationBadge")
+//        
+////        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
+//        UIApplication.shared.applicationIconBadgeNumber = badge
+//        JPUSHService.setBadge(badge)
     }
     
     // MARK:- Notificatioin
@@ -222,6 +296,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 //    DebugLog(@"Action -- onUnreadChanged");
 //    }
 
+    
+}
+
+@available(iOS 10.0, *)
+extension UNUserNotificationCenterDelegate {
     
 }
 

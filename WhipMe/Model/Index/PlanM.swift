@@ -13,9 +13,10 @@ enum PrivacyType {
     case mySelf
     case myFollow
 }
+
 let kPlan = "PlanKey"
 
-class CustomAddM: NSObject {
+class PlanM: NSObject {
 
     var title:String?
     var content:String?
@@ -24,7 +25,7 @@ class CustomAddM: NSObject {
     var alarmClock:NSDate?
     var privacy:PrivacyType?
     
-    class func savePlan(value:CustomAddM) {
+    class func savePlan(value:PlanM) {
         var plans : NSMutableArray?
         if NSObject.value(byKey: kPlan) != nil {
             plans = NSObject.value(byKey: kPlan) as? NSMutableArray
@@ -37,8 +38,8 @@ class CustomAddM: NSObject {
         print(value.startTime)
     }
     
-    class func getPlans() -> NSArray {
-        let plans : NSArray = NSObject.value(byKey: kPlan) as! NSArray
+    class func getPlans() -> NSArray? {
+        let plans :NSArray? = NSObject.value(byKey: kPlan) as? NSArray
         return plans
     }
 }
