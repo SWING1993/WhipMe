@@ -11,12 +11,12 @@ import UIKit
 
 class UserInfoModel: NSObject {
 
-    public var nickname: String?
-    public var username: String?
-    public var avatar: String?
-    public var age: String?
-    public var sex: String?
-    public var birthday: String?
-    public var signature: String?
+    public var nickname: String!
+    public var username: String!
+    public var avatar: String!
+    public var age: String!
+    public var sex: String!
+    public var birthday: String!
+    public var signature: String!
     
 }

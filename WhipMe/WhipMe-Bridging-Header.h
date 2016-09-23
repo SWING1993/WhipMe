@@ -15,3 +15,4 @@
 //
 #import "UIColor+Expanded.h"
 #import "NSObject+StoreValue.h"
+#import "UIImage+Orientation.h"

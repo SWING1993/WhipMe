@@ -198,11 +198,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     
     func resetApplicationBadge() {
         
+//<<<<<<< HEAD
+////        print("Action - resetApplicationBadge")
+////        
+//////        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
+////        UIApplication.shared.applicationIconBadgeNumber = badge
+//=======
 //        print("Action - resetApplicationBadge")
 //        
 ////        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
-//        UIApplication.shared.applicationIconBadgeNumber = badge
-//        JPUSHService.setBadge(badge)
+////        UIApplication.shared.applicationIconBadgeNumber = badge ?? nil
+//>>>>>>> 5a4b2d40d65d68d43a9a51d528fee129329cc0db
+////        JPUSHService.setBadge(badge)
     }
     
     // MARK:- Notificatioin
