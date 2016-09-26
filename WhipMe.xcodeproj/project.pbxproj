@@ -42,6 +42,7 @@
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
 		C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */; };
 		C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */; };
+		C5A66B311D98AB4D00612E16 /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A66B301D98AB4D00612E16 /* PlanM.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
 		C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8290B1D93731400EBF46E /* UserEditViewController.swift */; };
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
@@ -63,7 +64,6 @@
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
 		E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */; };
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
-		E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B85F1D90EABC00A4C14D /* PlanM.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
 		E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8781D92586900A4C14D /* AlarmClockController.swift */; };
@@ -112,6 +112,7 @@
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
 		C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
 		C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
+		C5A66B301D98AB4D00612E16 /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C5A8290B1D93731400EBF46E /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
 		C5A829121D93D30500EBF46E /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
@@ -140,7 +141,6 @@
 		E4AB21FC1D82566A0044943E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4C9B8591D90D09600A4C14D /* SelectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
-		E4C9B85F1D90EABC00A4C14D /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGHDateView.swift; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 		E4C9B85E1D90EA8F00A4C14D /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				E4C9B85F1D90EABC00A4C14D /* PlanM.swift */,
+				C5A66B301D98AB4D00612E16 /* PlanM.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -659,9 +659,7 @@
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
-				E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */,
 				C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */,
-				E4C9B8601D90EABC00A4C14D /* CustomAddM.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
@@ -697,6 +695,7 @@
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
+				C5A66B311D98AB4D00612E16 /* PlanM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
