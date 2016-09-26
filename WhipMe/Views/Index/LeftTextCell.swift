@@ -8,43 +8,24 @@
 
 import UIKit
 
-class LeftTextCell: UITableViewCell {
+class LeftTextCell: NormalCell {
 
     var cellTitle :UILabel!
 
-    fileprivate var bgView : UIView!
-
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-        self.backgroundColor = KColorBackGround
-        
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
-        }
-
-        
+   
         if cellTitle == nil {
             cellTitle = UILabel.init()
             cellTitle.font = UIFont.systemFont(ofSize: 12)
             cellTitle.baselineAdjustment = .alignCenters
             cellTitle.textAlignment = .left
-            bgView.addSubview(cellTitle)
+            self.bgView.addSubview(cellTitle)
             cellTitle.snp.makeConstraints({ (make) in
-                make.height.equalTo(bgView)
+                make.height.equalTo(self.bgView)
                 make.left.equalTo(12)
                 make.right.equalTo(-12)
-                make.center.equalTo(bgView)
+                make.center.equalTo(self.bgView)
             })
         }
         

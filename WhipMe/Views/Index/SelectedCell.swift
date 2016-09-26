@@ -12,9 +12,7 @@ class SelectedCell: UITableViewCell {
 
     var selectedImg :UIImageView!
     var cellTitle :UILabel!
-    
-    
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none

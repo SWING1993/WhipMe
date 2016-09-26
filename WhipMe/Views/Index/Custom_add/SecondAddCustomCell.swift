@@ -13,7 +13,7 @@ import RxSwift
 //定义闭包类型（特定的函数类型函数类型）
 //typealias InputClosureType = (IndexPath) -> Void
 
-class SecondAddCustomCell: UITableViewCell {
+class SecondAddCustomCell: NormalCell {
     
     //接收上个页面穿过来的闭包块
     var backClosure:((IndexPath) -> Void)?
@@ -25,7 +25,6 @@ class SecondAddCustomCell: UITableViewCell {
     var alarmClockBlock : ((PlanM) -> Void)?
     var privacydBlock : ((PlanM) -> Void)?
     
-    var bgView : UIView!
     var table : UITableView!
     var myCostomAM = PlanM.init()
     
@@ -77,38 +76,24 @@ class SecondAddCustomCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = KColorBackGround
-        self.selectionStyle = .none
-        
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(setStartTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setEndTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setAlarmClock), name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setPrivacy), name: NSNotification.Name(rawValue: SecondAddCustomCell.getPrivacyK()), object: nil)
     
-        
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)            }
-        }
-        
+
         if table == nil {
             table = UITableView.init()
             table.dataSource = self
             table.delegate = self
             table.isScrollEnabled = false
-            bgView.addSubview(table)
+            table.layer.masksToBounds = true
+            self.bgView.addSubview(table)
             table.snp.makeConstraints { (make) in
                 make.top.equalTo(2)
-                make.left.right.equalTo(0)
+                make.left.equalTo(0)
+                make.right.equalTo(0)
                 make.height.equalTo(200)
             }
         }

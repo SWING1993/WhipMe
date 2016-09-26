@@ -41,9 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
             if #available(iOS 10.0, *) {
                 print(Date.init(timeIntervalSinceNow: alertItme))
                 // 使用 UNUserNotificationCenter 来管理通知
-                
                 let tagItems = [1 ,2 ,3, 4, 5, 6,7]
-
                 for (_, value) in tagItems.enumerated() {
                     let center = UNUserNotificationCenter.current()
                     //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。

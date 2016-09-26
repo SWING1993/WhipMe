@@ -61,7 +61,6 @@
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
 		E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */; };
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
-		E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B85F1D90EABC00A4C14D /* PlanM.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
 		E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8781D92586900A4C14D /* AlarmClockController.swift */; };
@@ -69,6 +68,9 @@
 		E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */; };
 		E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8841D93690C00A4C14D /* StoreUserValue.m */; };
 		E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8881D93693E00A4C14D /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E4D97E4B1D991816006D3188 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4A1D991816006D3188 /* LogController.swift */; };
+		E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4D1D991E32006D3188 /* NormalCell.swift */; };
+		E4F6BC381D99119A00DC3616 /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6BC371D99119A00DC3616 /* PlanM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,10 +138,9 @@
 		E4AB21FC1D82566A0044943E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4C9B8591D90D09600A4C14D /* SelectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
-		E4C9B85F1D90EABC00A4C14D /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
-		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGHDateView.swift; sourceTree = "<group>"; };
+		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SGHDateView.swift; path = ../../Controller/Index/SGHDateView.swift; sourceTree = "<group>"; };
 		E4C9B8781D92586900A4C14D /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		E4C9B87B1D92594D00A4C14D /* WeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		E4C9B8811D93690C00A4C14D /* NSObject+StoreValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+StoreValue.h"; sourceTree = "<group>"; };
@@ -148,6 +149,9 @@
 		E4C9B8841D93690C00A4C14D /* StoreUserValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreUserValue.m; sourceTree = "<group>"; };
 		E4C9B8871D93693E00A4C14D /* FastCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCoder.h; sourceTree = "<group>"; };
 		E4C9B8881D93693E00A4C14D /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
+		E4D97E4A1D991816006D3188 /* LogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
+		E4D97E4D1D991E32006D3188 /* NormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
+		E4F6BC371D99119A00DC3616 /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +249,7 @@
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 				E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */,
 				E4C9B8781D92586900A4C14D /* AlarmClockController.swift */,
-				E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */,
+				E4D97E4A1D991816006D3188 /* LogController.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -301,6 +305,7 @@
 				C546FE1A1D82989700012FB4 /* Chat */,
 				C546FE1B1D82989700012FB4 /* FriendCircle */,
 				C546FE1D1D82989700012FB4 /* Member */,
+				E4D97E4D1D991E32006D3188 /* NormalCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				E4C9B8591D90D09600A4C14D /* SelectedCell.swift */,
 				E425F3BF1D95030C00B17581 /* LeftTextCell.swift */,
 				E425F3C11D95032200B17581 /* CenterTextCell.swift */,
+				E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -490,7 +496,7 @@
 		E4C9B85E1D90EA8F00A4C14D /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				E4C9B85F1D90EABC00A4C14D /* PlanM.swift */,
+				E4F6BC371D99119A00DC3616 /* PlanM.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -648,16 +654,16 @@
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
+				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
-				E4C9B8601D90EABC00A4C14D /* PlanM.swift in Sources */,
 				C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */,
-				E4C9B8601D90EABC00A4C14D /* CustomAddM.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
+				E4F6BC381D99119A00DC3616 /* PlanM.swift in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
@@ -682,6 +688,7 @@
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
+				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
 				C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
@@ -802,7 +809,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -835,7 +842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",

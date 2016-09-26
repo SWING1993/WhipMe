@@ -10,8 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FirstAddCustomCell: UITableViewCell {
-    var bgView : UIView!
+class FirstAddCustomCell: NormalCell {
     var titleT : UITextField!
     var contentT : UIPlaceHolderTextView!
     var disposeBag = DisposeBag()
@@ -20,28 +19,13 @@ class FirstAddCustomCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = KColorBackGround
-        self.selectionStyle = .none
-        
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
-        }
+
         if titleT == nil {
             titleT = UITextField.init()
             titleT.textColor = KColorBlack
             titleT.font = UIFont.systemFont(ofSize: 12)
             titleT.placeholder = "请输入鞭挞名称"
-            bgView.addSubview(titleT)
+            self.bgView.addSubview(titleT)
             titleT.snp.makeConstraints({ (make) in
                 make.height.equalTo(45)
                 make.left.equalTo(21)
@@ -52,7 +36,7 @@ class FirstAddCustomCell: UITableViewCell {
         
         let line = UIView.init()
         line.backgroundColor = UIColor.random()
-        bgView.addSubview(line)
+        self.bgView.addSubview(line)
         line.snp.makeConstraints { (make) in
             make.left.equalTo(0)
             make.right.equalTo(0)
@@ -65,7 +49,7 @@ class FirstAddCustomCell: UITableViewCell {
             contentT = UIPlaceHolderTextView.init()
             contentT.font = UIFont.systemFont(ofSize: 10)
             contentT.placeholder = "请详细描述您的鞭挞计划"
-            bgView.addSubview(contentT)
+            self.bgView.addSubview(contentT)
             contentT.snp.makeConstraints({ (make) in
                 make.height.equalTo(155)
                 make.left.equalTo(15)

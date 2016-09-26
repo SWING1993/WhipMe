@@ -8,9 +8,7 @@
 
 import UIKit
 
-class RecommendCell: UITableViewCell {
-    
-    var bgView : UIView!
+class RecommendCell: NormalCell {
     
     var avatarV : UIImageView!
     var nickNameL : UILabel!
@@ -35,26 +33,12 @@ class RecommendCell: UITableViewCell {
         self.backgroundColor = UIColor.white
         self.selectionStyle = .none
 
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(9)
-                make.bottom.equalTo(0)
-                make.left.equalTo(9)
-                make.right.equalTo(-9)
-            }
-        }
-        
         if avatarV == nil {
             avatarV = UIImageView.init()
             avatarV.backgroundColor = UIColor.random()
             avatarV.layer.cornerRadius = 36.0/2
             avatarV.layer.masksToBounds = true
-            bgView.addSubview(avatarV)
+            self.addSubview(avatarV)
             avatarV.snp.makeConstraints({ (make) in
                 make.left.top.equalTo(18)
                 make.height.width.equalTo(36)
@@ -64,7 +48,7 @@ class RecommendCell: UITableViewCell {
         if nickNameL == nil {
             nickNameL = UILabel.init()
             nickNameL.backgroundColor = UIColor.random()
-            bgView.addSubview(nickNameL)
+            self.addSubview(nickNameL)
             nickNameL.snp.makeConstraints({ (make) in
                 make.top.equalTo(avatarV.snp.top)
                 make.left.equalTo(avatarV.snp.right).offset(9)
@@ -76,7 +60,7 @@ class RecommendCell: UITableViewCell {
         if topicL == nil {
             topicL = UILabel.init()
             topicL.backgroundColor = UIColor.random()
-            bgView.addSubview(topicL)
+            self.addSubview(topicL)
             topicL.snp.makeConstraints({ (make) in
                 make.top.equalTo(nickNameL.snp.bottom)
                 make.left.equalTo(avatarV.snp.right).offset(9)
@@ -88,7 +72,7 @@ class RecommendCell: UITableViewCell {
         if timeL == nil {
             timeL = UILabel.init()
             timeL.backgroundColor = UIColor.random()
-            bgView.addSubview(timeL)
+            self.addSubview(timeL)
             timeL.snp.makeConstraints({ (make) in
                 make.top.equalTo(nickNameL.snp.top)
                 make.right.equalTo(-9)
@@ -100,7 +84,7 @@ class RecommendCell: UITableViewCell {
         if pageView == nil {
             pageView = UILabel.init()
             pageView.backgroundColor = UIColor.random()
-            bgView.addSubview(pageView)
+            self.addSubview(pageView)
             pageView.snp.makeConstraints({ (make) in
                 make.top.equalTo(nickNameL.snp.bottom)
                 make.right.equalTo(-9)
@@ -112,8 +96,8 @@ class RecommendCell: UITableViewCell {
         if contentL == nil {
             contentL = UILabel.init()
             contentL.backgroundColor = UIColor.random()
-            bgView.addSubview(contentL)
-            contentL.snp.makeConstraints({ (make) in
+            self.addSubview(contentL)
+            self.snp.makeConstraints({ (make) in
                 make.top.equalTo(avatarV.snp.bottom).offset(14)
                 make.right.equalTo(-15)
                 make.left.equalTo(15)
@@ -126,7 +110,7 @@ class RecommendCell: UITableViewCell {
             pictrueView.backgroundColor = UIColor.random()
             pictrueView.contentMode = UIViewContentMode.scaleAspectFill
             pictrueView.clipsToBounds = true
-            bgView.addSubview(pictrueView)
+            self.addSubview(pictrueView)
             pictrueView.snp.makeConstraints { (make) in
                 make.leftMargin.equalTo(0.5)
                 make.rightMargin.equalTo(-0.5)
@@ -138,7 +122,7 @@ class RecommendCell: UITableViewCell {
         if locationB == nil {
             locationB = UIButton.init(type: UIButtonType.custom)
             locationB.backgroundColor = UIColor.random()
-            bgView.addSubview(locationB)
+            self.addSubview(locationB)
             locationB.snp.makeConstraints({ (make) in
                 make.left.equalTo(9)
                 make.right.equalTo(-9)
@@ -149,7 +133,7 @@ class RecommendCell: UITableViewCell {
         
         let line = UIView.init()
         line.backgroundColor = UIColor.random()
-        bgView.addSubview(line)
+        self.addSubview(line)
         line.snp.makeConstraints { (make) in
             make.left.equalTo(9)
             make.right.equalTo(-9)
@@ -160,7 +144,7 @@ class RecommendCell: UITableViewCell {
         if likeB == nil {
             likeB = UIButton.init(type: UIButtonType.custom)
             likeB.backgroundColor = UIColor.random()
-            bgView.addSubview(likeB)
+            self.addSubview(likeB)
             likeB.snp.makeConstraints({ (make) in
                 make.top.equalTo(line.snp.bottom).offset(15)
                 make.left.equalTo(9)
@@ -172,10 +156,10 @@ class RecommendCell: UITableViewCell {
         if commentB == nil {
             commentB = UIButton.init(type: UIButtonType.custom)
             commentB.backgroundColor = UIColor.random()
-            bgView.addSubview(commentB)
+            self.addSubview(commentB)
             commentB.snp.makeConstraints({ (make) in
                 make.top.equalTo(line.snp.bottom).offset(15)
-                make.centerX.equalTo(bgView)
+                make.centerX.equalTo(self)
                 make.width.equalTo(100)
                 make.height.equalTo(15)
             })
@@ -185,7 +169,7 @@ class RecommendCell: UITableViewCell {
         if shareB == nil {
             shareB = UIButton.init(type: UIButtonType.custom)
             shareB.backgroundColor = UIColor.random()
-            bgView.addSubview(shareB)
+            self.addSubview(shareB)
             shareB.snp.makeConstraints({ (make) in
                 make.top.equalTo(line.snp.bottom).offset(15)
                 make.right.equalTo(-9)
