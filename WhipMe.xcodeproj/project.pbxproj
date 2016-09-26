@@ -40,6 +40,8 @@
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
+		C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */; };
+		C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
 		C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8290B1D93731400EBF46E /* UserEditViewController.swift */; };
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
@@ -70,7 +72,7 @@
 		E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8881D93693E00A4C14D /* FastCoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E4D97E4B1D991816006D3188 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4A1D991816006D3188 /* LogController.swift */; };
 		E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4D1D991E32006D3188 /* NormalCell.swift */; };
-		E4F6BC381D99119A00DC3616 /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6BC371D99119A00DC3616 /* PlanM.swift */; };
+		E4D97E501D992460006D3188 /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4F1D992460006D3188 /* PlanM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,8 @@
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
+		C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
+		C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C5A8290B1D93731400EBF46E /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
 		C5A829121D93D30500EBF46E /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
@@ -151,7 +155,7 @@
 		E4C9B8881D93693E00A4C14D /* FastCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCoder.m; sourceTree = "<group>"; };
 		E4D97E4A1D991816006D3188 /* LogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		E4D97E4D1D991E32006D3188 /* NormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
-		E4F6BC371D99119A00DC3616 /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
+		E4D97E4F1D992460006D3188 /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,8 @@
 				C546FE2E1D829D8200012FB4 /* MemberViewController.swift */,
 				C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */,
 				C5A8290B1D93731400EBF46E /* UserEditViewController.swift */,
+				C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */,
+				C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -496,7 +502,7 @@
 		E4C9B85E1D90EA8F00A4C14D /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				E4F6BC371D99119A00DC3616 /* PlanM.swift */,
+				E4D97E4F1D992460006D3188 /* PlanM.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -655,6 +661,7 @@
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
+				C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
@@ -663,8 +670,8 @@
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
-				E4F6BC381D99119A00DC3616 /* PlanM.swift in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
+				E4D97E501D992460006D3188 /* PlanM.swift in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
@@ -683,6 +690,7 @@
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
+				C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */,
 				C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,

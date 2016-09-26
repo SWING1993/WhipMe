@@ -101,9 +101,14 @@ class FriendsListViewCell: UITableViewCell {
         btnStatus.setTitleColor(color, for: UIControlState.normal)
         btnStatus.layer.borderColor = color.cgColor
         
-        lblNickname.text = "张三李少"
-        lblBrief.text = "生活就像强奸，反抗不了，就只能学会享受"
-        imageLogo.image = UIImage.init(named: "system_monitoring")
+        lblNickname.text = model.nickname ?? model.username
+        lblBrief.text = model.signature ?? "生活就像强奸，反抗不了，就只能学会享受"
+        
+        var imageHead = UIImage.init(contentsOfFile: model.avatar ?? "")
+        if imageHead == nil {
+            imageHead = UIImage.init(named: "system_monitoring")
+        }
+        imageLogo.image = imageHead
     }
     
     func stringByStatu(statu: UInt32) -> String {

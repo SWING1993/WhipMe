@@ -15,14 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-
 //        JMessage.add(self, with: nil)
 //        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
-        
-        registerUserNotification()
+//        registerUserNotification()
         customizeAppearance()
-      
+        
+        window = UIWindow.init(frame: UIScreen.main.bounds)
+    
 //        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
 //        print("username is \(userName)")
 //        if (userName != nil) {
@@ -195,19 +194,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     }
     
     func resetApplicationBadge() {
-        
-//<<<<<<< HEAD
-////        print("Action - resetApplicationBadge")
-////        
-//////        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
-////        UIApplication.shared.applicationIconBadgeNumber = badge
-//=======
-//        print("Action - resetApplicationBadge")
-//        
-////        let badge: Int = UserDefaults.standard.object(forKey: Define.kBADGE()) as! Int
-////        UIApplication.shared.applicationIconBadgeNumber = badge ?? nil
-//>>>>>>> 5a4b2d40d65d68d43a9a51d528fee129329cc0db
-////        JPUSHService.setBadge(badge)
+        print("Action - resetApplicationBadge")
+        let badge = UserDefaults.standard.object(forKey: Define.kBADGE())
+        if badge != nil {
+            let number = badge as! Int
+            UIApplication.shared.applicationIconBadgeNumber = number
+            JPUSHService.setBadge(number)
+        }
     }
     
     // MARK:- Notificatioin
@@ -268,38 +261,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         
     }
     
-//    #pragma mark - JMSGMessageDelegate 消息相关的变更通知
-//    /*! @abstract 发送消息结果返回回调 */
-//    - (void)onSendMessageResponse:(JMSGMessage *)message error:(NSError *)error
-//    {
-//    DebugLog(@"Action -- onSendMessageResponse %@ , error:%@",message,error);
-//    }
-//    
-//    /*! @abstract 接收消息(服务器端下发的)回调 */
-//    - (void)onReceiveMessage:(JMSGMessage *)message error:(NSError *)error
-//    {
-//    DebugLog(@"Action -- onReceivemessage %@, error:%@",message,error);
-//    DDPostNotification(kDBMigrateFinishNotification);
-//    }
-//    
-//    /*! @abstract 接收消息媒体文件下载失败的回调  */
-//    - (void)onReceiveMessageDownloadFailed:(JMSGMessage *)message
-//    {
-//    DebugLog(@"Action -- onReceiveMessageDownloadFailed %@",message);
-//    }
-//    
-//    #pragma mark - JMSGConversationDelegate 会话相关变更通知
-//    /*! @abstract 会话信息变更通知 */
-//    - (void)onConversationChanged:(JMSGConversation *)conversation
-//    {
-//    DebugLog(@"Action -- onConversationChanged");
-//    }
-//    
-//    /*! @abstract 当前剩余的全局未读数 */
-//    - (void)onUnreadChanged:(NSUInteger)newCount
-//    {
-//    DebugLog(@"Action -- onUnreadChanged");
-//    }
 
     
 }
