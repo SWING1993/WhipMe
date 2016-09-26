@@ -43,7 +43,7 @@ class UserInfoTableViewCell: UITableViewCell {
         lblTitle.snp.makeConstraints { (make) in
             make.height.equalTo(20.0)
             make.left.equalTo(self.contentView).offset(15.0);
-            make.right.equalTo(self.contentView).offset(-90.0);
+            make.right.equalTo(self.contentView).offset(-15.0);
             make.centerY.equalTo(self.contentView)
         }
         
