@@ -64,6 +64,41 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         sheetSex = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "女", "男")
     }
     
+    // MARK: - Action func
+    func showUserEditContorl(indexPath: IndexPath, placeholder: String) {
+        let editControl: EditControlType = indexPath.row == 7 ? EditControlType.signature : EditControlType.nickname
+        let controller: UserEditViewController = UserEditViewController()
+        controller.editControl = editControl
+        controller.strPlaceholder = placeholder
+        controller.textEditedBlock = { (value, editType) -> Void in
+            print("value is :\(value) __:\(editType)")
+            if editType == EditControlType.signature {
+                self.userModel.signature = value
+            } else {
+                self.userModel.nickname = value
+            }
+            self.tableViewWM.reloadData()
+        }
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func selectUserBirthday() {
+        SGHDateView.sharedInstance.pickerMode = .date
+        SGHDateView.sharedInstance.show();
+        
+//        let format = DateFormatter()
+//        format.dateFormat = "yyyy-MM-dd"
+//        format.timeZone = TimeZone.init(identifier: "Asia/Beijing")
+        
+        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            self.userModel.birthday = formatter.string(from: date as Date)
+            self.tableViewWM.reloadData()
+        }
+    }
+    
     // MARK: - UITableViewDelegate Datasource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -132,25 +167,12 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
             
             sheetAvatar.show(in: self.view)
         } else if (indexPath.row == 3 || indexPath.row == 7) {
-            let editControl: EditControlType = indexPath.row == 7 ? EditControlType.signature : EditControlType.nickname
-            let controller: UserEditViewController = UserEditViewController()
-            controller.editControl = editControl
-            controller.strPlaceholder = cell.lblText.text
-            controller.textEditedBlock = { (value, editType) -> Void in
-                print("value is :\(value) __:\(editType)")
-                if editType == EditControlType.signature {
-                    self.userModel.signature = value
-                } else {
-                    self.userModel.nickname = value
-                }
-                self.tableViewWM.reloadData()
-            }
-            self.navigationController?.pushViewController(controller, animated: true)
+            showUserEditContorl(indexPath: indexPath, placeholder: cell.lblText.text!)
         } else if indexPath.row == 4 {
             
             sheetSex.show(in: self.view)
         } else if indexPath.row == 5 {
-            
+            selectUserBirthday()
         }
     }
     
@@ -213,33 +235,19 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         let imageData: NSData = UIImage.dataRepresentationImage(newImge) as NSData
         
         let filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
-        let fullFile: String = filePath.appending("/userAvatar.png")
+        let fullFile: String = filePath.appending("/"+UIImage.generateUuidString()+".png")
         
-        //lastPathComponent
-        print("image is picker :\(fullFile)_______")
+        print("full file is :\(fullFile)")
+        let file_url = NSURL.init(string: fullFile)
+        
+        print("lastPathComponent is :\(file_url?.lastPathComponent)")
         
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            userModel.avatar = "userAvatar.png"
+            userModel.avatar = file_url?.lastPathComponent
             self.tableViewWM.reloadData()
         }
         
     }
     
-    
-    func generateUuidString() -> String {
-        let uuid: CFUUID = CFUUIDCreate(kCFAllocatorDefault)
-        let uuidString: String = CFBridgingRetain(CFUUIDCreateString(kCFAllocatorDefault, uuid)) as! String
-    
-        return uuidString
-    }
-    
-//    - (NSString *)generateUuidString
-//    {
-//    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-//    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
-//    CFRelease(uuid);
-//    
-//    return uuidString;
-//    }
 }

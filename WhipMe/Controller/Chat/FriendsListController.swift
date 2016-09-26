@@ -114,10 +114,16 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     // BACK: - network Data
     func queryByFriends() {
-        let lists: NSArray = ["youye","youye1","youye2"]
-        JMSGUser.addUsers(toBlacklist: lists as! [String], appKey: JMESSAGE_APPKEY) { (result, error) in
+        let lists: [String] = ["youye","youye1","youye2"]
+        
+        JMSGUser.userInfoArray(withUsernameArray: lists, appKey: JMESSAGE_APPKEY) { (result, error) in
+            
+            print("resutl : \(result) error is \(error)")
+            
             self.arrayContent.removeAllObjects()
-            self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            if result != nil {
+                self.arrayContent = NSMutableArray.init(array: result as! NSArray)
+            }
             
             self.tableViewWM.reloadData()
         }

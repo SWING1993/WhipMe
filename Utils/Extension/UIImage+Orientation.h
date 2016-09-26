@@ -18,4 +18,6 @@
 
 + (UIImage *)fullToFilePath:(NSString *)imageName;
 
++ (NSString *)generateUuidString;
+
 @end

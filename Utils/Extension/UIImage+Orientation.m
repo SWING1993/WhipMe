@@ -146,4 +146,13 @@
 }
 
 
++ (NSString *)generateUuidString
+{
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
+    CFRelease(uuid);
+
+    return uuidString;
+}
+
 @end
