@@ -77,6 +77,10 @@ class SecondAddCustomCell: NormalCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        self.backgroundColor = Define.kColorBackGround()
+        self.selectionStyle = .none
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setStartTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setEndTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setAlarmClock), name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: nil)

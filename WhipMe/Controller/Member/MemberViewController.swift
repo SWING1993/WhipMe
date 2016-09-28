@@ -15,7 +15,7 @@ class MemberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "我的"
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         
         
         if (userModel == nil) {

@@ -28,6 +28,23 @@ class HotAddCell: NormalCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     
+        self.backgroundColor = Define.kColorBackGround()
+        self.selectionStyle = .none
+        
+        if bgView == nil {
+            bgView = UIView.init()
+            bgView.backgroundColor = UIColor.white
+            bgView.layer.cornerRadius = 5.0
+            bgView.layer.masksToBounds = true
+            self.addSubview(bgView)
+            bgView.snp.makeConstraints { (make) in
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(kRightMargin)
+            }
+        }
+        
         if cellImage == nil {
             
             cellImage = UIImageView.init()
@@ -42,7 +59,7 @@ class HotAddCell: NormalCell {
         
         if titleL == nil {
             titleL = UILabel.init()
-            titleL.textColor = KColorBlack
+            titleL.textColor = Define.kColorBlack()
             titleL.text = "早起"
             titleL.font = UIFont.systemFont(ofSize: 16)
             self.bgView.addSubview(titleL)
@@ -56,7 +73,7 @@ class HotAddCell: NormalCell {
         
         if subTitleL == nil {
             subTitleL = UILabel.init()
-            subTitleL.textColor = KColorGray
+            subTitleL.textColor = Define.kColorGray()
             subTitleL.text = "已有10086位参加"
             subTitleL.textAlignment = .right
             subTitleL.font = UIFont.systemFont(ofSize: 8)

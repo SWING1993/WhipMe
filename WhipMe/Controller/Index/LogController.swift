@@ -57,7 +57,7 @@ class LogController: UIViewController {
     
     func setup() -> Void {
         self.navigationItem.title = "记录一下"
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         myLogTable = UITableView.init()
 //        myLogTable.register(SelectedCell.self, forCellReuseIdentifier: SelectedCell.cellReuseIdentifier())
         myLogTable.delegate = self

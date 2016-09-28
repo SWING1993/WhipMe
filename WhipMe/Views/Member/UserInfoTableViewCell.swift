@@ -35,7 +35,7 @@ class UserInfoTableViewCell: UITableViewCell {
         
         lblTitle = UILabel.init()
         lblTitle.backgroundColor = UIColor.clear
-        lblTitle.textColor = KColorBlack
+        lblTitle.textColor = Define.kColorBlack()
         lblTitle.font = KContentFont
         lblTitle.textAlignment = NSTextAlignment.left
         lblTitle.isUserInteractionEnabled = false
@@ -49,7 +49,7 @@ class UserInfoTableViewCell: UITableViewCell {
         
         lblText = UILabel.init()
         lblText.backgroundColor = UIColor.clear
-        lblText.textColor = KColorBlack
+        lblText.textColor = Define.kColorBlack()
         lblText.font = KContentFont
         lblText.textAlignment = NSTextAlignment.right
         lblText.isUserInteractionEnabled = false
