@@ -34,7 +34,7 @@ class FriendsListViewCell: UITableViewCell {
 
     private func setup() {
         imageLogo = UIImageView.init()
-        imageLogo.backgroundColor = KColorLight
+        imageLogo.backgroundColor = Define.kColorLight()
         imageLogo.contentMode = UIViewContentMode.scaleToFill
         imageLogo.isUserInteractionEnabled = false
         imageLogo.layer.cornerRadius = 21.0
@@ -50,7 +50,7 @@ class FriendsListViewCell: UITableViewCell {
         
         lblNickname = UILabel.init()
         lblNickname.backgroundColor = UIColor.clear
-        lblNickname.textColor = KColorBlack
+        lblNickname.textColor = Define.kColorBlack()
         lblNickname.font = KContentFont
         lblNickname.textAlignment = NSTextAlignment.left
         lblNickname.isUserInteractionEnabled = false
@@ -65,7 +65,7 @@ class FriendsListViewCell: UITableViewCell {
         
         lblBrief = UILabel.init()
         lblBrief.backgroundColor = UIColor.clear
-        lblBrief.textColor = KColorLight
+        lblBrief.textColor = Define.kColorLight()
         lblBrief.font = KTitleFont
         lblBrief.textAlignment = NSTextAlignment.left
         lblBrief.isUserInteractionEnabled = false
@@ -96,7 +96,7 @@ class FriendsListViewCell: UITableViewCell {
     public func setCellWithModel(model: JMSGUser) {
         
         let statue: UInt32 = arc4random()%3;
-        let color: UIColor = statue != 1 ? KColorBlue : KColorLight;
+        let color: UIColor = statue != 1 ? Define.kColorBlue() : Define.kColorLight();
         btnStatus.setTitle(stringByStatu(statu: statue), for: UIControlState.normal)
         btnStatus.setTitleColor(color, for: UIControlState.normal)
         btnStatus.layer.borderColor = color.cgColor

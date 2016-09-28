@@ -15,7 +15,7 @@ class NormalCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = KColorBackGround
+        self.backgroundColor = Define.kColorBackGround()
         if bgView == nil {
             bgView = UIView.init()
             bgView.backgroundColor = UIColor.white

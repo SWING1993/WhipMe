@@ -28,7 +28,7 @@ class FriendCircleController: UIViewController {
         let titles_nav: NSArray = ["推荐","关注"]
         let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
         segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
-        segmentedView.backgroundColor = KColorNavigation
+        segmentedView.backgroundColor = Define.kColorNavigation()
         segmentedView.layer.cornerRadius = segmentedView.height/2.0
         segmentedView.layer.masksToBounds = true
         segmentedView.layer.borderColor = UIColor.white.cgColor

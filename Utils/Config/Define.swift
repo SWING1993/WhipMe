@@ -39,6 +39,54 @@ let CHANNEL: String = "appstore"
 
 class Define: NSObject {
     
+    class func kColorBackGround () -> UIColor {
+        return Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
+    }
+    
+    class func kColorBlack () -> UIColor {
+        return Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
+    }
+    
+    class func kColorGray () -> UIColor {
+        return Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)
+    }
+    
+    class func kColorLight () -> UIColor {
+        return Define.RGBColorFloat(182.0, g: 182.0, b: 182.0)
+    }
+    
+    class func kColorGary () -> UIColor {
+        return Define.RGBColorFloat(98.0, g: 98.0, b: 98.0)
+    }
+    
+    class func kColorBlue () -> UIColor {
+        return Define.RGBColorFloat(4.0, g: 162.0, b: 249.0)
+    }
+    
+    class func kColorRed () -> UIColor {
+        return Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
+    }
+    
+    class func kColorNavigation () -> UIColor {
+        return Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
+    }
+    
+    class func kColorLine () -> UIColor {
+        return Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
+    }
+    //fbc12c
+    class func kColorYellow () -> UIColor {
+        return Define.RGBColorFloat(251.0, g:193.0, b:44.0)
+    }
+    //30cb87
+    class func kColorCyanOff () -> UIColor {
+        return Define.RGBColorFloat(48.0, g:203.0, b:135.0)
+    }
+    //25a56c
+    class func kColorCyanOn () -> UIColor {
+        return Define.RGBColorFloat(37.0, g:165.0, b:108.0)
+    }
+    
     class func kUserName() -> String {
         return "username"
     }

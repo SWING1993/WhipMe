@@ -28,7 +28,7 @@ class PrivacyViewController: UIViewController {
     
     func setup() -> Void {
         self.navigationItem.title = "隐私设置"
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         myPrivacyTable = UITableView.init()
         myPrivacyTable.register(SelectedCell.self, forCellReuseIdentifier: SelectedCell.cellReuseIdentifier())
         myPrivacyTable.delegate = self

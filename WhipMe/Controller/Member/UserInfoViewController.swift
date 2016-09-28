@@ -22,7 +22,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "编辑个人资料"
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         
         if (userModel == nil) {
             userModel = UserInfoModel()
@@ -49,7 +49,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         tableViewWM.delegate = self
         tableViewWM.dataSource = self
         tableViewWM.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM.separatorColor = KColorLine
+        tableViewWM.separatorColor = Define.kColorLine()
         tableViewWM.separatorInset = UIEdgeInsets.zero
         tableViewWM.layoutMargins = UIEdgeInsets.zero
         tableViewWM.tableFooterView = UIView.init()
@@ -133,7 +133,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
             cell.lblTitle?.text = "头像"
             cell.lblText.isHidden = true
             cell.imageLogo.isHidden = false
-            cell.imageLogo.backgroundColor = KColorLight
+            cell.imageLogo.backgroundColor = Define.kColorLight()
 //            cell.imageLogo.image = UIImage.init(named: userModel.avatar)
             cell.imageLogo.image = UIImage.full(toFilePath: userModel.avatar)
         } else if indexPath.row == 3 {

@@ -15,6 +15,23 @@ class CenterTextCell: NormalCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        self.backgroundColor = Define.kColorBackGround()
+
+        if bgView == nil {
+            bgView = UIView.init()
+            bgView.backgroundColor = UIColor.white
+            bgView.layer.cornerRadius = 5.0
+            bgView.layer.masksToBounds = true
+            self.addSubview(bgView)
+            bgView.snp.makeConstraints { (make) in
+                make.top.equalTo(kTopMargin)
+                make.bottom.equalTo(kBottomMargin)
+                make.left.equalTo(kLeftMargin)
+                make.right.equalTo(kRightMargin)
+            }
+        }
+        
         
         if cellTitle == nil {
             cellTitle = UILabel.init()
