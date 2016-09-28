@@ -56,7 +56,6 @@
 		E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */; };
 		E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3BF1D95030C00B17581 /* LeftTextCell.swift */; };
 		E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3C11D95032200B17581 /* CenterTextCell.swift */; };
-		E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48C0BE21D87D2C300802C6B /* SnapKit.framework */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
@@ -73,6 +72,8 @@
 		E4D97E4B1D991816006D3188 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4A1D991816006D3188 /* LogController.swift */; };
 		E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4D1D991E32006D3188 /* NormalCell.swift */; };
 		E4D97E501D992460006D3188 /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4F1D992460006D3188 /* PlanM.swift */; };
+		E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */; };
+		E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D97E561D9A1631006D3188 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,9 @@
 		E4D97E4A1D991816006D3188 /* LogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		E4D97E4D1D991E32006D3188 /* NormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
 		E4D97E4F1D992460006D3188 /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
+		E4D97E531D9A126D006D3188 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		E4D97E561D9A1631006D3188 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */,
 				C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */,
 				C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */,
 				C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */,
@@ -177,7 +182,6 @@
 				C59B2A211D8F83320055F026 /* Foundation.framework in Frameworks */,
 				C59B2A1D1D8F83280055F026 /* Security.framework in Frameworks */,
 				C59B2A1B1D8F831C0055F026 /* UIKit.framework in Frameworks */,
-				E48C0BE31D87D2C300802C6B /* SnapKit.framework in Frameworks */,
 				C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */,
 				8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */,
 			);
@@ -387,6 +391,7 @@
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4D97E561D9A1631006D3188 /* SnapKit.framework */,
 				C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */,
 				C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */,
 				C59B2A301D8F83950055F026 /* MobileCoreServices.framework */,
@@ -444,6 +449,7 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E4D97E521D9A126D006D3188 /* DZNEmptyDataSet */,
 				E4C9B8801D93690C00A4C14D /* StoreValue */,
 				C506DC301D8FE46F00785BE8 /* JMessage */,
 				E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */,
@@ -526,6 +532,15 @@
 				E4C9B8841D93690C00A4C14D /* StoreUserValue.m */,
 			);
 			path = StoreValue;
+			sourceTree = "<group>";
+		};
+		E4D97E521D9A126D006D3188 /* DZNEmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				E4D97E531D9A126D006D3188 /* UIScrollView+EmptyDataSet.h */,
+				E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */,
+			);
+			path = DZNEmptyDataSet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -703,6 +718,7 @@
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
+				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,10 +843,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"SnapKit\"",
 					"-ObjC",
 					"-all_load",
 				);
@@ -860,10 +872,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"DZNEmptyDataSet\"",
-					"-framework",
-					"\"SnapKit\"",
 					"-ObjC",
 					"-all_load",
 				);

@@ -11,7 +11,7 @@ import SnapKit
 
 class IndexViewController: UIViewController {
     
-    fileprivate var myTable: UITableView?
+    fileprivate var myTable: UITableView!
 
     var dataArray :NSMutableArray?
     
@@ -44,13 +44,14 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func prepareTableView() {
-        myTable = UITableView.init(frame: CGRect.zero, style: .plain)
+        myTable = UITableView.init()
 //        myTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
         myTable?.dataSource = self
         myTable?.delegate = self
+        myTable?.emptyDataSetSource = self
+        myTable?.emptyDataSetDelegate = self
 //        myTable?.separatorStyle = .none
         view.addSubview(myTable!)
-        myTable?.translatesAutoresizingMaskIntoConstraints = false
         myTable?.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
@@ -60,7 +61,10 @@ class IndexViewController: UIViewController {
     }
     
     func clickWithRightBarItem() {
-        let addWhipC = AddWhipController.init()
+//        let addWhipC = AddWhipController.init()
+//        addWhipC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(addWhipC, animated: true)
+        let addWhipC = LogController.init()
         addWhipC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(addWhipC, animated: true)
     }
@@ -119,9 +123,26 @@ extension IndexViewController:UITableViewDataSource {
 
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+}
+
+extension IndexViewController: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        let emptyStr = NSAttributedString.init(string: "暂无数据哦!")
+        return emptyStr
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let emptyImg = UIImage.init(named: "no_data")
+        return emptyImg
+    }
+}
+
+extension IndexViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }
 

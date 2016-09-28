@@ -29,6 +29,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>我们需要访问您的相机以便更好的为您服务！</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>我们需要访问您的照片库以便更好的为您服务！</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

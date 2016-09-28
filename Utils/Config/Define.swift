@@ -15,6 +15,7 @@ let KTitleFont: UIFont = UIFont.systemFont(ofSize: 14.0)
 let KContentFont: UIFont = UIFont.systemFont(ofSize: 16.0)
 let KButtonFont: UIFont = UIFont.systemFont(ofSize: 18.0)
 
+let KColorWhite: UIColor = UIColor.white
 let KColorBackGround: UIColor = Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
 let KColorBlack: UIColor = Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
 let KColorGray: UIColor = Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)

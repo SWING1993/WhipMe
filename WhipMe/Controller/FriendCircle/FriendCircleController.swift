@@ -46,13 +46,13 @@ class FriendCircleController: UIViewController {
     
     fileprivate func prepareTableView() {
         recommendTable = UITableView.init()
-        recommendTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
-        recommendTable.register(RecommendCell.self, forCellReuseIdentifier: "Cell")
+//        recommendTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
         recommendTable.dataSource = self
         recommendTable.delegate = self
         recommendTable.separatorStyle = .none
         view.addSubview(recommendTable)
-        recommendTable.translatesAutoresizingMaskIntoConstraints = false
+//        recommendTable.translatesAutoresizingMaskIntoConstraints = false
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
@@ -78,17 +78,17 @@ extension FriendCircleController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 1
     }
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
         return cell
     }
 }
