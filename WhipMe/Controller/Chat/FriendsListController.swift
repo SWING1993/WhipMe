@@ -25,7 +25,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
         
@@ -55,7 +55,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableViewWM = UITableView.init()
         tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM?.separatorColor = KColorLine
+        tableViewWM?.separatorColor = Define.kColorLine()
         tableViewWM?.layoutMargins = UIEdgeInsets.zero
         tableViewWM?.separatorInset = UIEdgeInsets.zero
         tableViewWM?.backgroundColor = UIColor.white

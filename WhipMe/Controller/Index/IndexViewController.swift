@@ -37,7 +37,7 @@ class IndexViewController: UIViewController {
         self.navigationItem.title = "鞭挞"
         self.dataArray = NSMutableArray.init()
 
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
         self.navigationItem.rightBarButtonItem = addBtn

@@ -21,11 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         customizeAppearance()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
-    
+        
+        let loginControl: LoginWayController = LoginWayController()
+        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+        self.window?.rootViewController = navControl
+        
 //        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
 //        print("username is \(userName)")
 //        if (userName != nil) {
-            setupMainController()
+//            setupMainController()
 //        } else {
 //            setupLoginController()
 //        }
@@ -157,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         
         navigationBarAppearance.barStyle = UIBarStyle.blackTranslucent
         navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.barTintColor = KColorNavigation
+        navigationBarAppearance.barTintColor = Define.kColorNavigation()
         navigationBarAppearance.titleTextAttributes =  [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
         navigationBarAppearance.tintColor = UIColor.white
         
@@ -171,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         tabBarAppearance.tintColor = UIColor.black
         
         let tabBarItem: UITabBarItem = UITabBarItem.appearance()
-        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:KColorLight], for: UIControlState.normal)
+        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:Define.kColorLight()], for: UIControlState.normal)
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:UIColor.black], for: UIControlState.selected)
     }
     

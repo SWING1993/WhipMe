@@ -17,7 +17,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
     }
@@ -36,7 +36,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         let titles_nav: NSArray = ["私信","通知"]
         let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
         segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
-        segmentedView.backgroundColor = KColorNavigation
+        segmentedView.backgroundColor = Define.kColorNavigation()
         segmentedView.layer.cornerRadius = segmentedView.height/2.0
         segmentedView.layer.masksToBounds = true
         segmentedView.layer.borderColor = UIColor.white.cgColor
@@ -53,7 +53,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableViewWM = UITableView.init()
         tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM?.separatorColor = KColorLine
+        tableViewWM?.separatorColor = Define.kColorLine()
         tableViewWM?.layoutMargins = UIEdgeInsets.zero
         tableViewWM?.separatorInset = UIEdgeInsets.zero
         tableViewWM?.backgroundColor = UIColor.white

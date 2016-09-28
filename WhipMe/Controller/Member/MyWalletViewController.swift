@@ -15,7 +15,7 @@ class MyWalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         self.navigationItem.title = "我的钱包"
         
         let rightBarItem = UIBarButtonItem.init(title: "明星", style: UIBarButtonItemStyle.done, target: self, action: #selector(clickWithList))
@@ -56,7 +56,7 @@ class MyWalletViewController: UIViewController {
         lblBalance.backgroundColor = UIColor.clear
         lblBalance.text = "余额"
         lblBalance.font = UIFont.systemFont(ofSize: 20.0)
-        lblBalance.textColor = KColorBlack
+        lblBalance.textColor = Define.kColorBlack()
         lblBalance.textAlignment = NSTextAlignment.center
         scrollWallet.addSubview(lblBalance)
         lblBalance.snp.updateConstraints { (make) in
@@ -67,7 +67,7 @@ class MyWalletViewController: UIViewController {
         
         lblPrice = UILabel.init()
         lblPrice.backgroundColor = UIColor.clear
-        lblPrice.textColor = KColorBlack
+        lblPrice.textColor = Define.kColorBlack()
         lblPrice.font = UIFont.systemFont(ofSize: 35.0)
         lblPrice.textAlignment = NSTextAlignment.center
         lblPrice.text = "¥99.56"

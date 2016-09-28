@@ -20,7 +20,7 @@ class FirstAddCustomCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = KColorBackGround
+        self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
         
         if bgView == nil {
@@ -38,7 +38,7 @@ class FirstAddCustomCell: UITableViewCell {
         }
         if titleT == nil {
             titleT = UITextField.init()
-            titleT.textColor = KColorBlack
+            titleT.textColor = Define.kColorBlack()
             titleT.font = UIFont.systemFont(ofSize: 12)
             titleT.placeholder = "请输入鞭挞名称"
             bgView.addSubview(titleT)

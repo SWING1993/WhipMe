@@ -19,7 +19,7 @@ class AddFriendsController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "添加好友"
-        self.view.backgroundColor = KColorBackGround
+        self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
     }
@@ -62,7 +62,7 @@ class AddFriendsController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableViewWM = UITableView.init()
         tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM?.separatorColor = KColorLine
+        tableViewWM?.separatorColor = Define.kColorLine()
         tableViewWM?.layoutMargins = UIEdgeInsets.zero
         tableViewWM?.separatorInset = UIEdgeInsets.zero
         tableViewWM?.backgroundColor = UIColor.white

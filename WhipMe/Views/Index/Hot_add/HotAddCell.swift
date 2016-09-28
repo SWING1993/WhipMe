@@ -28,7 +28,7 @@ class HotAddCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = KColorBackGround
+        self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
         
         if bgView == nil {
@@ -59,7 +59,7 @@ class HotAddCell: UITableViewCell {
         
         if titleL == nil {
             titleL = UILabel.init()
-            titleL.textColor = KColorBlack
+            titleL.textColor = Define.kColorBlack()
             titleL.text = "早起"
             titleL.font = UIFont.systemFont(ofSize: 16)
             bgView.addSubview(titleL)
@@ -73,7 +73,7 @@ class HotAddCell: UITableViewCell {
         
         if subTitleL == nil {
             subTitleL = UILabel.init()
-            subTitleL.textColor = KColorGray
+            subTitleL.textColor = Define.kColorGray()
             subTitleL.text = "已有10086位参加"
             subTitleL.textAlignment = .right
             subTitleL.font = UIFont.systemFont(ofSize: 8)
