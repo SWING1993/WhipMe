@@ -50,7 +50,7 @@ class IndexViewController: UIViewController {
         myTable?.delegate = self
         myTable?.emptyDataSetSource = self
         myTable?.emptyDataSetDelegate = self
-//        myTable?.separatorStyle = .none
+        myTable?.separatorStyle = .none
         view.addSubview(myTable!)
         myTable?.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
@@ -85,7 +85,6 @@ extension IndexViewController:UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
         let cell:UITableViewCell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "cell")
         
         let model:PlanM? = self.dataArray?.object(at: indexPath.row) as! PlanM?

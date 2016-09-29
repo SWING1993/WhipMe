@@ -22,14 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let loginControl: LoginWayController = LoginWayController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+//        let loginControl: LoginWayController = LoginWayController()
+//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+//        self.window?.rootViewController = navControl
         
 //        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
 //        print("username is \(userName)")
 //        if (userName != nil) {
-//            setupMainController()
+            setupMainController()
 //        } else {
 //            setupLoginController()
 //        }
