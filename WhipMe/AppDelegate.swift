@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 //        } else {
 //            setupLoginController()
 //        }
-        window?.backgroundColor = UIColor.white;
+        window?.backgroundColor = KColorBackGround
         window?.makeKeyAndVisible();
         return true
     }

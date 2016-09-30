@@ -73,6 +73,4 @@ class SelectedCell: UITableViewCell {
     class func cellReuseIdentifier() -> String {
         return "SelectedCell"
     }
-
-
 }

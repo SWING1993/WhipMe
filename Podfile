@@ -11,6 +11,8 @@ pod 'SDWebImage'
 pod 'BlocksKit'
 pod 'RxSwift',    '~> 3.0.0-beta.1'
 pod 'RxCocoa',    '~> 3.0.0-beta.1'
+#pod 'RxDataSources',    '~> 3.0.0-beta.1'
+
 pod 'Alamofire'
 pod 'ChameleonFramework'
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
