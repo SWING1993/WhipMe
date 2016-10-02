@@ -12,6 +12,8 @@ class ShareEngine: NSObject, WXApiDelegate {
     
     static let sharedInstance = ShareEngine()
     
+    public var delegate: WXApiEngineDelegate!
+    
     func registerApp() {
         WXApi.registerApp(Define.appIDWeChat())
     }
@@ -27,8 +29,8 @@ class ShareEngine: NSObject, WXApiDelegate {
     }
     
     //构造SendAuthReq结构体
-    func sendAuthRequest() {
-        
+    func sendAuthRequest(aDelegate:WXApiEngineDelegate!) {
+        self.delegate = aDelegate
         if WXApi.isWXAppInstalled() == false {
             let alertView = UIAlertView.init(title: "没有安装微信", message: nil, delegate: nil, cancelButtonTitle: "确定")
             alertView.show()
@@ -37,7 +39,7 @@ class ShareEngine: NSObject, WXApiDelegate {
         
         let req: SendAuthReq = SendAuthReq.init()
         req.scope = "snsapi_userinfo"
-        req.state = "123"
+        req.state = "whipme"
         //第三方向微信终端发送一个SendAuthReq消息结构
         let flag: Bool = WXApi.send(req)
         
@@ -51,35 +53,18 @@ class ShareEngine: NSObject, WXApiDelegate {
 
     // MARK: - WxApiDelegate
     func onReq(_ req: BaseReq!) {
-        print(req)
+        print("on req is :\(req)")
     }
     
     func onResp(_ resp: BaseResp!) {
-        print(resp)
-//        if([resp isKindOfClass:[SendMessageToWXResp class]])
-//        {
-//            switch (resp.errCode)
-//            {
-//            case 0:
-//                [self sendSuccess];
-//                break;
-//            case -1:
-//                [self sendFail:@"普通错误类型"];
-//                break;
-//            case -2:
-//                [self sendFail:@"用户点击取消并返回"];
-//                break;
-//            case -3:
-//                [self sendFail:@"发送失败"];
-//                break;
-//            case -4:
-//                [self sendFail:@"授权失败"];
-//                break;
-//            default:
-//                [self sendFail:@"微信不支持"];
-//                break;
-//            }
-//        }
+        print("on resp is :\(resp)")
+        
+        if resp.isKind(of: SendAuthResp.classForCoder()) {
+            let authResp = resp as! SendAuthResp
+            self.delegate.engineDidRecvAuth(response: authResp)
+        }
+        
+        
 //        else if ([resp isKindOfClass:[PayResp class]])
 //        {
 //            if (resp.errCode == WXSuccess)
@@ -91,5 +76,12 @@ class ShareEngine: NSObject, WXApiDelegate {
 //            }
 //        }
     }
+}
+
+public protocol WXApiEngineDelegate: NSObjectProtocol {
+    
+    func engineDidRecvAuth(response: SendAuthResp)
+    
+    
     
 }

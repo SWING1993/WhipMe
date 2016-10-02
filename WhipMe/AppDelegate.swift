@@ -103,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("cancelAllLocalNotifications")
 //        application.cancelAllLocalNotifications()
     }
 
