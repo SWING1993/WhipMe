@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var textNickname: UITextField!
     var textPassword: UITextField!
@@ -46,9 +46,12 @@ class LoginViewController: UIViewController {
             itemText.textAlignment = NSTextAlignment.left
             itemText.textColor = Define.kColorBlack()
             itemText.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+            itemText.clearButtonMode = UITextFieldViewMode.whileEditing
+            itemText.keyboardType = UIKeyboardType.numberPad
             itemText.placeholder = itemStr as? String
             itemText.layer.cornerRadius = 4.0
             itemText.layer.masksToBounds = true
+            itemText.delegate = self
             self.view.addSubview(itemText)
             
             let viewLeft: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 10.0, height: 0))
@@ -66,7 +69,6 @@ class LoginViewController: UIViewController {
                 })
             } else {
                 textPassword = itemText
-                textPassword.isSecureTextEntry = true
                 itemText.snp.updateConstraints({ (make) in
                     make.width.equalTo(Define.screenWidth() - 142.0)
                     make.height.equalTo(44.0)
@@ -142,51 +144,60 @@ class LoginViewController: UIViewController {
         
     }
     
+    func showIsMessage(msg: String)  {
+        let alert: UIAlertView = UIAlertView.init(title: msg, message: nil, delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
+    }
+    
     func clickWithLogin() {
-        print(self.classForCoder)
-        
         textNickname.resignFirstResponder()
         textPassword.resignFirstResponder()
         
-        let nickname: String = (textNickname.text?.stringByTrimingWhitespace())!
+        let mobileStr: String = (textNickname.text?.stringByTrimingWhitespace())!
         let password: String = (textPassword.text?.stringByTrimingWhitespace())!
         
-        print("nickname is \(nickname)")
+        print("nickname is \(mobileStr)")
         print("password is \(password)")
         
-        if checkValid(username: nickname, password: password) {
+        if mobileStr.characters.count == 0 {
+            showIsMessage(msg: "请输入手机号!")
+            return
+        }
+        
+        if password.characters.count == 0 {
+            showIsMessage(msg: "请输入验证码!")
+            return
+        }
+        
+        if NSString.isValidateMobile(mobileStr) == false {
+            showIsMessage(msg: "请输入正确的手机号!")
+            return
+        }
+        
+        HttpClient.sharedInstance.loginUser(loginId: mobileStr, code: password, loginType: "0") { (result, error) in
+            print("手机号用户登陆 is result:\(result) is error:\(error)")
             
-            JMSGUser.login(withUsername: nickname, password: password, completionHandler: { (result, error) in
-                if (error == nil) {
-                    let user: UserDefaults = UserDefaults.standard
-                    user.set(nickname, forKey: Define.kUserName())
-                    user.set(password, forKey: Define.kPassword())
-                    user.synchronize()
-                    
-                    let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appdelegate.setupMainController()
-                } else {
-                    print("login is fail")
-                }
-            })
+            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.setupMainController()
+            
+            self.checkValid(username: "youye", password: "123456")
         }
     }
     
-    func checkValid(username: String, password: String) -> Bool {
-        if username.characters.count > 0 && password.characters.count > 0 {
-            return true
-        }
-        
-        var alert: String = "用户名或者密码不合法."
-        if username == "" {
-            alert = "用户名不能为空"
-        } else if password == "" {
-            alert = "密码不能为空"
-        }
-        
-        print("login error is \(alert)")
-        
-        return false
+    func checkValid(username: String, password: String) {
+        JMSGUser.login(withUsername: username, password: password, completionHandler: { (result, error) in
+            if (error == nil) {
+                let user: UserDefaults = UserDefaults.standard
+                user.set(username, forKey: Define.kUserName())
+                user.set(password, forKey: Define.kPassword())
+                user.synchronize()
+                
+//                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                appdelegate.setupMainController()
+            } else {
+                print("login is fail")
+            }
+        })
     }
     
     func clickWithRegister() {
@@ -198,13 +209,24 @@ class LoginViewController: UIViewController {
     
     }
     
+    /** 获取验证码 */
     func clickWithCode(sender: PhoneCodeButton) {
         
-        if self.verify_codeBtn.isSelected {
-            self.verify_codeBtn.isSelected = false
-            self.verify_codeBtn.invalidateTimer()
-        } else {
-            self.verify_codeBtn.isSelected = true
+        let mobileStr: String = textNickname.text!;
+        
+        if mobileStr.characters.count == 0 {
+            showIsMessage(msg: "请输入手机号!")
+            return
+        }
+        
+        if NSString.isValidateMobile(mobileStr) == false {
+            showIsMessage(msg: "请输入正确的手机号!")
+            return
+        }
+        
+        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
+            print("获取验证码 is result:\(result) is error:\(error)")
+            
             self.verify_codeBtn.startUpTimer()
         }
     }
@@ -214,7 +236,36 @@ class LoginViewController: UIViewController {
     }
     
     override func delete(_ sender: Any?) {
+        print(self.classForCoder)
         self.verify_codeBtn.invalidateTimer()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.verify_codeBtn.invalidateTimer()
+    }
+    
+    // MARK: -UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let str_text: String = textField.text! + string
+        print("_______textField: \(str_text)")
+        
+        if textField == textNickname {
+            if str_text.characters.count > 11 {
+                return false
+            }
+        } else if textField == textPassword {
+            if str_text.characters.count > 6 {
+                return false
+            }
+        }
+        
+        return true
+    }
 }

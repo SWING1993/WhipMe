@@ -8,19 +8,19 @@
 
 import UIKit
 
-class RegisterAndUserController: UIViewController {
-
-    var nickname: String!
-    var password: String!
-    var uesrSex: String!
-    var avatar: String!
-    var userName: String!
+class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var btnAvatar: UIButton!
-    var txtNickname: UITextField!
-    var btnSubmit: UIButton!
-    var btnAgreement: UIButton!
-    var arrayButtonSex: NSMutableArray!
+    public var mobile: String!
+    public var password: String!
+    private var userSex: String!
+    private var avatar: String!
+    private var nickname: String!
+    
+    private var btnAvatar: UIButton!
+    private var txtNickname: UITextField!
+    private var btnSubmit: UIButton!
+    private var btnAgreement: UIButton!
+    private var arrayButtonSex: NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +72,7 @@ class RegisterAndUserController: UIViewController {
         txtNickname.placeholder = "输入昵称"
         txtNickname.layer.cornerRadius = 4.0
         txtNickname.layer.masksToBounds = true
+        txtNickname.delegate = self
         self.view.addSubview(txtNickname)
         
         let viewLeft: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 10.0, height: 0))
@@ -143,8 +144,14 @@ class RegisterAndUserController: UIViewController {
         }
     }
     
+    func showIsMessage(msg: String)  {
+        let alert: UIAlertView = UIAlertView.init(title: msg, message: nil, delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
+    }
+    
     func clickWithAvatar() {
-        
+        let sheetAvatar = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles:"拍照","图库")
+        sheetAvatar.show(in: self.view)
     }
     
     func clickWithSex(sender: UIButton)  {
@@ -156,9 +163,42 @@ class RegisterAndUserController: UIViewController {
                 button.isSelected = false
             }
         }
+        self.userSex = sender.title(for: UIControlState.normal)! as String
+        
     }
     
     func clickWithRegister() {
+        txtNickname.resignFirstResponder()
+        let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
+        
+        print("nickname is \(nickName)")
+        
+        if avatar.characters.count == 0 {
+            showIsMessage(msg: "请设置头像!")
+            return
+        }
+        
+        if nickName.characters.count == 0 {
+            showIsMessage(msg: "请输入昵称!")
+            return
+        }
+        
+        if userSex.characters.count == 0 {
+            showIsMessage(msg: "请选择性别!")
+            return
+        }
+        
+        if mobile.characters.count == 0 {
+            showIsMessage(msg: "手机号不存在!")
+            return
+        }
+        
+        HttpClient.sharedInstance.registerUser(mobile: mobile, icon: avatar, nickname: nickName, sex: userSex) { (result, error) in
+            print("注册：第2步 is result:\(result) is error:\(error)")
+            
+            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.setupMainController()
+        }
         
     }
     
@@ -166,4 +206,88 @@ class RegisterAndUserController: UIViewController {
         
     }
     
+    // MARK: - UIActionSheetDelegate
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+        print("sheet is index:\(buttonIndex)")
+        
+        if buttonIndex == 0 {
+            return
+        }
+            
+        let imagePicker = UIImagePickerController.init()
+        imagePicker.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        imagePicker.videoQuality = UIImagePickerControllerQualityType.typeHigh
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        if buttonIndex == 1 {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.rear
+            } else {
+                let alertView = UIAlertView.init(title: "该设备不支持“照相机”", message: nil, delegate: nil, cancelButtonTitle: "取消")
+                alertView.show()
+                return
+            }
+        } else if buttonIndex == 2 {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+                imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
+            } else {
+                let alertView = UIAlertView.init(title: "该设备不支持“相片库”", message: nil, delegate: nil, cancelButtonTitle: "取消")
+                alertView.show()
+                return
+            }
+        }
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+        let imageEdited: UIImage = UIImage.fixOrientation(info[UIImagePickerControllerEditedImage] as! UIImage!)
+        let newImge: UIImage = UIImage.scale(imageEdited)
+        
+        btnAvatar.setImage(newImge, for: UIControlState.normal)
+        btnAvatar.setImage(newImge, for: UIControlState.highlighted)
+        
+        let imageData: NSData = UIImage.dataRepresentationImage(newImge) as NSData
+        
+        let filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
+        let fullFile: String = filePath.appending("/"+UIImage.generateUuidString()+".png")
+        
+        print("full file is :\(fullFile)")
+        let file_url = NSURL.init(string: fullFile)
+        
+        print("lastPathComponent is :\(file_url?.lastPathComponent)")
+        
+        let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
+        if flag {
+            self.avatar = file_url?.lastPathComponent
+        }
+    }
+    
+    // MARK: -UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let str_text: String = textField.text! + string
+        print("_______textField: \(str_text)")
+        
+        if str_text.characters.count > 21 {
+            return false
+        }
+        
+        return true
+    }
 }

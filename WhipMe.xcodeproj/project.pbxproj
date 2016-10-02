@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F677D9C1DA0ED17004D54EA /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D961DA0ED17004D54EA /* libWeChatSDK.a */; };
 		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
+		4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677DA41DA10F5F004D54EA /* NSString+Validate.m */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
 		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
@@ -92,6 +93,8 @@
 		4F677D9A1DA0ED17004D54EA /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		4F677D9B1DA0ED17004D54EA /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		4F677D9F1DA0EDD6004D54EA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4F677DA31DA10F5F004D54EA /* NSString+Validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validate.h"; sourceTree = "<group>"; };
+		4F677DA41DA10F5F004D54EA /* NSString+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validate.m"; sourceTree = "<group>"; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
 		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */,
 				E48C0BEC1D87E33400802C6B /* UIColor+expanded.h */,
 				E48C0BED1D87E33400802C6B /* UIColor+expanded.m */,
+				4F677DA31DA10F5F004D54EA /* NSString+Validate.h */,
+				4F677DA41DA10F5F004D54EA /* NSString+Validate.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -742,6 +747,7 @@
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
+				4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,

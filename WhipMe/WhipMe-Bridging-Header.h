@@ -16,6 +16,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 //
+#import "NSString+Validate.h"
 #import "UIColor+Expanded.h"
 #import "NSObject+StoreValue.h"
 #import "UIImage+Orientation.h"
