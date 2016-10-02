@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F677D9C1DA0ED17004D54EA /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D961DA0ED17004D54EA /* libWeChatSDK.a */; };
+		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
 		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
@@ -39,7 +41,6 @@
 		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
 		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
 		C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */; };
-		C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */; };
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
@@ -51,6 +52,8 @@
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */; };
+		C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
 		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
@@ -84,6 +87,11 @@
 
 /* Begin PBXFileReference section */
 		016FC22642FF3694F4358528 /* Pods_WhipMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhipMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F677D961DA0ED17004D54EA /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		4F677D991DA0ED17004D54EA /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		4F677D9A1DA0ED17004D54EA /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		4F677D9B1DA0ED17004D54EA /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		4F677D9F1DA0EDD6004D54EA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
 		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
@@ -119,7 +127,6 @@
 		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
 		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = WhipMe/Controller/Member/UserInfoModel.swift; sourceTree = SOURCE_ROOT; };
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
@@ -132,6 +139,8 @@
 		C5A829131D93D30500EBF46E /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareEngine.swift; sourceTree = "<group>"; };
+		C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
@@ -183,8 +192,10 @@
 				E44E739B1D9D002E007A73D8 /* Alamofire.framework in Frameworks */,
 				E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */,
 				E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */,
+				4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */,
 				C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */,
 				C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */,
+				4F677D9C1DA0ED17004D54EA /* libWeChatSDK.a in Frameworks */,
 				C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */,
 				C59B2A2F1D8F83900055F026 /* AudioToolbox.framework in Frameworks */,
 				C59B2A2D1D8F83820055F026 /* CFNetwork.framework in Frameworks */,
@@ -205,6 +216,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F677D951DA0ED17004D54EA /* SDKWeChat */ = {
+			isa = PBXGroup;
+			children = (
+				4F677D961DA0ED17004D54EA /* libWeChatSDK.a */,
+				4F677D991DA0ED17004D54EA /* WechatAuthSDK.h */,
+				4F677D9A1DA0ED17004D54EA /* WXApi.h */,
+				4F677D9B1DA0ED17004D54EA /* WXApiObject.h */,
+			);
+			path = SDKWeChat;
+			sourceTree = "<group>";
+		};
 		947F4EA01047703EED7AF923 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,10 +323,10 @@
 		C546FE141D82989700012FB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C5F5D3CF1D9CA83E0020491D /* Member */,
 				E4C9B85E1D90EA8F00A4C14D /* Index */,
 				C546FE151D82989700012FB4 /* Chat */,
 				C546FE161D82989700012FB4 /* FriendCircle */,
-				C546FE181D82989700012FB4 /* Member */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -322,14 +344,6 @@
 			children = (
 			);
 			path = FriendCircle;
-			sourceTree = "<group>";
-		};
-		C546FE181D82989700012FB4 /* Member */ = {
-			isa = PBXGroup;
-			children = (
-				C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */,
-			);
-			path = Member;
 			sourceTree = "<group>";
 		};
 		C546FE191D82989700012FB4 /* Views */ = {
@@ -416,12 +430,22 @@
 			path = iTools;
 			sourceTree = "<group>";
 		};
+		C5F5D3CF1D9CA83E0020491D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */,
+				C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E44E739A1D9D002E007A73D8 /* Alamofire.framework */,
 				E44E73961D9CB8C5007A73D8 /* Photos.framework */,
 				E4D97E561D9A1631006D3188 /* SnapKit.framework */,
+				4F677D9F1DA0EDD6004D54EA /* libc++.tbd */,
 				C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */,
 				C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */,
 				C59B2A301D8F83950055F026 /* MobileCoreServices.framework */,
@@ -480,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D97E521D9A126D006D3188 /* DZNEmptyDataSet */,
+				4F677D951DA0ED17004D54EA /* SDKWeChat */,
 				E4C9B8801D93690C00A4C14D /* StoreValue */,
 				C506DC301D8FE46F00785BE8 /* JMessage */,
 				E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */,
@@ -608,7 +633,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WPXQYZSK2Q;
+						DevelopmentTeam = BG6HSL32ZA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -723,6 +748,8 @@
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
+				C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */,
+				C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
@@ -737,7 +764,6 @@
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */,
-				C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
@@ -867,7 +893,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WPXQYZSK2Q;
+				DEVELOPMENT_TEAM = BG6HSL32ZA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -875,6 +901,10 @@
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Utils/ThirdParty/SDKWeChat",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -896,7 +926,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WPXQYZSK2Q;
+				DEVELOPMENT_TEAM = BG6HSL32ZA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -904,6 +934,10 @@
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Utils/ThirdParty/SDKWeChat",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

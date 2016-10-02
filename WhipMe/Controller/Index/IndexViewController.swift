@@ -189,7 +189,7 @@ class IndexViewController: UIViewController {
         self.dataArray = NSMutableArray.init()
 
         self.view.backgroundColor = Define.kColorBackGround()
-        prepareTableView()
+//        prepareTableView()  //TODO 蹦了，我也不知道怎么回事，就注释掉,你看下
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
         self.navigationItem.rightBarButtonItem = addBtn
     }

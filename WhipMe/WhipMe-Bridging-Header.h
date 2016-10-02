@@ -11,6 +11,9 @@
 #import <JMessage/JMessage.h>
 #import "FastCoder.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "WXApi.h"
+
+#import <CommonCrypto/CommonDigest.h>
 
 //
 #import "UIColor+Expanded.h"

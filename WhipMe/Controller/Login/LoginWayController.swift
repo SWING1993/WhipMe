@@ -8,13 +8,12 @@
 
 import UIKit
 
-class LoginWayController: UIViewController {
+class LoginWayController: UIViewController, WXApiEngineDelegate {
 
     private let button_index: Int = 7777
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setup()
     }
@@ -106,6 +105,9 @@ class LoginWayController: UIViewController {
             self.navigationController?.pushViewController( LoginViewController(), animated: true)
         } else if _index == 1 {
             print("微信登录 is click")
+            
+            ShareEngine.sharedInstance.sendAuthRequest(aDelegate: self)
+           
         } else if _index == 2 {
             self.navigationController?.pushViewController( RegisterViewController(), animated: true)
         } else {
@@ -114,4 +116,23 @@ class LoginWayController: UIViewController {
         
     }
     
+    // MARK: - WXApiEngineDelegate 微信登录
+    func engineDidRecvAuth(response: SendAuthResp) {
+        let alert_str: String = "response is errCode:\(response.errCode) errStr:\(response.errStr) state:\(response.state) code:\(response.code)"
+        
+        let alert: UIAlertView = UIAlertView.init(title: "微信登录", message: alert_str, delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
+        
+        if response.errCode == -2 {
+            //用户取消
+        } else if response.errCode == -4 {
+            //用户拒绝授权
+            
+        } else {
+            // 0(用户同意)
+        }
+        
+        
+        
+    }
 }
