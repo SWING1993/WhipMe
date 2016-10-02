@@ -15,7 +15,6 @@ class LoginWayController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setup()
     }
 
@@ -106,6 +105,9 @@ class LoginWayController: UIViewController {
             self.navigationController?.pushViewController( LoginViewController(), animated: true)
         } else if _index == 1 {
             print("微信登录 is click")
+            
+            ShareEngine.sharedInstance.sendAuthRequest()
+           
         } else if _index == 2 {
             self.navigationController?.pushViewController( RegisterViewController(), animated: true)
         } else {

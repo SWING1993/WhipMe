@@ -11,6 +11,9 @@
 #import "CustomIOSAlertView.h"
 #import <JMessage/JMessage.h>
 #import "FastCoder.h"
+#import "WXApi.h"
+
+#import <CommonCrypto/CommonDigest.h>
 
 //
 #import "UIColor+Expanded.h"

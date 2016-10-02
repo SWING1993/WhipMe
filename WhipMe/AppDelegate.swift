@@ -15,24 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-//        JMessage.add(self, with: nil)
-//        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
-//        registerUserNotification()
+        JMessage.add(self, with: nil)
+        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+        
+        ShareEngine.sharedInstance.registerApp()
+        
+        registerUserNotification()
         customizeAppearance()
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let loginControl: LoginWayController = LoginWayController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
         
-//        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
-//        print("username is \(userName)")
-//        if (userName != nil) {
-//            setupMainController()
-//        } else {
-//            setupLoginController()
-//        }
+        if (userName != nil) {
+            setupMainController()
+        } else {
+            setupLoginController()
+        }
         window?.backgroundColor = UIColor.white;
         window?.makeKeyAndVisible();
         return true
@@ -139,6 +138,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         print("Action - didReceiveLocalNotification")
         JPUSHService.showLocalNotification(atFront: notification, identifierKey: nil)
     }
+    
+    /** 微信回调 */
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        return ShareEngine.sharedInstance.handleOpenURL(url: url)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return ShareEngine.sharedInstance.handleOpenURL(url: url)
+    }
 
     // MARK: - Action 方法
     func setupMainController() {
@@ -146,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         self.window?.rootViewController = tabControl
     }
     func setupLoginController() {
-        let loginControl: LoginViewController = LoginViewController()
+        let loginControl: LoginWayController = LoginWayController()
         let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
         self.window?.rootViewController = navControl
     }
@@ -179,9 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     
     func registerUserNotification() {
         
-        let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
-        JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
-        
         //iOS 10 使用以下方法注册，才能得到授权
         if #available(iOS 10.0, *) {
             let center  = UNUserNotificationCenter.current()
@@ -194,6 +199,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
             })
         } else {
             // Fallback on earlier versions
+            
+            let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
+            JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
         }
     }
     
@@ -264,9 +272,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
     func onConversationChanged(_ conversation: JMSGConversation!) {
         
     }
-    
-
-    
 }
 
 @available(iOS 10.0, *)

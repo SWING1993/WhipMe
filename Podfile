@@ -14,6 +14,8 @@ pod 'RxSwift',    '~> 3.0.0-beta.1'
 pod 'RxCocoa',    '~> 3.0.0-beta.1'
 pod 'Alamofire'
 
+pod 'WeChatSDK-iOS', '~> 1.7.3'
+
 #pod 'CVCalendar'
 #pod 'SVProgressHUD'
 #pod 'TMCache'

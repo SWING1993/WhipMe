@@ -28,6 +28,15 @@ let CHANNEL: String = "appstore"
 
 class Define: NSObject {
     
+    class func appIDWeChat() -> String {
+        return "wx4a02d3d18fe4fca7"
+    }
+    
+    class func appSecretWeChat() -> String {
+        return "66904ed59cbdeffff5410c6b2b447b0e"
+    }
+    
+    // MARK: 颜色的定义
     class func kColorBackGround () -> UIColor {
         return Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
     }

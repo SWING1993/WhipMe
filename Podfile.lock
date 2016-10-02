@@ -26,6 +26,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SnapKit (3.0.1)
   - TPKeyboardAvoiding (1.3)
+  - WeChatSDK-iOS (1.7.3)
 
 DEPENDENCIES:
   - Alamofire
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - SDWebImage
   - SnapKit
   - TPKeyboardAvoiding
+  - WeChatSDK-iOS (~> 1.7.3)
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
@@ -50,7 +52,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  WeChatSDK-iOS: 5ab1275da6f245c41232870f8215998c59cbb539
 
-PODFILE CHECKSUM: cefc2c8c9d252a5d1c2afdfc0aacf9b8b93dcbff
+PODFILE CHECKSUM: 3bcfc5702fc66dbebb92d461ec02b4572ebab707
 
 COCOAPODS: 1.0.1

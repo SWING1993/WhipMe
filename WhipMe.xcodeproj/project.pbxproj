@@ -39,7 +39,6 @@
 		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
 		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
 		C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */; };
-		C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */; };
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
@@ -51,6 +50,8 @@
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */; };
+		C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
 		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
@@ -115,7 +116,6 @@
 		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
 		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = WhipMe/Controller/Member/UserInfoModel.swift; sourceTree = SOURCE_ROOT; };
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
@@ -128,6 +128,8 @@
 		C5A829131D93D30500EBF46E /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareEngine.swift; sourceTree = "<group>"; };
+		C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
@@ -289,10 +291,10 @@
 		C546FE141D82989700012FB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C5F5D3CF1D9CA83E0020491D /* Member */,
 				E4C9B85E1D90EA8F00A4C14D /* Index */,
 				C546FE151D82989700012FB4 /* Chat */,
 				C546FE161D82989700012FB4 /* FriendCircle */,
-				C546FE181D82989700012FB4 /* Member */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,14 +312,6 @@
 			children = (
 			);
 			path = FriendCircle;
-			sourceTree = "<group>";
-		};
-		C546FE181D82989700012FB4 /* Member */ = {
-			isa = PBXGroup;
-			children = (
-				C5A0B01E1D927E8800EADAEF /* UserInfoModel.swift */,
-			);
-			path = Member;
 			sourceTree = "<group>";
 		};
 		C546FE191D82989700012FB4 /* Views */ = {
@@ -401,6 +395,15 @@
 			children = (
 			);
 			path = iTools;
+			sourceTree = "<group>";
+		};
+		C5F5D3CF1D9CA83E0020491D /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */,
+				C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */,
+			);
+			path = Member;
 			sourceTree = "<group>";
 		};
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
@@ -697,6 +700,8 @@
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
+				C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */,
+				C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
@@ -711,7 +716,6 @@
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */,
-				C5A0B01F1D927E8800EADAEF /* UserInfoModel.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
