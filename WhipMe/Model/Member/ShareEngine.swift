@@ -32,8 +32,11 @@ class ShareEngine: NSObject, WXApiDelegate {
     func sendAuthRequest(aDelegate:WXApiEngineDelegate!) {
         self.delegate = aDelegate
         if WXApi.isWXAppInstalled() == false {
-            let alertView = UIAlertView.init(title: "没有安装微信", message: nil, delegate: nil, cancelButtonTitle: "确定")
-            alertView.show()
+            let alertContorl = UIAlertController.init(title: "没有安装微信", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alertContorl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: { (action) in
+                
+            }))
+            alertContorl.show(self.delegate as! UIViewController, sender: nil)
             return
         }
         

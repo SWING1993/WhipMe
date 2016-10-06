@@ -8,14 +8,11 @@
 
 import UIKit
 
-class UserInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UserInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var tableViewWM: UITableView!
 //    var arrayContent: NSMutableArray! = ["","头像","","昵称","性别","生日","","签名"]
     var userModel: UserInfoModel!
-    
-    var sheetSex: UIActionSheet!
-    var sheetAvatar: UIActionSheet!
     
     private let identifier_cell: String = "userInfoViewCell"
     
@@ -60,8 +57,6 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableViewWM.register(UserInfoTableViewCell.classForCoder(), forCellReuseIdentifier: UserInfoTableViewCell.cellReuseIdentifier())
         
-        sheetAvatar = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles:"拍照","图库")
-        sheetSex = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "女", "男")
     }
     
     // MARK: - Action func
@@ -164,60 +159,78 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         let cell: UserInfoTableViewCell = tableView.cellForRow(at: indexPath) as! UserInfoTableViewCell
         
         if indexPath.row == 1 {
+            let sheetAvatar = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
             
-            sheetAvatar.show(in: self.view)
+            sheetAvatar.addAction(UIAlertAction.init(title: "拍照", style: UIAlertActionStyle.default, handler: { (action) in
+                self .actionSheet(buttonIndex: 1)
+            }))
+            sheetAvatar.addAction(UIAlertAction.init(title: "图库", style: UIAlertActionStyle.default, handler: { (action) in
+                self .actionSheet(buttonIndex: 2)
+            }))
+            sheetAvatar.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: { (action) in
+                self .actionSheet(buttonIndex: 0)
+            }))
+            self.present(sheetAvatar, animated: true, completion: nil)
         } else if (indexPath.row == 3 || indexPath.row == 7) {
             showUserEditContorl(indexPath: indexPath, placeholder: cell.lblText.text!)
         } else if indexPath.row == 4 {
-            
-            sheetSex.show(in: self.view)
+            let sheetSex = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            sheetSex.addAction(UIAlertAction.init(title: "男", style: UIAlertActionStyle.default, handler: { (action) in
+                self.userModel.sex = "男"
+                self.tableViewWM.reloadData()
+            }))
+            sheetSex.addAction(UIAlertAction.init(title: "女", style: UIAlertActionStyle.default, handler: { (action) in
+                self.userModel.sex = "女"
+                self.tableViewWM.reloadData()
+            }))
+            sheetSex.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: { (action) in
+                self.tableViewWM.reloadData()
+            }))
+            self.present(sheetSex, animated: true, completion: nil)
         } else if indexPath.row == 5 {
             selectUserBirthday()
         }
     }
     
-    // MARK: - UIActionSheetDelegate
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+    // MARK: - UIActionSheet
+    func actionSheet(buttonIndex: Int) {
         print("sheet is index:\(buttonIndex)")
         
         if buttonIndex == 0 {
             return
         }
+        let imagePicker = UIImagePickerController.init()
+        imagePicker.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        imagePicker.videoQuality = UIImagePickerControllerQualityType.typeHigh
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         
-        if actionSheet == sheetSex {
-            
-            userModel.sex = buttonIndex == 1 ? "女" : "男"
-            self.tableViewWM.reloadData()
-        } else if actionSheet == sheetAvatar {
-        
-            let imagePicker = UIImagePickerController.init()
-            imagePicker.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            imagePicker.videoQuality = UIImagePickerControllerQualityType.typeHigh
-            imagePicker.allowsEditing = true
-            imagePicker.delegate = self
-            
-            if buttonIndex == 1 {
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-                    imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-                    imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.rear
-                } else {
-                    let alertView = UIAlertView.init(title: "该设备不支持“照相机”", message: nil, delegate: nil, cancelButtonTitle: "取消")
-                    alertView.show()
-                    return
-                }
-            } else if buttonIndex == 2 {
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-                    imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-                    imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
-                } else {
-                    let alertView = UIAlertView.init(title: "该设备不支持“相片库”", message: nil, delegate: nil, cancelButtonTitle: "取消")
-                    alertView.show()
-                    return
-                }
+        if buttonIndex == 1 {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.rear
+            } else {
+                let alertControl = UIAlertController.init(title: "该设备不支持“照相机”", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.default, handler: { (action) in
+                    print("_____________________________该设备不支持“照相机”")
+                }))
+                self.present(alertControl, animated: true, completion: nil)
+                return
             }
-            self.present(imagePicker, animated: true, completion: nil)
-            
+        } else if buttonIndex == 2 {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+                imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
+            } else {
+                let alertControl = UIAlertController.init(title: "该设备不支持“相片库”", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.default, handler: { (action) in
+                    print("_____________________________该设备不支持“相片库”")
+                }))
+                self.present(alertControl, animated: true, completion: nil)
+                return
+            }
         }
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate

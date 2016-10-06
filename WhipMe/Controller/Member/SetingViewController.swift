@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
+class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableViewWM: UITableView!
     private let identifier_cell: String = "setingTableViewCell"
@@ -122,16 +122,15 @@ class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if indexPath.row == 5 {
             
         } else if indexPath.row == 7 {
-            let sheetExit = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "确认退出")
-            sheetExit.show(in: self.view)
+            let alertExit = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            alertExit.addAction(UIAlertAction.init(title: "确认退出", style: UIAlertActionStyle.default, handler: { (action) in
+                
+            }))
+            alertExit.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: { (action) in
+                
+            }))
+            self.present(alertExit, animated: true, completion: nil)
         }
     }
     
-    // MARK: - UIActionSheetDelegate
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
-        print("button index is :\(buttonIndex)")
-        if buttonIndex == 0 {
-            print("exit is success! ")
-        }
-    }
 }
