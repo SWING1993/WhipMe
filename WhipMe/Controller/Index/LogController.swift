@@ -54,6 +54,12 @@ class LogTextCell: NormalCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func resignFirstResponder() ->Bool {
+        super.resignFirstResponder()
+        self.contentT.resignFirstResponder()
+        return true
+    }
 }
 
 class LogNoPhotoCell: NormalCell {
@@ -246,6 +252,12 @@ class LogController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder()
+        let cell = self.myLogTable.cellForRow(at: IndexPath.init(row: 0, section: 0))
+        cell?.resignFirstResponder()
+        return true
+    }
     
     func choosePhoto() {
         let sheet = UIActionSheet.init(title: nil, delegate: nil, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
@@ -347,7 +359,7 @@ extension LogController :UITableViewDataSource {
             cell.photoView.image = self.photo
             cell.deleteBtn.bk_addEventHandler({ (sender) in
                 self.photo = nil
-                self.myLogTable.reloadData()
+                self.myLogTable.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
                 }, for: .touchUpInside)
             return cell
         }
@@ -395,7 +407,7 @@ extension LogController :UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.photo = image
-        self.myLogTable.reloadData()
+        self.myLogTable.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -411,7 +423,6 @@ extension LogController :UINavigationControllerDelegate {
 extension LogController :CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations.last)
-        manager.stopUpdatingHeading()
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(locations.last!) { (placemarks, error) in
             if error == nil {
@@ -420,6 +431,7 @@ extension LogController :CLLocationManagerDelegate {
                 self.location = mark?.name
                 let cell:LogLocationCell = self.myLogTable.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! LogLocationCell
                 cell.locationL.text = self.location
+                manager.stopUpdatingLocation()
             }else {
                 print(error?.localizedDescription)
             }
@@ -430,4 +442,12 @@ extension LogController :CLLocationManagerDelegate {
         print(error)
     }
 
+}
+
+extension LogController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y != 0 {
+            _ = self.resignFirstResponder()
+        }
+    }
 }

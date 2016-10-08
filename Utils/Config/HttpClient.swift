@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 private let baseURLString = "http://www.superspv.com/json_dispatch.rpc"
+
 typealias CompletionHandler = (Any?, Error?) -> Swift.Void
 
 class HttpClient: NSObject {

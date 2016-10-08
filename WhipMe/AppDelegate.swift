@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
-        print("username is \(userName)")
-        if (userName != nil) {
+//        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
+//        print("username is \(userName)")
+//        if (userName != nil) {
             setupMainController()
-        } else {
-            setupLoginController()
-        }
+//        } else {
+//            setupLoginController()
+//        }
         window?.backgroundColor = KColorBackGround
         window?.makeKeyAndVisible();
         return true
