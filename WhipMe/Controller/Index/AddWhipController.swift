@@ -12,12 +12,19 @@ import RxCocoa
 class AddWhipController: UIViewController {
 
     var disposeBag = DisposeBag()
-
     var myCostomAM = PlanM.init()
 
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
     fileprivate var submitBtn: UIBarButtonItem!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        HttpClient.sharedInstance.apiRequest(url: "/queryHotThemeList", parameters: ["method" :"queryHotThemeList"], method: .post) { (respond, error) in
+            print(respond)
+            print(error)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +152,7 @@ extension AddWhipController:UITableViewDataSource {
                 
                 cell.contentChangedBlock =  { (value) -> Void in
                     print("content:" + value)
-                    weakSelf?.myCostomAM.title = value
+                    weakSelf?.myCostomAM.content = value
                 }
                 return cell
             }

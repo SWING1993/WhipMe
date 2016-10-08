@@ -375,6 +375,7 @@ extension LogController :UITableViewDataSource {
                     }
                     else {
                         self.location = nil
+                        self.locateM.stopUpdatingLocation()
                     }
                 })
             .addDisposableTo(disposeBag)
