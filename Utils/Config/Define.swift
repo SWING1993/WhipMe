@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+let kKeyWindows = UIApplication.shared.keyWindow
+
 let KNumFont: UIFont = UIFont.systemFont(ofSize: 10.0)
 let KTimeFont: UIFont = UIFont.systemFont(ofSize: 12.0)
 let KTitleFont: UIFont = UIFont.systemFont(ofSize: 14.0)
@@ -25,6 +27,7 @@ let KColorBlue: UIColor = Define.RGBColorFloat(119.0, g: 218.0, b: 246.0)
 let KColorRed: UIColor = Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
 let KColorNavigation: UIColor = Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
 let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
+let KColorGreen: UIColor = Define.RGBColorFloat(43, g: 200, b: 131)
 
 let kNaviHeight: CGFloat = 64.0
 

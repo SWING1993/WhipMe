@@ -15,10 +15,14 @@ class WhipMeCell: UITableViewCell {
     
     var bgView: UIView!
     var whipMeTable: UITableView!
+    
     lazy var modelArray: NSArray = {
         return NSArray()
     }()
     
+    var checkPlan:((IndexPath) -> Void)?
+    var deletePlan:((IndexPath) -> Void)?
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -55,13 +59,12 @@ class WhipMeCell: UITableViewCell {
        
         if whipMeTable == nil {
             whipMeTable = UITableView.init()
-            whipMeTable.separatorStyle = .none
+//            whipMeTable.separatorStyle = .none
             whipMeTable.isScrollEnabled = false
             whipMeTable.showsVerticalScrollIndicator = false
-            whipMeTable.rowHeight = 40
+            whipMeTable.rowHeight = 60
             whipMeTable.delegate = self
             whipMeTable.dataSource = self
-//            whipMeTable.backgroundColor = UIColor.random()
             bgView.addSubview(whipMeTable)
             whipMeTable.snp.makeConstraints({ (make) in
                 make.width.equalTo(bgView)
@@ -78,8 +81,10 @@ class WhipMeCell: UITableViewCell {
         whipMeTable.reloadData()
     }
     
-    class func cellHeight() -> CGFloat {
-        return 400
+    class func cellHeight(array: NSArray) -> CGFloat {
+        var height = 60 * CGFloat.init(array.count)
+        height += 54
+        return height
     }
     
     class func cellReuseIdentifier() -> String {
@@ -104,21 +109,68 @@ extension WhipMeCell: UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell.init(style: .default, reuseIdentifier: "uitableviewcell")
+        let cell: UITableViewCell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "uitableviewcell")
+        cell.selectionStyle = .none
+        
         let planM: PlanM = self.modelArray.object(at: indexPath.row) as! PlanM
         cell.textLabel?.text = planM.title
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+//        cell.textLabel?.textColor = kcolo
+        
         cell.detailTextLabel?.text = planM.content
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
+        
+        let playLabel = UILabel.init()
+        playLabel.backgroundColor = KColorGreen
+        playLabel.font = UIFont.systemFont(ofSize: 10)
+        playLabel.layer.masksToBounds = true
+        playLabel.layer.cornerRadius = 5
+        playLabel.textColor = KColorWhite
+        playLabel.text = "进行中"
+        playLabel.textAlignment = .center
+        cell.addSubview(playLabel)
+        playLabel.snp.makeConstraints { (make) in
+            make.height.equalTo(13)
+            make.centerY.equalTo(cell.textLabel!)
+            make.left.equalTo(cell.textLabel!.snp.right).offset(5)
+            make.width.equalTo(37)
+        }
         return cell
     }
 }
 
 extension WhipMeCell: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.checkPlan != nil {
+            self.checkPlan!(indexPath)
+        }
+    }
+    
+    @objc(tableView:canFocusRowAtIndexPath:) func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    @objc(tableView:commitEditingStyle:forRowAtIndexPath:) func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if self.deletePlan != nil {
+            self.deletePlan!(indexPath)
+        }
+    }
 }
 
 class WhipOthersCell: UITableViewCell {
     var bgView : UIView!
     var whipOtherTable :UITableView!
+
+    var clickCell:((IndexPath) -> Void)?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -155,6 +207,7 @@ class WhipOthersCell: UITableViewCell {
         
         if whipOtherTable == nil {
             whipOtherTable = UITableView.init()
+            whipOtherTable.delegate = self
             whipOtherTable.isScrollEnabled = false
             whipOtherTable.separatorStyle = .none
             whipOtherTable.showsVerticalScrollIndicator = false
@@ -180,6 +233,30 @@ class WhipOthersCell: UITableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension WhipOthersCell: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.clickCell != nil {
+            self.clickCell!(indexPath)
+        }
+    }
+    
+    @objc(tableView:canFocusRowAtIndexPath:) func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    @objc(tableView:commitEditingStyle:forRowAtIndexPath:) func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
     }
 }
 
@@ -241,9 +318,6 @@ class IndexViewController: UIViewController {
         let addWhipC = AddWhipController.init()
         addWhipC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(addWhipC, animated: true)
-//        let addWhipC = LogController.init()
-//        addWhipC.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(addWhipC, animated: true)
     }
 }
 
@@ -265,6 +339,18 @@ extension IndexViewController:UITableViewDataSource {
         if indexPath.section == 0 {
             let cell: WhipMeCell = WhipMeCell.init(style: .default, reuseIdentifier: WhipMeCell.cellReuseIdentifier())
             cell.updateDataWith(array: self.dataArray!)
+            cell.checkPlan = { indexPath in
+                print(indexPath)
+                let addWhipC = LogController.init()
+                addWhipC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(addWhipC, animated: true)
+            }
+            
+            cell.deletePlan = { indexPath in
+                PlanM.deletePlan(index: indexPath.row);
+                self.dataArray?.removeObject(at: indexPath.row)
+                self.myTable.reloadData()
+            }
             return cell
         }
         let cell: WhipOthersCell = WhipOthersCell.init(style: .default, reuseIdentifier: WhipOthersCell.cellReuseIdentifier())
@@ -276,6 +362,9 @@ extension IndexViewController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 || self.dataArray != nil {
+            return WhipMeCell.cellHeight(array: self.dataArray!)
+        }
         return 400
     }
 }

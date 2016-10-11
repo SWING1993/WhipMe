@@ -17,11 +17,6 @@ class SecondAddCustomCell: NormalCell {
     
     //接收上个页面穿过来的闭包块
     var backClosure:((IndexPath) -> Void)?
-//    //闭包变量的Seter方法
-//    func setBackMyClosure(tempClosure:@escaping  InputClosureType) {
-//        self.backClosure = tempClosure
-//    }
-    
     var alarmClockBlock : ((PlanM) -> Void)?
     var privacydBlock : ((PlanM) -> Void)?
     
@@ -59,6 +54,7 @@ class SecondAddCustomCell: NormalCell {
     func setAlarmClock(notification:Notification) -> Void {
         let costomAM:PlanM = notification.object as! PlanM
         myCostomAM.alarmClock = costomAM.alarmClock
+        myCostomAM.alarmWeeks = costomAM.alarmWeeks
         table.reloadData()
         if self.alarmClockBlock != nil {
             self.alarmClockBlock!(self.myCostomAM)
@@ -153,36 +149,25 @@ extension SecondAddCustomCell:UITableViewDataSource {
         cell.detailTextLabel?.text = "未设置"
 
         switch indexPath.row {
+        
         case 0:
-            if myCostomAM.startTime != nil {
                 let formatter = DateFormatter()
+                formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.startTime as! Date)
-            }
-            else {
-                cell.detailTextLabel?.text = "未设置"
-            }
+                cell.detailTextLabel?.text = myCostomAM.startTime.string(format: .custom("yyyy.MM.dd"))
             break
+        
         case 1:
-            if myCostomAM.endTime != nil {
                 let formatter = DateFormatter()
+                formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.endTime as! Date)
-            }
-            else {
-                cell.detailTextLabel?.text = "未设置"
-            }
+                cell.detailTextLabel?.text = myCostomAM.endTime.string(format: .custom("yyyy.MM.dd"))
             break
+        
         case 2:
-            if myCostomAM.alarmClock != nil {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "HH:mm"
-                cell.detailTextLabel?.text = formatter.string(from: myCostomAM.alarmClock as! Date)
-            }
-            else {
-                cell.detailTextLabel?.text = "未设置"
-            }
+                cell.detailTextLabel?.text = myCostomAM.alarmClock.string(format: .custom("HH:mm"))
             break
+        
         case 3:
             if myCostomAM.privacy == PrivacyType.all {
                 cell.detailTextLabel?.text = "所有人可见"
@@ -199,9 +184,11 @@ extension SecondAddCustomCell:UITableViewDataSource {
                 cell.detailTextLabel?.text = "未设置"
             }
             break
+        
         default:
             break
         }
+        
         return cell
     }
 }

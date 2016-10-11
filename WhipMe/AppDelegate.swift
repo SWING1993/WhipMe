@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
@@ -37,14 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
         return true
     }
     
-    class func registerNotification(alertItme:TimeInterval) -> Void {
-
+    class func registerNotification(plan: PlanM) -> Void {
         DispatchQueue.global().async {
             if #available(iOS 10.0, *) {
-                print(Date.init(timeIntervalSinceNow: alertItme))
+              
+                
+//                let date = plan.alarmClock
+//                print(plan.alarmClock.toTimezone("UTC+8"))
+
                 // 使用 UNUserNotificationCenter 来管理通知
-                let tagItems = [1 ,2 ,3, 4, 5, 6,7]
-                for (_, value) in tagItems.enumerated() {
+                print(plan.alarmWeeks)
+
+                for (_, value) in plan.alarmWeeks.enumerated() {
                     let center = UNUserNotificationCenter.current()
                     //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
                     let content = UNMutableNotificationContent.init()
@@ -83,13 +88,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JMessageDelegate {
  */
             } else {
                 // Fallback on earlier versions
-                let notification = UILocalNotification.init()
-                let date = Date.init(timeIntervalSinceNow: alertItme)
-                print(Date.init(timeIntervalSinceNow: alertItme))
-                notification.fireDate = date
-                notification.timeZone = NSTimeZone.local
-                notification.repeatInterval = .day
-                UIApplication.shared.scheduleLocalNotification(notification)
+//                let notification = UILocalNotification.init()
+//                let date = Date.init(timeIntervalSinceNow: alertItme)
+//                print(Date.init(timeIntervalSinceNow: alertItme))
+//                notification.fireDate = date
+//                notification.timeZone = NSTimeZone.local
+//                notification.repeatInterval = .day
+//                UIApplication.shared.scheduleLocalNotification(notification)
             }
         }
     }

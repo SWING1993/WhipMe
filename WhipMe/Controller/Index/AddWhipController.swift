@@ -12,7 +12,10 @@ import RxCocoa
 class AddWhipController: UIViewController {
 
     var disposeBag = DisposeBag()
-    var myCostomAM = PlanM.init()
+    lazy var myCostomAM :PlanM! = {
+        let plam = PlanM.init()
+        return plam
+    }()
 
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
@@ -41,11 +44,21 @@ class AddWhipController: UIViewController {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         self.submitBtn = UIBarButtonItem.init()
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            PlanM.savePlan(value: self.myCostomAM)
-            let time = self.myCostomAM.alarmClock?.timeIntervalSinceNow
-            if time != nil {
-                AppDelegate.registerNotification(alertItme: time!)
+            
+            
+            if self.myCostomAM.title.isEmpty {
+                Tool.showHUDTip(tipStr: "请填写标题后再提交")
+                return
             }
+            if self.myCostomAM.content.isEmpty {
+                Tool.showHUDTip(tipStr: "请填写内容后再提交")
+                return
+            }
+            
+
+            PlanM.savePlan(value: self.myCostomAM)
+            print(self.myCostomAM.alarmWeeks )
+            AppDelegate.registerNotification(plan: self.myCostomAM)
             _ = self.navigationController?.popViewController(animated: true)
         }
         prepareSegmented()
@@ -166,6 +179,8 @@ extension AddWhipController:UITableViewDataSource {
                 
                 cell.alarmClockBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.alarmClock = value.alarmClock
+                    weakSelf?.myCostomAM.alarmWeeks = value.alarmWeeks
+                    print(weakSelf?.myCostomAM.alarmWeeks)
                 }
 
                 cell.backClosure = { (inputText:IndexPath) -> Void in
@@ -174,12 +189,12 @@ extension AddWhipController:UITableViewDataSource {
                     if inputText.row == 0 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
-                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
-                            self.myCostomAM.startTime = nil
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
-                        }
+//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+//                            self.myCostomAM.startTime = NSData.init()
+//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
+//                        }
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                            self.myCostomAM.startTime = date as NSDate?
+                            self.myCostomAM.startTime = date
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
                         }
                     }
@@ -187,12 +202,12 @@ extension AddWhipController:UITableViewDataSource {
                     if inputText.row == 1 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
-                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
-                            self.myCostomAM.endTime = nil
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
-                        }
+//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
+//                            self.myCostomAM.endTime = nil
+//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
+//                        }
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                            self.myCostomAM.endTime = date as NSDate?
+                            self.myCostomAM.endTime = date
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
                         }
                     }

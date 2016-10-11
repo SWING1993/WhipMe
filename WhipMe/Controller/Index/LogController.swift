@@ -424,6 +424,7 @@ extension LogController :UINavigationControllerDelegate {
 extension LogController :CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations.last)
+        manager.stopUpdatingLocation()
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(locations.last!) { (placemarks, error) in
             if error == nil {
@@ -432,15 +433,18 @@ extension LogController :CLLocationManagerDelegate {
                 self.location = mark?.name
                 let cell:LogLocationCell = self.myLogTable.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! LogLocationCell
                 cell.locationL.text = self.location
-                manager.stopUpdatingLocation()
             }else {
                 print(error?.localizedDescription)
+//                let alertView = UIAlertView.init(title: error?.localizedDescription, message: nil, delegate: nil, cancelButtonTitle: "确定")
+//                alertView.show()
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+//        let alertView = UIAlertView.init(title: error.localizedDescription, message: nil, delegate: nil, cancelButtonTitle: "确定")
+//        alertView.show()
     }
 
 }

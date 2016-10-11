@@ -63,10 +63,9 @@ extension AlarmClockController: UITableViewDelegate {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
             }
             SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                let formatter = DateFormatter()
-                formatter.dateFormat = "HH:mm"
-                weakCell.cellTitle?.text = formatter.string(from: date as Date)
-                self.myCostomAM.alarmClock = date as NSDate?
+                print(date)
+                weakCell.cellTitle?.text = date.string(format: .custom("HH:mm"))
+                self.myCostomAM.alarmClock = date
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
             }
             break
@@ -101,6 +100,10 @@ extension AlarmClockController: UITableViewDataSource {
         }
         else if indexPath.row == 2 {
             let cell: WeekCell = WeekCell.init(style: UITableViewCellStyle.default, reuseIdentifier: WeekCell.cellReuseIdentifier())
+            cell.settingWeeks = { array in
+                self.myCostomAM.alarmWeeks = array as! [Int]
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: self.myCostomAM)
+            }
             return cell
         }
         let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")

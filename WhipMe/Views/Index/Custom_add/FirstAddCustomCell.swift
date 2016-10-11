@@ -83,6 +83,7 @@ class FirstAddCustomCell: NormalCell {
             })
             .addDisposableTo(disposeBag)
         
+        
         let contentChange = contentT.rx.text
         contentChange
             .bindNext({ (value) in

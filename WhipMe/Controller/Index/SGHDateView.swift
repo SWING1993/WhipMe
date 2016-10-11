@@ -12,7 +12,7 @@ class SGHDateView: NSObject {
     
     static let sharedInstance = SGHDateView()
     
-    var okBlock : ((NSDate) -> Void)?
+    var okBlock : ((Date) -> Void)?
     var cancelBlock : (() -> Void)?
     var pickerMode : UIDatePickerMode?
     
@@ -31,9 +31,10 @@ class SGHDateView: NSObject {
             print(buttonIndex)
             if buttonIndex == 1 {
                 if self.okBlock != nil {
-                    self.okBlock!(self.picker.date as NSDate)
+                    self.okBlock!(self.picker.date)
                 }
-            }else {
+            }
+            else {
                 if self.cancelBlock != nil {
                     self.cancelBlock!()
                 }
