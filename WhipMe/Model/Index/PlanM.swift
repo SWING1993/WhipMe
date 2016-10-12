@@ -50,6 +50,7 @@ class PlanM: NSObject {
         if index > plans.count - 1 {
             return
         }
+        AppDelegate.removeNotification(plan: plans.object(at: index) as! PlanM)
         plans.removeObject(at: index)
         plans.storeValue(withKey: kPlan)
     }

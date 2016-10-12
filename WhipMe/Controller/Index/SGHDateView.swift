@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftDate
 class SGHDateView: NSObject {
     
     static let sharedInstance = SGHDateView()
@@ -31,7 +31,8 @@ class SGHDateView: NSObject {
             print(buttonIndex)
             if buttonIndex == 1 {
                 if self.okBlock != nil {
-                    self.okBlock!(self.picker.date)
+                    let date = self.picker.date
+                    self.okBlock!(date)
                 }
             }
             else {

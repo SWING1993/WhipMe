@@ -115,7 +115,6 @@ extension WhipMeCell: UITableViewDataSource {
         let planM: PlanM = self.modelArray.object(at: indexPath.row) as! PlanM
         cell.textLabel?.text = planM.title
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
-//        cell.textLabel?.textColor = kcolo
         
         cell.detailTextLabel?.text = planM.content
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
@@ -264,15 +263,17 @@ class IndexViewController: UIViewController {
     
     fileprivate var myTable: UITableView!
     var disposeBag = DisposeBag()
-    var dataArray :NSMutableArray?
+    lazy var dataArray :NSMutableArray = {
+        return NSMutableArray.init()
+    }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.dataArray?.removeAllObjects()
+        self.dataArray.removeAllObjects()
         if PlanM.getPlans() != nil {
             for (_, value) in PlanM.getPlans()!.enumerated() {
-                self.dataArray?.add(value)
+                self.dataArray.add(value)
             }
             self.myTable?.reloadData()
         }
@@ -326,7 +327,10 @@ extension IndexViewController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return (self.dataArray?.count)!
-        return 1
+        if self.dataArray.count > 0 {
+            return 1
+        }
+        return 0
     }
     
     /// Returns the number of sections.
@@ -338,7 +342,7 @@ extension IndexViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: WhipMeCell = WhipMeCell.init(style: .default, reuseIdentifier: WhipMeCell.cellReuseIdentifier())
-            cell.updateDataWith(array: self.dataArray!)
+            cell.updateDataWith(array: self.dataArray)
             cell.checkPlan = { indexPath in
                 print(indexPath)
                 let addWhipC = LogController.init()
@@ -348,7 +352,7 @@ extension IndexViewController:UITableViewDataSource {
             
             cell.deletePlan = { indexPath in
                 PlanM.deletePlan(index: indexPath.row);
-                self.dataArray?.removeObject(at: indexPath.row)
+                self.dataArray.removeObject(at: indexPath.row)
                 self.myTable.reloadData()
             }
             return cell
@@ -362,10 +366,10 @@ extension IndexViewController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 || self.dataArray != nil {
-            return WhipMeCell.cellHeight(array: self.dataArray!)
+        if indexPath.section == 0 || self.dataArray.count > 0 {
+            return WhipMeCell.cellHeight(array: self.dataArray)
         }
-        return 400
+        return 0
     }
 }
 
