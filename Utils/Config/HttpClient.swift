@@ -10,12 +10,13 @@ import UIKit
 import Alamofire
 
 private let baseURLString = "http://www.superspv.com/json_dispatch.rpc"
+
 typealias CompletionHandler = (Any?, Error?) -> Swift.Void
 
 class HttpClient: NSObject {
     static let sharedInstance = HttpClient()
 
-    public func apiRequest(url: String, parameters: Parameters, method: HTTPMethod, completionHandler: @escaping CompletionHandler) -> Void {
+    func apiRequest(url: String, parameters: Parameters, method: HTTPMethod, completionHandler: @escaping CompletionHandler) -> Void {
         let requeseurl = baseURLString.appending(url)
         Alamofire.request(requeseurl, method: method, parameters: parameters)
             .responseJSON { response in

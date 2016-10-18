@@ -225,11 +225,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
-            print("获取验证码 is result:\(result) is error:\(error)")
-            
-            self.verify_codeBtn.startUpTimer()
-        }
+        HttpClient.sharedInstance.apiRequest(url: "sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
+            print(result)
+            print(error)
+        })
+//        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
+//            print("获取验证码 is result:\(result) is error:\(error)")
+//           
+//            self.verify_codeBtn.startUpTimer()
+//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

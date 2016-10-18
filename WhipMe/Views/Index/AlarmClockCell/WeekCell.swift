@@ -10,8 +10,10 @@ import UIKit
 
 class WeekCell: NormalCell {
 
+    var settingWeeks:((NSArray) -> Void)?
+
     var selectedBtnTags :NSMutableArray?
-    
+
     fileprivate let kBtnWidth = (Define.screenWidth() - 2*kLeftMargin)/7
     fileprivate let tagItems = [1 ,2 ,3, 4, 5, 6,7]
     fileprivate let btnTitles = ["七", "一", "二", "三", "四", "五", "六"]
@@ -20,9 +22,10 @@ class WeekCell: NormalCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
-        
         self.selectedBtnTags = NSMutableArray.init()
-          
+        
+
+        
         var lastBtn:UIButton?
         for (index,btnTag) in tagItems.enumerated() {
             let weekBtn = UIButton.init(type: .custom)
@@ -56,6 +59,12 @@ class WeekCell: NormalCell {
                     weakSelf?.selectedBtnTags?.remove(clickBtn.tag)
                 }
                 print(weakSelf?.selectedBtnTags)
+                
+                if weakSelf?.selectedBtnTags != nil {
+                    if weakSelf?.settingWeeks != nil {
+                        weakSelf?.settingWeeks!(self.selectedBtnTags!)
+                    }
+                }
                 }, for: .touchUpInside)
         }
     }

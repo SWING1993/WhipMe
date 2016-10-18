@@ -191,11 +191,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
+        HttpClient.sharedInstance.apiRequest(url: "/sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
             print("获取验证码 is result:\(result) is error:\(error)")
-            
-            self.verify_codeBtn.startUpTimer()
-        }
+        })
     }
     
     func checkValid(username: String, password: String) {

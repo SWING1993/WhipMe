@@ -7,20 +7,19 @@ pod 'SnapKit'
 pod 'TPKeyboardAvoiding'
 pod 'MJRefresh'
 pod 'MJExtension'
-pod 'SDWebImage'
+pod 'FlyImage',   '~> 1.0'
 pod 'BlocksKit'
 pod 'RxSwift',    '~> 3.0.0-beta.1'
 pod 'RxCocoa',    '~> 3.0.0-beta.1'
-#pod 'RxDataSources',    '~> 3.0.0-beta.1'
-
 pod 'Alamofire'
 pod 'ChameleonFramework'
+pod 'SwiftDate'
+
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'
 #pod 'SVProgressHUD'
 #pod 'TMCache'
 #pod 'TTTAttributedLabel'
-#pod 'DZNEmptyDataSet'
 
 end
 

@@ -7,31 +7,38 @@
 //
 
 import UIKit
+import SwiftDate
 import UserNotifications
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {//JMessageDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-//        JMessage.add(self, with: nil)
-//        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
-//        ShareEngine.sharedInstance.registerApp()
+        JMessage.add(self, with: nil)
+        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+        ShareEngine.sharedInstance.registerApp()
         
-//        registerUserNotification()
+        registerUserNotification()
         customizeAppearance()
+        
+        
+        Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
+        
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let loginControl: TopUpViewController = TopUpViewController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+//        let loginControl: TopUpViewController = TopUpViewController()
+//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+//        self.window?.rootViewController = navControl
+        
         
 //        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
 //        print("username is \(userName)")
 //        if (userName != nil) {
-//            setupMainController()
+            setupMainController()
+        
 //        } else {
 //            setupLoginController()
 //        }
@@ -40,59 +47,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//JMessageDelegate
         return true
     }
     
-    class func registerNotification(alertItme:TimeInterval) -> Void {
-
+    class func removeNotification(plan: PlanM) -> Void {
         DispatchQueue.global().async {
+            if plan.alarmWeeks.count <= 0 {
+                return
+            }
             if #available(iOS 10.0, *) {
-                print(Date.init(timeIntervalSinceNow: alertItme))
                 // 使用 UNUserNotificationCenter 来管理通知
-                let tagItems = [1 ,2 ,3, 4, 5, 6,7]
-                for (_, value) in tagItems.enumerated() {
-                    let center = UNUserNotificationCenter.current()
-                    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
-                    let content = UNMutableNotificationContent.init()
-                    content.title = NSString.localizedUserNotificationString(forKey: "Hello", arguments: nil)
-                    content.body = NSString.localizedUserNotificationString(forKey: "Hello,今天星期" + String(value), arguments: nil)
-                    content.sound = UNNotificationSound.default()
-                    //                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: alertItme, repeats: false)
-                    var components = DateComponents.init()
-                    components.weekday = value
-                    components.hour = 18
-                    components.minute = 0
-                    let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
-                    let request = UNNotificationRequest.init(identifier: String(value), content: content, trigger: trigger)
-                    center.add(request, withCompletionHandler: { (error) in
-                        
-                    })
-                }
-                /*
-                let center = UNUserNotificationCenter.current()
-                //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
-                let content = UNMutableNotificationContent.init()
-                content.title = NSString.localizedUserNotificationString(forKey: "Hello", arguments: nil)
-                content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
-                content.sound = UNNotificationSound.default()
-//                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: alertItme, repeats: false)
-                var components = DateComponents.init()
-                components.weekday = 6
-                components.hour = 17
-                components.minute = 0
-                let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
-                
-                let request = UNNotificationRequest.init(identifier: "fiveSecond", content: content, trigger: trigger)
-                center.add(request, withCompletionHandler: { (error) in
-
+    
+                let identifiers =  plan.alarmWeeks.map({ (value) -> String in
+                    let indentifier = plan.title + String(value)
+                    return indentifier
                 })
- */
+                let center = UNUserNotificationCenter.current()
+                center.removeDeliveredNotifications(withIdentifiers: identifiers)
+                center.removePendingNotificationRequests(withIdentifiers: identifiers)
+                print("删除通知：\(identifiers)")
+
             } else {
                 // Fallback on earlier versions
-                let notification = UILocalNotification.init()
-                let date = Date.init(timeIntervalSinceNow: alertItme)
-                print(Date.init(timeIntervalSinceNow: alertItme))
-                notification.fireDate = date
-                notification.timeZone = NSTimeZone.local
-                notification.repeatInterval = .day
-                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+        }
+    }
+    
+    class func registerNotification(plan: PlanM) -> Void {
+        DispatchQueue.global().async {
+            if #available(iOS 10.0, *) {
+                // 使用 UNUserNotificationCenter 来管理通知
+                for (_, value) in plan.alarmWeeks.enumerated() {
+                    let center = UNUserNotificationCenter.current()
+                    let content = UNMutableNotificationContent.init()
+                    content.title = NSString.localizedUserNotificationString(forKey: plan.title, arguments: nil)
+                    content.body = NSString.localizedUserNotificationString(forKey: plan.content, arguments: nil)
+                    content.sound = UNNotificationSound.default()
+                    var components = DateComponents.init()
+                    components.weekday = value
+                    components.hour = plan.alarmClock.hour
+                    components.minute = plan.alarmClock.minute
+                    components.second = 0
+                    let identifier = plan.title + String(value)
+                    let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
+                    let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
+                    center.add(request, withCompletionHandler: { (error) in
+                        print("error : \(error)")
+                    })
+                    let string = String(plan.alarmClock.hour) + ":" + String(plan.alarmClock.minute)
+                    print("成功添加" + identifier + "的" + string + "本地通知")
+                }
+            } else {
+                // Fallback on earlier versions
+//                let notification = UILocalNotification.init()
+//                let date = Date.init(timeIntervalSinceNow: alertItme)
+//                print(Date.init(timeIntervalSinceNow: alertItme))
+//                notification.fireDate = date
+//                notification.timeZone = NSTimeZone.local
+//                notification.repeatInterval = .day
+//                UIApplication.shared.scheduleLocalNotification(notification)
             }
         }
     }
@@ -188,7 +198,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//JMessageDelegate
     }
     
     func registerUserNotification() {
-        
         //iOS 10 使用以下方法注册，才能得到授权
         if #available(iOS 10.0, *) {
             let center  = UNUserNotificationCenter.current()
