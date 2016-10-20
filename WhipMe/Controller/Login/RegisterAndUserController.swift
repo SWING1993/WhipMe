@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     public var mobile: String!
     public var password: String!
@@ -145,13 +145,25 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIAction
     }
     
     func showIsMessage(msg: String)  {
-        let alert: UIAlertView = UIAlertView.init(title: msg, message: nil, delegate: nil, cancelButtonTitle: "确定")
-        alert.show()
+        let alertControl = UIAlertController.init(title: msg, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alertControl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertControl, animated: true, completion: nil)
     }
     
     func clickWithAvatar() {
-        let sheetAvatar = UIActionSheet.init(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles:"拍照","图库")
-        sheetAvatar.show(in: self.view)
+        
+        let sheetAvatar = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        sheetAvatar.addAction(UIAlertAction.init(title: "拍照", style: UIAlertActionStyle.default, handler: { (action) in
+            self .actionSheet(buttonIndex: 1)
+        }))
+        sheetAvatar.addAction(UIAlertAction.init(title: "图库", style: UIAlertActionStyle.default, handler: { (action) in
+            self .actionSheet(buttonIndex: 2)
+        }))
+        sheetAvatar.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: { (action) in
+            self .actionSheet(buttonIndex: 0)
+        }))
+        self.present(sheetAvatar, animated: true, completion: nil)
     }
     
     func clickWithSex(sender: UIButton)  {
@@ -206,8 +218,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIAction
         
     }
     
-    // MARK: - UIActionSheetDelegate
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+    // MARK: - UIActionSheet
+    func actionSheet(buttonIndex: Int) {
         print("sheet is index:\(buttonIndex)")
         
         if buttonIndex == 0 {
@@ -225,8 +237,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIAction
                 imagePicker.sourceType = UIImagePickerControllerSourceType.camera
                 imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.rear
             } else {
-                let alertView = UIAlertView.init(title: "该设备不支持“照相机”", message: nil, delegate: nil, cancelButtonTitle: "取消")
-                alertView.show()
+                self.showIsMessage(msg: "该设备不支持“照相机”")
                 return
             }
         } else if buttonIndex == 2 {
@@ -234,8 +245,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIAction
                 imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
                 imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
             } else {
-                let alertView = UIAlertView.init(title: "该设备不支持“相片库”", message: nil, delegate: nil, cancelButtonTitle: "取消")
-                alertView.show()
+                self.showIsMessage(msg: "该设备不支持“相片库”")
                 return
             }
         }

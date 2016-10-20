@@ -43,7 +43,7 @@ let CHANNEL: String = "appstore"
 class Define: NSObject {
     
     class func appIDWeChat() -> String {
-        return "wx8606163d13ce7e1c"
+        return "wxeb3bed2276716b91"
     }
     
     class func appSecretWeChat() -> String {

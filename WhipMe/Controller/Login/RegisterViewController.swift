@@ -129,8 +129,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showIsMessage(msg: String)  {
-        let alert: UIAlertView = UIAlertView.init(title: msg, message: nil, delegate: nil, cancelButtonTitle: "确定")
-        alert.show()
+        let alertControl = UIAlertController.init(title: msg, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alertControl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertControl, animated: true, completion: nil)
     }
     
     func clickWithRegister() {

@@ -37,8 +37,6 @@ class MemberViewController: UIViewController {
     }
     
     func setup() {
-        
-        
         let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "set_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         rightBarItem.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = rightBarItem

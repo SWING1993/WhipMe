@@ -120,8 +120,15 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
     func engineDidRecvAuth(response: SendAuthResp) {
         let alert_str: String = "response is errCode:\(response.errCode) errStr:\(response.errStr) state:\(response.state) code:\(response.code)"
         
-        let alert: UIAlertView = UIAlertView.init(title: "微信登录", message: alert_str, delegate: nil, cancelButtonTitle: "确定")
-        alert.show()
+        print(alert_str)
+        
+        let alertControl = UIAlertController.init(title: "微信登录", message: alert_str, preferredStyle: UIAlertControllerStyle.alert)
+        alertControl.addAction(UIAlertAction.init(title: "复制", style: UIAlertActionStyle.default, handler: { (action) in
+            let pasteboard: UIPasteboard = UIPasteboard.general
+            pasteboard.string = alert_str
+        }))
+        alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertControl, animated: true, completion: nil)
         
         if response.errCode == -2 {
             //用户取消
