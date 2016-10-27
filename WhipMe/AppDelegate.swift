@@ -16,28 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-//        JMessage.add(self, with: nil)
-//        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
-//        ShareEngine.sharedInstance.registerApp()
-//        registerUserNotification()
-//        customizeAppearance()
+        JMessage.add(self, with: nil)
+        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+        ShareEngine.sharedInstance.registerApp()
+        registerUserNotification()
+        customizeAppearance()
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
         
-        
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let loginControl: TopUpViewController = TopUpViewController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+//        let loginControl: TopUpViewController = TopUpViewController()
+//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+//        self.window?.rootViewController = navControl
 
-//        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
-//        print("username is \(userName)")
-//        if (userName != nil) {
+        let userName = UserDefaults.standard.object(forKey: Define.kUserName())
+        print("username is \(userName)")
+        if (userName != nil) {
             setupMainController()
-//        } else {
-//            setupLoginController()
-//        }
+        } else {
+            setupLoginController()
+        }
         window?.backgroundColor = KColorBackGround
         window?.makeKeyAndVisible();
         return true

@@ -75,8 +75,7 @@ class FirstAddCustomCell: NormalCell {
         }
     
         let titleChange = titleT.rx.text
-        titleChange
-            .bindNext({ (value) in
+        titleChange.bindNext({ (value) in
                 if self.titleChangedBlock != nil {
                     self.titleChangedBlock!(value!)
                 }
@@ -85,8 +84,7 @@ class FirstAddCustomCell: NormalCell {
         
         
         let contentChange = contentT.rx.text
-        contentChange
-            .bindNext({ (value) in
+        contentChange.bindNext({ (value) in
                 if self.contentChangedBlock != nil {
                     self.contentChangedBlock!(value!)
                 }

@@ -12,16 +12,19 @@
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailedBlock)(NSError *error);
 
+
 @interface HKHttpSession : AFHTTPSessionManager
+
++ (HKHttpSession *)shareSession;
 
 @end
 
 
 @interface HttpAPIClient : NSObject
 
-+ (HttpAPIClient *)shareSession;
++ (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
-- (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed;
++ (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
 /** 1.1 发送短信验证码 */
 + (void)getVerificationCode:(NSString *)mobile Success:(SuccessBlock)success Failed:(FailedBlock)failed;

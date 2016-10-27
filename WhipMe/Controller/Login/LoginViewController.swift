@@ -24,6 +24,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         setup()
+        
+        self.textNickname.text = "18584627144"
+        self.textPassword.text = "123"
     }
 
     override func didReceiveMemoryWarning() {
@@ -225,14 +228,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-//        HttpClient.sharedInstance.apiRequest(url: "sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
-//            print(result)
-//            print(error)
-//        })
-//        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
-//            print("获取验证码 is result:\(result) is error:\(error)")
-//           
+        
+        HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
+            print("result:\(result)")
+            self.verify_codeBtn.startUpTimer()
+        }) { (error) in
+            print("error:\(error)")
+        }
+        
+//        HttpAPIClient.getVerificationCode(mobileStr, success: { (result) in
+//            print("result:\(result)")
 //            self.verify_codeBtn.startUpTimer()
+//        }) { (error) in
+//            print("error:\(error)")
 //        }
     }
     
