@@ -282,7 +282,12 @@ class IndexViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-
+        
+        HttpAPIClient.shareSession().apiClientPOST("sendCode", params: ["mobile":"17757307061"], success: { (result) in
+            print(result)
+        }) { (error) in
+            print(error)
+        }
     }
     
     fileprivate func setup() {

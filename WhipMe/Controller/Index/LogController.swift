@@ -311,10 +311,10 @@ class LogController: UIViewController {
         self.navigationItem.rightBarButtonItem = OKBtn
         
         OKBtn.bk_init(withTitle: "发送", style: .plain) { (sender) in
-            HttpClient.sharedInstance.apiRequest(url: "", parameters: ["consumer_key": "123"], method: .get, completionHandler: { (requst, error) in
-                print(requst)
-                print(error)
-            })
+//            HttpClient.sharedInstance.apiRequest(url: "", parameters: ["consumer_key": "123"], method: .get, completionHandler: { (requst, error) in
+//                print(requst)
+//                print(error)
+//            })
         }
         self.getLocation()
         self.myLogTable.rx.itemSelected

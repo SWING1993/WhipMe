@@ -23,10 +23,6 @@ class AddWhipController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        HttpClient.sharedInstance.apiRequest(url: "/queryHotThemeList", parameters: ["method" :"queryHotThemeList"], method: .post) { (respond, error) in
-            print(respond)
-            print(error)
-        }
     }
     
     override func viewDidLoad() {

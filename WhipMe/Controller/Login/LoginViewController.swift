@@ -175,14 +175,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.loginUser(loginId: mobileStr, code: password, loginType: "0") { (result, error) in
-            print("手机号用户登陆 is result:\(result) is error:\(error)")
-            
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-            
-            self.checkValid(username: "youye", password: "123456")
-        }
+//        HttpClient.sharedInstance.loginUser(loginId: mobileStr, code: password, loginType: "0") { (result, error) in
+//            print("手机号用户登陆 is result:\(result) is error:\(error)")
+//            
+//            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appdelegate.setupMainController()
+//            
+//            self.checkValid(username: "youye", password: "123456")
+//        }
     }
     
     func checkValid(username: String, password: String) {
@@ -225,10 +225,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.apiRequest(url: "sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
-            print(result)
-            print(error)
-        })
+//        HttpClient.sharedInstance.apiRequest(url: "sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
+//            print(result)
+//            print(error)
+//        })
 //        HttpClient.sharedInstance.GetVerificationCode(mobile: mobileStr) { (result, error) in
 //            print("获取验证码 is result:\(result) is error:\(error)")
 //           

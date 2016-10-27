@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (4.0.1)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -40,15 +39,15 @@ PODS:
     - AFNetworking (~> 3.1)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
-  - RxCocoa (3.0.0-beta.2):
-    - RxSwift (~> 3.0.0-beta.2)
-  - RxSwift (3.0.0-beta.2)
+  - RxCocoa (3.0.0):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.0)
   - SnapKit (3.0.2)
-  - SwiftDate (4.0.5)
+  - SwiftDate (4.0.7)
   - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
-  - Alamofire
+  - AFNetworking
   - BlocksKit
   - ChameleonFramework
   - FlyImage (~> 1.0)
@@ -62,18 +61,17 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FlyImage: 4a39cbc95b5a40cbec6a5ea5747f978e50c8e732
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  RxCocoa: 1dd105d8a4e18034ccd7bd6d136445363ce67c8e
-  RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
+  RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
+  RxSwift: a930cd662f5b4a7ca9dc3518585dba91dadf497c
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
-  SwiftDate: a945bf4150ef977824df91116ca30a04604216d3
+  SwiftDate: 0efb04a6751b1ab804049b2b09a69848cd304c12
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: 73806bc6d1bf25f0d0972737f99882e877a51bc6
+PODFILE CHECKSUM: 956fb40c287eb0770451960493a7e81f3183a437
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

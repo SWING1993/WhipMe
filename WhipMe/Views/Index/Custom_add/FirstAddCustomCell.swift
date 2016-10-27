@@ -78,7 +78,7 @@ class FirstAddCustomCell: NormalCell {
         titleChange
             .bindNext({ (value) in
                 if self.titleChangedBlock != nil {
-                    self.titleChangedBlock!(value)
+                    self.titleChangedBlock!(value!)
                 }
             })
             .addDisposableTo(disposeBag)
@@ -88,7 +88,7 @@ class FirstAddCustomCell: NormalCell {
         contentChange
             .bindNext({ (value) in
                 if self.contentChangedBlock != nil {
-                    self.contentChangedBlock!(value)
+                    self.contentChangedBlock!(value!)
                 }
             })
             .addDisposableTo(disposeBag)

@@ -205,12 +205,12 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             return
         }
         
-        HttpClient.sharedInstance.registerUser(mobile: mobile, icon: avatar, nickname: nickName, sex: userSex) { (result, error) in
-            print("注册：第2步 is result:\(result) is error:\(error)")
-            
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-        }
+//        HttpClient.sharedInstance.registerUser(mobile: mobile, icon: avatar, nickname: nickName, sex: userSex) { (result, error) in
+//            print("注册：第2步 is result:\(result) is error:\(error)")
+//            
+//            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appdelegate.setupMainController()
+//        }
         
     }
     

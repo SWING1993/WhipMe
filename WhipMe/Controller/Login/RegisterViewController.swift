@@ -159,16 +159,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.registerMobile(mobile: mobileStr, code: password, completionHandler: { (result, error) in
-            print("手机号用户注册 is result:\(result) is error:\(error)")
-            
-            let controller = RegisterAndUserController()
-            controller.mobile = mobileStr
-            controller.password = password
-            self.navigationController?.pushViewController( controller, animated: true)
-            
-            self.checkValid(username: "youye4", password: "123456")
-        })
+//        HttpClient.sharedInstance.registerMobile(mobile: mobileStr, code: password, completionHandler: { (result, error) in
+//            print("手机号用户注册 is result:\(result) is error:\(error)")
+//            
+//            let controller = RegisterAndUserController()
+//            controller.mobile = mobileStr
+//            controller.password = password
+//            self.navigationController?.pushViewController( controller, animated: true)
+//            
+//            self.checkValid(username: "youye4", password: "123456")
+//        })
         
     }
     
@@ -191,9 +191,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpClient.sharedInstance.apiRequest(url: "/sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
-            print("获取验证码 is result:\(result) is error:\(error)")
-        })
+//        HttpClient.sharedInstance.apiRequest(url: "/sendCode", parameters: ["mobile":mobileStr], method: .post, completionHandler: { (result, error) in
+//            print("获取验证码 is result:\(result) is error:\(error)")
+//        })
     }
     
     func checkValid(username: String, password: String) {
