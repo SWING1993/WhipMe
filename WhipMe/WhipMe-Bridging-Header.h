@@ -13,6 +13,7 @@
 #import "WXApi.h"
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <YTKKeyValueStore/YTKKeyValueStore.h>
 
 //
 #import "NSString+Validate.h"

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -22,9 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.title = "创建账号"
         self.view.backgroundColor = Define.kColorBackGround()
         
-        
         setup()
-        
         self.textNickname.text = "18584627144"
         self.textPassword.text = "123"
     }
@@ -178,14 +177,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-//        HttpClient.sharedInstance.loginUser(loginId: mobileStr, code: password, loginType: "0") { (result, error) in
-//            print("手机号用户登陆 is result:\(result) is error:\(error)")
-//            
-//            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appdelegate.setupMainController()
-//            
-//            self.checkValid(username: "youye", password: "123456")
-//        }
+        HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let data  = json["data"][0]["userInfo"]
+                UserManager.storeUserData(data: data)
+            }
+        }) { (error) in
+            print(error as Any);
+        }
     }
     
     func checkValid(username: String, password: String) {
@@ -231,17 +231,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
             print("result:\(result)")
+            
+            let data :NSDictionary = result as! NSDictionary
+            print(data["data"]!);
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
             print("error:\(error)")
         }
-        
-//        HttpAPIClient.getVerificationCode(mobileStr, success: { (result) in
-//            print("result:\(result)")
-//            self.verify_codeBtn.startUpTimer()
-//        }) { (error) in
-//            print("error:\(error)")
-//        }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
