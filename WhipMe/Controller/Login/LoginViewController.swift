@@ -159,9 +159,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let mobileStr: String = (textNickname.text?.stringByTrimingWhitespace())!
         let password: String = (textPassword.text?.stringByTrimingWhitespace())!
         
-        print("nickname is \(mobileStr)")
-        print("password is \(password)")
-        
         if mobileStr.characters.count == 0 {
             showIsMessage(msg: "请输入手机号!")
             return
@@ -182,26 +179,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let json = JSON(result!)
                 let data  = json["data"][0]["userInfo"]
                 UserManager.storeUserData(data: data)
+                
+                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.setupMainController()
+                
+                ChatMessage.shareChat().loginJMessage(UserManager.getUser().userId)
             }
         }) { (error) in
-            print(error as Any);
+            print(error as Any)
         }
-    }
-    
-    func checkValid(username: String, password: String) {
-        JMSGUser.login(withUsername: username, password: password, completionHandler: { (result, error) in
-            if (error == nil) {
-                let user: UserDefaults = UserDefaults.standard
-                user.set(username, forKey: Define.kUserName())
-                user.set(password, forKey: Define.kPassword())
-                user.synchronize()
-                
-//                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appdelegate.setupMainController()
-            } else {
-                print("login is fail")
-            }
-        })
     }
     
     func clickWithRegister() {

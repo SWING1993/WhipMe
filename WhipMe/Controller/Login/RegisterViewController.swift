@@ -149,8 +149,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if password.characters.count == 0 {
-            showIsMessage(msg: "请输入验证码!")
+        if password.characters.count < 4 {
+            showIsMessage(msg: "请输入正确验的证码!")
             return
         }
         
@@ -159,16 +159,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-//        HttpClient.sharedInstance.registerMobile(mobile: mobileStr, code: password, completionHandler: { (result, error) in
-//            print("手机号用户注册 is result:\(result) is error:\(error)")
-//            
-//            let controller = RegisterAndUserController()
-//            controller.mobile = mobileStr
-//            controller.password = password
-//            self.navigationController?.pushViewController( controller, animated: true)
-//            
-//            self.checkValid(username: "youye4", password: "123456")
-//        })
+        HttpAPIClient.apiClientPOST("validateCode", params: ["mobile":mobileStr,"code":password], success: { (result) in
+            print("手机号用户注册 result:\(result)")
+            
+            let controller = RegisterAndUserController()
+            controller.mobile = mobileStr
+            controller.password = password
+            self.navigationController?.pushViewController( controller, animated: true)
+            
+        }) { (error) in
+            print("手机号用户注册 error:\(error)")
+        }
         
     }
     
@@ -191,37 +192,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        HttpAPIClient.getVerificationCode(mobileStr, success: { (result) in
+        HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
             
-            print("获取验证码 is result:\(result)")
-            
+            let data :NSDictionary = result as! NSDictionary
+            print(data["data"]!);
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
-            print("获取验证码 is error:\(error)")
+            print("error:\(error)")
         }
-    }
-    
-    func checkValid(username: String, password: String) {
-        JMSGUser.register(withUsername: username, password: password, completionHandler: { (result, error) in
-            if (error == nil) {
-                JMSGUser .login(withUsername: username, password: password, completionHandler: { (loginResult, LoginError) in
-                    if (error == nil) {
-                        let user: UserDefaults = UserDefaults.standard
-                        user.set(username, forKey: Define.kUserName())
-                        user.set(password, forKey: Define.kPassword())
-                        user.synchronize()
-                        
-//                        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//                        appdelegate.setupMainController()
-                    } else {
-                        print("login is fail")
-                    }
-                })
-            } else {
-                print("注册失败")
-            }
-        })
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -237,8 +215,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let str_text: String = textField.text! + string
-        print("_______textField: \(str_text)")
-        
+       
         if textField == textNickname {
             if str_text.characters.count > 11 {
                 return false

@@ -1,0 +1,14 @@
+//
+//  Whipme-PrefixHeader.pch
+//  WhipMe
+//
+//  Created by anve on 16/11/7.
+//  Copyright © 2016年 -. All rights reserved.
+//
+
+#ifndef Whipme_PrefixHeader_pch
+#define Whipme_PrefixHeader_pch
+
+#import "NSString+Validate.h"
+
+#endif /* Whipme_PrefixHeader_pch */

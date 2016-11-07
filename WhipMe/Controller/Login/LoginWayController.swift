@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginWayController: UIViewController, WXApiEngineDelegate {
 
@@ -95,7 +96,13 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             make.centerX.equalTo(viewButton)
         }
     }
-
+    
+    func showIsMessage(msg: String)  {
+        let alertControl = UIAlertController.init(title: msg, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alertControl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertControl, animated: true, completion: nil)
+    }
+    
     func clickWithItem(sender: UIButton) {
         print("\(self.classForCoder) is click \(sender)")
         
@@ -118,17 +125,6 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
     
     // MARK: - WXApiEngineDelegate 微信登录
     func engineDidRecvAuth(response: SendAuthResp) {
-        let alert_str: String = "response is errCode:\(response.errCode) errStr:\(response.errStr) state:\(response.state) code:\(response.code)"
-        
-        print(alert_str)
-        
-        let alertControl = UIAlertController.init(title: "微信登录", message: alert_str, preferredStyle: UIAlertControllerStyle.alert)
-        alertControl.addAction(UIAlertAction.init(title: "复制", style: UIAlertActionStyle.default, handler: { (action) in
-            let pasteboard: UIPasteboard = UIPasteboard.general
-            pasteboard.string = alert_str
-        }))
-        alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(alertControl, animated: true, completion: nil)
         
         if response.errCode == -2 {
             //用户取消
@@ -137,9 +133,29 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             
         } else {
             // 0(用户同意)
+            HttpAPIClient.apiClientPOST("wlogin", params: ["unionId":response.code], success: { (result) in
+                print("wlogin result:\(result)")
+                if (result != nil) {
+                    let json = JSON(result!)
+                    let data  = json["data"][0]
+                    
+                    print("微信登录:\(data)")
+                    
+                    if (data["ret"].intValue == 1) {
+                        print("用户首次登录")
+                        
+                        let controller = RegisterAndUserController()
+                        self.navigationController?.pushViewController( controller, animated: true)
+                        
+                    } else if (data["ret"].intValue == 0) {
+                        print("用户登录成功")
+                    } else {
+                        self.showIsMessage(msg: "用户登录失败!");
+                    }
+                }
+            }) { (error) in
+                print("wlogin error:\(error)")
+            }
         }
-        
-        
-        
     }
 }

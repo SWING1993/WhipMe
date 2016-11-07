@@ -56,6 +56,7 @@
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */; };
 		C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */; };
+		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
 		E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */; };
@@ -67,9 +68,7 @@
 		E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3C11D95032200B17581 /* CenterTextCell.swift */; };
 		E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D0F9E1DCC317F001A0B36 /* UserManager.swift */; };
 		E43D0FA31DCC3461001A0B36 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */; };
-		E449AC831DAB8D200095B8C2 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E449AC7F1DAB8D200095B8C2 /* LICENSE */; };
 		E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */; };
-		E449AC851DAB8D200095B8C2 /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = E449AC821DAB8D200095B8C2 /* README.mdown */; };
 		E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449AC891DAC87140095B8C2 /* Extension.swift */; };
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
 		E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44E73961D9CB8C5007A73D8 /* Photos.framework */; };
@@ -152,6 +151,9 @@
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareEngine.swift; sourceTree = "<group>"; };
 		C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWhipController.swift; sourceTree = "<group>"; };
@@ -164,10 +166,8 @@
 		E425F3C11D95032200B17581 /* CenterTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterTextCell.swift; sourceTree = "<group>"; };
 		E43D0F9E1DCC317F001A0B36 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E449AC7F1DAB8D200095B8C2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E449AC801DAB8D200095B8C2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		E449AC821DAB8D200095B8C2 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		E449AC891DAC87140095B8C2 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E44C75FF1DAB8B5A0038C715 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		E44E73961D9CB8C5007A73D8 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
@@ -431,6 +431,8 @@
 				E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */,
 				E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */,
 				E43D0F9E1DCC317F001A0B36 /* UserManager.swift */,
+				C5F9BD751DD0147D000250E8 /* ChatMessage.h */,
+				C5F9BD761DD0147D000250E8 /* ChatMessage.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -544,10 +546,8 @@
 		E449AC7E1DAB8D200095B8C2 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				E449AC7F1DAB8D200095B8C2 /* LICENSE */,
 				E449AC801DAB8D200095B8C2 /* MBProgressHUD.h */,
 				E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */,
-				E449AC821DAB8D200095B8C2 /* README.mdown */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -573,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				E4AB21F21D82566A0044943E /* AppDelegate.swift */,
+				C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */,
 				C546FE301D82A33200012FB4 /* Utils */,
 				E4AB21F11D82566A0044943E /* WhipMe */,
 				E4AB21F01D82566A0044943E /* Products */,
@@ -707,7 +708,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E449AC831DAB8D200095B8C2 /* LICENSE in Resources */,
 				E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 			);
@@ -777,6 +777,7 @@
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
+				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
@@ -814,7 +815,6 @@
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
-				E449AC851DAB8D200095B8C2 /* README.mdown in Sources */,
 				C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
@@ -946,6 +946,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/WhipMe/Whipme-PrefixHeader.pch";
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -979,6 +980,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/WhipMe/Whipme-PrefixHeader.pch";
 				INFOPLIST_FILE = WhipMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

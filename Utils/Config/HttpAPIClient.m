@@ -53,6 +53,7 @@ static HKHttpSession *httpSession = nil;
     if (param) {
         [parameters setObject:param forKey:@"param"];
     }
+    NSLog(@"____________param:%@",parameters);
     
     [HttpAPIClient APIClientParams:parameters Success:success Failed:failed];
 }
