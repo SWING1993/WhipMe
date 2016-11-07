@@ -18,4 +18,7 @@
     
 + (NSString *)generateUuidString;
 
+/**  判断string是否为空 */
++ (BOOL)isBlankString:(NSString *)string;
+
 @end

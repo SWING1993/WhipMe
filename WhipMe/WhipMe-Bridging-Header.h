@@ -24,3 +24,4 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "PhoneCodeButton.h"
 #import "HttpAPIClient.h"
+#import "ChatMessage.h"

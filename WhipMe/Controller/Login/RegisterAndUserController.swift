@@ -16,6 +16,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     private var avatar: String!
     private var nickname: String!
     
+    // 微信首次登录
+    
     private var btnAvatar: UIButton!
     private var txtNickname: UITextField!
     private var btnSubmit: UIButton!
@@ -205,13 +207,17 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             return
         }
         
-//        HttpClient.sharedInstance.registerUser(mobile: mobile, icon: avatar, nickname: nickName, sex: userSex) { (result, error) in
-//            print("注册：第2步 is result:\(result) is error:\(error)")
-//            
-//            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appdelegate.setupMainController()
-//        }
-        
+        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobile,"icon":avatar,"nickname":nickName,"sex":userSex], success: { (result) in
+            print("注册：第2步 is result:\(result)")
+            
+            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.setupMainController()
+            
+            ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+            
+        }) { (error) in
+            print("注册：第2步 is error:\(error)")
+        }
     }
     
     func clickWithAgreement() {
