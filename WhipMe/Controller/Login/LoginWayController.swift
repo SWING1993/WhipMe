@@ -25,7 +25,13 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
 
     func setup() {
@@ -145,6 +151,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                         print("用户首次登录")
                         
                         let controller = RegisterAndUserController()
+                        controller.unionId = response.code
                         self.navigationController?.pushViewController( controller, animated: true)
                         
                     } else if (data["ret"].intValue == 0) {
