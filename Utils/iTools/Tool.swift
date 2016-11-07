@@ -18,7 +18,6 @@ class Tool: NSObject {
         hud.detailsLabel.font = UIFont.systemFont(ofSize: 15.0)
         hud.margin = 10.0
         hud.removeFromSuperViewOnHide = true
-        hud.hide(animated: true, afterDelay: 1.2)
+        hud.hide(animated: true, afterDelay: 1.5)
     }
-
 }

@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <YTKKeyValueStore/YTKKeyValueStore.h>
+#import <MJExtension/MJExtension.h>
 
 //
 #import "NSString+Validate.h"

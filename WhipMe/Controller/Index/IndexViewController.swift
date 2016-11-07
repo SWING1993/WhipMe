@@ -283,11 +283,17 @@ class IndexViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-//        HttpAPIClient.shareSession().apiClientPOST("sendCode", params: ["mobile":"17757307061"], success: { (result) in
-//            print(result)
-//        }) { (error) in
-//            print(error)
-//        }
+        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
+            if (result != nil) {
+                print(result);
+//                let json = JSON(result!)
+//                let data  = json["data"][0]["userInfo"]
+//                UserManager.storeUserData(data: data)
+            }
+        }) { (error) in
+            print(error as Any);
+        }
+
     }
     
     fileprivate func setup() {

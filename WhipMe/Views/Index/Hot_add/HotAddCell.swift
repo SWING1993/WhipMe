@@ -48,7 +48,7 @@ class HotAddCell: NormalCell {
         if cellImage == nil {
             
             cellImage = UIImageView.init()
-            cellImage.image = UIImage.init(named: "zaoqi")
+//            cellImage.image = UIImage.init(named: "zaoqi")
             self.bgView.addSubview(cellImage)
             cellImage.snp.makeConstraints({ (make) in
                 make.height.width.equalTo(20)
@@ -60,7 +60,7 @@ class HotAddCell: NormalCell {
         if titleL == nil {
             titleL = UILabel.init()
             titleL.textColor = Define.kColorBlack()
-            titleL.text = "早起"
+//            titleL.text = "早起"
             titleL.font = UIFont.systemFont(ofSize: 16)
             self.bgView.addSubview(titleL)
             titleL.snp.makeConstraints({ (make) in
@@ -74,7 +74,7 @@ class HotAddCell: NormalCell {
         if subTitleL == nil {
             subTitleL = UILabel.init()
             subTitleL.textColor = Define.kColorGray()
-            subTitleL.text = "已有10086位参加"
+//            subTitleL.text = "已有10086位参加"
             subTitleL.textAlignment = .right
             subTitleL.font = UIFont.systemFont(ofSize: 8)
             self.bgView.addSubview(subTitleL)

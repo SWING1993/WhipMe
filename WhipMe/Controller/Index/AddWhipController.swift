@@ -9,6 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwiftyJSON
+
+class QueryHotThemeM: NSObject {
+    var num:String?
+    var themeIcon:String?
+    var themeId:String?
+    var themeName:String?
+}
+
 class AddWhipController: UIViewController {
 
     var disposeBag = DisposeBag()
@@ -17,6 +26,8 @@ class AddWhipController: UIViewController {
         return plam
     }()
 
+    
+    fileprivate var queryHotThemeMArr: NSArray = NSArray.init()
     fileprivate var customTable: UITableView!
     fileprivate var hotTable: UITableView!
     fileprivate var submitBtn: UIBarButtonItem!
@@ -29,6 +40,25 @@ class AddWhipController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setup()
+        
+        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+
+                if ret == 0 {
+                    let list = json["data"][0]["list"].arrayObject
+                    self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                    self.hotTable.reloadData()
+                } else {
+                
+                }
+            }
+        }) { (error) in
+            print(error as Any);
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -143,6 +173,9 @@ extension AddWhipController:UITableViewDataSource {
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView.tag == 101 {
+            return self.queryHotThemeMArr.count
+        }
         return 4
     }
     
@@ -154,13 +187,10 @@ extension AddWhipController:UITableViewDataSource {
                 
                 weak var weakSelf = self
                 cell.titleChangedBlock =  { (value) -> Void in
-                    print("title:" + value)
                     weakSelf?.myCostomAM.title = value
-                    
                 }
                 
                 cell.contentChangedBlock =  { (value) -> Void in
-                    print("content:" + value)
                     weakSelf?.myCostomAM.content = value
                 }
                 return cell
@@ -185,10 +215,6 @@ extension AddWhipController:UITableViewDataSource {
                     if inputText.row == 0 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
-//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
-//                            self.myCostomAM.startTime = NSData.init()
-//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
-//                        }
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                             self.myCostomAM.startTime = date
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
@@ -198,10 +224,6 @@ extension AddWhipController:UITableViewDataSource {
                     if inputText.row == 1 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
-//                        SGHDateView.sharedInstance.cancelBlock = { () -> Void in
-//                            self.myCostomAM.endTime = nil
-//                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
-//                        }
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                             self.myCostomAM.endTime = date
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
@@ -229,6 +251,12 @@ extension AddWhipController:UITableViewDataSource {
         
         if tableView.tag == 101 {
             let cell: HotAddCell = HotAddCell.init(style: UITableViewCellStyle.default, reuseIdentifier: HotAddCell.cellReuseIdentifier())
+            
+            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
+            print(model.themeName!)
+            cell.titleL.text = model.themeName
+            cell.subTitleL.text = "已有" + model.num! + "位参加"
+            cell.cellImage.image = UIImage.init(named: model.themeIcon!)
             return cell
         }
         
