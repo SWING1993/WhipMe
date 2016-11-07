@@ -136,9 +136,9 @@ class Define: NSObject {
     }
     
     //iPhone的屏幕的ScreenFrame
-    class func screenFrame() ->CGRect {
-        return UIScreen.main.applicationFrame
-    }
+//    class func screenFrame() ->CGRect {
+//        return UIScreen.main.applicationFrame
+//    }
     
     //iPhone的屏幕的ScreenSize
     class func screenSize() ->CGSize {

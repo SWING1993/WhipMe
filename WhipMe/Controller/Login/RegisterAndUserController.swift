@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -17,6 +18,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     private var nickname: String!
     
     // 微信首次登录
+    public var unionId: String!
+    private var appOpenId: String!
     
     private var btnAvatar: UIButton!
     private var txtNickname: UITextField!
@@ -30,12 +33,23 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
+        
+        if (self.unionId.characters.count > 0 ) {
+            getWechatAccessToKen()
+            
+            btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     func setup() {
         
         btnAvatar = UIButton.init(type: UIButtonType.custom)
@@ -152,6 +166,20 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         self.present(alertControl, animated: true, completion: nil)
     }
     
+    func getWechatAccessToKen() {
+        
+        HttpAPIClient.apiWeChat(toCode: self.unionId, success: { (result) in
+            
+            print("weixin token is result:\(result)")
+            let json = JSON(result!)
+            self.appOpenId = String(describing: json["openid"])
+
+            print("appOpenId is :\(self.appOpenId)")
+        }, failed: { (error) in
+            print("weixin token is error:\(error)")
+        })
+    }
+    
     func clickWithAvatar() {
         
         let sheetAvatar = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -178,6 +206,57 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             }
         }
         self.userSex = sender.title(for: UIControlState.normal)! as String
+        
+    }
+    
+    // 微信第一次登录掉用
+    func clickWithAddNickname() {
+        txtNickname.resignFirstResponder()
+        let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
+        
+        print("nickname is \(nickName)")
+        
+        if avatar.characters.count == 0 {
+            showIsMessage(msg: "请设置头像!")
+            return
+        }
+        
+        if nickName.characters.count == 0 {
+            showIsMessage(msg: "请输入昵称!")
+            return
+        }
+        
+        if userSex.characters.count == 0 {
+            showIsMessage(msg: "请选择性别!")
+            return
+        }
+        
+//        "method":"addNickname",
+//        "param":{
+//            "unionId":"unionid",
+//            "appOpenId":"openid",
+//            "nickname":"昵称",
+//            "icon":"用户头像(icon.jpg)",
+//            "sex":"性别",
+//            "sign":"签名"
+//        }
+        let params = ["unionId":self.unionId,
+                      "appOpenId":"",
+                      "nickname":nickName,
+                      "icon":avatar,
+                      "sex":userSex,
+                      "sign":"签名"]
+        HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
+            print("微信登录：第2步 is result:\(result)")
+            
+            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.setupMainController()
+            
+            ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+            
+        }) { (error) in
+            print("微信登录：第2步 is error:\(error)")
+        }
         
     }
     
