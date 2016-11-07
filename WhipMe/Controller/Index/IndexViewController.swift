@@ -113,10 +113,10 @@ extension WhipMeCell: UITableViewDataSource {
         cell.selectionStyle = .none
         
         let planM: PlanM = self.modelArray.object(at: indexPath.row) as! PlanM
-        cell.textLabel?.text = planM.title
+        cell.textLabel?.text = planM.themeName
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         
-        cell.detailTextLabel?.text = planM.content
+        cell.detailTextLabel?.text = planM.plan
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
         
         let playLabel = UILabel.init()
@@ -283,16 +283,16 @@ class IndexViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
-            if (result != nil) {
-                print(result);
-//                let json = JSON(result!)
-//                let data  = json["data"][0]["userInfo"]
-//                UserManager.storeUserData(data: data)
-            }
-        }) { (error) in
-            print(error as Any);
-        }
+//        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
+//            if (result != nil) {
+//                print(result);
+////                let json = JSON(result!)
+////                let data  = json["data"][0]["userInfo"]
+////                UserManager.storeUserData(data: data)
+//            }
+//        }) { (error) in
+//            print(error as Any);
+//        }
 
     }
     

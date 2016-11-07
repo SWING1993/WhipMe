@@ -10,12 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftyJSON
+import SwiftDate
 
 class QueryHotThemeM: NSObject {
-    var num:String?
-    var themeIcon:String?
-    var themeId:String?
-    var themeName:String?
+    var num:String = ""
+    var themeIcon:String = ""
+    var themeId:String = ""
+    var themeName:String = ""
 }
 
 class AddWhipController: UIViewController {
@@ -45,14 +46,13 @@ class AddWhipController: UIViewController {
             if (result != nil) {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
-                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
 
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
                     self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
                     self.hotTable.reloadData()
                 } else {
-                
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
             }
         }) { (error) in
@@ -72,20 +72,81 @@ class AddWhipController: UIViewController {
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
             
             
-            if self.myCostomAM.title.isEmpty {
+            if self.myCostomAM.themeName.length <= 0 {
                 Tool.showHUDTip(tipStr: "请填写标题后再提交")
                 return
             }
-            if self.myCostomAM.content.isEmpty {
+            if self.myCostomAM.plan.length <= 0 {
                 Tool.showHUDTip(tipStr: "请填写内容后再提交")
                 return
             }
             
+            /*
+            themeName":"主题名称",
+            "creator":"创建人的userId",
+            "plan":"计划",
+            "startDate":"任务开始时间2016-01-01",
+            "endDate":"任务结束时间2016-01-01",
+            "clockTime":"闹钟时间（4位数表示18:30 用 1830）",
+            "privacy":"隐私(1所有人公开2关注人公开3只向自己公开)",
+            "type":"监督类型(1: 平台监督 2：好友监督 3：无监督)",
+            "supervisor":"监督人的userId",
+            "guarantee":"保证金"
+*/
+            
+            let startDate: String = self.myCostomAM.startTime.string(custom: "yyyy-MM-dd")
+            let endDate: String = self.myCostomAM.endTime.string(custom: "yyyy-MM-dd")
+            let clockTime: String = self.myCostomAM.alarmClock.string(custom: "HHmm")
+            
+            print(clockTime)
+            
+//            let params: NSDictionary = NSDictionary.init()
+//            params.setValue("23", forKey: "themeName")
+//            params.setValue(UserManager.getUser().userId, forKey: "creator")
+//            params.setValue(self.myCostomAM.content, forKey: "plan")
+//            params.setValue(startDate, forKey: "startDate")
+//            params.setValue(endDate, forKey: "endDate")
+//            params.setValue(self.myCostomAM.title, forKey: "themeName")
 
-            PlanM.savePlan(value: self.myCostomAM)
-            print(self.myCostomAM.alarmWeeks )
-            AppDelegate.registerNotification(plan: self.myCostomAM)
-            _ = self.navigationController?.popViewController(animated: true)
+            
+            let params = [
+                "themeName":self.myCostomAM.themeName,
+                "creator":UserManager.getUser().userId,
+                "nickname":UserManager.getUser().nickname,
+                "icon":UserManager.getUser().icon,
+                "plan":self.myCostomAM.plan,
+                "startDate":startDate,
+                "endDate":endDate,
+                "clockTime":clockTime,
+                "type":"3",
+                "privacy":"1",
+                "supervisor":"",
+                "supervisorName":"",
+                "supervisorIcon":"",
+                "guarantee":""
+            ]
+            
+            HttpAPIClient.apiClientPOST("addTask", params: params, success: { (result) in
+                print(result!)
+                if (result != nil) {
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    
+                    if ret == 0 {
+                        let list = json["data"][0]["list"].arrayObject
+                        self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                        self.hotTable.reloadData()
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                print(error as Any);
+            }
+//            PlanM.savePlan(value: self.myCostomAM)
+//            print(self.myCostomAM.alarmWeeks )
+//            AppDelegate.registerNotification(plan: self.myCostomAM)
+//            _ = self.navigationController?.popViewController(animated: true)
         }
         prepareSegmented()
         prepareTableView()
@@ -109,6 +170,7 @@ class AddWhipController: UIViewController {
             make.edges.equalTo(self.view)
         }
         
+        
         hotTable = UITableView.init()
         hotTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         hotTable.tag = 101
@@ -123,6 +185,57 @@ class AddWhipController: UIViewController {
             make.edges.equalTo(self.view)
         }
         
+        let searchView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 68))
+        searchView.backgroundColor = Define.kColorBackGround()
+
+        let bgview = UIView.init(frame: CGRect.init(x: 10, y: 10, width: Define.screenWidth() - 20, height: 50))
+        bgview.layer.masksToBounds = true
+        bgview.layer.cornerRadius = 25.0
+        bgview.backgroundColor = UIColor.white
+        searchView.addSubview(bgview)
+        
+    
+        let searchBar = UITextField.init()
+        searchBar.placeholder  = "输入关键字"
+        bgview.addSubview(searchBar)
+        searchBar.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(0)
+            make.left.equalTo(15)
+            make.right.equalTo(-65)
+        }
+        
+        let searchBtn = UIButton.init(type: .custom)
+        searchBtn.setImage(UIImage.init(named: "search_icon"), for: .normal)
+        bgview.addSubview(searchBtn)
+        searchBtn.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 50, height: 50))
+            make.top.right.equalTo(0)
+        }
+        
+        searchBtn.bk_addEventHandler({ (sender) in
+            if searchBar.text!.length <= 0 {
+                Tool.showHUDTip(tipStr: "请输入关键字")
+                return
+            }
+            HttpAPIClient.apiClientPOST("queryThemeByName", params: ["themeName":searchBar.text!], success: { (result) in
+                if (result != nil) {
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        let list = json["data"][0]["list"].arrayObject
+                        self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                        self.hotTable.reloadData()
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                print(error as Any);
+            }
+        }, for: .touchUpInside)
+        
+        
+        hotTable.tableHeaderView = searchView
         customTable.isHidden = true
         hotTable.isHidden = false
     }
@@ -187,11 +300,11 @@ extension AddWhipController:UITableViewDataSource {
                 
                 weak var weakSelf = self
                 cell.titleChangedBlock =  { (value) -> Void in
-                    weakSelf?.myCostomAM.title = value
+                    weakSelf?.myCostomAM.themeName = value
                 }
                 
                 cell.contentChangedBlock =  { (value) -> Void in
-                    weakSelf?.myCostomAM.content = value
+                    weakSelf?.myCostomAM.plan = value
                 }
                 return cell
             }
@@ -206,7 +319,6 @@ extension AddWhipController:UITableViewDataSource {
                 cell.alarmClockBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.alarmClock = value.alarmClock
                     weakSelf?.myCostomAM.alarmWeeks = value.alarmWeeks
-                    print(weakSelf?.myCostomAM.alarmWeeks)
                 }
 
                 cell.backClosure = { (inputText:IndexPath) -> Void in
@@ -253,10 +365,10 @@ extension AddWhipController:UITableViewDataSource {
             let cell: HotAddCell = HotAddCell.init(style: UITableViewCellStyle.default, reuseIdentifier: HotAddCell.cellReuseIdentifier())
             
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
-            print(model.themeName!)
+            print(model.themeName)
             cell.titleL.text = model.themeName
-            cell.subTitleL.text = "已有" + model.num! + "位参加"
-            cell.cellImage.image = UIImage.init(named: model.themeIcon!)
+            cell.subTitleL.text = "已有" + model.num + "位参加"
+            cell.cellImage.image = UIImage.init(named: model.themeIcon)
             return cell
         }
         
@@ -281,11 +393,9 @@ extension AddWhipController: UITableViewDelegate {
                 return ThirdAddCustomCell.cellHeight()
             }
         }
-        
         if tableView.tag == 101 {
             return HotAddCell.cellHeight()
         }
-        
         return 0
     }
 }

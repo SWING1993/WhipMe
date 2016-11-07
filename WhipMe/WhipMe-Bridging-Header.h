@@ -15,7 +15,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <YTKKeyValueStore/YTKKeyValueStore.h>
 #import <MJExtension/MJExtension.h>
-
+#import "SVProgressHUD.h"
 //
 #import "NSString+Validate.h"
 #import "UIColor+Expanded.h"

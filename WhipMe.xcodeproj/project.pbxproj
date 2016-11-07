@@ -68,6 +68,11 @@
 		E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3C11D95032200B17581 /* CenterTextCell.swift */; };
 		E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D0F9E1DCC317F001A0B36 /* UserManager.swift */; };
 		E43D0FA31DCC3461001A0B36 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */; };
+		E43D0FB01DD07875001A0B36 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FA81DD07875001A0B36 /* SVIndefiniteAnimatedView.m */; };
+		E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FAA1DD07875001A0B36 /* SVProgressAnimatedView.m */; };
+		E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E43D0FAB1DD07875001A0B36 /* SVProgressHUD.bundle */; };
+		E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FAD1DD07875001A0B36 /* SVProgressHUD.m */; };
+		E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FAF1DD07875001A0B36 /* SVRadialGradientLayer.m */; };
 		E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */; };
 		E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449AC891DAC87140095B8C2 /* Extension.swift */; };
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
@@ -166,6 +171,15 @@
 		E425F3C11D95032200B17581 /* CenterTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterTextCell.swift; sourceTree = "<group>"; };
 		E43D0F9E1DCC317F001A0B36 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E43D0FA71DD07875001A0B36 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		E43D0FA81DD07875001A0B36 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		E43D0FA91DD07875001A0B36 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		E43D0FAA1DD07875001A0B36 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		E43D0FAB1DD07875001A0B36 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E43D0FAC1DD07875001A0B36 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		E43D0FAD1DD07875001A0B36 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		E43D0FAE1DD07875001A0B36 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		E43D0FAF1DD07875001A0B36 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		E449AC801DAB8D200095B8C2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E449AC891DAC87140095B8C2 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -530,6 +544,7 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E43D0FA61DD07875001A0B36 /* SVProgressHUD */,
 				E449AC7E1DAB8D200095B8C2 /* MBProgressHUD */,
 				E4D97E521D9A126D006D3188 /* DZNEmptyDataSet */,
 				4F677D951DA0ED17004D54EA /* SDKWeChat */,
@@ -541,6 +556,22 @@
 				E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */,
 			);
 			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		E43D0FA61DD07875001A0B36 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E43D0FA71DD07875001A0B36 /* SVIndefiniteAnimatedView.h */,
+				E43D0FA81DD07875001A0B36 /* SVIndefiniteAnimatedView.m */,
+				E43D0FA91DD07875001A0B36 /* SVProgressAnimatedView.h */,
+				E43D0FAA1DD07875001A0B36 /* SVProgressAnimatedView.m */,
+				E43D0FAB1DD07875001A0B36 /* SVProgressHUD.bundle */,
+				E43D0FAC1DD07875001A0B36 /* SVProgressHUD.h */,
+				E43D0FAD1DD07875001A0B36 /* SVProgressHUD.m */,
+				E43D0FAE1DD07875001A0B36 /* SVRadialGradientLayer.h */,
+				E43D0FAF1DD07875001A0B36 /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		E449AC7E1DAB8D200095B8C2 /* MBProgressHUD */ = {
@@ -709,6 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */,
+				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +805,7 @@
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
 				E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */,
 				E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */,
+				E43D0FB01DD07875001A0B36 /* SVIndefiniteAnimatedView.m in Sources */,
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */,
@@ -786,6 +819,7 @@
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
+				E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */,
 				4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */,
 				E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
@@ -826,8 +860,10 @@
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
+				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
+				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
