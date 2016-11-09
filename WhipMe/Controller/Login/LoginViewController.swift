@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
-        self.textNickname.text = "18584627144"
+        self.textNickname.text = "15856089859"
         self.textPassword.text = "123"
     }
 
@@ -176,9 +176,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
             if (result != nil) {
+                print("mlogin is result: \(result)")
                 let json = JSON(result!)
-                let data  = json["data"][0]["userInfo"]
-                UserManager.storeUserData(data: data)
+                let data  = json["data"][0]
+                if (data["ret"].intValue != 0) {
+                    self.showIsMessage(msg: String(describing: data["desc"]));
+                    return;
+                }
+                let info = data["userInfo"]
+                UserManager.storeUserData(data: info)
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
@@ -218,8 +224,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
             print("result:\(result)")
             
-            let data :NSDictionary = result as! NSDictionary
-            print(data["data"]!);
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
             print("error:\(error)")

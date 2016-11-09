@@ -43,13 +43,17 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             make.edges.equalTo(self.view)
         }
         
+        var size_h: CGFloat = 290.0
+        if (Define.screenWidth() == 320) {
+            size_h = 250.0
+        }
         let viewButton = UIView.init()
         viewButton.backgroundColor = UIColor.clear
         self.view.addSubview(viewButton)
         viewButton.snp.updateConstraints { (make) in
             make.left.right.equalTo(self.view)
-            make.height.equalTo(self.view).offset(-290.0)
-            make.top.equalTo(self.view).offset(290.0)
+            make.height.equalTo(self.view).offset(-size_h)
+            make.top.equalTo(self.view).offset(size_h)
         }
         
         let arrayImageOff: Array = ["button_phone_off","button_weixin_off","button_create_off"]
@@ -143,7 +147,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                 print("wlogin result:\(result)")
                 if (result != nil) {
                     let json = JSON(result!)
-                    let data  = json["data"][0]
+                    let data = json["data"][0]
                     
                     print("微信登录:\(data)")
                     

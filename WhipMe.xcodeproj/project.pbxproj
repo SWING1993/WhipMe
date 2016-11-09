@@ -28,6 +28,7 @@
 		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
 		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
+		C5949D691DD2B26C009C08A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5949D681DD2B26C009C08A5 /* Images.xcassets */; };
 		C59B2A1B1D8F831C0055F026 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1A1D8F831C0055F026 /* UIKit.framework */; };
 		C59B2A1D1D8F83280055F026 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1C1D8F83280055F026 /* Security.framework */; };
 		C59B2A201D8F83320055F026 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1E1D8F83320055F026 /* AVFoundation.framework */; };
@@ -77,7 +78,6 @@
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
-		E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */; };
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
@@ -122,6 +122,7 @@
 		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
+		C5949D681DD2B26C009C08A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C59B2A1A1D8F831C0055F026 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C59B2A1C1D8F83280055F026 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C59B2A1E1D8F83320055F026 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -183,7 +184,6 @@
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AB21F21D82566A0044943E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WhipMe/AppDelegate.swift; sourceTree = "<group>"; };
 		E4AB21F91D82566A0044943E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E4AB21FC1D82566A0044943E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4C9B8591D90D09600A4C14D /* SelectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
@@ -277,7 +277,6 @@
 			isa = PBXGroup;
 			children = (
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
-				E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */,
 				E4AB21FE1D82566A0044943E /* Info.plist */,
 				C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */,
 			);
@@ -596,6 +595,7 @@
 				C546FE0F1D82989700012FB4 /* Controller */,
 				C546FE141D82989700012FB4 /* Model */,
 				C546FE191D82989700012FB4 /* Views */,
+				C5949D681DD2B26C009C08A5 /* Images.xcassets */,
 				C53619581D825C180065707C /* Supporting Files */,
 			);
 			path = WhipMe;
@@ -708,8 +708,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
+				C5949D691DD2B26C009C08A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,17 +833,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		E4AB21FB1D82566A0044943E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4AB21FC1D82566A0044943E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		E4AB21FF1D82566A0044943E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -939,6 +928,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG6HSL32ZA;
@@ -973,6 +963,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG6HSL32ZA;

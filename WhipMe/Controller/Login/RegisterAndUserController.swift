@@ -34,7 +34,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         setup()
         
-        if (self.unionId.characters.count > 0 ) {
+        print("unionid is \(self.unionId)");
+        if (NSString.isBlankString(self.unionId) == false) {
             getWechatAccessToKen()
             
             btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
@@ -174,7 +175,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             let json = JSON(result!)
             self.appOpenId = String(describing: json["openid"])
 
-            print("appOpenId is :\(self.appOpenId)")
+            print("appOpenId is"+self.appOpenId)
         }, failed: { (error) in
             print("weixin token is error:\(error)")
         })
@@ -230,7 +231,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             showIsMessage(msg: "请选择性别!")
             return
         }
-        
 //        "method":"addNickname",
 //        "param":{
 //            "unionId":"unionid",
@@ -263,31 +263,45 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     func clickWithRegister() {
         txtNickname.resignFirstResponder()
         let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
+        let mobileStr: String = String(self.mobile)
         
         print("nickname is \(nickName)")
         
-        if avatar.characters.count == 0 {
+        if (NSString.isBlankString(self.avatar)) {
             showIsMessage(msg: "请设置头像!")
             return
         }
         
-        if nickName.characters.count == 0 {
+        if (NSString.isBlankString(nickName)) {
             showIsMessage(msg: "请输入昵称!")
             return
         }
         
-        if userSex.characters.count == 0 {
+        if NSString.isBlankString(self.userSex) {
             showIsMessage(msg: "请选择性别!")
             return
         }
+        var sex_int: String = "0"
+        if (self.userSex == "男") {
+            sex_int = "1"
+        }
         
-        if mobile.characters.count == 0 {
+        if (NSString.isBlankString(mobileStr)) {
             showIsMessage(msg: "手机号不存在!")
             return
         }
         
-        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobile,"icon":avatar,"nickname":nickName,"sex":userSex], success: { (result) in
+        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobileStr,"icon":self.avatar,"nickname":nickName,"sex":sex_int], success: { (result) in
             print("注册：第2步 is result:\(result)")
+            let json = JSON(result!)
+            let data = json["data"][0]
+            
+            if (data["ret"].intValue != 0) {
+                self.showIsMessage(msg: String(describing: data["desc"]))
+                return;
+            }
+            let user = data["userInfo"]
+            UserManager.storeUserData(data: user)
             
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
@@ -326,8 +340,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 return
             }
         } else if buttonIndex == 2 {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
                 imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
             } else {
                 self.showIsMessage(msg: "该设备不支持“相片库”")
@@ -357,14 +371,22 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
         let fullFile: String = filePath.appending("/"+UIImage.generateUuidString()+".png")
         
-        print("full file is :\(fullFile)")
-        let file_url = NSURL.init(string: fullFile)
-        
-        print("lastPathComponent is :\(file_url?.lastPathComponent)")
-        
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            self.avatar = file_url?.lastPathComponent
+            self.avatar = fullFile
+            HttpAPIClient.uploadServlet(toHeader: fullFile, success: { (result) in
+                print("upload image is result:\(result)")
+                let data = JSON(result!)
+                if (data["ret"].intValue == 0) {
+                    let user = data["userInfo"]
+                    self.avatar = String(describing: user["icon"])
+                    return;
+                }
+                self.showIsMessage(msg: "图片上传失败!")
+                
+            }, failed: { (error) in
+                print("upload image is error:\(error)")
+            })
         }
     }
     
@@ -384,5 +406,9 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         }
         
         return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(false)
     }
 }

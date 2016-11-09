@@ -28,6 +28,10 @@ class UserManager: NSObject {
     var nickname = String()
     var userId = String()
     var iconPrefix = String()
+    var createDate = String()
+    var mobile = String()
+    var supervisor = String()
+    var type = String()
     
     class func storeUserData(data: JSON) {
         let store = YTKKeyValueStore.init(dbWithName: userdbName)

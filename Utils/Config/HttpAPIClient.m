@@ -8,8 +8,6 @@
 
 #import "HttpAPIClient.h"
 
-//http://www.superspv.com/json_dispatch.rpc
-
 static NSString *const baseUrl = @"http://www.superspv.com";
 
 static HKHttpSession *httpSession = nil;
@@ -22,7 +20,7 @@ static HKHttpSession *httpSession = nil;
         self.requestSerializer   = [AFJSONRequestSerializer serializer];
         self.responseSerializer  = [AFJSONResponseSerializer serializer];
         
-        self.responseSerializer.acceptableContentTypes = nil;
+        [self.responseSerializer setAcceptableContentTypes:nil];
         
         [self.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         [self.requestSerializer setTimeoutInterval:7.0];
@@ -61,7 +59,7 @@ static HKHttpSession *httpSession = nil;
 + (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed
 {
     NSString *host_url = @"/json_dispatch.rpc";
-    
+    [[HKHttpSession shareSession].responseSerializer setAcceptableContentTypes:nil];
     [[HKHttpSession shareSession] POST:host_url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         success == nil ?: success(result);
@@ -76,7 +74,7 @@ static HKHttpSession *httpSession = nil;
     HKHttpSession *http = [[HKHttpSession alloc] initWithBaseURL:[NSURL URLWithString:url]];
     
     NSDictionary *param = @{@"appid":@"wxeb3bed2276716b91",
-                            @"secret":@"66904ed59cbdeffff5410c6b2b447b0e",
+                            @"secret":@"afc0683ebda138c349a15ec93d5ade0c",
                             @"code":code,
                             @"grant_type":@"authorization_code"};
     
@@ -90,5 +88,25 @@ static HKHttpSession *httpSession = nil;
     }];
 }
 
++ (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed
+{
+    NSString *host_url = @"/headUploadServlet";
+    UIImage *img = [UIImage imageWithContentsOfFile:header];
+    NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
+    NSString *imgName = header.lastPathComponent;
+    
+//    con.setRequestProperty("accept", "text/xml;text/html");
+//    con.setRequestProperty("Content-Type", "text/xml;charset=utf-8");
+    NSSet *content_type = [NSSet setWithObjects:@"text/xml",@"application/json", @"charset=utf-8", @"text/html", @"text/json", nil];
+    [[HKHttpSession shareSession].responseSerializer setAcceptableContentTypes:content_type];
+    [[HKHttpSession shareSession] POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:imgData name:@"file" fileName:imgName mimeType:@"image/jpeg"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
+        success == nil ?: success(result);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failed == nil ?: failed(error);
+    }];
+}
 
 @end
