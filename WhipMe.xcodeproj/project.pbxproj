@@ -28,7 +28,6 @@
 		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
 		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
-		C5949D691DD2B26C009C08A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5949D681DD2B26C009C08A5 /* Images.xcassets */; };
 		C59B2A1B1D8F831C0055F026 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1A1D8F831C0055F026 /* UIKit.framework */; };
 		C59B2A1D1D8F83280055F026 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1C1D8F83280055F026 /* Security.framework */; };
 		C59B2A201D8F83320055F026 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A1E1D8F83320055F026 /* AVFoundation.framework */; };
@@ -127,7 +126,6 @@
 		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
-		C5949D681DD2B26C009C08A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C59B2A1A1D8F831C0055F026 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C59B2A1C1D8F83280055F026 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C59B2A1E1D8F83320055F026 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -626,7 +624,6 @@
 				C546FE0F1D82989700012FB4 /* Controller */,
 				C546FE141D82989700012FB4 /* Model */,
 				C546FE191D82989700012FB4 /* Views */,
-				C5949D681DD2B26C009C08A5 /* Images.xcassets */,
 				C53619581D825C180065707C /* Supporting Files */,
 			);
 			path = WhipMe;
@@ -739,10 +736,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4AB21FD1D82566A0044943E /* LaunchScreen.storyboard in Resources */,
 				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
-				C5949D691DD2B26C009C08A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

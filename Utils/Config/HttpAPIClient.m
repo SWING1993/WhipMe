@@ -59,8 +59,9 @@ static HKHttpSession *httpSession = nil;
 + (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed
 {
     NSString *host_url = @"/json_dispatch.rpc";
-    [[HKHttpSession shareSession].responseSerializer setAcceptableContentTypes:nil];
-    [[HKHttpSession shareSession] POST:host_url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    [http.responseSerializer setAcceptableContentTypes:nil];
+    [http POST:host_url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         success == nil ?: success(result);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -95,11 +96,8 @@ static HKHttpSession *httpSession = nil;
     NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
     NSString *imgName = header.lastPathComponent;
     
-//    con.setRequestProperty("accept", "text/xml;text/html");
-//    con.setRequestProperty("Content-Type", "text/xml;charset=utf-8");
-    NSSet *content_type = [NSSet setWithObjects:@"text/xml",@"application/json", @"charset=utf-8", @"text/html", @"text/json", nil];
-    [[HKHttpSession shareSession].responseSerializer setAcceptableContentTypes:content_type];
-    [[HKHttpSession shareSession] POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:@"http://122.114.162.236:8855"]];
+    [http POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:imgData name:@"file" fileName:imgName mimeType:@"image/jpeg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
