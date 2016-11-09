@@ -23,15 +23,15 @@ let userTableName = "user_table"
 let userID = "user_data"
 
 class UserManager: NSObject {
-    var sex = Bool()
-    var icon = String()
-    var nickname = String()
-    var userId = String()
-    var iconPrefix = String()
-    var createDate = String()
-    var mobile = String()
-    var supervisor = String()
-    var type = String()
+    var createDate: String = ""
+    var mobile: String = ""
+    var supervisor: String = ""
+    var type: String = ""
+    var sex: Bool = false
+    var icon: String = ""
+    var nickname: String = ""
+    var userId: String = ""
+    var iconPrefix: String = ""
     
     class func storeUserData(data: JSON) {
         let store = YTKKeyValueStore.init(dbWithName: userdbName)

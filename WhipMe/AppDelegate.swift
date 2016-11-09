@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
                 // 使用 UNUserNotificationCenter 来管理通知
     
                 let identifiers =  plan.alarmWeeks.map({ (value) -> String in
-                    let indentifier = plan.title + String(value)
+                    let indentifier = plan.themeName + String(value)
                     return indentifier
                 })
                 let center = UNUserNotificationCenter.current()
@@ -74,15 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
                 for (_, value) in plan.alarmWeeks.enumerated() {
                     let center = UNUserNotificationCenter.current()
                     let content = UNMutableNotificationContent.init()
-                    content.title = NSString.localizedUserNotificationString(forKey: plan.title, arguments: nil)
-                    content.body = NSString.localizedUserNotificationString(forKey: plan.content, arguments: nil)
+                    content.title = NSString.localizedUserNotificationString(forKey: plan.themeName, arguments: nil)
+                    content.body = NSString.localizedUserNotificationString(forKey: plan.plan, arguments: nil)
                     content.sound = UNNotificationSound.default()
                     var components = DateComponents.init()
                     components.weekday = value
                     components.hour = plan.alarmClock.hour
                     components.minute = plan.alarmClock.minute
                     components.second = 0
-                    let identifier = plan.title + String(value)
+                    let identifier = plan.themeName + String(value)
                     let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
                     let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
                     center.add(request, withCompletionHandler: { (error) in

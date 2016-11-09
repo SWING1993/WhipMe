@@ -18,13 +18,31 @@ let kPlan = "PlanKey"
 
 class PlanM: NSObject {
 
-    var title = String()
-    var content = String()
-    var startTime = Date()
-    var endTime = Date ()
-    var alarmClock = Date()
-    var alarmWeeks:[Int] = NSArray() as! [Int]
-    var privacy:PrivacyType?
+    /*
+     "themeName":self.myCostomAM.title,
+     "creator":UserManager.getUser().userId,
+     "nickname":UserManager.getUser().nickname,
+     "icon":UserManager.getUser().icon,
+     "plan":self.myCostomAM.content,
+     "startDate":startDate,
+     "endDate":endDate,
+     "clockTime":clockTime,
+     "type":"3",
+     "privacy":"1",
+     "supervisor":"",
+     "supervisorName":"",
+     "supervisorIcon":"",
+     "guarantee":""
+
+ */
+    
+    var themeName: String = ""
+    var plan: String = ""
+    var startTime: Date = Date()
+    var endTime: Date = Date ()
+    var alarmClock: Date = Date()
+    var alarmWeeks: [Int] = []
+    var privacy: PrivacyType = .all
     
     class func savePlan(value: PlanM) {
         var plans : NSMutableArray!
@@ -36,7 +54,7 @@ class PlanM: NSObject {
         }
         plans.add(value)
         plans.storeValue(withKey: kPlan)
-        print(value.title)
+        print(value.themeName)
     }
     
     class func deletePlan(index: Int) {
