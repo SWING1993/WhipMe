@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
@@ -23,6 +24,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = Define.kColorBackGround()
         
         setup()
+        
+        self.textNickname.text = "15856089859"
+        self.textPassword.text = "123"
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,16 +145,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let mobileStr: String = (textNickname.text?.stringByTrimingWhitespace())!
         let password: String = (textPassword.text?.stringByTrimingWhitespace())!
         
-        print("nickname is \(mobileStr)")
-        print("password is \(password)")
-        
         if mobileStr.characters.count == 0 {
             showIsMessage(msg: "请输入手机号!")
             return
         }
         
-        if password.characters.count < 4 {
-            showIsMessage(msg: "请输入正确验的证码!")
+        if password.characters.count == 0 {
+            showIsMessage(msg: "请输入验证码!")
             return
         }
         
@@ -161,6 +162,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         HttpAPIClient.apiClientPOST("validateCode", params: ["mobile":mobileStr,"code":password], success: { (result) in
             print("手机号用户注册 result:\(result)")
+            let json = JSON(result!)
+            let data = json["data"][0]
+            
+            if (data["ret"].intValue == 2) {
+                self.showIsMessage(msg: "注册失败!")
+                return;
+            }
             
             let controller = RegisterAndUserController()
             controller.mobile = mobileStr
@@ -193,9 +201,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
+            print("result:\(result)")
             
-            let data :NSDictionary = result as! NSDictionary
-            print(data["data"]!);
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
             print("error:\(error)")

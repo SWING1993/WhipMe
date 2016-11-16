@@ -23,6 +23,10 @@ let userTableName = "user_table"
 let userID = "user_data"
 
 class UserManager: NSObject {
+    var createDate: String = ""
+    var mobile: String = ""
+    var supervisor: String = ""
+    var type: String = ""
     var sex: Bool = false
     var icon: String = ""
     var nickname: String = ""

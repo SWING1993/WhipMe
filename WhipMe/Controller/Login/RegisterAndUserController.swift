@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -17,6 +18,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     private var nickname: String!
     
     // 微信首次登录
+    public var unionId: String!
+    private var appOpenId: String!
     
     private var btnAvatar: UIButton!
     private var txtNickname: UITextField!
@@ -30,12 +33,24 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         self.view.backgroundColor = Define.kColorBackGround()
         
         setup()
+        
+        print("unionid is \(self.unionId)");
+        if (NSString.isBlankString(self.unionId) == false) {
+            getWechatAccessToKen()
+            
+            btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     func setup() {
         
         btnAvatar = UIButton.init(type: UIButtonType.custom)
@@ -152,6 +167,20 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         self.present(alertControl, animated: true, completion: nil)
     }
     
+    func getWechatAccessToKen() {
+        
+        HttpAPIClient.apiWeChat(toCode: self.unionId, success: { (result) in
+            
+            print("weixin token is result:\(result)")
+            let json = JSON(result!)
+            self.appOpenId = String(describing: json["openid"])
+
+            print("appOpenId is"+self.appOpenId)
+        }, failed: { (error) in
+            print("weixin token is error:\(error)")
+        })
+    }
+    
     func clickWithAvatar() {
         
         let sheetAvatar = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -181,7 +210,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
     }
     
-    func clickWithRegister() {
+    // 微信第一次登录掉用
+    func clickWithAddNickname() {
         txtNickname.resignFirstResponder()
         let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
         
@@ -201,14 +231,77 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             showIsMessage(msg: "请选择性别!")
             return
         }
+//        "method":"addNickname",
+//        "param":{
+//            "unionId":"unionid",
+//            "appOpenId":"openid",
+//            "nickname":"昵称",
+//            "icon":"用户头像(icon.jpg)",
+//            "sex":"性别",
+//            "sign":"签名"
+//        }
+        let params = ["unionId":self.unionId,
+                      "appOpenId":"",
+                      "nickname":nickName,
+                      "icon":avatar,
+                      "sex":userSex,
+                      "sign":"签名"]
+        HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
+            print("微信登录：第2步 is result:\(result)")
+            
+            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.setupMainController()
+            
+            ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+            
+        }) { (error) in
+            print("微信登录：第2步 is error:\(error)")
+        }
         
-        if mobile.characters.count == 0 {
+    }
+    
+    func clickWithRegister() {
+        txtNickname.resignFirstResponder()
+        let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
+        let mobileStr: String = String(self.mobile)
+        
+        print("nickname is \(nickName)")
+        
+        if (NSString.isBlankString(self.avatar)) {
+            showIsMessage(msg: "请设置头像!")
+            return
+        }
+        
+        if (NSString.isBlankString(nickName)) {
+            showIsMessage(msg: "请输入昵称!")
+            return
+        }
+        
+        if NSString.isBlankString(self.userSex) {
+            showIsMessage(msg: "请选择性别!")
+            return
+        }
+        var sex_int: String = "0"
+        if (self.userSex == "男") {
+            sex_int = "1"
+        }
+        
+        if (NSString.isBlankString(mobileStr)) {
             showIsMessage(msg: "手机号不存在!")
             return
         }
         
-        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobile,"icon":avatar,"nickname":nickName,"sex":userSex], success: { (result) in
+        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobileStr,"icon":self.avatar,"nickname":nickName,"sex":sex_int], success: { (result) in
             print("注册：第2步 is result:\(result)")
+            let json = JSON(result!)
+            let data = json["data"][0]
+            
+            if (data["ret"].intValue != 0) {
+                self.showIsMessage(msg: String(describing: data["desc"]))
+                return;
+            }
+            let user = data["userInfo"]
+            UserManager.storeUserData(data: user)
             
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
@@ -247,8 +340,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 return
             }
         } else if buttonIndex == 2 {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
                 imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
             } else {
                 self.showIsMessage(msg: "该设备不支持“相片库”")
@@ -278,14 +371,22 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
         let fullFile: String = filePath.appending("/"+UIImage.generateUuidString()+".png")
         
-        print("full file is :\(fullFile)")
-        let file_url = NSURL.init(string: fullFile)
-        
-        print("lastPathComponent is :\(file_url?.lastPathComponent)")
-        
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            self.avatar = file_url?.lastPathComponent
+            self.avatar = fullFile
+            HttpAPIClient.uploadServlet(toHeader: fullFile, success: { (result) in
+                print("upload image is result:\(result)")
+                let data = JSON(result!)
+                if (data["ret"].intValue == 0) {
+                    let user = data["userInfo"]
+                    self.avatar = String(describing: user["icon"])
+                    return;
+                }
+                self.showIsMessage(msg: "图片上传失败!")
+                
+            }, failed: { (error) in
+                print("upload image is error:\(error)")
+            })
         }
     }
     
@@ -305,5 +406,9 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         }
         
         return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(false)
     }
 }
