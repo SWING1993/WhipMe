@@ -14,25 +14,32 @@ import Foundation
 
 let kKeyWindows = UIApplication.shared.keyWindow
 
-let KNumFont: UIFont = UIFont.systemFont(ofSize: 10.0)
-let KTimeFont: UIFont = UIFont.systemFont(ofSize: 12.0)
-let KTitleFont: UIFont = UIFont.systemFont(ofSize: 14.0)
-let KContentFont: UIFont = UIFont.systemFont(ofSize: 16.0)
-let KButtonFont: UIFont = UIFont.systemFont(ofSize: 18.0)
+let kNumFont: UIFont = UIFont.systemFont(ofSize: 10.0)
+let kTimeFont: UIFont = UIFont.systemFont(ofSize: 12.0)
+let kTitleFont: UIFont = UIFont.systemFont(ofSize: 14.0)
+let kContentFont: UIFont = UIFont.systemFont(ofSize: 16.0)
+let kButtonFont: UIFont = UIFont.systemFont(ofSize: 18.0)
 
-let KColorWhite: UIColor = UIColor.white
-let KColorBackGround: UIColor = Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
-let KColorBlack: UIColor = Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
-let KColorGray: UIColor = Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)
-let KColorLight: UIColor = Define.RGBColorFloat(182.0, g: 182.0, b: 182.0)
-let KColorGary: UIColor = Define.RGBColorFloat(98.0, g: 98.0, b: 98.0)
-let KColorBlue: UIColor = Define.RGBColorFloat(119.0, g: 218.0, b: 246.0)
-let KColorRed: UIColor = Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
-let KColorNavigation: UIColor = Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
-let KColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
-let KColorGreen: UIColor = Define.RGBColorFloat(43, g: 200, b: 131)
+let kColorWhite: UIColor = UIColor.white
+let kColorBackGround: UIColor = Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)
+let kColorBlack: UIColor = Define.RGBColorFloat(103.0, g: 103.0, b: 103.0)
+let kColorGray: UIColor = Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)
+let kColorLight: UIColor = Define.RGBColorFloat(182.0, g: 182.0, b: 182.0)
+let kColorGary: UIColor = Define.RGBColorFloat(98.0, g: 98.0, b: 98.0)
+let kColorBlue: UIColor = Define.RGBColorFloat(119.0, g: 218.0, b: 246.0)
+let kColorRed: UIColor = Define.RGBColorFloat(255.0, g: 80.0, b: 80.0)
+let kColorNavigation: UIColor = Define.RGBColorFloat(54.0, g: 57.0, b: 62.0)
+let kColorLine: UIColor = Define.RGBColorFloat(219.0, g: 219.0, b: 219.0)
+let kColorGreen: UIColor = Define.RGBColorFloat(43, g: 200, b: 131)
 
-let kNaviHeight: CGFloat = 64.0
+//fbc12c
+let kColorYellow: UIColor = Define.RGBColorFloat(251.0, g:193.0, b:44.0)
+//30cb87
+let kColorCyanOff: UIColor = Define.RGBColorFloat(48.0, g:203.0, b:135.0)
+//25a56c
+let kColorCyanOn: UIColor = Define.RGBColorFloat(37.0, g:165.0, b:108.0)
+
+    let kNaviHeight: CGFloat = 64.0
 
 let kLeftMargin: CGFloat = 9.0
 let kRightMargin: CGFloat = -9.0

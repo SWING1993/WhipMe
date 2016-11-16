@@ -34,7 +34,7 @@ class FriendsListViewCell: UITableViewCell {
 
     private func setup() {
         imageLogo = UIImageView.init()
-        imageLogo.backgroundColor = Define.kColorLight()
+        imageLogo.backgroundColor = kColorLight
         imageLogo.contentMode = UIViewContentMode.scaleToFill
         imageLogo.isUserInteractionEnabled = false
         imageLogo.layer.cornerRadius = 21.0
@@ -50,8 +50,8 @@ class FriendsListViewCell: UITableViewCell {
         
         lblNickname = UILabel.init()
         lblNickname.backgroundColor = UIColor.clear
-        lblNickname.textColor = Define.kColorBlack()
-        lblNickname.font = KContentFont
+        lblNickname.textColor = kColorBlack
+        lblNickname.font = kContentFont
         lblNickname.textAlignment = NSTextAlignment.left
         lblNickname.isUserInteractionEnabled = false
         self.contentView.addSubview(lblNickname)
@@ -65,8 +65,8 @@ class FriendsListViewCell: UITableViewCell {
         
         lblBrief = UILabel.init()
         lblBrief.backgroundColor = UIColor.clear
-        lblBrief.textColor = Define.kColorLight()
-        lblBrief.font = KTitleFont
+        lblBrief.textColor = kColorLight
+        lblBrief.font = kTitleFont
         lblBrief.textAlignment = NSTextAlignment.left
         lblBrief.isUserInteractionEnabled = false
         self.contentView.addSubview(lblBrief)
@@ -80,7 +80,7 @@ class FriendsListViewCell: UITableViewCell {
         btnStatus = UIButton.init(type: UIButtonType.custom)
         btnStatus.backgroundColor = UIColor.white
         btnStatus.setTitleColor(UIColor.white, for: UIControlState.normal)
-        btnStatus.titleLabel?.font = KTitleFont
+        btnStatus.titleLabel?.font = kTitleFont
         btnStatus.isUserInteractionEnabled = false
         btnStatus.layer.masksToBounds = true
         btnStatus.layer.cornerRadius = 30/2.0

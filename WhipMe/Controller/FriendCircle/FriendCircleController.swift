@@ -8,14 +8,65 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import SwiftyJSON
+
+class FriendCircleM: NSObject {
+    var comment: NSArray = NSArray.init()
+    
+    var commentNum: Int = 0
+    var likeNum: Int = 0
+    var shareNum: Int = 0
+
+    var content: String = ""
+    var createDate: String = ""
+    var icon: String = ""
+    var nickname: String = ""
+    var picture: String = ""
+    var position: String = ""
+    var recordId: String = ""
+    var taskId: String = ""
+    var themeId: String = ""
+    var themeName: String = ""
+    var userId: String = ""
+}
 
 class FriendCircleController: UIViewController {
     
-    fileprivate var recommendTable: UITableView!
+    fileprivate var recommendTable: UITableView = UITableView.init()
+    fileprivate var friendCircleModelArr: NSMutableArray = NSMutableArray.init();
+    fileprivate var picPrefix: String = ""
+    fileprivate var iconPrefix: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        let params = [
+            "pageSize":"20",
+            "pageIndex":"1",
+        ]
+        
+        HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
+            print(result!)
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    self.iconPrefix = json["data"][0]["iconPrefix"].stringValue
+                    self.picPrefix = json["data"][0]["picPrefix"].stringValue
+                    let list = json["data"][0]["list"].arrayObject
+                    self.friendCircleModelArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
+                    self.recommendTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+            print(error as Any);
+        }
+
     }
     
     fileprivate func setup() {
@@ -40,19 +91,17 @@ class FriendCircleController: UIViewController {
         
         let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         rightBarItem.tintColor = UIColor.white
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
     }
     
     fileprivate func prepareTableView() {
         recommendTable = UITableView.init()
-//        recommendTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
         recommendTable.dataSource = self
         recommendTable.delegate = self
         recommendTable.separatorStyle = .none
         view.addSubview(recommendTable)
-//        recommendTable.translatesAutoresizingMaskIntoConstraints = false
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
@@ -78,7 +127,7 @@ extension FriendCircleController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.friendCircleModelArr.count
     }
     
     /// Returns the number of sections.
@@ -89,6 +138,24 @@ extension FriendCircleController:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
+        
+        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
+        let avatarUrl = self.iconPrefix + model.icon
+        let picUrl = self.picPrefix + model.picture
+        
+        cell.avatarV.setIconURL(NSURL.init(string:avatarUrl) as URL!)
+        cell.pictrueView.setIconURL(NSURL.init(string:picUrl) as URL!)
+        cell.contentL.text = model.content
+        cell.nickNameL.text = model.nickname
+        cell.topicL.text = model.themeName
+        cell.timeL.text = model.createDate
+        cell.pageView.text = String(model.likeNum) + "次"
+        cell.locationB.text = model.position
+        
+        cell.likeB.setTitle("12", for: .normal)
+        cell.commentB.setTitle(String(model.commentNum), for: .normal)
+        cell.shareB.setTitle(String(model.shareNum), for: .normal)
+
         return cell
     }
 }

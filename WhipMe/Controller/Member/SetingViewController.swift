@@ -16,7 +16,7 @@ class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Define.kColorBackGround()
+        self.view.backgroundColor = kColorBackGround
         self.navigationItem.title = "设置"
         
         setup()
@@ -35,7 +35,7 @@ class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableViewWM.delegate = self
         tableViewWM.dataSource = self
         tableViewWM.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM.separatorColor = Define.kColorLine()
+        tableViewWM.separatorColor = kColorLine
         tableViewWM.separatorInset = UIEdgeInsets.zero
         tableViewWM.layoutMargins = UIEdgeInsets.zero
         tableViewWM.tableFooterView = UIView.init()
@@ -77,14 +77,14 @@ class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.imageLogo.isHidden = true
         cell.lblText.isHidden = false
         cell.lblTitle.textAlignment = NSTextAlignment.left
-        cell.lblTitle.textColor = Define.kColorBlack()
+        cell.lblTitle.textColor = kColorBlack
         
         var margin_x: CGFloat = 0.0
         if indexPath.row == 1 {
             cell.lblTitle?.text = "编辑个人资料"
             cell.lblText.isHidden = true
             cell.imageLogo.isHidden = false
-            cell.imageLogo.backgroundColor = Define.kColorLight()
+            cell.imageLogo.backgroundColor = kColorLight
             cell.imageLogo.image = UIImage.full(toFilePath: userModel.avatar)
         } else if indexPath.row == 3 {
             cell.lblTitle?.text = "帮助中心"
@@ -96,7 +96,7 @@ class SetingViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.lblTitle?.text = "管理员登录"
         } else if indexPath.row == 7 {
             cell.lblTitle?.text = "退出登录"
-            cell.lblTitle.textColor = Define.kColorRed()
+            cell.lblTitle.textColor = kColorRed
             cell.lblTitle.textAlignment = NSTextAlignment.center
         } else {
             cell.lblTitle?.text = ""

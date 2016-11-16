@@ -16,6 +16,7 @@
 #import <YTKKeyValueStore/YTKKeyValueStore.h>
 #import <MJExtension/MJExtension.h>
 #import "SVProgressHUD.h"
+#import <FlyImage/FlyImage.h>
 //
 #import "NSString+Validate.h"
 #import "UIColor+Expanded.h"

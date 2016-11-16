@@ -20,7 +20,7 @@ class MyWalletViewController: UIViewController {
         
         let rightBarItem = UIBarButtonItem.init(title: "明星", style: UIBarButtonItemStyle.done, target: self, action: #selector(clickWithList))
         rightBarItem.tintColor = UIColor.white
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         setup()

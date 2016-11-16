@@ -73,7 +73,7 @@ class SecondAddCustomCell: NormalCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.backgroundColor = Define.kColorBackGround()
+        self.backgroundColor = kColorBackGround
         self.selectionStyle = .none
         
         

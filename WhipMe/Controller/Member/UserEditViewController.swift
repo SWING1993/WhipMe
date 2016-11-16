@@ -29,11 +29,11 @@ class UserEditViewController: UIViewController {
             editControl = EditControlType.nickname
         }
         self.navigationItem.title = controlTitle(editType: editControl!)
-        self.view.backgroundColor = Define.kColorBackGround()
+        self.view.backgroundColor = kColorBackGround
         
         let rightBarItem = UIBarButtonItem.init(title: "保存", style: UIBarButtonItemStyle.done, target: self, action: #selector(clickWithSave))
         rightBarItem.tintColor = UIColor.white
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         if editControl == EditControlType.nickname {
@@ -51,8 +51,8 @@ class UserEditViewController: UIViewController {
         
         txtField = UITextField.init()
         txtField.backgroundColor = UIColor.white
-        txtField.font = KContentFont
-        txtField.textColor = Define.kColorBlack()
+        txtField.font = kContentFont
+        txtField.textColor = kColorBlack
         txtField.text = strPlaceholder ?? ""
         txtField.textAlignment = NSTextAlignment.left
         txtField.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
@@ -70,11 +70,11 @@ class UserEditViewController: UIViewController {
         txtField.leftViewMode = UITextFieldViewMode.always
         
         let viewLine1: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 0.5))
-        viewLine1.backgroundColor = Define.kColorLine()
+        viewLine1.backgroundColor = kColorLine
         txtField.addSubview(viewLine1)
         
         let viewLine2: UIView = UIView.init()
-        viewLine2.backgroundColor = Define.kColorLine()
+        viewLine2.backgroundColor = kColorLine
         txtField.addSubview(viewLine2)
         viewLine2.snp.updateConstraints { (make) in
             make.left.right.equalTo(txtField)
@@ -97,8 +97,8 @@ class UserEditViewController: UIViewController {
         
         txtView = UITextView.init()
         txtView.backgroundColor = UIColor.white
-        txtView.font = KContentFont
-        txtView.textColor = Define.kColorBlack()
+        txtView.font = kContentFont
+        txtView.textColor = kColorBlack
         txtView.textAlignment = NSTextAlignment.left
         txtView.text = strPlaceholder ?? ""
         viewTemp.addSubview(txtView)
@@ -109,11 +109,11 @@ class UserEditViewController: UIViewController {
         }
         
         let viewLine1: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 0.5))
-        viewLine1.backgroundColor = Define.kColorLine()
+        viewLine1.backgroundColor = kColorLine
         viewTemp.addSubview(viewLine1)
         
         let viewLine2: UIView = UIView.init()
-        viewLine2.backgroundColor = Define.kColorLine()
+        viewLine2.backgroundColor = kColorLine
         viewTemp.addSubview(viewLine2)
         viewLine2.snp.updateConstraints { (make) in
             make.left.right.equalTo(viewTemp)

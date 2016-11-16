@@ -47,7 +47,7 @@ class WhipMeCell: UITableViewCell {
         tip.textColor = UIColor.white
         tip.font = UIFont.systemFont(ofSize: 10)
         tip.textAlignment = .center
-        tip.backgroundColor = KColorBlack
+        tip.backgroundColor = kColorBlack
         tip.layer.masksToBounds = true
         tip.layer.cornerRadius = 36/2
         self.addSubview(tip)
@@ -120,11 +120,11 @@ extension WhipMeCell: UITableViewDataSource {
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
         
         let playLabel = UILabel.init()
-        playLabel.backgroundColor = KColorGreen
+        playLabel.backgroundColor = kColorGreen
         playLabel.font = UIFont.systemFont(ofSize: 10)
         playLabel.layer.masksToBounds = true
         playLabel.layer.cornerRadius = 5
-        playLabel.textColor = KColorWhite
+        playLabel.textColor = kColorWhite
         playLabel.text = "进行中"
         playLabel.textAlignment = .center
         cell.addSubview(playLabel)
@@ -194,7 +194,7 @@ class WhipOthersCell: UITableViewCell {
         tip.textColor = UIColor.white
         tip.font = UIFont.systemFont(ofSize: 10)
         tip.textAlignment = .center
-        tip.backgroundColor = KColorRed
+        tip.backgroundColor = kColorRed
         tip.layer.masksToBounds = true
         tip.layer.cornerRadius = 36/2
         self.addSubview(tip)
@@ -308,7 +308,7 @@ class IndexViewController: UIViewController {
     
     fileprivate func prepareTableView() {
         myTable = UITableView.init()
-        myTable.backgroundColor = KColorBackGround
+        myTable.backgroundColor = kColorBackGround
         myTable.register(WhipMeCell.self, forCellReuseIdentifier: WhipMeCell.cellReuseIdentifier())
         myTable.register(WhipOthersCell.self, forCellReuseIdentifier: WhipOthersCell.cellReuseIdentifier())
         myTable.dataSource = self

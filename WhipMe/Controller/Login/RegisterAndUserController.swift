@@ -56,7 +56,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         lblAvatar.backgroundColor = UIColor.clear
         lblAvatar.textAlignment = NSTextAlignment.center
         lblAvatar.textColor = Define.kColorBlack()
-        lblAvatar.font = KTitleFont
+        lblAvatar.font = kTitleFont
         lblAvatar.text = "添加头像"
         self.view.addSubview(lblAvatar)
         lblAvatar.snp.updateConstraints { (make) in
@@ -67,7 +67,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         txtNickname = UITextField.init()
         txtNickname.backgroundColor = UIColor.white
-        txtNickname.font = KContentFont
+        txtNickname.font = kContentFont
         txtNickname.textAlignment = NSTextAlignment.left
         txtNickname.textColor = Define.kColorBlack()
         txtNickname.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
@@ -98,7 +98,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             itemButton.setImage(UIImage.init(named: "button_choose_on"), for: UIControlState.selected)
             itemButton.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 10.0, bottom: 0, right: 0)
             itemButton.setTitle(sex, for: UIControlState.normal)
-            itemButton.titleLabel?.font = KTitleFont
+            itemButton.titleLabel?.font = kTitleFont
             itemButton.adjustsImageWhenHighlighted = false
             itemButton.setTitleColor(Define.kColorBlack(), for: UIControlState.normal)
             itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
@@ -118,7 +118,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnSubmit = UIButton.init(type: UIButtonType.custom)
         btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOff(), sizeMake: rect_submit), for: UIControlState.normal)
         btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOn(), sizeMake: rect_submit), for: UIControlState.highlighted)
-        btnSubmit.titleLabel?.font = KButtonFont
+        btnSubmit.titleLabel?.font = kButtonFont
         btnSubmit.setTitleColor(UIColor.white, for: UIControlState.normal)
         btnSubmit.layer.cornerRadius = 4.0
         btnSubmit.layer.masksToBounds = true
@@ -133,7 +133,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         btnAgreement = UIButton.init(type: UIButtonType.custom)
         btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = KTitleFont
+        btnAgreement.titleLabel?.font = kTitleFont
         btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
         btnAgreement.setTitle("用户协议", for: UIControlState.normal)
         btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)

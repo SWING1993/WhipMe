@@ -20,7 +20,7 @@ class WeekCell: NormalCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = Define.kColorBackGround()
+        self.backgroundColor = kColorBackGround
         self.selectionStyle = .none
         self.selectedBtnTags = NSMutableArray.init()
         
@@ -32,11 +32,11 @@ class WeekCell: NormalCell {
             weekBtn.tag = btnTag
             weekBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             weekBtn.setTitle(btnTitles[index], for: .normal)
-            weekBtn.setTitleColor(Define.kColorBlack(), for: .normal)
-            weekBtn.setTitleColor(Define.kColorBlue(), for: .selected)
+            weekBtn.setTitleColor(kColorBlack, for: .normal)
+            weekBtn.setTitleColor(kColorBlue, for: .selected)
             self.bgView.addSubview(weekBtn)
-            weekBtn.setTitleColor(Define.kColorBlack(), for: .normal)
-            weekBtn.setTitleColor(Define.kColorBlue(), for: .selected)
+            weekBtn.setTitleColor(kColorBlack, for: .normal)
+            weekBtn.setTitleColor(kColorBlue, for: .selected)
             bgView.addSubview(weekBtn)
             weekBtn.snp.makeConstraints({ (make) in
                 make.top.bottom.equalTo(0)

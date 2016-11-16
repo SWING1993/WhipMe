@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         for itemStr in texts {
             let itemText: UITextField = UITextField.init()
             itemText.backgroundColor = UIColor.white
-            itemText.font = KContentFont
+            itemText.font = kContentFont
             itemText.textAlignment = NSTextAlignment.left
             itemText.textColor = Define.kColorBlack()
             itemText.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 verify_codeBtn.layer.cornerRadius = 4.0
                 verify_codeBtn.layer.masksToBounds = true
                 verify_codeBtn.adjustsImageWhenHighlighted = false
-                verify_codeBtn.titleLabel?.font = KTitleFont
+                verify_codeBtn.titleLabel?.font = kTitleFont
                 verify_codeBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
                 verify_codeBtn.setTitle("获取验证码", for: UIControlState.normal)
                 verify_codeBtn.addTarget(self, action: #selector(clickWithCode(sender:)), for: UIControlEvents.touchUpInside)
@@ -103,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         btnSubmit = UIButton.init(type: UIButtonType.custom)
         btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOff(), sizeMake: rect_submit), for: UIControlState.normal)
         btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOn(), sizeMake: rect_submit), for: UIControlState.highlighted)
-        btnSubmit.titleLabel?.font = KButtonFont
+        btnSubmit.titleLabel?.font = kButtonFont
         btnSubmit.setTitleColor(UIColor.white, for: UIControlState.normal)
         btnSubmit.layer.cornerRadius = 4.0
         btnSubmit.layer.masksToBounds = true
@@ -118,7 +118,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         btnRegister = UIButton.init(type: UIButtonType.custom)
         btnRegister.backgroundColor = UIColor.clear
-        btnRegister.titleLabel?.font = KContentFont
+        btnRegister.titleLabel?.font = kContentFont
         btnRegister.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
         btnRegister.setTitle("新用户？去用手机注册", for: UIControlState.normal)
         btnRegister.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         btnAgreement = UIButton.init(type: UIButtonType.custom)
         btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = KTitleFont
+        btnAgreement.titleLabel?.font = kTitleFont
         btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
         btnAgreement.setTitle("用户协议", for: UIControlState.normal)
         btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)

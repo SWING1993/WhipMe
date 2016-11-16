@@ -26,12 +26,14 @@ class AddWhipController: UIViewController {
         let plam = PlanM.init()
         return plam
     }()
-
     
     fileprivate var queryHotThemeMArr: NSArray = NSArray.init()
-    fileprivate var customTable: UITableView!
-    fileprivate var hotTable: UITableView!
-    fileprivate var submitBtn: UIBarButtonItem!
+    fileprivate var customTable: UITableView = UITableView.init()
+    fileprivate var hotTable: UITableView = UITableView.init()
+    fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem.init()
+    fileprivate var segmentedView: UISegmentedControl = UISegmentedControl.init()
+    fileprivate var hideHot: Bool = false
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -41,24 +43,6 @@ class AddWhipController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setup()
-        
-        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
-            if (result != nil) {
-                let json = JSON(result!)
-                let ret  = json["data"][0]["ret"].intValue
-
-                if ret == 0 {
-                    let list = json["data"][0]["list"].arrayObject
-                    self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
-                    self.hotTable.reloadData()
-                } else {
-                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                }
-            }
-        }) { (error) in
-            print(error as Any);
-        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,11 +50,10 @@ class AddWhipController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
     fileprivate func setup() {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
-        self.submitBtn = UIBarButtonItem.init()
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            
             
             if self.myCostomAM.themeName.length <= 0 {
                 Tool.showHUDTip(tipStr: "请填写标题后再提交")
@@ -99,16 +82,7 @@ class AddWhipController: UIViewController {
             let clockTime: String = self.myCostomAM.alarmClock.string(custom: "HHmm")
             
             print(clockTime)
-            
-//            let params: NSDictionary = NSDictionary.init()
-//            params.setValue("23", forKey: "themeName")
-//            params.setValue(UserManager.getUser().userId, forKey: "creator")
-//            params.setValue(self.myCostomAM.content, forKey: "plan")
-//            params.setValue(startDate, forKey: "startDate")
-//            params.setValue(endDate, forKey: "endDate")
-//            params.setValue(self.myCostomAM.title, forKey: "themeName")
-
-            
+      
             let params = [
                 "themeName":self.myCostomAM.themeName,
                 "creator":UserManager.getUser().userId,
@@ -148,30 +122,35 @@ class AddWhipController: UIViewController {
 //            AppDelegate.registerNotification(plan: self.myCostomAM)
 //            _ = self.navigationController?.popViewController(animated: true)
         }
-        prepareSegmented()
-        prepareTableView()
+        
+        if hideHot == false {
+            prepareSegmented()
+            prepareHotTable()
+            loadHotThemeData()
+        }
+        prepareCustomTable()
     }
     
-    fileprivate func prepareTableView() {
-        customTable = UITableView.init()
-        customTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
-
-        customTable.tag = 100
-        customTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
-        customTable.register(SecondAddCustomCell.self, forCellReuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
-        customTable.register(ThirdAddCustomCell.self, forCellReuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
-        customTable.dataSource = self
-        customTable.delegate = self
-        customTable.showsVerticalScrollIndicator = false
-        customTable.separatorStyle = .none
-        view.addSubview(customTable)
-        customTable.translatesAutoresizingMaskIntoConstraints = false
-        customTable.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view)
+    fileprivate func loadHotThemeData() {
+        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                
+                if ret == 0 {
+                    let list = json["data"][0]["list"].arrayObject
+                    self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                    self.hotTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+            print(error as Any);
         }
-        
-        
-        hotTable = UITableView.init()
+    }
+    
+    fileprivate func prepareHotTable() {
         hotTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
         hotTable.tag = 101
         hotTable.register(HotAddCell.self, forCellReuseIdentifier: HotAddCell.cellReuseIdentifier())
@@ -186,15 +165,15 @@ class AddWhipController: UIViewController {
         }
         
         let searchView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 68))
-        searchView.backgroundColor = Define.kColorBackGround()
-
+        searchView.backgroundColor = kColorBackGround
+        
         let bgview = UIView.init(frame: CGRect.init(x: 10, y: 10, width: Define.screenWidth() - 20, height: 50))
         bgview.layer.masksToBounds = true
         bgview.layer.cornerRadius = 25.0
         bgview.backgroundColor = UIColor.white
         searchView.addSubview(bgview)
         
-    
+        
         let searchBar = UITextField.init()
         searchBar.placeholder  = "输入关键字"
         bgview.addSubview(searchBar)
@@ -236,15 +215,32 @@ class AddWhipController: UIViewController {
         
         
         hotTable.tableHeaderView = searchView
-        customTable.isHidden = true
-        hotTable.isHidden = false
+     
+    }
+    
+    fileprivate func prepareCustomTable() {
+        customTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+
+        customTable.tag = 100
+        customTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
+        customTable.register(SecondAddCustomCell.self, forCellReuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
+        customTable.register(ThirdAddCustomCell.self, forCellReuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
+        customTable.dataSource = self
+        customTable.delegate = self
+        customTable.showsVerticalScrollIndicator = false
+        customTable.separatorStyle = .none
+        view.addSubview(customTable)
+        customTable.translatesAutoresizingMaskIntoConstraints = false
+        customTable.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
     }
     
     fileprivate func prepareSegmented() {
         let titles_nav: NSArray = ["热门","自定义"]
-        let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
+        segmentedView = UISegmentedControl.init(items: titles_nav as [AnyObject])
         segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
-        segmentedView.backgroundColor = Define.kColorNavigation()
+        segmentedView.backgroundColor = kColorNavigation
         segmentedView.layer.cornerRadius = segmentedView.height/2.0
         segmentedView.layer.masksToBounds = true
         segmentedView.layer.borderColor = UIColor.white.cgColor
@@ -253,6 +249,9 @@ class AddWhipController: UIViewController {
         segmentedView.selectedSegmentIndex = 0
         segmentedView.addTarget(self, action:#selector(clickWithSegmentedItem), for: UIControlEvents.valueChanged)
         self.navigationItem.titleView = segmentedView
+        
+        customTable.isHidden = true
+        hotTable.isHidden = false
     }
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
@@ -397,6 +396,14 @@ extension AddWhipController: UITableViewDelegate {
             return HotAddCell.cellHeight()
         }
         return 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag == 101 {
+            let vc = AddWhipController.init()
+            vc.hideHot = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

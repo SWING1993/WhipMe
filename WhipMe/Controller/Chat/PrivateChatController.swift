@@ -17,7 +17,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Define.kColorBackGround()
+        self.view.backgroundColor = kColorBackGround
         
         setup()
     }
@@ -36,7 +36,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         let titles_nav: NSArray = ["私信","通知"]
         let segmentedView: UISegmentedControl = UISegmentedControl.init(items: titles_nav as [AnyObject])
         segmentedView.frame = CGRect(x: 0, y: 0, width: 132.0, height: 30.0)
-        segmentedView.backgroundColor = Define.kColorNavigation()
+        segmentedView.backgroundColor = kColorNavigation
         segmentedView.layer.cornerRadius = segmentedView.height/2.0
         segmentedView.layer.masksToBounds = true
         segmentedView.layer.borderColor = UIColor.white.cgColor
@@ -48,12 +48,12 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         
         let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         rightBarItem.tintColor = UIColor.white
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         tableViewWM = UITableView.init()
         tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM?.separatorColor = Define.kColorLine()
+        tableViewWM?.separatorColor = kColorLine
         tableViewWM?.layoutMargins = UIEdgeInsets.zero
         tableViewWM?.separatorInset = UIEdgeInsets.zero
         tableViewWM?.backgroundColor = UIColor.white

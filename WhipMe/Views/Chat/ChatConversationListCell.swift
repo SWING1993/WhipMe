@@ -55,7 +55,7 @@ class ChatConversationListCell: UITableViewCell {
         lblNickname = UILabel.init()
         lblNickname.backgroundColor = UIColor.clear
         lblNickname.textColor = Define.kColorBlack()
-        lblNickname.font = KContentFont
+        lblNickname.font = kContentFont
         lblNickname.textAlignment = NSTextAlignment.left
         lblNickname.isUserInteractionEnabled = false
         self.contentView.addSubview(lblNickname)
@@ -69,7 +69,7 @@ class ChatConversationListCell: UITableViewCell {
         lblBrief = UILabel.init()
         lblBrief.backgroundColor = UIColor.clear
         lblBrief.textColor = Define.kColorLight()
-        lblBrief.font = KTitleFont
+        lblBrief.font = kTitleFont
         lblBrief.textAlignment = NSTextAlignment.left
         lblBrief.isUserInteractionEnabled = false
         self.contentView.addSubview(lblBrief)
@@ -83,7 +83,7 @@ class ChatConversationListCell: UITableViewCell {
         lblTime = UILabel.init()
         lblTime.backgroundColor = UIColor.clear
         lblTime.textColor = Define.kColorLight()
-        lblTime.font = KTimeFont
+        lblTime.font = kTimeFont
         lblTime.textAlignment = NSTextAlignment.right
         lblTime.isUserInteractionEnabled = false
         self.contentView.addSubview(lblTime)
@@ -97,7 +97,7 @@ class ChatConversationListCell: UITableViewCell {
         btnUnRead = UIButton.init(type: UIButtonType.custom)
         btnUnRead.backgroundColor = Define.kColorRed()
         btnUnRead.setTitleColor(UIColor.white, for: UIControlState.normal)
-        btnUnRead.titleLabel?.font = KTitleFont
+        btnUnRead.titleLabel?.font = kTitleFont
         btnUnRead.isUserInteractionEnabled = true
         btnUnRead.layer.masksToBounds = true
         btnUnRead.layer.cornerRadius = 10.0

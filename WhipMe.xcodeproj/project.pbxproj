@@ -442,9 +442,9 @@
 			isa = PBXGroup;
 			children = (
 				C546FE321D82A35600012FB4 /* Define.swift */,
+				E43D0F9E1DCC317F001A0B36 /* UserManager.swift */,
 				E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */,
 				E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */,
-				E43D0F9E1DCC317F001A0B36 /* UserManager.swift */,
 				C5F9BD751DD0147D000250E8 /* ChatMessage.h */,
 				C5F9BD761DD0147D000250E8 /* ChatMessage.m */,
 			);

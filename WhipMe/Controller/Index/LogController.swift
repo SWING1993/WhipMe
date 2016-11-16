@@ -294,7 +294,7 @@ class LogController: UIViewController {
         self.navigationItem.title = "记录一下"
         self.view.backgroundColor = Define.kColorBackGround()
         myLogTable = UITableView.init()
-        myLogTable.backgroundColor = KColorBackGround
+        myLogTable.backgroundColor = kColorBackGround
         myLogTable.register(LogTextCell.self, forCellReuseIdentifier: LogTextCell.cellReuseIdentifier())
         myLogTable.register(LogNoPhotoCell.self, forCellReuseIdentifier: LogNoPhotoCell.cellReuseIdentifier())
         myLogTable.register(LogPhotoCell.self, forCellReuseIdentifier: LogPhotoCell.cellReuseIdentifier())

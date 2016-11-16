@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         } else {
             setupLoginController()
         }
-        window?.backgroundColor = KColorBackGround
+        window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
         return true
     }
@@ -177,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         navigationBarAppearance.barStyle = UIBarStyle.blackTranslucent
         navigationBarAppearance.isTranslucent = false
         navigationBarAppearance.barTintColor = Define.kColorNavigation()
-        navigationBarAppearance.titleTextAttributes =  [kCTFontAttributeName as String:KButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
+        navigationBarAppearance.titleTextAttributes =  [kCTFontAttributeName as String:kButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
         navigationBarAppearance.tintColor = UIColor.white
         
         let barButtonAppearance: UIBarButtonItem = UIBarButtonItem.appearance()

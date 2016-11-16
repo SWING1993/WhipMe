@@ -48,7 +48,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             rightBarItem = UIBarButtonItem.init(image: UIImage.init(named: "add_friend"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         }
-        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :KContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
+        rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         arrayContent = NSMutableArray.init(capacity: 0)

@@ -15,7 +15,7 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "充值"
-        self.view.backgroundColor = Define.kColorBackGround()
+        self.view.backgroundColor = kColorBackGround
 
         setup()
     }
@@ -39,8 +39,8 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
         let lblMoneyTitle = UILabel.init()
         lblMoneyTitle.backgroundColor = UIColor.clear
         lblMoneyTitle.textAlignment = NSTextAlignment.left;
-        lblMoneyTitle.textColor = Define.kColorGray()
-        lblMoneyTitle.font = KContentFont
+        lblMoneyTitle.textColor = kColorGray
+        lblMoneyTitle.font = kContentFont
         lblMoneyTitle.text = "充值金额"
         viewCurrent.addSubview(lblMoneyTitle)
         lblMoneyTitle.snp.updateConstraints { (make) in
@@ -56,7 +56,7 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
         textMoney.textAlignment = NSTextAlignment.left
         textMoney.font = UIFont.systemFont(ofSize: 22.0)
         textMoney.keyboardType = UIKeyboardType.decimalPad
-        textMoney.textColor = Define.kColorBlack()
+        textMoney.textColor = kColorBlack
         textMoney.delegate = self
         textMoney.placeholder = "请输入充值金额"
 //        textMoney.attributedPlaceholder = NSMutableAttributedString.init(string: "请输入充值金额", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 20.0), NSForegroundColorAttributeName:Define.kColorGray()])
@@ -70,14 +70,14 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
         
         let leftView = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 40.0, height: 50.0))
         leftView.textAlignment = NSTextAlignment.center
-        leftView.textColor = Define.kColorBlack()
+        leftView.textColor = kColorBlack
         leftView.font = UIFont.systemFont(ofSize: 22.0)
         leftView.text = "¥"
         textMoney.leftView = leftView
         textMoney.leftViewMode = UITextFieldViewMode.always
         
         let lineView = UIView.init()
-        lineView.backgroundColor = Define.kColorLine()
+        lineView.backgroundColor = kColorLine
         viewCurrent.addSubview(lineView)
         lineView.snp.updateConstraints { (make) in
             make.height.equalTo(0.5)
@@ -88,8 +88,8 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
         let btnWechat = UIButton.init(type: UIButtonType.custom)
         btnWechat.backgroundColor = UIColor.clear
         btnWechat.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
-        btnWechat.titleLabel?.font = KContentFont
-        btnWechat.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
+        btnWechat.titleLabel?.font = kContentFont
+        btnWechat.setTitleColor(kColorGray, for: UIControlState.normal)
         btnWechat.adjustsImageWhenHighlighted = false
         btnWechat.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 18.0, bottom: 0, right: 0)
         btnWechat.setTitle("微信支付", for: UIControlState.normal)
@@ -104,8 +104,8 @@ class TopUpViewController: UIViewController, UITextFieldDelegate {
         
         let rect_submit = CGRect.init(x: 0, y: 0, width: Define.screenWidth() - 70.0, height: 44.0)
         let btnSubmit = UIButton.init(type: UIButtonType.custom)
-        btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOff(), sizeMake: rect_submit), for: UIControlState.normal)
-        btnSubmit.setBackgroundImage(UIImage.imageWithDraw(Define.kColorCyanOn(), sizeMake: rect_submit), for: UIControlState.highlighted)
+        btnSubmit.setBackgroundImage(UIImage.imageWithDraw(kColorCyanOff, sizeMake: rect_submit), for: UIControlState.normal)
+        btnSubmit.setBackgroundImage(UIImage.imageWithDraw(kColorCyanOn, sizeMake: rect_submit), for: UIControlState.highlighted)
         btnSubmit.titleLabel?.font = UIFont.systemFont(ofSize: 20.0)
         btnSubmit.setTitleColor(UIColor.white, for: UIControlState.normal)
         btnSubmit.layer.cornerRadius = 22.0

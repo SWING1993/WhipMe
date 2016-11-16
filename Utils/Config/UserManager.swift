@@ -28,7 +28,9 @@ class UserManager: NSObject {
     var nickname: String = ""
     var userId: String = ""
     var iconPrefix: String = ""
-    
+    var sign: String = ""
+    var pwdim: String = ""
+
     class func storeUserData(data: JSON) {
         let store = YTKKeyValueStore.init(dbWithName: userdbName)
         let tableName = userTableName
@@ -40,16 +42,11 @@ class UserManager: NSObject {
     }
     
     class func getUser() -> UserManager {
-        let user = UserManager()
+        var user = UserManager()
         let store = YTKKeyValueStore.init(dbWithName: userdbName)
         if store?.getObjectById(userID, fromTable: userTableName) != nil {
-            
             let userDic:NSDictionary = store?.getObjectById(userID, fromTable: userTableName) as! NSDictionary
-            user.nickname = userDic.object(forKey: "nickname") as! String
-            user.icon = userDic.object(forKey: "icon") as! String
-            user.userId = userDic.object(forKey: "userId") as! String
-            user.iconPrefix = userDic.object(forKey: "iconPrefix") as! String
-            user.sex = userDic.object(forKey: "sex") as! Bool
+            user = UserManager.mj_object(withKeyValues: userDic)
         }
         return user;
     }

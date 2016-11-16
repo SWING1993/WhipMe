@@ -16,7 +16,7 @@ class LeftTextCell: NormalCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
    
         self.selectionStyle = .none
-        self.backgroundColor = Define.kColorBackGround()
+        self.backgroundColor = kColorBackGround
         
         if bgView == nil {
             bgView = UIView.init()

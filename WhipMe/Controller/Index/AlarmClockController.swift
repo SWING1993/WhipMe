@@ -27,7 +27,7 @@ class AlarmClockController: UIViewController {
     
     func setup() {
         self.navigationItem.title = "闹钟提醒"
-        self.view.backgroundColor = Define.kColorBackGround()
+        self.view.backgroundColor = kColorBackGround
         alarmClockTable = UITableView.init()
         alarmClockTable.register(LeftTextCell.self, forCellReuseIdentifier: LeftTextCell.cellReuseIdentifier())
         alarmClockTable.register(CenterTextCell.self, forCellReuseIdentifier: CenterTextCell.cellReuseIdentifier())

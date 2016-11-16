@@ -59,7 +59,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             
             let itemButton: UIButton = UIButton.init(type: UIButtonType.custom)
             itemButton.backgroundColor = UIColor.clear
-            itemButton.titleLabel?.font = KTitleFont
+            itemButton.titleLabel?.font = kTitleFont
             itemButton.titleEdgeInsets = UIEdgeInsets.init(top: 55.0, left: -45.0, bottom: 0, right: 0)
             itemButton.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: 10.0, bottom: 20.0, right: 0)
             itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
@@ -83,12 +83,12 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
         
         let btnAgreement = UIButton.init(type: UIButtonType.custom)
         btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = KTitleFont
+        btnAgreement.titleLabel?.font = kTitleFont
         btnAgreement.tag = arrayTitle.count + button_index;
         btnAgreement.addTarget(self, action: #selector(clickWithItem(sender:)), for: UIControlEvents.touchUpInside)
         btnAgreement.setTitle("用户协议", for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGary(), for: UIControlState.highlighted)
+        btnAgreement.setTitleColor(kColorGray, for: UIControlState.normal)
+        btnAgreement.setTitleColor(kColorGary, for: UIControlState.highlighted)
         viewButton.addSubview(btnAgreement)
         btnAgreement.snp.updateConstraints { (make) in
             make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
