@@ -10,6 +10,35 @@ import UIKit
 import SnapKit
 import RxCocoa
 import RxSwift
+import SwiftyJSON
+
+class WhipM: NSObject {
+    
+    var accept: Int = 0
+    var type: Int = 0
+    var going: Int = 0
+    var guarantee: CGFloat = 0.00
+    var recordNum:Int = 0
+    
+    var createDate: String = ""
+    var startDate: String = ""
+    var endDate: String = ""
+
+    
+    var creator: String = ""
+    var icon: String = ""
+    var result: String = ""
+    var plan: String = ""
+    
+    var taskId: String = ""
+    var themeIcon: String = ""
+    var themeId: String = ""
+    var themeName: String = ""
+    
+    var supervisor: String = ""
+    var supervisorName: String = ""
+    var supervisorIcon: String = ""
+}
 
 class WhipMeCell: UITableViewCell {
     
@@ -59,7 +88,6 @@ class WhipMeCell: UITableViewCell {
        
         if whipMeTable == nil {
             whipMeTable = UITableView.init()
-//            whipMeTable.separatorStyle = .none
             whipMeTable.isScrollEnabled = false
             whipMeTable.showsVerticalScrollIndicator = false
             whipMeTable.rowHeight = 60
@@ -75,7 +103,7 @@ class WhipMeCell: UITableViewCell {
         }
     }
     
-    func updateDataWith(array: NSArray) {
+    func setDataWith(array: NSArray) {
         self.modelArray = array
         print(array)
         whipMeTable.reloadData()
@@ -112,11 +140,11 @@ extension WhipMeCell: UITableViewDataSource {
         let cell: UITableViewCell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "uitableviewcell")
         cell.selectionStyle = .none
         
-        let planM: PlanM = self.modelArray.object(at: indexPath.row) as! PlanM
-        cell.textLabel?.text = planM.themeName
+        let meWhipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
+        cell.textLabel?.text = meWhipM.themeName
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         
-        cell.detailTextLabel?.text = planM.plan
+        cell.detailTextLabel?.text = meWhipM.plan
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
         
         let playLabel = UILabel.init()
@@ -125,7 +153,11 @@ extension WhipMeCell: UITableViewDataSource {
         playLabel.layer.masksToBounds = true
         playLabel.layer.cornerRadius = 5
         playLabel.textColor = kColorWhite
-        playLabel.text = "进行中"
+        if meWhipM.going == 0 {
+            playLabel.text = "进行中"
+        } else {
+            playLabel.text = "已结束"
+        }
         playLabel.textAlignment = .center
         cell.addSubview(playLabel)
         playLabel.snp.makeConstraints { (make) in
@@ -263,47 +295,54 @@ class IndexViewController: UIViewController {
     
     fileprivate var myTable: UITableView!
     var disposeBag = DisposeBag()
-    lazy var dataArray :NSMutableArray = {
+    
+    
+    lazy var biantataList :NSMutableArray = {
+        return NSMutableArray.init()
+    }()
+    
+    lazy var biantawoList :NSMutableArray = {
         return NSMutableArray.init()
     }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.dataArray.removeAllObjects()
-        if PlanM.getPlans() != nil {
-            for (_, value) in PlanM.getPlans()!.enumerated() {
-                self.dataArray.add(value)
-            }
-            self.myTable?.reloadData()
-        }
+        setupAPI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
-//        HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
-//            if (result != nil) {
-//                print(result);
-////                let json = JSON(result!)
-////                let data  = json["data"][0]["userInfo"]
-////                UserManager.storeUserData(data: data)
-//            }
-//        }) { (error) in
-//            print(error as Any);
-//        }
-
     }
     
     fileprivate func setup() {
         self.navigationItem.title = "鞭挞"
-        self.dataArray = NSMutableArray.init()
 
         self.view.backgroundColor = Define.kColorBackGround()
-        prepareTableView()  //TODO 蹦了，我也不知道怎么回事，就注释掉,你看下
+        prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
         self.navigationItem.rightBarButtonItem = addBtn
+    }
+    
+    fileprivate func setupAPI() {
+        let params = ["userId":UserManager.getUser().userId]
+        HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let woList  = json["data"][0]["biantawoList"].arrayObject
+                    let taList  = json["data"][0]["biantataList"].arrayObject
+                    self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
+                    self.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                    self.myTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+            print(error as Any);
+        }
     }
     
     fileprivate func prepareTableView() {
@@ -337,11 +376,20 @@ class IndexViewController: UIViewController {
 extension IndexViewController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return (self.dataArray?.count)!
-        if self.dataArray.count > 0 {
-            return 1
+        if section == 0 {
+            if self.biantawoList.count > 0 {
+                return 1
+            }
+            return 0
         }
-        return 0
+        
+        if section == 1 {
+            if self.biantataList.count > 0 {
+                return 1
+            }
+            return 0
+        }
+        return 1
     }
     
     /// Returns the number of sections.
@@ -353,7 +401,7 @@ extension IndexViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: WhipMeCell = WhipMeCell.init(style: .default, reuseIdentifier: WhipMeCell.cellReuseIdentifier())
-            cell.updateDataWith(array: self.dataArray)
+            cell.setDataWith(array: self.biantawoList)
             cell.checkPlan = { indexPath in
                 print(indexPath)
                 let addWhipC = LogController.init()
@@ -363,7 +411,7 @@ extension IndexViewController:UITableViewDataSource {
             
             cell.deletePlan = { indexPath in
                 PlanM.deletePlan(index: indexPath.row);
-                self.dataArray.removeObject(at: indexPath.row)
+//                self.dataArray.removeObject(at: indexPath.row)
                 self.myTable.reloadData()
             }
             return cell
@@ -377,9 +425,13 @@ extension IndexViewController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 || self.dataArray.count > 0 {
-            return WhipMeCell.cellHeight(array: self.dataArray)
+        if indexPath.section == 0 {
+            return WhipMeCell.cellHeight(array: self.biantawoList)
         }
+        
+        if indexPath.section == 1 {
+            return WhipMeCell.cellHeight(array: self.biantataList)
+        }        
         return 0
     }
 }
