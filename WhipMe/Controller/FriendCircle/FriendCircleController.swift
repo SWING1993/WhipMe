@@ -15,6 +15,7 @@ import SwiftyJSON
 class FriendCircleM: NSObject {
     var comment: NSArray = NSArray.init()
     
+    var recordIdNum: Int = 0
     var commentNum: Int = 0
     var likeNum: Int = 0
     var shareNum: Int = 0
@@ -36,9 +37,6 @@ class FriendCircleController: UIViewController {
     
     fileprivate var recommendTable: UITableView = UITableView.init()
     fileprivate var friendCircleModelArr: NSMutableArray = NSMutableArray.init();
-    fileprivate var picPrefix: String = ""
-    fileprivate var iconPrefix: String = ""
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -54,8 +52,6 @@ class FriendCircleController: UIViewController {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
-                    self.iconPrefix = json["data"][0]["iconPrefix"].stringValue
-                    self.picPrefix = json["data"][0]["picPrefix"].stringValue
                     let list = json["data"][0]["list"].arrayObject
                     self.friendCircleModelArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
                     self.recommendTable.reloadData()
@@ -70,7 +66,7 @@ class FriendCircleController: UIViewController {
     }
     
     fileprivate func setup() {
-        self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        self.view.backgroundColor = kColorBackGround
         prepareTableView()
         prepareSegmented()
     }
@@ -97,6 +93,7 @@ class FriendCircleController: UIViewController {
     
     fileprivate func prepareTableView() {
         recommendTable = UITableView.init()
+        recommendTable.backgroundColor = kColorBackGround
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
         recommendTable.dataSource = self
         recommendTable.delegate = self
@@ -138,42 +135,16 @@ extension FriendCircleController:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
-        
         let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
-        let avatarUrl = self.iconPrefix + model.icon
-        let picUrl = self.picPrefix + model.picture
-        
-        cell.avatarV.setIconURL(NSURL.init(string:avatarUrl) as URL!)
-        cell.pictrueView.setIconURL(NSURL.init(string:picUrl) as URL!)
-        cell.contentL.text = model.content
-        cell.nickNameL.text = model.nickname
-        cell.topicL.text = model.themeName
-        cell.timeL.text = model.createDate
-        cell.pageView.text = String(model.likeNum) + "次"
-        cell.locationB.text = model.position
-        
-        cell.likeB.setTitle("12", for: .normal)
-        cell.commentB.setTitle(String(model.commentNum), for: .normal)
-        cell.shareB.setTitle(String(model.shareNum), for: .normal)
-
+        cell.setRecommendData(model: model)
         return cell
     }
 }
 
-
 /// UITableViewDelegate methods.
 extension FriendCircleController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
+        return RecommendCell.cellHeight(model: model)
     }
-    
-//    /// Sets the tableView header height.
-//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 200
-//    }
-    //    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 15
-    //    }
-    
 }

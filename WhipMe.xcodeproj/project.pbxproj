@@ -94,6 +94,7 @@
 		E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4D1D991E32006D3188 /* NormalCell.swift */; };
 		E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */; };
 		E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D97E561D9A1631006D3188 /* SnapKit.framework */; };
+		E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E230281DDC4262007EF8AC /* NSString+Common.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -214,6 +215,8 @@
 		E4D97E531D9A126D006D3188 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		E4D97E561D9A1631006D3188 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
+		E4E230271DDC4262007EF8AC /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		E4E230281DDC4262007EF8AC /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,6 +586,8 @@
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E4E230271DDC4262007EF8AC /* NSString+Common.h */,
+				E4E230281DDC4262007EF8AC /* NSString+Common.m */,
 				C5A829121D93D30500EBF46E /* UIImage+Orientation.h */,
 				C5A829131D93D30500EBF46E /* UIImage+Orientation.m */,
 				C5D669A21D86436B008EE189 /* UIView+Size.swift */,
@@ -815,6 +820,7 @@
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
+				E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */,
 				E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */,
 				4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */,
 				E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */,

@@ -107,9 +107,9 @@ class AddWhipController: UIViewController {
                     let ret  = json["data"][0]["ret"].intValue
                     
                     if ret == 0 {
-                        let list = json["data"][0]["list"].arrayObject
-                        self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
-                        self.hotTable.reloadData()
+                        Tool.showHUDTip(tipStr: "添加成功")
+                        _ = self.navigationController?.popViewController(animated: true)
+
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -151,7 +151,7 @@ class AddWhipController: UIViewController {
     }
     
     fileprivate func prepareHotTable() {
-        hotTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        hotTable.backgroundColor = kColorBackGround
         hotTable.tag = 101
         hotTable.register(HotAddCell.self, forCellReuseIdentifier: HotAddCell.cellReuseIdentifier())
         hotTable.dataSource = self
@@ -219,7 +219,7 @@ class AddWhipController: UIViewController {
     }
     
     fileprivate func prepareCustomTable() {
-        customTable.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        customTable.backgroundColor = kColorBackGround
 
         customTable.tag = 100
         customTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())

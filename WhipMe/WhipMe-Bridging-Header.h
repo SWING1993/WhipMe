@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import <FlyImage/FlyImage.h>
 //
+#import "NSString+Common.h"
 #import "NSString+Validate.h"
 #import "UIColor+Expanded.h"
 #import "NSObject+StoreValue.h"
