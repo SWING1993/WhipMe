@@ -42,12 +42,163 @@ class WhipM: NSObject {
 
 class WhipMeCell: UITableViewCell {
     
+    
+    var iconV: UIImageView = UIImageView.init()
+    
+    var themeL: UILabel = UILabel.init()
+    var goingL: UILabel = UILabel.init()
+    
+    var subTitle: UILabel = UILabel.init()
+    var headV: UIImageView = UIImageView.init()
+    
+    var guaranteeL: UILabel = UILabel.init()
+    var refuseBtn: UIButton = UIButton.init()
+    var acceptBtn: UIButton = UIButton.init()
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        self.backgroundColor = kColorWhite
+        
+        
+        headV.layer.cornerRadius = 40/2
+        headV.layer.masksToBounds = true
+        headV.backgroundColor = UIColor.random()
+        self.contentView .addSubview(headV)
+        headV.snp.makeConstraints { (make) in
+            make.width.height.equalTo(40)
+            make.top.equalTo(15)
+            make.right.equalTo(-9)
+        }
+
+        
+//        iconV.backgroundColor = UIColor.random()
+        iconV.layer.cornerRadius = 30/2
+        iconV.layer.masksToBounds = true
+        self.contentView .addSubview(iconV)
+        iconV.snp.makeConstraints { (make) in
+            make.width.height.equalTo(30)
+            make.centerY.equalTo(headV.snp.centerY)
+            make.left.equalTo(18)
+        }
+        
+        
+        themeL.font = UIFont.systemFont(ofSize: 14)
+        self.contentView.addSubview(themeL)
+        themeL.snp.makeConstraints { (make) in
+            make.left.equalTo(iconV.snp.right).offset(16)
+            make.top.equalTo(headV.snp.top)
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+        }
+        
+        goingL.font = UIFont.systemFont(ofSize: 10)
+        goingL.layer.masksToBounds = true
+        goingL.layer.cornerRadius = 7
+        goingL.textColor = kColorWhite
+        goingL.textAlignment = .center
+        self.contentView.addSubview(goingL)
+        goingL.snp.makeConstraints { (make) in
+            make.left.equalTo(themeL.snp.right).offset(7)
+            make.centerY.equalTo(themeL)
+            make.height.equalTo(14)
+            make.width.equalTo(40)
+        }
+        
+//        subTitle.backgroundColor = UIColor.random()
+        subTitle.font = UIFont.systemFont(ofSize: 10)
+        self.contentView.addSubview(subTitle)
+        subTitle.snp.makeConstraints { (make) in
+            make.left.equalTo(iconV.snp.right).offset(16)
+            make.top.equalTo(themeL.snp.bottom)
+            make.height.equalTo(themeL)
+            make.width.equalTo(150)
+        }
+    }
+    
+    func config() {
+        let line: UIView = UIView.init()
+        line.backgroundColor = Define.RGBColorAlphaFloat(153, g: 153, b: 153, a: 0.5)
+        self.contentView.addSubview(line)
+        line.snp.makeConstraints { (make) in
+            make.left.equalTo(themeL)
+            make.right.equalTo(-3)
+            make.height.equalTo(0.5)
+            make.top.equalTo(75.5)
+        }
+        
+        guaranteeL.font = UIFont.systemFont(ofSize: 10)
+        guaranteeL.textColor = kColorRed
+        self.contentView.addSubview(guaranteeL)
+        guaranteeL.snp.makeConstraints { (make) in
+            make.left.equalTo(line)
+            make.height.equalTo(22)
+            make.top.equalTo(line.snp.bottom).offset(11)
+            make.width.equalTo(100)
+        }
+        
+        
+        acceptBtn.backgroundColor = kColorBlue
+        acceptBtn.layer.cornerRadius = 11
+        acceptBtn.layer.masksToBounds = true
+        acceptBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        acceptBtn.setTitleColor(kColorWhite, for: .normal)
+        acceptBtn.setTitle("接受", for: .normal)
+        self.contentView.addSubview(acceptBtn)
+        acceptBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(22)
+            make.width.equalTo(50)
+            make.right.equalTo(-9)
+            make.centerY.equalTo(guaranteeL)
+        }
+        
+        
+        refuseBtn.backgroundColor = kColorGolden
+        refuseBtn.layer.cornerRadius = 11
+        refuseBtn.layer.masksToBounds = true
+        refuseBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        refuseBtn.setTitleColor(kColorWhite, for: .normal)
+        refuseBtn.setTitle("接受", for: .normal)
+        self.contentView.addSubview(refuseBtn)
+        refuseBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(22)
+            make.width.equalTo(50)
+            make.right.equalTo(acceptBtn.snp.left).offset(-12)
+            make.centerY.equalTo(guaranteeL)
+        }
+        
+    
+    }
+    
+    class func whipOtherCellHeight(model:WhipM) -> CGFloat {
+        var height: CGFloat = 75.0
+        if model.accept == 0 {
+            height += 44
+        }
+        return height
+    }
+    
+    class func whipMeCellHeight(model:WhipM) -> CGFloat {
+        return 75.0
+    }
+    
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class WhipCell: UITableViewCell {
+    
     var bgView: UIView!
     var whipMeTable: UITableView!
     
     lazy var modelArray: NSArray = {
         return NSArray()
     }()
+    
+    var myReuseIdentifier: String = ""
     
     var checkPlan:((IndexPath) -> Void)?
     var deletePlan:((IndexPath) -> Void)?
@@ -56,6 +207,8 @@ class WhipMeCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         self.backgroundColor = Define.kColorBackGround()
+        self.myReuseIdentifier = reuseIdentifier!
+        
         if bgView == nil {
             bgView = UIView.init()
             bgView.backgroundColor = UIColor.white
@@ -70,13 +223,19 @@ class WhipMeCell: UITableViewCell {
             }
         }
         
-        
         let tip = UILabel.init()
-        tip.text = "鞭挞我"
+        
+        if reuseIdentifier == WhipCell.whipMeReuseIdentifier() {
+            tip.text = "鞭挞我"
+            tip.backgroundColor = kColorBlack
+        } else {
+            tip.text = "鞭挞他"
+            tip.backgroundColor = kColorRed
+        }
+       
         tip.textColor = UIColor.white
         tip.font = UIFont.systemFont(ofSize: 10)
         tip.textAlignment = .center
-        tip.backgroundColor = kColorBlack
         tip.layer.masksToBounds = true
         tip.layer.cornerRadius = 36/2
         self.addSubview(tip)
@@ -90,7 +249,6 @@ class WhipMeCell: UITableViewCell {
             whipMeTable = UITableView.init()
             whipMeTable.isScrollEnabled = false
             whipMeTable.showsVerticalScrollIndicator = false
-            whipMeTable.rowHeight = 60
             whipMeTable.delegate = self
             whipMeTable.dataSource = self
             bgView.addSubview(whipMeTable)
@@ -105,18 +263,33 @@ class WhipMeCell: UITableViewCell {
     
     func setDataWith(array: NSArray) {
         self.modelArray = array
-        print(array)
         whipMeTable.reloadData()
     }
     
-    class func cellHeight(array: NSArray) -> CGFloat {
-        var height = 60 * CGFloat.init(array.count)
-        height += 54
+    class func cellHeight(array: NSArray, type: String) -> CGFloat {
+        var height: CGFloat = 54.0
+        
+        if type == whipOtherReuseIdentifier() {
+            for whipM in array {
+                height += WhipMeCell.whipOtherCellHeight(model: whipM as! WhipM)
+            }
+        }
+        else {
+            for whipM in array {
+                height += WhipMeCell.whipMeCellHeight(model: whipM as! WhipM)
+            }
+        }
+
+
         return height
     }
     
-    class func cellReuseIdentifier() -> String {
+    class func whipMeReuseIdentifier() -> String {
         return "WhipMeCell"
+    }
+    
+    class func whipOtherReuseIdentifier() -> String {
+        return "WhipOtherCell"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -124,7 +297,7 @@ class WhipMeCell: UITableViewCell {
     }
 }
 
-extension WhipMeCell: UITableViewDataSource {
+extension WhipCell: UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.modelArray.count
@@ -137,40 +310,51 @@ extension WhipMeCell: UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "uitableviewcell")
-        cell.selectionStyle = .none
+        let cell: WhipMeCell = WhipMeCell.init(style: .subtitle, reuseIdentifier: self.myReuseIdentifier)
         
-        let meWhipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
-        cell.textLabel?.text = meWhipM.themeName
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+        let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         
-        cell.detailTextLabel?.text = meWhipM.plan
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
-        
-        let playLabel = UILabel.init()
-        playLabel.backgroundColor = kColorGreen
-        playLabel.font = UIFont.systemFont(ofSize: 10)
-        playLabel.layer.masksToBounds = true
-        playLabel.layer.cornerRadius = 5
-        playLabel.textColor = kColorWhite
-        if meWhipM.going == 0 {
-            playLabel.text = "进行中"
-        } else {
-            playLabel.text = "已结束"
+        cell.iconV.setImageWith(URL.init(string: whipM.icon)!, placeholderImage: UIImage.init(named: "zaoqi"))
+        cell.themeL.text = whipM.themeName
+        let themeLWidth = whipM.themeName.getWidth(font: UIFont.systemFont(ofSize: 14), height: 20)
+        cell.themeL.snp.updateConstraints { (make) in
+            make.width.equalTo(themeLWidth)
         }
-        playLabel.textAlignment = .center
-        cell.addSubview(playLabel)
-        playLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(13)
-            make.centerY.equalTo(cell.textLabel!)
-            make.left.equalTo(cell.textLabel!.snp.right).offset(5)
-            make.width.equalTo(37)
+        cell.subTitle.text = whipM.plan
+
+        // 鞭挞他
+        if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
+            if whipM.going == 0 {
+                cell.goingL.text = "进行中"
+                cell.goingL.backgroundColor = kColorGreen
+
+            } else {
+                cell.goingL.text = "已结束"
+                cell.goingL.backgroundColor = kColorRed
+            }
+            if whipM.accept == 0 {
+                cell.config()
+                cell.guaranteeL.text = "保证金："+String(describing: whipM.guarantee)+"元"
+            }
+        }
+        // 鞭挞我
+        else {
+            if whipM.accept == 0 {
+                cell.goingL.text = "待确认"
+                cell.goingL.backgroundColor = kColorYellow
+
+            } else if whipM.accept == 1 {
+                cell.goingL.text = "已拒绝"
+                cell.goingL.backgroundColor = kColorRed
+            } else {
+                cell.goingL.isHidden = true
+            }
         }
         return cell
     }
 }
 
-extension WhipMeCell: UITableViewDelegate {
+extension WhipCell: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.checkPlan != nil {
@@ -178,116 +362,15 @@ extension WhipMeCell: UITableViewDelegate {
         }
     }
     
-    @objc(tableView:canFocusRowAtIndexPath:) func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "删除"
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
-    }
-    
-    @objc(tableView:commitEditingStyle:forRowAtIndexPath:) func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if self.deletePlan != nil {
-            self.deletePlan!(indexPath)
-        }
-    }
-}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
+        if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
+            return WhipMeCell.whipOtherCellHeight(model: whipM)
 
-class WhipOthersCell: UITableViewCell {
-    var bgView : UIView!
-    var whipOtherTable :UITableView!
+        }else {
+            return WhipMeCell.whipMeCellHeight(model: whipM)
 
-    var clickCell:((IndexPath) -> Void)?
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-        self.backgroundColor = Define.kColorBackGround()
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(21)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
         }
-        
-        let tip = UILabel.init()
-        tip.text = "鞭挞他"
-        tip.textColor = UIColor.white
-        tip.font = UIFont.systemFont(ofSize: 10)
-        tip.textAlignment = .center
-        tip.backgroundColor = kColorRed
-        tip.layer.masksToBounds = true
-        tip.layer.cornerRadius = 36/2
-        self.addSubview(tip)
-        tip.snp.makeConstraints { (make) in
-            make.height.width.equalTo(36)
-            make.top.equalTo(8)
-            make.left.equalTo(14.5)
-        }
-        
-        if whipOtherTable == nil {
-            whipOtherTable = UITableView.init()
-            whipOtherTable.delegate = self
-            whipOtherTable.isScrollEnabled = false
-            whipOtherTable.separatorStyle = .none
-            whipOtherTable.showsVerticalScrollIndicator = false
-            whipOtherTable.backgroundColor = UIColor.random()
-            bgView.addSubview(whipOtherTable)
-            whipOtherTable.snp.makeConstraints({ (make) in
-                make.width.equalTo(bgView)
-                make.left.equalTo(0)
-                make.top.equalTo(tip.snp.bottom).offset(10)
-                make.bottom.equalTo(0)
-            })
-        }
-  
-    }
-    
-    class func cellHeight() -> CGFloat {
-        return 400
-    }
-    
-    class func cellReuseIdentifier() -> String {
-        return "WhipOthersCell"
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension WhipOthersCell: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.clickCell != nil {
-            self.clickCell!(indexPath)
-        }
-    }
-    
-    @objc(tableView:canFocusRowAtIndexPath:) func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "删除"
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
-    }
-    
-    @objc(tableView:commitEditingStyle:forRowAtIndexPath:) func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
 }
 
@@ -333,6 +416,7 @@ class IndexViewController: UIViewController {
                 if ret == 0 {
                     let woList  = json["data"][0]["biantawoList"].arrayObject
                     let taList  = json["data"][0]["biantataList"].arrayObject
+//                    print(result)
                     self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
                     self.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
                     self.myTable.reloadData()
@@ -348,8 +432,9 @@ class IndexViewController: UIViewController {
     fileprivate func prepareTableView() {
         myTable = UITableView.init()
         myTable.backgroundColor = kColorBackGround
-        myTable.register(WhipMeCell.self, forCellReuseIdentifier: WhipMeCell.cellReuseIdentifier())
-        myTable.register(WhipOthersCell.self, forCellReuseIdentifier: WhipOthersCell.cellReuseIdentifier())
+        myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipMeReuseIdentifier())
+        myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipOtherReuseIdentifier())
+
         myTable.dataSource = self
         myTable.delegate = self
         myTable.emptyDataSetSource = self
@@ -377,14 +462,14 @@ extension IndexViewController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if self.biantawoList.count > 0 {
+            if self.biantataList.count > 0 {
                 return 1
             }
             return 0
         }
         
         if section == 1 {
-            if self.biantataList.count > 0 {
+            if self.biantawoList.count > 0 {
                 return 1
             }
             return 0
@@ -400,8 +485,10 @@ extension IndexViewController:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell: WhipMeCell = WhipMeCell.init(style: .default, reuseIdentifier: WhipMeCell.cellReuseIdentifier())
-            cell.setDataWith(array: self.biantawoList)
+            let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipOtherReuseIdentifier())
+            cell.setDataWith(array: self.biantataList)
+            
+            /*
             cell.checkPlan = { indexPath in
                 print(indexPath)
                 let addWhipC = LogController.init()
@@ -414,9 +501,12 @@ extension IndexViewController:UITableViewDataSource {
 //                self.dataArray.removeObject(at: indexPath.row)
                 self.myTable.reloadData()
             }
+ */
             return cell
         }
-        let cell: WhipOthersCell = WhipOthersCell.init(style: .default, reuseIdentifier: WhipOthersCell.cellReuseIdentifier())
+        let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
+        cell.setDataWith(array: self.biantawoList)
+
         return cell
     }
 }
@@ -425,13 +515,14 @@ extension IndexViewController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
-            return WhipMeCell.cellHeight(array: self.biantawoList)
+            return WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
         }
         
         if indexPath.section == 1 {
-            return WhipMeCell.cellHeight(array: self.biantataList)
-        }        
+            return WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+        }
         return 0
     }
 }
