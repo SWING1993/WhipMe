@@ -147,9 +147,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showIsMessage(msg: String)  {
-        let alertControl = UIAlertController.init(title: msg, message: nil, preferredStyle: UIAlertControllerStyle.alert)
-        alertControl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(alertControl, animated: true, completion: nil)
+        Tool.showHUDTip(tipStr: msg)
     }
     
     func clickWithLogin() {
@@ -180,7 +178,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let json = JSON(result!)
                 let data  = json["data"][0]
                 if (data["ret"].intValue != 0) {
-                    self.showIsMessage(msg: String(describing: data["desc"]));
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
                     return;
                 }
                 let info = data["userInfo"]
@@ -188,7 +186,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                
                 ChatMessage.shareChat().loginJMessage(UserManager.getUser().userId)
             }
         }) { (error) in

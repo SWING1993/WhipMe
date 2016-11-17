@@ -12,7 +12,7 @@ class ShareEngine: NSObject, WXApiDelegate {
     
     static let sharedInstance = ShareEngine()
     
-    public var delegate: WXApiEngineDelegate!
+    open var delegate: WXApiEngineDelegate!
     
     func registerApp() {
         WXApi.registerApp(Define.appIDWeChat())

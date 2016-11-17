@@ -4,6 +4,7 @@ use_frameworks!
 target "WhipMe" do
 
 pod 'SnapKit'
+pod 'Masonry'
 pod 'TPKeyboardAvoiding'
 pod 'MJRefresh'
 pod 'MJExtension'
@@ -17,6 +18,7 @@ pod 'SwiftyJSON'
 pod 'AFNetworking'
 pod 'YTKKeyValueStore'
 pod 'MJExtension'
+pod 'Bugly'
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'

@@ -10,9 +10,9 @@ import UIKit
 
 class UserInfoTableViewCell: UITableViewCell {
     
-    var lblTitle: UILabel!
-    var lblText: UILabel!
-    var imageLogo: UIImageView!
+    open var lblTitle: UILabel!
+    open var lblText: UILabel!
+    open var imageLogo: UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

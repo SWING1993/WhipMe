@@ -251,7 +251,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
-            
             ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
             
         }) { (error) in
@@ -296,17 +295,16 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             let json = JSON(result!)
             let data = json["data"][0]
             
-            if (data["ret"].intValue != 0) {
-                self.showIsMessage(msg: String(describing: data["desc"]))
-                return;
+            if (data["ret"].intValue == 0) {
+                let user = data["userInfo"]
+                UserManager.storeUserData(data: user)
+                
+                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.setupMainController()
+                ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+            } else {
+                Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }
-            let user = data["userInfo"]
-            UserManager.storeUserData(data: user)
-            
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-            
-            ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
             
         }) { (error) in
             print("注册：第2步 is error:\(error)")

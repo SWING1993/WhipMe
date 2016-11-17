@@ -12,7 +12,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
 
     var tableViewWM: UITableView!
 //    var arrayContent: NSMutableArray! = ["","头像","","昵称","性别","生日","","签名"]
-    var userModel: UserInfoModel!
+    var userModel: UserInfoModel = UserInfoModel()
     
     private let identifier_cell: String = "userInfoViewCell"
     
@@ -21,16 +21,14 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.title = "编辑个人资料"
         self.view.backgroundColor = Define.kColorBackGround()
         
-        if (userModel == nil) {
-            userModel = UserInfoModel()
-            userModel.username = "幽叶"
-            userModel.nickname = "榴莲"
-            userModel.avatar = "system_monitoring"
-            userModel.sex = "男"
-            userModel.age = "22"
-            userModel.birthday = "1992-10-05"
-            userModel.signature = "寂寞的幻境，朦胧的身影"
-        }
+        userModel.username = "幽叶"
+        userModel.nickname = "榴莲"
+        userModel.avatar = "system_monitoring"
+        userModel.sex = "男"
+        userModel.age = "22"
+        userModel.birthday = "1992-10-05"
+        userModel.signature = "寂寞的幻境，朦胧的身影"
+        
         
         setup()
     }
@@ -212,7 +210,6 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 let alertControl = UIAlertController.init(title: "该设备不支持“照相机”", message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.default, handler: { (action) in
-                    print("_____________________________该设备不支持“照相机”")
                 }))
                 self.present(alertControl, animated: true, completion: nil)
                 return
@@ -224,7 +221,6 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 let alertControl = UIAlertController.init(title: "该设备不支持“相片库”", message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alertControl.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.default, handler: { (action) in
-                    print("_____________________________该设备不支持“相片库”")
                 }))
                 self.present(alertControl, animated: true, completion: nil)
                 return
@@ -236,6 +232,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -257,7 +254,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            userModel.avatar = file_url?.lastPathComponent
+            userModel.avatar = (file_url?.lastPathComponent)!
             self.tableViewWM.reloadData()
         }
         
