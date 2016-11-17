@@ -51,6 +51,8 @@ let kBottomMargin :CGFloat = -4.5
 let JMESSAGE_APPKEY: String = "e21f0175ea90c6692ca05a39"
 let CHANNEL: String = "appstore"
 
+let BUGLY_APPKEY = "0d6f1c4eca"
+
 class Define: NSObject {
     
     class func appIDWeChat() -> String {

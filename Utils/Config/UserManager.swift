@@ -33,6 +33,9 @@ class UserManager: NSObject {
     var userId: String = ""
     var iconPrefix: String = ""
     var sign: String = ""
+    
+    var focusNum: String = ""
+    var fansNum: String = ""
     var pwdim: String = ""
 
     class func storeUserData(data: JSON) {
@@ -42,7 +45,6 @@ class UserManager: NSObject {
         store?.createTable(withName: tableName)
         let dataDic = data.dictionaryObject
         store?.put(dataDic, withId: userID, intoTable: tableName);
-        print(NSHomeDirectory());
     }
     
     class func getUser() -> UserManager {

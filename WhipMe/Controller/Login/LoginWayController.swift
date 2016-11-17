@@ -149,8 +149,6 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                     let json = JSON(result!)
                     let data = json["data"][0]
                     
-                    print("微信登录:\(data)")
-                    
                     if (data["ret"].intValue == 1) {
                         print("用户首次登录")
                         
@@ -160,8 +158,11 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                         
                     } else if (data["ret"].intValue == 0) {
                         print("用户登录成功")
+                        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appdelegate.setupMainController()
+                        ChatMessage.shareChat().loginJMessage(UserManager.getUser().userId)
                     } else {
-                        self.showIsMessage(msg: "用户登录失败!");
+                        Tool.showHUDTip(tipStr: "用户登录失败!")
                     }
                 }
             }) { (error) in
