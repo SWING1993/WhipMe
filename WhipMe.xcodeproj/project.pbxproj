@@ -95,6 +95,7 @@
 		E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */; };
 		E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D97E561D9A1631006D3188 /* SnapKit.framework */; };
 		E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E230281DDC4262007EF8AC /* NSString+Common.m */; };
+		E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +218,7 @@
 		E4D97E561D9A1631006D3188 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
 		E4E230271DDC4262007EF8AC /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		E4E230281DDC4262007EF8AC /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 			children = (
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
+				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
 				E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */,
 				E4C9B8781D92586900A4C14D /* AlarmClockController.swift */,
 				E4D97E4A1D991816006D3188 /* LogController.swift */,
@@ -707,7 +710,6 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BG6HSL32ZA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -811,6 +813,7 @@
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
+				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
@@ -969,7 +972,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1004,7 +1007,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",

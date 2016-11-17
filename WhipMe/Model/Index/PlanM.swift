@@ -9,9 +9,9 @@
 import UIKit
 
 enum PrivacyType {
-    case all
-    case mySelf
-    case myFollow
+    case all   //1
+    case myFollow   //2
+    case mySelf   //3
 }
 
 let kPlan = "PlanKey"

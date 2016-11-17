@@ -53,14 +53,21 @@ class AddWhipController: UIViewController {
 
     fileprivate func setup() {
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+        
+        if hideHot == false {
+            prepareSegmented()
+            prepareHotTable()
+            loadHotThemeData()
+        }
+        prepareCustomTable()
+        
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            
             if self.myCostomAM.themeName.length <= 0 {
-                Tool.showHUDTip(tipStr: "请填写标题后再提交")
+                Tool.showHUDTip(tipStr: "请填写标题后再提交!")
                 return
             }
             if self.myCostomAM.plan.length <= 0 {
-                Tool.showHUDTip(tipStr: "请填写内容后再提交")
+                Tool.showHUDTip(tipStr: "请填写内容后再提交!")
                 return
             }
             
@@ -75,14 +82,25 @@ class AddWhipController: UIViewController {
             "type":"监督类型(1: 平台监督 2：好友监督 3：无监督)",
             "supervisor":"监督人的userId",
             "guarantee":"保证金"
-*/
+             */
             
             let startDate: String = self.myCostomAM.startTime.string(custom: "yyyy-MM-dd")
             let endDate: String = self.myCostomAM.endTime.string(custom: "yyyy-MM-dd")
             let clockTime: String = self.myCostomAM.alarmClock.string(custom: "HHmm")
             
-            print(clockTime)
-      
+            var privacy: String = ""
+            switch self.myCostomAM.privacy {
+                case .mySelf:
+                privacy = "3"
+                break
+            case .myFollow:
+                privacy = "2"
+                break
+            default:
+                privacy = "1"
+                break
+            }
+                  
             let params = [
                 "themeName":self.myCostomAM.themeName,
                 "creator":UserManager.getUser().userId,
@@ -93,7 +111,7 @@ class AddWhipController: UIViewController {
                 "endDate":endDate,
                 "clockTime":clockTime,
                 "type":"3",
-                "privacy":"1",
+                "privacy":privacy,
                 "supervisor":"",
                 "supervisorName":"",
                 "supervisorIcon":"",
@@ -105,7 +123,6 @@ class AddWhipController: UIViewController {
                 if (result != nil) {
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
-                    
                     if ret == 0 {
                         Tool.showHUDTip(tipStr: "添加成功")
                         _ = self.navigationController?.popViewController(animated: true)
@@ -117,18 +134,9 @@ class AddWhipController: UIViewController {
             }) { (error) in
                 print(error as Any);
             }
-//            PlanM.savePlan(value: self.myCostomAM)
-//            print(self.myCostomAM.alarmWeeks )
-//            AppDelegate.registerNotification(plan: self.myCostomAM)
-//            _ = self.navigationController?.popViewController(animated: true)
         }
         
-        if hideHot == false {
-            prepareSegmented()
-            prepareHotTable()
-            loadHotThemeData()
-        }
-        prepareCustomTable()
+       
     }
     
     fileprivate func loadHotThemeData() {
@@ -311,6 +319,7 @@ extension AddWhipController:UITableViewDataSource {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
                 
                 weak var weakSelf = self
+               
                 cell.privacydBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.privacy = value.privacy
                 }
@@ -342,8 +351,18 @@ extension AddWhipController:UITableViewDataSource {
                     }
                     
                     if inputText.row == 2 {
+                        /*
                         let alarmC = AlarmClockController.init()
                         self.navigationController?.pushViewController(alarmC, animated: true)
+                        */
+                        SGHDateView.sharedInstance.pickerMode = .time
+                        SGHDateView.sharedInstance.show();
+
+                        SGHDateView.sharedInstance.okBlock = { (date) -> Void in
+                            print(date)
+                            self.myCostomAM.alarmClock = date
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
+                        }
                     }
 
                     if inputText.row == 3 {
@@ -356,6 +375,10 @@ extension AddWhipController:UITableViewDataSource {
             }
             if indexPath.section == 2 {
                 let cell: ThirdAddCustomCell = ThirdAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
+                cell.addBtn.bk_addEventHandler({ (sender) in
+                    let addPeopleC = AddPeopleController.init()
+                    self.navigationController?.pushViewController(addPeopleC, animated: true)
+                }, for: .touchUpInside)
                 return cell
             }
         }

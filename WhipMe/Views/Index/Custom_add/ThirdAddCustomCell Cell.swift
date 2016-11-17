@@ -9,50 +9,63 @@
 import UIKit
 
 class ThirdAddCustomCell: NormalCell {
-
+    var addBtn: UIButton = UIButton.init()
+    var addLabel: UILabel = UILabel.init()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-       
+        self.backgroundColor = Define.kColorBackGround()
+        self.selectionStyle = .none
+ 
+        
+//        addBtn.backgroundColor = UIColor.random()
+//        addLabel.backgroundColor = UIColor.random()
+        
+        addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
+        bgView.addSubview(addBtn)
+        addBtn.snp.makeConstraints { (make) in
+            make.width.height.equalTo(51)
+            make.centerX.equalTo(bgView)
+            make.centerY.equalTo(bgView).offset(-25)
+
+        }
+        
+        addLabel.text = "添加监督人"
+        addLabel.textColor = kColorGary
+        addLabel.textAlignment = .center
+        addLabel.font = UIFont.systemFont(ofSize: 12)
+        bgView.addSubview(addLabel)
+        addLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(100)
+            make.height.equalTo(20)
+            make.centerX.equalTo(bgView)
+            make.top.equalTo(addBtn.snp.bottom)
+        }
+        
+        
         let titleLabel = UILabel.init()
-        titleLabel.text = "找监护人"
+        titleLabel.text = "找人监督"
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont.systemFont(ofSize: 12)
-        self.bgView.addSubview(titleLabel)
+        bgView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints({ (make) in
             make.height.equalTo(30)
             make.left.equalTo(15)
             make.right.equalTo(-15)
             make.top.equalTo(5)
         })
-        self.backgroundColor = Define.kColorBackGround()
-        self.selectionStyle = .none
         
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
-            
-            let titleLabel = UILabel.init()
-            titleLabel.text = "找监护人"
-            titleLabel.textColor = UIColor.black
-            titleLabel.font = UIFont.systemFont(ofSize: 12)
-            bgView.addSubview(titleLabel)
-            titleLabel.snp.makeConstraints({ (make) in
-                make.height.equalTo(30)
-                make.left.equalTo(15)
-                make.right.equalTo(-15)
-                make.top.equalTo(5)
-            })
-        }
-
+        let subTitleL = UILabel.init()
+        subTitleL.text = "功能介绍：可以找系统或好友监督，交一定的保证金，达成后退还，达不成，保证金归监督人所有。"
+        subTitleL.numberOfLines = 2
+        subTitleL.textColor = kColorGary
+        subTitleL.font = UIFont.systemFont(ofSize: 8)
+        bgView.addSubview(subTitleL)
+        subTitleL.snp.makeConstraints({ (make) in
+            make.height.equalTo(40)
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.bottom.equalTo(-15)
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -66,7 +66,7 @@ class SecondAddCustomCell: NormalCell {
         myCostomAM.privacy = costomAM.privacy
         table.reloadData()
         if self.privacydBlock != nil {
-            self.alarmClockBlock!(self.myCostomAM)
+            self.privacydBlock!(self.myCostomAM)
         }
     }
     
