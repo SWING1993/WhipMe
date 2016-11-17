@@ -17,6 +17,10 @@
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
+		C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */; };
+		C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */; };
+		C5129D601DDDAA1D004DEA4D /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */; };
+		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
@@ -115,6 +119,10 @@
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
 		C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAndUserController.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
+		C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
+		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -415,6 +423,9 @@
 			isa = PBXGroup;
 			children = (
 				C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */,
+				C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */,
+				C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */,
+				C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -475,6 +486,7 @@
 			children = (
 				C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */,
 				C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */,
+				C52701AE1DDC59060021F989 /* mySuperviseModel.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -707,7 +719,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BG6HSL32ZA;
+						DevelopmentTeam = 3FBZXR8H37;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -801,6 +813,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5129D601DDDAA1D004DEA4D /* MemberHeadViewCell.swift in Sources */,
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
@@ -839,14 +852,17 @@
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
+				C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
+				C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */,
 				C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */,
 				C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
+				C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */,
 				C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
@@ -969,7 +985,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1004,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BG6HSL32ZA;
+				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",

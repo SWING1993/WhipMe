@@ -165,16 +165,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let json = JSON(result!)
             let data = json["data"][0]
             
-            if (data["ret"].intValue == 2) {
-                self.showIsMessage(msg: "注册失败!")
-                return;
+            if (data["ret"].intValue == 0) {
+                let controller = RegisterAndUserController()
+                controller.mobile = mobileStr
+                controller.password = password
+                self.navigationController?.pushViewController( controller, animated: true)
+            } else {
+                Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }
-            
-            let controller = RegisterAndUserController()
-            controller.mobile = mobileStr
-            controller.password = password
-            self.navigationController?.pushViewController( controller, animated: true)
-            
         }) { (error) in
             print("手机号用户注册 error:\(error)")
         }

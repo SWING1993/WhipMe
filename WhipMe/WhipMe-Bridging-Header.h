@@ -17,6 +17,7 @@
 #import <MJExtension/MJExtension.h>
 #import "SVProgressHUD.h"
 #import <FlyImage/FlyImage.h>
+#import <Bugly/Bugly.h>
 //
 #import "NSString+Common.h"
 #import "NSString+Validate.h"
