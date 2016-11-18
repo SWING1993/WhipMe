@@ -257,6 +257,11 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 1 {
+            let controller = HistoricalReviewController()
+            controller.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
         
     }
     

@@ -20,6 +20,8 @@
 		C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */; };
 		C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */; };
 		C5129D601DDDAA1D004DEA4D /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */; };
+		C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */; };
+		C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
@@ -122,6 +124,8 @@
 		C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
+		C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewController.swift; sourceTree = "<group>"; };
+		C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewCollectionCell.swift; sourceTree = "<group>"; };
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 				C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */,
 				C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */,
 				4F8D84211DA4C7CB0043C149 /* TopUpViewController.swift */,
+				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */,
 				C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */,
 				C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */,
+				C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -871,12 +877,14 @@
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
+				C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */,
 				C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
+				C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,

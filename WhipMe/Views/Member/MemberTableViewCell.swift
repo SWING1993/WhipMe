@@ -149,8 +149,6 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MemberCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier_collect, for: indexPath) as! MemberCollectionViewCell
         
-        cell.backgroundColor = UIColor.gray
-        
         return cell
     }
     
