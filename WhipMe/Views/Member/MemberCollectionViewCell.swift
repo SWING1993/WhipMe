@@ -11,6 +11,8 @@ import UIKit
 
 class MemberCollectionViewCell: UICollectionViewCell {
     
+    open var imageIcon: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -21,6 +23,13 @@ class MemberCollectionViewCell: UICollectionViewCell {
     }
     
     func setup() {
-        
+        imageIcon = UIImageView.init()
+        imageIcon.backgroundColor = UIColor.gray
+        imageIcon.contentMode = UIViewContentMode.scaleAspectFill
+        imageIcon.clipsToBounds = true
+        self.contentView.addSubview(imageIcon)
+        imageIcon.snp.updateConstraints { (make) in
+            make.edges.equalTo(self.contentView)
+        }
     }
 }
