@@ -16,6 +16,8 @@
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
+		C50D29AA1DDE965B00F32B38 /* MyFansAndFocusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */; };
+		C50D29AC1DDE9E4100F32B38 /* MyFansAndFocusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
 		C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */; };
 		C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */; };
@@ -121,6 +123,8 @@
 		C50A49871D9A06180003CE2D /* PhoneCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodeButton.h; sourceTree = "<group>"; };
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
 		C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAndUserController.swift; sourceTree = "<group>"; };
+		C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusController.swift; sourceTree = "<group>"; };
+		C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusCell.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
 		C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -367,6 +371,7 @@
 				C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */,
 				4F8D84211DA4C7CB0043C149 /* TopUpViewController.swift */,
 				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
+				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 				C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */,
 				C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */,
 				C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */,
+				C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -841,6 +847,7 @@
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
+				C50D29AA1DDE965B00F32B38 /* MyFansAndFocusController.swift in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
 				E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */,
 				E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */,
@@ -850,6 +857,7 @@
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
 				4F8D84221DA4C7CB0043C149 /* TopUpViewController.swift in Sources */,
+				C50D29AC1DDE9E4100F32B38 /* MyFansAndFocusCell.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
