@@ -27,6 +27,7 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
     fileprivate var lblDescribe: UILabel!
     
     fileprivate let kHead_WH: CGFloat = 60.0
+    fileprivate let kItem_Tag: Int = 7777
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +146,7 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
         image_normal = image_normal.stretchableImage(withLeftCapWidth: 10, topCapHeight: 10)
         var origin_x: CGFloat = 0.0
         let size_item_w: CGFloat = Define.screenWidth()/3.0
-        var item_tag = 7777
+        var item_tag = kItem_Tag
         for itemStr in titles {
             let itemButton = UIButton.init(type: UIButtonType.custom)
             itemButton.setBackgroundImage(UIImage.init(), for: UIControlState.normal)
@@ -210,6 +211,19 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func onClickWithItem(sender: UIButton) {
         print(sender)
+        let index: Int = sender.tag%kItem_Tag
+        if index == 0 {
+            // 钱包
+        } else {
+            var style: WMFansAndFocusStyle = WMFansAndFocusStyle.fans
+            if index == 1 {
+                style = WMFansAndFocusStyle.focus
+            }
+            let controller: MyFansAndFocusController = MyFansAndFocusController()
+            controller.style = style
+            controller.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: - UITableViewDelegate Datasource
@@ -257,6 +271,11 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 1 {
+            let controller = HistoricalReviewController()
+            controller.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
         
     }
     
