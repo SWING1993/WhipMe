@@ -178,9 +178,13 @@ class WhipMeCell: UITableViewCell {
         return height
     }
     
-    class func whipMeCellHeight(model:WhipM) -> CGFloat {
+    class func whipMeCellHeight() -> CGFloat {
         return 75.0
     }
+    
+//    class func whipMeCellHeight(model:WhipM) -> CGFloat {
+//        return 75.0
+//    }
     
     
     
@@ -202,6 +206,9 @@ class WhipCell: UITableViewCell {
     
     var checkPlan:((IndexPath) -> Void)?
     var deletePlan:((IndexPath) -> Void)?
+    
+    var sectionHArr_Me: NSArray = NSArray.init()
+    var sectionHArr_Other: NSArray = NSArray.init()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -261,26 +268,46 @@ class WhipCell: UITableViewCell {
         }
     }
     
+    //return WhipMeCell.whipOtherCellHeight(model: whipM)
+    //return WhipMeCell.whipMeCellHeight()
     func setDataWith(array: NSArray) {
         self.modelArray = array
-        whipMeTable.reloadData()
+        
+        
+        self.sectionHArr_Other = {
+            let tempArr: NSMutableArray = NSMutableArray.init()
+            for whipM in array {
+                let height:CGFloat = WhipMeCell.whipOtherCellHeight(model: whipM as! WhipM)
+                tempArr.add(height)
+            }
+            return tempArr.copy() as! NSArray
+        }()
+
+        
+        self.sectionHArr_Me = {
+            let tempArr: NSMutableArray = NSMutableArray.init()
+            for _ in array {
+                let height:CGFloat = WhipMeCell.whipMeCellHeight()
+                tempArr.add(height)
+            }
+            return tempArr.copy() as! NSArray
+        }()
+        
+        self.whipMeTable.reloadData()
     }
     
     class func cellHeight(array: NSArray, type: String) -> CGFloat {
         var height: CGFloat = 54.0
-        
         if type == whipOtherReuseIdentifier() {
             for whipM in array {
                 height += WhipMeCell.whipOtherCellHeight(model: whipM as! WhipM)
             }
         }
         else {
-            for whipM in array {
-                height += WhipMeCell.whipMeCellHeight(model: whipM as! WhipM)
+            for _ in array {
+                height += WhipMeCell.whipMeCellHeight()
             }
         }
-
-
         return height
     }
     
@@ -355,7 +382,6 @@ extension WhipCell: UITableViewDataSource {
 }
 
 extension WhipCell: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.checkPlan != nil {
             self.checkPlan!(indexPath)
@@ -363,14 +389,22 @@ extension WhipCell: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
+            return self.sectionHArr_Other.object(at: indexPath.row) as! CGFloat
+            
+        }else {
+            return self.sectionHArr_Me.object(at: indexPath.row) as! CGFloat
+        }
+        /*
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             return WhipMeCell.whipOtherCellHeight(model: whipM)
 
         }else {
-            return WhipMeCell.whipMeCellHeight(model: whipM)
+            return WhipMeCell.whipMeCellHeight()
 
         }
+        */
     }
 }
 
@@ -387,6 +421,10 @@ class IndexViewController: UIViewController {
     lazy var biantawoList :NSMutableArray = {
         return NSMutableArray.init()
     }()
+    
+    var sectionH_0: CGFloat = 0.0
+    var sectionH_1: CGFloat = 0.0
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -419,6 +457,9 @@ class IndexViewController: UIViewController {
 //                    print(result)
                     self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
                     self.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                    self.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                    self.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+
                     self.myTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -517,11 +558,11 @@ extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
-            return WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+            return sectionH_0
         }
         
         if indexPath.section == 1 {
-            return WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+            return sectionH_1
         }
         return 0
     }
