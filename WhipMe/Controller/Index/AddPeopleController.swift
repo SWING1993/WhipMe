@@ -12,6 +12,14 @@ import RxCocoa
 import RxSwift
 import SwiftyJSON
 
+
+class FansM: NSObject {
+    var num: Int = 0
+    var userId: String = ""
+    var icon: String = ""
+    var nickname: String = ""
+}
+
 class AddPeopleController: UIViewController {
 
     override func viewDidLoad() {
@@ -19,8 +27,27 @@ class AddPeopleController: UIViewController {
         // Do any additional setup after loading the view.
 
         
+        /*
+ 
+         {
+         "data": [{
+         "ret”:”0",
+         "desc":"成功",
+         "btNum":"小鞭君正在监督的人数",
+         "list": [
+         {
+         "userId":"用户的userId",
+         "icon":"用户的头像",
+         "num":"正在监督的人数",
+         "nickname":"用户的昵称"
+         }
+         ]
+         }]
+         }
+ */
+        
         self.view.backgroundColor = kColorWhite
-        self.title = "添加监督人"
+        self.title = "选择监督人"
     
         let params = ["userId":UserManager.getUser().userId]
         

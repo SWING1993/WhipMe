@@ -23,19 +23,6 @@ class FirstAddCustomCell: NormalCell {
         self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
         
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
-        }
         if titleT == nil {
             titleT = UITextField.init()
             titleT.textColor = Define.kColorBlack()

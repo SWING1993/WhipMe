@@ -21,6 +21,11 @@ class QueryHotThemeM: NSObject {
 
 class AddWhipController: UIViewController {
 
+    
+    var queryHorThemeName: String = ""
+    var hideHot: Bool = false
+
+    
     var disposeBag = DisposeBag()
     lazy var myCostomAM :PlanM! = {
         let plam = PlanM.init()
@@ -32,8 +37,6 @@ class AddWhipController: UIViewController {
     fileprivate var hotTable: UITableView = UITableView.init()
     fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem.init()
     fileprivate var segmentedView: UISegmentedControl = UISegmentedControl.init()
-    fileprivate var hideHot: Bool = false
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -58,6 +61,9 @@ class AddWhipController: UIViewController {
             prepareSegmented()
             prepareHotTable()
             loadHotThemeData()
+        }
+        else {
+            self.navigationItem.rightBarButtonItem = self.submitBtn
         }
         prepareCustomTable()
         
@@ -125,8 +131,7 @@ class AddWhipController: UIViewController {
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
                         Tool.showHUDTip(tipStr: "添加成功")
-                        _ = self.navigationController?.popViewController(animated: true)
-
+                        _ = self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -305,6 +310,12 @@ extension AddWhipController:UITableViewDataSource {
             if indexPath.row == 0 && indexPath.section == 0 {
                 let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
                 
+                if self.queryHorThemeName.isEmpty == false {
+                    cell.titleT.text = self.queryHorThemeName
+                    self.myCostomAM.themeName = self.queryHorThemeName
+                    cell.titleT.isEnabled = false;
+                }
+                
                 weak var weakSelf = self
                 cell.titleChangedBlock =  { (value) -> Void in
                     weakSelf?.myCostomAM.themeName = value
@@ -387,7 +398,6 @@ extension AddWhipController:UITableViewDataSource {
             let cell: HotAddCell = HotAddCell.init(style: UITableViewCellStyle.default, reuseIdentifier: HotAddCell.cellReuseIdentifier())
             
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
-            print(model.themeName)
             cell.titleL.text = model.themeName
             cell.subTitleL.text = "已有" + model.num + "位参加"
             cell.cellImage.image = UIImage.init(named: model.themeIcon)
@@ -424,6 +434,9 @@ extension AddWhipController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 101 {
             let vc = AddWhipController.init()
+            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
+            print(model.themeName)
+            vc.queryHorThemeName = model.themeName
             vc.hideHot = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
