@@ -31,22 +31,7 @@ class HotAddCell: NormalCell {
         self.backgroundColor = kColorBackGround
         self.selectionStyle = .none
         
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(kTopMargin)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
-        }
-        
         if cellImage == nil {
-            
             cellImage = UIImageView.init()
 //            cellImage.image = UIImage.init(named: "zaoqi")
             self.bgView.addSubview(cellImage)

@@ -410,12 +410,12 @@
 		C546FE191D82989700012FB4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4D97E4D1D991E32006D3188 /* NormalCell.swift */,
 				C50A49841D9A055C0003CE2D /* Login */,
 				E4189ED91D8E73C200A619A6 /* Index */,
 				C546FE1A1D82989700012FB4 /* Chat */,
 				C546FE1B1D82989700012FB4 /* FriendCircle */,
 				C546FE1D1D82989700012FB4 /* Member */,
-				E4D97E4D1D991E32006D3188 /* NormalCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

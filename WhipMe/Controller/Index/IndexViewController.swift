@@ -342,6 +342,7 @@ extension WhipCell: UITableViewDataSource {
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         
         cell.iconV.setImageWith(URL.init(string: whipM.icon)!, placeholderImage: UIImage.init(named: "zaoqi"))
+        print(whipM.icon)
         cell.themeL.text = whipM.themeName
         let themeLWidth = whipM.themeName.getWidth(font: UIFont.systemFont(ofSize: 14), height: 20)
         cell.themeL.snp.updateConstraints { (make) in
