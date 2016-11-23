@@ -35,17 +35,17 @@ class FriendCircleM: NSObject {
 
 class FriendCircleController: UIViewController {
     
-    fileprivate var recommendTable: UITableView = UITableView.init()
-    fileprivate var friendCircleModelArr: NSMutableArray = NSMutableArray.init();
+    
+    fileprivate var cellHeights: [CGFloat] = []
+    fileprivate var recommendTable: UITableView = UITableView()
+    fileprivate var friendCircleModelArr: NSMutableArray = NSMutableArray();
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
         let params = [
             "pageSize":"20",
             "pageIndex":"1",
         ]
-        
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             print(result!)
             if (result != nil) {
@@ -54,7 +54,13 @@ class FriendCircleController: UIViewController {
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
                     self.friendCircleModelArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
+                    
+                    for model in self.friendCircleModelArr {
+                        let cellHeight = RecommendCell.cellHeight(model: model as! FriendCircleM)
+                        self.cellHeights.append(cellHeight)
+                    }
                     self.recommendTable.reloadData()
+                    
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -144,7 +150,8 @@ extension FriendCircleController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension FriendCircleController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
-        return RecommendCell.cellHeight(model: model)
+//        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
+//        return RecommendCell.cellHeight(model: model)
+        return self.cellHeights[indexPath.row]
     }
 }

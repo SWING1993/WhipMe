@@ -43,17 +43,17 @@ class WhipM: NSObject {
 class WhipMeCell: UITableViewCell {
     
     
-    var headV: UIImageView = UIImageView.init()
-    var themeV: UIImageView = UIImageView.init()
+    var headV: UIImageView = UIImageView()
+    var themeV: UIImageView = UIImageView()
     
-    var themeL: UILabel = UILabel.init()
-    var goingL: UILabel = UILabel.init()
+    var themeL: UILabel = UILabel()
+    var goingL: UILabel = UILabel()
     
-    var subTitle: UILabel = UILabel.init()
+    var subTitle: UILabel = UILabel()
     
-    var guaranteeL: UILabel = UILabel.init()
-    var refuseBtn: UIButton = UIButton.init()
-    var acceptBtn: UIButton = UIButton.init()
+    var guaranteeL: UILabel = UILabel()
+    var refuseBtn: UIButton = UIButton()
+    var acceptBtn: UIButton = UIButton()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -195,8 +195,8 @@ class WhipMeCell: UITableViewCell {
 
 class WhipCell: UITableViewCell {
     
-    var bgView: UIView!
-    var whipMeTable: UITableView!
+    var bgView: UIView = UIView()
+    var whipMeTable: UITableView = UITableView()
     
     lazy var modelArray: NSArray = {
         return NSArray()
@@ -216,18 +216,15 @@ class WhipCell: UITableViewCell {
         self.backgroundColor = Define.kColorBackGround()
         self.myReuseIdentifier = reuseIdentifier!
         
-        if bgView == nil {
-            bgView = UIView.init()
-            bgView.backgroundColor = UIColor.white
-            bgView.layer.cornerRadius = 5.0
-            bgView.layer.masksToBounds = true
-            self.addSubview(bgView)
-            bgView.snp.makeConstraints { (make) in
-                make.top.equalTo(21)
-                make.bottom.equalTo(kBottomMargin)
-                make.left.equalTo(kLeftMargin)
-                make.right.equalTo(kRightMargin)
-            }
+        bgView.backgroundColor = UIColor.white
+        bgView.layer.cornerRadius = 5.0
+        bgView.layer.masksToBounds = true
+        self.addSubview(bgView)
+        bgView.snp.makeConstraints { (make) in
+            make.top.equalTo(21)
+            make.bottom.equalTo(kBottomMargin)
+            make.left.equalTo(kLeftMargin)
+            make.right.equalTo(kRightMargin)
         }
         
         let tip = UILabel.init()
@@ -252,28 +249,21 @@ class WhipCell: UITableViewCell {
             make.left.equalTo(14.5)
         }
        
-        if whipMeTable == nil {
-            whipMeTable = UITableView.init()
-            whipMeTable.isScrollEnabled = false
-            whipMeTable.showsVerticalScrollIndicator = false
-            whipMeTable.delegate = self
-            whipMeTable.dataSource = self
-            bgView.addSubview(whipMeTable)
-            whipMeTable.snp.makeConstraints({ (make) in
-                make.width.equalTo(bgView)
-                make.left.equalTo(0)
-                make.top.equalTo(tip.snp.bottom).offset(10)
-                make.bottom.equalTo(0)
-            })
-        }
+        whipMeTable.isScrollEnabled = false
+        whipMeTable.showsVerticalScrollIndicator = false
+        whipMeTable.delegate = self
+        whipMeTable.dataSource = self
+        bgView.addSubview(whipMeTable)
+        whipMeTable.snp.makeConstraints({ (make) in
+            make.width.equalTo(bgView)
+            make.left.equalTo(0)
+            make.top.equalTo(tip.snp.bottom).offset(10)
+            make.bottom.equalTo(0)
+        })
     }
-    
-    //return WhipMeCell.whipOtherCellHeight(model: whipM)
-    //return WhipMeCell.whipMeCellHeight()
+
     func setDataWith(array: NSArray) {
         self.modelArray = array
-        
-        
         self.sectionHArr_Other = {
             let tempArr: NSMutableArray = NSMutableArray.init()
             for whipM in array {
@@ -412,7 +402,7 @@ extension WhipCell: UITableViewDelegate {
 
 class IndexViewController: UIViewController {
     
-    fileprivate var myTable: UITableView!
+    fileprivate var myTable: UITableView = UITableView()
     var disposeBag = DisposeBag()
     
     
@@ -473,7 +463,6 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func prepareTableView() {
-        myTable = UITableView.init()
         myTable.backgroundColor = kColorBackGround
         myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipMeReuseIdentifier())
         myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipOtherReuseIdentifier())
@@ -484,7 +473,7 @@ class IndexViewController: UIViewController {
         myTable.emptyDataSetDelegate = self
         myTable.separatorStyle = .none
         myTable.showsVerticalScrollIndicator = false
-        view.addSubview(myTable!)
+        view.addSubview(myTable)
         myTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }

@@ -154,60 +154,55 @@ class LogPhotoCell: NormalCell {
 
 class LogLocationCell: NormalCell {
  
-    var titleL: UILabel!
-    var switcher: UISwitch!
-    var locationL: UILabel!
+    var titleL = UILabel()
+    var switcher =  UISwitch()
+    var locationL = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        if titleL == nil {
-            titleL = UILabel.init()
-            titleL.font = UIFont.systemFont(ofSize: 15)
-            titleL.text = "显示位置"
-            self.bgView.addSubview(titleL)
-            titleL.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.right.equalTo(-15)
-                make.top.equalTo(0)
-                make.height.equalTo(46)
-            })
-            
-            let line = UIView.init()
-            line.backgroundColor = UIColor.random()
-            self.bgView.addSubview(line)
-            line.snp.makeConstraints { (make) in
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.top.equalTo(titleL.snp.bottom)
-                make.height.equalTo(0.5)
-            }
+        titleL = UILabel.init()
+        titleL.font = UIFont.systemFont(ofSize: 15)
+        titleL.text = "显示位置"
+        self.bgView.addSubview(titleL)
+        titleL.snp.makeConstraints({ (make) in
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.top.equalTo(0)
+            make.height.equalTo(46)
+        })
+        
+        let line = UIView.init()
+        line.backgroundColor = UIColor.random()
+        self.bgView.addSubview(line)
+        line.snp.makeConstraints { (make) in
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.top.equalTo(titleL.snp.bottom)
+            make.height.equalTo(0.5)
         }
         
-        if switcher == nil {
-            switcher = UISwitch.init()
-            switcher.isOn = false
-            self.bgView.addSubview(switcher)
-            switcher.snp.makeConstraints({ (make) in
-                make.right.equalTo(-10)
-                make.height.equalTo(30)
-                make.top.equalTo(8)
-                make.width.equalTo(55)
-            })
-        }
+        switcher = UISwitch.init()
+        switcher.isOn = false
+        self.bgView.addSubview(switcher)
+        switcher.snp.makeConstraints({ (make) in
+            make.right.equalTo(-10)
+            make.height.equalTo(30)
+            make.top.equalTo(8)
+            make.width.equalTo(55)
+        })
+
         
-        if locationL == nil {
-            locationL = UILabel.init()
-            locationL.font = UIFont.systemFont(ofSize: 11)
-            locationL.baselineAdjustment = .alignCenters
-            self.bgView.addSubview(locationL)
-            locationL.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.right.equalTo(-15)
-                make.top.equalTo(titleL.snp.bottom).offset(-5)
-                make.height.equalTo(33)
-            })
-        }
+        locationL = UILabel.init()
+        locationL.font = UIFont.systemFont(ofSize: 11)
+        locationL.baselineAdjustment = .alignCenters
+        self.bgView.addSubview(locationL)
+        locationL.snp.makeConstraints({ (make) in
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.top.equalTo(titleL.snp.bottom).offset(-5)
+            make.height.equalTo(33)
+        })
     }
     
     class func cellHeight() -> CGFloat {
@@ -227,9 +222,9 @@ class LogLocationCell: NormalCell {
 
 class LogController: UIViewController {
     
-    var myLogTable: UITableView!
+    var myLogTable: UITableView = UITableView()
     var photo: UIImage?
-    var location: String?
+    var location: String = ""
     var disposeBag = DisposeBag()
 
     lazy var locateM : CLLocationManager = {
@@ -243,8 +238,6 @@ class LogController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setup()
-      
-            
     }
 
     override func didReceiveMemoryWarning() {
@@ -293,7 +286,6 @@ class LogController: UIViewController {
     func setup() -> Void {
         self.navigationItem.title = "记录一下"
         self.view.backgroundColor = Define.kColorBackGround()
-        myLogTable = UITableView.init()
         myLogTable.backgroundColor = kColorBackGround
         myLogTable.register(LogTextCell.self, forCellReuseIdentifier: LogTextCell.cellReuseIdentifier())
         myLogTable.register(LogNoPhotoCell.self, forCellReuseIdentifier: LogNoPhotoCell.cellReuseIdentifier())
@@ -311,10 +303,7 @@ class LogController: UIViewController {
         self.navigationItem.rightBarButtonItem = OKBtn
         
         OKBtn.bk_init(withTitle: "发送", style: .plain) { (sender) in
-//            HttpClient.sharedInstance.apiRequest(url: "", parameters: ["consumer_key": "123"], method: .get, completionHandler: { (requst, error) in
-//                print(requst)
-//                print(error)
-//            })
+            
         }
         self.getLocation()
         self.myLogTable.rx.itemSelected
@@ -344,7 +333,7 @@ extension LogController :UITableViewDataSource {
             let cell: LogTextCell = LogTextCell.init(style: UITableViewCellStyle.default, reuseIdentifier: LogTextCell.cellReuseIdentifier())
             cell.contentT.rx.text
                 .bindNext({ (value) in
-                    print(value)
+                    print(value!)
                 })
                 .addDisposableTo(disposeBag)
             return cell
@@ -374,7 +363,7 @@ extension LogController :UITableViewDataSource {
                         self.getLocation()
                     }
                     else {
-                        self.location = nil
+                        self.location = ""
                         self.locateM.stopUpdatingLocation()
                     }
                 })
@@ -423,28 +412,24 @@ extension LogController :UINavigationControllerDelegate {
 
 extension LogController :CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last)
+        print(locations.last!)
         manager.stopUpdatingLocation()
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(locations.last!) { (placemarks, error) in
             if error == nil {
                 let mark = placemarks?.last
-                print(mark?.name)
-                self.location = mark?.name
+                print(mark?.name! as Any)
+                self.location = (mark?.name)!
                 let cell:LogLocationCell = self.myLogTable.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! LogLocationCell
                 cell.locationL.text = self.location
             }else {
-                print(error?.localizedDescription)
-//                let alertView = UIAlertView.init(title: error?.localizedDescription, message: nil, delegate: nil, cancelButtonTitle: "确定")
-//                alertView.show()
+                print(error!)
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-//        let alertView = UIAlertView.init(title: error.localizedDescription, message: nil, delegate: nil, cancelButtonTitle: "确定")
-//        alertView.show()
     }
 
 }

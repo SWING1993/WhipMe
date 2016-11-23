@@ -22,9 +22,9 @@ class FansM: NSObject {
 
 class FansCell: UITableViewCell {
     
-    var iconV: UIImageView = UIImageView.init()
-    var nicknameL: UILabel = UILabel.init()
-    var numL: UILabel = UILabel.init()
+    var iconV: UIImageView = UIImageView()
+    var nicknameL: UILabel = UILabel()
+    var numL: UILabel = UILabel()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

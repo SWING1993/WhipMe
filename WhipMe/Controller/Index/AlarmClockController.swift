@@ -11,8 +11,8 @@ import UIKit
 class AlarmClockController: UIViewController {
 
     
-    var alarmClockTable = UITableView.init()
-    var myCostomAM = PlanM.init()
+    var alarmClockTable = UITableView()
+    var myCostomAM = PlanM()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -32,12 +32,12 @@ class AddWhipController: UIViewController {
         return plam
     }()
     
-    fileprivate var queryHotThemeMArr: NSArray = NSArray.init()
-    fileprivate var customTable: UITableView = UITableView.init()
-    fileprivate var hotTable: UITableView = UITableView.init()
-    fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem.init()
-    fileprivate var segmentedView: UISegmentedControl = UISegmentedControl.init()
-    fileprivate var searchBar = UITextField.init()
+    fileprivate var queryHotThemeMArr: NSArray = NSArray()
+    fileprivate var customTable: UITableView = UITableView()
+    fileprivate var hotTable: UITableView = UITableView()
+    fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem()
+    fileprivate var segmentedView: UISegmentedControl = UISegmentedControl()
+    fileprivate var searchBar = UITextField()
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
