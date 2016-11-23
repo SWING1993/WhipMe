@@ -441,6 +441,7 @@ class IndexViewController: UIViewController {
         let params = ["userId":UserManager.getUser().userId]
         HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
             if (result != nil) {
+                print(result!)
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {

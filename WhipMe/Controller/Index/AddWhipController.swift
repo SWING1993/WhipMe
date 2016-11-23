@@ -388,8 +388,9 @@ extension AddWhipController:UITableViewDataSource {
             if indexPath.section == 2 {
                 let cell: ThirdAddCustomCell = ThirdAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: ThirdAddCustomCell.cellReuseIdentifier())
                 cell.addBtn.bk_addEventHandler({ (sender) in
-                    let addPeopleC = AddPeopleController.init()
-                    self.navigationController?.pushViewController(addPeopleC, animated: true)
+                    let addPeopleC = AddPeopleController()
+                    let addPeopleN = UINavigationController.init(rootViewController: addPeopleC)
+                    self.present(addPeopleN, animated: true, completion: nil)
                 }, for: .touchUpInside)
                 return cell
             }

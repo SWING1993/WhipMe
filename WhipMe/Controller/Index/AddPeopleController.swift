@@ -127,7 +127,7 @@ class AddPeopleController: UIViewController {
 
     var chooseSupervisor:((IndexPath) -> Void)?
 
-    var myTable: UITableView = UITableView.init()
+    var myTable: UITableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     var systemView: SystemView = SystemView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 160))
     var myFansArr: NSMutableArray = NSMutableArray.init()
     
@@ -155,11 +155,6 @@ class AddPeopleController: UIViewController {
                     self.systemView.numL.text = "正在监督"+btNum+"人"
                     let list  = json["data"][0]["list"].arrayObject
                     self.myFansArr = FansM.mj_objectArray(withKeyValuesArray: list)
-                    
-                    let tableH: CGFloat = CGFloat(self.myFansArr.count) * 65.0
-                    self.myTable.snp.updateConstraints { (make) in
-                        make.height.equalTo(tableH)
-                    }
                     self.myTable.reloadData()
                     
                 } else {
@@ -181,7 +176,7 @@ class AddPeopleController: UIViewController {
 
         myTable.delegate = self
         myTable.dataSource = self
-        myTable.isScrollEnabled = false
+        myTable.separatorStyle = .singleLine
         myTable.layer.masksToBounds = true
         myTable.layer.cornerRadius = 5
         myTable.rowHeight = 65.0
@@ -190,17 +185,18 @@ class AddPeopleController: UIViewController {
         self.view.addSubview(myTable)
         myTable.snp.makeConstraints { (make) in
             make.top.equalTo(systemView.snp.bottom)
-            make.height.equalTo(0)
+            make.bottom.equalTo(-10)
             make.left.equalTo(kLeftMargin)
             make.right.equalTo(kRightMargin)
         }
         
-        let OKBtn = UIBarButtonItem.init()
-        self.navigationItem.rightBarButtonItem = OKBtn
+        let cancleBtn = UIBarButtonItem.init()
+        self.navigationItem.leftBarButtonItem = cancleBtn
         
         weak var weakSelf = self
-        OKBtn.bk_init(withTitle: "确定", style: .plain) { (sender) in
-            _ = weakSelf?.navigationController?.popViewController(animated: true)
+        
+        cancleBtn.bk_init(withTitle: "取消", style: .plain) { (sender) in
+            weakSelf?.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -234,7 +230,15 @@ extension AddPeopleController:UITableViewDataSource {
 
 extension AddPeopleController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let cashC = CashController()
+        self.navigationController?.pushViewController(cashC, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 }
 
