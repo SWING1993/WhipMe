@@ -213,10 +213,10 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(sender)
         let index: Int = sender.tag%kItem_Tag
         if index == 0 {
-            let controller: FinancialDetailsController = FinancialDetailsController()
-            controller.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(controller, animated: true)
             // 钱包
+            let walletContrl: MyWalletViewController = MyWalletViewController();
+            walletContrl.hidesBottomBarWhenPushed = true;
+            self.navigationController?.pushViewController(walletContrl, animated: true);
         } else {
             var style: WMFansAndFocusStyle = WMFansAndFocusStyle.fans
             if index == 1 {

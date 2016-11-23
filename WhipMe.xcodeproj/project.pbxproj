@@ -10,7 +10,6 @@
 		4F677D9C1DA0ED17004D54EA /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D961DA0ED17004D54EA /* libWeChatSDK.a */; };
 		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
 		4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677DA41DA10F5F004D54EA /* NSString+Validate.m */; };
-		4F8D84221DA4C7CB0043C149 /* TopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D84211DA4C7CB0043C149 /* TopUpViewController.swift */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
 		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
@@ -35,6 +34,8 @@
 		C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2E1D829D8200012FB4 /* MemberViewController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
+		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
+		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
 		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
 		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
@@ -57,7 +58,6 @@
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
 		C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */; };
-		C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */; };
 		C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A66B321D990E5C00612E16 /* LoginWayController.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
 		C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8290B1D93731400EBF46E /* UserEditViewController.swift */; };
@@ -117,7 +117,6 @@
 		4F677D9F1DA0EDD6004D54EA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		4F677DA31DA10F5F004D54EA /* NSString+Validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validate.h"; sourceTree = "<group>"; };
 		4F677DA41DA10F5F004D54EA /* NSString+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validate.m"; sourceTree = "<group>"; };
-		4F8D84211DA4C7CB0043C149 /* TopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopUpViewController.swift; sourceTree = "<group>"; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
 		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
@@ -145,6 +144,10 @@
 		C546FE2E1D829D8200012FB4 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		C54DF9101D9BB4E20067BC9F /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
+		C555E7791DE5827600A443A0 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
+		C555E77A1DE5827600A443A0 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
+		C555E77C1DE5935900A443A0 /* TopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpViewController.h; sourceTree = "<group>"; };
+		C555E77D1DE5935900A443A0 /* TopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopUpViewController.m; sourceTree = "<group>"; };
 		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
@@ -167,7 +170,6 @@
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
 		C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
-		C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
 		C5A66B321D990E5C00612E16 /* LoginWayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWayController.swift; sourceTree = "<group>"; };
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C5A8290B1D93731400EBF46E /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
@@ -372,11 +374,13 @@
 				C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */,
 				C5A8290B1D93731400EBF46E /* UserEditViewController.swift */,
 				C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */,
-				C5A196FC1D94D76F007BB67D /* MyWalletViewController.swift */,
-				4F8D84211DA4C7CB0043C149 /* TopUpViewController.swift */,
 				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
+				C555E7791DE5827600A443A0 /* MyWalletViewController.h */,
+				C555E77A1DE5827600A443A0 /* MyWalletViewController.m */,
+				C555E77C1DE5935900A443A0 /* TopUpViewController.h */,
+				C555E77D1DE5935900A443A0 /* TopUpViewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -865,7 +869,6 @@
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
-				4F8D84221DA4C7CB0043C149 /* TopUpViewController.swift in Sources */,
 				C50D29AC1DDE9E4100F32B38 /* MyFansAndFocusCell.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
@@ -889,7 +892,6 @@
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */,
-				C5A196FD1D94D76F007BB67D /* MyWalletViewController.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
@@ -902,12 +904,14 @@
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
+				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
+				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
 				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
 			);

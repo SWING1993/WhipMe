@@ -9,6 +9,17 @@
 #ifndef Whipme_PrefixHeader_pch
 #define Whipme_PrefixHeader_pch
 
+#import <Masonry/Masonry.h>
 #import "NSString+Validate.h"
+
+#import "WhipMe-Swift.h"
+
+#define WEAK_SELF __weak typeof(self) weakSelf = self;
+
+#ifdef DEBUG
+#define DebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DebugLog(...)
+#endif
 
 #endif /* Whipme_PrefixHeader_pch */
