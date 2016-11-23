@@ -740,7 +740,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 3FBZXR8H37;
+						DevelopmentTeam = S8JBM2NX4M;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1013,7 +1013,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				DEVELOPMENT_TEAM = S8JBM2NX4M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1048,7 +1048,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				DEVELOPMENT_TEAM = S8JBM2NX4M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",

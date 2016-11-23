@@ -43,13 +43,13 @@ class WhipM: NSObject {
 class WhipMeCell: UITableViewCell {
     
     
-    var iconV: UIImageView = UIImageView.init()
+    var headV: UIImageView = UIImageView.init()
+    var themeV: UIImageView = UIImageView.init()
     
     var themeL: UILabel = UILabel.init()
     var goingL: UILabel = UILabel.init()
     
     var subTitle: UILabel = UILabel.init()
-    var headV: UIImageView = UIImageView.init()
     
     var guaranteeL: UILabel = UILabel.init()
     var refuseBtn: UIButton = UIButton.init()
@@ -73,10 +73,10 @@ class WhipMeCell: UITableViewCell {
 
         
 //        iconV.backgroundColor = UIColor.random()
-        iconV.layer.cornerRadius = 30/2
-        iconV.layer.masksToBounds = true
-        self.contentView .addSubview(iconV)
-        iconV.snp.makeConstraints { (make) in
+        themeV.layer.cornerRadius = 30/2
+        themeV.layer.masksToBounds = true
+        self.contentView .addSubview(themeV)
+        themeV.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
             make.centerY.equalTo(headV.snp.centerY)
             make.left.equalTo(18)
@@ -86,7 +86,7 @@ class WhipMeCell: UITableViewCell {
         themeL.font = UIFont.systemFont(ofSize: 14)
         self.contentView.addSubview(themeL)
         themeL.snp.makeConstraints { (make) in
-            make.left.equalTo(iconV.snp.right).offset(16)
+            make.left.equalTo(themeV.snp.right).offset(16)
             make.top.equalTo(headV.snp.top)
             make.height.equalTo(20)
             make.width.equalTo(150)
@@ -109,7 +109,7 @@ class WhipMeCell: UITableViewCell {
         subTitle.font = UIFont.systemFont(ofSize: 10)
         self.contentView.addSubview(subTitle)
         subTitle.snp.makeConstraints { (make) in
-            make.left.equalTo(iconV.snp.right).offset(16)
+            make.left.equalTo(themeV.snp.right).offset(16)
             make.top.equalTo(themeL.snp.bottom)
             make.height.equalTo(themeL)
             make.width.equalTo(150)
@@ -341,8 +341,9 @@ extension WhipCell: UITableViewDataSource {
         
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         
-        cell.iconV.setImageWith(URL.init(string: whipM.icon)!, placeholderImage: UIImage.init(named: "zaoqi"))
-        print(whipM.icon)
+        cell.themeV.setImageWith(urlString: whipM.themeIcon, placeholderImage: "zaoqi")
+        cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "zaoqi")
+        
         cell.themeL.text = whipM.themeName
         let themeLWidth = whipM.themeName.getWidth(font: UIFont.systemFont(ofSize: 14), height: 20)
         cell.themeL.snp.updateConstraints { (make) in

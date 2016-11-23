@@ -224,7 +224,8 @@ extension AddPeopleController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FansCell = FansCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FansCell.cellReuseIdentifier())
         let myFansM: FansM = self.myFansArr.object(at: indexPath.row) as! FansM
-        cell.iconV.setImageWith(URL.init(string: myFansM.icon)!, placeholderImage: UIImage.init(named: ""))
+        cell.iconV.setImageWith(urlString: myFansM.icon, placeholderImage: "")
+        print(myFansM.icon)
         cell.nicknameL.text = myFansM.nickname
         cell.numL.text = "正在监督"+myFansM.num+"人"
         return cell

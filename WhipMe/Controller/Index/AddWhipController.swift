@@ -37,7 +37,8 @@ class AddWhipController: UIViewController {
     fileprivate var hotTable: UITableView = UITableView.init()
     fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem.init()
     fileprivate var segmentedView: UISegmentedControl = UISegmentedControl.init()
-    
+    fileprivate var searchBar = UITextField.init()
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -187,7 +188,6 @@ class AddWhipController: UIViewController {
         searchView.addSubview(bgview)
         
         
-        let searchBar = UITextField.init()
         searchBar.placeholder  = "输入关键字"
         bgview.addSubview(searchBar)
         searchBar.snp.makeConstraints { (make) in
@@ -205,11 +205,11 @@ class AddWhipController: UIViewController {
         }
         
         searchBtn.bk_addEventHandler({ (sender) in
-            if searchBar.text!.length <= 0 {
+            if self.searchBar.text!.length <= 0 {
                 Tool.showHUDTip(tipStr: "请输入关键字")
                 return
             }
-            HttpAPIClient.apiClientPOST("queryThemeByName", params: ["themeName":searchBar.text!], success: { (result) in
+            HttpAPIClient.apiClientPOST("queryThemeByName", params: ["themeName":self.searchBar.text!], success: { (result) in
                 if (result != nil) {
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
@@ -268,6 +268,7 @@ class AddWhipController: UIViewController {
     }
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
+        self.resignMyFirstResponder()
         if sender.selectedSegmentIndex == 0 {
             customTable.isHidden = true
             hotTable.isHidden = false
@@ -280,14 +281,14 @@ class AddWhipController: UIViewController {
         }
     }
     
-    override func resignFirstResponder() -> Bool {
+    func resignMyFirstResponder() {
         super.resignFirstResponder()
+        self.searchBar.resignFirstResponder()
+        self.searchBar.endEditing(true)
         let cell = self.customTable.cellForRow(at: IndexPath.init(row: 0, section: 0))
         cell?.resignFirstResponder()
-        return true
     }
 }
-
 /// TableViewDataSource methods.
 extension AddWhipController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
@@ -400,7 +401,7 @@ extension AddWhipController:UITableViewDataSource {
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
             cell.titleL.text = model.themeName
             cell.subTitleL.text = "已有" + model.num + "位参加"
-            cell.cellImage.image = UIImage.init(named: model.themeIcon)
+            cell.cellImage.setImageWith(urlString: model.themeIcon, placeholderImage: "")
             return cell
         }
         
@@ -433,6 +434,7 @@ extension AddWhipController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 101 {
+            self.searchBar.endEditing(true)
             let vc = AddWhipController.init()
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
             print(model.themeName)
@@ -446,7 +448,8 @@ extension AddWhipController: UITableViewDelegate {
 extension AddWhipController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y != 0 {
-            _ = self.resignFirstResponder()
+            _ = self.resignMyFirstResponder()
         }
     }
 }
+

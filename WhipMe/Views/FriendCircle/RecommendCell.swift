@@ -223,8 +223,10 @@ class RecommendCell: NormalCell {
     
     func setRecommendData(model:FriendCircleM) {
         
-        self.avatarV.setIconURL(NSURL.init(string:model.icon) as URL!)
-        self.pictrueView.setIconURL(NSURL.init(string:model.picture) as URL!)
+        
+        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: "")
+        self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
+
         self.contentL.text = model.content
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"
