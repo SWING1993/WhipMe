@@ -26,7 +26,8 @@ class RecommendCell: NormalCell {
     var contentL: UILabel = UILabel.init()
     var pictrueView: UIImageView = UIImageView.init()
     var locationB: UILabel = UILabel.init()
-    
+    let locatiomV = UIImageView.init()
+
     var commentList: UITableView = UITableView.init()
     var commentMArr: NSMutableArray = NSMutableArray.init()
     var likeB: UIButton = UIButton.init()
@@ -119,7 +120,6 @@ class RecommendCell: NormalCell {
             make.top.equalTo(contentL.snp.bottom).offset(15)
         }
         
-        let locatiomV = UIImageView.init()
         locatiomV.image = UIImage.init(named: "location")
         self.bgView.addSubview(locatiomV)
         locatiomV.snp.makeConstraints({ (make) in
@@ -232,7 +232,14 @@ class RecommendCell: NormalCell {
         self.topicL.text = "#"+model.themeName+"#"
         self.timeL.text = model.createDate
         self.pageView.text = String(model.recordIdNum) + "次"
-        self.locationB.text = model.position
+        
+        if model.position.isEmpty {
+            self.locationB.text = ""
+            self.locatiomV.isHidden = true
+        }else {
+            self.locationB.text = model.position
+            self.locatiomV.isHidden = false
+        }
         
         self.likeB.setTitle(String(model.likeNum), for: .normal)
         self.commentB.setTitle(String(model.commentNum), for: .normal)

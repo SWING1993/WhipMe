@@ -19,6 +19,7 @@ class WhipM: NSObject {
     var going: Int = 0
     var guarantee: CGFloat = 0.00
     var recordNum:Int = 0
+    var record: Bool = false
     
     var createDate: String = ""
     var startDate: String = ""
@@ -63,7 +64,7 @@ class WhipMeCell: UITableViewCell {
         
         headV.layer.cornerRadius = 40/2
         headV.layer.masksToBounds = true
-        headV.backgroundColor = UIColor.random()
+//        headV.backgroundColor = UIColor.random()
         self.contentView .addSubview(headV)
         headV.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
@@ -72,9 +73,8 @@ class WhipMeCell: UITableViewCell {
         }
 
         
-//        iconV.backgroundColor = UIColor.random()
-        themeV.layer.cornerRadius = 30/2
-        themeV.layer.masksToBounds = true
+//        themeV.layer.cornerRadius = 30/2
+//        themeV.layer.masksToBounds = true
         self.contentView .addSubview(themeV)
         themeV.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
@@ -112,7 +112,7 @@ class WhipMeCell: UITableViewCell {
             make.left.equalTo(themeV.snp.right).offset(16)
             make.top.equalTo(themeL.snp.bottom)
             make.height.equalTo(themeL)
-            make.width.equalTo(150)
+            make.width.equalTo(200)
         }
     }
     
@@ -158,7 +158,7 @@ class WhipMeCell: UITableViewCell {
         refuseBtn.layer.masksToBounds = true
         refuseBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         refuseBtn.setTitleColor(kColorWhite, for: .normal)
-        refuseBtn.setTitle("接受", for: .normal)
+        refuseBtn.setTitle("拒绝", for: .normal)
         self.contentView.addSubview(refuseBtn)
         refuseBtn.snp.makeConstraints { (make) in
             make.height.equalTo(22)
@@ -332,41 +332,53 @@ extension WhipCell: UITableViewDataSource {
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         
         cell.themeV.setImageWith(urlString: whipM.themeIcon, placeholderImage: "zaoqi")
-        cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "zaoqi")
         
         cell.themeL.text = whipM.themeName
         let themeLWidth = whipM.themeName.getWidth(font: UIFont.systemFont(ofSize: 14), height: 20)
         cell.themeL.snp.updateConstraints { (make) in
             make.width.equalTo(themeLWidth)
         }
-        cell.subTitle.text = whipM.plan
 
         // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
-            if whipM.going == 0 {
-                cell.goingL.text = "进行中"
-                cell.goingL.backgroundColor = kColorGreen
+            cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "system_monitoring")
 
-            } else {
-                cell.goingL.text = "已结束"
-                cell.goingL.backgroundColor = kColorRed
-            }
             if whipM.accept == 0 {
+                cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.config()
                 cell.guaranteeL.text = "保证金："+String(describing: whipM.guarantee)+"元"
+            }
+            else if (whipM.accept == 1){
+                cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
+                cell.goingL.text = "已拒绝"
+                cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
+            }
+            else {
+                if whipM.going == 0 {
+                    cell.goingL.text = "进行中"
+                    cell.goingL.backgroundColor = kColorGreen
+                    
+                } else {
+                    cell.goingL.text = "已结束"
+                    cell.goingL.backgroundColor = kColorRed
+                }
             }
         }
         // 鞭挞我
         else {
+            cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "system_monitoring")
             if whipM.accept == 0 {
                 cell.goingL.text = "待确认"
+                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorYellow
 
             } else if whipM.accept == 1 {
                 cell.goingL.text = "已拒绝"
+                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorRed
             } else {
                 cell.goingL.isHidden = true
+                cell.subTitle.text = "被鞭挞"+String(describing: whipM.recordNum)+"次"
             }
         }
         return cell
