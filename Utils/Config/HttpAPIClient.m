@@ -51,7 +51,6 @@ static HKHttpSession *httpSession = nil;
     if (param) {
         [parameters setObject:param forKey:@"param"];
     }
-    NSLog(@"____________param:%@",parameters);
     
     [HttpAPIClient APIClientParams:parameters Success:success Failed:failed];
 }
@@ -92,13 +91,21 @@ static HKHttpSession *httpSession = nil;
 + (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed
 {
     NSString *host_url = @"/headUploadServlet";
-    UIImage *img = [UIImage imageWithContentsOfFile:header];
-    NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
-    NSString *imgName = header.lastPathComponent;
-    
-    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:@"http://122.114.162.236:8855"]];
+    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    http.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+                                                         @"text/html",
+                                                         @"image/jpeg",
+                                                         @"image/png",
+                                                         @"application/octet-stream",
+                                                         @"text/json",
+                                                         nil];
     [http POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:imgData name:@"file" fileName:imgName mimeType:@"image/jpeg"];
+        
+        UIImage *img = [UIImage imageWithContentsOfFile:header];
+        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
+        NSString *imgName = header.lastPathComponent;
+        
+        [formData appendPartWithFileData:imgData name:@"file" fileName:imgName mimeType:@"image.jpg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         success == nil ?: success(result);

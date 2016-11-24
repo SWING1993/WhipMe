@@ -27,12 +27,15 @@ class UserManager: NSObject {
     var mobile: String = ""
     var supervisor: String = ""
     var type: String = ""
-    var sex: Bool = false
+    var age: String = ""
+    var sex: Bool = false //0.女  1.男
     var icon: String = ""
+    var username: String = ""
     var nickname: String = ""
     var userId: String = ""
     var iconPrefix: String = ""
     var sign: String = ""
+    var birthday: String = ""
     
     var focusNum: String = ""
     var fansNum: String = ""

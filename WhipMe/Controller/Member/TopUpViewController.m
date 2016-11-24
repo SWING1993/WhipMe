@@ -7,6 +7,7 @@
 //
 
 #import "TopUpViewController.h"
+#import "NSString+Common.h"
 
 @interface TopUpViewController () <UITextFieldDelegate>
 
@@ -124,7 +125,7 @@
     _btnSubmit.layer.cornerRadius = 22.0;
     _btnSubmit.layer.masksToBounds = true;
     [_btnSubmit setTitle:@"去充值" forState:UIControlStateNormal];
-    [_btnSubmit addTarget:self action:@selector(clickWithSubmit) forControlEvents:UIControlEventTouchUpInside];
+    [_btnSubmit addTarget:self action:@selector(clickWithSubmit:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewCurrent addSubview:self.btnSubmit];
     [self.btnSubmit mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(rect_submit.size);
@@ -134,8 +135,37 @@
     
 }
 
-- (void)clickWithSubmit {
-
+- (void)clickWithSubmit:(UIButton *)sender {
+//    "method":"recharge",
+//    "param":{
+//        "userId":"用户ID",
+//        "amount":"充值金额",
+//        "ip":"用户外网IP地址"
+//    }
+    CGFloat money = [self.textMoney.text floatValue];
+    if (money <= 0.0) {
+        [Tool showHUDTipWithTipStr:@"请输入充值金额!"];
+        return;
+    }
+    NSString *str_ip = [NSString getIPAddress];
+    UserManager *info = [UserManager getUser];
+    NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
+    NSString *str_amount = [NSString stringWithFormat:@"%.2f",money];
+    
+    NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip};
+    
+    DebugLog(@"_____________param:%@",param);
+    [HttpAPIClient APIClientPOST:@"recharge" params:param Success:^(id result) {
+        DebugLog(@"_______result:%@",result);
+        NSDictionary *data = [result mj_JSONObject][0];
+        if ([data[@"ret"] integerValue] != 0) {
+            [Tool showHUDTipWithTipStr:data[@"desc"]];
+        } else {
+            
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"________error:%@",error);
+    }];
 }
 
 #pragma mark - UITextFieldDelegate

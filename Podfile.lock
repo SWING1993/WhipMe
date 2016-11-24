@@ -44,7 +44,7 @@ PODS:
   - RxSwift (3.0.1)
   - SnapKit (3.0.2)
   - SwiftDate (4.0.7)
-  - SwiftyJSON (3.1.1)
+  - SwiftyJSON (3.1.3)
   - TPKeyboardAvoiding (1.3)
   - YTKKeyValueStore (0.1.2):
     - FMDB (~> 2.0)
@@ -78,7 +78,7 @@ SPEC CHECKSUMS:
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftDate: 0efb04a6751b1ab804049b2b09a69848cd304c12
-  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 

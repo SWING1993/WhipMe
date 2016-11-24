@@ -131,12 +131,11 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingFormat:@"/%@", imageName];
     
-    if (![fileManager fileExistsAtPath:path])
-    {
+    DebugLog(@"__________path:%@",path);
+    if (![fileManager fileExistsAtPath:path]) {
         NSAssert(path != nil, @"%@", path);
         path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Documents"] stringByAppendingFormat:@"/%@", imageName];
-        if (![fileManager fileExistsAtPath:path])
-        {
+        if (![fileManager fileExistsAtPath:path]) {
             NSAssert(path != nil, @"%@", path);
             return nil;
         }
