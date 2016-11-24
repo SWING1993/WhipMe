@@ -7,7 +7,6 @@
 //
 
 #import "PhoneCodeButton.h"
-#import "WhipMe-Swift.h"
 
 @interface PhoneCodeButton ()
 @property (nonatomic, strong, readwrite) NSTimer *timer;

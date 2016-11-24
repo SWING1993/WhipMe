@@ -27,3 +27,5 @@
 #import "PhoneCodeButton.h"
 #import "HttpAPIClient.h"
 #import "ChatMessage.h"
+
+#import "MyWalletViewController.h"
