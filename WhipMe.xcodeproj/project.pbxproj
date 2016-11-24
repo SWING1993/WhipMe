@@ -34,8 +34,11 @@
 		C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2E1D829D8200012FB4 /* MemberViewController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
+		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
+		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
 		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
 		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
+		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
 		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
 		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
@@ -53,11 +56,9 @@
 		C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A301D8F83950055F026 /* MobileCoreServices.framework */; };
 		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
 		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
-		C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */; };
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
-		C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */; };
 		C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A66B321D990E5C00612E16 /* LoginWayController.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
 		C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8290B1D93731400EBF46E /* UserEditViewController.swift */; };
@@ -65,7 +66,6 @@
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */; };
-		C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
@@ -144,10 +144,16 @@
 		C546FE2E1D829D8200012FB4 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		C54DF9101D9BB4E20067BC9F /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
+		C54E77DD1DE68C41007F886B /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
+		C54E77DE1DE68C41007F886B /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
+		C54E77E01DE69290007F886B /* WMUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserInfoViewController.h; sourceTree = "<group>"; };
+		C54E77E11DE69290007F886B /* WMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserInfoViewController.m; sourceTree = "<group>"; };
 		C555E7791DE5827600A443A0 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
 		C555E77A1DE5827600A443A0 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
 		C555E77C1DE5935900A443A0 /* TopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpViewController.h; sourceTree = "<group>"; };
 		C555E77D1DE5935900A443A0 /* TopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopUpViewController.m; sourceTree = "<group>"; };
+		C555E77F1DE5BA4D00A443A0 /* CashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashViewController.h; sourceTree = "<group>"; };
+		C555E7801DE5BA4D00A443A0 /* CashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashViewController.m; sourceTree = "<group>"; };
 		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
@@ -165,11 +171,9 @@
 		C59B2A301D8F83950055F026 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
 		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
-		C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
-		C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
 		C5A66B321D990E5C00612E16 /* LoginWayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWayController.swift; sourceTree = "<group>"; };
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C5A8290B1D93731400EBF46E /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +182,6 @@
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareEngine.swift; sourceTree = "<group>"; };
-		C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
@@ -371,9 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				C546FE2E1D829D8200012FB4 /* MemberViewController.swift */,
-				C5A0B01C1D927A6000EADAEF /* UserInfoViewController.swift */,
 				C5A8290B1D93731400EBF46E /* UserEditViewController.swift */,
-				C5A196FA1D94D0F6007BB67D /* SetingViewController.swift */,
 				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
@@ -381,6 +382,12 @@
 				C555E77A1DE5827600A443A0 /* MyWalletViewController.m */,
 				C555E77C1DE5935900A443A0 /* TopUpViewController.h */,
 				C555E77D1DE5935900A443A0 /* TopUpViewController.m */,
+				C555E77F1DE5BA4D00A443A0 /* CashViewController.h */,
+				C555E7801DE5BA4D00A443A0 /* CashViewController.m */,
+				C54E77DD1DE68C41007F886B /* SetingViewController.h */,
+				C54E77DE1DE68C41007F886B /* SetingViewController.m */,
+				C54E77E01DE69290007F886B /* WMUserInfoViewController.h */,
+				C54E77E11DE69290007F886B /* WMUserInfoViewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -510,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */,
-				C5F5D3D11D9CA83E0020491D /* UserInfoModel.swift */,
 				C52701AE1DDC59060021F989 /* mySuperviseModel.swift */,
 			);
 			path = Member;
@@ -744,7 +750,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = S8JBM2NX4M;
+						DevelopmentTeam = 3FBZXR8H37;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -848,7 +854,7 @@
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,
 				C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
-				C5A196FB1D94D0F6007BB67D /* SetingViewController.swift in Sources */,
+				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
@@ -873,8 +879,8 @@
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
-				C5F5D3D31D9CA83F0020491D /* UserInfoModel.swift in Sources */,
 				C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */,
+				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
@@ -884,6 +890,7 @@
 				C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
+				C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */,
 				C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */,
 				C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */,
 				C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */,
@@ -900,7 +907,6 @@
 				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
 				C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */,
-				C5A0B01D1D927A6000EADAEF /* UserInfoViewController.swift in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
@@ -1017,7 +1023,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S8JBM2NX4M;
+				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1052,7 +1058,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S8JBM2NX4M;
+				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",

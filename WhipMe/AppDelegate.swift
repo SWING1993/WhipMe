@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //ji guang
+        JMessage.setLogOFF()
         JMessage.add(self, with: nil)
         JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
         // wei xin

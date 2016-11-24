@@ -57,6 +57,7 @@
 /** 获取随机的UUID 字符串 */
 + (NSString *)generateUuidString;
 
++ (NSString *)getIPAddress;
 /**
  *  是否包含字符串
  *

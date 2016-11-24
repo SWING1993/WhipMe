@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    fileprivate var userModel: UserInfoModel!
+    fileprivate var userModel: UserManager!
     fileprivate var tableViewWM: UITableView!
     fileprivate var superviseView: UIView!
     fileprivate var growView: UIView!
@@ -36,23 +36,30 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         if (userModel == nil) {
-            userModel = UserInfoModel()
+            userModel = UserManager()
             userModel.username = "幽叶"
             userModel.nickname = "榴莲"
-            userModel.avatar = "system_monitoring"
-            userModel.sex = "男"
+            userModel.icon = "system_monitoring"
+            userModel.sex = true
             userModel.age = "22"
             userModel.birthday = "1992-10-05"
-            userModel.signature = "寂寞的幻境，朦胧的身影"
+            userModel.sign = "寂寞的幻境，朦胧的身影"
         }
         
         setup()
         
+        setData()
 //        queryByUserInfo();
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setData() {
+        self.imageHead.setImageWith(urlString: self.userModel.icon, placeholderImage: Define.kDefaultImageHead());
+        self.lblUserName.text = self.userModel.nickname;
+        self.lblDescribe.text = self.userModel.sign;
     }
     
     func setup() {
@@ -66,19 +73,38 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let line_view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 14.0))
         line_view.backgroundColor = kColorBackGround
         
+        tableViewWM = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
+        tableViewWM.backgroundColor = UIColor.clear
+        tableViewWM.delegate = self
+        tableViewWM.dataSource = self
+        tableViewWM.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableViewWM.tableFooterView = line_view
+        tableViewWM.tableHeaderView = viewHead
+        self.view.addSubview(tableViewWM)
+        tableViewWM.snp.updateConstraints { (make) in
+            make.left.top.equalTo(self.view)
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+        }
+        tableViewWM.register(MemberTableViewCell.classForCoder(), forCellReuseIdentifier: identifier_member)
+        tableViewWM.register(MemberHeadViewCell.classForCoder(), forCellReuseIdentifier: identifier_head)
+        
         imageHead = UIImageView.init()
         imageHead.backgroundColor = Define.kColorBackGround()
         imageHead.layer.cornerRadius = kHead_WH/2.0
         imageHead.layer.masksToBounds = true
         imageHead.contentMode = UIViewContentMode.scaleAspectFill
         imageHead.clipsToBounds = true
+        imageHead.isUserInteractionEnabled = true;
         viewHead.addSubview(imageHead)
         imageHead.snp.updateConstraints { (make) in
-            make.left.equalTo(20.0)
-            make.top.equalTo(14.0)
+            make.left.equalTo(self.viewHead).offset(20.0)
+            make.top.equalTo(self.viewHead).offset(14.0)
             make.size.equalTo(CGSize.init(width: kHead_WH, height: kHead_WH))
         }
         
+        let tapGr: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(clickWithHead))
+        self.imageHead.addGestureRecognizer(tapGr)
         let str_userName: NSString = "学习者"
         
         lblUserName = UILabel.init()
@@ -184,27 +210,16 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         }
         
-        tableViewWM = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
-        tableViewWM.backgroundColor = UIColor.clear
-        tableViewWM.delegate = self
-        tableViewWM.dataSource = self
-        tableViewWM.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableViewWM.tableFooterView = line_view
-        tableViewWM.tableHeaderView = viewHead
-        self.view.addSubview(tableViewWM)
-        tableViewWM.snp.updateConstraints { (make) in
-            make.left.top.equalTo(self.view)
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-        }
-        tableViewWM.register(MemberTableViewCell.classForCoder(), forCellReuseIdentifier: identifier_member)
-        tableViewWM.register(MemberHeadViewCell.classForCoder(), forCellReuseIdentifier: identifier_head)
-       
     }
     
     func clickWithRightBarItem() {
         let controller: SetingViewController = SetingViewController()
-        controller.userModel = userModel
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func clickWithHead() {
+        let controller: WMUserInfoViewController = WMUserInfoViewController();
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
