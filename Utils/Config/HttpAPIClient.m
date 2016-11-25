@@ -34,6 +34,7 @@ static HKHttpSession *httpSession = nil;
     static dispatch_once_t _dispatch;
     dispatch_once(&_dispatch, ^{
         httpSession = [[HKHttpSession alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+//        [[PLeakSniffer sharedInstance] installLeakSniffer];
     });
     return httpSession;
 }

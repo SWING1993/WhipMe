@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
         
+//        PLeakSniffer.sharedInstance.installLeakSniffer
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
         let user = UserManager.getUser()

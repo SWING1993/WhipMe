@@ -17,6 +17,8 @@
 #import <MJExtension/MJExtension.h>
 #import "SVProgressHUD.h"
 #import <Bugly/Bugly.h>
+#import <PLeakSniffer/PLeakSniffer.h>
+
 //
 #import "NSString+Common.h"
 #import "NSString+Validate.h"

@@ -12,7 +12,6 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let navIndex: UINavigationController = UINavigationController.init(rootViewController: IndexViewController())
         let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
         let navChat: UINavigationController = UINavigationController.init(rootViewController: PrivateChatController())

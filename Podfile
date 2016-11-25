@@ -18,6 +18,7 @@ pod 'AFNetworking'
 pod 'YTKKeyValueStore'
 pod 'MJExtension'
 pod 'Bugly'
+pod 'PLeakSniffer'
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'
