@@ -16,6 +16,7 @@ class UserInfoTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = UITableViewCellSelectionStyle.none;
         setup()
     }
     
@@ -73,10 +74,6 @@ class UserInfoTableViewCell: UITableViewCell {
             make.right.equalTo(self.contentView).offset(-15.0)
             make.centerY.equalTo(self.contentView)
         }
-    }
-    
-    class func cellReuseIdentifier() -> String {
-        return NSStringFromClass(self.classForCoder())
     }
     
 }

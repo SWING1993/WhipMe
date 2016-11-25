@@ -29,3 +29,5 @@
 #import "ChatMessage.h"
 
 #import "MyWalletViewController.h"
+#import "SetingViewController.h"
+#import "WMUserInfoViewController.h"

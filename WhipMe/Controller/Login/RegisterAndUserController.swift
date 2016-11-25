@@ -231,20 +231,16 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             showIsMessage(msg: "请选择性别!")
             return
         }
-//        "method":"addNickname",
-//        "param":{
-//            "unionId":"unionid",
-//            "appOpenId":"openid",
-//            "nickname":"昵称",
-//            "icon":"用户头像(icon.jpg)",
-//            "sex":"性别",
-//            "sign":"签名"
-//        }
+        var sex_int: String = "0"
+        if (self.userSex == "男") {
+            sex_int = "1"
+        }
+        
         let params = ["unionId":self.unionId,
                       "appOpenId":"",
                       "nickname":nickName,
                       "icon":avatar,
-                      "sex":userSex,
+                      "sex":sex_int,
                       "sign":"签名"]
         HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
             print("微信登录：第2步 is result:\(result)")
@@ -371,16 +367,16 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            self.avatar = fullFile
             HttpAPIClient.uploadServlet(toHeader: fullFile, success: { (result) in
                 print("upload image is result:\(result)")
                 let data = JSON(result!)
-                if (data["ret"].intValue == 0) {
+                if (data["ret"].intValue != 0) {
+                    //图片上传失败!
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                } else {
                     let user = data["userInfo"]
                     self.avatar = String(describing: user["icon"])
-                    return;
                 }
-                self.showIsMessage(msg: "图片上传失败!")
                 
             }, failed: { (error) in
                 print("upload image is error:\(error)")
