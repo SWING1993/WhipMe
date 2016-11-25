@@ -99,7 +99,7 @@ class RecommendCell: NormalCell {
         
         contentL = UILabel.init()
         contentL.font = UIFont.systemFont(ofSize: 14)
-//        contentL.backgroundColor = UIColor.random()
+        contentL.numberOfLines = 0
         self.bgView.addSubview(contentL)
         contentL.snp.makeConstraints({ (make) in
             make.top.equalTo(avatarV.snp.bottom).offset(14)
@@ -130,7 +130,6 @@ class RecommendCell: NormalCell {
         
         locationB = UILabel.init()
         locationB.font = UIFont.systemFont(ofSize: 11)
-//        locationB.backgroundColor = UIColor.random()
         self.bgView.addSubview(locationB)
         locationB.snp.makeConstraints({ (make) in
             make.left.equalTo(locatiomV.snp.right).offset(3)

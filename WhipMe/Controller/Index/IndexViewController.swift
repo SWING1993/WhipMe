@@ -31,6 +31,7 @@ class WhipM: NSObject {
     var result: String = ""
     var plan: String = ""
     
+    var nickname: String = ""
     var taskId: String = ""
     var themeIcon: String = ""
     var themeId: String = ""
@@ -64,17 +65,12 @@ class WhipMeCell: UITableViewCell {
         
         headV.layer.cornerRadius = 40/2
         headV.layer.masksToBounds = true
-//        headV.backgroundColor = UIColor.random()
         self.contentView .addSubview(headV)
         headV.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
             make.top.equalTo(15)
             make.right.equalTo(-9)
         }
-
-        
-//        themeV.layer.cornerRadius = 30/2
-//        themeV.layer.masksToBounds = true
         self.contentView .addSubview(themeV)
         themeV.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
@@ -105,7 +101,6 @@ class WhipMeCell: UITableViewCell {
             make.width.equalTo(40)
         }
         
-//        subTitle.backgroundColor = UIColor.random()
         subTitle.font = UIFont.systemFont(ofSize: 10)
         self.contentView.addSubview(subTitle)
         subTitle.snp.makeConstraints { (make) in
@@ -182,12 +177,6 @@ class WhipMeCell: UITableViewCell {
         return 75.0
     }
     
-//    class func whipMeCellHeight(model:WhipM) -> CGFloat {
-//        return 75.0
-//    }
-    
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -205,7 +194,6 @@ class WhipCell: UITableViewCell {
     var myReuseIdentifier: String = ""
     
     var checkPlan:((IndexPath) -> Void)?
-    var deletePlan:((IndexPath) -> Void)?
     
     var sectionHArr_Me: NSArray = NSArray.init()
     var sectionHArr_Other: NSArray = NSArray.init()
@@ -354,6 +342,7 @@ extension WhipCell: UITableViewDataSource {
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
             }
             else {
+                cell.subTitle.text = "被鞭挞"+String(describing: whipM.recordNum)+"次"
                 if whipM.going == 0 {
                     cell.goingL.text = "进行中"
                     cell.goingL.backgroundColor = kColorGreen
@@ -459,9 +448,8 @@ class IndexViewController: UIViewController {
                 if ret == 0 {
                     let woList  = json["data"][0]["biantawoList"].arrayObject
                     let taList  = json["data"][0]["biantataList"].arrayObject
-//                    print(result)
-                    self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
                     self.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                    self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
                     self.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
                     self.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
 
@@ -533,25 +521,20 @@ extension IndexViewController:UITableViewDataSource {
             let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipOtherReuseIdentifier())
             cell.setDataWith(array: self.biantataList)
             
-            /*
-            cell.checkPlan = { indexPath in
-                print(indexPath)
-                let addWhipC = LogController.init()
-                addWhipC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(addWhipC, animated: true)
+            cell.checkPlan = { clickIndexPath in
+                print(clickIndexPath)
+                let taCecordC = TaCecordController.init()
+                taCecordC.hidesBottomBarWhenPushed = true
+                taCecordC.myWhipM = self.biantataList.object(at: clickIndexPath.row) as! WhipM
+                self.navigationController?.pushViewController(taCecordC, animated: true)
             }
-            
-            cell.deletePlan = { indexPath in
-                PlanM.deletePlan(index: indexPath.row);
-//                self.dataArray.removeObject(at: indexPath.row)
-                self.myTable.reloadData()
-            }
- */
             return cell
         }
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.biantawoList)
-
+        cell.checkPlan = { indexPath in
+            print(indexPath)
+        }
         return cell
     }
 }
@@ -559,6 +542,11 @@ extension IndexViewController:UITableViewDataSource {
 
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {

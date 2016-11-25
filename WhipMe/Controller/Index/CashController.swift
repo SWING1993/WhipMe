@@ -10,7 +10,7 @@ import UIKit
 
 class CashController: UIViewController {
 
-    var myTable: UITableView = UITableView.init()
+    var myTable: UITableView = UITableView()
     let rechargeTextFiele = UITextField()
 
     override func viewDidLoad() {

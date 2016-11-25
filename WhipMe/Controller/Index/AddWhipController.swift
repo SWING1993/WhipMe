@@ -21,10 +21,8 @@ class QueryHotThemeM: NSObject {
 
 class AddWhipController: UIViewController {
 
-    
     var queryHorThemeName: String = ""
     var hideHot: Bool = false
-
     
     var disposeBag = DisposeBag()
     lazy var myCostomAM :PlanM! = {

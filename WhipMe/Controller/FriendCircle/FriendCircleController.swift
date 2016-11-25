@@ -38,14 +38,25 @@ class FriendCircleController: UIViewController {
     
     fileprivate var cellHeights: [CGFloat] = []
     fileprivate var recommendTable: UITableView = UITableView()
-    fileprivate var friendCircleModelArr: NSMutableArray = NSMutableArray();
+    fileprivate var friendCircleModels: [FriendCircleM] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    
+    }
+    
+    fileprivate func setup() {
+        self.view.backgroundColor = kColorBackGround
+        prepareTableView()
+        prepareSegmented()
+        setupRequest()
+    }
+    
+    fileprivate func setupRequest() {
         let params = [
             "pageSize":"20",
             "pageIndex":"1",
-        ]
+            ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             print(result!)
             if (result != nil) {
@@ -53,10 +64,17 @@ class FriendCircleController: UIViewController {
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
-                    self.friendCircleModelArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
+                    self.friendCircleModels = {
+                        var temps: [FriendCircleM] = []
+                        let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
+                        for model in tempArr! {
+                            temps.append(model as! FriendCircleM)
+                        }
+                        return temps
+                    }()
                     
-                    for model in self.friendCircleModelArr {
-                        let cellHeight = RecommendCell.cellHeight(model: model as! FriendCircleM)
+                    for model in self.friendCircleModels {
+                        let cellHeight = RecommendCell.cellHeight(model: model )
                         self.cellHeights.append(cellHeight)
                     }
                     self.recommendTable.reloadData()
@@ -68,13 +86,6 @@ class FriendCircleController: UIViewController {
         }) { (error) in
             print(error as Any);
         }
-
-    }
-    
-    fileprivate func setup() {
-        self.view.backgroundColor = kColorBackGround
-        prepareTableView()
-        prepareSegmented()
     }
     
     fileprivate func prepareSegmented() {
@@ -130,7 +141,7 @@ extension FriendCircleController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friendCircleModelArr.count
+        return self.friendCircleModels.count
     }
     
     /// Returns the number of sections.
@@ -141,7 +152,7 @@ extension FriendCircleController:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
-        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
+        let model:FriendCircleM = self.friendCircleModels[indexPath.row]
         cell.setRecommendData(model: model)
         return cell
     }
@@ -150,8 +161,6 @@ extension FriendCircleController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension FriendCircleController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let model:FriendCircleM = self.friendCircleModelArr.object(at: indexPath.row) as! FriendCircleM
-//        return RecommendCell.cellHeight(model: model)
         return self.cellHeights[indexPath.row]
     }
 }
