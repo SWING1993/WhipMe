@@ -73,12 +73,10 @@ static HKHttpSession *httpSession = nil;
    
     HKHttpSession *http = [[HKHttpSession alloc] initWithBaseURL:[NSURL URLWithString:url]];
     
-    NSDictionary *param = @{@"appid":@"wxeb3bed2276716b91",
-                            @"secret":@"afc0683ebda138c349a15ec93d5ade0c",
-                            @"code":code,
+    NSDictionary *param = @{@"appid":[Define appIDWeChat],
+                            @"secret":[Define appSecretWeChat],
+                            @"code":code ?: @"",
                             @"grant_type":@"authorization_code"};
-    
-    NSLog(@"_________param:%@",param);
     
     [http GET:@"/sns/oauth2/access_token" parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {

@@ -8,13 +8,19 @@
 
 #import "TopUpViewController.h"
 #import "NSString+Common.h"
+#import "NSString+Validate.h"
+#import "ShareEngine.h"
 
-@interface TopUpViewController () <UITextFieldDelegate>
+@interface TopUpViewController () <UITextFieldDelegate, WXApiEngineDelegate>
 
 @property (nonatomic, strong) UIView *viewCurrent;
 @property (nonatomic, strong) UITextField *textMoney;
 @property (nonatomic, strong) UILabel *lblMoneyTitle;
 @property (nonatomic, strong) UIButton *btnWechat, *btnSubmit;
+
+@property (nonatomic, strong) NSString *weixin_code;
+@property (nonatomic, strong) NSString *weixin_appOpenId;
+@property (nonatomic, strong) NSString *weixin_unionId;
 
 @end
 
@@ -136,36 +142,12 @@
 }
 
 - (void)clickWithSubmit:(UIButton *)sender {
-//    "method":"recharge",
-//    "param":{
-//        "userId":"用户ID",
-//        "amount":"充值金额",
-//        "ip":"用户外网IP地址"
-//    }
     CGFloat money = [self.textMoney.text floatValue];
     if (money <= 0.0) {
         [Tool showHUDTipWithTipStr:@"请输入充值金额!"];
         return;
     }
-    NSString *str_ip = [NSString getIPAddress];
-    UserManager *info = [UserManager getUser];
-    NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
-    NSString *str_amount = [NSString stringWithFormat:@"%.2f",money];
-    
-    NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip};
-    
-    DebugLog(@"_____________param:%@",param);
-    [HttpAPIClient APIClientPOST:@"recharge" params:param Success:^(id result) {
-        DebugLog(@"_______result:%@",result);
-        NSDictionary *data = [result mj_JSONObject][0];
-        if ([data[@"ret"] integerValue] != 0) {
-            [Tool showHUDTipWithTipStr:data[@"desc"]];
-        } else {
-            
-        }
-    } Failed:^(NSError *error) {
-        DebugLog(@"________error:%@",error);
-    }];
+    [self topUpMoney];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -197,6 +179,108 @@
         }
     }
     return  YES;
+}
+
+#pragma mark - WXApiEngineDelegate
+- (void)shareEngineWXApi:(SendAuthResp *)response {
+    if (response.errCode == -2) {
+        //用户取消
+        [Tool showHUDTipWithTipStr:@"您已取消授权！"];
+    } else if (response.errCode == -4) {
+        //用户拒绝授权
+        [Tool showHUDTipWithTipStr:@"您已拒绝授权！"];
+    } else {
+        // 0(用户同意)
+        _weixin_code = response.code;
+        [self queryByAppOpenId];
+    }
+}
+
+- (void)shareEnginePayment:(PayResp *)response {
+    if (response.errCode == WXSuccess) {
+        self.textMoney.text = @"";
+        [Tool showHUDTipWithTipStr:@"充值成功！"];
+    } else {
+        NSString *strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", response.errCode,response.errStr];
+        [Tool showHUDTipWithTipStr:strMsg];
+    }
+}
+
+#pragma mark - Network
+- (void)queryByAppOpenId {
+    if ([NSString isBlankString:self.weixin_code]) {
+        return;
+    }
+    WEAK_SELF
+    [HttpAPIClient APIWeChatToCode:self.weixin_code Success:^(id result) {
+        DebugLog(@"_________resutl:%@",result);
+        NSString *errmsg = result[@"errmsg"];
+        if (![NSString isBlankString:errmsg]) {
+            [Tool showHUDTipWithTipStr:errmsg];
+        } else {
+            weakSelf.weixin_appOpenId = [NSString stringWithFormat:@"%@",result[@"openid"]];
+            weakSelf.weixin_unionId = [NSString stringWithFormat:@"%@",result[@"unionid"]];
+            [weakSelf bandWeixin];
+        }
+    } Failed:^(NSError *error) {
+        
+    }];
+}
+
+- (void)bandWeixin {
+    if ([NSString isBlankString:self.weixin_appOpenId] || [NSString isBlankString:self.weixin_unionId]) {
+        return;
+    }
+    UserManager *user = [UserManager getUser];
+    NSString *user_id = [NSString stringWithFormat:@"%@",user.userId];
+    NSString *union_id = [NSString stringWithFormat:@"%@",self.weixin_unionId];
+    
+    NSDictionary *param = @{@"userId":user_id,@"unionId":union_id,@"appOpenId":self.weixin_appOpenId};
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:@"bindWeixin" params:param Success:^(id result) {
+        DebugLog(@"________result:%@",result);
+        NSDictionary *data = [result[@"data"] mj_JSONObject][0];
+        if ([data[@"ret"] integerValue] == 0) {
+            [weakSelf topUpMoney];
+        } else {
+            [Tool showHUDTipWithTipStr:data[@"desc"]];
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"________error:%@",error);
+    }];
+}
+
+/** 充值金额 */
+- (void)topUpMoney {
+   
+    NSString *str_ip = [NSString getIPAddress];
+    UserManager *info = [UserManager getUser];
+    NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
+    NSString *str_amount = [NSString stringWithFormat:@"%.2f",[self.textMoney.text floatValue]];
+    
+    NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip};
+    
+    DebugLog(@"_____________param:%@",param);
+    [HttpAPIClient APIClientPOST:@"recharge" params:param Success:^(id result) {
+        DebugLog(@"_______result:%@",result);
+        NSDictionary *data = [result[@"data"] mj_JSONObject][0];
+        if ([data[@"ret"] integerValue] == 1) {
+            UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"如需充值，请先绑定微信！" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertControl addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [[WMShareEngine sharedInstance] sendAuthRequest:self];
+            }]];
+            [alertControl addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            }]];
+            [self presentViewController:alertControl animated:YES completion:nil];
+        } else if ([data[@"ret"] integerValue] == 0) {
+            [[WMShareEngine sharedInstance] sendWeChatPaymentInfo:data[@"info"]];
+        } else {
+            [Tool showHUDTipWithTipStr:data[@"desc"]];
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"________error:%@",error);
+    }];
 }
 
 @end
