@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         JMessage.add(self, with: nil)
         JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
         // wei xin
-        ShareEngine.sharedInstance.registerApp()
+        WMShareEngine.sharedInstance().registerApp()
         // debug
         let verison_str = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString");
         let config = BuglyConfig()
@@ -161,11 +161,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
     
     /** 微信回调 */
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        return ShareEngine.sharedInstance.handleOpenURL(url: url)
+        return WMShareEngine.sharedInstance().handleOpen(url)
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return ShareEngine.sharedInstance.handleOpenURL(url: url)
+        return WMShareEngine.sharedInstance().handleOpen(url)
     }
 
     // MARK: - Action 方法

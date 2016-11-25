@@ -36,6 +36,7 @@
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
 		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
+		C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E41DE6E388007F886B /* ShareEngine.m */; };
 		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
 		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
 		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
@@ -65,7 +66,6 @@
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
-		C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
@@ -151,6 +151,8 @@
 		C54E77DE1DE68C41007F886B /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
 		C54E77E01DE69290007F886B /* WMUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserInfoViewController.h; sourceTree = "<group>"; };
 		C54E77E11DE69290007F886B /* WMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserInfoViewController.m; sourceTree = "<group>"; };
+		C54E77E31DE6E388007F886B /* ShareEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEngine.h; sourceTree = "<group>"; };
+		C54E77E41DE6E388007F886B /* ShareEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEngine.m; sourceTree = "<group>"; };
 		C555E7791DE5827600A443A0 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
 		C555E77A1DE5827600A443A0 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
 		C555E77C1DE5935900A443A0 /* TopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpViewController.h; sourceTree = "<group>"; };
@@ -184,7 +186,6 @@
 		C5A829131D93D30500EBF46E /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
-		C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareEngine.swift; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
@@ -525,8 +526,9 @@
 		C5F5D3CF1D9CA83E0020491D /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				C5F5D3D01D9CA83E0020491D /* ShareEngine.swift */,
 				C52701AE1DDC59060021F989 /* mySuperviseModel.swift */,
+				C54E77E31DE6E388007F886B /* ShareEngine.h */,
+				C54E77E41DE6E388007F886B /* ShareEngine.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -889,7 +891,6 @@
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
-				C5F5D3D21D9CA83E0020491D /* ShareEngine.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
@@ -900,6 +901,7 @@
 				C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
+				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
 				C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */,
 				C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */,
 				C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */,
