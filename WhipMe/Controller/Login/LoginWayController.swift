@@ -123,7 +123,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
         } else if _index == 1 {
             print("微信登录 is click")
             
-            ShareEngine.sharedInstance.sendAuthRequest(aDelegate: self)
+            WMShareEngine.sharedInstance().sendAuthRequest(self);
            
         } else if _index == 2 {
             self.navigationController?.pushViewController( RegisterViewController(), animated: true)
@@ -134,8 +134,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
     }
     
     // MARK: - WXApiEngineDelegate 微信登录
-    func engineDidRecvAuth(response: SendAuthResp) {
-        
+    func shareEngineWXApi(_ response: SendAuthResp!) {
         if response.errCode == -2 {
             //用户取消
         } else if response.errCode == -4 {

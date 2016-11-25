@@ -61,9 +61,9 @@ class Define: NSObject {
     }
     
     class func appSecretWeChat() -> String {
-        return "66904ed59cbdeffff5410c6b2b447b0e"
+        return "33afb229cbad98ef12b0f5bbeb78ee7a"
     }
-    
+
     class func kDefaultImageHead() -> String {
         return "default_head"
     }
