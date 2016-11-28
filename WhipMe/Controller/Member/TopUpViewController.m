@@ -261,7 +261,11 @@
     NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip};
     
     DebugLog(@"_____________param:%@",param);
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD showWithStatus:@""];
     [HttpAPIClient APIClientPOST:@"recharge" params:param Success:^(id result) {
+        [SVProgressHUD dismiss];
         DebugLog(@"_______result:%@",result);
         NSDictionary *data = [result[@"data"] mj_JSONObject][0];
         if ([data[@"ret"] integerValue] == 1) {
@@ -279,6 +283,7 @@
             [Tool showHUDTipWithTipStr:data[@"desc"]];
         }
     } Failed:^(NSError *error) {
+        [SVProgressHUD dismiss];
         DebugLog(@"________error:%@",error);
     }];
 }
