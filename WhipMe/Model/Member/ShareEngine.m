@@ -9,6 +9,10 @@
 #import "ShareEngine.h"
 #import "NSString+Common.h"
 
+#define WX_AppId @"wxeb3bed2276716b91"
+#define WX_MCHID @"1396378702"
+#define WX_PARTNER @"afc0683ebda138c349a15ec93d5ade0c"
+
 static WMShareEngine *objShare = nil;
 @implementation WMShareEngine
 
@@ -59,6 +63,7 @@ static WMShareEngine *objShare = nil;
     if (!info) {
         return;
     }
+//    [self sendWxPaymentId:info[@"prepayId"]];
     //调起微信支付 WX_PARTNER
     PayReq *req             = [[PayReq alloc] init];
     req.openID              = [NSString stringWithFormat:@"%@",info[@"appId"]];
@@ -69,6 +74,45 @@ static WMShareEngine *objShare = nil;
     req.nonceStr            = [NSString stringWithFormat:@"%@",info[@"noncestr"]];
     req.timeStamp           = [info[@"timestamp"] intValue];
     req.sign                = [NSString stringWithFormat:@"%@",info[@"sign"]];
+
+    [WXApi sendReq:req];
+}
+
+- (void)sendWxPaymentId:(NSString *)prePayId
+{
+    //获取到prepayid后进行第二次签名
+    NSString    *package, *time_stamp, *nonce_str;
+    //设置支付参数
+    time_t now;
+    time(&now);
+    time_stamp  = [NSString stringWithFormat:@"%ld", now];
+    nonce_str	= [time_stamp md5Str];
+    
+    package         = @"Sign=WXPay";
+    
+    //第二次签名参数列表
+    NSMutableDictionary *signParams = [NSMutableDictionary dictionary];
+    [signParams setObject:WX_AppId     forKey:@"appid"];
+    [signParams setObject:WX_MCHID     forKey:@"partnerid"];
+    [signParams setObject:package      forKey:@"package"];
+    
+    [signParams setObject:prePayId     forKey:@"prepayid"];
+    [signParams setObject:nonce_str    forKey:@"noncestr"];
+    [signParams setObject:time_stamp   forKey:@"timestamp"];
+    
+    //生成签名
+    NSString *sign  = [self createMd5Sign:signParams];
+    
+    //调起微信支付 WX_PARTNER
+    PayReq *req             = [[PayReq alloc] init];
+    req.openID              = WX_AppId;
+    req.partnerId           = WX_MCHID;
+    req.package             = package;
+    
+    req.prepayId            = prePayId;
+    req.nonceStr            = nonce_str;
+    req.timeStamp           = [time_stamp intValue];
+    req.sign                = sign;
     
     [WXApi sendReq:req];
 }
@@ -91,7 +135,7 @@ static WMShareEngine *objShare = nil;
             [contentString appendFormat:@"%@=%@&", categoryId, [dict objectForKey:categoryId]];
         }
     }
-    [contentString appendFormat:@"key=%@", @"LIHASDHAasdfasdfasfKLASDHGAkghas"];
+    [contentString appendFormat:@"key=%@", WX_PARTNER];
     NSString *md5Sign = [contentString md5Str];
     
     return md5Sign;
