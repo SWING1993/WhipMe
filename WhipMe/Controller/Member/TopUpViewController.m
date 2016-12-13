@@ -231,7 +231,7 @@
     if ([NSString isBlankString:self.weixin_appOpenId] || [NSString isBlankString:self.weixin_unionId]) {
         return;
     }
-    UserManager *user = [UserManager getUser];
+    UserManager *user = [UserManager shared];
     NSString *user_id = [NSString stringWithFormat:@"%@",user.userId];
     NSString *union_id = [NSString stringWithFormat:@"%@",self.weixin_unionId];
     
@@ -254,7 +254,7 @@
 - (void)topUpMoney {
    
     NSString *str_ip = [NSString getIPAddress];
-    UserManager *info = [UserManager getUser];
+    UserManager *info = [UserManager shared];
     NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
     NSString *str_amount = [NSString stringWithFormat:@"%.2f",[self.textMoney.text floatValue]];
     

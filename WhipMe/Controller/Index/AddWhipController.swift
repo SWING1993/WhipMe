@@ -108,9 +108,9 @@ class AddWhipController: UIViewController {
                   
             let params = [
                 "themeName":self.myCostomAM.themeName,
-                "creator":UserManager.getUser().userId,
-                "nickname":UserManager.getUser().nickname,
-                "icon":UserManager.getUser().icon,
+                "creator":UserManager.shared.userId,
+                "nickname":UserManager.shared.nickname,
+                "icon":UserManager.shared.icon,
                 "plan":self.myCostomAM.plan,
                 "startDate":startDate,
                 "endDate":endDate,

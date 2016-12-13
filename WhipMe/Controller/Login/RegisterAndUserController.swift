@@ -247,7 +247,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
-            ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+            ChatMessage.shareChat().registerJMessage(UserManager.shared.userId)
             
         }) { (error) in
             print("微信登录：第2步 is error:\(error)")
@@ -293,11 +293,11 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             
             if (data["ret"].intValue == 0) {
                 let user = data["userInfo"]
-                UserManager.storeUserData(data: user)
+                UserManager.shared.storeUserData(data: user)
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                ChatMessage.shareChat().registerJMessage(UserManager.getUser().userId)
+                ChatMessage.shareChat().registerJMessage(UserManager.shared.userId)
             } else {
                 Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }

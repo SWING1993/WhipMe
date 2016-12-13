@@ -144,7 +144,7 @@ class AddPeopleController: UIViewController {
     
     func startRequests() {
         
-        let params = ["userId":UserManager.getUser().userId]
+        let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("querySupervisor", params: params, success: { (result) in
             print(result!)
             if (result != nil) {

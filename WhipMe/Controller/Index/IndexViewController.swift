@@ -439,7 +439,7 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func setupAPI() {
-        let params = ["userId":UserManager.getUser().userId]
+        let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
             if (result != nil) {
                 print(result!)

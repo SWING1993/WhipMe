@@ -22,6 +22,16 @@ let userdbName = "whipMe.db"
 let userTableName = "user_table"
 let userID = "user_data"
 
+private let sharedKraken = { () -> UserManager in
+    var user = UserManager()
+    let store = YTKKeyValueStore.init(dbWithName: userdbName)
+    if store?.getObjectById(userID, fromTable: userTableName) != nil {
+        let userDic:NSDictionary = store?.getObjectById(userID, fromTable: userTableName) as! NSDictionary
+        user = UserManager.mj_object(withKeyValues: userDic)
+    }
+    return user;
+}()
+
 class UserManager: NSObject {
     var createDate: String = ""
     var mobile: String = ""
@@ -36,27 +46,38 @@ class UserManager: NSObject {
     var iconPrefix: String = ""
     var sign: String = ""
     var birthday: String = ""
-    
     var focusNum: String = ""
     var fansNum: String = ""
     var pwdim: String = ""
+    
+    class var shared: UserManager {
+        return sharedKraken
+    }
 
-    class func storeUserData(data: JSON) {
+    func storeUserData(data: JSON) {
         let store = YTKKeyValueStore.init(dbWithName: userdbName)
         let tableName = userTableName
-        print(data)
         store?.createTable(withName: tableName)
         let dataDic = data.dictionaryObject
-        store?.put(dataDic, withId: userID, intoTable: tableName);
-    }
-    
-    class func getUser() -> UserManager {
+        store?.put(dataDic, withId: userID, intoTable: tableName)
+        
         var user = UserManager()
-        let store = YTKKeyValueStore.init(dbWithName: userdbName)
-        if store?.getObjectById(userID, fromTable: userTableName) != nil {
-            let userDic:NSDictionary = store?.getObjectById(userID, fromTable: userTableName) as! NSDictionary
-            user = UserManager.mj_object(withKeyValues: userDic)
-        }
-        return user;
+        user = UserManager.mj_object(withKeyValues: dataDic)
+        UserManager.shared.createDate = user.createDate
+        UserManager.shared.mobile = user.mobile
+        UserManager.shared.supervisor = user.supervisor
+        UserManager.shared.type = user.type
+        UserManager.shared.age = user.age
+        UserManager.shared.sex = user.sex
+        UserManager.shared.icon = user.icon
+        UserManager.shared.username = user.username
+        UserManager.shared.nickname = user.nickname
+        UserManager.shared.userId = user.userId
+        UserManager.shared.iconPrefix = user.iconPrefix
+        UserManager.shared.sign = user.sign
+        UserManager.shared.birthday = user.birthday
+        UserManager.shared.focusNum = user.focusNum
+        UserManager.shared.fansNum = user.fansNum
+        UserManager.shared.pwdim = user.pwdim
     }
 }

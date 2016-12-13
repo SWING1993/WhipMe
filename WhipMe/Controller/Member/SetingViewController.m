@@ -33,7 +33,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    _userModel = [UserManager getUser];
+    _userModel = [UserManager shared];
 }
 
 - (void)setup {

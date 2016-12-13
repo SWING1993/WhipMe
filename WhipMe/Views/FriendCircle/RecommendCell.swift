@@ -88,7 +88,6 @@ class RecommendCell: NormalCell {
         pageView.textColor = kColorGreen
         pageView.textAlignment = .right
         pageView.font = UIFont.systemFont(ofSize: 14)
-//        pageView.backgroundColor = UIColor.random()
         self.bgView.addSubview(pageView)
         pageView.snp.makeConstraints({ (make) in
             make.top.equalTo(nickNameL.snp.bottom)
@@ -154,12 +153,9 @@ class RecommendCell: NormalCell {
         
         let activeV = UIView.init()
         activeV.frame = CGRect.init(x: 0, y: 0, width: self.bgView.width, height: 35)
-//        activeV.backgroundColor = UIColor.random()
         commentList.tableFooterView = activeV
         
         let line = UIView.init()
-//        Define.RGBColorFloat(153.0, g: 153.0, b: 153.0)
-
         line.backgroundColor = Define.RGBColorAlphaFloat(153, g: 153, b: 153, a: 0.5)
         activeV.addSubview(line)
         line.snp.makeConstraints { (make) in
@@ -173,7 +169,6 @@ class RecommendCell: NormalCell {
         let edgeInsetsWidth = (btnImage?.size.width)!/3
         
         likeB = UIButton.init(type: UIButtonType.custom)
-//        likeB.backgroundColor = UIColor.random()
         likeB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
         likeB.setTitleColor(kColorGary, for: .normal)
         likeB.setImage(UIImage.init(named: "zan_icon_off"), for: .normal)
@@ -190,7 +185,6 @@ class RecommendCell: NormalCell {
         })
         
         commentB = UIButton.init(type: UIButtonType.custom)
-//        commentB.backgroundColor = UIColor.random()
         commentB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
         commentB.setTitleColor(kColorGary, for: .normal)
         commentB.setImage(UIImage.init(named: "comment_icon_off"), for: .normal)
@@ -205,7 +199,6 @@ class RecommendCell: NormalCell {
         })
 
         shareB = UIButton.init(type: UIButtonType.custom)
-//        shareB.backgroundColor = UIColor.random()
         shareB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
         shareB.setTitleColor(kColorGary, for: .normal)
         shareB.setImage(UIImage.init(named: "share_icon"), for: .normal)
@@ -222,10 +215,14 @@ class RecommendCell: NormalCell {
     
     func setRecommendData(model:FriendCircleM) {
         
-        
+        if model.picture.isEmpty {
+            self.pictrueView.snp.updateConstraints({ (make) in
+                make.height.equalTo(0)
+            })
+        }else {
+            self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
+        }
         self.avatarV.setImageWith(urlString: model.icon, placeholderImage: "")
-        self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
-
         self.contentL.text = model.content
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"
@@ -259,7 +256,10 @@ class RecommendCell: NormalCell {
     }
     
     class func cellHeight(model:FriendCircleM) -> CGFloat {
-        var height:CGFloat = 170.0 + Define.screenWidth()/2
+        var height:CGFloat = 170.0
+        if model.picture.isEmpty == false {
+            height += Define.screenWidth()/2
+        }
         height += CGFloat(model.comment.count) * 35.0
         let content: NSString = NSString.init(string: model.content)
         height += content.getHeightWith(UIFont.systemFont(ofSize: 14), constrainedTo: CGSize.init(width: Define.screenWidth() - 48, height: CGFloat.greatestFiniteMagnitude))
@@ -284,6 +284,10 @@ class RecommendCell: NormalCell {
     
     class func cellReuseIdentifier() -> String {
         return "RecommendCell"
+    }
+    
+    class func focusCellReuseIdentifier() -> String {
+        return "FocusRecommendCell"
     }
 }
 

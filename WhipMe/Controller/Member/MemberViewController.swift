@@ -299,7 +299,7 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - network
     func queryByUserInfo() {
-        let user = UserManager.getUser()
+        let user = UserManager.shared
         HttpAPIClient.apiClientPOST("queryUserInfo", params: ["userId":user.userId], success: { (result) in
             if (result != nil) {
                 print("mlogin is result: \(result)")
@@ -307,20 +307,10 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let data  = json["data"][0]
                 if (data["ret"].intValue == 0) {
                     let info = data["userInfo"]
-                    let modle = UserManager.getUser()
+                    let modle = UserManager.shared
                     modle.sign =  info["sign"].stringValue
                     modle.fansNum = info["fansNum"].stringValue
-                    modle.focusNum = info["focusNum"].stringValue
-//                    let dic = modle.mj_keyValues()
-//                    UserManager.storeUserData(data: dic?.mj_JSONObject() as! JSON)
-//
-//                    let supervise = data["mySupervise"]
-//                    self.arraySupervise = mySuperviseModel.mj_objectArray(withKeyValuesArray: supervise)
-//                    
-//                    let grow = data["myGrow"]
-//                    self.arrayGrow = mySuperviseModel.mj_objectArray(withKeyValuesArray: grow)
-                    
-                    
+                    modle.focusNum = info["focusNum"].stringValue    
                 } else {
                     Tool.showHUDTip(tipStr: data["desc"].stringValue)
                 }

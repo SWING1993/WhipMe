@@ -14,12 +14,10 @@ import SwiftyJSON
 
 class FriendCircleM: NSObject {
     var comment: NSArray = NSArray.init()
-    
     var recordIdNum: Int = 0
     var commentNum: Int = 0
     var likeNum: Int = 0
     var shareNum: Int = 0
-
     var content: String = ""
     var createDate: String = ""
     var icon: String = ""
@@ -35,10 +33,14 @@ class FriendCircleM: NSObject {
 
 class FriendCircleController: UIViewController {
     
-    
-    fileprivate var cellHeights: [CGFloat] = []
     fileprivate var recommendTable: UITableView = UITableView()
     fileprivate var friendCircleModels: [FriendCircleM] = [];
+    fileprivate var cellHeights: [CGFloat] = []
+    
+    fileprivate var focusList: UITableView = UITableView()
+    fileprivate var focusModels: [FriendCircleM] = [];
+    fileprivate var focusCellHeights: [CGFloat] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -49,16 +51,48 @@ class FriendCircleController: UIViewController {
         self.view.backgroundColor = kColorBackGround
         prepareTableView()
         prepareSegmented()
-        setupRequest()
+        setupRecommendRequest()
     }
     
-    fileprivate func setupRequest() {
+    fileprivate func setupFocusRequest() {
+        let params = [
+            "pageSize":"20",
+            "pageIndex":"1",
+            "userId":UserManager.shared.userId
+            ]
+        HttpAPIClient.apiClientPOST("biantaquanFocusList", params: params, success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let list = json["data"][0]["list"].arrayObject
+                    self.focusModels = {
+                        var temps: [FriendCircleM] = []
+                        let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
+                        for model in tempArr! {
+                            temps.append(model as! FriendCircleM)
+                        }
+                        return temps
+                    }()
+                    for model in self.focusModels {
+                        let cellHeight = RecommendCell.cellHeight(model: model )
+                        self.focusCellHeights.append(cellHeight)
+                    }
+                    self.focusList.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+        }
+    }
+    
+    fileprivate func setupRecommendRequest() {
         let params = [
             "pageSize":"20",
             "pageIndex":"1",
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
-            print(result!)
             if (result != nil) {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
@@ -72,7 +106,6 @@ class FriendCircleController: UIViewController {
                         }
                         return temps
                     }()
-                    
                     for model in self.friendCircleModels {
                         let cellHeight = RecommendCell.cellHeight(model: model )
                         self.cellHeights.append(cellHeight)
@@ -84,7 +117,6 @@ class FriendCircleController: UIViewController {
                 }
             }
         }) { (error) in
-            print(error as Any);
         }
     }
     
@@ -101,7 +133,6 @@ class FriendCircleController: UIViewController {
         segmentedView.selectedSegmentIndex = 0
         segmentedView.addTarget(self, action:#selector(clickWithSegmentedItem), for: UIControlEvents.valueChanged)
         self.navigationItem.titleView = segmentedView
-        
         let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         rightBarItem.tintColor = UIColor.white
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
@@ -115,10 +146,26 @@ class FriendCircleController: UIViewController {
         recommendTable.dataSource = self
         recommendTable.delegate = self
         recommendTable.separatorStyle = .none
+        recommendTable.tag = 100
         view.addSubview(recommendTable)
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+        
+        focusList = UITableView.init()
+        focusList.backgroundColor = kColorBackGround
+        focusList.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.focusCellReuseIdentifier())
+        focusList.dataSource = self
+        focusList.delegate = self
+        focusList.separatorStyle = .none
+        focusList.tag = 101
+        view.addSubview(focusList)
+        focusList.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+        
+        recommendTable.isHidden = false
+        focusList.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,12 +173,19 @@ class FriendCircleController: UIViewController {
     }
     
     func clickWithSegmentedItem(_ sender: UISegmentedControl) {
-        print(sender.numberOfSegments+sender.selectedSegmentIndex)
-        recommendTable.reloadData()
+        if sender.selectedSegmentIndex == 0 {
+            recommendTable.isHidden = false
+            focusList.isHidden = true
+            setupRecommendRequest()
+        }
+        else {
+            recommendTable.isHidden = true
+            focusList.isHidden = false
+            setupFocusRequest()
+        }
     }
     
     func clickWithRightBarItem() {
-        print(NSStringFromClass(self.classForCoder))
     }
     
 }
@@ -141,7 +195,10 @@ extension FriendCircleController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friendCircleModels.count
+        if tableView.tag == 100 {
+            return self.friendCircleModels.count
+        }
+        return self.focusModels.count
     }
     
     /// Returns the number of sections.
@@ -151,8 +208,14 @@ extension FriendCircleController:UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
-        let model:FriendCircleM = self.friendCircleModels[indexPath.row]
+        if tableView.tag == 100 {
+            let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
+            let model:FriendCircleM = self.friendCircleModels[indexPath.row]
+            cell.setRecommendData(model: model)
+            return cell
+        }
+        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.focusCellReuseIdentifier())
+        let model:FriendCircleM = self.focusModels[indexPath.row]
         cell.setRecommendData(model: model)
         return cell
     }
@@ -161,6 +224,9 @@ extension FriendCircleController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension FriendCircleController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.cellHeights[indexPath.row]
+        if tableView.tag == 100 {
+            return self.cellHeights[indexPath.row]
+        }
+        return self.focusCellHeights[indexPath.row]
     }
 }

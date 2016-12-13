@@ -37,15 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let user = UserManager.getUser()
-        print(user.nickname)
-        
 //        let loginControl: TopUpViewController = TopUpViewController()
 //        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
 //        self.window?.rootViewController = navControl
 
-        print("username is \(user.nickname)")
-        if (user.nickname.characters.count > 0) {
+        print("username is \(UserManager.shared.nickname)")
+        if (UserManager.shared.nickname.characters.count > 0) {
             setupMainController()
         } else {
             setupLoginController()

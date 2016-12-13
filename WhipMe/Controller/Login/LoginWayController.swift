@@ -159,7 +159,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                         print("用户登录成功")
                         let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.setupMainController()
-                        ChatMessage.shareChat().loginJMessage(UserManager.getUser().userId)
+                        ChatMessage.shareChat().loginJMessage(UserManager.shared.userId)
                     } else {
                         Tool.showHUDTip(tipStr: "用户登录失败!")
                     }

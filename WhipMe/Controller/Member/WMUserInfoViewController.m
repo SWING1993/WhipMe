@@ -290,7 +290,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
 
 - (UserManager *)userModel {
     if (!_userModel) {
-        _userModel = [UserManager getUser];
+        _userModel = [UserManager shared];
     }
     return _userModel;
 }
