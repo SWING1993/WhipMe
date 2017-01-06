@@ -44,23 +44,18 @@
     if (string == nil) {
         return YES;
     }
-    
     if (string == NULL) {
         return YES;
     }
-    
     if ([string isKindOfClass:[NSNull class]]) {
         return YES;
     }
-    
     if (![string isKindOfClass:[NSString class]]) {
         return YES;
     }
-    
     if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0) {
         return YES;
     }
-    
     if ([string isEqualToString:@"(null)"]) {
         return YES;
     }

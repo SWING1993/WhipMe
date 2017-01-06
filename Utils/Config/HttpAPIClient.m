@@ -52,19 +52,23 @@ static HKHttpSession *httpSession = nil;
     if (param) {
         [parameters setObject:param forKey:@"param"];
     }
+    DebugLog(@"______param:%@",parameters);
     
     [HttpAPIClient APIClientParams:parameters Success:success Failed:failed];
 }
 
 + (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *host_url = @"/json_dispatch.rpc";
     HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
     [http.responseSerializer setAcceptableContentTypes:nil];
     [http POST:host_url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         success == nil ?: success(result);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         failed == nil ?: failed(error);
     }];
 }
@@ -91,20 +95,21 @@ static HKHttpSession *httpSession = nil;
 {
     NSString *host_url = @"/headUploadServlet";
     HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-    http.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
-                                                         @"text/html",
-                                                         @"image/jpeg",
-                                                         @"image/png",
-                                                         @"application/octet-stream",
-                                                         @"text/json",
-                                                         nil];
+    [http.responseSerializer setAcceptableContentTypes:nil];
+//    http.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+//                                                         @"text/html",
+//                                                         @"image/jpeg",
+//                                                         @"image/png",
+//                                                         @"application/octet-stream",
+//                                                         @"text/json",
+//                                                         nil];
     [http POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         UIImage *img = [UIImage imageWithContentsOfFile:header];
         NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
         NSString *imgName = header.lastPathComponent;
         
-        [formData appendPartWithFileData:imgData name:@"file" fileName:imgName mimeType:@"image.jpg"];
+        [formData appendPartWithFileData:imgData name:@"image" fileName:imgName mimeType:@"image.jpg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         success == nil ?: success(result);

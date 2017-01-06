@@ -34,9 +34,8 @@ extension UIImageView {
     func setImageWith(urlString: String, placeholderImage:String) {
         if urlString.isEmpty == false {
             let url = URL.init(string: urlString)!
-            self.setImageWith(url, placeholderImage: UIImage.init(named: placeholderImage))
-        }
-        else {
+//            self.setImageWith(url, placeholderImage: UIImage.init(named: placeholderImage))
+        } else {
             if placeholderImage.isEmpty == false {
                 self.image = UIImage.init(named: placeholderImage)
             }
