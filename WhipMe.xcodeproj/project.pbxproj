@@ -40,6 +40,7 @@
 		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
 		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
 		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
+		C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */; };
 		C57A8D9F1D8FED3700887BE2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */; };
 		C57A8DA11D8FED3D00887BE2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */; };
 		C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5920D381D8F8141007B199E /* ChatConversationListCell.swift */; };
@@ -62,8 +63,9 @@
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
 		C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A66B321D990E5C00612E16 /* LoginWayController.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
-		C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8290B1D93731400EBF46E /* UserEditViewController.swift */; };
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
+		C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */; };
+		C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
@@ -159,6 +161,8 @@
 		C555E77D1DE5935900A443A0 /* TopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopUpViewController.m; sourceTree = "<group>"; };
 		C555E77F1DE5BA4D00A443A0 /* CashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashViewController.h; sourceTree = "<group>"; };
 		C555E7801DE5BA4D00A443A0 /* CashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashViewController.m; sourceTree = "<group>"; };
+		C5602A0D1DEE66D6006BA184 /* WMUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserEditViewController.h; sourceTree = "<group>"; };
+		C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserEditViewController.m; sourceTree = "<group>"; };
 		C57A8D9E1D8FED3700887BE2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		C57A8DA01D8FED3D00887BE2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C5920D381D8F8141007B199E /* ChatConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationListCell.swift; sourceTree = "<group>"; };
@@ -181,9 +185,12 @@
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
 		C5A66B321D990E5C00612E16 /* LoginWayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWayController.swift; sourceTree = "<group>"; };
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
-		C5A8290B1D93731400EBF46E /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
 		C5A829121D93D30500EBF46E /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
 		C5A829131D93D30500EBF46E /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
+		C5B0F58B1E1B505E00B87EAA /* HKPickerPassengerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPickerPassengerView.h; sourceTree = "<group>"; };
+		C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPickerPassengerView.m; sourceTree = "<group>"; };
+		C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
@@ -383,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				C546FE2E1D829D8200012FB4 /* MemberViewController.swift */,
-				C5A8290B1D93731400EBF46E /* UserEditViewController.swift */,
 				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
@@ -397,6 +403,8 @@
 				C54E77DE1DE68C41007F886B /* SetingViewController.m */,
 				C54E77E01DE69290007F886B /* WMUserInfoViewController.h */,
 				C54E77E11DE69290007F886B /* WMUserInfoViewController.m */,
+				C5602A0D1DEE66D6006BA184 /* WMUserEditViewController.h */,
+				C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -461,6 +469,8 @@
 		C546FE1D1D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C5B0F58B1E1B505E00B87EAA /* HKPickerPassengerView.h */,
+				C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */,
 				C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */,
 				C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */,
 				C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */,
@@ -640,6 +650,8 @@
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */,
+				C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */,
 				E449AC891DAC87140095B8C2 /* Extension.swift */,
 				E4E230271DDC4262007EF8AC /* NSString+Common.h */,
 				E4E230281DDC4262007EF8AC /* NSString+Common.m */,
@@ -756,7 +768,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "-";
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
@@ -868,12 +880,13 @@
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
+				C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */,
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
+				C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
-				C5A8290C1D93731400EBF46E /* UserEditViewController.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
@@ -893,6 +906,7 @@
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
+				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
 				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,

@@ -7,13 +7,18 @@
 //
 
 #import "WMUserInfoViewController.h"
+#import "WMUserEditViewController.h"
 
-@interface WMUserInfoViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#import "HKPickerPassengerView.h"
+
+@interface WMUserInfoViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WMUserEditViewControllerDelegate, HKPickerPassengerViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) UserManager *userModel;
 
 @property (nonatomic, strong) UIImage *imagePath;
+
+@property (nonatomic, strong) HKPickerPassengerView *pickerPassenger;
 
 @end
 
@@ -25,14 +30,6 @@ static NSString *identifier_cell = @"userInfoViewCell";
     [super viewDidLoad];
     self.navigationItem.title = @"编辑个人资料";
     self.view.backgroundColor = [Define kColorBackGround];
-    
-    //        userModel.username = "幽叶"
-    //        userModel.nickname = "榴莲"
-    //        userModel.avatar = "system_monitoring"
-    //        userModel.sex = "男"
-    //        userModel.age = "22"
-    //        userModel.birthday = "1992-10-05"
-    //        userModel.signature = "寂寞的幻境，朦胧的身影"
     
     [self setup];
 }
@@ -62,8 +59,11 @@ static NSString *identifier_cell = @"userInfoViewCell";
     }];
     
     [self.tableViewWM registerClass:[UserInfoTableViewCell class] forCellReuseIdentifier:identifier_cell];
+    
+    CGRect frame = CGRectMake(0, [Define screenHeight], [Define screenWidth], [Define screenHeight] - 64.0);
+    _pickerPassenger = [[HKPickerPassengerView alloc] initWithFrame:frame title:nil delegate:self type:HKPickerPassengerViewTypeBirthday];
+    [self.view addSubview:self.pickerPassenger];
 }
-
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -159,15 +159,17 @@ static NSString *identifier_cell = @"userInfoViewCell";
         UIAlertController *sheetSex = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         [sheetSex addAction:[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.userModel.sex = true;
-            [self.tableViewWM reloadData];
+            weakSelf.userModel.sex = true;
+            [weakSelf editUserInfo:@"1" editType:EditControlSex];
+            [weakSelf.tableViewWM reloadData];
         }]];
         [sheetSex addAction:[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.userModel.sex = false;
-            [self.tableViewWM reloadData];
+            weakSelf.userModel.sex = false;
+            [weakSelf editUserInfo:@"0" editType:EditControlSex];
+            [weakSelf.tableViewWM reloadData];
         }]];
         [sheetSex addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self.tableViewWM reloadData];
+            [weakSelf.tableViewWM reloadData];
         }]];
         [self presentViewController:sheetSex animated:YES completion:nil];
     } else if (indexPath.row == 5) {
@@ -178,20 +180,9 @@ static NSString *identifier_cell = @"userInfoViewCell";
 #pragma mark - Action
 - (void)showUserEditContorl:(NSIndexPath *)indexPath placeholder:(NSString *)string {
     
-//    EditControlType editControl = indexPath.row == 7 ? EditControlTypes : WMEditControlnickname;
-    UserEditViewController *contorller = [[UserEditViewController alloc] init];
-    
-//    controller.editControl = editControl
-//    controller.strPlaceholder = placeholder
-//    controller.textEditedBlock = { (value, editType) -> Void in
-//        print("value is :\(value) __:\(editType)")
-//        if editType == EditControlType.signature {
-//            self.userModel.sign = value
-//        } else {
-//            self.userModel.nickname = value
-//        }
-//        self.tableViewWM.reloadData()
-//    }
+    EditControlType editControl = indexPath.row == 7 ? EditControlSign : EditControlNickname;
+    WMUserEditViewController *contorller = [[WMUserEditViewController alloc] initWithPlaceholder:string delegate:self];
+    contorller.editControl = editControl;
     [self.navigationController pushViewController:contorller animated:YES];
 }
 
@@ -234,21 +225,14 @@ static NSString *identifier_cell = @"userInfoViewCell";
 }
 
 - (void)selectUserBirthday {
+    [self.pickerPassenger setTitle:@"出生日期"];
+    [self.pickerPassenger setPickerType:HKPickerPassengerViewTypeBirthday];
+    [self.pickerPassenger setDefault_birghday:self.userModel.birthday];
+    [self.pickerPassenger setData];
     
-//    SGHDateView.sharedInstance.pickerMode = .date
-//    SGHDateView.sharedInstance.show();
-//
-//    //        let format = DateFormatter()
-//    //        format.dateFormat = "yyyy-MM-dd"
-//    //        format.timeZone = TimeZone.init(identifier: "Asia/Beijing")
-//    
-//    SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-//        
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        self.userModel.birthday = formatter.string(from: date as Date)
-//        self.tableViewWM.reloadData()
-//    }
+    [UIView animateWithDuration:0.35 animations:^{
+        [self.pickerPassenger setOrigin:CGPointZero];
+    }];
 }
 
 #pragma makr - UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -270,16 +254,15 @@ static NSString *identifier_cell = @"userInfoViewCell";
     
     BOOL flag = [imageData writeToFile:fullPath atomically:YES];
     if (flag) {
-        
         WEAK_SELF
         [HttpAPIClient uploadServletToHeader:fullPath Success:^(id result) {
             DebugLog(@"____________result:%@",result);
             
             if ([result[@"ret"] integerValue] != 0) {
-                //图片上传失败!
                 [Tool showHUDTipWithTipStr:result[@"desc"]];
             } else {
                 weakSelf.userModel.icon = result[@"userInfo"][@"icon"];
+                [weakSelf editUserInfo:result[@"userInfo"][@"icon"] editType:EditControlAvatar];
                 [weakSelf.tableViewWM reloadData];
             }
         } Failed:^(NSError *error) {
@@ -288,10 +271,97 @@ static NSString *identifier_cell = @"userInfoViewCell";
     }
 }
 
+#pragma mark - WMUserEditViewControllerDelegate
+- (void)userEditView:(NSString *)strEdited editConterol:(EditControlType)type {
+    if (type == EditControlSign) {
+        self.userModel.sign = strEdited;
+    } else {
+        self.userModel.nickname = strEdited;
+    }
+    [self editUserInfo:strEdited editType:type];
+    [self.tableViewWM reloadData];
+}
+
+#pragma mark - HKPickerPassengerViewDelegate
+- (void)pickerPassengerViewCancel:(HKPickerPassengerView *)pickerView {
+    [UIView animateWithDuration:0.35 animations:^{
+        [self.pickerPassenger setOrigin:CGPointMake(0, [Define screenHeight])];
+    }];
+}
+
+- (void)pickerPassengerView:(HKPickerPassengerView *)pickerView didData:(NSString *)string {
+    
+    [UIView animateWithDuration:0.35 animations:^{
+        [self.pickerPassenger setOrigin:CGPointMake(0, [Define screenHeight])];
+    }];
+    if (pickerView.pickerType == HKPickerPassengerViewTypeBirthday) {
+        self.userModel.birthday = string;
+        [self editUserInfo:string editType:EditControlBirthday];
+    }
+    [self.tableViewWM reloadData];
+}
+
+#pragma mark - get set
 - (UserManager *)userModel {
     if (!_userModel) {
         _userModel = [UserManager getUser];
     }
     return _userModel;
 }
+
+- (NSString *)keyWithEditType:(EditControlType)keyType {
+    NSString *str_key = @"";
+    switch (keyType) {
+        case EditControlNickname:
+            str_key = @"nickname";
+            break;
+        case EditControlSign:
+            str_key = @"sign";
+            break;
+        case EditControlSex:
+            str_key = @"sex";
+            break;
+        case EditControlAvatar:
+            str_key = @"icon";
+            break;
+        case EditControlBirthday:
+            str_key = @"birthday";
+            break;
+            
+        default:
+            break;
+    }
+    return str_key;
+}
+
+#pragma mark - Network
+/** 编辑个人资料 （用户头像，用户昵称，用户签名，用户性别，用户生日） */
+- (void)editUserInfo:(NSString *)strValue editType:(EditControlType)keyType {
+    if ([NSString isBlankString:strValue]) {
+        return;
+    }
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[NSString stringWithFormat:@"%@",self.userModel.userId] forKey:@"userId"];
+    
+    // 获取修改的key
+    NSString *str_key = [self keyWithEditType:keyType];
+    if (![NSString isBlankString:str_key]) {
+        [param setObject:strValue forKey:str_key];
+    }
+    
+    [HttpAPIClient APIClientPOST:@"editUserInfo" params:param Success:^(id result) {
+        DebugLog(@"_______result:%@",result);
+        NSDictionary *dic_data = result[@"data"][0];
+        if ([dic_data[@"ret"] intValue] == 0) {
+            
+        } else {
+        
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"_______error:%@",error);
+    }];
+    
+}
+
+
 @end

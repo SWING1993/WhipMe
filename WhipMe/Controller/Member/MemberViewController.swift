@@ -49,7 +49,7 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setup()
         
         setData()
-//        queryByUserInfo();
+        queryByUserInfo();
     }
     
     override func didReceiveMemoryWarning() {
@@ -311,16 +311,17 @@ class MemberViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     modle.sign =  info["sign"].stringValue
                     modle.fansNum = info["fansNum"].stringValue
                     modle.focusNum = info["focusNum"].stringValue
-//                    let dic = modle.mj_keyValues()
-//                    UserManager.storeUserData(data: dic?.mj_JSONObject() as! JSON)
-//
-//                    let supervise = data["mySupervise"]
-//                    self.arraySupervise = mySuperviseModel.mj_objectArray(withKeyValuesArray: supervise)
-//                    
-//                    let grow = data["myGrow"]
-//                    self.arrayGrow = mySuperviseModel.mj_objectArray(withKeyValuesArray: grow)
+                    let dic = modle.mj_keyValues()
+                    let json_user = JSON(dic!)
+                    UserManager.storeUserData(data: json_user)
                     
+                    let grow = data["myGrow"]
+                    self.arrayGrow = mySuperviseModel.mj_objectArray(withKeyValuesArray: grow)
                     
+                    let supervise = data["mySupervise"]
+                    self.arraySupervise = mySuperviseModel.mj_objectArray(withKeyValuesArray: supervise)
+                    
+                    self.tableViewWM.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: data["desc"].stringValue)
                 }
