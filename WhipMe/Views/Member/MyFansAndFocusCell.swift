@@ -16,8 +16,8 @@ class MyFansAndFocusCell: UITableViewCell {
     open var btnCheck: UIButton!
     open var lineView: UIView!
     open var viewCurrent: UIView!
-    
-    open var delegate: MyFansAndFocusCellDelegate!
+    open var path: IndexPath!
+    var fansAndFocusCheck: ((IndexPath) -> Void)?
     
     fileprivate let kHead_WH: CGFloat = 41.0
     fileprivate let size_chek: CGRect = CGRect.init(x: 0, y: 0, width: 75.0, height: 28.0)
@@ -125,10 +125,12 @@ class MyFansAndFocusCell: UITableViewCell {
     }
     
     func onClickWithCheck(sender: UIButton) {
-        self.delegate.fansAndFocusCheck()
+        if (self.fansAndFocusCheck != nil) {
+            self.fansAndFocusCheck!(path);
+        }
     }
     
-    func cellModel(model: Dictionary<String,String>, style: WMFansAndFocusStyle) {
+    func cellModel(model: Dictionary<String,String>, style: Bool) {
     
         self.imageIcon.image = UIImage.init(named: "")
         
@@ -137,7 +139,7 @@ class MyFansAndFocusCell: UITableViewCell {
         self.lblDescribe.text = model["describe"]
         
         var color_normal: UIColor = kColorLight
-        if (style == .fans) {
+        if (style) {
             color_normal = Define.RGBColorFloat(71, g: 178, b: 248)
             self.btnCheck.setTitle("关注", for: UIControlState.normal)
         } else {
@@ -150,7 +152,3 @@ class MyFansAndFocusCell: UITableViewCell {
     }
 }
 
-public protocol MyFansAndFocusCellDelegate: NSObjectProtocol {
-    
-    func fansAndFocusCheck()
-}

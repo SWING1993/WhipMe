@@ -104,17 +104,5 @@ class FinancialDetailsCell: UITableViewCell {
         }
     }
     
-    func cellModel(model: Dictionary<String, String>) {
-//        self.lblTitle.text = model["title"]
-//        self.lblTime.text = model["time"]
-//        self.lblMoney.text = model["money"]
-        
-//        let money: Bool = model["type"].boolValue
-//        if money > 0.0 {
-//            lblMoney.textColor = Define.RGBColorFloat(71, g: 178, b: 248)
-//        } else {
-//            lblMoney.textColor = kColorBlack
-//        }
-    }
 
 }

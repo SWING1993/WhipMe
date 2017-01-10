@@ -8,6 +8,8 @@
 
 #import "MyWalletViewController.h"
 #import "TopUpViewController.h"
+#import "CashViewController.h"
+#import "WMFinancialDetailsController.h"
 
 #define kSize_Icon 143.0
 #define kButton_h 55.0
@@ -124,7 +126,7 @@
 
 #pragma mark - Action
 - (void)onClickWithRight {
-    FinancialDetailsController *controller = [FinancialDetailsController new];
+    WMFinancialDetailsController *controller = [WMFinancialDetailsController new];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -134,7 +136,8 @@
 }
 
 - (void)onClickWithCash:(id)sender {
-    
+    CashViewController *controller = [[CashViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

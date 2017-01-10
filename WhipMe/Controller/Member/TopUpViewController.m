@@ -38,6 +38,14 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 - (void)dealloc {
     DebugLog(@"%@",self.class);
 }
@@ -200,6 +208,7 @@
     if (response.errCode == WXSuccess) {
         self.textMoney.text = @"";
         [Tool showHUDTipWithTipStr:@"充值成功！"];
+        DDPostNotification(KQueryAccountWalletNotification);
     } else {
         NSString *strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", response.errCode,response.errStr];
         [Tool showHUDTipWithTipStr:strMsg];

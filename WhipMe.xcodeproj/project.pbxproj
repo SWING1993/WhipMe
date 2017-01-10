@@ -15,9 +15,6 @@
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
-		C50D29AA1DDE965B00F32B38 /* MyFansAndFocusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */; };
-		C50D29AC1DDE9E4100F32B38 /* MyFansAndFocusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */; };
-		C50D29AE1DDEADE100F32B38 /* FinancialDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */; };
 		C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
 		C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */; };
@@ -28,6 +25,11 @@
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */; };
+		C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */; };
+		C542FE3F1E24B8DE000A66CB /* MoneyRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE3E1E24B8DE000A66CB /* MoneyRecordModel.m */; };
+		C542FE421E24BBA6000A66CB /* WMFansAndFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */; };
+		C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE441E24BDFD000A66CB /* FansAndFocusModel.m */; };
+		C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
@@ -129,9 +131,6 @@
 		C50A49871D9A06180003CE2D /* PhoneCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodeButton.h; sourceTree = "<group>"; };
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
 		C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAndUserController.swift; sourceTree = "<group>"; };
-		C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusController.swift; sourceTree = "<group>"; };
-		C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusCell.swift; sourceTree = "<group>"; };
-		C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsController.swift; sourceTree = "<group>"; };
 		C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsCell.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
 		C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewCollectionCell.swift; sourceTree = "<group>"; };
@@ -145,6 +144,16 @@
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHistoricalReviewController.h; sourceTree = "<group>"; };
 		C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMHistoricalReviewController.m; sourceTree = "<group>"; };
+		C542FE391E24B476000A66CB /* WMConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMConfig.h; sourceTree = "<group>"; };
+		C542FE3A1E24B5F8000A66CB /* WMFinancialDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFinancialDetailsController.h; sourceTree = "<group>"; };
+		C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFinancialDetailsController.m; sourceTree = "<group>"; };
+		C542FE3D1E24B8DE000A66CB /* MoneyRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyRecordModel.h; sourceTree = "<group>"; };
+		C542FE3E1E24B8DE000A66CB /* MoneyRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyRecordModel.m; sourceTree = "<group>"; };
+		C542FE401E24BBA6000A66CB /* WMFansAndFocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFansAndFocusController.h; sourceTree = "<group>"; };
+		C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFansAndFocusController.m; sourceTree = "<group>"; };
+		C542FE431E24BDFD000A66CB /* FansAndFocusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansAndFocusModel.h; sourceTree = "<group>"; };
+		C542FE441E24BDFD000A66CB /* FansAndFocusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansAndFocusModel.m; sourceTree = "<group>"; };
+		C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusCell.swift; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C546FE281D829BF900012FB4 /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
@@ -391,8 +400,6 @@
 		C546FE131D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
-				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
 				C555E7791DE5827600A443A0 /* MyWalletViewController.h */,
 				C555E77A1DE5827600A443A0 /* MyWalletViewController.m */,
 				C555E77C1DE5935900A443A0 /* TopUpViewController.h */,
@@ -409,6 +416,10 @@
 				C516C67B1E233021000BA12B /* WMMemberViewController.m */,
 				C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */,
 				C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */,
+				C542FE3A1E24B5F8000A66CB /* WMFinancialDetailsController.h */,
+				C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */,
+				C542FE401E24BBA6000A66CB /* WMFansAndFocusController.h */,
+				C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -473,6 +484,7 @@
 		C546FE1D1D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */,
 				C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */,
 				C516C6871E238412000BA12B /* MemberHeadViewCell.swift */,
 				C516C6881E238412000BA12B /* MemberTableViewCell.swift */,
@@ -480,7 +492,6 @@
 				C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */,
 				C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */,
 				C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */,
-				C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */,
 				C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */,
 			);
 			path = Member;
@@ -514,6 +525,7 @@
 				E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */,
 				C5F9BD751DD0147D000250E8 /* ChatMessage.h */,
 				C5F9BD761DD0147D000250E8 /* ChatMessage.m */,
+				C542FE391E24B476000A66CB /* WMConfig.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -543,6 +555,10 @@
 				C52701AE1DDC59060021F989 /* mySuperviseModel.swift */,
 				C54E77E31DE6E388007F886B /* ShareEngine.h */,
 				C54E77E41DE6E388007F886B /* ShareEngine.m */,
+				C542FE3D1E24B8DE000A66CB /* MoneyRecordModel.h */,
+				C542FE3E1E24B8DE000A66CB /* MoneyRecordModel.m */,
+				C542FE431E24BDFD000A66CB /* FansAndFocusModel.h */,
+				C542FE441E24BDFD000A66CB /* FansAndFocusModel.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -881,6 +897,7 @@
 				E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */,
 				C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
+				C542FE421E24BBA6000A66CB /* WMFansAndFocusController.m in Sources */,
 				C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */,
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
@@ -894,20 +911,19 @@
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
 				E4189ED81D8E6AE000A619A6 /* AddWhipController.swift in Sources */,
 				C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */,
-				C50D29AA1DDE965B00F32B38 /* MyFansAndFocusController.swift in Sources */,
 				E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */,
 				E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */,
 				E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */,
 				4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */,
 				E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */,
-				C50D29AE1DDEADE100F32B38 /* FinancialDetailsController.swift in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
-				C50D29AC1DDE9E4100F32B38 /* MyFansAndFocusCell.swift in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
+				C542FE3F1E24B8DE000A66CB /* MoneyRecordModel.m in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
+				C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
@@ -947,9 +963,11 @@
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 				C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */,
+				C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
 				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
+				C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
 				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
 			);

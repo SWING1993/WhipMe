@@ -11,6 +11,7 @@
 #import "MyWalletViewController.h"
 #import "WMUserInfoViewController.h"
 #import "WMHistoricalReviewController.h"
+//#import "WMFansAndFocusController.h"
 
 CGFloat const kHead_WH = 60.0;
 NSInteger const kItem_Tag = 7777;
@@ -38,9 +39,11 @@ static NSString *identifier_head = @"tableViewView_head";
     self.view.backgroundColor = [Define kColorBackGround];
     
     [self setup];
-    [self setData:[UserManager shared]];
     
     [self queryByUserInfo];
+    
+    DDRemoveNotificationWithName(KQueryAccountWalletNotification);
+    DDAddNotification(@selector(queryAccountByWallet), KQueryAccountWalletNotification);
 }
 
 - (void)setData:(UserManager *)userInfo {
@@ -58,7 +61,7 @@ static NSString *identifier_head = @"tableViewView_head";
         self.lblDescribe.text = userInfo.sign;
     }
     
-    self.lblWallet.text = [NSString stringWithFormat:@"%ld",(long)[userInfo.wallet integerValue]];
+    self.lblWallet.text = [NSString stringWithFormat:@"%.2f",[userInfo.wallet floatValue]];
     self.lblFansNum.text = [NSString stringWithFormat:@"%ld",(long)[userInfo.fansNum integerValue]];
     self.lblFocusNum.text = [NSString stringWithFormat:@"%ld",(long)[userInfo.focusNum integerValue]];
 }
@@ -236,33 +239,21 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 - (void)onClickWithItem:(UIButton *)sender {
-    DebugLog(@"%@",sender);
     NSInteger index = sender.tag%kItem_Tag;
     if (index == 0) {
         MyWalletViewController *controller = [MyWalletViewController new];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     } else {
-       
+//        WMFansAndFocusStyle style = WMFansAndFocusStyleFans;
+//        if (index == 1) {
+//            style = WMFansAndFocusStyleFocus;
+//        }
+//        WMFansAndFocusController *controller = [[WMFansAndFocusController alloc] initWithStyle:style];
+//        controller.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:controller animated:YES];
     }
 }
-//let index: Int = sender.tag%kItem_Tag
-//if index == 0 {
-//    // 钱包
-//    let walletContrl: MyWalletViewController = MyWalletViewController();
-//    walletContrl.hidesBottomBarWhenPushed = true;
-//    self.navigationController?.pushViewController(walletContrl, animated: true);
-//} else {
-//    var style: WMFansAndFocusStyle = WMFansAndFocusStyle.fans
-//    if index == 1 {
-//        style = WMFansAndFocusStyle.focus
-//    }
-//    let controller: MyFansAndFocusController = MyFansAndFocusController()
-//    controller.style = style
-//    controller.hidesBottomBarWhenPushed = true
-//    self.navigationController?.pushViewController(controller, animated: true)
-//}
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -270,6 +261,7 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setData:[UserManager shared]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -277,6 +269,7 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 - (void)dealloc {
+    DDRemoveNotificationObserver();
     DebugLog(@"%@",NSStringFromClass(self.class));
 }
 
@@ -372,6 +365,7 @@ static NSString *identifier_head = @"tableViewView_head";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserInfo" params:param Success:^(id result) {
+        [weakSelf queryAccountByWallet];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -382,6 +376,9 @@ static NSString *identifier_head = @"tableViewView_head";
             model.fansNum = [NSString stringWithFormat:@"%ld",[info[@"fansNum"] integerValue]];
             model.focusNum = [NSString stringWithFormat:@"%ld",[info[@"focusNum"] integerValue]];
             [weakSelf setData:model];
+            
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
             
             [self.arrayGrow removeAllObjects];
             for (id obj in data[@"myGrow"]) {
@@ -402,9 +399,36 @@ static NSString *identifier_head = @"tableViewView_head";
         }
     } Failed:^(NSError *error) {
         DebugLog(@"%@",error);
+        [weakSelf queryAccountByWallet];
     }];
 }
 
+/** 获取用户账户余额 */
+- (void)queryAccountByWallet {
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"userId":user.userId ?: @""};
     
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:@"queryAccountById" params:param Success:^(id result) {
+        DebugLog(@"______result:%@",result);
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            CGFloat float_wallet = [data[@"account"] floatValue];
+            UserManager *model = [UserManager shared];
+            model.wallet = [NSString stringWithFormat:@"%.2f",float_wallet];
+            [weakSelf setData:model];
+            
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
 
 @end

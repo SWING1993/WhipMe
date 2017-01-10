@@ -140,4 +140,24 @@ static NSString *identifier_collect = @"historicalReviewCell";
     //    }];
 }
 
+- (void)deleteTask {
+    UserManager *user = [UserManager shared];
+    NSString *login_id = [NSString stringWithFormat:@"%@",user.userId];
+    NSString *union_id = [NSString stringWithFormat:@"taskId"];
+    NSString *taskType = @"0"; //（0：历史养成  1：历史监督）
+    
+    NSDictionary *param = @{@"loginId":login_id,@"taskId":union_id,@"taskType":taskType};
+    [HttpAPIClient APIClientPOST:@"removeTask" params:param Success:^(id result) {
+        DebugLog(@"______result:%@",result);
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] integerValue] == 0) {
+            [Tool showHUDTipWithTipStr:@"删除成功！"];
+        } else {
+            [Tool showHUDTipWithTipStr:data[@"desc"]];
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
+
 @end
