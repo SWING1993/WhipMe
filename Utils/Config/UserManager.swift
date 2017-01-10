@@ -49,6 +49,7 @@ class UserManager: NSObject {
     var focusNum: String = ""
     var fansNum: String = ""
     var pwdim: String = ""
+    var wallet: String = ""
     
     class var shared: UserManager {
         return sharedKraken

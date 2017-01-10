@@ -20,6 +20,8 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     fileprivate let kHead_WH: CGFloat = 36.0
     fileprivate let identifier_collect = "memberCollectionCell"
     open var collectionViewWM: UICollectionView!
+    open var model: mySuperviseModel = mySuperviseModel();
+    var indexViewCellModel: ((threeDayModel) -> Void)?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -138,25 +140,47 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         }
     }
     
+    open func setData() {
+        lblTitle.text = self.model.nickname
+        lblNumber.text = "已鞭挞\(self.model.recordNum)次"
+        lblTopic.text = "#\(self.model.themeName)#"
+        
+        self.collectionViewWM.reloadData();
+    }
+    
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if (self.model.threeDay.count == 0) {
+            return 5;
+        }
+        return self.model.threeDay.count;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MemberCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier_collect, for: indexPath) as! MemberCollectionViewCell
-        
+        //        "picture":"打卡图片",
+        //        "content":"打卡内容",
+        //        "whichDay":"打卡日期"
+        if (self.model.threeDay.count > indexPath.row) {
+            let obj: threeDayModel = threeDayModel.mj_object(withKeyValues: self.model.threeDay[indexPath.row])
+            cell.imageIcon.setImageWith(NSURL.init(string: obj.picture) as! URL, placeholderImage: Define.kDefaultPlaceImage())
+        } else {
+            cell.imageIcon.image = Define.kDefaultPlaceImage()
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView .deselectItem(at: indexPath, animated: true)
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(indexViewCell:detailModel:)]) {
-//            [self.delegate indexViewCell:self detailModel:self.arrayContent[indexPath.row]];
-//        }
+        if (self.model.threeDay.count > indexPath.row) {
+            let obj: threeDayModel = threeDayModel.mj_object(withKeyValues: self.model.threeDay[indexPath.row])
+            if (self.indexViewCellModel != nil) {
+                self.indexViewCellModel!(obj);
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

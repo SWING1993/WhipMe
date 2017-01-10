@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import <Bugly/Bugly.h>
 #import <PLeakSniffer/PLeakSniffer.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 //
 #import "NSDate+Extension.h"
@@ -33,6 +34,4 @@
 #import "ChatMessage.h"
 #import "ShareEngine.h"
 
-#import "MyWalletViewController.h"
-#import "SetingViewController.h"
-#import "WMUserInfoViewController.h"
+#import "WMMemberViewController.h"

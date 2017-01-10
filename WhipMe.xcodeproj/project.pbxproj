@@ -20,18 +20,18 @@
 		C50D29AE1DDEADE100F32B38 /* FinancialDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */; };
 		C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
-		C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */; };
-		C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */; };
-		C5129D601DDDAA1D004DEA4D /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */; };
 		C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */; };
 		C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */; };
+		C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C516C67B1E233021000BA12B /* WMMemberViewController.m */; };
+		C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */; };
+		C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6871E238412000BA12B /* MemberHeadViewCell.swift */; };
+		C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6881E238412000BA12B /* MemberTableViewCell.swift */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
 		C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */; };
-		C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2E1D829D8200012FB4 /* MemberViewController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
@@ -134,11 +134,13 @@
 		C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsController.swift; sourceTree = "<group>"; };
 		C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsCell.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
-		C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
-		C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
-		C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
 		C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewController.swift; sourceTree = "<group>"; };
 		C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewCollectionCell.swift; sourceTree = "<group>"; };
+		C516C67A1E233021000BA12B /* WMMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMemberViewController.h; sourceTree = "<group>"; };
+		C516C67B1E233021000BA12B /* WMMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMemberViewController.m; sourceTree = "<group>"; };
+		C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		C516C6871E238412000BA12B /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
+		C516C6881E238412000BA12B /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -146,7 +148,6 @@
 		C546FE281D829BF900012FB4 /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
 		C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleController.swift; sourceTree = "<group>"; };
-		C546FE2E1D829D8200012FB4 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		C54DF9101D9BB4E20067BC9F /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		C54E77DD1DE68C41007F886B /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
@@ -389,7 +390,6 @@
 		C546FE131D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				C546FE2E1D829D8200012FB4 /* MemberViewController.swift */,
 				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
@@ -405,6 +405,8 @@
 				C54E77E11DE69290007F886B /* WMUserInfoViewController.m */,
 				C5602A0D1DEE66D6006BA184 /* WMUserEditViewController.h */,
 				C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */,
+				C516C67A1E233021000BA12B /* WMMemberViewController.h */,
+				C516C67B1E233021000BA12B /* WMMemberViewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -469,12 +471,12 @@
 		C546FE1D1D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */,
+				C516C6871E238412000BA12B /* MemberHeadViewCell.swift */,
+				C516C6881E238412000BA12B /* MemberTableViewCell.swift */,
 				C5B0F58B1E1B505E00B87EAA /* HKPickerPassengerView.h */,
 				C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */,
 				C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */,
-				C5129D5B1DDD5F66004DEA4D /* MemberTableViewCell.swift */,
-				C5129D5D1DDD8852004DEA4D /* MemberCollectionViewCell.swift */,
-				C5129D5F1DDDAA1D004DEA4D /* MemberHeadViewCell.swift */,
 				C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */,
 				C50D29AB1DDE9E4100F32B38 /* MyFansAndFocusCell.swift */,
 				C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */,
@@ -867,7 +869,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5129D601DDDAA1D004DEA4D /* MemberHeadViewCell.swift in Sources */,
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
@@ -878,6 +879,7 @@
 				E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */,
 				C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
+				C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */,
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */,
@@ -904,15 +906,14 @@
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
+				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
-				C546FE2F1D829D8200012FB4 /* MemberViewController.swift in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
-				C5129D5C1DDD5F66004DEA4D /* MemberTableViewCell.swift in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
@@ -924,8 +925,9 @@
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
-				C5129D5E1DDD8852004DEA4D /* MemberCollectionViewCell.swift in Sources */,
+				C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
+				C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */,
 				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */,

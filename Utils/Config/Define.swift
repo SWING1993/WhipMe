@@ -64,8 +64,12 @@ class Define: NSObject {
         return "33afb229cbad98ef12b0f5bbeb78ee7a"
     }
 
-    class func kDefaultImageHead() -> String {
-        return "default_head"
+    class func kDefaultImageHead() -> UIImage {
+        return UIImage.init(named: "default_head")!
+    }
+    
+    class func kDefaultPlaceImage() -> UIImage {
+        return UIImage.init(named: "nilTouSu")!
     }
     
     // MARK: 颜色的定义

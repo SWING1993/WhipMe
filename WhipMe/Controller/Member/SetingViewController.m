@@ -7,6 +7,7 @@
 //
 
 #import "SetingViewController.h"
+#import "WMUserInfoViewController.h"
 
 static NSString *identifier_cell = @"setingTableViewCell";
 

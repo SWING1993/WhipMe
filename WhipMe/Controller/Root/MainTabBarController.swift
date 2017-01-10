@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController {
         let navIndex: UINavigationController = UINavigationController.init(rootViewController: IndexViewController())
         let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
         let navChat: UINavigationController = UINavigationController.init(rootViewController: PrivateChatController())
-        let navMember: UINavigationController = UINavigationController.init(rootViewController: MemberViewController())
+        let navMember: UINavigationController = UINavigationController.init(rootViewController: WMMemberViewController())
         
         navIndex.title = "主页";
         navFriend.title = "朋友圈";

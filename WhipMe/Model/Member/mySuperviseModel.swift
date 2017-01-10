@@ -16,6 +16,7 @@ class threeDayModel: NSObject {
 }
 
 class mySuperviseModel: NSObject {
+    open var creator: String = ""
     open var userId: String = ""
     open var nickname: String = ""
     open var icon: String = ""

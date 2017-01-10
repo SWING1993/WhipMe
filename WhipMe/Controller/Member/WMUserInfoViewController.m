@@ -107,7 +107,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
         if (self.imagePath) {
             cell.imageLogo.image = self.imagePath;
         } else {
-            [cell.imageLogo setImageWithUrlString:self.userModel.icon placeholderImage:[Define kDefaultImageHead]];
+            [cell.imageLogo setImageWithURL:[NSURL URLWithString:self.userModel.icon] placeholderImage:[Define kDefaultImageHead]];
         }
     } else if (indexPath.row == 3) {
         cell.lblTitle.text = @"昵称";
@@ -349,13 +349,26 @@ static NSString *identifier_cell = @"userInfoViewCell";
         [param setObject:strValue forKey:str_key];
     }
     
+    WEAK_SELF
     [HttpAPIClient APIClientPOST:@"editUserInfo" params:param Success:^(id result) {
         DebugLog(@"_______result:%@",result);
-        NSDictionary *dic_data = result[@"data"][0];
-        if ([dic_data[@"ret"] intValue] == 0) {
-            
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            UserManager *info = [UserManager mj_objectWithKeyValues:data[@"userInfo"]];
+            UserManager *model = [UserManager shared];
+            model.birthday = info.birthday;
+            model.icon = info.icon;
+            model.nickname = info.nickname;
+            model.pwdim = info.pwdim;
+            model.sex = info.sex;
+            model.sign = info.sign;
+            model.supervisor = info.supervisor;
+            model.userId = info.userId;
+            // TODO:未完，如果保持
         } else {
-        
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
         }
     } Failed:^(NSError *error) {
         DebugLog(@"_______error:%@",error);
