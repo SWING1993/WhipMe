@@ -33,5 +33,6 @@
 #import "HttpAPIClient.h"
 #import "ChatMessage.h"
 #import "ShareEngine.h"
+#import "WMConfig.h"
 
 #import "WMMemberViewController.h"

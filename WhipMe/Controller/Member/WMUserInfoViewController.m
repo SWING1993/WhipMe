@@ -355,17 +355,21 @@ static NSString *identifier_cell = @"userInfoViewCell";
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             
-            [UserManager storeUserWithDict:data[@"userInfo"]];
-//            UserManager *info = [UserManager mj_objectWithKeyValues:data[@"userInfo"]];
-//            UserManager *model = [UserManager shared];
-//            model.birthday = info.birthday;
-//            model.icon = info.icon;
-//            model.nickname = info.nickname;
-//            model.pwdim = info.pwdim;
-//            model.sex = info.sex;
-//            model.sign = info.sign;
-//            model.supervisor = info.supervisor;
-//            model.userId = info.userId;
+            weakSelf.userModel = nil;
+//            [UserManager storeUserWithDict:data[@"userInfo"]];
+            UserManager *info = [UserManager mj_objectWithKeyValues:data[@"userInfo"]];
+            UserManager *model = [UserManager shared];
+            model.birthday = info.birthday;
+            model.icon = info.icon;
+            model.nickname = info.nickname;
+            model.pwdim = info.pwdim;
+            model.sex = info.sex;
+            model.sign = info.sign;
+            model.supervisor = info.supervisor;
+            model.userId = info.userId;
+            
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
             // TODO:未完，如果保持
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {

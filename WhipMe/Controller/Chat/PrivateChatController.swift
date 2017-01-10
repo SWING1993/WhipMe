@@ -69,7 +69,8 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.addSubview(tableViewWM)
         tableViewWM.snp.makeConstraints { (make) in
             make.top.left.equalTo(10.0)
-            make.right.bottom.equalTo(-10.0)
+            make.width.equalTo(Define.screenWidth()-20.0)
+            make.height.equalTo(Define.screenHeight()-64.0 - 49.0 - 20.0)
         }
         
         
