@@ -21,16 +21,20 @@ class NormalCell: UITableViewCell {
         bgView.layer.cornerRadius = 5.0
         bgView.layer.masksToBounds = true
         self.addSubview(bgView)
-        bgView.snp.makeConstraints { (make) in
+         }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        bgView.snp.remakeConstraints { (make) in
             make.top.equalTo(kTopMargin)
             make.bottom.equalTo(kBottomMargin)
             make.left.equalTo(kLeftMargin)
             make.right.equalTo(kRightMargin)
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
 }

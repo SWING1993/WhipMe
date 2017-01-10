@@ -532,8 +532,12 @@ extension IndexViewController:UITableViewDataSource {
         }
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.biantawoList)
-        cell.checkPlan = { indexPath in
+        cell.checkPlan = { clickIndexPath in
             print(indexPath)
+            let meCecordC = MeCecordController.init()
+            meCecordC.hidesBottomBarWhenPushed = true
+            meCecordC.myWhipM = self.biantawoList.object(at: clickIndexPath.row) as! WhipM
+            self.navigationController?.pushViewController(meCecordC, animated: true)
         }
         return cell
     }

@@ -87,7 +87,6 @@ class LogNoPhotoCell: NormalCell {
             make.left.equalTo(imageView.snp.right).offset(5)
             make.centerY.equalTo(imageView)
         }
-    
     }
     
     class func cellHeight() -> CGFloat {

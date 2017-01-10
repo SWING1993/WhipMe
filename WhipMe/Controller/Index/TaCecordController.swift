@@ -37,12 +37,15 @@ class TaCecordController: UIViewController {
         let params = ["taskId":self.myWhipM.taskId,"pageSize":"30","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryRecordByTaskId", params: params, success: { (result) in
             if (result != nil) {
-                print(result!)
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
-                if ret == 0 {
-                    let totalSize = json["data"][0]["totalSize"].stringValue
-                    self.pageView.text = totalSize + "次"
+                let totalSize = json["data"][0]["totalSize"].intValue
+                self.pageView.text = String(totalSize) + "次"
+                if ret != 0 {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    return
+                }
+                if totalSize > 0 {
                     let recordList = json["data"][0]["recordList"].arrayObject
                     self.friendCircleModels = {
                         var temps: [FriendCircleM] = []
@@ -52,15 +55,12 @@ class TaCecordController: UIViewController {
                         }
                         return temps
                     }()
-                    
                     for model in self.friendCircleModels {
                         let cellHeight = RecommendCell.cellHeight(model: model )
                         self.cellHeights.append(cellHeight)
                     }
                     self.recommendTable.reloadData()
                     
-                } else {
-                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
             }
         }) { (error) in

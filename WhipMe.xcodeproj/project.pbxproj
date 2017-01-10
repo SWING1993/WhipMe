@@ -94,6 +94,7 @@
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
+		E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */; };
 		E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8EF041DE5883000E16B26 /* CashController.swift */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
@@ -235,6 +236,7 @@
 		E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCell.swift; sourceTree = "<group>"; };
 		E48C0BEC1D87E33400802C6B /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+expanded.h"; sourceTree = "<group>"; };
 		E48C0BED1D87E33400802C6B /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+expanded.m"; sourceTree = "<group>"; };
+		E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeCecordController.swift; sourceTree = "<group>"; };
 		E4A8EF041DE5883000E16B26 /* CashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashController.swift; sourceTree = "<group>"; };
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AB21F21D82566A0044943E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WhipMe/AppDelegate.swift; sourceTree = "<group>"; };
@@ -382,8 +384,9 @@
 				E4A8EF041DE5883000E16B26 /* CashController.swift */,
 				E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */,
 				E4C9B8781D92586900A4C14D /* AlarmClockController.swift */,
-				E4D97E4A1D991816006D3188 /* LogController.swift */,
 				E40D70C61DE6D2E40087B9EF /* TaCecordController.swift */,
+				E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */,
+				E4D97E4A1D991816006D3188 /* LogController.swift */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
+				E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */,
 				C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
