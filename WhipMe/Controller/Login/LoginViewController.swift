@@ -182,7 +182,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     return;
                 }
                 let info = data["userInfo"]
-                UserManager.shared.storeUserData(data: info)
+                UserManager.storeUserWith(json: info)
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
                 ChatMessage.shareChat().loginJMessage(UserManager.shared.userId)

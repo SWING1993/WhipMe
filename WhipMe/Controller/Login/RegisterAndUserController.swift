@@ -293,7 +293,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             
             if (data["ret"].intValue == 0) {
                 let user = data["userInfo"]
-                UserManager.shared.storeUserData(data: user)
+                UserManager.storeUserWith(json: user)
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()

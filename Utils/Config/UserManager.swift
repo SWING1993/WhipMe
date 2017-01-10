@@ -54,14 +54,28 @@ class UserManager: NSObject {
     class var shared: UserManager {
         return sharedKraken
     }
-
-    func storeUserData(data: JSON) {
+    
+    class func storeUserWith(dict: NSDictionary) {
         let store = YTKKeyValueStore.init(dbWithName: userdbName)
         let tableName = userTableName
         store?.createTable(withName: tableName)
-        let dataDic = data.dictionaryObject
+        let dataDic = dict;
+        store?.put(dataDic, withId: userID, intoTable: tableName)
+        UserManager.getUserWith(dataDic: dataDic);
+    }
+
+    class func storeUserWith(json: JSON) {
+        let store = YTKKeyValueStore.init(dbWithName: userdbName)
+        let tableName = userTableName
+        store?.createTable(withName: tableName)
+        let dataDic = json.dictionaryObject
         store?.put(dataDic, withId: userID, intoTable: tableName)
         
+        let dict = NSDictionary.init(dictionary: dataDic!);
+        UserManager.getUserWith(dataDic: dict);
+    }
+    
+    class func getUserWith(dataDic: NSDictionary) {
         var user = UserManager()
         user = UserManager.mj_object(withKeyValues: dataDic)
         UserManager.shared.createDate = user.createDate
