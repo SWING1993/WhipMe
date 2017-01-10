@@ -10,6 +10,7 @@
 #import "SetingViewController.h"
 #import "MyWalletViewController.h"
 #import "WMUserInfoViewController.h"
+#import "WMHistoricalReviewController.h"
 
 CGFloat const kHead_WH = 60.0;
 NSInteger const kItem_Tag = 7777;
@@ -342,7 +343,8 @@ static NSString *identifier_head = @"tableViewView_head";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        HistoricalReviewController *controller = [HistoricalReviewController new];
+        WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
+        controller.arrayContent = [self.arrayGrow mutableCopy];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }

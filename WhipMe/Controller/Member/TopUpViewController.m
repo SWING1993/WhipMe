@@ -213,7 +213,6 @@
     }
     WEAK_SELF
     [HttpAPIClient APIWeChatToCode:self.weixin_code Success:^(id result) {
-        DebugLog(@"_________resutl:%@",result);
         NSString *errmsg = result[@"errmsg"];
         if (![NSString isBlankString:errmsg]) {
             [Tool showHUDTipWithTipStr:errmsg];
@@ -238,7 +237,6 @@
     NSDictionary *param = @{@"userId":user_id,@"unionId":union_id,@"appOpenId":self.weixin_appOpenId};
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"bindWeixin" params:param Success:^(id result) {
-        DebugLog(@"________result:%@",result);
         NSDictionary *data = [result[@"data"] mj_JSONObject][0];
         if ([data[@"ret"] integerValue] == 0) {
             [weakSelf topUpMoney];
@@ -258,16 +256,14 @@
     NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
     NSString *str_amount = [NSString stringWithFormat:@"%.2f",[self.textMoney.text floatValue]];
     
-    NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip};
-    
-    DebugLog(@"_____________param:%@",param);
+    NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount,@"ip":str_ip ?:@""};
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showWithStatus:@""];
     [HttpAPIClient APIClientPOST:@"recharge" params:param Success:^(id result) {
         [SVProgressHUD dismiss];
         DebugLog(@"_______result:%@",result);
-        NSDictionary *data = [result[@"data"] mj_JSONObject][0];
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] integerValue] == 1) {
             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"如需充值，请先绑定微信！" message:nil preferredStyle:UIAlertControllerStyleAlert];
             [alertControl addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

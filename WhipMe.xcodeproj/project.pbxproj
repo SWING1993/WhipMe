@@ -20,7 +20,6 @@
 		C50D29AE1DDEADE100F32B38 /* FinancialDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */; };
 		C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
-		C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */; };
 		C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */; };
 		C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C516C67B1E233021000BA12B /* WMMemberViewController.m */; };
 		C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */; };
@@ -28,6 +27,7 @@
 		C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6881E238412000BA12B /* MemberTableViewCell.swift */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
+		C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
@@ -134,7 +134,6 @@
 		C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsController.swift; sourceTree = "<group>"; };
 		C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsCell.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
-		C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewController.swift; sourceTree = "<group>"; };
 		C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewCollectionCell.swift; sourceTree = "<group>"; };
 		C516C67A1E233021000BA12B /* WMMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMemberViewController.h; sourceTree = "<group>"; };
 		C516C67B1E233021000BA12B /* WMMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMemberViewController.m; sourceTree = "<group>"; };
@@ -144,6 +143,8 @@
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
+		C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHistoricalReviewController.h; sourceTree = "<group>"; };
+		C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMHistoricalReviewController.m; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C546FE281D829BF900012FB4 /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
@@ -390,7 +391,6 @@
 		C546FE131D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				C5129D611DDDB8CC004DEA4D /* HistoricalReviewController.swift */,
 				C50D29A91DDE965B00F32B38 /* MyFansAndFocusController.swift */,
 				C50D29AD1DDEADE100F32B38 /* FinancialDetailsController.swift */,
 				C555E7791DE5827600A443A0 /* MyWalletViewController.h */,
@@ -407,6 +407,8 @@
 				C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */,
 				C516C67A1E233021000BA12B /* WMMemberViewController.h */,
 				C516C67B1E233021000BA12B /* WMMemberViewController.m */,
+				C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */,
+				C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -943,8 +945,8 @@
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
-				C5129D621DDDB8CC004DEA4D /* HistoricalReviewController.swift in Sources */,
 				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
+				C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
 				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
