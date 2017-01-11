@@ -253,14 +253,15 @@ class LogController: UIViewController {
     }
     
     func choosePhoto() {
+        weak var weakSelf = self
         let sheet = UIActionSheet.init(title: nil, delegate: nil, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
         sheet.bk_addButton(withTitle: "拍照", handler: {
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let cameraPicker = UIImagePickerController.init()
-                cameraPicker.delegate = self
-                cameraPicker.allowsEditing = true
+                cameraPicker.delegate = weakSelf
+                cameraPicker.allowsEditing = (weakSelf != nil)
                 cameraPicker.sourceType = .camera
-                self.present(cameraPicker, animated: true, completion: {
+                weakSelf?.present(cameraPicker, animated: true, completion: {
                 })
             }
         })
@@ -268,15 +269,15 @@ class LogController: UIViewController {
         sheet.bk_addButton(withTitle: "从手机相册选取", handler: {
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let imagePickerC = UIImagePickerController.init()
-                imagePickerC.delegate = self
+                imagePickerC.delegate = weakSelf
                 imagePickerC.allowsEditing = true
                 imagePickerC.sourceType = .photoLibrary
-                self.present(imagePickerC, animated: true, completion: {
+                weakSelf?.present(imagePickerC, animated: true, completion: {
                 })
             }
         })
-        
-        sheet.show(in: self.view)
+
+        sheet.show(in: (weakSelf?.view)!)
     }
     
     func getLocation() {
@@ -302,6 +303,7 @@ class LogController: UIViewController {
         let OKBtn = UIBarButtonItem.init()
         self.navigationItem.rightBarButtonItem = OKBtn
         
+        weak var weakSelf = self
         OKBtn.bk_init(withTitle: "发送", style: .plain) { (sender) in
             if self.content.isEmpty {
                 Tool.showHUDTip(tipStr: "请填写内容后再发送！")
@@ -346,7 +348,7 @@ class LogController: UIViewController {
                         return
                     } else {
                         Tool.showHUDTip(tipStr: "发送成功")
-                        _ = self.navigationController?.popViewController(animated: true)
+                        _ = weakSelf?.navigationController?.popViewController(animated: true)
                     }
                 }
             }) { (error) in

@@ -10,7 +10,7 @@ import UIKit
 
 class CommentM: NSObject {
     var content:String = ""
-    var nickName:String = ""
+    var nickname:String = ""
     var userId:String = ""
 }
 
@@ -35,10 +35,14 @@ class RecommendCell: NormalCell {
     var shareB: UIButton = UIButton.init()
 
     
+    let commentHeight = 30
+    
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         avatarV = UIImageView.init()
+        avatarV.contentMode = .scaleAspectFill
         avatarV.backgroundColor = UIColor.random()
         avatarV.layer.cornerRadius = 36.0/2
         avatarV.layer.masksToBounds = true
@@ -50,7 +54,6 @@ class RecommendCell: NormalCell {
 
         nickNameL = UILabel.init()
         nickNameL.font = UIFont.systemFont(ofSize: 16)
-//        nickNameL.backgroundColor = UIColor.random()
         self.bgView.addSubview(nickNameL)
         nickNameL.snp.makeConstraints({ (make) in
             make.top.equalTo(avatarV.snp.top)
@@ -62,7 +65,6 @@ class RecommendCell: NormalCell {
         topicL = UILabel.init()
         topicL.font = UIFont.systemFont(ofSize: 11)
         topicL.textColor = kColorGreen
-//        topicL.backgroundColor = UIColor.random()
         self.bgView.addSubview(topicL)
         topicL.snp.makeConstraints({ (make) in
             make.top.equalTo(nickNameL.snp.bottom)
@@ -75,7 +77,6 @@ class RecommendCell: NormalCell {
         timeL.textColor = kColorGary
         timeL.textAlignment = .right
         timeL.font = UIFont.systemFont(ofSize: 10)
-//        timeL.backgroundColor = UIColor.random()
         self.bgView.addSubview(timeL)
         timeL.snp.makeConstraints({ (make) in
             make.top.equalTo(nickNameL.snp.top)
@@ -143,12 +144,13 @@ class RecommendCell: NormalCell {
         commentList.delegate = self
         commentList.separatorStyle = .none
         commentList.isScrollEnabled = false
+        commentList.allowsSelection = false
         self.bgView.addSubview(commentList)
         commentList.snp.makeConstraints { (make) in
-            make.left.equalTo(9)
-            make.right.equalTo(-9)
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
             make.top.equalTo(locationB.snp.bottom).offset(9)
-            make.height.equalTo(35)
+            make.height.equalTo(commentHeight)
         }
         
         let activeV = UIView.init()
@@ -218,6 +220,7 @@ class RecommendCell: NormalCell {
         if model.picture.isEmpty {
             self.pictrueView.snp.updateConstraints({ (make) in
                 make.height.equalTo(0)
+                make.top.equalTo(contentL.snp.bottom)
             })
         }else {
             self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
@@ -251,7 +254,7 @@ class RecommendCell: NormalCell {
         }
 
         self.commentMArr = CommentM.mj_objectArray(withKeyValuesArray: model.comment)
-        let height = CGFloat(model.comment.count * 35 + 35)
+        let height = CGFloat((model.comment.count + 1) * commentHeight)
         self.commentList.snp.updateConstraints { (make) in
             make.height.equalTo(height);
         }
@@ -259,14 +262,15 @@ class RecommendCell: NormalCell {
     }
     
     class func cellHeight(model:FriendCircleM) -> CGFloat {
-        var height:CGFloat = 170.0
+        var height:CGFloat = 155.0
         if model.picture.isEmpty == false {
             height += Define.screenWidth()/2
+            height += 15
         }
         if model.position.isEmpty {
             height -= 9
         }
-        height += CGFloat(model.comment.count) * 35.0
+        height += CGFloat(model.comment.count) * 30
         let content: NSString = NSString.init(string: model.content)
         height += content.getHeightWith(UIFont.systemFont(ofSize: 14), constrainedTo: CGSize.init(width: Define.screenWidth() - 48, height: CGFloat.greatestFiniteMagnitude))
         return height
@@ -312,9 +316,18 @@ extension RecommendCell:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "comment")
+        cell.textLabel?.snp.updateConstraints({ (make) in
+            make.left.right.equalTo(0)
+            make.centerY.equalTo(cell.contentView.snp.centerY)
+        })
         let model:CommentM = self.commentMArr.object(at: indexPath.row) as! CommentM
         cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
-        cell.textLabel?.text = model.nickName+":"+model.content
+        cell.textLabel?.text = model.nickname+": "+model.content
+        let contentStr = model.nickname+": "+model.content
+        let nickNameStr = model.nickname+": "
+        let contentAttStr = NSMutableAttributedString.init(string: contentStr)
+        contentAttStr.setAttributes([NSForegroundColorAttributeName:kColorGreen,NSFontAttributeName:UIFont.systemFont(ofSize: 13)], range: NSMakeRange(0, nickNameStr.length))
+        cell.textLabel?.attributedText = contentAttStr
         return cell
     }
 }
@@ -323,6 +336,6 @@ extension RecommendCell:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension RecommendCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 35
+        return CGFloat(commentHeight)
     }
 }

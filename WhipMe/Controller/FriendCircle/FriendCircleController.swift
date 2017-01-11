@@ -55,6 +55,7 @@ class FriendCircleController: UIViewController {
     }
     
     fileprivate func setupFocusRequest() {
+        weak var weakSelf = self
         let params = [
             "pageSize":"20",
             "pageIndex":"1",
@@ -66,7 +67,7 @@ class FriendCircleController: UIViewController {
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
-                    self.focusModels = {
+                    weakSelf?.focusModels = {
                         var temps: [FriendCircleM] = []
                         let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
                         for model in tempArr! {
@@ -76,9 +77,9 @@ class FriendCircleController: UIViewController {
                     }()
                     for model in self.focusModels {
                         let cellHeight = RecommendCell.cellHeight(model: model )
-                        self.focusCellHeights.append(cellHeight)
+                        weakSelf?.focusCellHeights.append(cellHeight)
                     }
-                    self.focusList.reloadData()
+                    weakSelf?.focusList.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -88,17 +89,19 @@ class FriendCircleController: UIViewController {
     }
     
     fileprivate func setupRecommendRequest() {
+        weak var weakSelf = self
         let params = [
             "pageSize":"20",
             "pageIndex":"1",
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if (result != nil) {
+                print(result!)
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
-                    self.friendCircleModels = {
+                    weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
                         for model in tempArr! {
@@ -108,9 +111,9 @@ class FriendCircleController: UIViewController {
                     }()
                     for model in self.friendCircleModels {
                         let cellHeight = RecommendCell.cellHeight(model: model )
-                        self.cellHeights.append(cellHeight)
+                        weakSelf?.cellHeights.append(cellHeight)
                     }
-                    self.recommendTable.reloadData()
+                    weakSelf?.recommendTable.reloadData()
                     
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -145,6 +148,8 @@ class FriendCircleController: UIViewController {
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
         recommendTable.dataSource = self
         recommendTable.delegate = self
+        recommendTable.emptyDataSetSource = self
+        recommendTable.emptyDataSetDelegate = self
         recommendTable.separatorStyle = .none
         recommendTable.tag = 100
         view.addSubview(recommendTable)
@@ -157,6 +162,8 @@ class FriendCircleController: UIViewController {
         focusList.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.focusCellReuseIdentifier())
         focusList.dataSource = self
         focusList.delegate = self
+        focusList.emptyDataSetSource = self
+        focusList.emptyDataSetDelegate = self
         focusList.separatorStyle = .none
         focusList.tag = 101
         view.addSubview(focusList)
@@ -228,5 +235,23 @@ extension FriendCircleController: UITableViewDelegate {
             return self.cellHeights[indexPath.row]
         }
         return self.focusCellHeights[indexPath.row]
+    }
+}
+
+extension FriendCircleController: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        let emptyStr = NSAttributedString.init(string: "暂无数据哦！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)])
+        return emptyStr
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let emptyImg = UIImage.init(named: "no_data")
+        return emptyImg
+    }
+}
+
+extension FriendCircleController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

@@ -141,6 +141,7 @@ class MeCecordController: UIViewController {
     }
     
     fileprivate func setupRequest() {
+        weak var weakSelf = self
         let params = ["taskId":self.myWhipM.taskId,"pageSize":"30","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryRecordByTaskId", params: params, success: { (result) in
             if (result != nil) {
@@ -154,7 +155,7 @@ class MeCecordController: UIViewController {
                 }
                 if totalSize > 0 {
                     let recordList = json["data"][0]["recordlist"].arrayObject
-                    self.friendCircleModels = {
+                    weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: recordList)
                         for model in tempArr! {
@@ -164,9 +165,9 @@ class MeCecordController: UIViewController {
                     }()
                     for model in self.friendCircleModels {
                         let cellHeight = RecommendCell.cellHeight(model: model )
-                        self.cellHeights.append(cellHeight)
+                        weakSelf?.cellHeights.append(cellHeight)
                     }
-                    self.recommendTable.reloadData()
+                    weakSelf?.recommendTable.reloadData()
                 }
             }
         }) { (error) in

@@ -54,8 +54,9 @@ class AddWhipController: UIViewController {
     
 
     fileprivate func setup() {
+        weak var weakSelf = self
+
         self.view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
-        
         if hideHot == false {
             prepareSegmented()
             prepareHotTable()
@@ -67,11 +68,11 @@ class AddWhipController: UIViewController {
         prepareCustomTable()
         
         self.submitBtn.bk_init(withTitle: "提交", style: .plain) { (sender) in
-            if self.myCostomAM.themeName.length <= 0 {
+            if (weakSelf?.myCostomAM.themeName.length)! <= 0 {
                 Tool.showHUDTip(tipStr: "请填写标题后再提交!")
                 return
             }
-            if self.myCostomAM.plan.length <= 0 {
+            if (weakSelf?.myCostomAM.plan.length)! <= 0 {
                 Tool.showHUDTip(tipStr: "请填写内容后再提交!")
                 return
             }
@@ -89,9 +90,9 @@ class AddWhipController: UIViewController {
             "guarantee":"保证金"
              */
             
-            let startDate: String = self.myCostomAM.startTime.string(custom: "yyyy-MM-dd")
-            let endDate: String = self.myCostomAM.endTime.string(custom: "yyyy-MM-dd")
-            let clockTime: String = self.myCostomAM.alarmClock.string(custom: "HHmm")
+            let startDate: String = weakSelf!.myCostomAM.startTime.string(custom: "yyyy-MM-dd")
+            let endDate: String = weakSelf!.myCostomAM.endTime.string(custom: "yyyy-MM-dd")
+            let clockTime: String = weakSelf!.myCostomAM.alarmClock.string(custom: "HHmm")
             
             var privacy: String = ""
             switch self.myCostomAM.privacy {
@@ -130,7 +131,7 @@ class AddWhipController: UIViewController {
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
                         Tool.showHUDTip(tipStr: "添加成功")
-                        _ = self.navigationController?.popToRootViewController(animated: true)
+                        _ = weakSelf?.navigationController?.popToRootViewController(animated: true)
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -144,15 +145,15 @@ class AddWhipController: UIViewController {
     }
     
     fileprivate func loadHotThemeData() {
+        weak var weakSelf = self
         HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
             if (result != nil) {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
-                
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayObject
-                    self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
-                    self.hotTable.reloadData()
+                    weakSelf?.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                    weakSelf?.hotTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -184,7 +185,6 @@ class AddWhipController: UIViewController {
         bgview.layer.cornerRadius = 25.0
         bgview.backgroundColor = UIColor.white
         searchView.addSubview(bgview)
-        
         
         searchBar.placeholder  = "输入关键字"
         bgview.addSubview(searchBar)
@@ -305,6 +305,7 @@ extension AddWhipController:UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        weak var weakSelf = self
         if tableView.tag == 100 {
             if indexPath.row == 0 && indexPath.section == 0 {
                 let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
@@ -315,7 +316,6 @@ extension AddWhipController:UITableViewDataSource {
                     cell.titleT.isEnabled = false;
                 }
                 
-                weak var weakSelf = self
                 cell.titleChangedBlock =  { (value) -> Void in
                     weakSelf?.myCostomAM.themeName = value
                 }
@@ -328,8 +328,6 @@ extension AddWhipController:UITableViewDataSource {
             if indexPath.section == 1 {
                 let cell: SecondAddCustomCell = SecondAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
                 
-                weak var weakSelf = self
-               
                 cell.privacydBlock = { (value:PlanM) -> Void in
                     weakSelf?.myCostomAM.privacy = value.privacy
                 }
@@ -341,13 +339,13 @@ extension AddWhipController:UITableViewDataSource {
 
                 cell.backClosure = { (inputText:IndexPath) -> Void in
                     print(inputText);
-                    _ = self.resignFirstResponder()
+                    _ = weakSelf?.resignFirstResponder()
                     if inputText.row == 0 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                            self.myCostomAM.startTime = date
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: self.myCostomAM)
+                            weakSelf?.myCostomAM.startTime = date
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: weakSelf?.myCostomAM)
                         }
                     }
                     
@@ -355,22 +353,16 @@ extension AddWhipController:UITableViewDataSource {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                            self.myCostomAM.endTime = date
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: self.myCostomAM)
+                            weakSelf?.myCostomAM.endTime = date
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: weakSelf?.myCostomAM)
                         }
                     }
                     
                     if inputText.row == 2 {
-                        /*
-                        let alarmC = AlarmClockController.init()
-                        self.navigationController?.pushViewController(alarmC, animated: true)
-                        */
                         SGHDateView.sharedInstance.pickerMode = .time
                         SGHDateView.sharedInstance.show();
-
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
-                            print(date)
-                            self.myCostomAM.alarmClock = date
+                            weakSelf?.myCostomAM.alarmClock = date
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
                         }
                     }
@@ -388,7 +380,7 @@ extension AddWhipController:UITableViewDataSource {
                 cell.addBtn.bk_addEventHandler({ (sender) in
                     let addPeopleC = AddPeopleController()
                     let addPeopleN = UINavigationController.init(rootViewController: addPeopleC)
-                    self.present(addPeopleN, animated: true, completion: nil)
+                    weakSelf?.present(addPeopleN, animated: true, completion: nil)
                 }, for: .touchUpInside)
                 return cell
             }

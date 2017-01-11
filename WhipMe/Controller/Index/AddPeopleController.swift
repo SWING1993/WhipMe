@@ -117,7 +117,6 @@ class SystemView: UIView {
             make.centerX.equalTo(self)
         }
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -143,7 +142,7 @@ class AddPeopleController: UIViewController {
     }
     
     func startRequests() {
-        
+        weak var weakSelf = self
         let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("querySupervisor", params: params, success: { (result) in
             print(result!)
@@ -152,11 +151,10 @@ class AddPeopleController: UIViewController {
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let btNum  = json["data"][0]["btNum"].stringValue
-                    self.systemView.numL.text = "正在监督"+btNum+"人"
                     let list  = json["data"][0]["list"].arrayObject
-                    self.myFansArr = FansM.mj_objectArray(withKeyValuesArray: list)
-                    self.myTable.reloadData()
-                    
+                    weakSelf?.systemView.numL.text = "正在监督"+btNum+"人"
+                    weakSelf?.myFansArr = FansM.mj_objectArray(withKeyValuesArray: list)
+                    weakSelf?.myTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -169,19 +167,18 @@ class AddPeopleController: UIViewController {
     func setup() {
         self.navigationItem.title = "选择监督人"
         self.view.backgroundColor = kColorBackGround
-        
         self.view.addSubview(self.systemView)
-        
+       
         myTable.register(FansCell.self, forCellReuseIdentifier: FansCell.cellReuseIdentifier())
-
         myTable.delegate = self
         myTable.dataSource = self
+        myTable.emptyDataSetSource = self
+        myTable.emptyDataSetDelegate = self
         myTable.separatorStyle = .singleLine
         myTable.layer.masksToBounds = true
         myTable.layer.cornerRadius = 5
         myTable.rowHeight = 65.0
         myTable.backgroundColor = UIColor.white
-        
         self.view.addSubview(myTable)
         myTable.snp.makeConstraints { (make) in
             make.top.equalTo(systemView.snp.bottom)
@@ -194,7 +191,6 @@ class AddPeopleController: UIViewController {
         self.navigationItem.leftBarButtonItem = cancleBtn
         
         weak var weakSelf = self
-        
         cancleBtn.bk_init(withTitle: "取消", style: .plain) { (sender) in
             weakSelf?.dismiss(animated: true, completion: nil)
         }
@@ -242,3 +238,21 @@ extension AddPeopleController:UITableViewDelegate {
     }
 }
 
+
+extension AddPeopleController: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
+        let emptyStr = NSAttributedString.init(string: "暂无数据哦！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)])
+        return emptyStr
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let emptyImg = UIImage.init(named: "no_data")
+        return emptyImg
+    }
+}
+
+extension AddPeopleController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+}

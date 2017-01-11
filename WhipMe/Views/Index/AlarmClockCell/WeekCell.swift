@@ -58,7 +58,6 @@ class WeekCell: NormalCell {
                 }else {
                     weakSelf?.selectedBtnTags?.remove(clickBtn.tag)
                 }
-                print(weakSelf?.selectedBtnTags)
                 
                 if weakSelf?.selectedBtnTags != nil {
                     if weakSelf?.settingWeeks != nil {

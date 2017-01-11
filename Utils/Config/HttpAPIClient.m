@@ -44,21 +44,18 @@ static HKHttpSession *httpSession = nil;
 @implementation HttpAPIClient
 
 + (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed {
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    if (![method isEqualToString:@""] && method != nil) {
-        [parameters setObject:method forKey:@"method"];
+    if (kStringIsEmpty(method)) {
+        return;
     }
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [parameters setObject:method forKey:@"method"];
     if (param) {
         [parameters setObject:param forKey:@"param"];
     }
-    DebugLog(@"______param:%@",parameters);
-    
     [HttpAPIClient APIClientParams:parameters Success:success Failed:failed];
 }
 
-+ (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed
-{
++ (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *host_url = @"/json_dispatch.rpc";
     HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];

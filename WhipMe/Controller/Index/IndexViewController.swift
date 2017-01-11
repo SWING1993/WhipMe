@@ -434,6 +434,7 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func setupAPI() {
+        weak var weakSelf = self
         let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
             if (result != nil) {
@@ -443,12 +444,11 @@ class IndexViewController: UIViewController {
                 if ret == 0 {
                     let woList  = json["data"][0]["biantawoList"].arrayObject
                     let taList  = json["data"][0]["biantataList"].arrayObject
-                    self.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
-                    self.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
-                    self.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-                    self.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
-
-                    self.myTable.reloadData()
+                    weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                    weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
+                    weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                    weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+                    weakSelf?.myTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -512,16 +512,16 @@ extension IndexViewController:UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        weak var weakSelf = self
         if indexPath.section == 0 {
             let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipOtherReuseIdentifier())
             cell.setDataWith(array: self.biantataList)
-            
             cell.checkPlan = { clickIndexPath in
                 print(clickIndexPath)
                 let taCecordC = TaCecordController.init()
                 taCecordC.hidesBottomBarWhenPushed = true
-                taCecordC.myWhipM = self.biantataList.object(at: clickIndexPath.row) as! WhipM
-                self.navigationController?.pushViewController(taCecordC, animated: true)
+                taCecordC.myWhipM = weakSelf?.biantataList.object(at: clickIndexPath.row) as! WhipM
+                weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
             }
             return cell
         }
@@ -531,8 +531,8 @@ extension IndexViewController:UITableViewDataSource {
             print(indexPath)
             let meCecordC = MeCecordController.init()
             meCecordC.hidesBottomBarWhenPushed = true
-            meCecordC.myWhipM = self.biantawoList.object(at: clickIndexPath.row) as! WhipM
-            self.navigationController?.pushViewController(meCecordC, animated: true)
+            meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
+            weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
         }
         return cell
     }
@@ -564,11 +564,12 @@ extension IndexViewController: DZNEmptyDataSetSource {
         let emptyStr = NSAttributedString.init(string: "您还没有添加任何习惯哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)])
         return emptyStr
     }
-    
-//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-//        let emptyImg = UIImage.init(named: "no_data")
-//        return emptyImg
-//    }
+    /*
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let emptyImg = UIImage.init(named: "no_data")
+        return emptyImg
+    }
+    */
 }
 
 extension IndexViewController: DZNEmptyDataSetDelegate {

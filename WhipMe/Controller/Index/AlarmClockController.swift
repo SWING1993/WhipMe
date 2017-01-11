@@ -65,7 +65,7 @@ extension AlarmClockController: UITableViewDelegate {
             SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                 print(date)
                 weakCell.cellTitle?.text = date.string(format: .custom("HH:mm"))
-                self.myCostomAM.alarmClock = date
+                weakSelf?.myCostomAM.alarmClock = date
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: weakSelf?.myCostomAM)
             }
             break
