@@ -12,19 +12,9 @@
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailedBlock)(NSError *error);
 
-
-@interface HKHttpSession : AFHTTPSessionManager
-
-+ (HKHttpSession *)shareSession;
-
-@end
-
-
 @interface HttpAPIClient : NSObject
 
 + (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed;
-
-+ (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
 
 + (void)APIWeChatToCode:(NSString *)code Success:(SuccessBlock)success Failed:(FailedBlock)failed;
@@ -32,4 +22,5 @@ typedef void (^FailedBlock)(NSError *error);
 /** 上传头像 */
 + (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
++ (void)uploadImageWithMethod:(NSString *)method withImage:(UIImage *)image Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 @end

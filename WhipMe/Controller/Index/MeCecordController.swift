@@ -163,10 +163,14 @@ class MeCecordController: UIViewController {
                         }
                         return temps
                     }()
-                    for model in self.friendCircleModels {
-                        let cellHeight = RecommendCell.cellHeight(model: model )
-                        weakSelf?.cellHeights.append(cellHeight)
-                    }
+                    weakSelf?.cellHeights = {
+                        var tempHeights:[CGFloat] = []
+                        for model in self.friendCircleModels {
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            tempHeights.append(cellHeight)
+                        }
+                        return tempHeights
+                    }()
                     weakSelf?.recommendTable.reloadData()
                 }
             }

@@ -75,10 +75,15 @@ class FriendCircleController: UIViewController {
                         }
                         return temps
                     }()
-                    for model in self.focusModels {
-                        let cellHeight = RecommendCell.cellHeight(model: model )
-                        weakSelf?.focusCellHeights.append(cellHeight)
-                    }
+                    
+                    weakSelf?.cellHeights = {
+                        var tempHeights:[CGFloat] = []
+                        for model in self.focusModels {
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            tempHeights.append(cellHeight)
+                        }
+                        return tempHeights
+                    }()
                     weakSelf?.focusList.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -109,10 +114,14 @@ class FriendCircleController: UIViewController {
                         }
                         return temps
                     }()
-                    for model in self.friendCircleModels {
-                        let cellHeight = RecommendCell.cellHeight(model: model )
-                        weakSelf?.cellHeights.append(cellHeight)
-                    }
+                    weakSelf?.cellHeights = {
+                        var tempHeights:[CGFloat] = []
+                        for model in self.friendCircleModels {
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            tempHeights.append(cellHeight)
+                        }
+                        return tempHeights
+                    }()
                     weakSelf?.recommendTable.reloadData()
                     
                 } else {

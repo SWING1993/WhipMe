@@ -34,15 +34,6 @@ class LogTextCell: NormalCell {
                 make.top.equalTo(10)
             })
         }
-        
-//        let contentChange = contentT.rx.text
-//        contentChange
-//            .bindNext({ (value) in
-//                if self.contentChangedBlock != nil {
-//                    self.contentChangedBlock!(value)
-//                }
-//            })
-//            .addDisposableTo(disposeBag)
     }
     
     class func cellHeight() -> CGFloat {
@@ -285,6 +276,7 @@ class LogController: UIViewController {
     }
     
     func setup() -> Void {
+        
         self.navigationItem.title = "记录一下"
         self.view.backgroundColor = Define.kColorBackGround()
         myLogTable.backgroundColor = kColorBackGround
@@ -299,6 +291,16 @@ class LogController: UIViewController {
         myLogTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+        
+        self.getLocation()
+        self.myLogTable.rx.itemSelected
+            .subscribe { (index) in
+                if index.element?.row == 1 && self.photo == nil {
+                    self.choosePhoto()
+                }
+            }
+            .addDisposableTo(disposeBag)
+
         
         let OKBtn = UIBarButtonItem.init()
         self.navigationItem.rightBarButtonItem = OKBtn
@@ -321,7 +323,7 @@ class LogController: UIViewController {
             "picture":"打卡图片a.jpg",
             "position":"打卡时用户所在位置"
             */
-
+            
             var params = [
                 "userId":UserManager.shared.userId,
                 "nickname":UserManager.shared.nickname,
@@ -330,39 +332,51 @@ class LogController: UIViewController {
                 "themeId":self.myWhipM.themeId,
                 "themeName":self.myWhipM.themeName,
                 "content":self.content,
-                "picture":"http://image.wufazhuce.com/Fu4bn282zMmxa7sDkggez44BSRyQ",
-            ]
+                ]
             if self.locationIsOn {
                 params["position"] = self.location
+            }
+            if self.photo == nil {
+                weakSelf?.addRecord(params: params)
             } else {
-                params["position"] = ""
-            }
-            print(params)
-            HttpAPIClient.apiClientPOST("addRecord", params: params, success: { (result) in
-                if (result != nil) {
-                    print(result!)
-                    let json = JSON(result!)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret != 0 {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                        return
-                    } else {
-                        Tool.showHUDTip(tipStr: "发送成功")
-                        _ = weakSelf?.navigationController?.popViewController(animated: true)
+                HttpAPIClient.uploadImage(withMethod: "/picUploadServlet", with: self.photo, success: { (result) in
+                    if (result != nil) {
+                        print(result!)
+                        let json = JSON(result!)
+                        let ret  = json["ret"].intValue
+                        let icon = json["userInfo"]["icon"].stringValue
+                        if ret == 0 && icon.length > 0 {
+                            params["picture"] = icon
+                            weakSelf?.addRecord(params: params)
+                        } else {
+                            Tool.showHUDTip(tipStr: "上传图片失败！")
+                        }
                     }
-                }
-            }) { (error) in
-                print(error as Any);
-            }  
+                }, failed: { (error) in
+                    Tool.showHUDTip(tipStr: "上传图片失败！")
+                })
+            }
         }
-        self.getLocation()
-        self.myLogTable.rx.itemSelected
-            .subscribe { (index) in
-                if index.element?.row == 1 && self.photo == nil {
-                    self.choosePhoto()
+    }
+    
+    func addRecord(params:Dictionary<String, Any>) -> Void {
+        weak var weakSelf = self
+        HttpAPIClient.apiClientPOST("addRecord", params: params, success: { (result) in
+            if (result != nil) {
+                print(result!)
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret != 0 {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    return
+                } else {
+                    Tool.showHUDTip(tipStr: "发送成功")
+                    _ = weakSelf?.navigationController?.popViewController(animated: true)
                 }
             }
-            .addDisposableTo(disposeBag)
+        }) { (error) in
+            print(error as Any);
+        }
     }
 }
 
@@ -378,7 +392,6 @@ extension LogController :UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             let cell: LogTextCell = LogTextCell.init(style: UITableViewCellStyle.default, reuseIdentifier: LogTextCell.cellReuseIdentifier())
             cell.contentT.rx.text
