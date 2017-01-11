@@ -77,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
     
     class func registerNotification(plan: PlanM) -> Void {
         DispatchQueue.global().async {
+            /*
             if #available(iOS 10.0, *) {
                 // 使用 UNUserNotificationCenter 来管理通知
                 for (_, value) in plan.alarmWeeks.enumerated() {
@@ -101,14 +102,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
                 }
             } else {
                 // Fallback on earlier versions
-//                let notification = UILocalNotification.init()
-//                let date = Date.init(timeIntervalSinceNow: alertItme)
-//                print(Date.init(timeIntervalSinceNow: alertItme))
-//                notification.fireDate = date
-//                notification.timeZone = NSTimeZone.local
-//                notification.repeatInterval = .day
-//                UIApplication.shared.scheduleLocalNotification(notification)
+                let notification = UILocalNotification.init()
+                let date = Date.init(timeIntervalSinceNow: alertItme)
+                print(Date.init(timeIntervalSinceNow: alertItme))
+                notification.fireDate = date
+                notification.timeZone = NSTimeZone.local
+                notification.repeatInterval = .day
+                UIApplication.shared.scheduleLocalNotification(notification)
             }
+            */
         }
     }
 
