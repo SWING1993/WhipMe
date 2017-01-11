@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import CoreLocation
+import SnapKit
+import RxCocoa
+import RxSwift
+import SwiftyJSON
 
 class LogTextCell: NormalCell {
     
@@ -153,14 +155,13 @@ class LogPhotoCell: NormalCell {
 
 class LogLocationCell: NormalCell {
  
-    var titleL = UILabel()
-    var switcher =  UISwitch()
-    var locationL = UILabel()
+    var titleL = UILabel.init()
+    var switcher = UISwitch.init()
+    var locationL = UILabel.init()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        titleL = UILabel.init()
         titleL.font = UIFont.systemFont(ofSize: 15)
         titleL.text = "显示位置"
         self.bgView.addSubview(titleL)
@@ -172,7 +173,7 @@ class LogLocationCell: NormalCell {
         })
         
         let line = UIView.init()
-        line.backgroundColor = UIColor.random()
+        line.backgroundColor = kColorLine
         self.bgView.addSubview(line)
         line.snp.makeConstraints { (make) in
             make.left.equalTo(0)
@@ -181,7 +182,6 @@ class LogLocationCell: NormalCell {
             make.height.equalTo(0.5)
         }
         
-        switcher = UISwitch.init()
         switcher.isOn = false
         self.bgView.addSubview(switcher)
         switcher.snp.makeConstraints({ (make) in
@@ -191,8 +191,6 @@ class LogLocationCell: NormalCell {
             make.width.equalTo(55)
         })
 
-        
-        locationL = UILabel.init()
         locationL.font = UIFont.systemFont(ofSize: 11)
         locationL.baselineAdjustment = .alignCenters
         self.bgView.addSubview(locationL)
@@ -221,9 +219,12 @@ class LogLocationCell: NormalCell {
 
 class LogController: UIViewController {
     
+    var myWhipM: WhipM = WhipM()
     var myLogTable: UITableView = UITableView()
     var photo: UIImage?
+    var locationIsOn : Bool = false
     var location: String = ""
+    var content: String = ""
     var disposeBag = DisposeBag()
 
     lazy var locateM : CLLocationManager = {
@@ -302,7 +303,55 @@ class LogController: UIViewController {
         self.navigationItem.rightBarButtonItem = OKBtn
         
         OKBtn.bk_init(withTitle: "发送", style: .plain) { (sender) in
-            
+            if self.content.isEmpty {
+                Tool.showHUDTip(tipStr: "请填写内容后再发送！")
+                return
+            }
+           
+            /*
+            "userId":"打卡人ID",
+            "nickname":"打卡人昵称",
+            "icon":"打卡人头像a.jpg",
+            "taskId":"任务ID",
+            "themeId":"主题ID",
+            "themeName":"主题名称",
+            "content":"打卡内容",
+            "picture":"打卡图片a.jpg",
+            "position":"打卡时用户所在位置"
+            */
+
+            var params = [
+                "userId":UserManager.shared.userId,
+                "nickname":UserManager.shared.nickname,
+                "icon":UserManager.shared.icon,
+                "taskId":self.myWhipM.taskId,
+                "themeId":self.myWhipM.themeId,
+                "themeName":self.myWhipM.themeName,
+                "content":self.content,
+                "picture":"http://image.wufazhuce.com/Fu4bn282zMmxa7sDkggez44BSRyQ",
+            ]
+            if self.locationIsOn {
+                params["position"] = self.location
+            } else {
+                params["position"] = ""
+            }
+            print(params)
+            HttpAPIClient.apiClientPOST("addRecord", params: params, success: { (result) in
+                if (result != nil) {
+                    print(result!)
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret != 0 {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        return
+                    } else {
+                        Tool.showHUDTip(tipStr: "发送成功")
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }) { (error) in
+                print(error as Any);
+            }  
         }
         self.getLocation()
         self.myLogTable.rx.itemSelected
@@ -332,7 +381,7 @@ extension LogController :UITableViewDataSource {
             let cell: LogTextCell = LogTextCell.init(style: UITableViewCellStyle.default, reuseIdentifier: LogTextCell.cellReuseIdentifier())
             cell.contentT.rx.text
                 .bindNext({ (value) in
-                    print(value!)
+                    self.content = value!
                 })
                 .addDisposableTo(disposeBag)
             return cell
@@ -358,6 +407,7 @@ extension LogController :UITableViewDataSource {
             cell.switcher.rx.value
                 .bindNext({ (isOn) in
                     cell.locationL.isHidden = !isOn
+                    self.locationIsOn = isOn
                     if isOn {
                         self.getLocation()
                     }

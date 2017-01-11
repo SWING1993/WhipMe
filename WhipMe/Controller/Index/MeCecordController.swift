@@ -31,6 +31,7 @@ class MeLogCell: NormalCell {
 
         label1.text = "记录一下..."
         label1.textAlignment = .center
+        label2.textColor = Define.kColorBlack()
         label1.font = UIFont.systemFont(ofSize: 16)
         self.bgView.addSubview(label1)
         label1.snp.makeConstraints({ (make) in
@@ -41,9 +42,10 @@ class MeLogCell: NormalCell {
         
         label2.textAlignment = .center
         label2.font = UIFont.systemFont(ofSize: 10)
+        label2.textColor = Define.kColorGary()
         self.bgView.addSubview(label2)
         label2.snp.makeConstraints({ (make) in
-            make.top.equalTo(label1.snp.top).offset(15)
+            make.top.equalTo(label1.snp.bottom)
             make.left.right.equalTo(0)
             make.height.equalTo(25)
         })
@@ -126,12 +128,16 @@ class MeCecordController: UIViewController {
     fileprivate var cellHeights: [CGFloat] = []
     fileprivate var friendCircleModels: [FriendCircleM] = [];
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = self.myWhipM.themeName
         self.view.backgroundColor = kColorBackGround
         prepareTableView()
-        setupRequest()
     }
     
     fileprivate func setupRequest() {
@@ -147,7 +153,7 @@ class MeCecordController: UIViewController {
                     return
                 }
                 if totalSize > 0 {
-                    let recordList = json["data"][0]["recordList"].arrayObject
+                    let recordList = json["data"][0]["recordlist"].arrayObject
                     self.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: recordList)
@@ -177,7 +183,7 @@ class MeCecordController: UIViewController {
         recommendTable.separatorStyle = .none
         view.addSubview(recommendTable)
         recommendTable.snp.makeConstraints { (make) in
-            make.left.right.top.bottom.equalTo(self.view)
+            make.edges.equalTo(self.view)
         }
     }
     
@@ -206,12 +212,18 @@ extension MeCecordController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: MeLogCell = MeLogCell.init(style: UITableViewCellStyle.default, reuseIdentifier: MeLogCell.cellReuseIdentifier())
+            if self.friendCircleModels.count > 0 {
+                let model:FriendCircleM = self.friendCircleModels.first!
+                cell.label2.text = "上次记录："+model.createDate
+            } else {
+                cell.label2.text = "暂无记录"
+            }
             return cell
         } else if indexPath.section == 1 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
-            cell.avatarV.setImageWith(urlString: myWhipM.icon, placeholderImage: "")
-            cell.titleL.text = "监督中"
-            cell.subTitleL.text = "保证金"
+            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "system_monitoring")
+            cell.titleL.text =  myWhipM.supervisorName + "监督中"
+            cell.subTitleL.text = "保证金："+String(describing: myWhipM.guarantee)+"元"
             return cell
         } else {
             let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
@@ -237,6 +249,7 @@ extension MeCecordController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let logC = LogController.init()
+            logC.myWhipM = self.myWhipM;
             self.navigationController?.pushViewController(logC, animated: true)
         }
         

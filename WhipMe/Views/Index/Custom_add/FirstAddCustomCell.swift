@@ -38,7 +38,7 @@ class FirstAddCustomCell: NormalCell {
         }
         
         let line = UIView.init()
-        line.backgroundColor = UIColor.random()
+        line.backgroundColor = kColorLine
         self.bgView.addSubview(line)
         line.snp.makeConstraints { (make) in
             make.left.equalTo(0)

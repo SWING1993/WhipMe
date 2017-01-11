@@ -20,9 +20,13 @@ class TaCecordController: UIViewController {
     fileprivate var friendCircleModels: [FriendCircleM] = [];
     fileprivate let pageView: UILabel = UILabel.init()
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         setup()
     }
@@ -30,7 +34,6 @@ class TaCecordController: UIViewController {
         self.navigationItem.title = self.myWhipM.themeName
         self.view.backgroundColor = kColorBackGround
         prepareTableView()
-        setupRequest()
     }
     
     fileprivate func setupRequest() {
@@ -46,7 +49,7 @@ class TaCecordController: UIViewController {
                     return
                 }
                 if totalSize > 0 {
-                    let recordList = json["data"][0]["recordList"].arrayObject
+                    let recordList = json["data"][0]["recordlist"].arrayObject
                     self.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: recordList)
@@ -69,7 +72,6 @@ class TaCecordController: UIViewController {
     }
     
     fileprivate func prepareTableView() {
-        
         recommendTable.tableHeaderView = self.setupHeadView(model: self.myWhipM)
         recommendTable.backgroundColor = kColorBackGround
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())

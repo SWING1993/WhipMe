@@ -232,6 +232,9 @@ class RecommendCell: NormalCell {
         if model.position.isEmpty {
             self.locationB.text = ""
             self.locatiomV.isHidden = true
+            self.locationB.snp.updateConstraints({ (make) in
+                make.height.equalTo(0)
+            })
         }else {
             self.locationB.text = model.position
             self.locatiomV.isHidden = false
@@ -259,6 +262,9 @@ class RecommendCell: NormalCell {
         var height:CGFloat = 170.0
         if model.picture.isEmpty == false {
             height += Define.screenWidth()/2
+        }
+        if model.position.isEmpty {
+            height -= 9
         }
         height += CGFloat(model.comment.count) * 35.0
         let content: NSString = NSString.init(string: model.content)
@@ -294,7 +300,6 @@ class RecommendCell: NormalCell {
 /// TableViewDataSource methods.
 extension RecommendCell:UITableViewDataSource {
     // Determines the number of rows in the tableView.
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.commentMArr.count
     }

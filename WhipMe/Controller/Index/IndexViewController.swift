@@ -261,7 +261,6 @@ class WhipCell: UITableViewCell {
             return tempArr.copy() as! NSArray
         }()
 
-        
         self.sectionHArr_Me = {
             let tempArr: NSMutableArray = NSMutableArray.init()
             for _ in array {
@@ -316,17 +315,13 @@ extension WhipCell: UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: WhipMeCell = WhipMeCell.init(style: .subtitle, reuseIdentifier: self.myReuseIdentifier)
-        
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
-        
         cell.themeV.setImageWith(urlString: whipM.themeIcon, placeholderImage: "zaoqi")
-        
         cell.themeL.text = whipM.themeName
         let themeLWidth = whipM.themeName.getWidth(font: UIFont.systemFont(ofSize: 14), height: 20)
         cell.themeL.snp.updateConstraints { (make) in
             make.width.equalTo(themeLWidth)
         }
-
         // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "system_monitoring")
