@@ -21,6 +21,9 @@
 @property (nonatomic, copy) NSString *num;
 /** 用户的昵称 */
 @property (nonatomic, copy) NSString *nickname;
-
+/** 用户的签名 */
+@property (nonatomic, copy) NSString *sign;
+/** 是否关注（0 没有 1 已经） */
+@property (nonatomic, assign) BOOL focus;
 
 @end

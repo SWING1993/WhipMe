@@ -174,7 +174,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
             if (result != nil) {
-                print("mlogin is result: \(result)")
                 let json = JSON(result!)
                 let data  = json["data"][0]
                 if (data["ret"].intValue != 0) {
@@ -185,7 +184,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 UserManager.storeUserWith(json: info)
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                ChatMessage.shareChat().loginJMessage(UserManager.shared.userId)
+                ChatMessage.shareChat().loginJMessage()
             }
         }) { (error) in
             print(error as Any)
@@ -250,7 +249,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let str_text: String = textField.text! + string
-        print("_______textField: \(str_text)")
         
         if textField == textNickname {
             if str_text.characters.count > 11 {

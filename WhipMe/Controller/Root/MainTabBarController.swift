@@ -14,8 +14,10 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         let navIndex: UINavigationController = UINavigationController.init(rootViewController: IndexViewController())
         let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
-        let navChat: UINavigationController = UINavigationController.init(rootViewController: PrivateChatController())
         let navMember: UINavigationController = UINavigationController.init(rootViewController: WMMemberViewController())
+        let chatPageControl: UIPageViewController = UIPageViewController.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
+        let navChat: UINavigationController = WMPrivateChatController.init(rootViewController: chatPageControl)
+        
         
         navIndex.title = "主页";
         navFriend.title = "朋友圈";

@@ -129,6 +129,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryMoneyHis" params:param Success:^(id result) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -145,6 +146,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
             }
         }
     } Failed:^(NSError *error) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"%@",error);
     }];
 }

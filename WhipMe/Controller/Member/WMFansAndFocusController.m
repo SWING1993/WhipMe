@@ -37,7 +37,7 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     }
     
     [self setup];
-    [self qureyBySupervisor];
+    [self queryByFocusList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,16 +68,20 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     _tableViewWM.backgroundColor = [UIColor clearColor];
     _tableViewWM.delegate = self;
     _tableViewWM.dataSource = self;
+    _tableViewWM.layer.cornerRadius = 4.0;
+    _tableViewWM.layer.masksToBounds = true;
     _tableViewWM.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableViewWM.tableFooterView = line_head;
     _tableViewWM.tableHeaderView = line_foot;
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.view);
+        make.top.mas_equalTo(10.0);
+        make.left.mas_equalTo(10.0);
+        make.right.and.bottom.mas_equalTo(-10.0);
     }];
     [self.tableViewWM registerClass:[MyFansAndFocusCell class] forCellReuseIdentifier:identifier_cell];
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf qureyBySupervisor];
+        [weakSelf queryByFocusList];
     }];
 }
 
@@ -95,13 +99,14 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    WEAK_SELF
     MyFansAndFocusCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_cell];
-    
-//    NSDictionary *modle = @{@"title":@"小溪漓江", @"describe":@"监督是一种责任"};
-    
-//    cell.cellModel(model: model, style: self.style)
-//    cell.delegate = self
+    [cell setPath:indexPath];
+    [cell setFansAndFocusCheck:^(NSIndexPath * _Nonnull path) {
+        [weakSelf fansAndFocusCheck:path];
+    }];
+    NSDictionary *modle = @{@"title":@"小溪漓江", @"describe":@"监督是一种责任"};
+    [cell cellModelWithModel:modle style:YES];
     
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
         cell.lineView.hidden = YES;
@@ -117,7 +122,7 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 }
 
 
-- (void)fansAndFocusCheck {
+- (void)fansAndFocusCheck:(NSIndexPath *)indexPath {
     if (self.controlStyle == WMFansAndFocusStyleFans) {
         [Tool showHUDTipWithTipStr:@"关注成功"];
     } else {
@@ -134,12 +139,19 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 }
 
 #pragma mark - Network
-- (void)qureyBySupervisor {
+- (void)queryByFocusList {
+    
     UserManager *user = [UserManager shared];
-    NSDictionary *param = @{@"userId":user.userId ?: @""};
+    NSDictionary *param = @{@"loginId":user.userId ?: @"", @"userId":user.userId};
+    
+    NSString *host_post = @"queryFocusList";
+    if (self.controlStyle == WMFansAndFocusStyleFans) {
+        host_post = @"queryFansList";
+    }
     
     WEAK_SELF
-    [HttpAPIClient APIClientPOST:@"querySupervisor" params:param Success:^(id result) {
+    [HttpAPIClient APIClientPOST:host_post params:param Success:^(id result) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -156,6 +168,7 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
             }
         }
     } Failed:^(NSError *error) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"%@",error);
     }];
 }

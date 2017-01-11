@@ -36,3 +36,8 @@
 #import "WMConfig.h"
 
 #import "WMMemberViewController.h"
+#import "WMWebViewController.h"
+#import "WMFriendsListController.h"
+#import "WMPrivateChatController.h"
+
+#import "FansAndFocusModel.h"

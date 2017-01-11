@@ -121,14 +121,13 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
         if _index == 0 {
             self.navigationController?.pushViewController( LoginViewController(), animated: true)
         } else if _index == 1 {
-            print("微信登录 is click")
-            
             WMShareEngine.sharedInstance().sendAuthRequest(self);
            
         } else if _index == 2 {
             self.navigationController?.pushViewController( RegisterViewController(), animated: true)
         } else {
-            print("用户协议 is click")
+            let controller: WMWebViewController = WMWebViewController.init(webType: .local)
+            self.navigationController?.pushViewController(controller, animated: true)
         }
         
     }
@@ -159,7 +158,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                         print("用户登录成功")
                         let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.setupMainController()
-                        ChatMessage.shareChat().loginJMessage(UserManager.shared.userId)
+                        ChatMessage.shareChat().loginJMessage()
                     } else {
                         Tool.showHUDTip(tipStr: "用户登录失败!")
                     }

@@ -95,4 +95,10 @@ class UserManager: NSObject {
         UserManager.shared.fansNum = user.fansNum
         UserManager.shared.pwdim = user.pwdim
     }
+    
+    class func removeData() {
+        let store = YTKKeyValueStore.init(dbWithName: userdbName)
+        let tableName = userTableName
+        store?.deleteObject(byId: userID, fromTable: tableName)
+    }
 }

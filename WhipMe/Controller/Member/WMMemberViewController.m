@@ -11,7 +11,7 @@
 #import "MyWalletViewController.h"
 #import "WMUserInfoViewController.h"
 #import "WMHistoricalReviewController.h"
-//#import "WMFansAndFocusController.h"
+#import "WMFansAndFocusController.h"
 
 CGFloat const kHead_WH = 60.0;
 NSInteger const kItem_Tag = 7777;
@@ -47,13 +47,17 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 - (void)setData:(UserManager *)userInfo {
-    [self.imageHead setImageWithURL:[NSURL URLWithString:userInfo.icon] placeholderImage:[Define kDefaultImageHead]];
+//    [self.imageHead setImageWithURL:[NSURL URLWithString:userInfo.icon ?:@""] placeholderImage:[Define kDefaultImageHead]];
     
     if ([NSString isBlankString:userInfo.nickname]) {
         self.lblUserName.text = @"学习者";
     } else {
         self.lblUserName.text = userInfo.nickname;
     }
+    CGSize size_userName = [self.lblUserName.text sizeWithAttributes:@{NSFontAttributeName:self.lblUserName.font}];
+    [self.lblUserName mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(MIN(floorf(size_userName.width)+1, [Define screenWidth]-kHead_WH-54.0));
+    }];
     
     if ([NSString isBlankString:userInfo.sign]) {
         self.lblDescribe.text = @"监督，是一种责任";
@@ -112,27 +116,34 @@ static NSString *identifier_head = @"tableViewView_head";
     
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWithHead)];
     [self.imageHead addGestureRecognizer:tapGr];
-    NSString *str_userName = @"学习者";
-    
+   
     _lblUserName = [[UILabel alloc] init];
     _lblUserName.backgroundColor = [UIColor clearColor];
     _lblUserName.textColor = rgb(51, 51, 51);
     _lblUserName.font = [UIFont systemFontOfSize:18.0];
     _lblUserName.textAlignment = NSTextAlignmentLeft;
-    _lblUserName.text = str_userName;
+    _lblUserName.userInteractionEnabled = YES;
     [self.viewHead addSubview:self.lblUserName];
     
-    CGSize size_userName = [str_userName sizeWithAttributes:@{NSFontAttributeName:self.lblUserName.font}];
+    UITapGestureRecognizer *tap_name = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWithHead)];
+    [self.lblUserName addGestureRecognizer:tap_name];
+
     [self.lblUserName mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.imageHead.mas_right).offset(14.0);
         make.top.mas_equalTo(24);
-        make.size.mas_equalTo(CGSizeMake(floorf(size_userName.width)+1, 20.0));
+        make.height.mas_equalTo(20.0);
+        make.width.mas_equalTo(60.0);
     }];
     
     _iconWallet = [[UIImageView alloc] init];
     _iconWallet.backgroundColor = [UIColor clearColor];
     _iconWallet.image = [UIImage imageNamed:@"wallet_green_off"];
+    _iconWallet.userInteractionEnabled = YES;
     [self.viewHead addSubview:self.iconWallet];
+    
+    UITapGestureRecognizer *tap_wallet = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWithWallet)];
+    [self.iconWallet addGestureRecognizer:tap_wallet];
+    
     [self.iconWallet mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.lblUserName.mas_right).offset(10);
         make.top.equalTo(weakSelf.lblUserName.mas_top);
@@ -238,20 +249,24 @@ static NSString *identifier_head = @"tableViewView_head";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)clickWithWallet {
+    MyWalletViewController *controller = [MyWalletViewController new];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)onClickWithItem:(UIButton *)sender {
     NSInteger index = sender.tag%kItem_Tag;
     if (index == 0) {
-        MyWalletViewController *controller = [MyWalletViewController new];
+        [self clickWithWallet];
+    } else {
+        WMFansAndFocusStyle style = WMFansAndFocusStyleFans;
+        if (index == 1) {
+            style = WMFansAndFocusStyleFocus;
+        }
+        WMFansAndFocusController *controller = [[WMFansAndFocusController alloc] initWithStyle:style];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-    } else {
-//        WMFansAndFocusStyle style = WMFansAndFocusStyleFans;
-//        if (index == 1) {
-//            style = WMFansAndFocusStyleFocus;
-//        }
-//        WMFansAndFocusController *controller = [[WMFansAndFocusController alloc] initWithStyle:style];
-//        controller.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

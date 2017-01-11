@@ -247,7 +247,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
-            ChatMessage.shareChat().registerJMessage(UserManager.shared.userId)
+            ChatMessage.shareChat().loginJMessage()
             
         }) { (error) in
             print("微信登录：第2步 is error:\(error)")
@@ -297,7 +297,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                ChatMessage.shareChat().registerJMessage(UserManager.shared.userId)
+                ChatMessage.shareChat().loginJMessage()
             } else {
                 Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }
@@ -308,7 +308,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     func clickWithAgreement() {
-        
+        let controller: WMWebViewController = WMWebViewController.init(webType: .local)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - UIActionSheet
