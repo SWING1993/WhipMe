@@ -132,7 +132,7 @@ class MyFansAndFocusCell: UITableViewCell {
     
     func cellModel(model: Dictionary<String,String>, style: Bool) {
     
-        self.imageIcon.image = UIImage.init(named: "")
+        self.imageIcon.image = Define.kDefaultPlaceImage()
         
         self.lblTitle.text = model["title"]
         

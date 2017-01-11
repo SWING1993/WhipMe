@@ -14,9 +14,13 @@ class FriendsListViewCell: UITableViewCell {
     var lblNickname: UILabel!
     var lblBrief: UILabel!
     var btnStatus: UIButton!
+    var path: IndexPath!
+    var indexCellViewPath: ((IndexPath) -> Void)?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.backgroundColor = UIColor.clear
         setup()
     }
     
@@ -85,6 +89,7 @@ class FriendsListViewCell: UITableViewCell {
         btnStatus.layer.masksToBounds = true
         btnStatus.layer.cornerRadius = 30/2.0
         btnStatus.layer.borderWidth = 0.5
+        btnStatus.addTarget(self, action: #selector(clickWithStatus), for: UIControlEvents.touchUpInside)
         self.contentView.addSubview(btnStatus)
         btnStatus.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize.init(width: 78.0, height: 30.0));
@@ -93,22 +98,72 @@ class FriendsListViewCell: UITableViewCell {
         }
     }
     
-    public func setCellWithModel(model: JMSGUser) {
-        
-        let statue: UInt32 = arc4random()%3;
-        let color: UIColor = statue != 1 ? Define.kColorBlue() : Define.kColorLight();
-        btnStatus.setTitle(stringByStatu(statu: statue), for: UIControlState.normal)
-        btnStatus.setTitleColor(color, for: UIControlState.normal)
-        btnStatus.layer.borderColor = color.cgColor
-        
-        lblNickname.text = model.nickname ?? model.username
-        lblBrief.text = model.signature ?? "生活就像强奸，反抗不了，就只能学会享受"
-        
-        var imageHead = UIImage.init(contentsOfFile: model.avatar ?? "")
-        if imageHead == nil {
-            imageHead = UIImage.init(named: "system_monitoring")
+    func clickWithStatus() {
+        if (self.indexCellViewPath != nil) {
+            self.indexCellViewPath!(self.path);
         }
-        imageLogo.image = imageHead
+    }
+    
+    public func setCellFriend(model: FansAndFocusModel) {
+        
+        if (NSString.isBlankString(model.nickname)) {
+            lblNickname.text = "标题"
+        } else {
+            lblNickname.text = model.nickname
+        }
+        
+        if (NSString.isBlankString(model.sign)) {
+            lblBrief.text = "个性签名"
+        } else {
+            lblBrief.text = model.sign
+        }
+        if (NSString.isBlankString(model.icon)) {
+            imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: UIImage.init(named: "system_monitoring"))
+        } else {
+            imageLogo.image = UIImage.init(named: "system_monitoring")
+        }
+        
+        if (model.focus == false) {
+            btnStatus.setTitle("关注", for: UIControlState.normal)
+            btnStatus.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
+            btnStatus.layer.borderColor = Define.kColorBlue().cgColor
+        } else {
+            btnStatus.setTitle("取消关注", for: UIControlState.normal)
+            btnStatus.setTitleColor(Define.kColorLight(), for: UIControlState.normal)
+            btnStatus.layer.borderColor = Define.kColorLight().cgColor
+        }
+    }
+    
+    public func setCellWith(model: FansAndFocusModel) {
+        
+        if (NSString.isBlankString(model.nickname)) {
+            lblNickname.text = "标题"
+        } else {
+            lblNickname.text = model.nickname
+        }
+        
+        if (NSString.isBlankString(model.sign)) {
+            lblBrief.text = "个性签名"
+        } else {
+            lblBrief.text = model.sign
+        }
+        if (NSString.isBlankString(model.icon)) {
+            imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: UIImage.init(named: "system_monitoring"))
+        } else {
+            imageLogo.image = UIImage.init(named: "system_monitoring")
+        }
+        
+        if (model.focus == false) {
+            btnStatus.isUserInteractionEnabled = true;
+            btnStatus.setTitle("关注", for: UIControlState.normal)
+            btnStatus.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
+            btnStatus.layer.borderColor = Define.kColorBlue().cgColor
+        } else {
+            btnStatus.isUserInteractionEnabled = false;
+            btnStatus.setTitle("已关注", for: UIControlState.normal)
+            btnStatus.setTitleColor(Define.kColorLight(), for: UIControlState.normal)
+            btnStatus.layer.borderColor = Define.kColorLight().cgColor
+        }
     }
     
     func stringByStatu(statu: UInt32) -> String {

@@ -1,0 +1,206 @@
+//
+//  WMFriendsListController.m
+//  WhipMe
+//
+//  Created by anve on 17/1/11.
+//  Copyright © 2017年 -. All rights reserved.
+//
+
+#import "WMFriendsListController.h"
+#import "WMAddFriendController.h"
+
+@interface WMFriendsListController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSMutableArray *arrayContent;
+@property (nonatomic, strong) UITableView *tableViewWM;
+@property (nonatomic, strong) NSIndexPath *selectPath;
+
+@end
+
+static NSString *identifier_cell = @"addFriendsCell";
+
+@implementation WMFriendsListController
+
+- (instancetype)initWithStyle:(WMFriendsListStyle)style
+{
+    self = [super init];
+    if (self) {
+        _controlStyle = style;
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = self.controlStyle == WMFriendsListStyleAddFriend ? @"添加好友" : @"好友列表";
+    self.view.backgroundColor = [Define kColorBackGround];
+    
+    [self setup];
+    
+    [self queryByFocusList];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.view endEditing:NO];
+}
+
+- (void)dealloc {
+    DebugLog(@"%@",NSStringFromClass(self.class));
+}
+
+- (void)setup {
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(clickWithRight)];
+    rightBarItem.tintColor = [UIColor whiteColor];
+    [self.navigationItem setRightBarButtonItem:rightBarItem];
+    
+    WEAK_SELF
+    _tableViewWM = [UITableView new];
+    _tableViewWM.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _tableViewWM.separatorColor = [Define kColorLine];
+    _tableViewWM.layoutMargins = UIEdgeInsetsZero;
+    _tableViewWM.separatorInset = UIEdgeInsetsZero;
+    _tableViewWM.backgroundColor = [UIColor whiteColor];
+    _tableViewWM.layer.cornerRadius = 4.0;
+    _tableViewWM.layer.masksToBounds = true;
+    _tableViewWM.delegate = self;
+    _tableViewWM.dataSource = self;
+    _tableViewWM.tableFooterView = [UIView new];
+    [self.view addSubview:self.tableViewWM];
+    [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10.0);
+        make.left.mas_equalTo(10.0);
+        make.right.and.bottom.mas_equalTo(-10.0);
+    }];
+    [self.tableViewWM registerClass:[FriendsListViewCell class] forCellReuseIdentifier:identifier_cell];
+    self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf queryByFocusList];
+    }];
+}
+
+- (void)clickWithRight {
+    WMAddFriendController *controller = [WMAddFriendController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - set get
+- (NSMutableArray *)arrayContent {
+    if (!_arrayContent) {
+        _arrayContent = [NSMutableArray array];
+    }
+    return _arrayContent;
+}
+
+
+#pragma mark - UITableViewDelegate and Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayContent.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WEAK_SELF
+    FriendsListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_cell];
+    [cell setPath:indexPath];
+    [cell setIndexCellViewPath:^(NSIndexPath * _Nonnull path) {
+        [weakSelf didSelectCellIndexPath:path];
+    }];
+    
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    [cell setCellFriendWithModel:model];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)didSelectCellIndexPath:(NSIndexPath *)indexPath {
+    _selectPath = indexPath;
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    if ([NSString isBlankString:model.userId]) {
+        return;
+    }
+    UserManager *user = [UserManager shared];
+    if (model.focus == YES) {
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"userId":model.userId};
+        [self focusAndCancelByUser:param hostPost:@"focusUser"];
+    } else {
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId};
+        [self focusAndCancelByUser:param hostPost:@"cancelUser"];
+    }
+}
+
+#pragma mark - network
+- (void)queryByFocusList {
+  
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"loginId":user.userId ?: @"", @"userId":user.userId};
+    
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:@"queryFocusList" params:param Success:^(id result) {
+        DebugLog(@"______result:%@",result);
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            [weakSelf.arrayContent removeAllObjects];
+            for (NSDictionary *obj in data[@"list"]) {
+                FansAndFocusModel *model = [FansAndFocusModel mj_objectWithKeyValues:obj];
+                [weakSelf.arrayContent addObject:model];
+            }
+            [weakSelf.tableViewWM reloadData];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
+
+- (void)focusAndCancelByUser:(NSDictionary *)param hostPost:(NSString *)host_path {
+    if (param == nil || [NSString isBlankString:host_path]) {
+        return;
+    }
+    
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:host_path params:param Success:^(id result) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
+        DebugLog(@"______result:%@",result);
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            FansAndFocusModel *model = [weakSelf.arrayContent objectAtIndex:weakSelf.selectPath.row];
+            model.focus = !model.focus;
+            [weakSelf.tableViewWM reloadData];
+            
+            [Tool showHUDTipWithTipStr:model.focus?@"关注成功！":@"成功取消关注！"];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
+        DebugLog(@"%@",error);
+    }];
+}
+
+@end

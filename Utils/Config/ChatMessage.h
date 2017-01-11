@@ -13,8 +13,8 @@
 
 + (ChatMessage *)shareChat;
 
-- (void)loginJMessage:(NSString *)username;
+- (void)loginJMessage;
 
-- (void)registerJMessage:(NSString *)username;
+- (void)registerJMessage;
 
 @end

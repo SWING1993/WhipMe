@@ -109,15 +109,20 @@ class ChatConversationListCell: UITableViewCell {
         }
     }
     
-    public func setCellWithModel(model: NSDictionary) {
+    public func setCellWithModel(model: FansAndFocusModel) {
        
-        if model.object(forKey: "title") == nil {
+        if (NSString.isBlankString(model.nickname)) {
             lblNickname.text = "标题"
         } else {
-            lblNickname.text = model.object(forKey: "title") as? String
+            lblNickname.text = model.nickname
         }
     
-        lblBrief.text = "人若只如初见"
+        if (NSString.isBlankString(model.sign)) {
+            lblBrief.text = "个性签名"
+        } else {
+            lblBrief.text = model.sign
+        }
+        
     
         lblTime.text = "10分钟前"
         

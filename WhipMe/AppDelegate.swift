@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
 //        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
 //        self.window?.rootViewController = navControl
 
-        print("username is \(UserManager.shared.nickname)")
-        if (UserManager.shared.nickname.characters.count > 0) {
+        
+        if (NSString.isBlankString(UserManager.shared.userId) == false) {
             setupMainController()
         } else {
             setupLoginController()
@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        ChatMessage.shareChat().loginJMessage()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -214,79 +214,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
                 
             })
         } else {
-            // Fallback on earlier versions
-            
             let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
             JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
         }
     }
     
     func resetApplicationBadge() {
-        print("Action - resetApplicationBadge")
         let badge = UserDefaults.standard.object(forKey: Define.kBADGE())
         if badge != nil {
             let number = badge as! Int
             UIApplication.shared.applicationIconBadgeNumber = number
             JPUSHService.setBadge(number)
         }
-    }
-    
-    // MARK:- Notificatioin
-    
-    func registerJPushStatusNotification() {
-        
-        NotificationCenter.default.removeObserver(self)
-        NotificationCenter.default.addObserver(self, selector: #selector(networkDidSetup(notification:)), name: NSNotification.Name.jpfNetworkDidSetup, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(networkIsConnecting(notification:)), name: NSNotification.Name.jpfNetworkIsConnecting, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(networkDidClose(notification:)), name: NSNotification.Name.jpfNetworkDidClose, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(networkDidRegister(notification:)), name: NSNotification.Name.jpfNetworkDidRegister, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(networkDidLogin(notification:)), name: NSNotification.Name.jpfNetworkDidLogin, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(receivePushMessage(notification:)), name: NSNotification.Name.jpfNetworkDidReceiveMessage, object: nil);
-        
-    }
-    /** 建立连接 */
-    func networkDidSetup(notification: NSNotification) {
-        print("建立连接")
-    }
-    
-    /** 正在连接中 */
-    func networkIsConnecting(notification: NSNotification) {
-        print("正在连接中...")
-    }
-    
-    /** 关闭连接 */
-    func networkDidClose(notification: NSNotification) {
-        print("正在连接中...")
-    }
-    
-    /** 注册成功 */
-    func networkDidRegister(notification: NSNotification) {
-        print("注册成功")
-    }
-    
-    /** 登录成功 */
-    func networkDidLogin(notification: NSNotification) {
-        print("登录成功")
-    }
-    
-    /** 收到消息 */
-    func receivePushMessage(notification: NSNotification) {
-        print("收到消息")
-        
-        let info = notification.userInfo as! [String: AnyObject]
-        
-        print("The message -"+info.description)
-        
-    }
-    
-    // MARK: - JMSGDBMigrateDelegate 数据库升级通知
-
-    func onDBMigrateStart() {
-        print("onDBmigrateStart in appdelegate")
-    }
-    
-    func onConversationChanged(_ conversation: JMSGConversation!) {
-        
     }
 }
 

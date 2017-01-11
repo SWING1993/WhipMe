@@ -83,8 +83,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func clickWithRightBarItem() {
-        print(NSStringFromClass(self.classForCoder))
-        let controller : FriendsListController = FriendsListController()
+        let controller : WMFriendsListController = WMFriendsListController()
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -104,7 +103,7 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChatConversationListCell = ChatConversationListCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
         
-        cell.setCellWithModel(model: NSDictionary.init())
+//        cell.setCellWithModel(model: NSDictionary.init())
         
         return cell
     }

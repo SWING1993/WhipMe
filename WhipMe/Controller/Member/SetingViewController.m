@@ -135,9 +135,10 @@ static NSString *identifier_cell = @"setingTableViewCell";
     } else if (indexPath.row == 5) {
         
     } else if (indexPath.row == 7) {
+        WEAK_SELF
         UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            [weakSelf clickWithLogout];
         }]];
         [alertExit addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -146,5 +147,12 @@ static NSString *identifier_cell = @"setingTableViewCell";
     }
 }
 
+- (void)clickWithLogout {
+    [UserManager removeData];
+    [JMSGUser logout:^(id resultObject, NSError *error) {
+    }];
+    AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDegate setupLoginController];
+}
 
 @end

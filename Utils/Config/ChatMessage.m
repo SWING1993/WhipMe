@@ -8,7 +8,6 @@
 
 #import "ChatMessage.h"
 
-static NSString *const password = @"123456";
 static ChatMessage *_chatObj = nil;
 @implementation ChatMessage
 
@@ -20,32 +19,35 @@ static ChatMessage *_chatObj = nil;
     return _chatObj;
 }
 
-- (void)loginJMessage:(NSString *)username
+- (void)loginJMessage
 {
-    if ([NSString isBlankString:username]) {
+    UserManager *info = [UserManager shared];
+    if ([NSString isBlankString:info.userId] || [NSString isBlankString:info.pwdim]) {
         return;
     }
-    [JMSGUser loginWithUsername:username password:password completionHandler:^(id resultObject, NSError *error) {
-        if (error == nil) {
-            NSLog(@"login JMessage is success");
-        } else {
-            NSLog(@"login JMessage is fail");
+    
+    WEAK_SELF
+    [JMSGUser loginWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if (error.code == kJMSGErrorHttpUserNotExist) {
+            [weakSelf registerJMessage];
         }
     }];
 }
 
-- (void)registerJMessage:(NSString *)username
+- (void)registerJMessage
 {
-    if ([NSString isBlankString:username]) {
+    UserManager *info = [UserManager shared];
+    if ([NSString isBlankString:info.userId] || [NSString isBlankString:info.pwdim]) {
         return;
     }
-     __weak typeof(self) weakSelf = self;
-    [JMSGUser registerWithUsername:username password:password completionHandler:^(id resultObject, NSError *error) {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    WEAK_SELF
+    [JMSGUser registerWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         if (error == nil) {
-            NSLog(@"register JMessage is success");
-            [weakSelf loginJMessage:username];
+            [weakSelf loginJMessage];
         } else {
-            NSLog(@"register JMessage is fail");
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     }];
 }

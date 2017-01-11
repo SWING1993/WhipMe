@@ -58,8 +58,6 @@
 		C59B2A2D1D8F83820055F026 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A2C1D8F83820055F026 /* CFNetwork.framework */; };
 		C59B2A2F1D8F83900055F026 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A2E1D8F83900055F026 /* AudioToolbox.framework */; };
 		C59B2A311D8F83950055F026 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B2A301D8F83950055F026 /* MobileCoreServices.framework */; };
-		C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */; };
-		C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B2A341D8F98EE0055F026 /* FriendsListController.swift */; };
 		C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A41D921A4D000866AB /* LoginViewController.swift */; };
 		C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A61D921A56000866AB /* RegisterViewController.swift */; };
 		C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */; };
@@ -68,6 +66,15 @@
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
 		C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */; };
 		C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */; };
+		C5C47C2A1E25C92500EEA35D /* WMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C291E25C92500EEA35D /* WMWebViewController.m */; };
+		C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */ = {isa = PBXBuildFile; fileRef = C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */; };
+		C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C47C2D1E25D2D300EEA35D /* 404.jpg */; };
+		C5C47C301E25D2DE00EEA35D /* error.html in Resources */ = {isa = PBXBuildFile; fileRef = C5C47C2F1E25D2DE00EEA35D /* error.html */; };
+		C5C47C331E26048B00EEA35D /* WMAddFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C321E26048B00EEA35D /* WMAddFriendController.m */; };
+		C5C47C361E26185500EEA35D /* WMFriendsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C351E26185500EEA35D /* WMFriendsListController.m */; };
+		C5C47C391E26293200EEA35D /* WMPrivateChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C381E26293200EEA35D /* WMPrivateChatController.m */; };
+		C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C3B1E26299300EEA35D /* WMChatListViewController.m */; };
+		C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
@@ -190,8 +197,6 @@
 		C59B2A2C1D8F83820055F026 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C59B2A2E1D8F83900055F026 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C59B2A301D8F83950055F026 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsController.swift; sourceTree = "<group>"; };
-		C59B2A341D8F98EE0055F026 /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		C5A186A41D921A4D000866AB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5A186A61D921A56000866AB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5A186A81D9236ED000866AB /* UITextFiled+MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextFiled+MessageInputView.swift"; sourceTree = "<group>"; };
@@ -203,6 +208,21 @@
 		C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPickerPassengerView.m; sourceTree = "<group>"; };
 		C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		C5C47C281E25C92500EEA35D /* WMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWebViewController.h; sourceTree = "<group>"; };
+		C5C47C291E25C92500EEA35D /* WMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWebViewController.m; sourceTree = "<group>"; };
+		C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = userAgreement.html; sourceTree = "<group>"; };
+		C5C47C2D1E25D2D300EEA35D /* 404.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 404.jpg; sourceTree = "<group>"; };
+		C5C47C2F1E25D2DE00EEA35D /* error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = error.html; sourceTree = "<group>"; };
+		C5C47C311E26048B00EEA35D /* WMAddFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAddFriendController.h; sourceTree = "<group>"; };
+		C5C47C321E26048B00EEA35D /* WMAddFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAddFriendController.m; sourceTree = "<group>"; };
+		C5C47C341E26185500EEA35D /* WMFriendsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFriendsListController.h; sourceTree = "<group>"; };
+		C5C47C351E26185500EEA35D /* WMFriendsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFriendsListController.m; sourceTree = "<group>"; };
+		C5C47C371E26293200EEA35D /* WMPrivateChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPrivateChatController.h; sourceTree = "<group>"; };
+		C5C47C381E26293200EEA35D /* WMPrivateChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPrivateChatController.m; sourceTree = "<group>"; };
+		C5C47C3A1E26299300EEA35D /* WMChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMChatListViewController.h; sourceTree = "<group>"; };
+		C5C47C3B1E26299300EEA35D /* WMChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMChatListViewController.m; sourceTree = "<group>"; };
+		C5C47C3D1E2629D400EEA35D /* WMNotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNotificationController.h; sourceTree = "<group>"; };
+		C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationController.m; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
@@ -368,10 +388,18 @@
 		C546FE101D82989700012FB4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C5C47C371E26293200EEA35D /* WMPrivateChatController.h */,
+				C5C47C381E26293200EEA35D /* WMPrivateChatController.m */,
+				C5C47C3A1E26299300EEA35D /* WMChatListViewController.h */,
+				C5C47C3B1E26299300EEA35D /* WMChatListViewController.m */,
+				C5C47C3D1E2629D400EEA35D /* WMNotificationController.h */,
+				C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */,
 				C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */,
-				C59B2A321D8F98DB0055F026 /* AddFriendsController.swift */,
-				C59B2A341D8F98EE0055F026 /* FriendsListController.swift */,
 				C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */,
+				C5C47C311E26048B00EEA35D /* WMAddFriendController.h */,
+				C5C47C321E26048B00EEA35D /* WMAddFriendController.m */,
+				C5C47C341E26185500EEA35D /* WMFriendsListController.h */,
+				C5C47C351E26185500EEA35D /* WMFriendsListController.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -504,6 +532,8 @@
 			isa = PBXGroup;
 			children = (
 				C546FE261D829A7300012FB4 /* MainTabBarController.swift */,
+				C5C47C281E25C92500EEA35D /* WMWebViewController.h */,
+				C5C47C291E25C92500EEA35D /* WMWebViewController.m */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -547,6 +577,9 @@
 		C5D669A11D864203008EE189 /* iTools */ = {
 			isa = PBXGroup;
 			children = (
+				C5C47C2F1E25D2DE00EEA35D /* error.html */,
+				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
+				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
 				E44C75FF1DAB8B5A0038C715 /* Tool.swift */,
 			);
 			path = iTools;
@@ -830,7 +863,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
+				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
 				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
+				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,8 +967,10 @@
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
+				C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */,
 				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
+				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
@@ -949,8 +987,8 @@
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
+				C5C47C331E26048B00EEA35D /* WMAddFriendController.m in Sources */,
 				C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */,
-				C59B2A351D8F98EE0055F026 /* FriendsListController.swift in Sources */,
 				C5920D391D8F8141007B199E /* ChatConversationListCell.swift in Sources */,
 				C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
@@ -964,8 +1002,8 @@
 				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,
+				C5C47C2A1E25C92500EEA35D /* WMWebViewController.m in Sources */,
 				E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */,
-				C59B2A331D8F98DB0055F026 /* AddFriendsController.swift in Sources */,
 				C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */,
 				C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
@@ -974,6 +1012,8 @@
 				C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
 				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
+				C5C47C361E26185500EEA35D /* WMFriendsListController.m in Sources */,
+				C5C47C391E26293200EEA35D /* WMPrivateChatController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

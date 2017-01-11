@@ -77,7 +77,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func clickWithRightBarItem() {
-        print(NSStringFromClass(self.classForCoder))
         let controller : AddFriendsController = AddFriendsController()
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
