@@ -23,6 +23,8 @@
 		C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6871E238412000BA12B /* MemberHeadViewCell.swift */; };
 		C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6881E238412000BA12B /* MemberTableViewCell.swift */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
+		C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FA1E2A0277000E8CAF /* NotificationModel.m */; };
+		C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */; };
 		C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */; };
@@ -148,6 +150,10 @@
 		C516C6871E238412000BA12B /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
 		C516C6881E238412000BA12B /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
+		C52C17F91E2A0277000E8CAF /* NotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
+		C52C17FA1E2A0277000E8CAF /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
+		C52C17FC1E2A07EA000E8CAF /* WMNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNotificationViewCell.h; sourceTree = "<group>"; };
+		C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationViewCell.m; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHistoricalReviewController.h; sourceTree = "<group>"; };
@@ -470,6 +476,8 @@
 			isa = PBXGroup;
 			children = (
 				C532CF961D87D77200840E65 /* chatModel.swift */,
+				C52C17F91E2A0277000E8CAF /* NotificationModel.h */,
+				C52C17FA1E2A0277000E8CAF /* NotificationModel.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -500,6 +508,8 @@
 			children = (
 				C5920D381D8F8141007B199E /* ChatConversationListCell.swift */,
 				C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */,
+				C52C17FC1E2A07EA000E8CAF /* WMNotificationViewCell.h */,
+				C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -941,6 +951,7 @@
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */,
+				C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */,
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
@@ -972,6 +983,7 @@
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
+				C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,

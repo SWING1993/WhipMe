@@ -7,12 +7,10 @@
 //
 
 import UIKit
-//import JMessage
 
 class ChatConversationListCell: UITableViewCell {
 
     var conversationId: String!
-//    var cellWithConversation: JMSGConversation!
     
     var imageLogo: UIImageView!
     var lblNickname: UILabel!
@@ -109,7 +107,7 @@ class ChatConversationListCell: UITableViewCell {
         }
     }
     
-    public func setCellWithModel(model: FansAndFocusModel) {
+    public func setCell(model: FansAndFocusModel) {
        
         if (NSString.isBlankString(model.nickname)) {
             lblNickname.text = "标题"

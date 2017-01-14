@@ -67,7 +67,7 @@
     
     _pageController = (UIPageViewController *)self.topViewController;
     _pageController.delegate = self;
-    _pageController.dataSource = self;
+    _pageController.dataSource = nil;
     [_pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"people_care"] style:UIBarButtonItemStylePlain target:self action:@selector(clickWithRight)];
@@ -97,24 +97,12 @@
     DebugLog(@"_____index:%ld",(long)sender.selectedSegmentIndex);
     NSInteger tempIndex = sender.selectedSegmentIndex;
     
-    WEAK_SELF
-    if (self.currentPageIndex < tempIndex) {
-        for (NSInteger i=self.currentPageIndex+1; i<tempIndex; i++) {
-            [self.pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:i]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
-                if (finished) {
-                    weakSelf.currentPageIndex = i;
-                }
-            }];
-        }
-    } else if (self.currentPageIndex > tempIndex) {
-        for (NSInteger i=self.currentPageIndex-1; i>=tempIndex; i++) {
-            [self.pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:i]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
-                if (finished) {
-                    weakSelf.currentPageIndex = i;
-                }
-            }];
-        }
-    }
+    self.currentPageIndex = tempIndex;
+    [self.pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:tempIndex]]
+                                  direction:UIPageViewControllerNavigationDirectionForward
+                                   animated:NO
+                                 completion:^(BOOL finished) {
+    }];
 }
 
 - (void)clickWithRight {
