@@ -11,7 +11,6 @@
 		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
 		4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677DA41DA10F5F004D54EA /* NSString+Validate.m */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
-		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
@@ -136,7 +135,6 @@
 		4F677DA41DA10F5F004D54EA /* NSString+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validate.m"; sourceTree = "<group>"; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
-		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
 		C506DC311D8FE46F00785BE8 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
 		C50A49871D9A06180003CE2D /* PhoneCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodeButton.h; sourceTree = "<group>"; };
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
@@ -401,7 +399,6 @@
 				C5C47C3D1E2629D400EEA35D /* WMNotificationController.h */,
 				C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */,
 				C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */,
-				C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */,
 				C5C47C311E26048B00EEA35D /* WMAddFriendController.h */,
 				C5C47C321E26048B00EEA35D /* WMAddFriendController.m */,
 				C5C47C341E26185500EEA35D /* WMFriendsListController.h */,
@@ -972,7 +969,6 @@
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C542FE3F1E24B8DE000A66CB /* MoneyRecordModel.m in Sources */,
-				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
 				C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,

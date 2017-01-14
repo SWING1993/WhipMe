@@ -9,7 +9,7 @@
 #import "WMAddFriendController.h"
 #import "FansAndFocusModel.h"
 
-@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (nonatomic, strong) UISearchBar *viewSearch;
 @property (nonatomic, strong) NSMutableArray *arrayContent;
@@ -88,6 +88,8 @@ static NSString *identifier_cell = @"addFriendsCell";
     _tableViewWM.layer.masksToBounds = true;
     _tableViewWM.delegate = self;
     _tableViewWM.dataSource = self;
+    _tableViewWM.emptyDataSetSource = self;
+    _tableViewWM.emptyDataSetDelegate = self;
     _tableViewWM.tableFooterView = [UIView new];
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -134,6 +136,21 @@ static NSString *identifier_cell = @"addFriendsCell";
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:NO];
+}
+
+#pragma mark - DZNEmptyDataSetSource
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"nilTouSu"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据" attributes:attribute];
+    return string;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate and Datasource

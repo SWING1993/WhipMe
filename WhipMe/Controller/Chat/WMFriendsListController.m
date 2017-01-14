@@ -9,7 +9,7 @@
 #import "WMFriendsListController.h"
 #import "WMAddFriendController.h"
 
-@interface WMFriendsListController () <UITableViewDelegate, UITableViewDataSource>
+@interface WMFriendsListController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, strong) NSMutableArray *arrayContent;
 @property (nonatomic, strong) UITableView *tableViewWM;
@@ -73,6 +73,8 @@ static NSString *identifier_cell = @"addFriendsCell";
     _tableViewWM.layer.masksToBounds = true;
     _tableViewWM.delegate = self;
     _tableViewWM.dataSource = self;
+    _tableViewWM.emptyDataSetSource = self;
+    _tableViewWM.emptyDataSetDelegate = self;
     _tableViewWM.tableFooterView = [UIView new];
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -91,14 +93,20 @@ static NSString *identifier_cell = @"addFriendsCell";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-#pragma mark - set get
-- (NSMutableArray *)arrayContent {
-    if (!_arrayContent) {
-        _arrayContent = [NSMutableArray array];
-    }
-    return _arrayContent;
+#pragma mark - DZNEmptyDataSetSource
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"nilTouSu"];
 }
 
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据" attributes:attribute];
+    return string;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
+}
 
 #pragma mark - UITableViewDelegate and Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -146,6 +154,15 @@ static NSString *identifier_cell = @"addFriendsCell";
         [self focusAndCancelByUser:param hostPost:@"cancelUser"];
     }
 }
+
+#pragma mark - set get
+- (NSMutableArray *)arrayContent {
+    if (!_arrayContent) {
+        _arrayContent = [NSMutableArray array];
+    }
+    return _arrayContent;
+}
+
 
 #pragma mark - network
 - (void)queryByFocusList {
