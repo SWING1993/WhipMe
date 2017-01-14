@@ -54,6 +54,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    if (self.currentPageIndex == 0) {
+        DDPostNotification(kAllConversationsNotification);
+    }
 }
 
 - (void)dealloc {

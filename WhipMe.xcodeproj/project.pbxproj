@@ -24,6 +24,8 @@
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FA1E2A0277000E8CAF /* NotificationModel.m */; };
 		C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */; };
+		C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */; };
+		C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */; };
 		C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */; };
@@ -152,6 +154,10 @@
 		C52C17FA1E2A0277000E8CAF /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
 		C52C17FC1E2A07EA000E8CAF /* WMNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNotificationViewCell.h; sourceTree = "<group>"; };
 		C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationViewCell.m; sourceTree = "<group>"; };
+		C52C17FF1E2A1D77000E8CAF /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		C52C18031E2A1DA5000E8CAF /* JCHATStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATStringUtils.h; sourceTree = "<group>"; };
+		C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATStringUtils.m; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHistoricalReviewController.h; sourceTree = "<group>"; };
@@ -364,6 +370,25 @@
 				C50A49881D9A06180003CE2D /* PhoneCodeButton.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		C52C18021E2A1DA5000E8CAF /* JCHAT */ = {
+			isa = PBXGroup;
+			children = (
+				C52C18031E2A1DA5000E8CAF /* JCHATStringUtils.h */,
+				C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */,
+			);
+			path = JCHAT;
+			sourceTree = "<group>";
+		};
+		C52C18061E2A1DB4000E8CAF /* web_user */ = {
+			isa = PBXGroup;
+			children = (
+				C5C47C2F1E25D2DE00EEA35D /* error.html */,
+				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
+				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
+			);
+			name = web_user;
 			sourceTree = "<group>";
 		};
 		C53619581D825C180065707C /* Supporting Files */ = {
@@ -584,9 +609,8 @@
 		C5D669A11D864203008EE189 /* iTools */ = {
 			isa = PBXGroup;
 			children = (
-				C5C47C2F1E25D2DE00EEA35D /* error.html */,
-				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
-				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
+				C52C18061E2A1DB4000E8CAF /* web_user */,
+				C52C18021E2A1DA5000E8CAF /* JCHAT */,
 				E44C75FF1DAB8B5A0038C715 /* Tool.swift */,
 			);
 			path = iTools;
@@ -713,6 +737,8 @@
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C52C17FF1E2A1D77000E8CAF /* NSDate+Utilities.h */,
+				C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */,
 				C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */,
 				C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */,
 				E449AC891DAC87140095B8C2 /* Extension.swift */,
@@ -982,6 +1008,7 @@
 				C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
+				C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
@@ -1007,6 +1034,7 @@
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E40D70C71DE6D2E40087B9EF /* TaCecordController.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
+				C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */,
 				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,

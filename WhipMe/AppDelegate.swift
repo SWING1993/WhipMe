@@ -10,7 +10,7 @@ import UIKit
 import SwiftDate
 import UserNotifications
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
     
         //ji guang
         JMessage.setLogOFF()
-        JMessage.add(self, with: nil)
-        JMessage.setupJMessage(launchOptions, appKey: JMESSAGE_APPKEY, channel: CHANNEL, apsForProduction: false, category: nil)
+        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
         // wei xin
         WMShareEngine.sharedInstance().registerApp()
         // debug
@@ -27,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,JMessageDelegate {
         let config = BuglyConfig()
         config.debugMode = false;
         config.channel = "appStore_V\(verison_str)"
-        Bugly.start(withAppId: BUGLY_APPKEY, config: config)
+        Bugly.start(withAppId: Define.appKeyBugly(), config: config)
         registerUserNotification()
         customizeAppearance()
         

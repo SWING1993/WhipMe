@@ -34,6 +34,7 @@
 #import "ChatMessage.h"
 #import "ShareEngine.h"
 #import "WMConfig.h"
+#import "JCHATStringUtils.h"
 
 #import "WMMemberViewController.h"
 #import "WMWebViewController.h"

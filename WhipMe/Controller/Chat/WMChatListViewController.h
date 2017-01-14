@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMChatListViewController : UIViewController
+@interface WMChatListViewController : UIViewController <JMessageDelegate>
 
 @end

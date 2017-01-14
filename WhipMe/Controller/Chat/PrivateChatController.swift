@@ -8,12 +8,9 @@
 
 import UIKit
 
-class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewDataSource, JMessageDelegate {
+class PrivateChatController: UIViewController, JMessageDelegate {
     
     var arrayNavButton: NSMutableArray!
-    var tableViewWM: UITableView!
-    
-    private let identifier_cell: String = "chatConversationListCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,28 +48,6 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
         
-        tableViewWM = UITableView.init()
-        tableViewWM?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableViewWM?.separatorColor = kColorLine
-        tableViewWM?.layoutMargins = UIEdgeInsets.zero
-        tableViewWM?.separatorInset = UIEdgeInsets.zero
-        tableViewWM?.backgroundColor = UIColor.white
-        tableViewWM?.layer.cornerRadius = 4.0
-        tableViewWM?.layer.masksToBounds = true
-        tableViewWM?.delegate = self
-        tableViewWM?.dataSource = self
-        tableViewWM?.showsVerticalScrollIndicator = true
-        tableViewWM?.showsHorizontalScrollIndicator = false
-        tableViewWM.translatesAutoresizingMaskIntoConstraints = false
-        tableViewWM?.tableFooterView = UIView.init(frame: CGRect.zero)
-        tableViewWM.register(ChatConversationListCell.classForCoder(), forCellReuseIdentifier: identifier_cell)
-        self.view.addSubview(tableViewWM)
-        tableViewWM.snp.makeConstraints { (make) in
-            make.top.left.equalTo(10.0)
-            make.width.equalTo(Define.screenWidth()-20.0)
-            make.height.equalTo(Define.screenHeight()-64.0 - 49.0 - 20.0)
-        }
-        
         
     }
     
@@ -88,30 +63,6 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    // MARK: - UITableViewDelegate and Datasource
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayContent.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65.0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ChatConversationListCell = ChatConversationListCell.init(style: UITableViewCellStyle.default, reuseIdentifier: identifier_cell)
-        
-//        cell.setCellWithModel(model: NSDictionary.init())
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row+indexPath.section)
-        
-    }
     
     // MARK: - Action 方法
     
@@ -126,7 +77,6 @@ class PrivateChatController: UIViewController, UITableViewDelegate, UITableViewD
                 self.arrayContent = NSMutableArray.init(array: result as! NSArray)
             }
             
-            self.tableViewWM.reloadData()
 //            let sortKey: NSSortDescriptor = NSSortDescriptor.init(key: "latestMessage.timestamp", ascending: true)
 //            self.arrayContent.sorted(by: { (model1 JMSGConversation, model2 JMSGConversation) -> Bool in
 //                return model1 < model2
