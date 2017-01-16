@@ -64,33 +64,6 @@ static NSString *const baseUrl = @"http://www.superspv.com";
     }];
 }
 
-+ (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed
-{
-//    NSString *host_url = @"/headUploadServlet";
-//    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-//    [http.responseSerializer setAcceptableContentTypes:nil];
-////    http.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
-////                                                         @"text/html",
-////                                                         @"image/jpeg",
-////                                                         @"image/png",
-////                                                         @"application/octet-stream",
-////                                                         @"text/json",
-////                                                         nil];
-//    [http POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        
-//        UIImage *img = [UIImage imageWithContentsOfFile:header];
-//        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
-//        NSString *imgName = header.lastPathComponent;
-//        
-//        [formData appendPartWithFileData:imgData name:@"image" fileName:imgName mimeType:@"image.jpg"];
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-//        success == nil ?: success(result);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        failed == nil ?: failed(error);
-//    }];
-}
-
 + (void)uploadImageWithMethod:(NSString *)method withImage:(UIImage *)image Success:(SuccessBlock)success Failed:(FailedBlock)failed {
     if (kStringIsEmpty(method)) {
         return;

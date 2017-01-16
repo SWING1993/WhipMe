@@ -28,6 +28,7 @@
 #import "NSObject+StoreValue.h"
 #import "UIImage+Orientation.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "MJPhotoBrowser.h"
 
 #import "PhoneCodeButton.h"
 #import "HttpAPIClient.h"
