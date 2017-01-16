@@ -323,7 +323,9 @@ class LogController: UIViewController {
             "picture":"打卡图片a.jpg",
             "position":"打卡时用户所在位置"
             */
-            
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = "发送中..."
+
             var params = [
                 "userId":UserManager.shared.userId,
                 "nickname":UserManager.shared.nickname,
@@ -340,6 +342,7 @@ class LogController: UIViewController {
                 weakSelf?.addRecord(params: params)
             } else {
                 HttpAPIClient.uploadImage(withMethod: "/picUploadServlet", with: self.photo, success: { (result) in
+                    hud.hide(animated: true)
                     if (result != nil) {
                         print(result!)
                         let json = JSON(result!)
@@ -353,7 +356,9 @@ class LogController: UIViewController {
                         }
                     }
                 }, failed: { (error) in
+                    hud.hide(animated: true)
                     Tool.showHUDTip(tipStr: "上传图片失败！")
+                    print(error!);
                 })
             }
         }
