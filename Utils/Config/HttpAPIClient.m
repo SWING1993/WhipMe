@@ -66,51 +66,61 @@ static NSString *const baseUrl = @"http://www.superspv.com";
 
 + (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed
 {
-//    NSString *host_url = @"/headUploadServlet";
-//    HKHttpSession *http = [[HKHttpSession shareSession] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-//    [http.responseSerializer setAcceptableContentTypes:nil];
-////    http.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
-////                                                         @"text/html",
-////                                                         @"image/jpeg",
-////                                                         @"image/png",
-////                                                         @"application/octet-stream",
-////                                                         @"text/json",
-////                                                         nil];
-//    [http POST:host_url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        
-//        UIImage *img = [UIImage imageWithContentsOfFile:header];
-//        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
-//        NSString *imgName = header.lastPathComponent;
-//        
-//        [formData appendPartWithFileData:imgData name:@"image" fileName:imgName mimeType:@"image.jpg"];
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-//        success == nil ?: success(result);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        failed == nil ?: failed(error);
-//    }];
+
 }
 
 + (void)uploadImageWithMethod:(NSString *)method withImage:(UIImage *)image Success:(SuccessBlock)success Failed:(FailedBlock)failed {
     if (kStringIsEmpty(method)) {
         return;
     }
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 30.0;
-    [manager.responseSerializer setAcceptableContentTypes:nil];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSString *URLString = [NSString stringWithFormat:@"%@%@",baseUrl,method];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:URL cachePolicy:(NSURLRequestUseProtocolCachePolicy) timeoutInterval:30];
+    request.HTTPMethod = @"POST";
+    
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970] * 1000;
+    NSString *boundary = [NSString stringWithFormat:@"%f",interval];
+    request.allHTTPHeaderFields = @{
+                                    @"Content-Type":[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary]
+                                    };
+    // 请求体数据
+    NSMutableData *postData = [[NSMutableData alloc]init];
+    // 1.
+    [postData appendData:[boundary dataUsingEncoding:NSUTF8StringEncoding]];
+    // 2.
+    NSString *contentDisposition = @"Content-Disposition: form-data; name=fieldNameHer; filename=0000000000000.000\r\n";
+    [postData appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
+    // 3.
+    NSString *contentType =  @"Content-Type: application/octet-stream\r\n";
+    [postData appendData:[contentType dataUsingEncoding:NSUTF8StringEncoding]];
+    // 4.
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.2);
+    [postData appendData:imageData];
+    // 5.
+    NSString *endBoundary = [NSString stringWithFormat:@"\r\n--%@--\r\n",boundary];
+    [postData appendData:[endBoundary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:postData progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            failed == nil ?: failed(error);
 
-    [manager POST:method parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSData *dataObj = UIImageJPEGRepresentation(image, 1.0);
-        [formData appendPartWithFileData:dataObj name:@"name" fileName:@"110.jpg" mimeType:@"image/jpeg"];
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"progress=%@",uploadProgress);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success == nil ?: success(responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failed == nil ?: failed(error);
+        } else {
+            success == nil ?: success(responseObject);
+        }
     }];
+    [uploadTask resume];
+    
+    /*
+     write(头边界的字节数组);
+     write("Content-Disposition: form-data; name="fieldNameHer"; filename="0000000000000.000"\r\n"的字节数组);
+     write("Content-Type: application/octet-stream\r\n"的字节数组);
+     write(真正图片的字节数组);
+     write(为边界的字节数组);
+     */
 }
 
 
