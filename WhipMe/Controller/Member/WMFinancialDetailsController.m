@@ -9,7 +9,7 @@
 #import "WMFinancialDetailsController.h"
 #import "MoneyRecordModel.h"
 
-@interface WMFinancialDetailsController () <UITableViewDelegate, UITableViewDataSource>
+@interface WMFinancialDetailsController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) NSMutableArray *arrayContent;
@@ -55,6 +55,8 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     _tableViewWM.backgroundColor = [UIColor clearColor];
     _tableViewWM.delegate = self;
     _tableViewWM.dataSource = self;
+    _tableViewWM.emptyDataSetDelegate = self;
+    _tableViewWM.emptyDataSetSource = self;
     _tableViewWM.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableViewWM.tableFooterView = line_head;
     _tableViewWM.tableHeaderView = line_foot;
@@ -66,6 +68,21 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf qureyByMoneyList];
     }];
+}
+
+#pragma mark - DZNEmptyDataSetSource
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"nilTouSu"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据" attributes:attribute];
+    return string;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate Datasource

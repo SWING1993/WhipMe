@@ -13,7 +13,7 @@
 #endif /* WMConfig_h */
 
 static NSString *const KQueryAccountWalletNotification = @"queryAccountWalletNotification";
-
+static NSString *const kAllConversationsNotification = @"getAllConversationListNotification";
 
 #pragma mark - 通知处理
 #define DDAddNotification(_selector,_name)\

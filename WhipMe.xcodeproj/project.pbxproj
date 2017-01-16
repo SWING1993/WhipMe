@@ -11,7 +11,6 @@
 		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
 		4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677DA41DA10F5F004D54EA /* NSString+Validate.m */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
-		C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
@@ -23,6 +22,10 @@
 		C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6871E238412000BA12B /* MemberHeadViewCell.swift */; };
 		C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6881E238412000BA12B /* MemberTableViewCell.swift */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
+		C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FA1E2A0277000E8CAF /* NotificationModel.m */; };
+		C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */; };
+		C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */; };
+		C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */; };
 		C532CF971D87D77200840E65 /* chatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532CF961D87D77200840E65 /* chatModel.swift */; };
 		C542FE331E247C73000A66CB /* WMHistoricalReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */; };
 		C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */; };
@@ -134,7 +137,6 @@
 		4F677DA41DA10F5F004D54EA /* NSString+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validate.m"; sourceTree = "<group>"; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
-		C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConversationController.swift; sourceTree = "<group>"; };
 		C506DC311D8FE46F00785BE8 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
 		C50A49871D9A06180003CE2D /* PhoneCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodeButton.h; sourceTree = "<group>"; };
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 		C516C6871E238412000BA12B /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
 		C516C6881E238412000BA12B /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
+		C52C17F91E2A0277000E8CAF /* NotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
+		C52C17FA1E2A0277000E8CAF /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
+		C52C17FC1E2A07EA000E8CAF /* WMNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNotificationViewCell.h; sourceTree = "<group>"; };
+		C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationViewCell.m; sourceTree = "<group>"; };
+		C52C17FF1E2A1D77000E8CAF /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		C52C18031E2A1DA5000E8CAF /* JCHATStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATStringUtils.h; sourceTree = "<group>"; };
+		C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATStringUtils.m; sourceTree = "<group>"; };
 		C532CF961D87D77200840E65 /* chatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatModel.swift; sourceTree = "<group>"; };
 		C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhipMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHistoricalReviewController.h; sourceTree = "<group>"; };
@@ -362,6 +372,25 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C52C18021E2A1DA5000E8CAF /* JCHAT */ = {
+			isa = PBXGroup;
+			children = (
+				C52C18031E2A1DA5000E8CAF /* JCHATStringUtils.h */,
+				C52C18041E2A1DA5000E8CAF /* JCHATStringUtils.m */,
+			);
+			path = JCHAT;
+			sourceTree = "<group>";
+		};
+		C52C18061E2A1DB4000E8CAF /* web_user */ = {
+			isa = PBXGroup;
+			children = (
+				C5C47C2F1E25D2DE00EEA35D /* error.html */,
+				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
+				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
+			);
+			name = web_user;
+			sourceTree = "<group>";
+		};
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,7 +424,6 @@
 				C5C47C3D1E2629D400EEA35D /* WMNotificationController.h */,
 				C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */,
 				C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */,
-				C506DC2C1D8FD66B00785BE8 /* ChatConversationController.swift */,
 				C5C47C311E26048B00EEA35D /* WMAddFriendController.h */,
 				C5C47C321E26048B00EEA35D /* WMAddFriendController.m */,
 				C5C47C341E26185500EEA35D /* WMFriendsListController.h */,
@@ -470,6 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				C532CF961D87D77200840E65 /* chatModel.swift */,
+				C52C17F91E2A0277000E8CAF /* NotificationModel.h */,
+				C52C17FA1E2A0277000E8CAF /* NotificationModel.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -500,6 +530,8 @@
 			children = (
 				C5920D381D8F8141007B199E /* ChatConversationListCell.swift */,
 				C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */,
+				C52C17FC1E2A07EA000E8CAF /* WMNotificationViewCell.h */,
+				C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -577,9 +609,8 @@
 		C5D669A11D864203008EE189 /* iTools */ = {
 			isa = PBXGroup;
 			children = (
-				C5C47C2F1E25D2DE00EEA35D /* error.html */,
-				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
-				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
+				C52C18061E2A1DB4000E8CAF /* web_user */,
+				C52C18021E2A1DA5000E8CAF /* JCHAT */,
 				E44C75FF1DAB8B5A0038C715 /* Tool.swift */,
 			);
 			path = iTools;
@@ -706,6 +737,8 @@
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C52C17FF1E2A1D77000E8CAF /* NSDate+Utilities.h */,
+				C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */,
 				C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */,
 				C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */,
 				E449AC891DAC87140095B8C2 /* Extension.swift */,
@@ -941,6 +974,7 @@
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */,
 				C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */,
+				C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */,
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
@@ -961,7 +995,6 @@
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C542FE3F1E24B8DE000A66CB /* MoneyRecordModel.m in Sources */,
-				C506DC2D1D8FD66B00785BE8 /* ChatConversationController.swift in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
 				C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
@@ -972,8 +1005,10 @@
 				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
+				C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
+				C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
@@ -999,6 +1034,7 @@
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E40D70C71DE6D2E40087B9EF /* TaCecordController.swift in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
+				C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */,
 				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,

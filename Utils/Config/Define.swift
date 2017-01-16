@@ -48,12 +48,6 @@ let kRightMargin: CGFloat = -9.0
 let kTopMargin :CGFloat = 4.5
 let kBottomMargin :CGFloat = -4.5
 
-
-let JMESSAGE_APPKEY: String = "e21f0175ea90c6692ca05a39"
-let CHANNEL: String = "appstore"
-
-let BUGLY_APPKEY = "0d6f1c4eca"
-
 class Define: NSObject {
     
     class func appIDWeChat() -> String {
@@ -63,7 +57,17 @@ class Define: NSObject {
     class func appSecretWeChat() -> String {
         return "33afb229cbad98ef12b0f5bbeb78ee7a"
     }
-
+    
+    class func appKeyJMessage() -> String {
+        return "e21f0175ea90c6692ca05a39"
+    }
+    class func channelJMessage() -> String {
+        return "appstore"
+    }
+    class func appKeyBugly() -> String {
+        return "0d6f1c4eca"
+    }
+    
     class func kDefaultImageHead() -> UIImage {
         return UIImage.init(named: "default_head")!
     }

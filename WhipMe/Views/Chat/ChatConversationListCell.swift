@@ -7,12 +7,10 @@
 //
 
 import UIKit
-//import JMessage
 
 class ChatConversationListCell: UITableViewCell {
 
     var conversationId: String!
-//    var cellWithConversation: JMSGConversation!
     
     var imageLogo: UIImageView!
     var lblNickname: UILabel!
@@ -109,39 +107,46 @@ class ChatConversationListCell: UITableViewCell {
         }
     }
     
-    public func setCellWithModel(model: FansAndFocusModel) {
+    public func setCell(model: JMSGConversation) {
        
-        if (NSString.isBlankString(model.nickname)) {
-            lblNickname.text = "标题"
+        if (NSString.isBlankString(model.title)) {
+            lblNickname.text = "JMessageUser"
         } else {
-            lblNickname.text = model.nickname
+            lblNickname.text = model.title
         }
     
-        if (NSString.isBlankString(model.sign)) {
-            lblBrief.text = "个性签名"
+        if (NSString.isBlankString(model.latestMessageContentText())) {
+            lblBrief.text = ""
         } else {
-            lblBrief.text = model.sign
+            lblBrief.text = model.latestMessageContentText()
+        }
+    
+        if (model.latestMessage?.timestamp != nil ) {
+            let time: Double = model.latestMessage?.timestamp as! Double
+            lblTime.text = JCHATStringUtils.getFriendlyDateString(time, forConversation: true)
+        } else {
+            lblTime.text = ""
         }
         
-    
-        lblTime.text = "10分钟前"
-        
-        let count : UInt32 = arc4random()%3
-        btnUnRead.isHidden = count > 0 ? false : true
-        btnUnRead.setTitle(recountUnReadCount(unReadCount: count), for: UIControlState.normal)
-        
+        let count : Int = (model.unreadCount?.intValue)!
+        if (count > 0) {
+            btnUnRead.isHidden = false
+            btnUnRead.setTitle("\(count)", for: UIControlState.normal)
+        } else {
+            btnUnRead.isHidden = true
+            btnUnRead.setTitle("", for: UIControlState.normal)
+        }
         imageLogo.image = UIImage.init(named: "system_monitoring")
+        
+        model.avatarData { (data, objectId, error) in
+            if (error == nil) {
+                if (data != nil) {
+                    self.imageLogo.image = UIImage.init(data: data!)
+                } else {
+                    self.imageLogo.image = Define.kDefaultImageHead()
+                }
+            }
+        }
     }
     
-    private func recountUnReadCount(unReadCount: UInt32) -> String {
-        var str: String = ""
-        if (unReadCount <= 0) {
-            str = "";
-        } else if (unReadCount > 99) {
-            str = "99+";
-        } else {
-            str = String(unReadCount)
-        }
-        return str;
-    }
 }
