@@ -34,7 +34,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         setup()
         
-        print("unionid is \(self.unionId)");
+        self.avatar = "http://imgsrc.baidu.com/forum/w%3D580/sign=685fa2b8bc315c6043956be7bdb0cbe6/ae0f6790f603738d21d6028fb31bb051f919ec89.jpg"
         if (NSString.isBlankString(self.unionId) == false) {
             getWechatAccessToKen()
             
