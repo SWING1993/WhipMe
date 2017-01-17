@@ -75,7 +75,11 @@ static NSString *const baseUrl = @"http://www.superspv.com";
     }
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+//    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30.0;
+    [manager.responseSerializer setAcceptableContentTypes:nil];
     
     NSString *URLString = [NSString stringWithFormat:@"%@%@",baseUrl,method];
     NSURL *URL = [NSURL URLWithString:URLString];
@@ -98,12 +102,13 @@ static NSString *const baseUrl = @"http://www.superspv.com";
     NSString *contentType =  @"Content-Type: application/octet-stream\r\n";
     [postData appendData:[contentType dataUsingEncoding:NSUTF8StringEncoding]];
     // 4.
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.2);
+    NSData *imageData = UIImagePNGRepresentation(image);
     [postData appendData:imageData];
+    NSLog(@"imageU=%@", imageData);
     // 5.
     NSString *endBoundary = [NSString stringWithFormat:@"\r\n--%@--\r\n",boundary];
     [postData appendData:[endBoundary dataUsingEncoding:NSUTF8StringEncoding]];
-    
+    NSLog(@"imageU2=%@",postData);
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:postData progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
             failed == nil ?: failed(error);
