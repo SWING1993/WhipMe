@@ -27,14 +27,13 @@ static ChatMessage *_chatObj = nil;
     }
     
     WEAK_SELF
-    [JMSGUser loginWithUsername:info.userId password:@"123456" completionHandler:^(id resultObject, NSError *error) {
+    [JMSGUser loginWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (error.code == kJMSGErrorHttpUserNotExist) {
             [weakSelf registerJMessage];
         } else if (error.code == kJMSGErrorTcpUserPasswordError) {
             [weakSelf updateLoginPwd];
         }
-        DebugLog(@"___________________________________login：%@",error);
     }];
 }
 
@@ -52,7 +51,6 @@ static ChatMessage *_chatObj = nil;
         } else {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
-        DebugLog(@"___________________________________register:%@",error);
     }];
 }
 
@@ -61,12 +59,12 @@ static ChatMessage *_chatObj = nil;
     if ([NSString isBlankString:info.pwdim]) {
         return;
     }
-    [JMSGUser updateMyPasswordWithNewPassword:info.pwdim oldPassword:@"123456" completionHandler:^(id resultObject, NSError *error) {
-        if (error == nil) {
-            [self loginJMessage];
-        }
-        DebugLog(@"___________________________________update：%@",error);
+    [JMSGUser loginWithUsername:info.userId password:@"123456" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGUser updateMyPasswordWithNewPassword:info.pwdim oldPassword:@"123456" completionHandler:^(id resultObject, NSError *error) {
+           
+        }];
     }];
+    
 }
 
 - (void)registerJMessage:(NSString *)username pwd:(NSString *)password
