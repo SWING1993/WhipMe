@@ -46,7 +46,7 @@ static NSInteger const readViewRadius = 4;
     [self addSubview:_headView];
     
     _messageContent = [[JCHATMessageContentView alloc] init];
-    [_messageContent setBackgroundColor:[UIColor redColor]];
+    [_messageContent setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_messageContent];
     
     _readView = [UIView new];
@@ -227,7 +227,7 @@ static NSInteger const readViewRadius = 4;
         
         [self.voiceTimeLabel setFrame:CGRectMake(self.messageContent.frame.origin.x - 45, self.messageContent.frame.size.height/2 - 8, 35, 17)];
     }
-//    [self.messageContent setMessageContentWith:self.model.message];
+    [self.messageContent setMessageContentWith:self.model.message];
     
     if (self.model.message.contentType != kJMSGContentTypeVoice) {
         if (isRecive) {

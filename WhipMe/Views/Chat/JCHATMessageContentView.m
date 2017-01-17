@@ -28,6 +28,8 @@ static NSInteger const textMessageContentRightOffset = 15;
         _textContent = [UILabel new];
         _textContent.numberOfLines = 0;
         _textContent.backgroundColor = [UIColor redColor];
+        _textContent.textColor = [UIColor blackColor];
+        _textContent.font = [UIFont systemFontOfSize:16.0];
         [self addSubview:_textContent];
         
         _voiceConent = [UIImageView new];
