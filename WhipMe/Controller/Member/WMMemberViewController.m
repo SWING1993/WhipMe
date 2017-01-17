@@ -253,7 +253,7 @@ static NSString *identifier_head = @"tableViewView_head";
     photo.url = [NSURL URLWithString:info.icon];
     photo.srcImageView = self.imageHead;
     
-    brower.photos = @[photo];
+    brower.photos = [NSMutableArray arrayWithObjects:photo, nil];
     brower.currentPhotoIndex = 0;
     [brower show];
 }
@@ -422,7 +422,6 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"%@",error);
         [weakSelf queryAccountByWallet];
     }];
 }
@@ -451,7 +450,7 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"%@",error);
+        
     }];
 }
 

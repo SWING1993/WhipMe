@@ -12,7 +12,9 @@
 @interface WMFansAndFocusController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewWM;
-@property (nonatomic, strong) NSMutableArray *arrayContent;
+@property (nonatomic, strong) NSMutableArray<FansAndFocusModel *> *arrayContent;
+@property (nonatomic, strong) NSIndexPath *selectPath;
+
 @end
 
 static NSString *const identifier_cell = @"fansAndFocusViewCell";
@@ -57,12 +59,7 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 }
 
 - (void)setup {
-    UIView *line_head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Define screenWidth], 10.0)];
-    line_head.backgroundColor = [Define kColorBackGround];
-    
-    UIView *line_foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Define screenWidth], 10.0)];
-    line_foot.backgroundColor = [Define kColorBackGround];
-    
+
     WEAK_SELF
     _tableViewWM = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableViewWM.backgroundColor = [UIColor clearColor];
@@ -73,13 +70,10 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     _tableViewWM.layer.cornerRadius = 4.0;
     _tableViewWM.layer.masksToBounds = true;
     _tableViewWM.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableViewWM.tableFooterView = line_head;
-    _tableViewWM.tableHeaderView = line_foot;
+    _tableViewWM.tableFooterView = [UIView new];
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10.0);
-        make.left.mas_equalTo(10.0);
-        make.right.and.bottom.mas_equalTo(-10.0);
+        make.edges.equalTo(weakSelf.view);
     }];
     [self.tableViewWM registerClass:[MyFansAndFocusCell class] forCellReuseIdentifier:identifier_cell];
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -108,7 +102,7 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.arrayContent.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,8 +116,12 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     [cell setFansAndFocusCheck:^(NSIndexPath * _Nonnull path) {
         [weakSelf fansAndFocusCheck:path];
     }];
-    NSDictionary *modle = @{@"title":@"小溪漓江", @"describe":@"监督是一种责任"};
-    [cell cellModelWithModel:modle style:YES];
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    if (self.controlStyle == WMFansAndFocusStyleFans) {
+        [cell cellWithModel:model style:model.focus];
+    } else {
+        [cell cellFocusWithModel:model style:model.focus];
+    }
     
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
         cell.lineView.hidden = YES;
@@ -138,17 +136,25 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     
 }
 
-
 - (void)fansAndFocusCheck:(NSIndexPath *)indexPath {
-    if (self.controlStyle == WMFansAndFocusStyleFans) {
-        [Tool showHUDTipWithTipStr:@"关注成功"];
+    _selectPath = indexPath;
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    if ([NSString isBlankString:model.userId]) {
+        return;
+    }
+    
+    UserManager *user = [UserManager shared];
+    if (model.focus == NO) {
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId};
+        [self focusAndCancelByUser:param hostPost:@"focusUser"];
     } else {
-        [Tool showHUDTipWithTipStr:@"已经取消关注！"];
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"userId":model.userId};
+        [self focusAndCancelByUser:param hostPost:@"cancelUser"];
     }
 }
 
 #pragma mark - set get
-- (NSMutableArray *)arrayContent {
+- (NSMutableArray<FansAndFocusModel *> *)arrayContent {
     if (!_arrayContent) {
         _arrayContent = [NSMutableArray array];
     }
@@ -179,6 +185,33 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
                 [weakSelf.arrayContent addObject:model];
             }
             [weakSelf.tableViewWM reloadData];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
+    }];
+}
+
+- (void)focusAndCancelByUser:(NSDictionary *)param hostPost:(NSString *)host_path {
+    if (param == nil || [NSString isBlankString:host_path]) {
+        return;
+    }
+   
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:host_path params:param Success:^(id result) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
+        DebugLog(@"______result:%@",result);
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            FansAndFocusModel *model = [weakSelf.arrayContent objectAtIndex:weakSelf.selectPath.row];
+            model.focus = !model.focus;
+            [weakSelf.tableViewWM reloadData];
+            
+            [Tool showHUDTipWithTipStr:model.focus?@"关注成功！":@"成功取消关注！"];
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];

@@ -24,7 +24,12 @@
     CGPoint centerPoint = CGPointMake(rect.size.height / 2, rect.size.width / 2);
     CGFloat radius = MIN(rect.size.height, rect.size.width) / 2;
     
+    CGFloat pathWidth = radius * 0.3f;
+    
     CGFloat radians = kDegreeToRadian((_progress*359.9)-90);
+    CGFloat xOffset = radius*(1 + 0.85*cosf(radians));
+    CGFloat yOffset = radius*(1 + 0.85*sinf(radians));
+    CGPoint endPoint = CGPointMake(xOffset, yOffset);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -46,8 +51,14 @@
     CGContextFillPath(context);
     CGPathRelease(progressPath);
     
+    CGContextAddEllipseInRect(context, CGRectMake(centerPoint.x - pathWidth/2, 0, pathWidth, pathWidth));
+    CGContextFillPath(context);
+    
+    CGContextAddEllipseInRect(context, CGRectMake(endPoint.x - pathWidth/2, endPoint.y - pathWidth/2, pathWidth, pathWidth));
+    CGContextFillPath(context);
+    
     CGContextSetBlendMode(context, kCGBlendModeClear);;
-    CGFloat innerRadius = radius * 0.9;
+    CGFloat innerRadius = radius * 0.7;
 	CGPoint newCenterPoint = CGPointMake(centerPoint.x - innerRadius, centerPoint.y - innerRadius);    
 	CGContextAddEllipseInRect(context, CGRectMake(newCenterPoint.x, newCenterPoint.y, innerRadius*2, innerRadius*2));
 	CGContextFillPath(context);

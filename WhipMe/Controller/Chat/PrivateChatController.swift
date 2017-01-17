@@ -58,9 +58,7 @@ class PrivateChatController: UIViewController, JMessageDelegate {
     }
 
     func clickWithRightBarItem() {
-        let controller : WMFriendsListController = WMFriendsListController()
-        controller.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(controller, animated: true)
+       
     }
     
     

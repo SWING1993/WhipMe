@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString *weixin_appOpenId;
 @property (nonatomic, strong) NSString *weixin_unionId;
 
+@property (nonatomic, strong) UserManager *info;
+
 @end
 
 @implementation CashViewController
@@ -40,6 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -48,6 +51,14 @@
 
 - (void)dealloc {
     DebugLog(@"%@",NSStringFromClass(self.class));
+}
+
+- (void)setData {
+    self.lblAllMoney.text = [NSString stringWithFormat:@"金额¥%.2f ,",[self.info.wallet floatValue]];
+    CGFloat size_all_money = [self.lblAllMoney.text sizeWithAttributes:@{NSFontAttributeName:self.lblAllMoney.font}].width+1.0;
+    [self.lblAllMoney mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(floorf(size_all_money));
+    }];
 }
 
 - (void)setup {
@@ -118,7 +129,7 @@
     _lblAllMoney.textAlignment = NSTextAlignmentLeft;
     _lblAllMoney.textColor = rgb(160, 160, 160);
     _lblAllMoney.font = [UIFont systemFontOfSize:14.0];
-    _lblAllMoney.text = @"金额¥99.46 ,";
+    _lblAllMoney.text = [NSString stringWithFormat:@"金额¥0.00 ,"];
     [self.viewCurrent addSubview:self.lblAllMoney];
     
     CGFloat size_all_money = [self.lblAllMoney.text sizeWithAttributes:@{NSFontAttributeName:self.lblAllMoney.font}].width+1.0;
@@ -194,7 +205,7 @@
 
 #pragma mark - Action
 - (void)clickWithAllMoney:(UIButton *)sender {
-    
+    [self.textMoney setText:[NSString stringWithFormat:@"%.2f",[self.info.wallet floatValue]]];
 }
 
 - (void)clickWithSubmit:(UIButton *)sender {
@@ -203,7 +214,11 @@
         [Tool showHUDTipWithTipStr:@"请输入提现金额!"];
         return;
     }
-    
+    if ([self.info.wallet floatValue] <= 0) {
+        [Tool showHUDTipWithTipStr:@"可提现金额为零！"];
+        return;
+    }
+    [self cashMoney];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -224,8 +239,8 @@
     
     if (arrayCount.count > 2) {
         return false;
-    } else if ([tempText floatValue] > 50000.0) {
-        textField.text = @"50000.0";
+    } else if ([tempText floatValue] > [self.info.wallet floatValue]) {
+        textField.text = [NSString stringWithFormat:@"%.2f",[self.info.wallet floatValue]];
         return false;
     } else if ([tempText rangeOfString:@"."].location != NSNotFound) {
         //只能有两位小数
@@ -259,11 +274,17 @@
     [self presentViewController:alertControl animated:YES completion:nil];
 }
 
+- (UserManager *)info {
+    if (_info == nil) {
+        _info = [UserManager shared];
+    }
+    return _info;
+}
+
 #pragma mark - Network
 - (void)cashMoney {
-    UserManager *info = [UserManager shared];
-    NSString *str_userId = [NSString stringWithFormat:@"%@",info.userId];
-    NSString *str_amount = [NSString stringWithFormat:@"%.2f",[self.textMoney.text floatValue]];
+    NSString *str_userId = [NSString stringWithFormat:@"%@",self.info.userId];
+    NSString *str_amount = [NSString stringWithFormat:@"%.2f",MIN([self.textMoney.text floatValue], [self.info.wallet floatValue])];
     
     NSDictionary *param = @{@"userId":str_userId,@"amount":str_amount};
     
@@ -277,16 +298,21 @@
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] integerValue] == 0) {
             [Tool showHUDTipWithTipStr:@"提现成功！"];
+            UserManager *model = [UserManager shared];
+            model.wallet = [NSString stringWithFormat:@"%.2f",[model.wallet floatValue] - [weakSelf.textMoney.text floatValue]];
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
+            weakSelf.info = nil;
+            [weakSelf setData];
         } else if ([data[@"ret"] integerValue] == 1) {
             [weakSelf showAlertMessage];
-        }  else if ([data[@"ret"] integerValue] == 3) {
+        }  else if ([data[@"ret"] integerValue] == 2) {
             [[WMShareEngine sharedInstance] sendAuthRequest:self];
         } else {
             [Tool showHUDTipWithTipStr:data[@"desc"]];
         }
     } Failed:^(NSError *error) {
         [SVProgressHUD dismiss];
-        DebugLog(@"________error:%@",error);
     }];
 }
 - (void)queryByAppOpenId {
@@ -312,8 +338,7 @@
     if ([NSString isBlankString:self.weixin_appOpenId] || [NSString isBlankString:self.weixin_unionId]) {
         return;
     }
-    UserManager *user = [UserManager shared];
-    NSString *user_id = [NSString stringWithFormat:@"%@",user.userId];
+    NSString *user_id = [NSString stringWithFormat:@"%@",self.info.userId];
     NSString *union_id = [NSString stringWithFormat:@"%@",self.weixin_unionId];
     
     NSDictionary *param = @{@"userId":user_id,@"unionId":union_id,@"appOpenId":self.weixin_appOpenId};
@@ -327,7 +352,6 @@
             [Tool showHUDTipWithTipStr:data[@"desc"]];
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"________error:%@",error);
     }];
 }
 

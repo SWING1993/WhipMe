@@ -11,6 +11,7 @@
 
 @interface MJPhotoToolbar()
 {
+    AppDelegate * app;
     // 显示页码
     UILabel *_indexLabel;
     UIButton *_saveImageBtn;
@@ -19,11 +20,15 @@
 
 @implementation MJPhotoToolbar
 
+@synthesize Delegate;
+@synthesize DeleteImage;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
@@ -46,12 +51,30 @@
     // 保存图片按钮
     CGFloat btnWidth = self.bounds.size.height;
     _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_saveImageBtn setHidden:YES];
     _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
     _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon.png"] forState:UIControlStateNormal];
+    
     [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
-    [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_saveImageBtn setImage:[UIImage imageNamed:@"photo-gallery-trashcan.png"] forState:UIControlStateHighlighted];
+    [_saveImageBtn addTarget:self action:@selector(downLoadImg) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_saveImageBtn];
+    
+}
+
+- (void)deleteThisImage
+{
+    if ( [Delegate respondsToSelector:@selector(DeleteThisImage:)] ) {
+        [Delegate DeleteThisImage:_currentPhotoIndex];
+    }
+}
+
+- (void)downLoadImg {
+    if ( [Delegate respondsToSelector:@selector(DeleteThisImage:)] ) {
+        [Delegate downLoadThisImage:_currentPhotoIndex];
+    }
 }
 
 - (void)saveImage
@@ -65,12 +88,12 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if (error) {
-        [SVProgressHUD showErrorWithStatus:@"保存失败"];
+        [Tool showHUDTipWithTipStr:@"保存失败"];
     } else {
         MJPhoto *photo = _photos[_currentPhotoIndex];
         photo.save = YES;
         _saveImageBtn.enabled = NO;
-        [SVProgressHUD showSuccessWithStatus:@"成功保存到相册"];
+        [Tool showHUDTipWithTipStr:@"成功保存到相册"];
     }
 }
 
@@ -79,12 +102,11 @@
     _currentPhotoIndex = currentPhotoIndex;
     
     // 更新页码
-    _indexLabel.text = [NSString stringWithFormat:@"%d / %d", (int)_currentPhotoIndex + 1, (int)_photos.count];
+    _indexLabel.text = [NSString stringWithFormat:@"%zd / %zd", _currentPhotoIndex + 1, _photos.count];
     
-    MJPhoto *photo = _photos[_currentPhotoIndex];
+//    MJPhoto *photo = _photos[_currentPhotoIndex];
     // 按钮
-    _saveImageBtn.enabled = photo.image != nil && !photo.save;
-    _saveImageBtn.hidden =!_showSaveBtn;
+//    _saveImageBtn.enabled = photo.image != nil && !photo.save;
 }
 
 @end

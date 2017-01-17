@@ -28,6 +28,7 @@
 #import "NSObject+StoreValue.h"
 #import "UIImage+Orientation.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 
 #import "PhoneCodeButton.h"
@@ -36,10 +37,11 @@
 #import "ShareEngine.h"
 #import "WMConfig.h"
 #import "JCHATStringUtils.h"
+#import "ViewUtil.h"
 
 #import "WMMemberViewController.h"
 #import "WMWebViewController.h"
-#import "WMFriendsListController.h"
 #import "WMPrivateChatController.h"
 
 #import "FansAndFocusModel.h"
+#import "JCHATAlertToSendImage.h"

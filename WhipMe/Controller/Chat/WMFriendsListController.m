@@ -8,6 +8,7 @@
 
 #import "WMFriendsListController.h"
 #import "WMAddFriendController.h"
+#import "JCHATConversationViewController.h"
 
 @interface WMFriendsListController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -78,9 +79,7 @@ static NSString *identifier_cell = @"addFriendsCell";
     _tableViewWM.tableFooterView = [UIView new];
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10.0);
-        make.left.mas_equalTo(10.0);
-        make.right.and.bottom.mas_equalTo(-10.0);
+        make.edges.equalTo(weakSelf.view);
     }];
     [self.tableViewWM registerClass:[FriendsListViewCell class] forCellReuseIdentifier:identifier_cell];
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -137,6 +136,22 @@ static NSString *identifier_cell = @"addFriendsCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    if ([NSString isBlankString:model.userId]) {
+        return;
+    }
+    __block JCHATConversationViewController *controller = [[JCHATConversationViewController alloc] init];
+    controller.superViewController = self;
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    WEAKSELF
+    [JMSGConversation createSingleConversationWithUsername:model.userId completionHandler:^(id resultObject, NSError *error) {
+        if (error == nil) {
+            controller.conversation = resultObject;
+            [weakSelf.navigationController pushViewController:controller animated:YES];
+        }
+    }];
+    
 }
 
 - (void)didSelectCellIndexPath:(NSIndexPath *)indexPath {
@@ -146,7 +161,7 @@ static NSString *identifier_cell = @"addFriendsCell";
         return;
     }
     UserManager *user = [UserManager shared];
-    if (model.focus == YES) {
+    if (model.focus == NO) {
         NSDictionary *param = @{@"me":user.userId ?: @"", @"userId":model.userId};
         [self focusAndCancelByUser:param hostPost:@"focusUser"];
     } else {
@@ -163,7 +178,6 @@ static NSString *identifier_cell = @"addFriendsCell";
     return _arrayContent;
 }
 
-
 #pragma mark - network
 - (void)queryByFocusList {
   
@@ -172,6 +186,7 @@ static NSString *identifier_cell = @"addFriendsCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryFocusList" params:param Success:^(id result) {
+        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -188,7 +203,7 @@ static NSString *identifier_cell = @"addFriendsCell";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"%@",error);
+        [weakSelf.tableViewWM.mj_header endRefreshing];
     }];
 }
 
@@ -199,7 +214,6 @@ static NSString *identifier_cell = @"addFriendsCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:host_path params:param Success:^(id result) {
-        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -215,7 +229,6 @@ static NSString *identifier_cell = @"addFriendsCell";
             }
         }
     } Failed:^(NSError *error) {
-        [weakSelf.tableViewWM.mj_header endRefreshing];
         DebugLog(@"%@",error);
     }];
 }

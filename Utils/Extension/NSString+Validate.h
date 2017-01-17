@@ -21,4 +21,8 @@
 /**  判断string是否为空 */
 + (BOOL)isBlankString:(NSString *)string;
 
+- (NSString *)stringByTrimingWhitespace;
+
+- (NSUInteger)numberOfLines;
+
 @end

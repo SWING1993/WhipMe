@@ -118,9 +118,9 @@ class FriendsListViewCell: UITableViewCell {
             lblBrief.text = model.sign
         }
         if (NSString.isBlankString(model.icon)) {
-            imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: UIImage.init(named: "system_monitoring"))
+            imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultPlaceImage())
         } else {
-            imageLogo.image = UIImage.init(named: "system_monitoring")
+            imageLogo.image = Define.kDefaultPlaceImage()
         }
         
         if (model.focus == false) {

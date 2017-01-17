@@ -7,6 +7,7 @@
 //
 
 #import "WMChatListViewController.h"
+#import "JCHATConversationViewController.h"
 
 @interface WMChatListViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -167,11 +168,11 @@ NSInteger sortType(id object1,id object2,void *cha) {
     JMSGConversation *conversation = [self.arrayContent objectAtIndex:indexPath.row];
     [self updateBadge:[conversation.unreadCount integerValue]];
     
-//    JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];
-//    sendMessageCtl.hidesBottomBarWhenPushed = YES;
-//    sendMessageCtl.superViewController = self;
-//    sendMessageCtl.conversation = conversation;
-//    [self.navigationController pushViewController:sendMessageCtl animated:YES];
+    JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];
+    sendMessageCtl.hidesBottomBarWhenPushed = YES;
+    sendMessageCtl.superViewController = self;
+    sendMessageCtl.conversation = conversation;
+    [self.navigationController pushViewController:sendMessageCtl animated:YES];
     
 }
 
