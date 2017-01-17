@@ -20,7 +20,5 @@ typedef void (^FailedBlock)(NSError *error);
 + (void)APIWeChatToCode:(NSString *)code Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
 /** 上传头像 */
-+ (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed;
-
 + (void)uploadImageWithMethod:(NSString *)method withImage:(UIImage *)image Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 @end

@@ -20,6 +20,7 @@ pod 'MJExtension'
 pod 'Bugly'
 pod 'PLeakSniffer'
 pod 'NJKWebViewProgress'
+pod 'SDWebImage'
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'

@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL isPageScrollingFlag;
 @property (strong, nonatomic) UIScrollView *buttonContainer;
 
+@property (nonatomic, strong) UIBarButtonItem *rightBarItem;
 @end
 
 @implementation WMPrivateChatController
@@ -73,9 +74,7 @@
     _pageController.dataSource = nil;
     [_pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
-    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"people_care"] style:UIBarButtonItemStylePlain target:self action:@selector(clickWithRight)];
-    rightBarItem.tintColor = [UIColor whiteColor];
-    self.pageController.navigationItem.rightBarButtonItem = rightBarItem;
+    self.pageController.navigationItem.rightBarButtonItem = self.rightBarItem;
     
     _navigationView = [[UISegmentedControl alloc] initWithItems:self.buttonText];
     _navigationView.frame = CGRectMake(0, 0, 132.0, 30.0);
@@ -99,6 +98,12 @@
 - (void)clickWithNavItem:(UISegmentedControl *)sender {
     DebugLog(@"_____index:%ld",(long)sender.selectedSegmentIndex);
     NSInteger tempIndex = sender.selectedSegmentIndex;
+    
+    if (tempIndex == 0) {
+        self.pageController.navigationItem.rightBarButtonItem = self.rightBarItem;
+    } else {
+        self.pageController.navigationItem.rightBarButtonItem = [UIBarButtonItem new];
+    }
     
     self.currentPageIndex = tempIndex;
     [self.pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:tempIndex]]
@@ -174,6 +179,14 @@
         [_viewControllerArray addObject:[WMNotificationController new]];
     }
     return _viewControllerArray;
+}
+
+- (UIBarButtonItem *)rightBarItem {
+    if (!_rightBarItem) {
+        _rightBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"people_care"] style:UIBarButtonItemStylePlain target:self action:@selector(clickWithRight)];
+        _rightBarItem.tintColor = [UIColor whiteColor];
+    }
+    return _rightBarItem;
 }
 
 @end

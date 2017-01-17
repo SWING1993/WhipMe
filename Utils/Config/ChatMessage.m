@@ -32,6 +32,9 @@ static ChatMessage *_chatObj = nil;
         if (error.code == kJMSGErrorHttpUserNotExist) {
             [weakSelf registerJMessage];
         }
+        if (error) {
+            DebugLog(@"_______login jmessage error:%@",error);
+        }
     }];
 }
 
@@ -47,9 +50,22 @@ static ChatMessage *_chatObj = nil;
         if (error == nil) {
             [weakSelf loginJMessage];
         } else {
+            DebugLog(@"_______register jmessage error:%@",error);
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     }];
 }
+
+- (void)registerJMessage:(NSString *)username pwd:(NSString *)password
+{
+    if ([NSString isBlankString:username] || [NSString isBlankString:password]) {
+        return;
+    }
+    
+    [JMSGUser registerWithUsername:username password:password completionHandler:^(id resultObject, NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
+
 
 @end

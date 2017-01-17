@@ -255,7 +255,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
     BOOL flag = [imageData writeToFile:fullPath atomically:YES];
     if (flag) {
         WEAK_SELF
-        [HttpAPIClient uploadServletToHeader:fullPath Success:^(id result) {
+        [HttpAPIClient uploadImageWithMethod:@"/headUploadServlet" withImage:_imagePath Success:^(id result) {
             DebugLog(@"____________result:%@",result);
             
             if ([result[@"ret"] integerValue] != 0) {

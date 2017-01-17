@@ -29,16 +29,29 @@
     [self.navigationItem setTitle:@"我的钱包"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setup];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 - (void)dealloc {
     DebugLog(@"%@",self.class);
+}
+
+- (void)setData {
+    UserManager *info = [UserManager shared];
+    
+    self.lblMoney.text = [NSString stringWithFormat:@"¥%.2f",[info.wallet floatValue]];
 }
 
 - (void)setup {
@@ -81,7 +94,7 @@
     _lblMoney.textAlignment = NSTextAlignmentCenter;
     _lblMoney.textColor = _lblTitle.textColor;
     _lblMoney.font = [UIFont systemFontOfSize:35.0];
-    _lblMoney.text = @"¥99.56";
+    _lblMoney.text = @"¥0.00";
     [self.view addSubview:_lblMoney];
     [_lblMoney mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.lblTitle.mas_bottom);
@@ -136,6 +149,11 @@
 }
 
 - (void)onClickWithCash:(id)sender {
+    UserManager *info = [UserManager shared];
+    if ([info.wallet floatValue] <= 0) {
+        [Tool showHUDTipWithTipStr:@"可提现金额为零！"];
+        return;
+    }
     CashViewController *controller = [[CashViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }

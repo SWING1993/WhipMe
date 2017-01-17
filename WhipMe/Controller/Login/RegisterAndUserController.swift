@@ -368,7 +368,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            HttpAPIClient.uploadServlet(toHeader: fullFile, success: { (result) in
+            HttpAPIClient.uploadImage(withMethod: "/headUploadServlet", with: newImge, success: { (result) in
                 print("upload image is result:\(result)")
                 let data = JSON(result!)
                 if (data["ret"].intValue != 0) {

@@ -51,7 +51,7 @@ class MyFansAndFocusCell: UITableViewCell {
         viewCurrent.backgroundColor = UIColor.white
         self.contentView.addSubview(viewCurrent)
         viewCurrent.snp.updateConstraints { (make) in
-            make.width.equalTo(self.contentView).offset(-16.0)
+            make.width.equalTo(self.contentView)
             make.centerX.equalTo(self.contentView)
             make.top.equalTo(self.contentView)
             make.height.equalTo(self.contentView)
@@ -75,10 +75,10 @@ class MyFansAndFocusCell: UITableViewCell {
         lblTitle.textColor = kColorBlack
         lblTitle.font = UIFont.systemFont(ofSize: 15.0)
         lblTitle.textAlignment = NSTextAlignment.left
-        lblTitle.text = "小溪漓江"
+        lblTitle.text = ""
         viewCurrent.addSubview(lblTitle)
         lblTitle.snp.updateConstraints { (make) in
-            make.left.equalTo(self.imageIcon.snp.right).offset(30.0)
+            make.left.equalTo(self.imageIcon.snp.right).offset(15.0)
             make.top.equalTo(self.imageIcon.snp.top)
             make.right.equalTo(self.viewCurrent).offset(-90.0)
             make.height.equalTo(20)
@@ -89,7 +89,7 @@ class MyFansAndFocusCell: UITableViewCell {
         lblDescribe.textColor = kColorLight
         lblDescribe.font = UIFont.systemFont(ofSize: 11.0)
         lblDescribe.textAlignment = NSTextAlignment.left
-        lblDescribe.text = "监督是一种责任"
+        lblDescribe.text = ""
         viewCurrent.addSubview(lblDescribe)
         lblDescribe.snp.updateConstraints { (make) in
             make.left.equalTo(self.lblTitle.snp.left)
@@ -130,13 +130,23 @@ class MyFansAndFocusCell: UITableViewCell {
         }
     }
     
-    func cellModel(model: Dictionary<String,String>, style: Bool) {
-    
-        self.imageIcon.image = Define.kDefaultPlaceImage()
+    func cell(model: FansAndFocusModel, style: Bool) {
+        if (NSString.isBlankString(model.icon)) {
+            self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultPlaceImage())
+        } else {
+            self.imageIcon.image = Define.kDefaultPlaceImage()
+        }
+        if (NSString.isBlankString(model.nickname)) {
+            self.lblTitle.text = ""
+        } else {
+            self.lblTitle.text = model.nickname
+        }
         
-        self.lblTitle.text = model["title"]
-        
-        self.lblDescribe.text = model["describe"]
+        if (NSString.isBlankString(model.sign)) {
+            self.lblDescribe.text = ""
+        } else {
+            self.lblDescribe.text = model.sign
+        }
         
         var color_normal: UIColor = kColorLight
         if (style) {
@@ -148,7 +158,36 @@ class MyFansAndFocusCell: UITableViewCell {
         }
         let img_normal = UIImage.imageWithDraw(color_normal, sizeMake: size_chek)
         self.btnCheck.setBackgroundImage(img_normal, for: UIControlState.normal)
+    }
+    
+    func cellFocus(model: FansAndFocusModel, style: Bool) {
+        if (NSString.isBlankString(model.icon)) {
+            self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultPlaceImage())
+        } else {
+            self.imageIcon.image = Define.kDefaultPlaceImage()
+        }
+        if (NSString.isBlankString(model.nickname)) {
+            self.lblTitle.text = ""
+        } else {
+            self.lblTitle.text = model.nickname
+        }
         
+        if (NSString.isBlankString(model.sign)) {
+            self.lblDescribe.text = ""
+        } else {
+            self.lblDescribe.text = model.sign
+        }
+        
+        var color_normal: UIColor = kColorLight
+        if (style == false) {
+            color_normal = Define.RGBColorFloat(71, g: 178, b: 248)
+            self.btnCheck.setTitle("关注", for: UIControlState.normal)
+        } else {
+            color_normal = kColorLight
+            self.btnCheck.setTitle("取消关注", for: UIControlState.normal)
+        }
+        let img_normal = UIImage.imageWithDraw(color_normal, sizeMake: size_chek)
+        self.btnCheck.setBackgroundImage(img_normal, for: UIControlState.normal)
     }
 }
 

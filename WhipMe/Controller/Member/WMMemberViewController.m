@@ -47,7 +47,7 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 - (void)setData:(UserManager *)userInfo {
-//    [self.imageHead setImageWithURL:[NSURL URLWithString:userInfo.icon ?:@""] placeholderImage:[Define kDefaultImageHead]];
+    [self.imageHead setImageWithURL:[NSURL URLWithString:userInfo.icon ?:@""] placeholderImage:[Define kDefaultImageHead]];
     
     if ([NSString isBlankString:userInfo.nickname]) {
         self.lblUserName.text = @"学习者";
@@ -124,10 +124,6 @@ static NSString *identifier_head = @"tableViewView_head";
     _lblUserName.textAlignment = NSTextAlignmentLeft;
     _lblUserName.userInteractionEnabled = YES;
     [self.viewHead addSubview:self.lblUserName];
-    
-    UITapGestureRecognizer *tap_name = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWithHead)];
-    [self.lblUserName addGestureRecognizer:tap_name];
-
     [self.lblUserName mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.imageHead.mas_right).offset(14.0);
         make.top.mas_equalTo(24);
@@ -244,9 +240,22 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 - (void)clickWithHead {
-    WMUserInfoViewController *controller = [WMUserInfoViewController new];
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+//    WMUserInfoViewController *controller = [WMUserInfoViewController new];
+//    controller.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
+    UserManager *info = [UserManager shared];
+    if ([NSString isBlankString:info.icon]) {
+        return;
+    }
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    
+    MJPhoto *photo = [[MJPhoto alloc] init];
+    photo.url = [NSURL URLWithString:info.icon];
+    photo.srcImageView = self.imageHead;
+    
+    brower.photos = [NSMutableArray arrayWithObjects:photo, nil];
+    brower.currentPhotoIndex = 0;
+    [brower show];
 }
 
 - (void)clickWithWallet {
@@ -413,7 +422,6 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"%@",error);
         [weakSelf queryAccountByWallet];
     }];
 }
@@ -442,7 +450,7 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"%@",error);
+        
     }];
 }
 

@@ -64,11 +64,6 @@ static NSString *const baseUrl = @"http://www.superspv.com";
     }];
 }
 
-+ (void)uploadServletToHeader:(NSString *)header Success:(SuccessBlock)success Failed:(FailedBlock)failed
-{
-
-}
-
 + (void)uploadImageWithMethod:(NSString *)method withImage:(UIImage *)image Success:(SuccessBlock)success Failed:(FailedBlock)failed {
     if (kStringIsEmpty(method)) {
         return;
