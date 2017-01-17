@@ -35,6 +35,7 @@ static NSString *identifier_cell = @"ChatConversationListCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self getConversationList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

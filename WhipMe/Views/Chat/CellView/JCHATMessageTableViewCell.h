@@ -38,11 +38,11 @@
 @interface JCHATMessageTableViewCell : UITableViewCell <XHAudioPlayerHelperDelegate,
 playVoiceDelegate,JMSGMessageDelegate>
 
-@property(strong,nonatomic)UIImageView *headView;
-@property(strong,nonatomic)JCHATMessageContentView *messageContent;
-@property(strong,nonatomic)JCHATChatModel *model;
-@property(weak, nonatomic)JMSGConversation *conversation;
-@property(weak, nonatomic) id delegate;
+@property (strong, nonatomic) UIImageView *headView;
+@property (strong, nonatomic) JCHATMessageContentView *messageContent;
+@property (strong, nonatomic) JCHATChatModel *model;
+@property (weak  , nonatomic) JMSGConversation *conversation;
+@property (weak  , nonatomic) id delegate;
 
 @property (strong, nonatomic) UIImageView *sendFailView;
 @property (strong, nonatomic) UIActivityIndicatorView *circleView;
@@ -51,12 +51,12 @@ playVoiceDelegate,JMSGMessageDelegate>
 @property (strong, nonatomic) UILabel *percentLabel;
 
 //voice
-@property(assign, nonatomic)BOOL continuePlayer;
-@property(assign, nonatomic)BOOL isPlaying;
-@property(assign, nonatomic)NSInteger index;//voice 语音图片的当前显示
-@property(strong, nonatomic)NSIndexPath *indexPath;
-@property(strong, nonatomic)UIView *readView;
-@property(strong, nonatomic)UILabel *voiceTimeLabel;
+@property (assign, nonatomic) BOOL continuePlayer;
+@property (assign, nonatomic) BOOL isPlaying;
+@property (assign, nonatomic) NSInteger index;//voice 语音图片的当前显示
+@property (strong, nonatomic) NSIndexPath *indexPath;
+@property (strong, nonatomic) UIView *readView;
+@property (strong, nonatomic) UILabel *voiceTimeLabel;
 
 - (void)playVoice;
 - (void)setCellData:(JCHATChatModel *)model

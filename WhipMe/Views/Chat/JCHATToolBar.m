@@ -13,6 +13,9 @@
 #import "Masonry.h"
 #import "JCHATAudioPlayerHelper.h"
 
+#define kmkf @"mkf"
+#define kboard @"keyboard_toolbar"
+
 @implementation JCHATToolBar
 
 - (instancetype)init
@@ -25,7 +28,7 @@
 }
 
 
-#pragma mark---加载子view
+#pragma mark - 加载子view
 - (void)loadSubView
 {
     //录音按钮
@@ -58,8 +61,7 @@
 
 - (void)switchToVoiceInputMode {
     self.voiceButton.selected = YES;
-    [self.voiceButton setImage:[UIImage imageNamed:@"keyboard_toolbar"] forState:UIControlStateNormal];
-    [self.voiceButton setImage:[UIImage imageNamed:@"keyboard_toolbar_pre"] forState:UIControlStateHighlighted];
+    [self.voiceButton setImage:[UIImage imageNamed:kboard] forState:UIControlStateNormal];
     
     [self.textView setHidden:YES];
     [self.startRecordButton setHidden:NO];
@@ -78,8 +80,7 @@
 - (void)switchToolbarToTextMode {
     self.voiceButton.selected=NO;
     self.voiceButton.contentMode = UIViewContentModeCenter;
-    [self.voiceButton setImage:[UIImage imageNamed:@"voice_toolbar"] forState:UIControlStateNormal];
-    [self.voiceButton setImage:[UIImage imageNamed:@"voice_toolbar_pre"] forState:UIControlStateHighlighted];
+    [self.voiceButton setImage:[UIImage imageNamed:kmkf] forState:UIControlStateNormal];
     [self.startRecordButton setHidden:YES];
     [self.textView setHidden:NO];
 }
@@ -87,11 +88,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.voiceButton.selected == NO) {
-        [self.voiceButton setImage:[UIImage imageNamed:@"voice_toolbar"] forState:UIControlStateNormal];
-        [self.voiceButton setImage:[UIImage imageNamed:@"voice_toolbar_pre"] forState:UIControlStateHighlighted];
+        [self.voiceButton setImage:[UIImage imageNamed:kmkf] forState:UIControlStateNormal];
     } else{
-        [self.voiceButton setImage:[UIImage imageNamed:@"keyboard_toolbar"] forState:UIControlStateNormal];
-        [self.voiceButton setImage:[UIImage imageNamed:@"keyboard_toolbar_pre"] forState:UIControlStateHighlighted];
+        [self.voiceButton setImage:[UIImage imageNamed:kboard] forState:UIControlStateNormal];
     }
     [self setBackgroundColor:[UIColor colorWithRed:223/255.0 green:223/255.0 blue:223/255.0 alpha:1]];
 }
@@ -111,9 +110,10 @@
         return;
     }
     self.voiceButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin;
-    [self.voiceButton setImage:[UIImage imageNamed:@"voice_toolbar"] forState:UIControlStateNormal];
+    [self.voiceButton setImage:[UIImage imageNamed:kmkf] forState:UIControlStateNormal];
     self.textView.delegate = self;
-    
+    self.textView.layer.cornerRadius = 4.0f;
+    self.textView.layer.masksToBounds = YES;
     self.textView.returnKeyType = UIReturnKeySend;
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
     [self addGestureRecognizer:gesture];

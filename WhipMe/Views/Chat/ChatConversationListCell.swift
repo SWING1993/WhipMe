@@ -110,7 +110,7 @@ class ChatConversationListCell: UITableViewCell {
     public func setCell(model: JMSGConversation) {
        
         if (NSString.isBlankString(model.title)) {
-            lblNickname.text = "JMessageUser"
+            lblNickname.text = "昵称"
         } else {
             lblNickname.text = model.title
         }

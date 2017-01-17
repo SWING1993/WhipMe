@@ -12,10 +12,6 @@
 
 //#define ReceivedBubbleColor UIColorFromRGB(0xd3fab4)
 //#define sendedBubbleColor [UIColor whiteColor]
-#define messageStatusBtnFrame [_model.message isReceived]?CGRectMake(_voiceTimeLabel.frame.origin.x + 5, _messageContent.frame.size.height/2 - 8, 17, 15):CGRectMake(_voiceTimeLabel.frame.origin.x - 20, _messageContent.frame.size.height/2 - 8, 17, 15)
-#define messagePercentLabelFrame [_model.message isReceived]?CGPointMake(_messageContent.frame.size.width/2 + crossgrap/2, _messageContent.frame.size.height/2):CGPointMake(_messageContent.frame.size.width/2 - crossgrap/2, _messageContent.frame.size.height/2)
-#define kVoiceTimeLabelFrame [_model.message isReceived]?CGRectMake(_messageContent.frame.origin.x + _messageContent.frame.size.width + 10, _messageContent.frame.size.height/2 - 8, 35, 17):CGRectMake(_messageContent.frame.origin.x - 45, _messageContent.frame.size.height/2 - 8, 35, 17)
-#define kVoiceTimeLabelHidenFrame [_model.message isReceived]?CGRectMake(_messageContent.frame.origin.x + _messageContent.frame.size.width + 5, _messageContent.frame.size.height/2 - 8, 35, 17):CGRectMake(_messageContent.frame.origin.x, _messageContent.frame.size.height/2 - 8, 35, 17)
 
 static NSInteger const headHeight = 46;
 static NSInteger const gapWidth = 5;
@@ -32,70 +28,74 @@ static NSInteger const readViewRadius = 4;
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor clearColor];
-        _headView = [UIImageView new];
-        [_headView setImage:[UIImage imageNamed:@"headDefalt.png"]];
-        _headView.layer.cornerRadius = headHeight/2;
-        _headView.layer.masksToBounds = YES;
-        _headView.contentMode = UIViewContentModeScaleAspectFill;
-        _messageContent = [JCHATMessageContentView new];
-        [self addSubview:_headView];
-        [self addSubview:_messageContent];
         
-        _readView = [UIView new];
-        [_readView setBackgroundColor:[UIColor redColor]];
-        _readView.layer.cornerRadius = readViewRadius;
-        [self addSubview:self.readView];
-        self.continuePlayer = NO;
-        
-        self.sendFailView = [UIImageView new];
-        [self.sendFailView setUserInteractionEnabled:YES];
-        [self.sendFailView setImage:[UIImage imageNamed:@"fail05"]];
-        [self addSubview:self.sendFailView];
-        
-        _circleView = [UIActivityIndicatorView new];
-        [_circleView setBackgroundColor:[UIColor clearColor]];
-        [_circleView setHidden:NO];
-        _circleView.hidesWhenStopped = YES;
-        [self addSubview:_circleView];
-        
-        _voiceTimeLabel = [UILabel new];
-        _voiceTimeLabel.backgroundColor = [UIColor clearColor];
-        _voiceTimeLabel.font = [UIFont systemFontOfSize:18];
-        [self addSubview:_voiceTimeLabel];
-        
-        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, chatBgViewHeight, chatBgViewHeight)];
-        _percentLabel.hidden = NO;
-        _percentLabel.font =[UIFont systemFontOfSize:18];
-        _percentLabel.textAlignment=NSTextAlignmentCenter;
-        _percentLabel.textColor=[UIColor whiteColor];
-        [_messageContent addSubview:_percentLabel];
-        [_percentLabel setBackgroundColor:[UIColor clearColor]];
-        
+        [self setup];
         [self addGestureForAllView];
     }
     return self;
 }
 
+- (void)setup {
+    _headView = [UIImageView new];
+    [_headView setBackgroundColor:[UIColor clearColor]];
+    [_headView setImage:[Define kDefaultImageHead]];
+    [_headView.layer setCornerRadius:headHeight/2];
+    [_headView.layer setMasksToBounds:YES];
+    [_headView setContentMode:UIViewContentModeScaleAspectFill];
+    [_headView setClipsToBounds:YES];
+    [self addSubview:_headView];
+    
+    _messageContent = [[JCHATMessageContentView alloc] init];
+    [_messageContent setBackgroundColor:[UIColor redColor]];
+    [self addSubview:_messageContent];
+    
+    _readView = [UIView new];
+    [_readView setBackgroundColor:[UIColor redColor]];
+    [_readView.layer setCornerRadius:readViewRadius];
+    [_readView.layer setMasksToBounds:YES];
+    [self addSubview:self.readView];
+    self.continuePlayer = NO;
+    
+    self.sendFailView = [UIImageView new];
+    [self.sendFailView setUserInteractionEnabled:YES];
+    [self.sendFailView setImage:[UIImage imageNamed:@"fail05"]];
+    [self addSubview:self.sendFailView];
+    
+    _circleView = [UIActivityIndicatorView new];
+    [_circleView setBackgroundColor:[UIColor clearColor]];
+    [_circleView setHidden:NO];
+    [_circleView setHidesWhenStopped:YES];
+    [self addSubview:_circleView];
+    
+    _voiceTimeLabel = [UILabel new];
+    _voiceTimeLabel.backgroundColor = [UIColor clearColor];
+    _voiceTimeLabel.font = [UIFont systemFontOfSize:18];
+    [self addSubview:_voiceTimeLabel];
+    
+    _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, chatBgViewHeight, chatBgViewHeight)];
+    _percentLabel.backgroundColor = [UIColor clearColor];
+    _percentLabel.hidden = NO;
+    _percentLabel.font = [UIFont systemFontOfSize:18];
+    _percentLabel.textAlignment=NSTextAlignmentCenter;
+    _percentLabel.textColor=[UIColor whiteColor];
+    [_messageContent addSubview:_percentLabel];
+}
+
 - (void)addGestureForAllView {
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(tapContent:)];
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapContent:)];
     [_messageContent addGestureRecognizer:gesture];
     [_messageContent setUserInteractionEnabled:YES];
     
-    UITapGestureRecognizer *tapHeadGesture =[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(pushPersonInfoCtlClick)];
+    UITapGestureRecognizer *tapHeadGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushPersonInfoCtlClick)];
     [_headView addGestureRecognizer:tapHeadGesture];
     [_headView setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *tapFailViewGesture =[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(reSendMessage)];
+    
+    UITapGestureRecognizer *tapFailViewGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reSendMessage)];
     [_sendFailView addGestureRecognizer:tapFailViewGesture];
     [_sendFailView setUserInteractionEnabled:YES];
 }
 
-- (void)setCellData:(JCHATChatModel *)model
-           delegate:(id <playVoiceDelegate>)delegate
-          indexPath:(NSIndexPath *)indexPath{// TODO:
-    
+- (void)setCellData:(JCHATChatModel *)model delegate:(id <playVoiceDelegate>)delegate indexPath:(NSIndexPath *)indexPath {
     _model = model;
     _indexPath = indexPath;
     _delegate = delegate;
@@ -107,18 +107,17 @@ static NSInteger const readViewRadius = 4;
                 if (data != nil) {
                     [self.headView setImage:[UIImage imageWithData:data]];
                 } else {
-                    [self.headView setImage:[UIImage imageNamed:@"headDefalt"]];
+                    [self.headView setImage:[Define kDefaultImageHead]];
                 }
             } else {
                 DebugLog(@"该头像是异步乱序的头像");
             }
         } else {
-            DebugLog(@"Action -- get thumbavatar fail");
-            [self.headView setImage:[UIImage imageNamed:@"headDefalt"]];
+            [self.headView setImage:[Define kDefaultImageHead]];
         }
     }];
     
-    if ([_model.message.flag isEqualToNumber:@1] || ![_model.message isReceived]) {
+    if ([self.model.message.flag isEqualToNumber:@1] || ![self.model.message isReceived]) {
         [self.readView setHidden:YES];
     } else {
         [self.readView setHidden:NO];
@@ -129,62 +128,61 @@ static NSInteger const readViewRadius = 4;
 }
 
 - (void)layoutAllView {
-    if (_model.message.status == kJMSGMessageStatusSending
-        || _model.message.status == kJMSGMessageStatusSendDraft) {
-        [_circleView startAnimating];
+    if (self.model.message.status == kJMSGMessageStatusSending || self.model.message.status == kJMSGMessageStatusSendDraft) {
+        [self.circleView startAnimating];
         [self.sendFailView setHidden:YES];
         [self.percentLabel setHidden:NO];
-        if (_model.message.contentType == kJMSGContentTypeImage) {
-            _messageContent.alpha = 0.5;
+        if (self.model.message.contentType == kJMSGContentTypeImage) {
+            self.messageContent.alpha = 0.5;
         } else {
-            _messageContent.alpha = 1;
+            self.messageContent.alpha = 1;
         }
         [self addUpLoadHandler];
         
-    } else if (_model.message.status == kJMSGMessageStatusSendFailed
-               || _model.message.status == kJMSGMessageStatusSendUploadFailed
-               || _model.message.status == kJMSGMessageStatusReceiveDownloadFailed) {
-        [_circleView stopAnimating];
-        if ([_model.message isReceived]) {
+    } else if (self.model.message.status == kJMSGMessageStatusSendFailed ||
+               self.model.message.status == kJMSGMessageStatusSendUploadFailed ||
+               self.model.message.status == kJMSGMessageStatusReceiveDownloadFailed) {
+        [self.circleView stopAnimating];
+        if ([self.model.message isReceived]) {
             [self.sendFailView setHidden:YES];
         } else {
             [self.sendFailView setHidden:NO];
         }
         
-        _messageContent.alpha = 1;
+        self.messageContent.alpha = 1;
     } else {
-        _messageContent.alpha = 1;
-        [_circleView stopAnimating];
+        self.messageContent.alpha = 1;
+        [self.circleView stopAnimating];
         [self.sendFailView setHidden:YES];
         [self.percentLabel setHidden:YES];
     }
     
-    if (_model.message.contentType != kJMSGContentTypeVoice) {
-        _readView.hidden = YES;
+    if (self.model.message.contentType != kJMSGContentTypeVoice) {
+        self.readView.hidden = YES;
     }
     
-    switch (_model.message.contentType) {
+    switch (self.model.message.contentType) {
         case kJMSGContentTypeUnknown:
-            _messageContent.backgroundColor = [UIColor redColor];
-            _messageContent.textContent.text = st_receiveUnknowMessageDes;
+            self.messageContent.backgroundColor = [UIColor redColor];
+            self.messageContent.textContent.text = st_receiveUnknowMessageDes;
             break;
         case kJMSGContentTypeText:
-            _percentLabel.hidden = YES;
-            _readView.hidden = YES;
-            _voiceTimeLabel.hidden = YES;
+            self.percentLabel.hidden = YES;
+            self.readView.hidden = YES;
+            self.voiceTimeLabel.hidden = YES;
             break;
         case kJMSGContentTypeImage:
-            _readView.hidden = YES;
-            _voiceTimeLabel.hidden = YES;
+            self.readView.hidden = YES;
+            self.voiceTimeLabel.hidden = YES;
             break;
         case kJMSGContentTypeVoice:
-            _percentLabel.hidden = YES;
-            _voiceTimeLabel.hidden = NO;
-            _voiceTimeLabel.text = [NSString stringWithFormat:@"%@''",((JMSGVoiceContent *)_model.message.content).duration];
-            if (_model.message.isReceived) {
-                _voiceTimeLabel.textAlignment = NSTextAlignmentLeft;
+            self.percentLabel.hidden = YES;
+            self.voiceTimeLabel.hidden = NO;
+            self.voiceTimeLabel.text = [NSString stringWithFormat:@"%@''",((JMSGVoiceContent *)self.model.message.content).duration];
+            if (self.model.message.isReceived) {
+                self.voiceTimeLabel.textAlignment = NSTextAlignmentLeft;
             } else {
-                _voiceTimeLabel.textAlignment = NSTextAlignmentRight;
+                self.voiceTimeLabel.textAlignment = NSTextAlignmentRight;
             }
             break;
         case kJMSGContentTypeCustom:
@@ -197,11 +195,10 @@ static NSInteger const readViewRadius = 4;
 }
 
 - (void)addUpLoadHandler {
-    if (_model.message.contentType != kJMSGContentTypeImage) {
+    if (self.model.message.contentType != kJMSGContentTypeImage) {
         return;
     }
     __weak __typeof(self)weakSelfUpload = self;
-    NSLog(@"the weakSelf upload  %@",weakSelfUpload);
     ((JMSGImageContent *)_model.message.content).uploadHandler = ^(float percent, NSString *msgId) {
         dispatch_async(dispatch_get_main_queue(), ^{
             __strong __typeof(weakSelfUpload)strongSelfUpload = weakSelfUpload;
@@ -214,39 +211,52 @@ static NSInteger const readViewRadius = 4;
 }
 
 - (void)updateFrameWithContentFrame:(CGSize)contentSize {
-    BOOL isRecive = [_model.message isReceived];
+    BOOL isRecive = [self.model.message isReceived];
     if (isRecive) {
-        [_headView setFrame:CGRectMake(gapWidth, 0, headHeight, headHeight)];
-        //    [_messageContent setBubbleSide:isRecive];
-        [_messageContent setFrame:CGRectMake(headHeight + 5, 0, contentSize.width, contentSize.height)];
-        [_readView setFrame:CGRectMake(_messageContent.frame.origin.x + _messageContent.frame.size.width + 10, 5, 2 * readViewRadius, 2 * readViewRadius)];
+        [self.headView setFrame:CGRectMake(gapWidth, 0, headHeight, headHeight)];
+        
+        [self.messageContent setFrame:CGRectMake(headHeight + 5, 0, floorf(contentSize.width+1.0), floorf(contentSize.height+1.0))];
+        [self.readView setFrame:CGRectMake(self.messageContent.frame.origin.x + self.messageContent.frame.size.width + 10, 5, 2 * readViewRadius, 2 * readViewRadius)];
+        
+        [self.voiceTimeLabel setFrame:CGRectMake(_messageContent.frame.origin.x + _messageContent.frame.size.width + 10, _messageContent.frame.size.height/2 - 8, 35, 17)];
         
     } else {
-        [_headView setFrame:CGRectMake([Define screenWidth] - headHeight - gapWidth, 0, headHeight, headHeight)];//头像位置
-        //    [_messageContent setBubbleSide:isRecive];
-        [_messageContent setFrame:CGRectMake([Define screenWidth] - headHeight - 5 - contentSize.width, 0, contentSize.width, contentSize.height)];
-        [_readView setFrame:CGRectMake(_messageContent.frame.origin.x - 10, 5, 8, 8)];
+        [self.headView setFrame:CGRectMake([Define screenWidth] - headHeight - gapWidth, 0, headHeight, headHeight)];//头像位置
+        [self.messageContent setFrame:CGRectMake([Define screenWidth] - headHeight - 5 - floorf(contentSize.width+1.0), 0, floorf(contentSize.width+1.0), floorf(contentSize.height+1.0))];
+        [self.readView setFrame:CGRectMake(self.messageContent.frame.origin.x - 10, 5, 8, 8)];
+        
+        [self.voiceTimeLabel setFrame:CGRectMake(self.messageContent.frame.origin.x - 45, self.messageContent.frame.size.height/2 - 8, 35, 17)];
     }
-    [_messageContent setMessageContentWith:_model.message];
-    [_voiceTimeLabel setFrame:kVoiceTimeLabelFrame];
-    if (_model.message.contentType != kJMSGContentTypeVoice) {
-        _voiceTimeLabel.frame = kVoiceTimeLabelHidenFrame;
+//    [self.messageContent setMessageContentWith:self.model.message];
+    
+    if (self.model.message.contentType != kJMSGContentTypeVoice) {
+        if (isRecive) {
+            self.voiceTimeLabel.frame =  CGRectMake(self.messageContent.frame.origin.x + self.messageContent.frame.size.width + 5, self.messageContent.frame.size.height/2 - 8, 35, 17);
+        } else {
+            self.voiceTimeLabel.frame = CGRectMake(self.messageContent.frame.origin.x, self.messageContent.frame.size.height/2 - 8, 35, 17);
+        }
     }
-    [_circleView setFrame:messageStatusBtnFrame];
-    [_sendFailView setFrame:messageStatusBtnFrame];
-    [_percentLabel setCenter:messagePercentLabelFrame];
+    if (isRecive) {
+        [self.circleView setFrame:CGRectMake(self.voiceTimeLabel.frame.origin.x + 5, self.messageContent.frame.size.height/2 - 8, 17, 15)];
+        [self.sendFailView setFrame:CGRectMake(self.voiceTimeLabel.frame.origin.x + 5, self.messageContent.frame.size.height/2 - 8, 17, 15)];
+        [self.percentLabel setCenter:CGPointMake(self.messageContent.frame.size.width/2 + crossgrap/2, self.messageContent.frame.size.height/2)];
+    } else {
+        [self.circleView setFrame:CGRectMake(self.voiceTimeLabel.frame.origin.x - 20, self.messageContent.frame.size.height/2 - 8, 17, 15)];
+        [self.sendFailView setFrame:CGRectMake(self.voiceTimeLabel.frame.origin.x - 20, self.messageContent.frame.size.height/2 - 8, 17, 15)];
+        [self.percentLabel setCenter:CGPointMake(self.messageContent.frame.size.width/2 - crossgrap/2, self.messageContent.frame.size.height/2)];
+    }
 }
 
 - (void)tapContent:(UIGestureRecognizer *)gesture {
-    if (_model.message.contentType == kJMSGContentTypeVoice) {
+    if (self.model.message.contentType == kJMSGContentTypeVoice) {
         [self playVoice];
     }
-    if (_model.message.contentType == kJMSGContentTypeImage) {
+    if (self.model.message.contentType == kJMSGContentTypeImage) {
         if (self.model.message.status == kJMSGMessageStatusReceiveDownloadFailed) {
-            [_circleView startAnimating];
+            [self.circleView startAnimating];
         } else {
             if (self.delegate && [(id<PictureDelegate>)self.delegate respondsToSelector:@selector(tapPicture:tapView:tableViewCell:)]) {
-                [(id<PictureDelegate>)self.delegate tapPicture:_indexPath tapView:(UIImageView *)gesture.view tableViewCell:self];
+                [(id<PictureDelegate>)self.delegate tapPicture:self.indexPath tapView:(UIImageView *)gesture.view tableViewCell:self];
             }
         }
     }
@@ -270,10 +280,10 @@ static NSInteger const readViewRadius = 4;
         [self.sendFailView setHidden:YES];
         [self.circleView setHidden:NO];
         [self.circleView startAnimating];
-        if (_model.message.contentType == kJMSGContentTypeImage) {
-            _messageContent.alpha = 0.5;
+        if (self.model.message.contentType == kJMSGContentTypeImage) {
+            self.messageContent.alpha = 0.5;
         } else {
-            _messageContent.alpha = 1;
+            self.messageContent.alpha = 1;
         }
         __weak typeof(self)weakSelf = self;
         if (_model.message.contentType == kJMSGContentTypeImage) {
@@ -305,8 +315,8 @@ static NSInteger const readViewRadius = 4;
     }
     [self.readView setHidden:YES];
     
-    if (![_model.message.flag  isEqual: @1]) {
-        [_model.message updateFlag:@1];
+    if (![self.model.message.flag isEqual: @1]) {
+        [self.model.message updateFlag:@1];
     }
     [((JMSGVoiceContent *)_model.message.content) voiceData:^(NSData *data, NSString *objectId, NSError *error) {
         if (error == nil) {

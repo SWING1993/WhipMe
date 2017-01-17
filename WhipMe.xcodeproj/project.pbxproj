@@ -71,6 +71,11 @@
 		C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */; };
 		C5B343441E2DAD4100A16B56 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B343431E2DAD4100A16B56 /* SDWebImageManager+MJ.m */; };
 		C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */; };
+		C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */; };
+		C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */; };
+		C5B343591E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */; };
+		C5B3435A1E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */; };
+		C5B3435B1E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */; };
 		C5C177861E2CADE700891C0D /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177831E2CADE700891C0D /* YLGIFImage.m */; };
 		C5C177871E2CADE700891C0D /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177851E2CADE700891C0D /* YLImageView.m */; };
 		C5C177891E2CAE5900891C0D /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C177881E2CAE5900891C0D /* CoreImage.framework */; };
@@ -285,6 +290,11 @@
 		C5B343431E2DAD4100A16B56 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
 		C5B343451E2DB3F200A16B56 /* JCHATAlertToSendImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlertToSendImage.h; sourceTree = "<group>"; };
 		C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlertToSendImage.m; sourceTree = "<group>"; };
+		C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying@2x.png"; sourceTree = "<group>"; };
+		C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying000@2x.png"; sourceTree = "<group>"; };
+		C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying001@2x.png"; sourceTree = "<group>"; };
+		C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying002@2x.png"; sourceTree = "<group>"; };
+		C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying003@2x.png"; sourceTree = "<group>"; };
 		C5C177821E2CADE700891C0D /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
 		C5C177831E2CADE700891C0D /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
 		C5C177841E2CADE700891C0D /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
@@ -727,6 +737,7 @@
 		C546FE1A1D82989700012FB4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C5B343511E2E382E00A16B56 /* Image */,
 				C5C177BB1E2CBCB900891C0D /* CellView */,
 				C5C177AA1E2CBAA300891C0D /* RecordView */,
 				C5C177A11E2CBA1E00891C0D /* JCHATMessageTextView.h */,
@@ -819,6 +830,18 @@
 				C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		C5B343511E2E382E00A16B56 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */,
+				C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */,
+				C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */,
+				C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */,
+				C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		C5C177811E2CADE700891C0D /* YLGIFImage */ = {
@@ -1270,11 +1293,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C177F71E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib in Resources */,
+				C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */,
 				C5C178011E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib in Resources */,
 				C5C177FC1E2CBEE900891C0D /* image_no_picked@3x.png in Resources */,
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
+				C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
 				C5C177FB1E2CBEE900891C0D /* image_no_picked@2x.png in Resources */,
 				C5C177F51E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
@@ -1286,11 +1311,14 @@
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
 				C5C177FD1E2CBEE900891C0D /* image_picked.png in Resources */,
+				C5B343591E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png in Resources */,
 				C5C177FE1E2CBEE900891C0D /* image_picked@2x.png in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
+				C5B3435B1E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
 				C5C177FF1E2CBEE900891C0D /* image_picked@3x.png in Resources */,
 				C5C178061E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib in Resources */,
+				C5B3435A1E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png in Resources */,
 				C5C177F31E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

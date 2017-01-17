@@ -53,7 +53,7 @@
     _allMessageDic = @{}.mutableCopy;
     _allmessageIdArr = @[].mutableCopy;
     _imgDataArr = @[].mutableCopy;
-    self.navigationItem.title = _conversation.title;
+//    self.navigationItem.title = _conversation.title;
     [self setupView];
     [self addNotification];
     [self addDelegate];
@@ -74,7 +74,7 @@
         if (self.conversation.conversationType == kJMSGConversationTypeGroup) {
             [self updateGroupConversationTittle:nil];
         } else {
-            self.title = [resultObject title];
+            self.navigationItem.title = [resultObject title];
         }
         [_messageTableView reloadData];
     }];
@@ -89,11 +89,11 @@
     }
     
     if ([group.name isEqualToString:@""]) {
-        self.title = @"群聊";
+        self.navigationItem.title = @"群聊";
     } else {
-        self.title = group.name;
+        self.navigationItem.title = group.name;
     }
-    self.title = [NSString stringWithFormat:@"%@(%lu)",self.title,(unsigned long)[group.memberArray count]];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@(%lu)",self.navigationItem.title,(unsigned long)[group.memberArray count]];
     [self getGroupMemberListWithGetMessageFlag:NO];
     if (self.isConversationChange) {
         [self cleanMessageCache];
@@ -143,30 +143,27 @@
 }
 
 - (void)setupNavigation {
-    self.navigationController.navigationBar.translucent = NO;
-    _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_rightBtn setFrame:navigationRightButtonRect];
-    if (_conversation.conversationType == kJMSGConversationTypeSingle) {
-        [_rightBtn setImage:[UIImage imageNamed:@"userDetail"] forState:UIControlStateNormal];
-    } else {
-        [self updateGroupConversationTittle:nil];
-        if ([((JMSGGroup *)_conversation.target) isMyselfGroupMember]) {
-            [_rightBtn setImage:[UIImage imageNamed:@"groupDetail"] forState:UIControlStateNormal];
-        } else _rightBtn.hidden = YES;
-    }
-    
     [_conversation clearUnreadCount];
     
-    [_rightBtn addTarget:self action:@selector(addFriends) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBtn];//为导航栏添加右侧按钮
+//    _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_rightBtn setFrame:navigationRightButtonRect];
+//    if (_conversation.conversationType == kJMSGConversationTypeSingle) {
+//        [_rightBtn setImage:[UIImage imageNamed:@"userDetail"] forState:UIControlStateNormal];
+//    } else {
+//        [self updateGroupConversationTittle:nil];
+//        if ([((JMSGGroup *)_conversation.target) isMyselfGroupMember]) {
+//            [_rightBtn setImage:[UIImage imageNamed:@"groupDetail"] forState:UIControlStateNormal];
+//        } else _rightBtn.hidden = YES;
+//    }
     
-    UIButton *leftBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBtn setFrame:CGRectMake(0, 0, 30, 30)];
-    [leftBtn setImage:[UIImage imageNamed:@"goBack"] forState:UIControlStateNormal];
-    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
+//    [_rightBtn addTarget:self action:@selector(addFriends) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBtn];//为导航栏添加右侧按钮
     
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];//为导航栏添加左侧按钮
+    UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
+    [leftBar setTintColor:[UIColor whiteColor]];
+    self.navigationItem.leftBarButtonItem = leftBar;
+    
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
@@ -201,10 +198,6 @@
 
 - (void)hidenDetailBtn:(BOOL)flag {
     [_rightBtn setHidden:flag];
-}
-
-- (void)setTitleWithUser:(JMSGUser *)user {
-    self.title = _conversation.title;
 }
 
 #pragma mark - JMessageDelegate
@@ -589,7 +582,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark --发送图片
+#pragma mark - 发送图片
 - (void)prepareImageMessage:(UIImage *)img {
     img = [img resizedImageByWidth:upLoadImgWidth];
     
@@ -608,7 +601,6 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     }
 }
 
-#pragma mark --
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -720,7 +712,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     JMSGTextContent *textContent = [[JMSGTextContent alloc] initWithText:text];
     JCHATChatModel *model = [[JCHATChatModel alloc] init];
     
-    message = [_conversation createMessageWithContent:textContent];//!
+    message = [_conversation createMessageWithContent:textContent];
     [_conversation sendMessage:message];
     [self addmessageShowTimeData:message.timestamp];
     [model setChatModelWith:message conversationType:_conversation];
