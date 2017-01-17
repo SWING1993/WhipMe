@@ -35,6 +35,15 @@ static NSString *identifier_cell = @"setingTableViewCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _userModel = [UserManager shared];
+    [self.tableViewWM reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)dealloc {
+    DebugLog(@"%@",NSStringFromClass(self.class));
 }
 
 - (void)setup {
@@ -53,8 +62,6 @@ static NSString *identifier_cell = @"setingTableViewCell";
     }];
     
     [_tableViewWM registerClass:[UserInfoTableViewCell class] forCellReuseIdentifier:identifier_cell];
-    
-    
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
@@ -98,7 +105,11 @@ static NSString *identifier_cell = @"setingTableViewCell";
         cell.lblText.hidden = true;
         cell.imageLogo.hidden = false;
         cell.imageLogo.backgroundColor = [Define kColorBackGround];
-        cell.imageLogo.image = [UIImage fullToFilePath:self.userModel.icon];
+        if ([NSString isBlankString:self.userModel.icon]) {
+            cell.imageLogo.image = [Define kDefaultImageHead];
+        } else {
+            [cell.imageLogo setImageWithURL:[NSURL URLWithString:self.userModel.icon] placeholderImage:[Define kDefaultImageHead]];
+        }
     } else if (indexPath.row == 3) {
         cell.lblTitle.text = @"帮助中心";
         margin_x = 15.0;

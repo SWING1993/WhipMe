@@ -267,6 +267,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
             }
         } Failed:^(NSError *error) {
             [Tool showHUDTipWithTipStr:error.domain];
+            DebugLog(@"upload image is error:%@",error);
         }];
     }
 }
