@@ -27,9 +27,7 @@ static NSInteger const textMessageContentRightOffset = 15;
     if (self) {
         _textContent = [UILabel new];
         _textContent.numberOfLines = 0;
-        _textContent.backgroundColor = [UIColor redColor];
-        _textContent.textColor = [UIColor blackColor];
-        _textContent.font = [UIFont systemFontOfSize:16.0];
+        _textContent.backgroundColor = [UIColor clearColor];
         [self addSubview:_textContent];
         
         _voiceConent = [UIImageView new];

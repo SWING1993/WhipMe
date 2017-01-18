@@ -18,9 +18,9 @@ class MainTabBarController: UITabBarController {
         let chatPageControl: UIPageViewController = UIPageViewController.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         let navChat: UINavigationController = WMPrivateChatController.init(rootViewController: chatPageControl)
         
-        navIndex.title = "主页";
-        navFriend.title = "朋友圈";
-        navChat.title = "私聊";
+        navIndex.title = "鞭挞我";
+        navFriend.title = "鞭挞圈";
+        navChat.title = "鞭聊";
         navMember.title = "我的";
         
         navIndex.tabBarItem.image = UIImage.init(named: "button_we_off")
