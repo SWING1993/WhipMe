@@ -49,10 +49,40 @@ class RecommendCell: NormalCell {
         avatarV.backgroundColor = UIColor.random()
         avatarV.layer.cornerRadius = 36.0/2
         avatarV.layer.masksToBounds = true
+        avatarV.isUserInteractionEnabled = true
         self.bgView.addSubview(avatarV)
         avatarV.snp.makeConstraints({ (make) in
             make.left.top.equalTo(18)
             make.height.width.equalTo(36)
+        })
+        
+        avatarV .bk_(whenTapped: { () -> Void in
+            
+            let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+            hud.label.text = "加载中..."
+            let params = [
+                "userId":self.myRecommendM.creator,
+                "loginId":UserManager.shared.userId,
+            ]
+            HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                hud.hide(animated: true)
+                if (result != nil) {
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        print(result!)
+                        let queryUserBlogC = QueryUserBlogC.init()
+                        let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+//                        kKeyWindows!
+                        
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                hud.hide(animated: true)
+                Tool.showHUDTip(tipStr: "网络不给力")
+            }
         })
 
         nickNameL = UILabel.init()

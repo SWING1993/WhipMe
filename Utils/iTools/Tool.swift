@@ -21,3 +21,10 @@ class Tool: NSObject {
         hud.hide(animated: true, afterDelay: 2)
     }
 }
+
+/*
+ let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+ hud.label.text = "发送中..."
+ hud.hide(animated: true)
+ 
+ */

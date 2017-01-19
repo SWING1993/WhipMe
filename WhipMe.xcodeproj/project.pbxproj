@@ -181,6 +181,7 @@
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
 		E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44E73961D9CB8C5007A73D8 /* Photos.framework */; };
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
+		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
 		E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */; };
@@ -471,6 +472,7 @@
 		E44E739A1D9D002E007A73D8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIClient.h; sourceTree = "<group>"; };
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
+		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
 		E48C0BE21D87D2C300802C6B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */,
+				E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */,
 			);
 			path = FriendCircle;
 			sourceTree = "<group>";
@@ -1524,6 +1527,7 @@
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
 				C5C177F61E2CBEE900891C0D /* JCHATPhotoSelectViewController.m in Sources */,
+				E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
 				C5C177F81E2CBEE900891C0D /* JCHATAlbumModel.m in Sources */,
 				C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */,
