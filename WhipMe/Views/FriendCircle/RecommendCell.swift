@@ -16,6 +16,10 @@ class CommentM: NSObject {
 
 class RecommendCell: NormalCell {
     
+    var commentSuccess: (() -> Void)?
+
+    var myRecommendM = FriendCircleM.init()
+    
     var avatarV: UIImageView = UIImageView.init()
     var nickNameL: UILabel = UILabel.init()
     var topicL: UILabel = UILabel.init()
@@ -34,9 +38,7 @@ class RecommendCell: NormalCell {
     var commentB: UIButton = UIButton.init()
     var shareB: UIButton = UIButton.init()
 
-    
     let commentHeight = 30
-    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -185,6 +187,72 @@ class RecommendCell: NormalCell {
             make.width.equalTo(100)
             make.height.equalTo(15)
         })
+        likeB .bk_addEventHandler({ (sender) in
+            if self.likeB.isSelected == false {
+                let params = [
+                    "userId":UserManager.shared.userId,
+                    "nickname":UserManager.shared.nickname,
+                    "icon":UserManager.shared.icon,
+                    "recordId":self.myRecommendM.recordId,
+                    "creator":self.myRecommendM.creator,
+//                    "creatorId":self.myRecommendM.creatorId,
+                    ]
+                
+                HttpAPIClient.apiClientPOST("addLike", params: params, success: { (result) in
+                    if (result != nil) {
+                        print(result!)
+                        let json = JSON(result!)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            self.myRecommendM.liked = true
+                            self.likeB.isSelected = self.myRecommendM.liked
+                            self.myRecommendM.likeNum = self.myRecommendM.likeNum + 1
+                            self.likeB.setTitle(String(model.likeNum), for: .normal)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
+        }, for: .touchUpInside)
+        
+        likeB .bk_addEventHandler({ (sender) in
+            CommentView.sharedInstance.show()
+            CommentView.sharedInstance.okBlock = {  (comment) -> Void in
+                if comment.isEmpty {
+                    return
+                }
+                
+                let params = [
+                    "userId":UserManager.shared.userId,
+                    "nickname":UserManager.shared.nickname,
+                    "content":comment,
+                    "recordId":self.myRecommendM.recordId,
+                    "creator":self.myRecommendM.creator,
+                    //                    "creatorId":self.myRecommendM.creatorId,
+                ]
+                
+                HttpAPIClient.apiClientPOST("addComment", params: params, success: { (result) in
+                    if (result != nil) {
+                        print(result!)
+                        let json = JSON(result!)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            if self.commentSuccess != nil {
+                                self.commentSuccess!()
+                            }
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
+            
+        }, for: .touchUpInside)
         
         commentB = UIButton.init(type: UIButtonType.custom)
         commentB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
@@ -199,7 +267,7 @@ class RecommendCell: NormalCell {
             make.width.equalTo(100)
             make.height.equalTo(15)
         })
-
+        
         shareB = UIButton.init(type: UIButtonType.custom)
         shareB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
         shareB.setTitleColor(kColorGary, for: .normal)
@@ -216,6 +284,8 @@ class RecommendCell: NormalCell {
     }
     
     func setRecommendData(model:FriendCircleM) {
+        
+        self.myRecommendM = model
         
         if model.picture.isEmpty {
             self.pictrueView.snp.updateConstraints({ (make) in
@@ -243,6 +313,7 @@ class RecommendCell: NormalCell {
             self.locatiomV.isHidden = false
         }
         
+        self.likeB.isSelected = model.liked
         self.likeB.setTitle(String(model.likeNum), for: .normal)
         self.commentB.setTitle(String(model.commentNum), for: .normal)
         self.shareB.setTitle(String(model.shareNum), for: .normal)

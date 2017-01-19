@@ -187,6 +187,7 @@
 		E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8EF041DE5883000E16B26 /* CashController.swift */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
+		E4C99F261E3089E8002B6DCE /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C99F251E3089E8002B6DCE /* CommentView.swift */; };
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
@@ -482,6 +483,7 @@
 		E4AB21F21D82566A0044943E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WhipMe/AppDelegate.swift; sourceTree = "<group>"; };
 		E4AB21F91D82566A0044943E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4AB21FE1D82566A0044943E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4C99F251E3089E8002B6DCE /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		E4C9B8591D90D09600A4C14D /* SelectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 			isa = PBXGroup;
 			children = (
 				E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */,
+				E4C99F251E3089E8002B6DCE /* CommentView.swift */,
 			);
 			path = FriendCircle;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				C5C177BE1E2CBCC000891C0D /* JCHATMessageTableViewCell.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
+				E4C99F261E3089E8002B6DCE /* CommentView.swift in Sources */,
 				C5C177F91E2CBEE900891C0D /* JCHATPhotoModel.m in Sources */,
 				C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,

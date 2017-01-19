@@ -257,6 +257,9 @@ extension TaCecordController:UITableViewDataSource {
         let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
         let model:FriendCircleM = self.friendCircleModels[indexPath.row]
         cell.setRecommendData(model: model)
+        cell.commentSuccess = { () -> Void in
+            self.setupRequest()
+        }
         return cell
     }
 }

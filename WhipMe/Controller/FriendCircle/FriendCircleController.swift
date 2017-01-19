@@ -29,6 +29,9 @@ class FriendCircleM: NSObject {
     var themeId: String = ""
     var themeName: String = ""
     var userId: String = ""
+    var creator: String = ""
+    var creatorId :String = ""
+    var liked :Bool = false
 }
 
 class FriendCircleController: UIViewController {
@@ -228,11 +231,17 @@ extension FriendCircleController:UITableViewDataSource {
             let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
             let model:FriendCircleM = self.friendCircleModels[indexPath.row]
             cell.setRecommendData(model: model)
+            cell.commentSuccess = { () -> Void in
+                self.setupRecommendRequest()
+            }
             return cell
         }
         let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.focusCellReuseIdentifier())
         let model:FriendCircleM = self.focusModels[indexPath.row]
         cell.setRecommendData(model: model)
+        cell.commentSuccess = { () -> Void in
+            self.setupFocusRequest()
+        }
         return cell
     }
 }
