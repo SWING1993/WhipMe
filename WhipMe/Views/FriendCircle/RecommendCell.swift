@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CommentM: NSObject {
     var content:String = ""
@@ -207,7 +208,7 @@ class RecommendCell: NormalCell {
                             self.myRecommendM.liked = true
                             self.likeB.isSelected = self.myRecommendM.liked
                             self.myRecommendM.likeNum = self.myRecommendM.likeNum + 1
-                            self.likeB.setTitle(String(model.likeNum), for: .normal)
+                            self.likeB.setTitle(String(self.myRecommendM.likeNum), for: .normal)
                         } else {
                             Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                         }
@@ -218,12 +219,25 @@ class RecommendCell: NormalCell {
             }
         }, for: .touchUpInside)
         
-        likeB .bk_addEventHandler({ (sender) in
+        
+        
+        commentB = UIButton.init(type: UIButtonType.custom)
+        commentB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
+        commentB.setTitleColor(kColorGary, for: .normal)
+        commentB.setImage(UIImage.init(named: "comment_icon_off"), for: .normal)
+        commentB.imageEdgeInsets = UIEdgeInsetsMake(0, -edgeInsetsWidth, 0, edgeInsetsWidth)
+        commentB.titleEdgeInsets = UIEdgeInsetsMake(0, edgeInsetsWidth, 0, -edgeInsetsWidth)
+        activeV.addSubview(commentB)
+        commentB.snp.makeConstraints({ (make) in
+            make.top.equalTo(line.snp.bottom).offset(15)
+            make.centerX.equalTo(self)
+            make.width.equalTo(100)
+            make.height.equalTo(15)
+        })
+        
+        commentB .bk_addEventHandler({ (sender) in
             CommentView.sharedInstance.show()
             CommentView.sharedInstance.okBlock = {  (comment) -> Void in
-                if comment.isEmpty {
-                    return
-                }
                 
                 let params = [
                     "userId":UserManager.shared.userId,
@@ -233,7 +247,6 @@ class RecommendCell: NormalCell {
                     "creator":self.myRecommendM.creator,
                     //                    "creatorId":self.myRecommendM.creatorId,
                 ]
-                
                 HttpAPIClient.apiClientPOST("addComment", params: params, success: { (result) in
                     if (result != nil) {
                         print(result!)
@@ -253,20 +266,6 @@ class RecommendCell: NormalCell {
             }
             
         }, for: .touchUpInside)
-        
-        commentB = UIButton.init(type: UIButtonType.custom)
-        commentB.titleLabel?.font = UIFont.systemFont(ofSize: 12);
-        commentB.setTitleColor(kColorGary, for: .normal)
-        commentB.setImage(UIImage.init(named: "comment_icon_off"), for: .normal)
-        commentB.imageEdgeInsets = UIEdgeInsetsMake(0, -edgeInsetsWidth, 0, edgeInsetsWidth)
-        commentB.titleEdgeInsets = UIEdgeInsetsMake(0, edgeInsetsWidth, 0, -edgeInsetsWidth)
-        activeV.addSubview(commentB)
-        commentB.snp.makeConstraints({ (make) in
-            make.top.equalTo(line.snp.bottom).offset(15)
-            make.centerX.equalTo(self)
-            make.width.equalTo(100)
-            make.height.equalTo(15)
-        })
         
         shareB = UIButton.init(type: UIButtonType.custom)
         shareB.titleLabel?.font = UIFont.systemFont(ofSize: 12);

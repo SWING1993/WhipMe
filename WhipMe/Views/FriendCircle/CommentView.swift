@@ -15,7 +15,7 @@ class CommentView: NSObject {
     var okBlock : ((String) -> Void)?
     var cancelBlock : (() -> Void)?
     
-    fileprivate let myTextView = UITextView.init()
+    fileprivate var myTextView = UITextView.init()
     fileprivate let kWidth = Define.screenWidth()-30
     fileprivate let kHeight = (Define.screenWidth()-30)*0.7
     
@@ -31,8 +31,8 @@ class CommentView: NSObject {
         alertView?.onButtonTouchUpInside = { alertView, buttonIndex in
             if buttonIndex == 1 {
                 if self.okBlock != nil {
-                    self.myTextView.text = nil
                     self.okBlock!(self.myTextView.text)
+                    self.myTextView.text = nil
                 }
             } else {
                 if self.cancelBlock != nil {
@@ -45,8 +45,8 @@ class CommentView: NSObject {
     
     fileprivate func contentView() -> UIView {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kWidth, height: kHeight))
-        myTextView = CGRect.init(x: 10, y: 10, width: kWidth - 20, height: kHeight - 20)
-        view.addSubview(picker)
+        myTextView.frame = CGRect.init(x: 10, y: 10, width: kWidth - 20, height: kHeight - 20)
+        view.addSubview(myTextView)
         return view
     }
 }
