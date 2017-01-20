@@ -36,6 +36,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - HandyJSON (1.5.2)
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - BlocksKit
   - Bugly
   - ChameleonFramework
+  - HandyJSON (~> 1.5.2)
   - Masonry
   - MJExtension
   - MJRefresh
@@ -83,6 +85,7 @@ SPEC CHECKSUMS:
   Bugly: 7756e72c59387b0d490f46e83ab458ae94ee7fba
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HandyJSON: bb5597b375370dbe4312a27e696341b1f65e4fd7
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -97,6 +100,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 
-PODFILE CHECKSUM: 5e94beb5965aa62545aef3f7c66561958eece51d
+PODFILE CHECKSUM: aa08914328682be000d4440d79f481857b9dc387
 
 COCOAPODS: 1.2.0.rc.1

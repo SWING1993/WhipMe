@@ -7,11 +7,31 @@
 //
 
 import UIKit
+import HandyJSON
 
-class UserBlogM: NSObject {
-    var myGrow = NSArray.init()
-    var mySupervise = NSArray.init()
-    var userInfo = NSDictionary.init()
+class GrowM: HandyJSON {
+    var creator: String = ""
+    var endDate: String = ""
+    var icon: String = ""
+    var nickname: String = ""
+    var recordNum: String = ""
+    var startDate: String = ""
+    var taskId: String = ""
+    var themeId: String = ""
+    var themeName: String = ""
+    var threeDay: [Any] = []
+    
+    required init() {}
+
+}
+
+class UserBlogM: HandyJSON {
+    var myGrow: [GrowM] = []
+    var mySupervise: [GrowM] = []
+    var userInfo: [String: String] = [:]
+    
+    required init() {}
+
 }
 
 class QueryUserBlogC: UIViewController {
@@ -19,9 +39,12 @@ class QueryUserBlogC: UIViewController {
     var userBlogM = UserBlogM.init()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+
+        super.viewDidLoad()
+        self.view.backgroundColor = kColorBackGround
+
+        print(self.userBlogM.myGrow.count)
     }
     
     override func didReceiveMemoryWarning() {

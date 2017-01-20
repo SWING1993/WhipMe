@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import HandyJSON
 
 class CommentM: NSObject {
     var content:String = ""
@@ -57,7 +58,6 @@ class RecommendCell: NormalCell {
         })
         
         avatarV .bk_(whenTapped: { () -> Void in
-            
             let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
             hud.label.text = "加载中..."
             let params = [
@@ -66,15 +66,22 @@ class RecommendCell: NormalCell {
             ]
             HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
                 hud.hide(animated: true)
-                if (result != nil) {
-                    let json = JSON(result!)
+                if let dataResult = result {
+                    let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
-                        print(result!)
-                        let queryUserBlogC = QueryUserBlogC.init()
-                        let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
-//                        kKeyWindows!
-                        
+                        let dataJson = json["data"][0]
+                        let string = String(describing: dataJson)
+                        if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+                            print(userBlogM.userInfo)
+                            let queryUserBlogC = QueryUserBlogC.init()
+                            queryUserBlogC.navigationItem.title = self.myRecommendM.nickname
+                            queryUserBlogC.userBlogM = userBlogM
+                            let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+                            kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
+                                
+                            })
+                        }
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -170,7 +177,6 @@ class RecommendCell: NormalCell {
             make.top.equalTo(pictrueView.snp.bottom).offset(9)
             make.height.equalTo(15)
         })
-        
         
         commentList = UITableView.init()
         commentList.dataSource = self
