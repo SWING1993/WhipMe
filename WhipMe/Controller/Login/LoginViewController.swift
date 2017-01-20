@@ -187,7 +187,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 ChatMessage.shareChat().loginJMessage()
             }
         }) { (error) in
-            print(error as Any)
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     
@@ -221,7 +221,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
-            print("error:\(error)")
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
 
     }

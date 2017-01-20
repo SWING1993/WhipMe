@@ -165,6 +165,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                 }
             }) { (error) in
                 print("wlogin error:\(error)")
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
         }
     }

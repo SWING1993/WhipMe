@@ -454,7 +454,7 @@ class IndexViewController: UIViewController {
                 }
             }
         }) { (error) in
-            print(error as Any);
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     

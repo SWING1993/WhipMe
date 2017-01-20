@@ -11,8 +11,9 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import SwiftyJSON
+import HandyJSON
 
-class FriendCircleM: NSObject {
+class FriendCircleM: HandyJSON {
     var comment: NSArray = NSArray.init()
     var recordIdNum: Int = 0
     var commentNum: Int = 0
@@ -32,6 +33,9 @@ class FriendCircleM: NSObject {
     var creator: String = ""
     var creatorId :String = ""
     var liked :Bool = false
+    
+    required init() {}
+
 }
 
 class FriendCircleController: UIViewController {
@@ -65,16 +69,19 @@ class FriendCircleController: UIViewController {
             "userId":UserManager.shared.userId
             ]
         HttpAPIClient.apiClientPOST("biantaquanFocusList", params: params, success: { (result) in
-            if (result != nil) {
-                let json = JSON(result!)
+            
+            if let dataResult = result {
+                let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
-                    let list = json["data"][0]["list"].arrayObject
+                    let list = json["data"][0]["list"].arrayValue
                     weakSelf?.focusModels = {
                         var temps: [FriendCircleM] = []
-                        let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
-                        for model in tempArr! {
-                            temps.append(model as! FriendCircleM)
+                        for json in list {
+                            let jsonString = String(describing: json)
+                            if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                                temps.append(model)
+                            }
                         }
                         return temps
                     }()
@@ -93,6 +100,7 @@ class FriendCircleController: UIViewController {
                 }
             }
         }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     
@@ -103,20 +111,23 @@ class FriendCircleController: UIViewController {
             "pageIndex":"1",
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
-            if (result != nil) {
-                print(result!)
-                let json = JSON(result!)
+            if let dataResult = result {
+//                print(dataResult)
+                let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
-                    let list = json["data"][0]["list"].arrayObject
+                    let list = json["data"][0]["list"].arrayValue
                     weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
-                        let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: list)
-                        for model in tempArr! {
-                            temps.append(model as! FriendCircleM)
+                        for json in list {
+                            let jsonString = String(describing: json)
+                            if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                               temps.append(model)
+                            }
                         }
                         return temps
                     }()
+                    
                     weakSelf?.cellHeights = {
                         var tempHeights:[CGFloat] = []
                         for model in self.friendCircleModels {
@@ -126,12 +137,12 @@ class FriendCircleController: UIViewController {
                         return tempHeights
                     }()
                     weakSelf?.recommendTable.reloadData()
-                    
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
             }
         }) { (error) in
+             Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     

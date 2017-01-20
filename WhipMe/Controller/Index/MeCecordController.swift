@@ -11,6 +11,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import SwiftyJSON
+import HandyJSON
 
 class MeLogCell: NormalCell {
     var logV: UIImageView = UIImageView.init()
@@ -144,9 +145,8 @@ class MeCecordController: UIViewController {
         weak var weakSelf = self
         let params = ["taskId":self.myWhipM.taskId,"pageSize":"30","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryRecordByTaskId", params: params, success: { (result) in
-            if (result != nil) {
-                print(result!)
-                let json = JSON(result!)
+            if let dataResult = result {
+                let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 let totalSize = json["data"][0]["totalSize"].intValue
                 if ret != 0 {
@@ -154,12 +154,14 @@ class MeCecordController: UIViewController {
                     return
                 }
                 if totalSize > 0 {
-                    let recordList = json["data"][0]["recordlist"].arrayObject
+                    let recordList = json["data"][0]["recordlist"].arrayValue
                     weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
-                        let tempArr = FriendCircleM.mj_objectArray(withKeyValuesArray: recordList)
-                        for model in tempArr! {
-                            temps.append(model as! FriendCircleM)
+                        for json in recordList {
+                            let jsonString = String(describing: json)
+                            if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                                temps.append(model)
+                            }
                         }
                         return temps
                     }()
@@ -175,7 +177,7 @@ class MeCecordController: UIViewController {
                 }
             }
         }) { (error) in
-            print(error as Any);
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     

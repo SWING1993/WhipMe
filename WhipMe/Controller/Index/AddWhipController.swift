@@ -137,11 +137,10 @@ class AddWhipController: UIViewController {
                     }
                 }
             }) { (error) in
-                print(error as Any);
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
         }
-        
-       
+ 
     }
     
     fileprivate func loadHotThemeData() {
@@ -159,7 +158,7 @@ class AddWhipController: UIViewController {
                 }
             }
         }) { (error) in
-            print(error as Any);
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     
@@ -220,7 +219,7 @@ class AddWhipController: UIViewController {
                     }
                 }
             }) { (error) in
-                print(error as Any);
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
         }, for: .touchUpInside)
         
