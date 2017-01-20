@@ -21,7 +21,8 @@ class NormalCell: UITableViewCell {
         bgView.layer.cornerRadius = 5.0
         bgView.layer.masksToBounds = true
         self.addSubview(bgView)
-         }
+        
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

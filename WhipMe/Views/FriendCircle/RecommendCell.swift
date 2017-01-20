@@ -72,8 +72,8 @@ class RecommendCell: NormalCell {
                     if ret == 0 {
                         let dataJson = json["data"][0]
                         let string = String(describing: dataJson)
+                        print(string)
                         if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
-                            print(userBlogM.userInfo)
                             let queryUserBlogC = QueryUserBlogC.init()
                             queryUserBlogC.navigationItem.title = self.myRecommendM.nickname
                             queryUserBlogC.userBlogM = userBlogM

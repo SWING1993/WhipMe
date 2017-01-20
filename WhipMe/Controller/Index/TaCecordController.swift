@@ -71,7 +71,6 @@ class TaCecordController: UIViewController {
                         return tempHeights
                     }()
                     weakSelf?.recommendTable.reloadData()
-                    
                 }
             }
         }) { (error) in
