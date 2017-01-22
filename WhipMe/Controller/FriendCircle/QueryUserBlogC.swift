@@ -9,6 +9,8 @@
 import UIKit
 import HandyJSON
 
+let kUserHeight: CGFloat = 180
+
 class GrowM: HandyJSON {
     var creator: String = ""
     var endDate: String = ""
@@ -19,10 +21,9 @@ class GrowM: HandyJSON {
     var taskId: String = ""
     var themeId: String = ""
     var themeName: String = ""
-    var threeDay: [Any] = []
+    var threeDay: [Dictionary<String,String>] = []
     
     required init() {}
-
 }
 
 class UserBlogM: HandyJSON {
@@ -32,6 +33,100 @@ class UserBlogM: HandyJSON {
     
     required init() {}
 
+}
+
+class UserBlogHeaderV: UIView {
+    
+    var avatarV = UIImageView()
+    var signL = UILabel()
+    var focusNumL = UILabel()
+    var fansNumL = UILabel()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = kColorWhite;
+        
+        avatarV.layer.masksToBounds = true
+        avatarV.layer.cornerRadius = 34.5
+        avatarV.contentMode = .scaleAspectFill
+        self.addSubview(avatarV)
+        avatarV.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 69, height: 69))
+            make.left.equalTo(35)
+            make.top.equalTo(30)
+        }
+        
+        signL.textColor = kColorTextLight
+        signL.font = UIFont.systemFont(ofSize: 13)
+        signL.numberOfLines = 0
+        signL.adjustsFontSizeToFitWidth = true
+        self.addSubview(signL)
+        signL.snp.makeConstraints { (make) in
+            make.left.equalTo(avatarV)
+            make.right.equalTo(-35)
+            make.top.equalTo(avatarV.snp.bottom).offset(20)
+            make.bottom.equalTo(self).offset(-20)
+        }
+        
+        let lineCenterX = Define.screenWidth() * 3/4
+        let lineView = UIView()
+        lineView.backgroundColor = kColorLine
+        self.addSubview(lineView)
+        lineView.snp.makeConstraints { (make) in
+            make.width.equalTo(0.5)
+            make.height.equalTo(50)
+            make.centerX.equalTo(lineCenterX)
+            make.centerY.equalTo(avatarV.snp.centerY)
+        }
+        
+        focusNumL.textColor = kColorRed
+        focusNumL.font = UIFont.systemFont(ofSize: 15)
+        focusNumL.textAlignment = .center
+        self.addSubview(focusNumL)
+        focusNumL.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 70, height: 20))
+            make.top.equalTo(lineView.snp.top)
+            make.right.equalTo(lineView.snp.left)
+        }
+        
+        fansNumL.textColor = kColorRed
+        fansNumL.font = UIFont.systemFont(ofSize: 15)
+        fansNumL.textAlignment = .center
+        self.addSubview(fansNumL)
+        fansNumL.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 70, height: 20))
+            make.top.equalTo(lineView.snp.top)
+            make.left.equalTo(lineView.snp.right)
+        }
+        
+        let focusTL = UILabel()
+        focusTL.textColor = kColorGary
+        focusTL.font = UIFont.systemFont(ofSize: 15)
+        focusTL.textAlignment = .center
+        focusTL.text = "关注"
+        self.addSubview(focusTL)
+        focusTL.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 70, height: 20))
+            make.bottom.equalTo(lineView.snp.bottom)
+            make.right.equalTo(lineView.snp.left)
+        }
+        
+        let fansTL = UILabel()
+        fansTL.textColor = kColorGary
+        fansTL.font = UIFont.systemFont(ofSize: 15)
+        fansTL.textAlignment = .center
+        fansTL.text = "粉丝"
+        self.addSubview(fansTL)
+        fansTL.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 70, height: 20))
+            make.bottom.equalTo(lineView.snp.bottom)
+            make.left.equalTo(lineView.snp.right)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 class UserBlogCell: NormalCell {
@@ -48,35 +143,37 @@ class UserBlogCell: NormalCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        themeLabel.backgroundColor = UIColor.random()
+        themeLabel.textColor = kColorBlack
+        themeLabel.font = UIFont.systemFont(ofSize: 16)
         self.bgView.addSubview(themeLabel)
         themeLabel.snp.makeConstraints { (make) in
             make.left.equalTo(15)
             make.right.equalTo(-15)
             make.height.equalTo(20)
-            make.top.equalTo(15)
+            make.top.equalTo(10)
         }
         
         dateLabel.adjustsFontSizeToFitWidth = true
-        dateLabel.backgroundColor = UIColor.random()
+        dateLabel.font = UIFont.systemFont(ofSize: 11)
+        dateLabel.textColor = kColorTextLight
         self.bgView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { (make) in
             make.left.equalTo(themeLabel.snp.left)
             make.height.equalTo(themeLabel.snp.height)
-            make.top.equalTo(themeLabel.snp.bottom).offset(15)
+            make.top.equalTo(themeLabel.snp.bottom).offset(10)
             make.width.equalTo(150)
         }
         
         recordNumLabel.textAlignment = .right
-        recordNumLabel.backgroundColor = UIColor.random()
+        recordNumLabel.textColor = kColorTextLight
+        recordNumLabel.font = UIFont.systemFont(ofSize: 12)
         self.bgView.addSubview(recordNumLabel)
         recordNumLabel.snp.makeConstraints { (make) in
             make.right.equalTo(themeLabel.snp.right)
             make.height.equalTo(themeLabel.snp.height)
-            make.top.equalTo(themeLabel.snp.bottom).offset(15)
+            make.top.equalTo(themeLabel.snp.bottom).offset(10)
             make.width.equalTo(150)
         }
-        
         
         firstPic.backgroundColor = UIColor.random()
         secondPic.backgroundColor = firstPic.backgroundColor
@@ -88,7 +185,7 @@ class UserBlogCell: NormalCell {
         secondPic.contentMode = .scaleToFill
         self.bgView.addSubview(secondPic)
         secondPic.snp.makeConstraints { (make) in
-            make.top.equalTo(recordNumLabel.snp.bottom).offset(15)
+            make.top.equalTo(recordNumLabel.snp.bottom).offset(10)
             make.centerX.equalTo(self.bgView.snp.centerX)
             make.size.equalTo(CGSize.init(width: pic_W_H, height: pic_W_H))
         }
@@ -108,7 +205,6 @@ class UserBlogCell: NormalCell {
             make.right.equalTo(-15)
             make.size.equalTo(CGSize.init(width: pic_W_H, height: pic_W_H))
         }
-
     }
     
     func setMyGrowMWith(model: GrowM) {
@@ -116,6 +212,27 @@ class UserBlogCell: NormalCell {
         themeLabel.text = self.myGrowM.themeName
         dateLabel.text = self.myGrowM.startDate + " - " + self.myGrowM.endDate
         recordNumLabel.text = "已鞭挞" + self.myGrowM.recordNum + "次"
+        if self.myGrowM.threeDay.count > 0 {
+            if let threeDayDic = self.myGrowM.threeDay.first {
+                if let picture = threeDayDic["picture"] {
+                    self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+                }
+            }
+        }
+        
+        if self.myGrowM.threeDay.count > 1 {
+            let threeDayDic = self.myGrowM.threeDay[1]
+            if let picture = threeDayDic["picture"] {
+                self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+            }
+        }
+        
+        if self.myGrowM.threeDay.count > 2 {
+            let threeDayDic = self.myGrowM.threeDay[2]
+            if let picture = threeDayDic["picture"] {
+                self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +244,12 @@ class UserBlogCell: NormalCell {
     }
     
     class func cellHeight(model:GrowM) -> CGFloat {
-        var height:CGFloat = 215
+        let pic_W_H = (Define.screenWidth() - 66)/3
+        var height:CGFloat = 70
+        if model.threeDay.count > -1 {
+            height = height + pic_W_H + 20
+            return height
+        }
         return height
     }
 
@@ -140,6 +262,7 @@ class QueryUserBlogC: UIViewController {
 
     var userBlogM = UserBlogM.init()
     var myTable = UITableView()
+    var userHeaderV = UserBlogHeaderV()
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
@@ -177,6 +300,18 @@ class QueryUserBlogC: UIViewController {
         self.myTable.dataSource = self
         self.myTable.delegate = self
         self.view.addSubview(self.myTable)
+        
+        self.userHeaderV.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: kUserHeight)
+        if self.userBlogM.myGrow.count > 0 {
+            if let growM = self.userBlogM.myGrow.first {
+                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: "")
+            }
+        }
+        self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
+        self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
+        self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
+        self.myTable.tableHeaderView = self.userHeaderV
+        
         self.myTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
@@ -218,7 +353,12 @@ extension QueryUserBlogC: UITableViewDelegate {
 
 extension QueryUserBlogC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 215
+        if indexPath.section == 0 {
+            let growM = self.userBlogM.myGrow[indexPath.row]
+            return UserBlogCell.cellHeight(model: growM)
+        }
+        let growM = self.userBlogM.mySupervise[indexPath.row]
+        return UserBlogCell.cellHeight(model: growM)
     }
 
 }
