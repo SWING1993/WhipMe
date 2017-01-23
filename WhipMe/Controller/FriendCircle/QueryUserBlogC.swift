@@ -8,6 +8,7 @@
 
 import UIKit
 import HandyJSON
+import SwiftyJSON
 
 let kUserHeight: CGFloat = 180
 
@@ -246,7 +247,7 @@ class UserBlogCell: NormalCell {
     class func cellHeight(model:GrowM) -> CGFloat {
         let pic_W_H = (Define.screenWidth() - 66)/3
         var height:CGFloat = 70
-        if model.threeDay.count > -1 {
+        if model.threeDay.count > 0 {
             height = height + pic_W_H + 20
             return height
         }
@@ -289,7 +290,28 @@ class QueryUserBlogC: UIViewController {
     
     // 添加关注
     func follow() {
-    
+        if self.userBlogM.myGrow.count > 0 {
+            if let growM = self.userBlogM.myGrow.first {
+                let params = [
+                    "focus":growM.creator,
+                    "me":UserManager.shared.userId,
+                    ]
+                HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                    if let dataResult = result {
+                        print(dataResult)
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            Tool.showHUDTip(tipStr: "关注成功")
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
+        }
     }
     
 
