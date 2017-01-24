@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CashController: UIViewController {
 
     var addTask = AddTaskM()
     var myTable = UITableView()
     let rechargeTextFiele = UITextField()
+    var account = "0.00"
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setupRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         steup()
+        setupRequest()
     }
     
     func steup() {
@@ -48,10 +56,38 @@ class CashController: UIViewController {
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
             if let guarantee = self.rechargeTextFiele.text {
+                let value1: Double = Double(guarantee)!
+                let value2: Double = Double(self.account)!
+                if value1 > value2 {
+                    Tool.showHUDTip(tipStr: "余额不足！")
+                    return
+                }
+                
                 weakSelf?.addTask.guarantee = guarantee
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddWhipController.addSupervisorKey()), object: weakSelf?.addTask)
                 weakSelf?.dismiss(animated: true, completion: { })
             }
+        }
+    }
+    
+    func setupRequest() {
+        let params = [
+            "userId":UserManager.shared.userId
+        ]
+        HttpAPIClient.apiClientPOST("queryAccountById", params: params, success: { (result) in
+            if let dataResult = result {
+                print(dataResult)
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    self.account = json["data"][0]["account"].stringValue
+                    self.myTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     
@@ -86,7 +122,7 @@ extension CashController: UITableViewDataSource {
             })
 
             let cashL = UILabel()
-            cashL.text = "余额：¥200"
+            cashL.text = "余额：¥"+self.account
             cashL.font = UIFont.systemFont(ofSize: 16)
             cell.bgView.addSubview(cashL)
             cashL.snp.makeConstraints({ (make) in
@@ -107,6 +143,11 @@ extension CashController: UITableViewDataSource {
                 make.size.equalTo(CGSize.init(width: 50, height: 23))
                 make.centerY.equalTo(cell.bgView)
                 make.right.equalTo(-15)
+            })
+            
+            rechargeBtn.bk_(whenTapped: { 
+                let rechargeVC = TopUpViewController()
+                self.navigationController?.pushViewController(rechargeVC, animated: true)
             })
         }
         else {
@@ -131,7 +172,7 @@ extension CashController: UITableViewDataSource {
             })
            
             rechargeTextFiele.font = UIFont.systemFont(ofSize: 13)
-            rechargeTextFiele.keyboardType = .numberPad
+            rechargeTextFiele.keyboardType = .numbersAndPunctuation
             rechargeTextFiele.placeholder = "请输入"
             rechargeTextFiele.textAlignment = .right
             cell.bgView.addSubview(rechargeTextFiele)

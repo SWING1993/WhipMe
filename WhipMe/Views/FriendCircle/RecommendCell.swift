@@ -328,7 +328,7 @@ class RecommendCell: NormalCell {
         }else {
             self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
         }
-        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultImageHead())
+        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         self.contentL.text = model.content
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"

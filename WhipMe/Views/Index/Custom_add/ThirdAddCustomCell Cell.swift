@@ -49,11 +49,12 @@ class ThirdAddCustomCell: NormalCell {
         addLabel.text = "添加监督人"
         addLabel.textColor = kColorGary
         addLabel.textAlignment = .center
+        addLabel.numberOfLines = 2
         addLabel.font = UIFont.systemFont(ofSize: 12)
         bgView.addSubview(addLabel)
         addLabel.snp.makeConstraints { (make) in
             make.width.equalTo(100)
-            make.height.equalTo(20)
+            make.height.equalTo(40)
             make.centerX.equalTo(bgView)
             make.top.equalTo(addBtn.snp.bottom)
         }

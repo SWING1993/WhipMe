@@ -69,6 +69,10 @@ class Define: NSObject {
         return "0d6f1c4eca"
     }
     
+    class func kDefaultHeadStr() -> String {
+        return "default_head"
+    }
+
     class func kDefaultImageHead() -> UIImage {
         return UIImage.init(named: "default_head")!
     }

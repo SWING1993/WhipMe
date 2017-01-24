@@ -229,7 +229,7 @@ class TaCecordController: UIViewController {
             make.height.equalTo(20)
         })
         
-        avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultImageHead())
+        avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"
