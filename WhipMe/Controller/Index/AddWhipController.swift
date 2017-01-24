@@ -11,12 +11,16 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 import SwiftDate
+import HandyJSON
 
-class QueryHotThemeM: NSObject {
+class QueryHotThemeM: HandyJSON {
     var num:String = ""
     var themeIcon:String = ""
     var themeId:String = ""
     var themeName:String = ""
+    
+    required init() {}
+
 }
 
 class AddWhipController: UIViewController {
@@ -30,11 +34,11 @@ class AddWhipController: UIViewController {
         return plam
     }()
     
-    fileprivate var queryHotThemeMArr: NSArray = NSArray()
-    fileprivate var customTable: UITableView = UITableView()
-    fileprivate var hotTable: UITableView = UITableView()
-    fileprivate var submitBtn: UIBarButtonItem = UIBarButtonItem()
-    fileprivate var segmentedView: UISegmentedControl = UISegmentedControl()
+    fileprivate var queryHotThemeMArr : [QueryHotThemeM] = []
+    fileprivate var customTable = UITableView()
+    fileprivate var hotTable = UITableView()
+    fileprivate var submitBtn = UIBarButtonItem()
+    fileprivate var segmentedView = UISegmentedControl()
     fileprivate var searchBar = UITextField()
 
     override func viewDidAppear(_ animated: Bool) {
@@ -146,12 +150,22 @@ class AddWhipController: UIViewController {
     fileprivate func loadHotThemeData() {
         weak var weakSelf = self
         HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
-            if (result != nil) {
-                let json = JSON(result!)
+            if let resultData = result {
+                print(resultData)
+                let json = JSON(resultData)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
-                    let list = json["data"][0]["list"].arrayObject
-                    weakSelf?.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
+                    let list = json["data"][0]["list"].arrayValue
+                    weakSelf?.queryHotThemeMArr = {
+                        var temps : [QueryHotThemeM] = []
+                        for json in list {
+                            let jsonString = String(describing: json)
+                            if let model = JSONDeserializer<QueryHotThemeM>.deserializeFrom(json: jsonString) {
+                                temps.append(model)
+                            }
+                        }
+                        return temps
+                    }()
                     weakSelf?.hotTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -201,19 +215,29 @@ class AddWhipController: UIViewController {
             make.top.right.equalTo(0)
         }
         
+        weak var weakSelf = self
         searchBtn.bk_addEventHandler({ (sender) in
             if self.searchBar.text!.length <= 0 {
                 Tool.showHUDTip(tipStr: "请输入关键字")
                 return
             }
             HttpAPIClient.apiClientPOST("queryThemeByName", params: ["themeName":self.searchBar.text!], success: { (result) in
-                if (result != nil) {
-                    let json = JSON(result!)
+                if let resultData = result {
+                    let json = JSON(resultData)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
-                        let list = json["data"][0]["list"].arrayObject
-                        self.queryHotThemeMArr = QueryHotThemeM.mj_objectArray(withKeyValuesArray: list)
-                        self.hotTable.reloadData()
+                        let list = json["data"][0]["list"].arrayValue
+                        weakSelf?.queryHotThemeMArr = {
+                            var temps : [QueryHotThemeM] = []
+                            for json in list {
+                                let jsonString = String(describing: json)
+                                if let model = JSONDeserializer<QueryHotThemeM>.deserializeFrom(json: jsonString) {
+                                    temps.append(model)
+                                }
+                            }
+                            return temps
+                        }()
+                        weakSelf?.hotTable.reloadData()
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -223,9 +247,7 @@ class AddWhipController: UIViewController {
             }
         }, for: .touchUpInside)
         
-        
         hotTable.tableHeaderView = searchView
-     
     }
     
     fileprivate func prepareCustomTable() {
@@ -388,7 +410,7 @@ extension AddWhipController:UITableViewDataSource {
         if tableView.tag == 101 {
             let cell: HotAddCell = HotAddCell.init(style: UITableViewCellStyle.default, reuseIdentifier: HotAddCell.cellReuseIdentifier())
             
-            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
+            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.section]
             cell.titleL.text = model.themeName
             cell.subTitleL.text = "已有" + model.num + "位参加"
             cell.cellImage.setImageWith(urlString: model.themeIcon, placeholderImage: "")
@@ -426,8 +448,7 @@ extension AddWhipController: UITableViewDelegate {
         if tableView.tag == 101 {
             self.searchBar.endEditing(true)
             let vc = AddWhipController.init()
-            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.row] as! QueryHotThemeM
-            print(model.themeName)
+            let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.section]
             vc.queryHorThemeName = model.themeName
             vc.hideHot = true
             self.navigationController?.pushViewController(vc, animated: true)
