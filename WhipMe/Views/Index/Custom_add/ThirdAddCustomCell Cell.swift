@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ThirdAddCustomCell: NormalCell {
-    var addBtn: UIButton = UIButton.init()
-    var addLabel: UILabel = UILabel.init()
+    var addBtn = UIButton()
+    var addLabel = UILabel()
+    var addTask = AddTaskM()
+    
+    func setAddTask(task:AddTaskM) {
+        self.addTask = task
+        if self.addTask.type == "3" {
+            addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
+            addLabel.text = "添加监督人"
+        }
+        
+        if self.addTask.type == "2" {
+            addBtn.sd_setImage(with: URL.init(string: self.addTask.supervisorIcon), for: .normal, placeholderImage: nil)
+            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n保证金:"+self.addTask.guarantee+"元"
+        }
+        
+        if self.addTask.type == "1" {
+            addBtn.setImage(UIImage.init(named: "system_monitoring"), for: .normal)
+            addLabel.text = "监督人:系统监督\n保证金:"+self.addTask.guarantee+"元"
+        }
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
- 
-        
-//        addBtn.backgroundColor = UIColor.random()
-//        addLabel.backgroundColor = UIColor.random()
         
         addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
         bgView.addSubview(addBtn)

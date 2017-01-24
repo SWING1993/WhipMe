@@ -14,28 +14,10 @@ enum PrivacyType {
     case mySelf   //3
 }
 
+/*
 let kPlan = "PlanKey"
-
 class PlanM: NSObject {
 
-    /*
-     "themeName":self.myCostomAM.title,
-     "creator":UserManager.getUser().userId,
-     "nickname":UserManager.getUser().nickname,
-     "icon":UserManager.getUser().icon,
-     "plan":self.myCostomAM.content,
-     "startDate":startDate,
-     "endDate":endDate,
-     "clockTime":clockTime,
-     "type":"3",
-     "privacy":"1",
-     "supervisor":"",
-     "supervisorName":"",
-     "supervisorIcon":"",
-     "guarantee":""
-
- */
-    
     var themeName: String = ""
     var plan: String = ""
     var startTime: Date = Date()
@@ -78,3 +60,4 @@ class PlanM: NSObject {
         return plans
     }
 }
+*/

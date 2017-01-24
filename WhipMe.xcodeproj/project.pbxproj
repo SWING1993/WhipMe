@@ -192,7 +192,6 @@
 		E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8591D90D09600A4C14D /* SelectedCell.swift */; };
 		E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */; };
 		E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */; };
-		E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8781D92586900A4C14D /* AlarmClockController.swift */; };
 		E4C9B87C1D92594D00A4C14D /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B87B1D92594D00A4C14D /* WeekCell.swift */; };
 		E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */; };
 		E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9B8841D93690C00A4C14D /* StoreUserValue.m */; };
@@ -490,7 +489,6 @@
 		E4C9B8691D921AFA00A4C14D /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		E4C9B86A1D921AFA00A4C14D /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		E4C9B86C1D921F7200A4C14D /* SGHDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SGHDateView.swift; path = ../../Controller/Index/SGHDateView.swift; sourceTree = "<group>"; };
-		E4C9B8781D92586900A4C14D /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		E4C9B87B1D92594D00A4C14D /* WeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		E4C9B8811D93690C00A4C14D /* NSObject+StoreValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+StoreValue.h"; sourceTree = "<group>"; };
 		E4C9B8821D93690C00A4C14D /* NSObject+StoreValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+StoreValue.m"; sourceTree = "<group>"; };
@@ -659,7 +657,6 @@
 				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
 				E4A8EF041DE5883000E16B26 /* CashController.swift */,
 				E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */,
-				E4C9B8781D92586900A4C14D /* AlarmClockController.swift */,
 				E40D70C61DE6D2E40087B9EF /* TaCecordController.swift */,
 				E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */,
 				E4D97E4A1D991816006D3188 /* LogController.swift */,
@@ -1479,7 +1476,6 @@
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */,
 				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
-				E4C9B8791D92586900A4C14D /* AlarmClockController.swift in Sources */,
 				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				C5C177BE1E2CBCC000891C0D /* JCHATMessageTableViewCell.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,

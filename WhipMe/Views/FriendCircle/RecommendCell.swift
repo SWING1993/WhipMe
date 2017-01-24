@@ -57,7 +57,7 @@ class RecommendCell: NormalCell {
             make.height.width.equalTo(36)
         })
         
-        avatarV .bk_(whenTapped: { () -> Void in
+        avatarV.bk_(whenTapped: { () -> Void in
             let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
             hud.label.text = "加载中..."
             let params = [

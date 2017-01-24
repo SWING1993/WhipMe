@@ -10,12 +10,12 @@ import UIKit
 
 class CashController: UIViewController {
 
-    var myTable: UITableView = UITableView()
+    var addTask = AddTaskM()
+    var myTable = UITableView()
     let rechargeTextFiele = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         steup()
     }
@@ -47,10 +47,13 @@ class CashController: UIViewController {
         
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
-            _ = weakSelf?.navigationController?.popViewController(animated: true)
+            if let guarantee = self.rechargeTextFiele.text {
+                weakSelf?.addTask.guarantee = guarantee
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddWhipController.addSupervisorKey()), object: weakSelf?.addTask)
+                weakSelf?.dismiss(animated: true, completion: { })
+            }
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,7 +85,6 @@ extension CashController: UITableViewDataSource {
                 make.left.equalTo(15)
             })
 
-            
             let cashL = UILabel()
             cashL.text = "余额：¥200"
             cashL.font = UIFont.systemFont(ofSize: 16)
@@ -128,7 +130,6 @@ extension CashController: UITableViewDataSource {
                 make.left.equalTo(iconV.snp.right).offset(15)
             })
            
-            
             rechargeTextFiele.font = UIFont.systemFont(ofSize: 13)
             rechargeTextFiele.keyboardType = .numberPad
             rechargeTextFiele.placeholder = "请输入"

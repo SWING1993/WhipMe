@@ -51,68 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    class func removeNotification(plan: PlanM) -> Void {
-        DispatchQueue.global().async {
-            if plan.alarmWeeks.count <= 0 {
-                return
-            }
-            if #available(iOS 10.0, *) {
-                // 使用 UNUserNotificationCenter 来管理通知
-    
-                let identifiers =  plan.alarmWeeks.map({ (value) -> String in
-                    let indentifier = plan.themeName + String(value)
-                    return indentifier
-                })
-                let center = UNUserNotificationCenter.current()
-                center.removeDeliveredNotifications(withIdentifiers: identifiers)
-                center.removePendingNotificationRequests(withIdentifiers: identifiers)
-                print("删除通知：\(identifiers)")
-
-            } else {
-                // Fallback on earlier versions
-            }
-        }
-    }
-    
-    class func registerNotification(plan: PlanM) -> Void {
-        DispatchQueue.global().async {
-            /*
-            if #available(iOS 10.0, *) {
-                // 使用 UNUserNotificationCenter 来管理通知
-                for (_, value) in plan.alarmWeeks.enumerated() {
-                    let center = UNUserNotificationCenter.current()
-                    let content = UNMutableNotificationContent.init()
-                    content.title = NSString.localizedUserNotificationString(forKey: plan.themeName, arguments: nil)
-                    content.body = NSString.localizedUserNotificationString(forKey: plan.plan, arguments: nil)
-                    content.sound = UNNotificationSound.default()
-                    var components = DateComponents.init()
-                    components.weekday = value
-                    components.hour = plan.alarmClock.hour
-                    components.minute = plan.alarmClock.minute
-                    components.second = 0
-                    let identifier = plan.themeName + String(value)
-                    let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
-                    let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
-                    center.add(request, withCompletionHandler: { (error) in
-                        print("error : \(error)")
-                    })
-                    let string = String(plan.alarmClock.hour) + ":" + String(plan.alarmClock.minute)
-                    print("成功添加" + identifier + "的" + string + "本地通知")
-                }
-            } else {
-                // Fallback on earlier versions
-                let notification = UILocalNotification.init()
-                let date = Date.init(timeIntervalSinceNow: alertItme)
-                print(Date.init(timeIntervalSinceNow: alertItme))
-                notification.fireDate = date
-                notification.timeZone = NSTimeZone.local
-                notification.repeatInterval = .day
-                UIApplication.shared.scheduleLocalNotification(notification)
-            }
-            */
-        }
-    }
-
+   
     func applicationWillResignActive(_ application: UIApplication) {
         
     }

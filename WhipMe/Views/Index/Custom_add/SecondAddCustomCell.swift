@@ -10,20 +10,21 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-//定义闭包类型（特定的函数类型函数类型）
-//typealias InputClosureType = (IndexPath) -> Void
-
 class SecondAddCustomCell: NormalCell {
     
     //接收上个页面穿过来的闭包块
-    var backClosure:((IndexPath) -> Void)?
-    var alarmClockBlock : ((PlanM) -> Void)?
-    var privacydBlock : ((PlanM) -> Void)?
-    
-    var table : UITableView!
-    var myCostomAM = PlanM.init()
-    
     let itmes = ["开始时间", "结束时间", "闹钟设置", "隐私习惯"]
+    var backClosure:((IndexPath) -> Void)?
+    var alarmClockBlock : ((AddTaskM) -> Void)?
+    var privacydBlock : ((AddTaskM) -> Void)?
+    
+    var table = UITableView()
+    var addTask = AddTaskM()
+    
+    func setAddTask(task:AddTaskM) {
+        self.addTask = task
+        self.table.reloadData()
+    }
     
     class func getStartTimeK() -> String {
         return "getStartTimeK";
@@ -39,34 +40,33 @@ class SecondAddCustomCell: NormalCell {
     }
     
     func setStartTime(notification:Notification) -> Void {
-        let costomAM:PlanM = notification.object as! PlanM
-        myCostomAM.startTime = costomAM.startTime
+        let costomAM:AddTaskM = notification.object as! AddTaskM
+        addTask.startDate = costomAM.startDate
         table.reloadData()
     }
     
     func setEndTime(notification:Notification) -> Void {
-        let costomAM:PlanM = notification.object as! PlanM
-        myCostomAM.endTime = costomAM.endTime
+        let costomAM:AddTaskM = notification.object as! AddTaskM
+        addTask.endDate = costomAM.endDate
         table.reloadData()
     }
 
     
     func setAlarmClock(notification:Notification) -> Void {
-        let costomAM:PlanM = notification.object as! PlanM
-        myCostomAM.alarmClock = costomAM.alarmClock
-        myCostomAM.alarmWeeks = costomAM.alarmWeeks
+        let costomAM:AddTaskM = notification.object as! AddTaskM
+        addTask.clockTime = costomAM.clockTime
         table.reloadData()
         if self.alarmClockBlock != nil {
-            self.alarmClockBlock!(self.myCostomAM)
+            self.alarmClockBlock!(self.addTask)
         }
     }
 
     func setPrivacy(notification:Notification) -> Void {
-        let costomAM:PlanM = notification.object as! PlanM
-        myCostomAM.privacy = costomAM.privacy
+        let costomAM:AddTaskM = notification.object as! AddTaskM
+        addTask.privacy = costomAM.privacy
         table.reloadData()
         if self.privacydBlock != nil {
-            self.privacydBlock!(self.myCostomAM)
+            self.privacydBlock!(self.addTask)
         }
     }
     
@@ -76,28 +76,22 @@ class SecondAddCustomCell: NormalCell {
         self.backgroundColor = kColorBackGround
         self.selectionStyle = .none
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(setStartTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getStartTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setEndTime), name: NSNotification.Name(rawValue: SecondAddCustomCell.getEndTimeK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setAlarmClock), name: NSNotification.Name(rawValue: SecondAddCustomCell.getAlarmClockK()), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setPrivacy), name: NSNotification.Name(rawValue: SecondAddCustomCell.getPrivacyK()), object: nil)
     
-
-        if table == nil {
-            table = UITableView.init()
-            table.dataSource = self
-            table.delegate = self
-            table.isScrollEnabled = false
-            table.layer.masksToBounds = true
-            self.bgView.addSubview(table)
-            table.snp.makeConstraints { (make) in
-                make.top.equalTo(2)
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.height.equalTo(200)
-            }
+        table.dataSource = self
+        table.delegate = self
+        table.isScrollEnabled = false
+        table.layer.masksToBounds = true
+        self.bgView.addSubview(table)
+        table.snp.makeConstraints { (make) in
+            make.top.equalTo(2)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.height.equalTo(200)
         }
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -154,30 +148,30 @@ extension SecondAddCustomCell:UITableViewDataSource {
                 let formatter = DateFormatter()
                 formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = myCostomAM.startTime.string(format: .custom("yyyy.MM.dd"))
+                cell.detailTextLabel?.text = addTask.startDate.string(format: .custom("yyyy.MM.dd"))
             break
         
         case 1:
                 let formatter = DateFormatter()
                 formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = myCostomAM.endTime.string(format: .custom("yyyy.MM.dd"))
+                cell.detailTextLabel?.text = addTask.endDate.string(format: .custom("yyyy.MM.dd"))
             break
         
         case 2:
-                cell.detailTextLabel?.text = myCostomAM.alarmClock.string(format: .custom("HH:mm"))
+                cell.detailTextLabel?.text = addTask.clockTime.string(format: .custom("HH:mm"))
             break
         
         case 3:
-            if myCostomAM.privacy == PrivacyType.all {
+            if addTask.privacy == PrivacyType.all {
                 cell.detailTextLabel?.text = "所有人可见"
             }
             
-            else if myCostomAM.privacy == PrivacyType.myFollow {
+            else if addTask.privacy == PrivacyType.myFollow {
                 cell.detailTextLabel?.text = "仅我关注的人可见"
             }
             
-            else if myCostomAM.privacy == PrivacyType.mySelf {
+            else if addTask.privacy == PrivacyType.mySelf {
                 cell.detailTextLabel?.text = "仅自己可见"
             }
             else {
