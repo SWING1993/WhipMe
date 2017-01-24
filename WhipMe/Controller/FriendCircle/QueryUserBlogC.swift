@@ -322,7 +322,7 @@ class QueryUserBlogC: UIViewController {
         self.userHeaderV.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: kUserHeight)
         if self.userBlogM.myGrow.count > 0 {
             if let growM = self.userBlogM.myGrow.first {
-                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: "")
+                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
             }
         }
         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
