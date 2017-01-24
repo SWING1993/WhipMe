@@ -19,6 +19,7 @@
 #import <Bugly/Bugly.h>
 #import <PLeakSniffer/PLeakSniffer.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "WMUploadFile.h"
 
 //
 #import "NSDate+Extension.h"

@@ -47,7 +47,6 @@ class RecommendCell: NormalCell {
 
         avatarV = UIImageView.init()
         avatarV.contentMode = .scaleAspectFill
-        avatarV.backgroundColor = UIColor.random()
         avatarV.layer.cornerRadius = 36.0/2
         avatarV.layer.masksToBounds = true
         avatarV.isUserInteractionEnabled = true
@@ -149,7 +148,6 @@ class RecommendCell: NormalCell {
         })
         
         pictrueView = UIImageView.init()
-        pictrueView.backgroundColor = UIColor.random()
         pictrueView.contentMode = UIViewContentMode.scaleAspectFill
         pictrueView.clipsToBounds = true
         self.bgView.addSubview(pictrueView)
@@ -330,7 +328,7 @@ class RecommendCell: NormalCell {
         }else {
             self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
         }
-        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: "")
+        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultImageHead())
         self.contentL.text = model.content
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"
