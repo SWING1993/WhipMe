@@ -52,14 +52,19 @@ class CashController: UIViewController {
         
         let OKBtn = UIBarButtonItem.init()
         self.navigationItem.rightBarButtonItem = OKBtn
-        
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
             if let guarantee = self.rechargeTextFiele.text {
-                let value1: Double = Double(guarantee)!
-                let value2: Double = Double(self.account)!
-                if value1 > value2 {
-                    Tool.showHUDTip(tipStr: "余额不足！")
+                
+                if let value1: Double = Double(guarantee) {
+                    if let value2: Double = Double(self.account) {
+                        if value1 > value2 {
+                            Tool.showHUDTip(tipStr: "余额不足！")
+                            return
+                        }
+                    }
+                } else {
+                    Tool.showHUDTip(tipStr: "请填写正确的金额！")
                     return
                 }
                 
@@ -172,7 +177,7 @@ extension CashController: UITableViewDataSource {
             })
            
             rechargeTextFiele.font = UIFont.systemFont(ofSize: 13)
-            rechargeTextFiele.keyboardType = .numbersAndPunctuation
+            rechargeTextFiele.keyboardType = .decimalPad
             rechargeTextFiele.placeholder = "请输入"
             rechargeTextFiele.textAlignment = .right
             cell.bgView.addSubview(rechargeTextFiele)

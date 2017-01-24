@@ -69,7 +69,7 @@ class ThirdAddCustomCell: NormalCell {
             make.height.equalTo(30)
             make.left.equalTo(15)
             make.right.equalTo(-15)
-            make.top.equalTo(5)
+            make.top.equalTo(7.5)
         })
         
         let subTitleL = UILabel.init()
@@ -79,10 +79,10 @@ class ThirdAddCustomCell: NormalCell {
         subTitleL.font = UIFont.systemFont(ofSize: 8)
         bgView.addSubview(subTitleL)
         subTitleL.snp.makeConstraints({ (make) in
-            make.height.equalTo(40)
+            make.height.equalTo(30)
             make.left.equalTo(15)
-            make.right.equalTo(-15)
-            make.bottom.equalTo(-15)
+            make.right.equalTo(-10)
+            make.bottom.equalTo(-10)
         })
     }
     
