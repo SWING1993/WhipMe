@@ -77,8 +77,8 @@ class Define: NSObject {
         return UIImage.init(named: "nilTouSu")!
     }
     
-    class func kImageBaseUrl() -> String {
-        return "http://ok0tksr2d.bkt.clouddn.com/"
+    class func kImageBaseUrl(imgPath: String) -> String {
+        return "http://ok0tksr2d.bkt.clouddn.com/\(imgPath)"
     }
     
     // MARK: 颜色的定义

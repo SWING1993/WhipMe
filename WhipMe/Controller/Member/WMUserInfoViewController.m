@@ -248,19 +248,15 @@ static NSString *identifier_cell = @"userInfoViewCell";
     _imagePath = [UIImage scaleImage:imageEdited];
     NSData  *imageData = [UIImage dataRepresentationImage:_imagePath];
     
-    NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *fullPath = [NSString stringWithFormat:@"%@/%@.png",filePath,[UIImage generateUuidString]];
     [self.tableViewWM reloadData];
-    
-    BOOL flag = [imageData writeToFile:fullPath atomically:YES];
-    if (flag) {
+    if (imageData) {
         WEAK_SELF
         [WMUploadFile upToData:imageData backInfo:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             DebugLog(@"_________%@_____%@_____%@",info, key, resp);
             if (resp == nil) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",info.error]];
             } else {
-                NSString *img_url = [NSString stringWithFormat:@"%@%@",[Define kImageBaseUrl], resp[@"key"]];
+                NSString *img_url = [NSString stringWithFormat:@"%@",[Define kImageBaseUrlWithImgPath:resp[@"key"]]];
                 weakSelf.userModel.icon = img_url;
                 [weakSelf editUserInfo:img_url editType:EditControlAvatar];
                 [weakSelf.tableViewWM reloadData];

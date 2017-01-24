@@ -34,7 +34,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         setup()
         
-        self.avatar = "http://www.superspv.com/image/btwapp/head/1484553520694538.jpg"
         if (NSString.isBlankString(self.unionId) == false) {
             getWechatAccessToKen()
             
@@ -217,17 +216,17 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         print("nickname is \(nickName)")
         
-        if avatar.characters.count == 0 {
+        if (NSString.isBlankString(self.avatar)) {
             showIsMessage(msg: "请设置头像!")
             return
         }
         
-        if nickName.characters.count == 0 {
+        if (NSString.isBlankString(nickName)) {
             showIsMessage(msg: "请输入昵称!")
             return
         }
         
-        if userSex.characters.count == 0 {
+        if (NSString.isBlankString(self.userSex)) {
             showIsMessage(msg: "请选择性别!")
             return
         }
@@ -239,7 +238,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let params = ["unionId":self.unionId,
                       "appOpenId":"",
                       "nickname":nickName,
-                      "icon":avatar,
+                      "icon":self.avatar,
                       "sex":sex_int,
                       "sign":"签名"]
         HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
@@ -259,8 +258,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         txtNickname.resignFirstResponder()
         let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
         let mobileStr: String = String(self.mobile)
-        
-        print("nickname is \(nickName)")
         
         if (NSString.isBlankString(self.avatar)) {
             showIsMessage(msg: "请设置头像!")
@@ -286,7 +283,13 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             return
         }
         
-        HttpAPIClient.apiClientPOST("register", params: ["mobile":mobileStr,"icon":self.avatar,"nickname":nickName,"sex":sex_int], success: { (result) in
+        let params = ["mobile":mobileStr,
+                      "icon":self.avatar,
+                      "nickname":nickName,
+                      "sex":sex_int,
+                      "birthday":"1992-10-05"]
+        
+        HttpAPIClient.apiClientPOST("register", params:params, success: { (result) in
             print("注册：第2步 is result:\(result)")
             let json = JSON(result!)
             let data = json["data"][0]
@@ -368,19 +371,16 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
         if flag {
-            HttpAPIClient.uploadImage(withMethod: "/headUploadServlet", with: newImge, success: { (result) in
-                print("upload image is result:\(result)")
-                let data = JSON(result!)
-                if (data["ret"].intValue != 0) {
-                    //图片上传失败!
-                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+            WMUploadFile.up(to: imageData as Data!, backInfo: { (info, key, resp) in
+                //图片上传失败!
+                if (resp == nil) {
+                    Tool.showHUDTip(tipStr: "\(info?.error)")
                 } else {
-                    let user = data["userInfo"]
-                    self.avatar = String(describing: user["icon"])
+                    let img_url: String = Define.kImageBaseUrl(imgPath: resp?["key"] as! String)
+                    self.avatar = img_url
                 }
-                
-            }, failed: { (error) in
-                print("upload image is error:\(error)")
+            }, fail: { (error) in
+                Tool.showHUDTip(tipStr: "头像上传失败")
             })
         }
     }
@@ -394,9 +394,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let str_text: String = textField.text! + string
-        print("_______textField: \(str_text)")
-        
-        if str_text.characters.count > 21 {
+        if str_text.characters.count > 30 {
             return false
         }
         
