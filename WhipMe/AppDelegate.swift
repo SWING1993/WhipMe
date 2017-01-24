@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-//        let loginControl: TopUpViewController = TopUpViewController()
+//        let loginControl: WMAboutViewController = WMAboutViewController()
 //        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
 //        self.window?.rootViewController = navControl
 
@@ -188,6 +188,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearance.barTintColor = Define.kColorNavigation()
         navigationBarAppearance.titleTextAttributes =  [kCTFontAttributeName as String:kButtonFont, kCTForegroundColorAttributeName as String:UIColor.white]
         navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.shadowImage = UIImage.init()
         
         let barButtonAppearance: UIBarButtonItem = UIBarButtonItem.appearance()
         barButtonAppearance.tintColor = UIColor.white
@@ -221,12 +222,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func resetApplicationBadge() {
-        let badge = UserDefaults.standard.object(forKey: Define.kBADGE())
-        if badge != nil {
-            let number = badge as! Int
-            UIApplication.shared.applicationIconBadgeNumber = number
-            JPUSHService.setBadge(number)
-        }
+//        let badge = UserDefaults.standard.object(forKey: Define.kBADGE())
+//        if badge != nil {
+//            let number = badge as! Int
+//            UIApplication.shared.applicationIconBadgeNumber = number
+//            JPUSHService.setBadge(number)
+//        }
     }
 }
 

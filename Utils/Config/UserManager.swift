@@ -50,6 +50,7 @@ class UserManager: NSObject {
     var fansNum: String = ""
     var pwdim: String = ""
     var wallet: String = ""
+    var isManager: Bool = false // 1.管理员 0.正常用户
     
     class var shared: UserManager {
         return sharedKraken

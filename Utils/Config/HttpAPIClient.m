@@ -10,9 +10,11 @@
 
 static NSString *const baseUrl = @"http://www.superspv.com";
 
+static NSInteger const kSecondsOut = 10;
+
 @implementation HttpAPIClient
 
-+ (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed {
++ (void)APIClientPOST:(NSString *)method params:(NSDictionary *)param Success:(SuccessBlock)success Failed:(void (^)(NSError *error))failed {
     if (kStringIsEmpty(method)) {
         return;
     }
@@ -30,12 +32,36 @@ static NSString *const baseUrl = @"http://www.superspv.com";
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 10.0;
+    manager.requestSerializer.timeoutInterval = kSecondsOut;
     [manager.responseSerializer setAcceptableContentTypes:nil];
     [manager POST:host_url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         success == nil ?: success(result);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        failed == nil ?: failed(error);
+    }];
+}
+
++ (void)getAPIClient:(NSString *)get_rul param:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed {
+    if ([NSString isBlankString:get_rul]) {
+        failed == nil ?: failed([NSError errorWithDomain:@"访问地址错误！" code:1001 userInfo:nil]);
+        return;
+    }
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = kSecondsOut;
+    [manager.responseSerializer setAcceptableContentTypes:nil];
+    
+    [manager GET:get_rul parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        success == nil ?: success(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         failed == nil ?: failed(error);
@@ -113,59 +139,6 @@ static NSString *const baseUrl = @"http://www.superspv.com";
         }
     }];
     [uploadTask resume];
-    
-    /*
-     write(头边界的字节数组);
-     write("Content-Disposition: form-data; name="fieldNameHer"; filename="0000000000000.000"\r\n"的字节数组);
-     write("Content-Type: application/octet-stream\r\n"的字节数组);
-     write(真正图片的字节数组);
-     write(为边界的字节数组);
-     */
-}
-
-- (void)multiPartPost:(NSDictionary *)dicData{
-    
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.superspv.com/json_dispatch.rpc"];
-    NSMutableString *bodyContent = [NSMutableString string];
-    
-    //POST_BOUNDS的值 = 系统时间戳;
-    NSString *post_bounds = [NSString stringWithFormat:@"%lld",(long long)[[NSDate date] timeIntervalSince1970]];
-    for(NSString *key in dicData.allKeys) {
-        id value = [dicData objectForKey:key];
-        [bodyContent appendFormat:@"--%@\r\n",post_bounds];
-        [bodyContent appendFormat:@"Content-Disposition: form-data;name=\"file\";filename=\"0000000000000.000\"\r\n"];
-        [bodyContent appendFormat:@"Content-Type:application/octet-stream\r\n\r\n"];
-        [bodyContent appendFormat:@"%@",value];
-    }
-    [bodyContent appendFormat:@"\r\n--%@--\r\n",post_bounds];
-    
-    NSData *bodyData=[bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-    [request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@",post_bounds] forHTTPHeaderField:@"Content-Type"];
-    [request addValue: [NSString stringWithFormat:@"%zd",bodyData.length] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:bodyData];
-    
-    NSLog(@"请求的长度%@",[NSString stringWithFormat:@"%zd",bodyData.length]);
-    
-    __autoreleasing NSError *error=nil;
-    __autoreleasing NSURLResponse *response=nil;
-    
-    NSLog(@"输出Bdoy中的内容>>\n%@",[[NSString alloc]initWithData:bodyData encoding:NSUTF8StringEncoding]);
-    NSData *reciveData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-//    [NSURLSession dataTaskWithRequest: completionHandler];
-    if(error) {
-        NSLog(@"出现异常%@",error);
-    } else {
-        NSHTTPURLResponse *httpResponse=(NSHTTPURLResponse *)response;
-        if(httpResponse.statusCode==200) {
-            NSLog(@"服务器成功响应!>>%@",[[NSString alloc]initWithData:reciveData encoding:NSUTF8StringEncoding]);
-        } else {
-            NSLog(@"服务器返回失败>>%@",[[NSString alloc]initWithData:reciveData encoding:NSUTF8StringEncoding]);
-        }
-    }
 }
 
 @end

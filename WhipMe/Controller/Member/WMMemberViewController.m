@@ -389,7 +389,6 @@ static NSString *identifier_head = @"tableViewView_head";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserInfo" params:param Success:^(id result) {
-        [weakSelf queryAccountByWallet];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -397,6 +396,7 @@ static NSString *identifier_head = @"tableViewView_head";
             NSDictionary *info = [data objectForKey:@"userInfo"];
             UserManager *model = [UserManager shared];
             model.sign = info[@"sign"];
+            model.wallet = [NSString stringWithFormat:@"%.2f",[info[@"account"] floatValue]];
             model.fansNum = [NSString stringWithFormat:@"%ld",[info[@"fansNum"] integerValue]];
             model.focusNum = [NSString stringWithFormat:@"%ld",[info[@"focusNum"] integerValue]];
             [weakSelf setData:model];
@@ -422,7 +422,7 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        [weakSelf queryAccountByWallet];
+        
     }];
 }
 

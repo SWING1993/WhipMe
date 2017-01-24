@@ -21,6 +21,8 @@ pod 'Bugly'
 pod 'PLeakSniffer'
 pod 'NJKWebViewProgress'
 pod 'SDWebImage'
+pod 'Qiniu', '~> 7.1'
+
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'
