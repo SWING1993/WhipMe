@@ -248,26 +248,23 @@ static NSString *identifier_cell = @"userInfoViewCell";
     _imagePath = [UIImage scaleImage:imageEdited];
     NSData  *imageData = [UIImage dataRepresentationImage:_imagePath];
     
-    NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *fullPath = [NSString stringWithFormat:@"%@/%@.png",filePath,[UIImage generateUuidString]];
     [self.tableViewWM reloadData];
-    
-    BOOL flag = [imageData writeToFile:fullPath atomically:YES];
-    if (flag) {
+    if (imageData) {
         WEAK_SELF
-        [HttpAPIClient uploadImageWithMethod:@"/headUploadServlet" withImage:_imagePath Success:^(id result) {
-            DebugLog(@"____________result:%@",result);
-            
-            if ([result[@"ret"] integerValue] != 0) {
-                [Tool showHUDTipWithTipStr:result[@"desc"]];
+        [WMUploadFile upToData:imageData backInfo:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+            DebugLog(@"_________%@_____%@_____%@",info, key, resp);
+            if (resp == nil) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",info.error]];
             } else {
-                weakSelf.userModel.icon = result[@"userInfo"][@"icon"];
-                [weakSelf editUserInfo:result[@"userInfo"][@"icon"] editType:EditControlAvatar];
+                NSString *img_url = [NSString stringWithFormat:@"%@",[Define kImageBaseUrlWithImgPath:resp[@"key"]]];
+                weakSelf.userModel.icon = img_url;
+                [weakSelf editUserInfo:img_url editType:EditControlAvatar];
                 [weakSelf.tableViewWM reloadData];
             }
-        } Failed:^(NSError *error) {
-            [Tool showHUDTipWithTipStr:error.domain];
-            DebugLog(@"upload image is error:%@",error);
+
+        } fail:^(NSError *error) {
+            DebugLog(@"___________error:%@",error);
+            [Tool showHUDTipWithTipStr:@"头像上传失败"];
         }];
     }
 }

@@ -42,6 +42,8 @@
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
 		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
 		C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E41DE6E388007F886B /* ShareEngine.m */; };
+		C554AD1E1E3716EB00B3CF44 /* WMUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */; };
+		C554AD211E37190D00B3CF44 /* WMExitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD201E37190D00B3CF44 /* WMExitAlertView.m */; };
 		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
 		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
 		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
@@ -157,6 +159,8 @@
 		C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */; };
+		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
@@ -262,6 +266,10 @@
 		C54E77E11DE69290007F886B /* WMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserInfoViewController.m; sourceTree = "<group>"; };
 		C54E77E31DE6E388007F886B /* ShareEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEngine.h; sourceTree = "<group>"; };
 		C54E77E41DE6E388007F886B /* ShareEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEngine.m; sourceTree = "<group>"; };
+		C554AD1C1E3716EB00B3CF44 /* WMUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUploadFile.h; sourceTree = "<group>"; };
+		C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUploadFile.m; sourceTree = "<group>"; };
+		C554AD1F1E37190D00B3CF44 /* WMExitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMExitAlertView.h; sourceTree = "<group>"; };
+		C554AD201E37190D00B3CF44 /* WMExitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMExitAlertView.m; sourceTree = "<group>"; };
 		C555E7791DE5827600A443A0 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
 		C555E77A1DE5827600A443A0 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
 		C555E77C1DE5935900A443A0 /* TopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpViewController.h; sourceTree = "<group>"; };
@@ -437,6 +445,10 @@
 		C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationController.m; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		C5ECDB9B1E35CB92005C0018 /* WMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAboutViewController.h; sourceTree = "<group>"; };
+		C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAboutViewController.m; sourceTree = "<group>"; };
+		C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginManagerController.h; sourceTree = "<group>"; };
+		C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginManagerController.m; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
@@ -687,6 +699,8 @@
 				C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */,
 				C542FE401E24BBA6000A66CB /* WMFansAndFocusController.h */,
 				C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */,
+				C5ECDB9B1E35CB92005C0018 /* WMAboutViewController.h */,
+				C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -803,6 +817,8 @@
 				C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */,
 				C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */,
 				C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */,
+				C554AD1F1E37190D00B3CF44 /* WMExitAlertView.h */,
+				C554AD201E37190D00B3CF44 /* WMExitAlertView.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -838,6 +854,8 @@
 				C5F9BD751DD0147D000250E8 /* ChatMessage.h */,
 				C5F9BD761DD0147D000250E8 /* ChatMessage.m */,
 				C542FE391E24B476000A66CB /* WMConfig.h */,
+				C554AD1C1E3716EB00B3CF44 /* WMUploadFile.h */,
+				C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -849,6 +867,8 @@
 				C5A186A61D921A56000866AB /* RegisterViewController.swift */,
 				C5A66B321D990E5C00612E16 /* LoginWayController.swift */,
 				C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */,
+				C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */,
+				C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1420,6 +1440,7 @@
 				C5C1778F1E2CB7EF00891C0D /* JCHATConversationViewController.m in Sources */,
 				C5C177C51E2CBD0700891C0D /* ChatImageBubble.m in Sources */,
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
+				C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */,
 				C5C178041E2CBEE900891C0D /* JCHATSelectImgCollectionView.m in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
@@ -1485,10 +1506,12 @@
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
 				C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */,
+				C554AD211E37190D00B3CF44 /* WMExitAlertView.m in Sources */,
 				C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */,
 				C5C177A91E2CBA6200891C0D /* JCHATRawAudioDataPlayer.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
+				C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */,
 				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
 				C5C177C81E2CBD5400891C0D /* JCHATAudioPlayerHelper.m in Sources */,
 				C5C178171E2CC1BD00891C0D /* JCHATLoadMessageTableViewCell.m in Sources */,
@@ -1503,6 +1526,7 @@
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				C5C177A31E2CBA1E00891C0D /* JCHATMessageTextView.m in Sources */,
+				C554AD1E1E3716EB00B3CF44 /* WMUploadFile.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
 				C5C177F21E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m in Sources */,
 				C5C1782C1E2CC7F300891C0D /* MJPhoto.m in Sources */,
