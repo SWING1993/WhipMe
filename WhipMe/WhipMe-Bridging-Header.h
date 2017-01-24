@@ -42,6 +42,7 @@
 #import "WMMemberViewController.h"
 #import "WMWebViewController.h"
 #import "WMPrivateChatController.h"
+#import "WMAboutViewController.h"
 
 #import "FansAndFocusModel.h"
 #import "JCHATAlertToSendImage.h"

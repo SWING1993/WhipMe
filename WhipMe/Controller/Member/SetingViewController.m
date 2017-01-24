@@ -8,10 +8,13 @@
 
 #import "SetingViewController.h"
 #import "WMUserInfoViewController.h"
+#import "WMAboutViewController.h"
+#import "WMLoginManagerController.h"
+#import "WMExitAlertView.h"
 
 static NSString *identifier_cell = @"setingTableViewCell";
 
-@interface SetingViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SetingViewController () <UITableViewDelegate, UITableViewDataSource, WMExitAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) UserManager *userModel;
@@ -141,20 +144,23 @@ static NSString *identifier_cell = @"setingTableViewCell";
     } else if (indexPath.row == 3) {
         
     } else if (indexPath.row == 4) {
-        
-        
+        WMAboutViewController *controller = [WMAboutViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 5) {
-        
+        WMLoginManagerController *controller = [WMLoginManagerController new];
+        [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 7) {
-        WEAK_SELF
-        UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf clickWithLogout];
-        }]];
-        [alertExit addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }]];
-        [self presentViewController:alertExit animated:YES completion:nil];
+//        WEAK_SELF
+//        UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+//        [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            [weakSelf clickWithLogout];
+//        }]];
+//        [alertExit addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//            
+//        }]];
+//        [self presentViewController:alertExit animated:YES completion:nil];
+        WMExitAlertView *alertView = [[WMExitAlertView alloc] initWithTitle:@"你确定要退出鞭挞我吗？" delegate:self cancel:@"退出" confirm:@"再鞭挞一下"];
+        [alertView show];
     }
 }
 
@@ -164,6 +170,15 @@ static NSString *identifier_cell = @"setingTableViewCell";
     }];
     AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDegate setupLoginController];
+}
+
+#pragma mark - WMExitAlertViewDelegate
+- (void)exitAlertView:(WMExitAlertView *)alertView buttonIndex:(NSInteger)hvState {
+    if (hvState == 0) {
+        [self clickWithLogout];
+    } else if (hvState == 1) {
+    
+    }
 }
 
 @end

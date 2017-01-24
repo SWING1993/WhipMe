@@ -311,18 +311,7 @@ class LogController: UIViewController {
                 Tool.showHUDTip(tipStr: "请填写内容后再发送！")
                 return
             }
-           
-            /*
-            "userId":"打卡人ID",
-            "nickname":"打卡人昵称",
-            "icon":"打卡人头像a.jpg",
-            "taskId":"任务ID",
-            "themeId":"主题ID",
-            "themeName":"主题名称",
-            "content":"打卡内容",
-            "picture":"打卡图片a.jpg",
-            "position":"打卡时用户所在位置"
-            */
+            
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = "发送中..."
 

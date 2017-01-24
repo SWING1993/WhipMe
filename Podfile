@@ -22,6 +22,8 @@ pod 'NJKWebViewProgress'
 pod 'SDWebImage'
 pod 'ChameleonFramework'
 pod 'HandyJSON', '~> 1.5.2'
+pod 'Qiniu', '~> 7.1'
+
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'
