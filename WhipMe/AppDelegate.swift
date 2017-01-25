@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-//        let loginControl: WMAboutViewController = WMAboutViewController()
+//        let loginControl: WMLoginWayController = WMLoginWayController()
 //        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
 //        self.window?.rootViewController = navControl
 

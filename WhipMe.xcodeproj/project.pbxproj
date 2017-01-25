@@ -44,6 +44,7 @@
 		C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E41DE6E388007F886B /* ShareEngine.m */; };
 		C554AD1E1E3716EB00B3CF44 /* WMUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */; };
 		C554AD211E37190D00B3CF44 /* WMExitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD201E37190D00B3CF44 /* WMExitAlertView.m */; };
+		C554AD241E372E2E00B3CF44 /* WMLoginWayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD231E372E2E00B3CF44 /* WMLoginWayController.m */; };
 		C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77A1DE5827600A443A0 /* MyWalletViewController.m */; };
 		C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E77D1DE5935900A443A0 /* TopUpViewController.m */; };
 		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
@@ -270,6 +271,8 @@
 		C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUploadFile.m; sourceTree = "<group>"; };
 		C554AD1F1E37190D00B3CF44 /* WMExitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMExitAlertView.h; sourceTree = "<group>"; };
 		C554AD201E37190D00B3CF44 /* WMExitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMExitAlertView.m; sourceTree = "<group>"; };
+		C554AD221E372E2E00B3CF44 /* WMLoginWayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginWayController.h; sourceTree = "<group>"; };
+		C554AD231E372E2E00B3CF44 /* WMLoginWayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginWayController.m; sourceTree = "<group>"; };
 		C555E7791DE5827600A443A0 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
 		C555E77A1DE5827600A443A0 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
 		C555E77C1DE5935900A443A0 /* TopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpViewController.h; sourceTree = "<group>"; };
@@ -869,6 +872,8 @@
 				C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */,
 				C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */,
 				C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */,
+				C554AD221E372E2E00B3CF44 /* WMLoginWayController.h */,
+				C554AD231E372E2E00B3CF44 /* WMLoginWayController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1478,6 +1483,7 @@
 				E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */,
 				E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */,
 				4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */,
+				C554AD241E372E2E00B3CF44 /* WMLoginWayController.m in Sources */,
 				E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */,
 				C5C1781A1E2CC1EB00891C0D /* JCHATSendMsgManager.m in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,

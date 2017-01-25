@@ -125,13 +125,11 @@
     return imageData;
 }
 
-
 + (UIImage *)fullToFilePath:(NSString *)imageName
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingFormat:@"/%@", imageName];
     
-    DebugLog(@"__________path:%@",path);
     if (![fileManager fileExistsAtPath:path]) {
         NSAssert(path != nil, @"%@", path);
         path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Documents"] stringByAppendingFormat:@"/%@", imageName];
