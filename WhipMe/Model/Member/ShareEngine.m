@@ -141,6 +141,38 @@ static WMShareEngine *objShare = nil;
     return md5Sign;
 }
 
+#pragma mark - share 分享
+- (void)sendMultimedia:(NSString *)aTitle message:(NSString *)aMessage image:(NSData *)imgData webUrl:(NSString *)aWebUrl type:(int)scene {
+    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+    UIImage *image = [UIImage imageNamed:icon];
+    
+    WXMediaMessage *_message = [WXMediaMessage message];
+    _message.title = aTitle ?:@"鞭挞我";
+    _message.description = aMessage ?:@"先定一个能达到的小目标...";
+    _message.thumbData = imgData ?: UIImageJPEGRepresentation(image, 0.3);
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = aWebUrl ?: kBaseUrl;
+    _message.mediaObject = ext;
+    
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText = false;
+    req.message = _message;
+    req.scene = scene;
+    
+    [WXApi sendReq:req];
+}
+
+- (void)sendShareTextMessage:(NSString *)string withType:(int)scene {
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText = true;
+    req.scene = scene;
+    req.text = [NSString stringWithFormat:@"%@",string];
+    
+    [WXApi sendReq:req];
+}
+
 #pragma mark - WXApiDelegate
 - (void)onReq:(BaseReq *)req {
     DebugLog(@"on req is : %@", req);

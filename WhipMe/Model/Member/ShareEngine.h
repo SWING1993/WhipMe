@@ -33,4 +33,11 @@
 /** 微信支付 */
 - (void)sendWeChatPaymentInfo:(NSDictionary *)info;
 
+/* 发送分享多媒体消息 image<32KB */
+- (void)sendMultimedia:(NSString *)aTitle message:(NSString *)aMessage image:(NSData *)imgData webUrl:(NSString *)aWebUrl type:(int)scene;
+
+/* 发送文本类型分享消息 */
+- (void)sendShareTextMessage:(NSString *)string withType:(int)scene;
+
+
 @end

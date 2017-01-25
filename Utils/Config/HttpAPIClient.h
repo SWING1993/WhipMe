@@ -10,6 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "WMUploadFile.h"
 
+extern NSString *const kBaseUrl;
+
 typedef void (^SuccessBlock)(id result);
 typedef void (^FailedBlock)(NSError *error);
 
