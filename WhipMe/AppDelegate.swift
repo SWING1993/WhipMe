@@ -36,11 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-//        let loginControl: WMLoginWayController = WMLoginWayController()
-//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-//        self.window?.rootViewController = navControl
-
-        
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
             setupMainController()
         } else {
@@ -111,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = tabControl
     }
     func setupLoginController() {
-        let loginControl: LoginWayController = LoginWayController()
+        let loginControl: WMLoginWayController = WMLoginWayController()
         let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
         self.window?.rootViewController = navControl
     }
