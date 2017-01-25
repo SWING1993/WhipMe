@@ -135,6 +135,8 @@ class TaCecordController: UIViewController {
             self.bottomView.isHidden = true
         }
         
+//        if UserManager.shared.isManager ==
+        
         okBtn.bk_(whenTapped: {
             let param = ["userId":UserManager.shared.userId,
                          "taskId":self.myWhipM.taskId,
@@ -145,8 +147,8 @@ class TaCecordController: UIViewController {
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
-                        self.bottomView.isHidden = true
-
+                        Tool.showHUDTip(tipStr: "处理成功")
+                        _ = self.navigationController?.popViewController(animated: true)
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
@@ -168,7 +170,8 @@ class TaCecordController: UIViewController {
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
-                        self.bottomView.isHidden = true
+                        Tool.showHUDTip(tipStr: "处理成功")
+                        _ = self.navigationController?.popViewController(animated: true)
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }

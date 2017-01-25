@@ -11,6 +11,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import SwiftyJSON
+import MJRefresh
 
 class WhipM: NSObject {
     
@@ -537,10 +538,13 @@ class IndexViewController: UIViewController {
         self.view.backgroundColor = Define.kColorBackGround()
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
-        self.navigationItem.rightBarButtonItem = addBtn
+        if UserManager.shared.isManager == false {
+            self.navigationItem.rightBarButtonItem = addBtn
+        }
     }
     
-    fileprivate func setupAPI() {
+    func setupAPI() {
+        self.myTable.mj_header.endRefreshing()
         weak var weakSelf = self
         if UserManager.shared.isManager == true {
             let params = ["pageSize":"15","pageIndex":"1"]
@@ -623,6 +627,10 @@ class IndexViewController: UIViewController {
         myTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+        
+        let header = MJRefreshNormalHeader()
+        header.setRefreshingTarget(self, refreshingAction: #selector(IndexViewController.setupAPI))
+        self.myTable.mj_header = header
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -666,7 +674,6 @@ extension IndexViewController:UITableViewDataSource {
             let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipOtherReuseIdentifier())
             cell.setDataWith(array: self.biantataList)
             cell.checkPlan = { clickIndexPath in
-                print(clickIndexPath)
                 let taCecordC = TaCecordController.init()
                 taCecordC.hidesBottomBarWhenPushed = true
                 taCecordC.myWhipM = weakSelf?.biantataList.object(at: clickIndexPath.row) as! WhipM
@@ -677,11 +684,17 @@ extension IndexViewController:UITableViewDataSource {
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.biantawoList)
         cell.checkPlan = { clickIndexPath in
-            print(indexPath)
-            let meCecordC = MeCecordController.init()
-            meCecordC.hidesBottomBarWhenPushed = true
-            meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
-            weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
+            if UserManager.shared.isManager == true {
+                let taCecordC = TaCecordController.init()
+                taCecordC.hidesBottomBarWhenPushed = true
+                taCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
+                weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
+            } else {
+                let meCecordC = MeCecordController.init()
+                meCecordC.hidesBottomBarWhenPushed = true
+                meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
+                weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
+            }
         }
         cell.needReload = { Void in
             self.setupAPI()

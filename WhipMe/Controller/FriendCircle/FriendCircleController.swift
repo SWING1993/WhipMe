@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 import HandyJSON
+import MJRefresh
 
 class FriendCircleM: HandyJSON {
     var comment: NSArray = NSArray.init()
@@ -39,7 +40,7 @@ class FriendCircleM: HandyJSON {
 }
 
 class FriendCircleController: UIViewController {
-    
+
     fileprivate var recommendTable: UITableView = UITableView()
     fileprivate var friendCircleModels: [FriendCircleM] = [];
     fileprivate var cellHeights: [CGFloat] = []
@@ -61,7 +62,8 @@ class FriendCircleController: UIViewController {
         setupRecommendRequest()
     }
     
-    fileprivate func setupFocusRequest() {
+    func setupFocusRequest() {
+        self.focusList.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
             "pageSize":"20",
@@ -69,7 +71,6 @@ class FriendCircleController: UIViewController {
             "userId":UserManager.shared.userId
             ]
         HttpAPIClient.apiClientPOST("biantaquanFocusList", params: params, success: { (result) in
-            
             if let dataResult = result {
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
@@ -104,7 +105,8 @@ class FriendCircleController: UIViewController {
         }
     }
     
-    fileprivate func setupRecommendRequest() {
+    func setupRecommendRequest() {
+        self.recommendTable.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
             "pageSize":"20",
@@ -112,7 +114,6 @@ class FriendCircleController: UIViewController {
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if let dataResult = result {
-//                print(dataResult)
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
@@ -179,6 +180,7 @@ class FriendCircleController: UIViewController {
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+
         
         focusList = UITableView.init()
         focusList.backgroundColor = kColorBackGround
@@ -196,6 +198,14 @@ class FriendCircleController: UIViewController {
         
         recommendTable.isHidden = false
         focusList.isHidden = true
+        
+        let leftHeader = MJRefreshNormalHeader()
+        leftHeader.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.setupRecommendRequest))
+        self.recommendTable.mj_header = leftHeader
+        
+        let rightHeader = MJRefreshNormalHeader()
+        rightHeader.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.setupFocusRequest))
+        self.focusList.mj_header = rightHeader
     }
     
     override func didReceiveMemoryWarning() {
