@@ -18,6 +18,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) UserManager *userModel;
+@property (nonatomic, assign) BOOL isManager;
 
 @end
 
@@ -38,6 +39,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _userModel = [UserManager shared];
+    _isManager = [self.userModel.supervisor integerValue] > 0 ? YES : NO;
     [self.tableViewWM reloadData];
 }
 
@@ -72,14 +74,15 @@ static NSString *identifier_cell = @"setingTableViewCell";
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return self.isManager ? 8 : 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = 0.0;
+    NSInteger rowManager = self.isManager ? 6 : 5;
     if (indexPath.row == 0) {
         rowHeight = 10.0;
-    } else if (indexPath.row == 2 || indexPath.row == 6) {
+    } else if (indexPath.row == 2 || indexPath.row == rowManager) {
         rowHeight = 12.0;
     } else if (indexPath.row == 1) {
         rowHeight = 75.0;
@@ -102,7 +105,6 @@ static NSString *identifier_cell = @"setingTableViewCell";
     cell.lblTitle.textColor = [Define kColorBlack];
     
     CGFloat margin_x = 0.0;
-    
     if (indexPath.row == 1) {
         cell.lblTitle.text = @"编辑个人资料";
         cell.lblText.hidden = true;
@@ -118,10 +120,15 @@ static NSString *identifier_cell = @"setingTableViewCell";
         margin_x = 15.0;
     } else if (indexPath.row == 4) {
         cell.lblTitle.text = @"关于鞭挞我";
-        margin_x = 15.0;
+        margin_x = self.isManager ? 15.0 : 0.0f;
     } else if (indexPath.row == 5) {
-        cell.lblTitle.text = @"管理员登录";
-    } else if (indexPath.row == 7) {
+        if (self.isManager == NO) {
+            cell.lblTitle.text = @"";
+            cell.backgroundColor = [UIColor clearColor];
+        } else {
+            cell.lblTitle.text = @"管理员登录";
+        }
+    } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1) {
         cell.lblTitle.text = @"退出登录";
         cell.lblTitle.textColor = [Define kColorRed];
         cell.lblTitle.textAlignment = NSTextAlignmentCenter;

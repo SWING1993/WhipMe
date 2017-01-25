@@ -16,7 +16,7 @@
 CGFloat const kHead_WH = 60.0;
 NSInteger const kItem_Tag = 7777;
 
-@interface WMMemberViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface WMMemberViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MemberTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) UIView *superviseView, *growView, *viewHead, *view_item;
@@ -342,7 +342,7 @@ static NSString *identifier_head = @"tableViewView_head";
         return cell;
     }
     MemberTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_member];
-    
+    [cell setMemberDelegate:self];
     if (indexPath.section == 0) {
         [cell setModel:self.arraySupervise[indexPath.row]];
     } else {
@@ -365,6 +365,30 @@ static NSString *identifier_head = @"tableViewView_head";
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+#pragma mark - MemberTableCellDelegate
+- (void)memberTableViewWithCell:(MemberTableViewCell *)cell threeDay:(NSArray *)threeDay row:(NSInteger)row {
+    if (threeDay.count <= row) {
+        return;
+    }
+    
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    NSMutableArray *arrayPhoto = [NSMutableArray new];
+    for (NSInteger i=0; i<threeDay.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        MemberCollectionViewCell *colletionCell = (MemberCollectionViewCell *)[cell.collectionViewWM cellForItemAtIndexPath:indexPath];
+        threeDayModel *model = [threeDayModel mj_objectWithKeyValues:threeDay[i]];
+        
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.url = [NSURL URLWithString:model.picture];
+        photo.srcImageView = colletionCell.imageIcon;
+        [arrayPhoto addObject:photo];
+    }
+    
+    brower.photos = arrayPhoto;
+    brower.currentPhotoIndex = row;
+    [brower show];
 }
 
 #pragma mark - set get

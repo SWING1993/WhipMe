@@ -9,8 +9,11 @@
 import Foundation
 
 class threeDayModel: NSObject {
+    //       打卡图片
     open var picture: String = ""
+    //       打卡内容
     open var content: String = ""
+    //       打卡日期
     open var whichDay: String = ""
     
 }
