@@ -154,9 +154,11 @@ static NSString *identifier_cell = @"setingTableViewCell";
         WMAboutViewController *controller = [WMAboutViewController new];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 5) {
-        WMLoginManagerController *controller = [WMLoginManagerController new];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (indexPath.row == 7) {
+        if (self.isManager == YES) {
+            WMLoginManagerController *controller = [WMLoginManagerController new];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1) {
 //        WEAK_SELF
 //        UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 //        [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

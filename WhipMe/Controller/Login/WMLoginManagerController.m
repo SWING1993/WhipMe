@@ -120,8 +120,7 @@
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"supervisorLogin" params:param Success:^(id result) {
-        DebugLog(@"______result:%@",result);
-        
+       
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             UserManager *model = [UserManager shared];
@@ -132,7 +131,15 @@
             
             // 调用通知刷新 “鞭挞我” 的信息
             // DDPostNotification(@"")
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+            [UIView animateWithDuration:0.35 animations:^{
+                UIViewController *keyWindow = [[UIApplication sharedApplication].keyWindow rootViewController];
+                MainTabBarController *tabBarControl = (MainTabBarController *)keyWindow;
+                tabBarControl.selectedIndex = 0;
+            } completion:^(BOOL finished) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }];
+            
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
