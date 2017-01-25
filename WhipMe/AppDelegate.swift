@@ -36,16 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let loginControl: WMLoginWayController = WMLoginWayController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+//        let loginControl: WMLoginWayController = WMLoginWayController()
+//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+//        self.window?.rootViewController = navControl
 
         
-//        if (NSString.isBlankString(UserManager.shared.userId) == false) {
-//            setupMainController()
-//        } else {
-//            setupLoginController()
-//        }
+        if (NSString.isBlankString(UserManager.shared.userId) == false) {
+            setupMainController()
+        } else {
+            setupLoginController()
+        }
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
         return true
