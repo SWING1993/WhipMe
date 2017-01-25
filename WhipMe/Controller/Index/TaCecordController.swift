@@ -16,6 +16,7 @@ import HandyJSON
 class TaCecordController: UIViewController {
 
     var myWhipM: WhipM = WhipM()
+    fileprivate var bottomView = UIView()
     fileprivate var recommendTable = UITableView.init()
     fileprivate var cellHeights: [CGFloat] = []
     fileprivate var friendCircleModels: [FriendCircleM] = [];
@@ -126,6 +127,57 @@ class TaCecordController: UIViewController {
             make.centerY.equalTo(bottomView)
             make.right.equalTo(okBtn.snp.left).offset(-15)
         }
+        
+        
+        if self.myWhipM.result == 0 && self.myWhipM.accept == 2 {
+            self.bottomView.isHidden = false
+        } else {
+            self.bottomView.isHidden = true
+        }
+        
+        okBtn.bk_(whenTapped: {
+            let param = ["userId":UserManager.shared.userId,
+                         "taskId":self.myWhipM.taskId,
+                         "result":"2"]
+            HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
+                if let dataResult = result {
+                    print(dataResult)
+                    let json = JSON(dataResult)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        self.bottomView.isHidden = true
+
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                print(error!)
+                Tool.showHUDTip(tipStr: "网络不给力")
+            }
+
+        })
+        
+        notOkBtn.bk_(whenTapped: {
+            let param = ["userId":UserManager.shared.userId,
+                         "taskId":self.myWhipM.taskId,
+                         "result":"1"]
+            HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
+                if let dataResult = result {
+                    print(dataResult)
+                    let json = JSON(dataResult)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        self.bottomView.isHidden = true
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                print(error!)
+                Tool.showHUDTip(tipStr: "网络不给力")
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

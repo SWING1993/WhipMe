@@ -16,10 +16,10 @@ class WhipM: NSObject {
     
     var accept: Int = 0
     var type: Int = 0
-    var going: Int = 0
     var guarantee: CGFloat = 0.00
     var recordNum:Int = 0
     var record: Bool = false
+    var result: Int = 0
     
     var createDate: String = ""
     var startDate: String = ""
@@ -28,7 +28,6 @@ class WhipM: NSObject {
     
     var creator: String = ""
     var icon: String = ""
-    var result: String = ""
     var plan: String = ""
     
     var nickname: String = ""
@@ -194,7 +193,8 @@ class WhipCell: UITableViewCell {
     var myReuseIdentifier: String = ""
     
     var checkPlan:((IndexPath) -> Void)?
-    
+    var needReload:(() -> Void)?
+
     var sectionHArr_Me: NSArray = NSArray.init()
     var sectionHArr_Other: NSArray = NSArray.init()
 
@@ -324,33 +324,145 @@ extension WhipCell: UITableViewDataSource {
         }
         // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
-            cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "system_monitoring")
+            cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
+            
+            /*
+             "supervisor":"登录人ID",
+             "supervisorName":"登录人昵称",
+             "supervisorIcon":"登录人头像",
+             "taskId”:”任务ID",
+             "accept”:”接受还是拒绝（1：拒绝   2：接受）"
+             "creator”:”这个任务的创建人昵称"
+             "creatorId”:”这个任务的创建人ID"
+
+ */
+            // 拒绝
+            cell.refuseBtn.bk_(whenTapped: {
+                if UserManager.shared.isManager == true {
+                    let param = ["supervisor":UserManager.shared.userId,
+                                 "supervisorName":UserManager.shared.nickname,
+                                 "supervisorIcon":UserManager.shared.icon,
+                                 "taskId":whipM.taskId,
+                                 "creator":whipM.nickname,
+                                 "creatorId":whipM.creator,
+                                 "accept":"1",
+                                 ]
+                    HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
+                        if let dataResult = result {
+                            print(dataResult)
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                if self.needReload != nil {
+                                    self.needReload!()
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        print(error!)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                } else {
+                    let param = ["userId":UserManager.shared.userId,
+                                 "taskId":whipM.taskId,
+                                 "accept":"1"]
+                    HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
+                        if let dataResult = result {
+                            print(dataResult)
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                if self.needReload != nil {
+                                    self.needReload!()
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        print(error!)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                }
+            })
+            
+            // 同意
+            cell.acceptBtn.bk_(whenTapped: {
+                if UserManager.shared.isManager == true {
+                    let param = ["supervisor":UserManager.shared.userId,
+                                 "supervisorName":UserManager.shared.nickname,
+                                 "supervisorIcon":UserManager.shared.icon,
+                                 "taskId":whipM.taskId,
+                                 "creator":whipM.nickname,
+                                 "creatorId":whipM.creator,
+                                 "accept":"2",
+                                 ]
+                    HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
+                        if let dataResult = result {
+                            print(dataResult)
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                if self.needReload != nil {
+                                    self.needReload!()
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        print(error!)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                } else {
+                    let param = ["userId":UserManager.shared.userId,
+                                 "taskId":whipM.taskId,
+                                 "accept":"2"]
+                    HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
+                        if let dataResult = result {
+                            print(dataResult)
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                if self.needReload != nil {
+                                    self.needReload!()
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        print(error!)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                }
+            })
 
             if whipM.accept == 0 {
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.config()
                 cell.guaranteeL.text = "保证金："+String(describing: whipM.guarantee)+"元"
-            }
-            else if (whipM.accept == 1){
+            } else if (whipM.accept == 1){
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.goingL.text = "已拒绝"
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
-            }
-            else {
+            } else {
                 cell.subTitle.text = "被鞭挞"+String(describing: whipM.recordNum)+"次"
-                if whipM.going == 0 {
-                    cell.goingL.text = "进行中"
-                    cell.goingL.backgroundColor = kColorGreen
-                    
-                } else {
+                if whipM.result == 2 {
                     cell.goingL.text = "已结束"
                     cell.goingL.backgroundColor = kColorRed
+
+                } else {
+                    cell.goingL.text = "进行中"
+                    cell.goingL.backgroundColor = kColorGreen
                 }
             }
         }
         // 鞭挞我
         else {
-            cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "system_monitoring")
+            cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             if whipM.accept == 0 {
                 cell.goingL.text = "待确认"
                 cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
@@ -379,8 +491,7 @@ extension WhipCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             return self.sectionHArr_Other.object(at: indexPath.row) as! CGFloat
-            
-        }else {
+        } else {
             return self.sectionHArr_Me.object(at: indexPath.row) as! CGFloat
         }
         /*
@@ -390,7 +501,6 @@ extension WhipCell: UITableViewDelegate {
 
         }else {
             return WhipMeCell.whipMeCellHeight()
-
         }
         */
     }
@@ -400,7 +510,6 @@ class IndexViewController: UIViewController {
     
     fileprivate var myTable: UITableView = UITableView()
     var disposeBag = DisposeBag()
-    
     
     lazy var biantataList :NSMutableArray = {
         return NSMutableArray.init()
@@ -413,7 +522,6 @@ class IndexViewController: UIViewController {
     var sectionH_0: CGFloat = 0.0
     var sectionH_1: CGFloat = 0.0
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupAPI()
@@ -426,7 +534,6 @@ class IndexViewController: UIViewController {
     
     fileprivate func setup() {
         self.navigationItem.title = "鞭挞"
-
         self.view.backgroundColor = Define.kColorBackGround()
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
@@ -435,26 +542,70 @@ class IndexViewController: UIViewController {
     
     fileprivate func setupAPI() {
         weak var weakSelf = self
-        let params = ["userId":UserManager.shared.userId]
-        HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
-            if (result != nil) {
-                print(result!)
-                let json = JSON(result!)
-                let ret  = json["data"][0]["ret"].intValue
-                if ret == 0 {
-                    let woList  = json["data"][0]["biantawoList"].arrayObject
-                    let taList  = json["data"][0]["biantataList"].arrayObject
-                    weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
-                    weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
-                    weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-                    weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
-                    weakSelf?.myTable.reloadData()
-                } else {
-                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+        if UserManager.shared.isManager == true {
+            let params = ["pageSize":"15","pageIndex":"1"]
+            HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
+                if (result != nil) {
+                    print(result!)
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        let list  = json["data"][0]["list"].arrayObject
+                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
+                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                        //weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
+                        //weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+                        weakSelf?.myTable.reloadData()
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
                 }
+            }) { (error) in
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
-        }) { (error) in
-            Tool.showHUDTip(tipStr: "网络不给力")
+            
+            let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
+            HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
+                if (result != nil) {
+                    print(result!)
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        let list  = json["data"][0]["list"].arrayObject
+                        //weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
+                        //weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
+                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+                        weakSelf?.myTable.reloadData()
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                Tool.showHUDTip(tipStr: "网络不给力")
+            }
+        } else {
+            let params = ["userId":UserManager.shared.userId]
+            HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
+                if (result != nil) {
+                    print(result!)
+                    let json = JSON(result!)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        let woList  = json["data"][0]["biantawoList"].arrayObject
+                        let taList  = json["data"][0]["biantataList"].arrayObject
+                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
+                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+                        weakSelf?.myTable.reloadData()
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    }
+                }
+            }) { (error) in
+                Tool.showHUDTip(tipStr: "网络不给力")
+            }
         }
     }
     
@@ -462,7 +613,6 @@ class IndexViewController: UIViewController {
         myTable.backgroundColor = kColorBackGround
         myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipMeReuseIdentifier())
         myTable.register(WhipCell.self, forCellReuseIdentifier: WhipCell.whipOtherReuseIdentifier())
-
         myTable.dataSource = self
         myTable.delegate = self
         myTable.emptyDataSetSource = self
@@ -495,7 +645,6 @@ extension IndexViewController:UITableViewDataSource {
             }
             return 0
         }
-        
         if section == 1 {
             if self.biantawoList.count > 0 {
                 return 1
@@ -534,6 +683,9 @@ extension IndexViewController:UITableViewDataSource {
             meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
             weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
         }
+        cell.needReload = { Void in
+            self.setupAPI()
+        }
         return cell
     }
 }
@@ -545,13 +697,10 @@ extension IndexViewController: UITableViewDelegate {
         print(indexPath)
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.section == 0 {
             return sectionH_0
         }
-        
         if indexPath.section == 1 {
             return sectionH_1
         }
