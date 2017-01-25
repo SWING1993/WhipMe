@@ -11,13 +11,16 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import SwiftyJSON
+import HandyJSON
+import SDWebImage
 
-
-class FansM: NSObject {
+class FansM: HandyJSON {
     var num: String = ""
     var userId: String = ""
     var icon: String = ""
     var nickname: String = ""
+    
+    required init(){ }
 }
 
 class FansCell: UITableViewCell {
@@ -71,13 +74,14 @@ class FansCell: UITableViewCell {
 }
 
 class SystemView: UIView {
-    var numL: UILabel = UILabel.init()
-    
+    var numL: UILabel = UILabel()
+    var headV: UIImageView = UIImageView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         self.backgroundColor = kColorBackGround
-        let bgview: UIImageView = UIImageView.init()
+        let bgview: UIImageView = UIImageView()
         bgview.image = UIImage.init(named: "bg_icon")
         bgview.contentMode = .scaleAspectFit
         bgview.layer.masksToBounds = true
@@ -86,7 +90,6 @@ class SystemView: UIView {
         bgview.frame = CGRect.init(x: 10, y: 10, width: frame.width - 20, height: frame.height - 20)
         self.addSubview(bgview)
 
-        let headV: UIImageView = UIImageView.init()
         headV.image = UIImage.init(named: "system_monitoring")
         headV.contentMode = .scaleAspectFill
         bgview.addSubview(headV)
@@ -96,7 +99,7 @@ class SystemView: UIView {
             make.centerX.equalTo(self)
         }
         
-        let title = UILabel.init()
+        let title = UILabel()
         title.text = "小编君"
         title.font = UIFont.systemFont(ofSize: 16)
         title.textAlignment = .center
@@ -124,11 +127,12 @@ class SystemView: UIView {
 
 class AddPeopleController: UIViewController {
 
-    var chooseSupervisor:((IndexPath) -> Void)?
+//    var chooseSupervisor:((IndexPath) -> Void)?
 
     var myTable: UITableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     var systemView: SystemView = SystemView.init(frame: CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 160))
-    var myFansArr: NSMutableArray = NSMutableArray.init()
+    var myFansArr: [FansM] = []
+    var addTask = AddTaskM()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -145,15 +149,24 @@ class AddPeopleController: UIViewController {
         weak var weakSelf = self
         let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("querySupervisor", params: params, success: { (result) in
-            print(result!)
-            if (result != nil) {
-                let json = JSON(result!)
+            if let resultData = result {
+                print(resultData)
+                let json = JSON(resultData)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let btNum  = json["data"][0]["btNum"].stringValue
-                    let list  = json["data"][0]["list"].arrayObject
+                    let list  = json["data"][0]["list"].arrayValue
                     weakSelf?.systemView.numL.text = "正在监督"+btNum+"人"
-                    weakSelf?.myFansArr = FansM.mj_objectArray(withKeyValuesArray: list)
+                    weakSelf?.myFansArr = {
+                        var temps : [FansM] = []
+                        for json in list {
+                            let jsonString = String(describing: json)
+                            if let model = JSONDeserializer<FansM>.deserializeFrom(json: jsonString) {
+                                temps.append(model)
+                            }
+                        }
+                        return temps
+                    }()
                     weakSelf?.myTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -164,10 +177,23 @@ class AddPeopleController: UIViewController {
         }
     }
     
+    func addCash() {
+        let cashC = CashController()
+        cashC.addTask = self.addTask
+        self.navigationController?.pushViewController(cashC, animated: true)
+    }
+    
     func setup() {
         self.navigationItem.title = "选择监督人"
         self.view.backgroundColor = kColorBackGround
         self.view.addSubview(self.systemView)
+        self.systemView.bk_(whenTapped: { () -> Void in
+            self.addTask.type = "1"
+            self.addTask.supervisor = ""
+            self.addTask.supervisorIcon = ""
+            self.addTask.supervisorName = ""
+            self.addCash()
+        })
        
         myTable.register(FansCell.self, forCellReuseIdentifier: FansCell.cellReuseIdentifier())
         myTable.delegate = self
@@ -186,7 +212,7 @@ class AddPeopleController: UIViewController {
             make.left.equalTo(kLeftMargin)
             make.right.equalTo(kRightMargin)
         }
-        
+    
         let cancleBtn = UIBarButtonItem.init()
         self.navigationItem.leftBarButtonItem = cancleBtn
         
@@ -215,9 +241,8 @@ extension AddPeopleController:UITableViewDataSource {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FansCell = FansCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FansCell.cellReuseIdentifier())
-        let myFansM: FansM = self.myFansArr.object(at: indexPath.row) as! FansM
-        cell.iconV.setImageWith(urlString: myFansM.icon, placeholderImage: "")
-        print(myFansM.icon)
+        let myFansM: FansM = self.myFansArr[indexPath.row]
+        cell.iconV.setImageWith(urlString: myFansM.icon, placeholderImage: Define.kDefaultHeadStr())
         cell.nicknameL.text = myFansM.nickname
         cell.numL.text = "正在监督"+myFansM.num+"人"
         return cell
@@ -226,8 +251,12 @@ extension AddPeopleController:UITableViewDataSource {
 
 extension AddPeopleController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cashC = CashController()
-        self.navigationController?.pushViewController(cashC, animated: true)
+        let myFans = myFansArr[indexPath.row]
+        self.addTask.type = "2"
+        self.addTask.supervisor = myFans.userId
+        self.addTask.supervisorIcon = myFans.icon
+        self.addTask.supervisorName = myFans.nickname
+        self.addCash()
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNormalMagnitude
@@ -237,7 +266,6 @@ extension AddPeopleController:UITableViewDelegate {
         return CGFloat.leastNormalMagnitude
     }
 }
-
 
 extension AddPeopleController: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {

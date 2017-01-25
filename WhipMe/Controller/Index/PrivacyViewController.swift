@@ -12,7 +12,7 @@ class PrivacyViewController: UIViewController {
 
     var myPrivacyTable: UITableView = UITableView()
     let items = ["所有人可见","仅我关注的人可见","仅自己可见"]
-    var myCostomAM = PlanM()
+    var addTask = AddTaskM()
     
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class PrivacyViewController: UIViewController {
         
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "确定", style: .plain) { (sender) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getPrivacyK()), object: weakSelf?.myCostomAM)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SecondAddCustomCell.getPrivacyK()), object: weakSelf?.addTask)
             _ = weakSelf?.navigationController?.popViewController(animated: true)
         }
     }
@@ -81,15 +81,15 @@ extension PrivacyViewController:UITableViewDelegate {
         switch indexPath.row {
         
         case 0:
-            myCostomAM.privacy = PrivacyType.all
+            addTask.privacy = PrivacyType.all
             break
             
         case 1:
-            myCostomAM.privacy = PrivacyType.myFollow
+            addTask.privacy = PrivacyType.myFollow
             break
             
         case 2:
-            myCostomAM.privacy = PrivacyType.mySelf
+            addTask.privacy = PrivacyType.mySelf
             break
             
         default:

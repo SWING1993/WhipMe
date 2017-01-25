@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ThirdAddCustomCell: NormalCell {
-    var addBtn: UIButton = UIButton.init()
-    var addLabel: UILabel = UILabel.init()
+    var addBtn = UIButton()
+    var addLabel = UILabel()
+    var addTask = AddTaskM()
+    
+    func setAddTask(task:AddTaskM) {
+        self.addTask = task
+        if self.addTask.type == "3" {
+            addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
+            addLabel.text = "添加监督人"
+        }
+        
+        if self.addTask.type == "2" {
+            addBtn.sd_setImage(with: URL.init(string: self.addTask.supervisorIcon), for: .normal, placeholderImage: nil)
+            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n保证金:"+self.addTask.guarantee+"元"
+        }
+        
+        if self.addTask.type == "1" {
+            addBtn.setImage(UIImage.init(named: "system_monitoring"), for: .normal)
+            addLabel.text = "监督人:系统监督\n保证金:"+self.addTask.guarantee+"元"
+        }
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
- 
-        
-//        addBtn.backgroundColor = UIColor.random()
-//        addLabel.backgroundColor = UIColor.random()
         
         addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
         bgView.addSubview(addBtn)
@@ -32,11 +49,12 @@ class ThirdAddCustomCell: NormalCell {
         addLabel.text = "添加监督人"
         addLabel.textColor = kColorGary
         addLabel.textAlignment = .center
+        addLabel.numberOfLines = 2
         addLabel.font = UIFont.systemFont(ofSize: 12)
         bgView.addSubview(addLabel)
         addLabel.snp.makeConstraints { (make) in
             make.width.equalTo(100)
-            make.height.equalTo(20)
+            make.height.equalTo(40)
             make.centerX.equalTo(bgView)
             make.top.equalTo(addBtn.snp.bottom)
         }
@@ -51,7 +69,7 @@ class ThirdAddCustomCell: NormalCell {
             make.height.equalTo(30)
             make.left.equalTo(15)
             make.right.equalTo(-15)
-            make.top.equalTo(5)
+            make.top.equalTo(7.5)
         })
         
         let subTitleL = UILabel.init()
@@ -61,10 +79,10 @@ class ThirdAddCustomCell: NormalCell {
         subTitleL.font = UIFont.systemFont(ofSize: 8)
         bgView.addSubview(subTitleL)
         subTitleL.snp.makeConstraints({ (make) in
-            make.height.equalTo(40)
+            make.height.equalTo(30)
             make.left.equalTo(15)
-            make.right.equalTo(-15)
-            make.bottom.equalTo(-15)
+            make.right.equalTo(-10)
+            make.bottom.equalTo(-10)
         })
     }
     

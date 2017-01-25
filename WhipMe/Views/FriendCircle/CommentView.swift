@@ -17,7 +17,7 @@ class CommentView: NSObject {
     
     fileprivate var myTextView = UITextView.init()
     fileprivate let kWidth = Define.screenWidth()-30
-    fileprivate let kHeight = (Define.screenWidth()-30)*0.7
+    fileprivate let kHeight = (Define.screenWidth()-30)*0.5
     
     func show() {
         let alertView = CustomIOSAlertView.init()
@@ -46,6 +46,7 @@ class CommentView: NSObject {
     fileprivate func contentView() -> UIView {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kWidth, height: kHeight))
         myTextView.frame = CGRect.init(x: 10, y: 10, width: kWidth - 20, height: kHeight - 20)
+        myTextView.font = UIFont.systemFont(ofSize: 15)
         view.addSubview(myTextView)
         return view
     }

@@ -141,7 +141,6 @@ class TaCecordController: UIViewController {
         let topicL: UILabel = UILabel.init()
         let contentL: UILabel = UILabel.init()
         
-        avatarV.backgroundColor = UIColor.random()
         avatarV.layer.cornerRadius = 36.0/2
         avatarV.layer.masksToBounds = true
         headView.addSubview(avatarV)
@@ -230,7 +229,7 @@ class TaCecordController: UIViewController {
             make.height.equalTo(20)
         })
         
-        avatarV.setImageWith(urlString: model.icon, placeholderImage: "")
+        avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"

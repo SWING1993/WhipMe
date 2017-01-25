@@ -327,28 +327,20 @@ class LogController: UIViewController {
             if self.locationIsOn {
                 params["position"] = self.location
             }
-            if self.photo == nil {
-                weakSelf?.addRecord(params: params)
-            } else {
-                HttpAPIClient.uploadImage(withMethod: "/picUploadServlet", with: self.photo, success: { (result) in
+            if let image = self.photo {
+                let imageData: Data = UIImageJPEGRepresentation(image, 0.3)!
+                WMUploadFile.up(to: imageData, backInfo: { (info, key, resp) in
                     hud.hide(animated: true)
-                    if (result != nil) {
-                        print(result!)
-                        let json = JSON(result!)
-                        let ret  = json["ret"].intValue
-                        let icon = json["userInfo"]["icon"].stringValue
-                        if ret == 0 && icon.length > 0 {
-                            params["picture"] = icon
-                            weakSelf?.addRecord(params: params)
-                        } else {
-                            Tool.showHUDTip(tipStr: "上传图片失败！")
-                        }
+                    if let url = key {
+                        params["picture"] = Define.kImageBaseUrl(imgPath: url)
+                        weakSelf?.addRecord(params: params)
                     }
-                }, failed: { (error) in
+                }, fail: { (error) in
                     hud.hide(animated: true)
                     Tool.showHUDTip(tipStr: "上传图片失败！")
-                    print(error!);
                 })
+            } else {
+                weakSelf?.addRecord(params: params)
             }
         }
     }

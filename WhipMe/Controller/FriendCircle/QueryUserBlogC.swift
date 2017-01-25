@@ -175,11 +175,6 @@ class UserBlogCell: NormalCell {
             make.top.equalTo(themeLabel.snp.bottom).offset(10)
             make.width.equalTo(150)
         }
-        
-        firstPic.backgroundColor = UIColor.random()
-        secondPic.backgroundColor = firstPic.backgroundColor
-        thirdPic.backgroundColor = secondPic.backgroundColor
-        
 //        let space = 9
         let pic_W_H = (Define.screenWidth() - 66)/3
       
@@ -216,6 +211,7 @@ class UserBlogCell: NormalCell {
         if self.myGrowM.threeDay.count > 0 {
             if let threeDayDic = self.myGrowM.threeDay.first {
                 if let picture = threeDayDic["picture"] {
+                    print(picture)
                     self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
                 }
             }
@@ -224,14 +220,14 @@ class UserBlogCell: NormalCell {
         if self.myGrowM.threeDay.count > 1 {
             let threeDayDic = self.myGrowM.threeDay[1]
             if let picture = threeDayDic["picture"] {
-                self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+                self.secondPic.setImageWith(urlString: picture, placeholderImage: "")
             }
         }
         
         if self.myGrowM.threeDay.count > 2 {
             let threeDayDic = self.myGrowM.threeDay[2]
             if let picture = threeDayDic["picture"] {
-                self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+                self.thirdPic.setImageWith(urlString: picture, placeholderImage: "")
             }
         }
     }
@@ -326,7 +322,7 @@ class QueryUserBlogC: UIViewController {
         self.userHeaderV.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: kUserHeight)
         if self.userBlogM.myGrow.count > 0 {
             if let growM = self.userBlogM.myGrow.first {
-                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: "")
+                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
             }
         }
         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]

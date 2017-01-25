@@ -19,7 +19,8 @@
 #import <Bugly/Bugly.h>
 #import <PLeakSniffer/PLeakSniffer.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
-
+#import "WMUploadFile.h"
+#import "TopUpViewController.h"
 //
 #import "NSDate+Extension.h"
 #import "NSString+Common.h"
