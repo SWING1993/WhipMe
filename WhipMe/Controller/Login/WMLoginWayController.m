@@ -4,11 +4,14 @@
 //
 //  Created by anve on 17/1/24.
 //  Copyright © 2017年 -. All rights reserved.
-//
+//  第三方登录
 
 #import "WMLoginWayController.h"
+#import "WMLoginViewController.h"
 
-@interface WMLoginWayController ()
+static NSInteger const button_index = 7777;
+
+@interface WMLoginWayController () <WXApiEngineDelegate>
 
 @end
 
@@ -22,7 +25,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -93,68 +95,141 @@
     }];
     
     UILabel *lblMessage2 = [[UILabel alloc] init];
-    [lblMessage2 setBackgroundColor:[UIColor yellowColor]];
+    [lblMessage2 setBackgroundColor:[UIColor clearColor]];
     [lblMessage2 setTextAlignment:NSTextAlignmentLeft];
-    [lblMessage2 setTextColor:[Define kColorRed]];
-    [lblMessage2 setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [lblMessage2 setTextColor:[Define RGBColorFloat:251 g:127 b:119]];
+    [lblMessage2 setFont:[UIFont boldSystemFontOfSize:18.0]];
     [lblMessage2 setNumberOfLines:0];
     [self.view addSubview:lblMessage2];
-    NSString *str_msg2 = @"小目标\n.\n.\n.";
+    NSString *str_msg2 = @"小目标";
     NSDictionary *attribute2 = @{NSFontAttributeName:lblMessage2.font, NSForegroundColorAttributeName:lblMessage2.textColor};
+    CGSize size_h_msg2 = [str_msg2 boundingRectWithSize:CGSizeMake(20.0, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute2 context:nil].size;
+    
     NSMutableAttributedString *att_msg2 = [[NSMutableAttributedString alloc] initWithString:str_msg2 attributes:attribute2];
     [lblMessage2 setAttributedText:att_msg2];
     [lblMessage2 mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(16.0, 90.0));
+        make.size.mas_equalTo(CGSizeMake(20.0, floorf(size_h_msg2.height+1.0)));
         make.left.equalTo(lblMessage.mas_right);
-        make.top.equalTo(lblMessage.mas_bottom).offset(-20.0);
+        make.top.equalTo(lblMessage.mas_bottom).offset(-24.0);
     }];
     
-//    let viewButton = UIView.init()
-//    viewButton.backgroundColor = UIColor.clear
-//    self.view.addSubview(viewButton)
-//    viewButton.snp.updateConstraints { (make) in
-//        make.left.right.equalTo(self.view)
-//        make.height.equalTo(self.view).offset(-size_h)
-//        make.top.equalTo(self.view).offset(size_h)
-//    }
-//    
-//    let arrayImageOff: Array = ["button_phone_off","button_weixin_off","button_create_off"]
-//    let arrayImageOn: Array  = ["button_phone_on","button_weixin_on","button_create_on"]
-//    let arrayTitle: Array = ["手机登录","微信登录","创建账号"]
-//    var origin_y: CGFloat = 0.0
-//    
-//    for i in 0..<arrayTitle.count {
-//        
-//        let strTitle: String = arrayTitle[i]
-//        let strImageOff: String = arrayImageOff[i]
-//        let strImageOn: String = arrayImageOn[i]
-//        
-//        let itemButton: UIButton = UIButton.init(type: UIButtonType.custom)
-//        itemButton.backgroundColor = UIColor.clear
-//        itemButton.titleLabel?.font = kTitleFont
-//        itemButton.titleEdgeInsets = UIEdgeInsets.init(top: 55.0, left: -45.0, bottom: 0, right: 0)
-//        itemButton.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: 10.0, bottom: 20.0, right: 0)
-//        itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-//        itemButton.contentVerticalAlignment = UIControlContentVerticalAlignment.top
-//        itemButton.setImage(UIImage.init(named: strImageOff), for: UIControlState.normal)
-//        itemButton.setImage(UIImage.init(named: strImageOn), for: UIControlState.highlighted)
-//        itemButton.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
-//        itemButton.setTitleColor(Define.kColorGary(), for: UIControlState.highlighted)
-//        itemButton.setTitle(strTitle, for: UIControlState.normal)
-//        itemButton.tag = i+button_index;
-//        itemButton.addTarget(self, action: #selector(clickWithItem(sender:)), for: UIControlEvents.touchUpInside)
-//        viewButton.addSubview(itemButton)
-//        itemButton.snp.updateConstraints({ (make) in
-//            make.size.equalTo(CGSize.init(width: 65.0, height: 65.0))
-//            make.top.equalTo(origin_y)
-//            make.centerX.equalTo(viewButton)
-//        })
-//        
-//        origin_y += 93.0
-//    }
-//    
-   
+    CGFloat origin_y = -5.0;
+    for (NSInteger i=0; i<3; i++) {
+        UILabel *itemLbl = [UILabel new];
+        [itemLbl setBackgroundColor:[UIColor clearColor]];
+        [itemLbl setTextColor:lblMessage2.textColor];
+        [itemLbl setFont:[UIFont boldSystemFontOfSize:20.0]];
+        [itemLbl setTextAlignment:lblMessage2.textAlignment];
+        [itemLbl setText:@"."];
+        [self.view addSubview:itemLbl];
+        [itemLbl mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(20.0, 20.0));
+            make.left.equalTo(lblMessage2.mas_left).offset(7.0);
+            make.top.equalTo(lblMessage2.mas_bottom).offset(origin_y);
+        }];
+        origin_y += 8.0f;
+    }
+    
+    UIView *viewButton = [UIView new];
+    [viewButton setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:viewButton];
+    [viewButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.and.width.equalTo(weakSelf.view);
+        make.height.mas_equalTo(120.0);
+        make.top.equalTo(weakSelf.view).offset(456.0);
+    }];
 
+    NSArray *arrayTitle = @[@{@"title":@"新建用户",@"icon":@"button_create_off",},
+                            @{@"title":@"手机登录",@"icon":@"button_phone_off",},
+                            @{@"title":@"微信登录",@"icon":@"button_weixin_off",}];
+    CGFloat origin_x = ([Define screenWidth]-84.0*3-40.0)/2.0;
+    for (NSInteger i=0; i<arrayTitle.count; i++) {
+        NSDictionary *dict = [arrayTitle objectAtIndex:i];
+        
+        UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [itemButton setBackgroundColor:[UIColor clearColor]];
+        [itemButton setImage:[UIImage imageNamed:dict[@"icon"]] forState:UIControlStateNormal];
+        [itemButton setTitle:dict[@"title"] forState:UIControlStateNormal];
+        [itemButton setTitleColor:[Define kColorBlack] forState:UIControlStateNormal];
+        [itemButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
+        [itemButton setTitleEdgeInsets:UIEdgeInsetsMake(100.0, -84.0, 0, 0)];
+        [itemButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 20.0, 0)];
+        [itemButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [itemButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+        [itemButton setAdjustsImageWhenHighlighted:NO];
+        [itemButton setTag:i+button_index];
+        [itemButton addTarget:self action:@selector(onClickWithItem:) forControlEvents:UIControlEventTouchUpInside];
+        [viewButton addSubview:itemButton];
+        
+        [itemButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.and.height.equalTo(viewButton);
+            make.width.mas_equalTo(84.0);
+            make.left.equalTo(viewButton).offset(origin_x);
+        }];
+        origin_x += 84.0 + 20.0;
+    }
+}
+
+- (void)onClickWithItem:(UIButton *)sender {
+    
+    NSInteger _index = sender.tag%button_index;
+    
+    if (_index == 0) {
+        RegisterViewController *controller = [RegisterViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (_index == 1) {
+        LoginViewController *controller = [LoginViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (_index == 2) {
+        [[WMShareEngine sharedInstance] sendAuthRequest:self];
+    }
+}
+
+#pragma mark - WXApiEngineDelegate
+- (void)shareEngineWXApi:(SendAuthResp *)response {
+    if (response.errCode == -2) {
+        //用户取消
+    } else if (response.errCode == -4) {
+        //用户拒绝授权
+        
+    } else {
+        // 0(用户同意)
+        NSDictionary *param = @{@"unionId":[NSString stringWithFormat:@"%@",response.code]};
+        [HttpAPIClient APIClientPOST:@"wlogin" params:param Success:^(id result) {
+            NSDictionary *data = result[@"data"][0];
+            if (data) {
+                NSInteger ret_code = [data[@"ret"] integerValue];
+                if (ret_code == 1) {
+                    DebugLog(@"用户首次登录");
+                    RegisterAndUserController *controller = [RegisterAndUserController new];
+                    controller.unionId = response.code;
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else if (ret_code == 0) {
+                    DebugLog(@"用户登录成功");
+                    for (NSDictionary *obj in data[@"list"]) {
+                        [UserManager storeUserWithDict:obj];
+                        break;
+                    }
+                    AppDelegate *app_delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    [app_delegate setupMainController];
+                    [[ChatMessage shareChat] loginJMessage];
+                } else if (ret_code == -1) {
+                    DebugLog(@"用户登录成功，有两个手机号");
+                    NSMutableArray *muArray = [NSMutableArray new];
+                    for (NSDictionary *obj in data[@"list"]) {
+                        UserManager *model = [UserManager mj_objectWithKeyValues:obj];
+                        [muArray addObject:model];
+                    }
+                    WMLoginViewController *controller = [WMLoginViewController new];
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else {
+                    [Tool showHUDTipWithTipStr:@"用户登录失败!"];
+                }
+            }
+        } Failed:^(NSError *error) {
+            [Tool showHUDTipWithTipStr:@"网络不给力"];
+        }];
+    }
 }
 
 @end

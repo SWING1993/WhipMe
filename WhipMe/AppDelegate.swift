@@ -31,15 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeAppearance()
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
-        
-//        PLeakSniffer.sharedInstance.installLeakSniffer
-        
+                
         window = UIWindow.init(frame: UIScreen.main.bounds)
-        
-//        let loginControl: WMLoginWayController = WMLoginWayController()
-//        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-//        self.window?.rootViewController = navControl
-
         
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
             setupMainController()
@@ -111,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = tabControl
     }
     func setupLoginController() {
-        let loginControl: LoginWayController = LoginWayController()
+        let loginControl: WMLoginWayController = WMLoginWayController()
         let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
         self.window?.rootViewController = navControl
     }

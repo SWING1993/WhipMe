@@ -7,6 +7,7 @@
 //
 
 #import "WMFansAndFocusController.h"
+#import "WMAddFriendController.h"
 #import "FansAndFocusModel.h"
 
 @interface WMFansAndFocusController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -36,6 +37,10 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
         self.navigationItem.title = @"我的粉丝";
     } else {
         self.navigationItem.title = @"我的关注";
+        UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(clickWithRight)];
+        rightBarItem.tintColor = [UIColor whiteColor];
+        [self.navigationItem setRightBarButtonItem:rightBarItem];
+        
     }
     
     [self setup];
@@ -79,6 +84,12 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf queryByFocusList];
     }];
+}
+
+#pragma mark - Action
+- (void)clickWithRight {
+    WMAddFriendController *controller = [WMAddFriendController new];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - DZNEmptyDataSetSource

@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+@objc protocol MemberTableCellDelegate: NSObjectProtocol {
+    func memberTableView(cell: MemberTableViewCell, threeDay: NSArray, row: Int)
+}
+
 class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     open var viewCurrent: UIView!
@@ -21,7 +25,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     fileprivate let identifier_collect = "memberCollectionCell"
     open var collectionViewWM: UICollectionView!
     open var model: mySuperviseModel = mySuperviseModel();
-    var indexViewCellModel: ((threeDayModel) -> Void)?
+    open var memberDelegate: MemberTableCellDelegate!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -153,17 +157,12 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (self.model.threeDay.count == 0) {
-            return 5;
-        }
         return self.model.threeDay.count;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MemberCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier_collect, for: indexPath) as! MemberCollectionViewCell
-        //        "picture":"打卡图片",
-        //        "content":"打卡内容",
-        //        "whichDay":"打卡日期"
+    
         if (self.model.threeDay.count > indexPath.row) {
             let obj: threeDayModel = threeDayModel.mj_object(withKeyValues: self.model.threeDay[indexPath.row])
             cell.imageIcon.setImageWith(NSURL.init(string: obj.picture) as! URL, placeholderImage: Define.kDefaultPlaceImage())
@@ -175,11 +174,8 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView .deselectItem(at: indexPath, animated: true)
-        if (self.model.threeDay.count > indexPath.row) {
-            let obj: threeDayModel = threeDayModel.mj_object(withKeyValues: self.model.threeDay[indexPath.row])
-            if (self.indexViewCellModel != nil) {
-                self.indexViewCellModel!(obj);
-            }
+        if (self.memberDelegate != nil) {
+            self.memberDelegate .memberTableView(cell: self, threeDay: self.model.threeDay, row: indexPath.row)
         }
     }
     

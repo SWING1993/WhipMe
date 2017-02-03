@@ -42,6 +42,7 @@
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
 		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
 		C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E41DE6E388007F886B /* ShareEngine.m */; };
+		C551A1D01E38988400CBB2B2 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C551A1CF1E38988400CBB2B2 /* WMLoginViewController.m */; };
 		C554AD1E1E3716EB00B3CF44 /* WMUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */; };
 		C554AD211E37190D00B3CF44 /* WMExitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD201E37190D00B3CF44 /* WMExitAlertView.m */; };
 		C554AD241E372E2E00B3CF44 /* WMLoginWayController.m in Sources */ = {isa = PBXBuildFile; fileRef = C554AD231E372E2E00B3CF44 /* WMLoginWayController.m */; };
@@ -268,6 +269,8 @@
 		C54E77E11DE69290007F886B /* WMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserInfoViewController.m; sourceTree = "<group>"; };
 		C54E77E31DE6E388007F886B /* ShareEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEngine.h; sourceTree = "<group>"; };
 		C54E77E41DE6E388007F886B /* ShareEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEngine.m; sourceTree = "<group>"; };
+		C551A1CE1E38988400CBB2B2 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
+		C551A1CF1E38988400CBB2B2 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		C554AD1C1E3716EB00B3CF44 /* WMUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUploadFile.h; sourceTree = "<group>"; };
 		C554AD1D1E3716EB00B3CF44 /* WMUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUploadFile.m; sourceTree = "<group>"; };
 		C554AD1F1E37190D00B3CF44 /* WMExitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMExitAlertView.h; sourceTree = "<group>"; };
@@ -877,6 +880,8 @@
 				C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */,
 				C554AD221E372E2E00B3CF44 /* WMLoginWayController.h */,
 				C554AD231E372E2E00B3CF44 /* WMLoginWayController.m */,
+				C551A1CE1E38988400CBB2B2 /* WMLoginViewController.h */,
+				C551A1CF1E38988400CBB2B2 /* WMLoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1517,6 +1522,7 @@
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
 				C52C18011E2A1D77000E8CAF /* NSDate+Utilities.m in Sources */,
 				C554AD211E37190D00B3CF44 /* WMExitAlertView.m in Sources */,
+				C551A1D01E38988400CBB2B2 /* WMLoginViewController.m in Sources */,
 				C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */,
 				C5C177A91E2CBA6200891C0D /* JCHATRawAudioDataPlayer.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,

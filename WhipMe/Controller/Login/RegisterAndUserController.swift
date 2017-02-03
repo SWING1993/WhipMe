@@ -61,7 +61,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnAvatar.addTarget(self, action: #selector(clickWithAvatar), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btnAvatar)
         btnAvatar.snp.updateConstraints { (make) in
-            make.size.equalTo(CGSize.init(width: 62.0, height: 62.0))
+            make.size.equalTo(CGSize.init(width: 64.0, height: 64.0))
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.view).offset(45.0)
         }
@@ -69,7 +69,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let lblAvatar = UILabel.init()
         lblAvatar.backgroundColor = UIColor.clear
         lblAvatar.textAlignment = NSTextAlignment.center
-        lblAvatar.textColor = Define.kColorBlack()
+        lblAvatar.textColor = Define.kColorGray()
         lblAvatar.font = kTitleFont
         lblAvatar.text = "添加头像"
         self.view.addSubview(lblAvatar)
@@ -150,8 +150,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnAgreement.titleLabel?.font = kTitleFont
         btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
         btnAgreement.setTitle("用户协议", for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGary(), for: UIControlState.highlighted)
+        btnAgreement.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
         self.view.addSubview(btnAgreement)
         btnAgreement.snp.updateConstraints { (make) in
             make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))

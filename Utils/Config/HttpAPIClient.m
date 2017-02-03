@@ -8,7 +8,7 @@
 
 #import "HttpAPIClient.h"
 
-static NSString *const baseUrl = @"http://www.superspv.com";
+NSString *const kBaseUrl = @"http://www.superspv.com";
 
 static NSInteger const kSecondsOut = 10;
 
@@ -29,7 +29,7 @@ static NSInteger const kSecondsOut = 10;
 + (void)APIClientParams:(NSDictionary *)params Success:(SuccessBlock)success Failed:(FailedBlock)failed {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *host_url = @"/json_dispatch.rpc";
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = kSecondsOut;
@@ -51,7 +51,7 @@ static NSInteger const kSecondsOut = 10;
     }
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = kSecondsOut;
@@ -102,7 +102,7 @@ static NSInteger const kSecondsOut = 10;
     manager.requestSerializer.timeoutInterval = 30.0;
     [manager.responseSerializer setAcceptableContentTypes:nil];
     
-    NSString *URLString = [NSString stringWithFormat:@"%@%@",baseUrl,method];
+    NSString *URLString = [NSString stringWithFormat:@"%@%@",kBaseUrl,method];
     NSURL *URL = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:URL cachePolicy:(NSURLRequestUseProtocolCachePolicy) timeoutInterval:30];
     request.HTTPMethod = @"POST";
