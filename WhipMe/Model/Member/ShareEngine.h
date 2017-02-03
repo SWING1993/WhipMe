@@ -33,4 +33,6 @@
 /** 微信支付 */
 - (void)sendWeChatPaymentInfo:(NSDictionary *)info;
 
+/** 微信分享 */
+- (void)shareWithScene:(int)scene withImage:(UIImage *)image;
 @end

@@ -269,7 +269,7 @@ class RecommendCell: NormalCell {
             make.height.equalTo(15)
         })
         
-        commentB .bk_addEventHandler({ (sender) in
+        commentB.bk_addEventHandler({ (sender) in
             CommentView.sharedInstance.show()
             CommentView.sharedInstance.okBlock = {  (comment) -> Void in
                 
@@ -314,6 +314,13 @@ class RecommendCell: NormalCell {
             make.width.equalTo(100)
             make.height.equalTo(15)
         })
+        shareB.bk_addEventHandler({ (sender) in
+            let shareC = ShareController.init()
+            shareC.navigationItem.title = "分享"
+            shareC.myFriendCircleM = self.myRecommendM
+            let shareNav = UINavigationController.init(rootViewController: shareC)
+            kKeyWindows?.rootViewController?.present(shareNav, animated: true, completion: { })
+        }, for: .touchUpInside)
     }
     
     func setRecommendData(model:FriendCircleM) {

@@ -181,6 +181,7 @@
 		E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E43D0FAB1DD07875001A0B36 /* SVProgressHUD.bundle */; };
 		E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FAD1DD07875001A0B36 /* SVProgressHUD.m */; };
 		E43D0FB41DD07875001A0B36 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FAF1DD07875001A0B36 /* SVRadialGradientLayer.m */; };
+		E446ECF51E4431F00097336F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E446ECF41E4431F00097336F /* ShareController.swift */; };
 		E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */; };
 		E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E449AC891DAC87140095B8C2 /* Extension.swift */; };
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
@@ -478,6 +479,7 @@
 		E43D0FAD1DD07875001A0B36 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		E43D0FAE1DD07875001A0B36 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E43D0FAF1DD07875001A0B36 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		E446ECF41E4431F00097336F /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		E449AC801DAB8D200095B8C2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E449AC891DAC87140095B8C2 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 			children = (
 				C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */,
 				E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */,
+				E446ECF41E4431F00097336F /* ShareController.swift */,
 			);
 			path = FriendCircle;
 			sourceTree = "<group>";
@@ -1448,6 +1451,7 @@
 				C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */,
 				C5C178041E2CBEE900891C0D /* JCHATSelectImgCollectionView.m in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
+				E446ECF51E4431F00097336F /* ShareController.swift in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
 				E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */,
 				E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */,

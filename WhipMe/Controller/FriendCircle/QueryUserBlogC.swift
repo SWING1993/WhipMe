@@ -279,9 +279,7 @@ class QueryUserBlogC: UIViewController {
     }
     
     func goBack() {
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true) { }
     }
     
     // 添加关注

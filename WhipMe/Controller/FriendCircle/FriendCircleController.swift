@@ -160,10 +160,12 @@ class FriendCircleController: UIViewController {
         segmentedView.selectedSegmentIndex = 0
         segmentedView.addTarget(self, action:#selector(clickWithSegmentedItem), for: UIControlEvents.valueChanged)
         self.navigationItem.titleView = segmentedView
+        /*
         let rightBarItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "people_care"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickWithRightBarItem))
         rightBarItem.tintColor = UIColor.white
         rightBarItem.setTitleTextAttributes([kCTFontAttributeName as String :kContentFont, kCTForegroundColorAttributeName as String:UIColor.white], for: UIControlState())
         self.navigationItem.rightBarButtonItem = rightBarItem
+ */
     }
     
     fileprivate func prepareTableView() {
