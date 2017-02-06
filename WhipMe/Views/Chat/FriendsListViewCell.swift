@@ -117,11 +117,7 @@ class FriendsListViewCell: UITableViewCell {
         } else {
             lblBrief.text = model.sign
         }
-        if (NSString.isBlankString(model.icon)) {
-            imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
-        } else {
-            imageLogo.image = Define.kDefaultImageHead()
-        }
+        imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         
         if (model.focus == false) {
             btnStatus.setTitle("关注", for: UIControlState.normal)

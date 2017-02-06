@@ -256,7 +256,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
             if (resp == nil) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",info.error]];
             } else {
-                NSString *img_url = [NSString stringWithFormat:@"%@",[Define kImageBaseUrlWithImgPath:resp[@"key"]]];
+                NSString *img_url = [WMUploadFile kImageBaseUrl:resp[@"key"]];
                 weakSelf.userModel.icon = img_url;
                 [weakSelf editUserInfo:img_url editType:EditControlAvatar];
                 [weakSelf.tableViewWM reloadData];

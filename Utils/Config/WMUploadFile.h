@@ -15,5 +15,8 @@
 
 + (void)upToData:(NSData *)data backInfo:(QNUpCompletionHandler)backInfo fail:(void (^)(NSError *error))fail;
 
++ (NSString *)isNeedRequestToGetDomain;
+
++ (NSString *)kImageBaseUrl:(NSString *)imgPath;
 
 @end

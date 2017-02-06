@@ -11,6 +11,7 @@
 
 /** upToken 七牛上传 token */
 static NSString *const SG_QiniuUpToken = @"SG_QiniuUpToken";
+static NSString *const SG_QiniuUpDomain = @"SG_QiniuUpDomain";
 /** upToken 七牛上传 time */
 static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
 
@@ -89,17 +90,41 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
     return @"";
 }
 
++ (NSString *)isNeedRequestToGetDomain {
+    NSString *strUpToken = [[NSUserDefaults standardUserDefaults] objectForKey:SG_QiniuUpDomain];
+    if ([strUpToken length] > 0) {
+        return strUpToken;
+    } else {
+        [WMUploadFile getUptoken:^(NSString *upToken) {
+            
+        } doLaterFail:^(NSError *error) {
+        }];
+    }
+    return @"";
+}
+
++ (NSString *)kImageBaseUrl:(NSString *)imgPath {
+    NSString *strBaseUrl = [WMUploadFile isNeedRequestToGetDomain];
+    if ([NSString isBlankString:strBaseUrl] == NO) {
+        return [NSString stringWithFormat:@"%@%@",strBaseUrl, imgPath];
+    } else {
+        return [NSString stringWithFormat:@"http://ok0tksr2d.bkt.clouddn.com/%@",imgPath];
+    }
+}
+
 + (void)getUptoken:(void (^ __nonnull) (NSString *upToken))doLaterSuccess doLaterFail:(FailedBlock)doLaterFaill
 {
     NSDictionary *params = @{@"bucketName":@"btw-app"};
     [HttpAPIClient getAPIClient:@"/uploadTokenServlet" param:params Success:^(id result) {
         DebugLog(@"____result:%@",result);
         if (result[@"token"]) {
+            NSString *domain = [NSString stringWithFormat:@"%@",result[@"domain"]];
             NSString *upToken = [NSString stringWithFormat:@"%@",result[@"token"]];
             NSDate   *date = [NSDate dateWithTimeIntervalSinceNow:24*60*60];
             NSString *strDate = [NSDate stringWithDate:date format:@"YYYY-MM-dd HH:mm:ss"];
             
             NSUserDefaults *useDefault = [NSUserDefaults standardUserDefaults];
+            [useDefault setValue:domain forKey:SG_QiniuUpDomain];
             [useDefault setValue:upToken forKey:SG_QiniuUpToken];
             [useDefault setValue:strDate forKey:SG_QiniuUpTokenTime];
             [useDefault synchronize];

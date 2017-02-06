@@ -81,10 +81,6 @@ class Define: NSObject {
         return UIImage.init(named: "nilTouSu")!
     }
     
-    class func kImageBaseUrl(imgPath: String) -> String {
-        return "http://ok0tksr2d.bkt.clouddn.com/\(imgPath)"
-    }
-    
     // MARK: 颜色的定义
     class func kColorBackGround () -> UIColor {
         return Define.RGBColorFloat(242.0, g: 242.0, b: 242.0)

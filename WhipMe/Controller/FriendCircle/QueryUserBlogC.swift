@@ -279,7 +279,11 @@ class QueryUserBlogC: UIViewController {
     }
     
     func goBack() {
-        self.dismiss(animated: true) { }
+        if ((self.navigationController?.viewControllers.count)! > 1) {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true) { }
+        }
     }
     
     // 添加关注

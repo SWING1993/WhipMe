@@ -345,10 +345,11 @@ static NSString *identifier_head = @"tableViewView_head";
     [cell setMemberDelegate:self];
     if (indexPath.section == 0) {
         [cell setModel:self.arraySupervise[indexPath.row]];
+        [cell setData_Supervision];
     } else {
         [cell setModel:self.arrayGrow[indexPath.row]];
+        [cell setData];
     }
-    [cell setData];
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
         cell.lineView.hidden = YES;
     } else {

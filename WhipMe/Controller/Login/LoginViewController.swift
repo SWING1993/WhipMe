@@ -23,6 +23,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.title = "创建账号"
         self.view.backgroundColor = Define.kColorBackGround()
         
+        WMUploadFile.isNeedRequestToGetDomain()
+        
         setup()
         self.textNickname.text = "15856089859"
         self.textPassword.text = "123"

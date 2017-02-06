@@ -375,7 +375,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 if (resp == nil) {
                     Tool.showHUDTip(tipStr: "\(info?.error)")
                 } else {
-                    let img_url: String = Define.kImageBaseUrl(imgPath: resp?["key"] as! String)
+                    let img_url: String = WMUploadFile.kImageBaseUrl(resp?["key"] as! String)
                     self.avatar = img_url
                 }
             }, fail: { (error) in
