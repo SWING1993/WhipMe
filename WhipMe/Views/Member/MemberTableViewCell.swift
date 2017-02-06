@@ -146,12 +146,19 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     open func setData() {
         lblTitle.text = self.model.nickname
-        lblNumber.text = "已鞭挞\(self.model.recordNum)次"
+        lblNumber.text = "被鞭挞\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
         
         self.collectionViewWM.reloadData();
     }
     
+    open func setData_Supervision() {
+        lblTitle.text = self.model.nickname
+        lblNumber.text = "已鞭挞\(self.model.recordNum)次"
+        lblTopic.text = "#\(self.model.themeName)#"
+        
+        self.collectionViewWM.reloadData();
+    }
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

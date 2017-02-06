@@ -79,7 +79,6 @@ static NSString *identifier_cell = @"ChatConversationListCell";
     [JMSGConversation allConversations:^(id resultObject, NSError *error) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
         
-        DebugLog(@"_________resultObject:%@",resultObject);
         if (error == nil) {
             [weakSelf.arrayContent removeAllObjects];
             weakSelf.arrayContent = [weakSelf sortConversation:resultObject];

@@ -10,4 +10,11 @@
 
 @implementation FansAndFocusModel
 
+- (NSString *)icon {
+    if (_icon == nil) {
+        _icon = @"";
+    }
+    return _icon;
+}
+
 @end

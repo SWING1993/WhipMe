@@ -332,7 +332,7 @@ class LogController: UIViewController {
                 WMUploadFile.up(to: imageData, backInfo: { (info, key, resp) in
                     hud.hide(animated: true)
                     if let url = key {
-                        params["picture"] = Define.kImageBaseUrl(imgPath: url)
+                        params["picture"] = WMUploadFile.kImageBaseUrl(url)
                         weakSelf?.addRecord(params: params)
                     }
                 }, fail: { (error) in
