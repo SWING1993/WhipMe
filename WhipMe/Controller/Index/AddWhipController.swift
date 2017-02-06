@@ -409,7 +409,7 @@ extension AddWhipController:UITableViewDataSource {
                 }
 
                 cell.backClosure = { (inputText:IndexPath) -> Void in
-                    _ = weakSelf?.resignFirstResponder()
+                    _ = weakSelf?.resignMyFirstResponder()
                     if inputText.row == 0 {
                         SGHDateView.sharedInstance.pickerMode = .date
                         SGHDateView.sharedInstance.show();
