@@ -29,7 +29,7 @@ class CashController: UIViewController {
     }
     
     func steup() {
-        self.navigationItem.title = "保证金设置"
+        self.navigationItem.title = "自由服务费设置"
         self.view.backgroundColor = kColorBackGround
         
         myTable.register(NormalCell.self, forCellReuseIdentifier: "myCell")
@@ -45,7 +45,7 @@ class CashController: UIViewController {
         self.view.addSubview(myTable)
         myTable.snp.makeConstraints { (make) in
             make.top.equalTo(5)
-            make.height.equalTo(175)
+            make.height.equalTo(205)
             make.left.equalTo(0)
             make.right.equalTo(0)
         }
@@ -54,8 +54,8 @@ class CashController: UIViewController {
         self.navigationItem.rightBarButtonItem = OKBtn
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
+            self.rechargeTextFiele.endEditing(true)
             if let guarantee = self.rechargeTextFiele.text {
-                
                 if let value1: Double = Double(guarantee) {
                     if let value2: Double = Double(self.account) {
                         if value1 > value2 {
@@ -68,9 +68,15 @@ class CashController: UIViewController {
                     return
                 }
                 
-                weakSelf?.addTask.guarantee = guarantee
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddWhipController.addSupervisorKey()), object: weakSelf?.addTask)
-                weakSelf?.dismiss(animated: true, completion: { })
+                let tipStr = "确认自由服务费为"+guarantee+"元，完成任务将退还，未完成任务将不退还。"
+                let tip = UIAlertView.init(title: tipStr, message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                tip.show()
+                tip.bk_setHandler({ 
+                    weakSelf?.addTask.guarantee = guarantee
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddWhipController.addSupervisorKey()), object: weakSelf?.addTask)
+                    weakSelf?.dismiss(animated: true, completion: { })
+
+                }, forButtonAt: 1)
             }
         }
     }
@@ -167,7 +173,7 @@ extension CashController: UITableViewDataSource {
             })
             
             let cashL = UILabel()
-            cashL.text = "保证金"
+            cashL.text = "自由服务费"
             cashL.font = UIFont.systemFont(ofSize: 16)
             cell.bgView.addSubview(cashL)
             cashL.snp.makeConstraints({ (make) in
@@ -198,18 +204,17 @@ extension CashController: UITableViewDataSource {
             })
             
             let label2 = UILabel()
-            label2.text = "保证金说明：如果未达成目标，则扣除保证金，保证金归监督人所有，如果达成目标，则退还保证金。"
-            label2.numberOfLines = 2
-            label2.font = UIFont.systemFont(ofSize: 9)
-            label2.textColor = kColorGray
+            label2.text = "自由服务费说明：自由服务费是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还自由服务费，未达成任务，则归监督人所有。\n自由服务费金额在1-100元之间。"
+            label2.numberOfLines = 0
+            label2.font = UIFont.systemFont(ofSize: 11)
+            label2.textColor = kYellow
             cell.bgView.addSubview(label2)
             label2.snp.makeConstraints({ (make) in
-                make.height.equalTo(35)
+                make.top.equalTo(iconV.snp.bottom).offset(5)
                 make.left.equalTo(15)
                 make.right.equalTo(-15)
                 make.bottom.equalTo(-5)
             })
-
         }
         return cell
     }
@@ -220,7 +225,7 @@ extension CashController: UITableViewDelegate {
         if indexPath.section == 0 {
             return 80.0
         }
-        return 95.0
+        return 125.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

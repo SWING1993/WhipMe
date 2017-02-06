@@ -20,7 +20,7 @@ class CenterTextCell: NormalCell {
 
         if cellTitle == nil {
             cellTitle = UILabel.init()
-            cellTitle.font = UIFont.systemFont(ofSize: 12)
+            cellTitle.font = UIFont.systemFont(ofSize: 14)
             cellTitle.baselineAdjustment = .alignCenters
             cellTitle.textAlignment = .center
             self.bgView.addSubview(cellTitle)

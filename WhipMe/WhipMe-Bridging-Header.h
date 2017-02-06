@@ -21,6 +21,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "WMUploadFile.h"
 #import "TopUpViewController.h"
+#import "MJPhotoBrowser.h"
 //
 #import "NSDate+Extension.h"
 #import "NSString+Common.h"

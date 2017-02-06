@@ -23,12 +23,12 @@ class ThirdAddCustomCell: NormalCell {
         
         if self.addTask.type == "2" {
             addBtn.sd_setImage(with: URL.init(string: self.addTask.supervisorIcon), for: .normal, placeholderImage: nil)
-            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n保证金:"+self.addTask.guarantee+"元"
+            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n自由服务费:"+self.addTask.guarantee+"元"
         }
         
         if self.addTask.type == "1" {
             addBtn.setImage(UIImage.init(named: "system_monitoring"), for: .normal)
-            addLabel.text = "监督人:系统监督\n保证金:"+self.addTask.guarantee+"元"
+            addLabel.text = "监督人:系统监督\n自由服务费:"+self.addTask.guarantee+"元"
         }
     }
     
@@ -37,6 +37,8 @@ class ThirdAddCustomCell: NormalCell {
         self.backgroundColor = Define.kColorBackGround()
         self.selectionStyle = .none
         
+        addBtn.layer.masksToBounds = true
+        addBtn.layer.shadowRadius = 25.5
         addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
         bgView.addSubview(addBtn)
         addBtn.snp.makeConstraints { (make) in
@@ -50,10 +52,10 @@ class ThirdAddCustomCell: NormalCell {
         addLabel.textColor = kColorGary
         addLabel.textAlignment = .center
         addLabel.numberOfLines = 2
-        addLabel.font = UIFont.systemFont(ofSize: 12)
+        addLabel.font = UIFont.systemFont(ofSize: 14)
         bgView.addSubview(addLabel)
         addLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(100)
+            make.width.equalTo(300)
             make.height.equalTo(40)
             make.centerX.equalTo(bgView)
             make.top.equalTo(addBtn.snp.bottom)
@@ -63,7 +65,7 @@ class ThirdAddCustomCell: NormalCell {
         let titleLabel = UILabel.init()
         titleLabel.text = "找人监督"
         titleLabel.textColor = UIColor.black
-        titleLabel.font = UIFont.systemFont(ofSize: 12)
+        titleLabel.font = UIFont.systemFont(ofSize: 14.5)
         bgView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints({ (make) in
             make.height.equalTo(30)
@@ -73,10 +75,10 @@ class ThirdAddCustomCell: NormalCell {
         })
         
         let subTitleL = UILabel.init()
-        subTitleL.text = "功能介绍：可以找系统或好友监督，交一定的保证金，达成后退还，达不成，保证金归监督人所有。"
+        subTitleL.text = "功能介绍：可以找系统或好友监督，交一定的自由服务费，达成后退还，达不成，自由服务费归监督人所有。"
         subTitleL.numberOfLines = 2
         subTitleL.textColor = kColorGary
-        subTitleL.font = UIFont.systemFont(ofSize: 8)
+        subTitleL.font = UIFont.systemFont(ofSize: 10)
         bgView.addSubview(subTitleL)
         subTitleL.snp.makeConstraints({ (make) in
             make.height.equalTo(30)

@@ -198,8 +198,6 @@ class AddPeopleController: UIViewController {
         myTable.register(FansCell.self, forCellReuseIdentifier: FansCell.cellReuseIdentifier())
         myTable.delegate = self
         myTable.dataSource = self
-//        myTable.emptyDataSetSource = self
-//        myTable.emptyDataSetDelegate = self
         myTable.separatorStyle = .singleLine
         myTable.layer.masksToBounds = true
         myTable.layer.cornerRadius = 5
@@ -266,21 +264,3 @@ extension AddPeopleController:UITableViewDelegate {
         return CGFloat.leastNormalMagnitude
     }
 }
-
-//extension AddPeopleController: DZNEmptyDataSetSource {
-//    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
-//        let emptyStr = NSAttributedString.init(string: "暂无数据哦！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)])
-//        return emptyStr
-//    }
-//    
-//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-//        let emptyImg = UIImage.init(named: "no_data")
-//        return emptyImg
-//    }
-//}
-//
-//extension AddPeopleController: DZNEmptyDataSetDelegate {
-//    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
-//        return true
-//    }
-//}

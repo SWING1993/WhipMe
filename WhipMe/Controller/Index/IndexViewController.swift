@@ -444,7 +444,7 @@ extension WhipCell: UITableViewDataSource {
             if whipM.accept == 0 {
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.config()
-                cell.guaranteeL.text = "保证金："+String(describing: whipM.guarantee)+"元"
+                cell.guaranteeL.text = "自由服务费："+String(describing: whipM.guarantee)+"元"
             } else if (whipM.accept == 1){
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.goingL.text = "已拒绝"
@@ -466,12 +466,12 @@ extension WhipCell: UITableViewDataSource {
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             if whipM.accept == 0 {
                 cell.goingL.text = "待确认"
-                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
+                cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorYellow
 
             } else if whipM.accept == 1 {
                 cell.goingL.text = "已拒绝"
-                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
+                cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorRed
             } else {
                 cell.goingL.isHidden = true
@@ -723,7 +723,7 @@ extension IndexViewController: UITableViewDelegate {
 
 extension IndexViewController: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
-        let emptyStr = NSAttributedString.init(string: "您还没有添加任何习惯哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)])
+        let emptyStr = NSAttributedString.init(string: "您还没有添加任何习惯哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 17)])
         return emptyStr
     }
     /*

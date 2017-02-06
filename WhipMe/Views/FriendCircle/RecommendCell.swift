@@ -104,6 +104,7 @@ class RecommendCell: NormalCell {
         topicL = UILabel.init()
         topicL.font = UIFont.systemFont(ofSize: 11)
         topicL.textColor = kColorGreen
+        topicL.isUserInteractionEnabled = true
         self.bgView.addSubview(topicL)
         topicL.snp.makeConstraints({ (make) in
             make.top.equalTo(nickNameL.snp.bottom)
@@ -111,6 +112,19 @@ class RecommendCell: NormalCell {
             make.width.equalTo(140)
             make.height.equalTo(18)
         })
+        topicL.bk_(whenTapped: { () -> Void in
+            let whipM = WhipM()
+            whipM.themeId = self.myRecommendM.themeId
+            whipM.themeName = self.myRecommendM.themeName
+            let classVC = ClassifyController()
+            classVC.myWhipM = whipM
+            let classNav = UINavigationController.init(rootViewController: classVC)
+            if classVC.navigationItem.leftBarButtonItem == nil {
+                classVC.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: classVC, action: #selector(ClassifyController.disMiss))
+            }
+            kKeyWindows?.rootViewController?.present(classNav, animated: true, completion: { })
+        })
+
         
         timeL = UILabel.init()
         timeL.textColor = kColorGary
@@ -150,6 +164,7 @@ class RecommendCell: NormalCell {
         pictrueView = UIImageView.init()
         pictrueView.contentMode = UIViewContentMode.scaleAspectFill
         pictrueView.clipsToBounds = true
+        pictrueView.isUserInteractionEnabled = true
         self.bgView.addSubview(pictrueView)
         pictrueView.snp.makeConstraints { (make) in
             make.leftMargin.equalTo(0.5)
@@ -157,6 +172,14 @@ class RecommendCell: NormalCell {
             make.height.equalTo(Define.screenWidth()/2)
             make.top.equalTo(contentL.snp.bottom).offset(15)
         }
+        pictrueView.bk_(whenTapped: {
+            let brower = MJPhotoBrowser()
+            let photo = MJPhoto()
+            photo.srcImageView = self.pictrueView
+            brower.photos = NSMutableArray.init(object: photo)
+            brower.currentPhotoIndex = 0
+            brower.show()
+        })
         
         locatiomV.image = UIImage.init(named: "location")
         self.bgView.addSubview(locatiomV)
@@ -222,7 +245,7 @@ class RecommendCell: NormalCell {
             make.width.equalTo(100)
             make.height.equalTo(15)
         })
-        likeB .bk_addEventHandler({ (sender) in
+        likeB.bk_addEventHandler({ (sender) in
             if self.likeB.isSelected == false {
                 let params = [
                     "userId":UserManager.shared.userId,
@@ -230,7 +253,6 @@ class RecommendCell: NormalCell {
                     "icon":UserManager.shared.icon,
                     "recordId":self.myRecommendM.recordId,
                     "creator":self.myRecommendM.creator,
-//                    "creatorId":self.myRecommendM.creatorId,
                     ]
                 
                 HttpAPIClient.apiClientPOST("addLike", params: params, success: { (result) in

@@ -198,7 +198,7 @@ class AddWhipController: UIViewController {
         weak var weakSelf = self
         HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
             if let resultData = result {
-//                print(resultData)
+                print(resultData)
                 let json = JSON(resultData)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
@@ -415,6 +415,7 @@ extension AddWhipController:UITableViewDataSource {
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                             weakSelf?.addTask.startDate = date
+                            weakSelf?.customTable.reloadData()
                         }
                     }
                     
@@ -423,6 +424,7 @@ extension AddWhipController:UITableViewDataSource {
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                             weakSelf?.addTask.endDate = date
+                            weakSelf?.customTable.reloadData()
                         }
                     }
                     
@@ -431,6 +433,7 @@ extension AddWhipController:UITableViewDataSource {
                         SGHDateView.sharedInstance.show();
                         SGHDateView.sharedInstance.okBlock = { (date) -> Void in
                             weakSelf?.addTask.clockTime = date
+                            weakSelf?.customTable.reloadData()
                         }
                     }
 
@@ -492,11 +495,16 @@ extension AddWhipController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 101 {
             self.searchBar.endEditing(true)
-            let vc = AddWhipController.init()
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.section]
-            vc.queryHorThemeName = model.themeName
-            vc.hideHot = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            let whipM = WhipM()
+            whipM.themeId = model.themeId
+            whipM.themeName = model.themeName
+            whipM.themeIcon = model.themeIcon
+            let classVC = ClassifyController()
+            classVC.isJoin = true
+            classVC.myWhipM = whipM
+            self.navigationController?.pushViewController(classVC, animated: true)
+            
         }
     }
 }

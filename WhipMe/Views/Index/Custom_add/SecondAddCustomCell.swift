@@ -136,8 +136,8 @@ extension SecondAddCustomCell:UITableViewDataSource {
         let cell: UITableViewCell = UITableViewCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: "cell")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.5)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 12)
         cell.textLabel?.text = itmes[indexPath.row]
 
         cell.detailTextLabel?.text = "未设置"

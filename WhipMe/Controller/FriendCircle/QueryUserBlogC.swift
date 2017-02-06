@@ -50,12 +50,21 @@ class UserBlogHeaderV: UIView {
         avatarV.layer.masksToBounds = true
         avatarV.layer.cornerRadius = 34.5
         avatarV.contentMode = .scaleAspectFill
+        avatarV.isUserInteractionEnabled = true
         self.addSubview(avatarV)
         avatarV.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize.init(width: 69, height: 69))
             make.left.equalTo(35)
             make.top.equalTo(30)
         }
+        avatarV.bk_(whenTapped: {
+            let brower = MJPhotoBrowser()
+            let photo = MJPhoto()
+            photo.srcImageView = self.avatarV
+            brower.photos = NSMutableArray.init(object: photo)
+            brower.currentPhotoIndex = 0
+            brower.show()
+        })
         
         signL.textColor = kColorTextLight
         signL.font = UIFont.systemFont(ofSize: 13)

@@ -288,7 +288,7 @@ class TaCecordController: UIViewController {
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"
-        leftLabel.text = "保证金："+String(describing: model.guarantee)+"元"
+        leftLabel.text = "自由服务费："+String(describing: model.guarantee)+"元"
         rightLabel.text = model.endDate+"结束"
         headView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: (130+contentH))
         return headView

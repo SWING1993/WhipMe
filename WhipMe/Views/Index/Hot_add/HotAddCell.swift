@@ -45,7 +45,6 @@ class HotAddCell: NormalCell {
         if titleL == nil {
             titleL = UILabel.init()
             titleL.textColor = kColorBlack
-//            titleL.text = "早起"
             titleL.font = UIFont.systemFont(ofSize: 16)
             self.bgView.addSubview(titleL)
             titleL.snp.makeConstraints({ (make) in
@@ -61,7 +60,7 @@ class HotAddCell: NormalCell {
             subTitleL.textColor = kColorGray
 //            subTitleL.text = "已有10086位参加"
             subTitleL.textAlignment = .right
-            subTitleL.font = UIFont.systemFont(ofSize: 8)
+            subTitleL.font = UIFont.systemFont(ofSize: 10)
             self.bgView.addSubview(subTitleL)
             subTitleL.snp.makeConstraints({ (make) in
                 make.height.equalTo(50)

@@ -79,7 +79,7 @@
 {
     if (!_progressTintColor)
     {
-        _progressTintColor = [UIColor whiteColor];
+        _progressTintColor = [UIColor clearColor];
     }
     return _progressTintColor;
 }

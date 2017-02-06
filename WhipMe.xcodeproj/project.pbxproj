@@ -207,6 +207,7 @@
 		E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E4D1D991E32006D3188 /* NormalCell.swift */; };
 		E4D97E551D9A126D006D3188 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */; };
 		E4D97E581D9A3140006D3188 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D97E561D9A1631006D3188 /* SnapKit.framework */; };
+		E4DEACC71E485C650038E8EF /* ClassifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DEACC61E485C650038E8EF /* ClassifyController.swift */; };
 		E4E230291DDC4262007EF8AC /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E230281DDC4262007EF8AC /* NSString+Common.m */; };
 		E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */; };
 /* End PBXBuildFile section */
@@ -521,6 +522,7 @@
 		E4D97E531D9A126D006D3188 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		E4D97E541D9A126D006D3188 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		E4D97E561D9A1631006D3188 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
+		E4DEACC61E485C650038E8EF /* ClassifyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassifyController.swift; sourceTree = "<group>"; };
 		E4E230271DDC4262007EF8AC /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		E4E230281DDC4262007EF8AC /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleController.swift; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 				C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */,
 				E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */,
 				E446ECF41E4431F00097336F /* ShareController.swift */,
+				E4DEACC61E485C650038E8EF /* ClassifyController.swift */,
 			);
 			path = FriendCircle;
 			sourceTree = "<group>";
@@ -1459,6 +1462,7 @@
 				E446ECF51E4431F00097336F /* ShareController.swift in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
 				E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */,
+				E4DEACC71E485C650038E8EF /* ClassifyController.swift in Sources */,
 				E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */,
 				E43D0FB01DD07875001A0B36 /* SVIndefiniteAnimatedView.m in Sources */,
 				E4189EDE1D8E744800A619A6 /* SecondAddCustomCell.swift in Sources */,

@@ -21,7 +21,6 @@ class LogTextCell: NormalCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         if contentT == nil {
             contentT = UIPlaceHolderTextView.init()
             contentT.font = UIFont.systemFont(ofSize: 15)

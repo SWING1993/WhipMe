@@ -230,7 +230,7 @@ extension MeCecordController:UITableViewDataSource {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
             cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "system_monitoring")
             cell.titleL.text =  myWhipM.supervisorName + "监督中"
-            cell.subTitleL.text = "保证金："+String(describing: myWhipM.guarantee)+"元"
+            cell.subTitleL.text = "自由服务费："+String(describing: myWhipM.guarantee)+"元"
             return cell
         } else {
             let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
