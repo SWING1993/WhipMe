@@ -146,7 +146,7 @@ class MyFansAndFocusCell: UITableViewCell {
         }
         
         var color_normal: UIColor = kColorLight
-        if (style) {
+        if (style == false) {
             color_normal = Define.RGBColorFloat(71, g: 178, b: 248)
             self.btnCheck.setTitle("关注", for: UIControlState.normal)
         } else {
