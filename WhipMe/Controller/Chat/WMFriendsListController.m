@@ -33,7 +33,7 @@ static NSString *identifier_cell = @"addFriendsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.controlStyle == WMFriendsListStyleAddFriend ? @"添加好友" : @"好友列表";
+    self.navigationItem.title = self.controlStyle == WMFriendsListStyleAddFriend ? @"添加关注" : @"关注列表";
     self.view.backgroundColor = [Define kColorBackGround];
     
     [self setup];

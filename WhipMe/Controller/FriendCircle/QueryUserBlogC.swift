@@ -290,7 +290,7 @@ class QueryUserBlogC: UIViewController {
                     "focus":growM.creator,
                     "me":UserManager.shared.userId,
                     ]
-                HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                HttpAPIClient.apiClientPOST("focusUser", params: params, success: { (result) in
                     if let dataResult = result {
                         print(dataResult)
                         let json = JSON(dataResult)
@@ -306,6 +306,48 @@ class QueryUserBlogC: UIViewController {
                 }
             }
         }
+    }
+    
+    open func queryByUserBlog(userNo: String) {
+        if (NSString.isBlankString(userNo)) {
+            return;
+        }
+        let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+        hud.label.text = "加载中..."
+        let params = [
+            "userId":userNo,
+            "loginId":UserManager.shared.userId,
+            ]
+        HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+            hud.hide(animated: true)
+            if let dataResult = result {
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let dataJson = json["data"][0]
+                    let string = String(describing: dataJson)
+                    print(string)
+                    if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+                        self.userBlogM = userBlogM
+                        if self.userBlogM.myGrow.count > 0 {
+                            if let growM = self.userBlogM.myGrow.first {
+                                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
+                            }
+                        }
+                        self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
+                        self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
+                        self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
+                        self.myTable.reloadData()
+                    }
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                }
+            }
+        }) { (error) in
+            hud.hide(animated: true)
+            Tool.showHUDTip(tipStr: "网络不给力")
+        }
+        
     }
     
 
@@ -335,7 +377,6 @@ class QueryUserBlogC: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

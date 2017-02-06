@@ -534,7 +534,7 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func setup() {
-        self.navigationItem.title = "鞭挞"
+        self.navigationItem.title = "鞭挞我"
         self.view.backgroundColor = Define.kColorBackGround()
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
