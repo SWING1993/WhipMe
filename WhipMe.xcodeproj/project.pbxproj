@@ -459,6 +459,7 @@
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
+		C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhipMe.entitlements; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		E40D70C61DE6D2E40087B9EF /* TaCecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaCecordController.swift; sourceTree = "<group>"; };
@@ -1240,6 +1241,7 @@
 		E4AB21F11D82566A0044943E /* WhipMe */ = {
 			isa = PBXGroup;
 			children = (
+				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				C546FE0F1D82989700012FB4 /* Controller */,
 				C546FE141D82989700012FB4 /* Model */,
 				C546FE191D82989700012FB4 /* Views */,
@@ -1326,6 +1328,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 						};
@@ -1694,6 +1699,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1729,6 +1735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FBZXR8H37;
 				FRAMEWORK_SEARCH_PATHS = (
