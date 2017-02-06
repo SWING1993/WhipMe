@@ -252,7 +252,6 @@ static NSString *identifier_cell = @"userInfoViewCell";
     if (imageData) {
         WEAK_SELF
         [WMUploadFile upToData:imageData backInfo:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            DebugLog(@"_________%@_____%@_____%@",info, key, resp);
             if (resp == nil) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",info.error]];
             } else {
@@ -263,7 +262,6 @@ static NSString *identifier_cell = @"userInfoViewCell";
             }
 
         } fail:^(NSError *error) {
-            DebugLog(@"___________error:%@",error);
             [Tool showHUDTipWithTipStr:@"头像上传失败"];
         }];
     }
@@ -338,6 +336,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
     if ([NSString isBlankString:strValue]) {
         return;
     }
+    
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%@",self.userModel.userId] forKey:@"userId"];
     
@@ -354,7 +353,6 @@ static NSString *identifier_cell = @"userInfoViewCell";
         if ([data[@"ret"] intValue] == 0) {
             
             weakSelf.userModel = nil;
-//            [UserManager storeUserWithDict:data[@"userInfo"]];
             UserManager *info = [UserManager mj_objectWithKeyValues:data[@"userInfo"]];
             UserManager *model = [UserManager shared];
             model.birthday = info.birthday;
@@ -368,7 +366,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
             
             NSMutableDictionary *dict_value = [model mj_keyValues];
             [UserManager storeUserWithDict:dict_value];
-            // TODO:未完，如果保持
+            [[ChatMessage shareChat] updateJUserInfo];
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];

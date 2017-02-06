@@ -27,6 +27,14 @@ static ChatMessage *_chatObj = nil;
         return;
     }
     
+    JMSGUser *jUser = [JMSGUser myInfo];
+    if ([NSString isBlankString:jUser.username] == NO) {
+        if ([NSString isBlankString:jUser.nickname]) {
+            [self updateJUserInfo];
+        }
+        return;
+    }
+    
     WEAK_SELF
     [JMSGUser loginWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -35,6 +43,9 @@ static ChatMessage *_chatObj = nil;
         } else if (error.code == kJMSGErrorTcpUserPasswordError) {
             [weakSelf updateLoginPwd];
         }
+        if (error == nil) {
+            [weakSelf updateJUserInfo];
+        }
     }];
 }
 
@@ -42,22 +53,20 @@ static ChatMessage *_chatObj = nil;
     UserManager *info = [UserManager shared];
     if ([NSString isBlankString:info.nickname] == NO) {
         [JMSGUser updateMyInfoWithParameter:info.nickname userFieldType:kJMSGUserFieldsNickname completionHandler:^(id resultObject, NSError *error) {
-            
         }];
     }
     if ([NSString isBlankString:info.icon] == NO) {
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:info.icon] options:SDWebImageDownloaderLowPriority|SDWebImageDownloaderProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-            [JMSGUser updateMyInfoWithParameter:data userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
-                
-            }];
+            if (data) {
+                [JMSGUser updateMyInfoWithParameter:data userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
+                }];
+            }
         }];
     }
     [JMSGUser updateMyInfoWithParameter:[NSNumber numberWithBool:info.sex] userFieldType:kJMSGUserFieldsGender completionHandler:^(id resultObject, NSError *error) {
-        
     }];
-    
 }
 
 - (void)registerJMessage
@@ -71,7 +80,6 @@ static ChatMessage *_chatObj = nil;
     [JMSGUser registerWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         if (error == nil) {
             [weakSelf loginJMessage];
-            [weakSelf updateJUserInfo];
         } else {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }

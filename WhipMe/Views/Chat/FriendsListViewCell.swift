@@ -143,7 +143,7 @@ class FriendsListViewCell: UITableViewCell {
         } else {
             lblBrief.text = model.sign
         }
-        imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: UIImage.init(named: "system_monitoring"))
+        imageLogo.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         
         if (model.focus == false) {
             btnStatus.isUserInteractionEnabled = true;

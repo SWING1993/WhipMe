@@ -303,7 +303,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                ChatMessage.shareChat().loginJMessage()
+                ChatMessage.shareChat().registerJMessage()
             } else {
                 Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }

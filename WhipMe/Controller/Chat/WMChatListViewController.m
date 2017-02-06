@@ -36,6 +36,8 @@ static NSString *identifier_cell = @"ChatConversationListCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getConversationList];
+    
+    [[ChatMessage shareChat] loginJMessage];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
