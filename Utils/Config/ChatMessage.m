@@ -7,6 +7,7 @@
 //
 
 #import "ChatMessage.h"
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 static ChatMessage *_chatObj = nil;
 @implementation ChatMessage
@@ -26,14 +27,45 @@ static ChatMessage *_chatObj = nil;
         return;
     }
     
+    JMSGUser *jUser = [JMSGUser myInfo];
+    if ([NSString isBlankString:jUser.username] == NO) {
+        if ([NSString isBlankString:jUser.nickname]) {
+            [self updateJUserInfo];
+        }
+        return;
+    }
+    
     WEAK_SELF
     [JMSGUser loginWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if (error.code == kJMSGErrorHttpUserNotExist) {
+        if (error.code == kJMSGErrorHttpUserNotExist || error.code == kJMSGErrorTcpUserNotRegistered) {
             [weakSelf registerJMessage];
         } else if (error.code == kJMSGErrorTcpUserPasswordError) {
             [weakSelf updateLoginPwd];
         }
+        if (error == nil) {
+            [weakSelf updateJUserInfo];
+        }
+    }];
+}
+
+- (void)updateJUserInfo {
+    UserManager *info = [UserManager shared];
+    if ([NSString isBlankString:info.nickname] == NO) {
+        [JMSGUser updateMyInfoWithParameter:info.nickname userFieldType:kJMSGUserFieldsNickname completionHandler:^(id resultObject, NSError *error) {
+        }];
+    }
+    if ([NSString isBlankString:info.icon] == NO) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:info.icon] options:SDWebImageDownloaderLowPriority|SDWebImageDownloaderProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            if (data) {
+                [JMSGUser updateMyInfoWithParameter:data userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
+                }];
+            }
+        }];
+    }
+    [JMSGUser updateMyInfoWithParameter:[NSNumber numberWithBool:info.sex] userFieldType:kJMSGUserFieldsGender completionHandler:^(id resultObject, NSError *error) {
     }];
 }
 

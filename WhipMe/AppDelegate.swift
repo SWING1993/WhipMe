@@ -15,20 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
-        //ji guang
+        
         JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-        JMessage.setLogOFF()
-        // wei xin
-        WMShareEngine.sharedInstance().registerApp()
-        // debug
-        let verison_str = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString");
-        let config = BuglyConfig()
-        config.debugMode = false;
-        config.channel = "appStore_V\(verison_str)"
-        Bugly.start(withAppId: Define.appKeyBugly(), config: config)
-        registerUserNotification()
-        customizeAppearance()
+        self.thirdPartySDK()
+        self.registerUserNotification()
+        self.customizeAppearance()
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
                 
@@ -107,6 +98,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginControl: WMLoginWayController = WMLoginWayController()
         let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
         self.window?.rootViewController = navControl
+    }
+    
+    func thirdPartySDK() {
+        // ji guang
+        JMessage.setLogOFF()
+        // wei xin
+        WMShareEngine.sharedInstance().registerApp()
+        // debug
+        let verison_str = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString");
+        let config = BuglyConfig()
+        config.debugMode = false;
+        config.channel = "appStore_V\(verison_str)"
+        Bugly.start(withAppId: Define.appKeyBugly(), config: config)
+        
+        // 实时修复线上 bug
+        JSPatch.start(withAppKey: "b12b0364eb920d55")
+        JSPatch.sync()
     }
     
     func customizeAppearance() {

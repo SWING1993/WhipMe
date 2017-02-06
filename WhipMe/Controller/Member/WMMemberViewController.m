@@ -96,6 +96,9 @@ static NSString *identifier_head = @"tableViewView_head";
         make.width.equalTo(weakSelf.view);
         make.height.equalTo(weakSelf.view);
     }];
+    self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf queryByUserInfo];
+    }];
     
     [self.tableViewWM registerClass:[MemberTableViewCell class] forCellReuseIdentifier:identifier_member];
     [self.tableViewWM registerClass:[MemberHeadViewCell class] forCellReuseIdentifier:identifier_head];
@@ -414,6 +417,7 @@ static NSString *identifier_head = @"tableViewView_head";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserInfo" params:param Success:^(id result) {
+        [self.tableViewWM.mj_header endRefreshing];
         DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
@@ -447,7 +451,7 @@ static NSString *identifier_head = @"tableViewView_head";
             }
         }
     } Failed:^(NSError *error) {
-        
+        [self.tableViewWM.mj_header endRefreshing];
     }];
 }
 

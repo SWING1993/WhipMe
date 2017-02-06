@@ -281,12 +281,16 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             showIsMessage(msg: "手机号不存在!")
             return
         }
-        
+         let currentdate = Date()
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "YYYY-MM-dd"
+        let customDate = dateformatter.string(from: currentdate)
+        print(customDate)
         let params = ["mobile":mobileStr,
                       "icon":self.avatar,
                       "nickname":nickName,
                       "sex":sex_int,
-                      "birthday":"1992-10-05"]
+                      "birthday":customDate]
         
         HttpAPIClient.apiClientPOST("register", params:params, success: { (result) in
             print("注册：第2步 is result:\(result)")
@@ -299,7 +303,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 
                 let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.setupMainController()
-                ChatMessage.shareChat().loginJMessage()
+                ChatMessage.shareChat().registerJMessage()
             } else {
                 Tool.showHUDTip(tipStr: data["desc"].stringValue)
             }
@@ -337,8 +341,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 return
             }
         } else if buttonIndex == 2 {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
                 imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
             } else {
                 self.showIsMessage(msg: "该设备不支持“相片库”")
@@ -364,24 +368,18 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnAvatar.setImage(newImge, for: UIControlState.highlighted)
         
         let imageData: NSData = UIImage.dataRepresentationImage(newImge) as NSData
+        WMUploadFile.up(to: imageData as Data!, backInfo: { (info, key, resp) in
+            //图片上传失败!
+            if (resp == nil) {
+                Tool.showHUDTip(tipStr: "\(info?.error)")
+            } else {
+                let img_url: String = WMUploadFile.kImageBaseUrl(resp?["key"] as! String)
+                self.avatar = img_url
+            }
+        }, fail: { (error) in
+            Tool.showHUDTip(tipStr: "头像上传失败")
+        })
         
-        let filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
-        let fullFile: String = filePath.appending("/"+UIImage.generateUuidString()+".png")
-        
-        let flag: Bool = imageData.write(toFile: fullFile, atomically: true)
-        if flag {
-            WMUploadFile.up(to: imageData as Data!, backInfo: { (info, key, resp) in
-                //图片上传失败!
-                if (resp == nil) {
-                    Tool.showHUDTip(tipStr: "\(info?.error)")
-                } else {
-                    let img_url: String = WMUploadFile.kImageBaseUrl(resp?["key"] as! String)
-                    self.avatar = img_url
-                }
-            }, fail: { (error) in
-                Tool.showHUDTip(tipStr: "头像上传失败")
-            })
-        }
     }
     
     // MARK: -UITextFieldDelegate

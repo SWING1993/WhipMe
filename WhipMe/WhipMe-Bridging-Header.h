@@ -15,6 +15,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <YTKKeyValueStore/YTKKeyValueStore.h>
 #import <MJExtension/MJExtension.h>
+#import <JSPatchPlatform/JSPatch.h>
 #import "SVProgressHUD.h"
 #import <Bugly/Bugly.h>
 #import <PLeakSniffer/PLeakSniffer.h>
