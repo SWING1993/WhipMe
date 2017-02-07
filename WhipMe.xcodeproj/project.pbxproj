@@ -33,6 +33,17 @@
 		C542FE421E24BBA6000A66CB /* WMFansAndFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */; };
 		C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C542FE441E24BDFD000A66CB /* FansAndFocusModel.m */; };
 		C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */; };
+		C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = C5451C851E49B4E600A7AF79 /* QBImagePicker.strings */; };
+		C5451C9C1E49B4E600A7AF79 /* QBAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C881E49B4E600A7AF79 /* QBAlbumCell.m */; };
+		C5451C9D1E49B4E600A7AF79 /* QBAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C8A1E49B4E600A7AF79 /* QBAlbumsViewController.m */; };
+		C5451C9E1E49B4E600A7AF79 /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C8C1E49B4E600A7AF79 /* QBAssetCell.m */; };
+		C5451C9F1E49B4E600A7AF79 /* QBAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C8E1E49B4E600A7AF79 /* QBAssetsViewController.m */; };
+		C5451CA01E49B4E600A7AF79 /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C901E49B4E600A7AF79 /* QBCheckmarkView.m */; };
+		C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5451C911E49B4E600A7AF79 /* QBImagePicker.storyboard */; };
+		C5451CA21E49B4E600A7AF79 /* QBImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C931E49B4E600A7AF79 /* QBImagePickerController.m */; };
+		C5451CA31E49B4E600A7AF79 /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C951E49B4E600A7AF79 /* QBSlomoIconView.m */; };
+		C5451CA41E49B4E600A7AF79 /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C971E49B4E600A7AF79 /* QBVideoIconView.m */; };
+		C5451CA51E49B4E600A7AF79 /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5451C991E49B4E600A7AF79 /* QBVideoIndicatorView.m */; };
 		C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE261D829A7300012FB4 /* MainTabBarController.swift */; };
 		C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE281D829BF900012FB4 /* IndexViewController.swift */; };
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
@@ -82,7 +93,6 @@
 		C5AB3CCA1E2F1B8900ED29C2 /* RecordingSignal008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CC11E2F1B8900ED29C2 /* RecordingSignal008@2x.png */; };
 		C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */; };
 		C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */; };
-		C5B343441E2DAD4100A16B56 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B343431E2DAD4100A16B56 /* SDWebImageManager+MJ.m */; };
 		C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */; };
 		C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */; };
 		C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */; };
@@ -112,29 +122,6 @@
 		C5C177C41E2CBD0700891C0D /* ChatBubbleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177C11E2CBD0700891C0D /* ChatBubbleLayer.m */; };
 		C5C177C51E2CBD0700891C0D /* ChatImageBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177C31E2CBD0700891C0D /* ChatImageBubble.m */; };
 		C5C177C81E2CBD5400891C0D /* JCHATAudioPlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177C71E2CBD5400891C0D /* JCHATAudioPlayerHelper.m */; };
-		C5C177F01E2CBEE900891C0D /* JCHATAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177CC1E2CBEE900891C0D /* JCHATAlbumViewController.m */; };
-		C5C177F11E2CBEE900891C0D /* JCHATAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177CD1E2CBEE900891C0D /* JCHATAlbumViewController.xib */; };
-		C5C177F21E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177CF1E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m */; };
-		C5C177F31E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177D01E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib */; };
-		C5C177F41E2CBEE900891C0D /* JCHATPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177D21E2CBEE900891C0D /* JCHATPhotoPickerViewController.m */; };
-		C5C177F51E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177D31E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib */; };
-		C5C177F61E2CBEE900891C0D /* JCHATPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177D51E2CBEE900891C0D /* JCHATPhotoSelectViewController.m */; };
-		C5C177F71E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177D61E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib */; };
-		C5C177F81E2CBEE900891C0D /* JCHATAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177D91E2CBEE900891C0D /* JCHATAlbumModel.m */; };
-		C5C177F91E2CBEE900891C0D /* JCHATPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177DB1E2CBEE900891C0D /* JCHATPhotoModel.m */; };
-		C5C177FA1E2CBEE900891C0D /* image_no_picked.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177DE1E2CBEE900891C0D /* image_no_picked.png */; };
-		C5C177FB1E2CBEE900891C0D /* image_no_picked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177DF1E2CBEE900891C0D /* image_no_picked@2x.png */; };
-		C5C177FC1E2CBEE900891C0D /* image_no_picked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177E01E2CBEE900891C0D /* image_no_picked@3x.png */; };
-		C5C177FD1E2CBEE900891C0D /* image_picked.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177E11E2CBEE900891C0D /* image_picked.png */; };
-		C5C177FE1E2CBEE900891C0D /* image_picked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177E21E2CBEE900891C0D /* image_picked@2x.png */; };
-		C5C177FF1E2CBEE900891C0D /* image_picked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C177E31E2CBEE900891C0D /* image_picked@3x.png */; };
-		C5C178001E2CBEE900891C0D /* JCHATAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177E61E2CBEE900891C0D /* JCHATAlbumTableViewCell.m */; };
-		C5C178011E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177E71E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib */; };
-		C5C178021E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177E91E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.m */; };
-		C5C178031E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177EA1E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.xib */; };
-		C5C178041E2CBEE900891C0D /* JCHATSelectImgCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177EC1E2CBEE900891C0D /* JCHATSelectImgCollectionView.m */; };
-		C5C178051E2CBEE900891C0D /* ThumbImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177EE1E2CBEE900891C0D /* ThumbImageCollectionViewCell.m */; };
-		C5C178061E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C177EF1E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib */; };
 		C5C178091E2CBF1E00891C0D /* JCHATFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C178081E2CBF1E00891C0D /* JCHATFileManager.m */; };
 		C5C1780D1E2CBF4100891C0D /* JCHATShowTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1780B1E2CBF4100891C0D /* JCHATShowTimeCell.m */; };
 		C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C1780C1E2CBF4100891C0D /* JCHATShowTimeCell.xib */; };
@@ -258,6 +245,27 @@
 		C542FE431E24BDFD000A66CB /* FansAndFocusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansAndFocusModel.h; sourceTree = "<group>"; };
 		C542FE441E24BDFD000A66CB /* FansAndFocusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansAndFocusModel.m; sourceTree = "<group>"; };
 		C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFansAndFocusCell.swift; sourceTree = "<group>"; };
+		C5451C861E49B4E600A7AF79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/QBImagePicker.strings; sourceTree = "<group>"; };
+		C5451C871E49B4E600A7AF79 /* QBAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumCell.h; sourceTree = "<group>"; };
+		C5451C881E49B4E600A7AF79 /* QBAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumCell.m; sourceTree = "<group>"; };
+		C5451C891E49B4E600A7AF79 /* QBAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumsViewController.h; sourceTree = "<group>"; };
+		C5451C8A1E49B4E600A7AF79 /* QBAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumsViewController.m; sourceTree = "<group>"; };
+		C5451C8B1E49B4E600A7AF79 /* QBAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetCell.h; sourceTree = "<group>"; };
+		C5451C8C1E49B4E600A7AF79 /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
+		C5451C8D1E49B4E600A7AF79 /* QBAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetsViewController.h; sourceTree = "<group>"; };
+		C5451C8E1E49B4E600A7AF79 /* QBAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetsViewController.m; sourceTree = "<group>"; };
+		C5451C8F1E49B4E600A7AF79 /* QBCheckmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBCheckmarkView.h; sourceTree = "<group>"; };
+		C5451C901E49B4E600A7AF79 /* QBCheckmarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBCheckmarkView.m; sourceTree = "<group>"; };
+		C5451C911E49B4E600A7AF79 /* QBImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QBImagePicker.storyboard; sourceTree = "<group>"; };
+		C5451C921E49B4E600A7AF79 /* QBImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBImagePickerController.h; sourceTree = "<group>"; };
+		C5451C931E49B4E600A7AF79 /* QBImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBImagePickerController.m; sourceTree = "<group>"; };
+		C5451C941E49B4E600A7AF79 /* QBSlomoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBSlomoIconView.h; sourceTree = "<group>"; };
+		C5451C951E49B4E600A7AF79 /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
+		C5451C961E49B4E600A7AF79 /* QBVideoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIconView.h; sourceTree = "<group>"; };
+		C5451C971E49B4E600A7AF79 /* QBVideoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIconView.m; sourceTree = "<group>"; };
+		C5451C981E49B4E600A7AF79 /* QBVideoIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIndicatorView.h; sourceTree = "<group>"; };
+		C5451C991E49B4E600A7AF79 /* QBVideoIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIndicatorView.m; sourceTree = "<group>"; };
+		C5451C9A1E49B4E600A7AF79 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/QBImagePicker.strings"; sourceTree = "<group>"; };
 		C546FE261D829A7300012FB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C546FE281D829BF900012FB4 /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
@@ -321,8 +329,6 @@
 		C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPickerPassengerView.m; sourceTree = "<group>"; };
 		C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
-		C5B343421E2DAD4100A16B56 /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
-		C5B343431E2DAD4100A16B56 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
 		C5B343451E2DB3F200A16B56 /* JCHATAlertToSendImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlertToSendImage.h; sourceTree = "<group>"; };
 		C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlertToSendImage.m; sourceTree = "<group>"; };
 		C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying@2x.png"; sourceTree = "<group>"; };
@@ -374,40 +380,6 @@
 		C5C177C31E2CBD0700891C0D /* ChatImageBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageBubble.m; sourceTree = "<group>"; };
 		C5C177C61E2CBD5400891C0D /* JCHATAudioPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAudioPlayerHelper.h; sourceTree = "<group>"; };
 		C5C177C71E2CBD5400891C0D /* JCHATAudioPlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAudioPlayerHelper.m; sourceTree = "<group>"; };
-		C5C177CB1E2CBEE900891C0D /* JCHATAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlbumViewController.h; sourceTree = "<group>"; };
-		C5C177CC1E2CBEE900891C0D /* JCHATAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlbumViewController.m; sourceTree = "<group>"; };
-		C5C177CD1E2CBEE900891C0D /* JCHATAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATAlbumViewController.xib; sourceTree = "<group>"; };
-		C5C177CE1E2CBEE900891C0D /* JCHATPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoBrowserViewController.h; sourceTree = "<group>"; };
-		C5C177CF1E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATPhotoBrowserViewController.m; sourceTree = "<group>"; };
-		C5C177D01E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATPhotoBrowserViewController.xib; sourceTree = "<group>"; };
-		C5C177D11E2CBEE900891C0D /* JCHATPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoPickerViewController.h; sourceTree = "<group>"; };
-		C5C177D21E2CBEE900891C0D /* JCHATPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATPhotoPickerViewController.m; sourceTree = "<group>"; };
-		C5C177D31E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATPhotoPickerViewController.xib; sourceTree = "<group>"; };
-		C5C177D41E2CBEE900891C0D /* JCHATPhotoSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoSelectViewController.h; sourceTree = "<group>"; };
-		C5C177D51E2CBEE900891C0D /* JCHATPhotoSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATPhotoSelectViewController.m; sourceTree = "<group>"; };
-		C5C177D61E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATPhotoSelectViewController.xib; sourceTree = "<group>"; };
-		C5C177D81E2CBEE900891C0D /* JCHATAlbumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlbumModel.h; sourceTree = "<group>"; };
-		C5C177D91E2CBEE900891C0D /* JCHATAlbumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlbumModel.m; sourceTree = "<group>"; };
-		C5C177DA1E2CBEE900891C0D /* JCHATPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoModel.h; sourceTree = "<group>"; };
-		C5C177DB1E2CBEE900891C0D /* JCHATPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATPhotoModel.m; sourceTree = "<group>"; };
-		C5C177DC1E2CBEE900891C0D /* JCHATPhotoPickerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoPickerConstants.h; sourceTree = "<group>"; };
-		C5C177DE1E2CBEE900891C0D /* image_no_picked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_no_picked.png; sourceTree = "<group>"; };
-		C5C177DF1E2CBEE900891C0D /* image_no_picked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_no_picked@2x.png"; sourceTree = "<group>"; };
-		C5C177E01E2CBEE900891C0D /* image_no_picked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_no_picked@3x.png"; sourceTree = "<group>"; };
-		C5C177E11E2CBEE900891C0D /* image_picked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_picked.png; sourceTree = "<group>"; };
-		C5C177E21E2CBEE900891C0D /* image_picked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_picked@2x.png"; sourceTree = "<group>"; };
-		C5C177E31E2CBEE900891C0D /* image_picked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_picked@3x.png"; sourceTree = "<group>"; };
-		C5C177E51E2CBEE900891C0D /* JCHATAlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlbumTableViewCell.h; sourceTree = "<group>"; };
-		C5C177E61E2CBEE900891C0D /* JCHATAlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlbumTableViewCell.m; sourceTree = "<group>"; };
-		C5C177E71E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATAlbumTableViewCell.xib; sourceTree = "<group>"; };
-		C5C177E81E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATPhotoBrowserCollectionViewCell.h; sourceTree = "<group>"; };
-		C5C177E91E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATPhotoBrowserCollectionViewCell.m; sourceTree = "<group>"; };
-		C5C177EA1E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCHATPhotoBrowserCollectionViewCell.xib; sourceTree = "<group>"; };
-		C5C177EB1E2CBEE900891C0D /* JCHATSelectImgCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATSelectImgCollectionView.h; sourceTree = "<group>"; };
-		C5C177EC1E2CBEE900891C0D /* JCHATSelectImgCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATSelectImgCollectionView.m; sourceTree = "<group>"; };
-		C5C177ED1E2CBEE900891C0D /* ThumbImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbImageCollectionViewCell.h; sourceTree = "<group>"; };
-		C5C177EE1E2CBEE900891C0D /* ThumbImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbImageCollectionViewCell.m; sourceTree = "<group>"; };
-		C5C177EF1E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		C5C178071E2CBF1E00891C0D /* JCHATFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATFileManager.h; sourceTree = "<group>"; };
 		C5C178081E2CBF1E00891C0D /* JCHATFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATFileManager.m; sourceTree = "<group>"; };
 		C5C1780A1E2CBF4100891C0D /* JCHATShowTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATShowTimeCell.h; sourceTree = "<group>"; };
@@ -629,6 +601,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C5451C841E49B4E600A7AF79 /* QBImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C5451C851E49B4E600A7AF79 /* QBImagePicker.strings */,
+				C5451C871E49B4E600A7AF79 /* QBAlbumCell.h */,
+				C5451C881E49B4E600A7AF79 /* QBAlbumCell.m */,
+				C5451C891E49B4E600A7AF79 /* QBAlbumsViewController.h */,
+				C5451C8A1E49B4E600A7AF79 /* QBAlbumsViewController.m */,
+				C5451C8B1E49B4E600A7AF79 /* QBAssetCell.h */,
+				C5451C8C1E49B4E600A7AF79 /* QBAssetCell.m */,
+				C5451C8D1E49B4E600A7AF79 /* QBAssetsViewController.h */,
+				C5451C8E1E49B4E600A7AF79 /* QBAssetsViewController.m */,
+				C5451C8F1E49B4E600A7AF79 /* QBCheckmarkView.h */,
+				C5451C901E49B4E600A7AF79 /* QBCheckmarkView.m */,
+				C5451C911E49B4E600A7AF79 /* QBImagePicker.storyboard */,
+				C5451C921E49B4E600A7AF79 /* QBImagePickerController.h */,
+				C5451C931E49B4E600A7AF79 /* QBImagePickerController.m */,
+				C5451C941E49B4E600A7AF79 /* QBSlomoIconView.h */,
+				C5451C951E49B4E600A7AF79 /* QBSlomoIconView.m */,
+				C5451C961E49B4E600A7AF79 /* QBVideoIconView.h */,
+				C5451C971E49B4E600A7AF79 /* QBVideoIconView.m */,
+				C5451C981E49B4E600A7AF79 /* QBVideoIndicatorView.h */,
+				C5451C991E49B4E600A7AF79 /* QBVideoIndicatorView.m */,
+			);
+			name = QBImagePicker;
+			path = QBImagePickerController/QBImagePicker;
+			sourceTree = "<group>";
+		};
 		C546FE0F1D82989700012FB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,8 +754,6 @@
 				C5C178191E2CC1EB00891C0D /* JCHATSendMsgManager.m */,
 				C5C1781B1E2CC21500891C0D /* JCHATSendMsgController.h */,
 				C5C1781C1E2CC21500891C0D /* JCHATSendMsgController.m */,
-				C5B343421E2DAD4100A16B56 /* SDWebImageManager+MJ.h */,
-				C5B343431E2DAD4100A16B56 /* SDWebImageManager+MJ.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -971,79 +969,6 @@
 			path = ChatImageBubble;
 			sourceTree = "<group>";
 		};
-		C5C177C91E2CBEE900891C0D /* HMPhotoPicker */ = {
-			isa = PBXGroup;
-			children = (
-				C5C177CA1E2CBEE900891C0D /* Controller */,
-				C5C177D71E2CBEE900891C0D /* Model */,
-				C5C177DD1E2CBEE900891C0D /* resources */,
-				C5C177E41E2CBEE900891C0D /* View */,
-			);
-			path = HMPhotoPicker;
-			sourceTree = "<group>";
-		};
-		C5C177CA1E2CBEE900891C0D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C5C177CB1E2CBEE900891C0D /* JCHATAlbumViewController.h */,
-				C5C177CC1E2CBEE900891C0D /* JCHATAlbumViewController.m */,
-				C5C177CD1E2CBEE900891C0D /* JCHATAlbumViewController.xib */,
-				C5C177CE1E2CBEE900891C0D /* JCHATPhotoBrowserViewController.h */,
-				C5C177CF1E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m */,
-				C5C177D01E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib */,
-				C5C177D11E2CBEE900891C0D /* JCHATPhotoPickerViewController.h */,
-				C5C177D21E2CBEE900891C0D /* JCHATPhotoPickerViewController.m */,
-				C5C177D31E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib */,
-				C5C177D41E2CBEE900891C0D /* JCHATPhotoSelectViewController.h */,
-				C5C177D51E2CBEE900891C0D /* JCHATPhotoSelectViewController.m */,
-				C5C177D61E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		C5C177D71E2CBEE900891C0D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C5C177D81E2CBEE900891C0D /* JCHATAlbumModel.h */,
-				C5C177D91E2CBEE900891C0D /* JCHATAlbumModel.m */,
-				C5C177DA1E2CBEE900891C0D /* JCHATPhotoModel.h */,
-				C5C177DB1E2CBEE900891C0D /* JCHATPhotoModel.m */,
-				C5C177DC1E2CBEE900891C0D /* JCHATPhotoPickerConstants.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C5C177DD1E2CBEE900891C0D /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				C5C177DE1E2CBEE900891C0D /* image_no_picked.png */,
-				C5C177DF1E2CBEE900891C0D /* image_no_picked@2x.png */,
-				C5C177E01E2CBEE900891C0D /* image_no_picked@3x.png */,
-				C5C177E11E2CBEE900891C0D /* image_picked.png */,
-				C5C177E21E2CBEE900891C0D /* image_picked@2x.png */,
-				C5C177E31E2CBEE900891C0D /* image_picked@3x.png */,
-			);
-			path = resources;
-			sourceTree = "<group>";
-		};
-		C5C177E41E2CBEE900891C0D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C5C177E51E2CBEE900891C0D /* JCHATAlbumTableViewCell.h */,
-				C5C177E61E2CBEE900891C0D /* JCHATAlbumTableViewCell.m */,
-				C5C177E71E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib */,
-				C5C177E81E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.h */,
-				C5C177E91E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.m */,
-				C5C177EA1E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.xib */,
-				C5C177EB1E2CBEE900891C0D /* JCHATSelectImgCollectionView.h */,
-				C5C177EC1E2CBEE900891C0D /* JCHATSelectImgCollectionView.m */,
-				C5C177ED1E2CBEE900891C0D /* ThumbImageCollectionViewCell.h */,
-				C5C177EE1E2CBEE900891C0D /* ThumbImageCollectionViewCell.m */,
-				C5C177EF1E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		C5C1781E1E2CC7F300891C0D /* MJPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,8 +1080,8 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C5451C841E49B4E600A7AF79 /* QBImagePicker */,
 				C5C1781E1E2CC7F300891C0D /* MJPhotoBrowser */,
-				C5C177C91E2CBEE900891C0D /* HMPhotoPicker */,
 				C5C177811E2CADE700891C0D /* YLGIFImage */,
 				E43D0FA61DD07875001A0B36 /* SVProgressHUD */,
 				E449AC7E1DAB8D200095B8C2 /* MBProgressHUD */,
@@ -1347,6 +1272,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E4AB21E61D82566A0044943E;
 			productRefGroup = E4AB21F01D82566A0044943E /* Products */;
@@ -1363,10 +1289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5C177F71E2CBEE900891C0D /* JCHATPhotoSelectViewController.xib in Resources */,
 				C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */,
-				C5C178011E2CBEE900891C0D /* JCHATAlbumTableViewCell.xib in Resources */,
-				C5C177FC1E2CBEE900891C0D /* image_no_picked@3x.png in Resources */,
 				C5AB3CC91E2F1B8900ED29C2 /* RecordingSignal007@2x.png in Resources */,
 				C5AB3CC61E2F1B8900ED29C2 /* RecordingSignal004@2x.png in Resources */,
 				C5AB3CC51E2F1B8900ED29C2 /* RecordingSignal003@2x.png in Resources */,
@@ -1376,29 +1299,21 @@
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
 				C5AB3CC21E2F1B8900ED29C2 /* RecordingSignal000@2x.png in Resources */,
 				C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
-				C5C177FB1E2CBEE900891C0D /* image_no_picked@2x.png in Resources */,
-				C5C177F51E2CBEE900891C0D /* JCHATPhotoPickerViewController.xib in Resources */,
+				C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
-				C5C178031E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.xib in Resources */,
 				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
-				C5C177F11E2CBEE900891C0D /* JCHATAlbumViewController.xib in Resources */,
 				C5AB3CC41E2F1B8900ED29C2 /* RecordingSignal002@2x.png in Resources */,
-				C5C177FA1E2CBEE900891C0D /* image_no_picked.png in Resources */,
 				C5C177901E2CB7EF00891C0D /* JCHATConversationViewController.xib in Resources */,
+				C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */,
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
-				C5C177FD1E2CBEE900891C0D /* image_picked.png in Resources */,
 				C5AB3CC31E2F1B8900ED29C2 /* RecordingSignal001@2x.png in Resources */,
 				C5B343591E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png in Resources */,
-				C5C177FE1E2CBEE900891C0D /* image_picked@2x.png in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
 				C5B3435B1E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
 				C5AB3CCA1E2F1B8900ED29C2 /* RecordingSignal008@2x.png in Resources */,
-				C5C177FF1E2CBEE900891C0D /* image_picked@3x.png in Resources */,
-				C5C178061E2CBEE900891C0D /* ThumbImageCollectionViewCell.xib in Resources */,
 				C5B3435A1E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png in Resources */,
-				C5C177F31E2CBEE900891C0D /* JCHATPhotoBrowserViewController.xib in Resources */,
 				C5AB3CC81E2F1B8900ED29C2 /* RecordingSignal006@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1460,12 +1375,13 @@
 			files = (
 				C5C1778F1E2CB7EF00891C0D /* JCHATConversationViewController.m in Sources */,
 				C5C177C51E2CBD0700891C0D /* ChatImageBubble.m in Sources */,
+				C5451CA41E49B4E600A7AF79 /* QBVideoIconView.m in Sources */,
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
 				C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */,
-				C5C178041E2CBEE900891C0D /* JCHATSelectImgCollectionView.m in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				E446ECF51E4431F00097336F /* ShareController.swift in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
+				C5451C9C1E49B4E600A7AF79 /* QBAlbumCell.m in Sources */,
 				E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */,
 				E4DEACC71E485C650038E8EF /* ClassifyController.swift in Sources */,
 				E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */,
@@ -1486,12 +1402,11 @@
 				C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */,
 				E4E2302E1DDDA500007EF8AC /* AddPeopleController.swift in Sources */,
 				C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */,
-				C5C178051E2CBEE900891C0D /* ThumbImageCollectionViewCell.m in Sources */,
 				E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */,
 				E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */,
 				C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */,
 				C5C177971E2CB80E00891C0D /* JCHATMoreView.m in Sources */,
-				C5C177F41E2CBEE900891C0D /* JCHATPhotoPickerViewController.m in Sources */,
+				C5451CA21E49B4E600A7AF79 /* QBImagePickerController.m in Sources */,
 				E4C9B8861D93690C00A4C14D /* StoreUserValue.m in Sources */,
 				E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */,
 				C532CF971D87D77200840E65 /* chatModel.swift in Sources */,
@@ -1507,6 +1422,7 @@
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C5C178141E2CC0BA00891C0D /* UIImage +ResizeMagick.m in Sources */,
 				C5C1779F1E2CB9ED00891C0D /* JCHATMessageContentView.m in Sources */,
+				C5451CA31E49B4E600A7AF79 /* QBSlomoIconView.m in Sources */,
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
 				C5C177B61E2CBAA300891C0D /* XHVoiceRecordHelper.m in Sources */,
@@ -1516,16 +1432,17 @@
 				C5C1780D1E2CBF4100891C0D /* JCHATShowTimeCell.m in Sources */,
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
 				C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */,
+				C5451C9F1E49B4E600A7AF79 /* QBAssetsViewController.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */,
+				C5451C9E1E49B4E600A7AF79 /* QBAssetCell.m in Sources */,
 				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
 				C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */,
 				C5C177BE1E2CBCC000891C0D /* JCHATMessageTableViewCell.m in Sources */,
 				E449AC8A1DAC87140095B8C2 /* Extension.swift in Sources */,
 				E4C99F261E3089E8002B6DCE /* CommentView.swift in Sources */,
-				C5C177F91E2CBEE900891C0D /* JCHATPhotoModel.m in Sources */,
 				C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */,
 				E4C9B85A1D90D09600A4C14D /* SelectedCell.swift in Sources */,
 				E4C9B86B1D921AFA00A4C14D /* CustomIOSAlertView.m in Sources */,
@@ -1545,23 +1462,20 @@
 				C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */,
 				C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */,
 				C5A186A51D921A4D000866AB /* LoginViewController.swift in Sources */,
-				C5B343441E2DAD4100A16B56 /* SDWebImageManager+MJ.m in Sources */,
 				C5A186A91D9236ED000866AB /* UITextFiled+MessageInputView.swift in Sources */,
 				C5C177991E2CB80E00891C0D /* JCHATToolBar.m in Sources */,
+				C5451CA51E49B4E600A7AF79 /* QBVideoIndicatorView.m in Sources */,
 				C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */,
 				E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */,
 				C5C177A31E2CBA1E00891C0D /* JCHATMessageTextView.m in Sources */,
 				C554AD1E1E3716EB00B3CF44 /* WMUploadFile.m in Sources */,
 				E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */,
-				C5C177F21E2CBEE900891C0D /* JCHATPhotoBrowserViewController.m in Sources */,
 				C5C1782C1E2CC7F300891C0D /* MJPhoto.m in Sources */,
-				C5C177F01E2CBEE900891C0D /* JCHATAlbumViewController.m in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
 				C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */,
 				C5C177A01E2CB9ED00891C0D /* JCHATRecordAnimationView.m in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
 				C5C47C331E26048B00EEA35D /* WMAddFriendController.m in Sources */,
-				C5C178021E2CBEE900891C0D /* JCHATPhotoBrowserCollectionViewCell.m in Sources */,
 				C5C178301E2CC7F300891C0D /* MJPhotoProgressView.m in Sources */,
 				C5C177BA1E2CBAEF00891C0D /* JCHATMessageTableView.m in Sources */,
 				C5C178111E2CBFD300891C0D /* ViewUtil.m in Sources */,
@@ -1571,19 +1485,17 @@
 				C5C178321E2CC7F300891C0D /* MJPhotoView.m in Sources */,
 				C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */,
 				E4D97E4B1D991816006D3188 /* LogController.swift in Sources */,
-				C5C177F61E2CBEE900891C0D /* JCHATPhotoSelectViewController.m in Sources */,
 				E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */,
 				E4189EE01D8E746400A619A6 /* ThirdAddCustomCell Cell.swift in Sources */,
-				C5C177F81E2CBEE900891C0D /* JCHATAlbumModel.m in Sources */,
 				C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */,
 				C5C178091E2CBF1E00891C0D /* JCHATFileManager.m in Sources */,
 				C546FE291D829BF900012FB4 /* IndexViewController.swift in Sources */,
-				C5C178001E2CBEE900891C0D /* JCHATAlbumTableViewCell.m in Sources */,
 				E4189EDC1D8E741F00A619A6 /* FirstAddCustomCell.swift in Sources */,
 				E40D70C71DE6D2E40087B9EF /* TaCecordController.swift in Sources */,
 				C5C1782F1E2CC7F300891C0D /* MJPhotoLoadingView.m in Sources */,
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */,
+				C5451CA01E49B4E600A7AF79 /* QBCheckmarkView.m in Sources */,
 				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,
@@ -1597,6 +1509,7 @@
 				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
 				C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
+				C5451C9D1E49B4E600A7AF79 /* QBAlbumsViewController.m in Sources */,
 				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
 				C5C47C361E26185500EEA35D /* WMFriendsListController.m in Sources */,
 				C5C47C391E26293200EEA35D /* WMPrivateChatController.m in Sources */,
@@ -1605,6 +1518,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C5451C851E49B4E600A7AF79 /* QBImagePicker.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5451C861E49B4E600A7AF79 /* en */,
+				C5451C9A1E49B4E600A7AF79 /* zh-Hans */,
+			);
+			name = QBImagePicker.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E4AB21FF1D82566A0044943E /* Debug */ = {

@@ -12,10 +12,10 @@
 #import "JCHATChatModel.h"
 #import "XHVoiceRecordHUD.h"
 #import "XHVoiceRecordHelper.h"
-//#import "JCHATVoiceTableViewCell.h"
+#import "QBImagePickerController.h"
+
 #import "JCHATMessageTableView.h"
 #import "JCHATMessageTableViewCell.h"
-#import "JCHATPhotoPickerViewController.h"
 
 #define kInterval 60*2 //static =const
 #define navigationRightButtonRect CGRectMake(0, 0, 14, 17)
@@ -36,8 +36,8 @@ playVoiceDelegate,
 UIGestureRecognizerDelegate,
 UIAlertViewDelegate,
 JMessageDelegate,
+QBImagePickerControllerDelegate,
 UIScrollViewDelegate,
-JCHATPhotoPickerViewControllerDelegate,
 UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet JCHATMessageTableView *messageTableView;

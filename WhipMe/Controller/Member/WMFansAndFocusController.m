@@ -186,7 +186,6 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:host_post params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
@@ -214,7 +213,6 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:host_path params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {

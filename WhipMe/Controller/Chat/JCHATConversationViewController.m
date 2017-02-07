@@ -16,12 +16,6 @@
 #import "JCHATShowTimeCell.h"
 #import "JCHATLoadMessageTableViewCell.h"
 
-//#import "JCHATDetailsInfoViewController.h"
-//#import "JCHATGroupSettingCtl.h"
-//#import "JCHATPersonViewController.h"
-//#import "JCHATFriendDetailViewController.h"
-//#import "JCHATGroupDetailViewController.h"
-
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <JMessage/JMSGConversation.h>
 #import <UIKit/UIPrintInfo.h>
@@ -205,7 +199,7 @@
     [self relayoutTableCellWithMsgId:message.msgId];
     
     if (message != nil) {
-        NSLog(@"发送的 Message:  %@",message);
+        DebugLog(@"发送的 Message:  %@",message);
     }
     
     if (error != nil) {
@@ -226,7 +220,7 @@
 
 - (void)onReceiveMessage:(JMSGMessage *)message error:(NSError *)error {
     if (message != nil) {
-        NSLog(@"收到的message: %@",message);
+        DebugLog(@"收到的message: %@",message);
     }
     if (error != nil) {
         JCHATChatModel *model = [[JCHATChatModel alloc] init];
@@ -316,23 +310,6 @@
     
     JCHATMessageTableViewCell *tableviewcell = [_messageTableView cellForRowAtIndexPath:indexPath];
     [tableviewcell layoutAllView];
-}
-
-#pragma mark - UIAlertViewDelegate
-//根据被点击按钮的索引处理点击事件
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self.navigationController popViewControllerAnimated:NO];
-        
-        //    [MBProgressHUD showMessage:@"正在退出登录！" view:self.view];
-        
-        [JMSGUser logout:^(id resultObject, NSError *error) {
-        }];
-        
-        AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [appDegate setupLoginController];
-    }
 }
 
 #pragma mark - 获取对应消息的索引
@@ -535,16 +512,12 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
 
 #pragma mark - AddBtnDelegate 调用相册 / 调用相机
 - (void)photoClick {
-    
-    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
-    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        JCHATPhotoPickerViewController *photoPickerVC = [[JCHATPhotoPickerViewController alloc] init];
-        photoPickerVC.photoDelegate = self;
-        [self presentViewController:photoPickerVC animated:YES completion:NULL];
-    } failureBlock:^(NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"没有相册权限" message:@"请到设置页面获取相册权限" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-    }];
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
+    imagePickerController.allowsMultipleSelection = YES;
+    imagePickerController.maximumNumberOfSelection = 9;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
 }
 
 - (void)cameraClick {
@@ -563,11 +536,36 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     }
 }
 
-#pragma mark - HMPhotoPickerViewController Delegate
-- (void)JCHATPhotoPickerViewController:(JCHATPhotoSelectViewController *)PhotoPickerVC selectedPhotoArray:(NSArray *)selected_photo_array {
-    for (UIImage *image in selected_photo_array) {
-        [self prepareImageMessage:image];
+#pragma mark - QBImagePickerControllerDelegate
+- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+    if (assets.count == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
     }
+    
+    NSMutableArray *tempArr = [NSMutableArray new];
+    for (int x = 0; x < assets.count; x ++) {
+        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+        requestOptions.resizeMode   = PHImageRequestOptionsResizeModeExact;
+        requestOptions.synchronous = YES;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+        PHImageManager *manager = [PHImageManager defaultManager];
+        CGSize targetSize = CGSizeMake(1080, 1920);
+        PHAsset *asset = assets[x];
+        [manager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:requestOptions resultHandler:^(UIImage *result, NSDictionary *info) {
+            [tempArr addObject:result];
+            if (assets.count == tempArr.count) {
+                for (id obj in tempArr) {
+                    [self prepareImageMessage:obj];
+                }
+            }
+        }];
+    }
+    [self qb_imagePickerControllerDidCancel:imagePickerController];
+}
+
+- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController{
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self dropToolBarNoAnimate];
 }
 

@@ -38,6 +38,8 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             getWechatAccessToKen()
             
             btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
+        } else {
+            btnSubmit.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
         }
     }
 
@@ -137,7 +139,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnSubmit.layer.cornerRadius = 4.0
         btnSubmit.layer.masksToBounds = true
         btnSubmit.setTitle("创  建", for: UIControlState.normal)
-        btnSubmit.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btnSubmit)
         btnSubmit.snp.updateConstraints { (make) in
             make.size.equalTo(rect_submit.size)
@@ -241,10 +242,22 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                       "sex":sex_int,
                       "sign":"签名"]
         HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-            ChatMessage.shareChat().loginJMessage()
+            let json = JSON(result!)
+            let data = json["data"][0]
             
+            print("微信第一次登录掉用:\(result)")
+            if (data["ret"].intValue == 0) {
+                let user = data["userInfo"]
+                UserManager.storeUserWith(json: user)
+                
+                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.setupMainController()
+                ChatMessage.shareChat().loginJMessage()
+            } else {
+                if (NSString.isBlankString(data["desc"].stringValue) == false) {
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                }
+            }
         }) { (error) in
             Tool.showHUDTip(tipStr: "网络不给力")
         }

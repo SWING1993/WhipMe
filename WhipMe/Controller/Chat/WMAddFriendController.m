@@ -222,7 +222,6 @@ static NSString *identifier_cell = @"addFriendsCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserByNickname" params:param Success:^(id result) {
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
@@ -251,7 +250,6 @@ static NSString *identifier_cell = @"addFriendsCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"focusUser" params:param Success:^(id result) {
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
