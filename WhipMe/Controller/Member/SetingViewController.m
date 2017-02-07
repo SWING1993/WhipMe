@@ -74,12 +74,12 @@ static NSString *identifier_cell = @"setingTableViewCell";
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.isManager ? 8 : 7;
+    return self.isManager ? 9 : 8;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = 0.0;
-    NSInteger rowManager = self.isManager ? 6 : 5;
+    NSInteger rowManager = self.isManager ? 7 : 6;
     if (indexPath.row == 0) {
         rowHeight = 10.0;
     } else if (indexPath.row == 2 || indexPath.row == rowManager) {
@@ -118,10 +118,13 @@ static NSString *identifier_cell = @"setingTableViewCell";
     } else if (indexPath.row == 3) {
         cell.lblTitle.text = @"帮助中心";
         margin_x = 15.0;
-    } else if (indexPath.row == 4) {
+    }  else if (indexPath.row == 4) {
+        cell.lblTitle.text = @"用户协议";
+        margin_x = 15.0;
+    } else if (indexPath.row == 5) {
         cell.lblTitle.text = @"关于鞭挞我";
         margin_x = self.isManager ? 15.0 : 0.0f;
-    } else if (indexPath.row == 5) {
+    } else if (indexPath.row == 6) {
         if (self.isManager == NO) {
             cell.lblTitle.text = @"";
             cell.backgroundColor = [UIColor clearColor];
@@ -151,9 +154,12 @@ static NSString *identifier_cell = @"setingTableViewCell";
     } else if (indexPath.row == 3) {
         
     } else if (indexPath.row == 4) {
-        WMAboutViewController *controller = [WMAboutViewController new];
+        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeLocal];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 5) {
+        WMAboutViewController *controller = [WMAboutViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.row == 6) {
         if (self.isManager == YES) {
             WMLoginManagerController *controller = [WMLoginManagerController new];
             [self.navigationController pushViewController:controller animated:YES];

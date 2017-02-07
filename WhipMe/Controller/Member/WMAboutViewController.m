@@ -24,7 +24,6 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"关于鞭挞我"];
     [self.view setBackgroundColor:[Define kColorBackGround]];
-    self.navigationController.navigationBar.clipsToBounds = YES;
 
     [self setup];
     
