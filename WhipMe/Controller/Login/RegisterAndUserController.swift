@@ -241,14 +241,12 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                       "sex":sex_int,
                       "sign":"签名"]
         HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
-            print("微信登录：第2步 is result:\(result)")
-            
             let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setupMainController()
             ChatMessage.shareChat().loginJMessage()
             
         }) { (error) in
-            print("微信登录：第2步 is error:\(error)")
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
         
     }
@@ -293,7 +291,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                       "birthday":customDate]
         
         HttpAPIClient.apiClientPOST("register", params:params, success: { (result) in
-            print("注册：第2步 is result:\(result)")
             let json = JSON(result!)
             let data = json["data"][0]
             
@@ -305,11 +302,13 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
                 appdelegate.setupMainController()
                 ChatMessage.shareChat().registerJMessage()
             } else {
-                Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                if (NSString.isBlankString(data["desc"].stringValue) == false) {
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                }
             }
             
         }) { (error) in
-            print("注册：第2步 is error:\(error)")
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
     

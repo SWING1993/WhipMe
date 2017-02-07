@@ -327,7 +327,7 @@ class LogController: UIViewController {
                 params["position"] = self.location
             }
             if let image = self.photo {
-                let imageData: Data = UIImageJPEGRepresentation(image, 0.3)!
+                let imageData: Data = UIImage.dataRepresentationImage(image) as Data
                 WMUploadFile.up(to: imageData, backInfo: { (info, key, resp) in
                     hud.hide(animated: true)
                     if let url = key {
