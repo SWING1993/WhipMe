@@ -121,7 +121,8 @@
     
     //    self.startRecordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.startRecordButton = [UIButton new];
-    
+    self.startRecordButton.layer.cornerRadius = 4.0f;
+    self.startRecordButton.layer.masksToBounds = YES;
     [self.startRecordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.startRecordButton setTitleColor: [UIColor whiteColor] forState:UIControlStateHighlighted];
     [self.startRecordButton setTitle:@"按住 说话" forState:UIControlStateNormal];

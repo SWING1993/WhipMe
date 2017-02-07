@@ -502,7 +502,13 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
         [[JCHATAudioPlayerHelper shareInstance] stopAudio];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
 }
 
 - (void)pressVoiceBtnToHideKeyBoard {///!!!
@@ -746,7 +752,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
         NSDate* lastdate = [NSDate dateWithTimeIntervalSince1970:[lastModel.messageTime longLongValue]];
         NSDate* currentDate = [NSDate dateWithTimeIntervalSince1970:timeInterVal];
         NSTimeInterval timeBetween = [currentDate timeIntervalSinceDate:lastdate];
-        if (fabs(timeBetween) > interval) {
+        if (fabs(timeBetween) > kInterval) {
             [self addTimeData:timeInterVal];
         }
     } else if ([_allmessageIdArr count] == 0) {//首条消息显示时间
@@ -773,7 +779,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
         NSDate* lastdate = [NSDate dateWithTimeIntervalSince1970:[lastModel.messageTime longLongValue]];
         NSDate* currentDate = [NSDate dateWithTimeIntervalSince1970:timeInterVal];
         NSTimeInterval timeBetween = [currentDate timeIntervalSinceDate:lastdate];
-        if (fabs(timeBetween) > interval) {
+        if (fabs(timeBetween) > kInterval) {
             JCHATChatModel *timeModel =[[JCHATChatModel alloc] init];
             timeModel.timeId = [self getTimeId];
             timeModel.isTime = YES;
@@ -803,7 +809,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
         NSDate* lastdate = [NSDate dateWithTimeIntervalSince1970:[lastModel.messageTime doubleValue]];
         NSDate* currentDate = [NSDate dateWithTimeIntervalSince1970:timeInterVal];
         NSTimeInterval timeBetween = [currentDate timeIntervalSinceDate:lastdate];
-        if (fabs(timeBetween) > interval) {
+        if (fabs(timeBetween) > kInterval) {
             JCHATChatModel *timeModel =[[JCHATChatModel alloc] init];
             timeModel.timeId = [self getTimeId];
             timeModel.isTime = YES;

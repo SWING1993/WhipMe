@@ -295,6 +295,26 @@ class QueryUserBlogC: UIViewController {
         }
     }
     
+    func clickWithChatMsg() {
+        if let growM = self.userBlogM.myGrow.first {
+            if (NSString.isBlankString(growM.creator)) {
+                return
+            }
+            let controller: JCHATConversationViewController = JCHATConversationViewController()
+            controller.superViewController = self
+            controller.hidesBottomBarWhenPushed = true
+            JMSGConversation.createSingleConversation(withUsername: growM.creator, completionHandler: { (resultObject, error) in
+                if (error == nil) {
+                    controller.conversation = resultObject as! JMSGConversation!
+                    let chatNav = UINavigationController.init(rootViewController: controller)
+                    self.present(chatNav, animated: true, completion: { 
+                        
+                    })
+                }
+            })
+        }
+    }
+    
     // 添加关注
     func follow() {
         if self.userBlogM.myGrow.count > 0 {
@@ -385,6 +405,26 @@ class QueryUserBlogC: UIViewController {
         
         self.myTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
+        }
+        
+        let btnChatMsg = UIButton.init(type: UIButtonType.custom)
+        btnChatMsg.backgroundColor = UIColor.clear
+        btnChatMsg.addTarget(self, action: #selector(clickWithChatMsg), for: UIControlEvents.touchUpInside)
+        btnChatMsg.setImage(UIImage.init(named: "user_chat_msg"), for: UIControlState.normal)
+        btnChatMsg.adjustsImageWhenHighlighted = false
+        self.view.addSubview(btnChatMsg)
+        btnChatMsg.snp.updateConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 54.0, height: 54.0))
+            make.bottom.equalTo(self.view).offset(-20.0)
+            make.right.equalTo(self.view).offset(-10.0)
+        }
+        // 自己锝隐藏
+        if let growM = self.userBlogM.myGrow.first {
+            if (UserManager.shared.userId == growM.creator) {
+                btnChatMsg.isHidden = true
+            } else {
+                btnChatMsg.isHidden = false
+            }
         }
     }
     
