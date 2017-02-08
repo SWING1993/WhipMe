@@ -183,7 +183,6 @@ class FriendCircleController: UIViewController {
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
-
         
         focusList = UITableView.init()
         focusList.backgroundColor = kColorBackGround
@@ -196,7 +195,8 @@ class FriendCircleController: UIViewController {
         focusList.tag = 101
         view.addSubview(focusList)
         focusList.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view)
+            make.top.left.right.equalTo(self.view)
+            make.bottom.equalTo(-49)
         }
         
         recommendTable.isHidden = false

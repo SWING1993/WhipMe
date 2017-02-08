@@ -38,6 +38,7 @@ class ClassifyController: UIViewController {
         let params = ["themeId":self.myWhipM.themeId,"pageSize":"30","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
             if let dataResult = result {
+                print(dataResult)
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 let totalSize = json["data"][0]["totalSize"].intValue
@@ -46,7 +47,7 @@ class ClassifyController: UIViewController {
                     return
                 }
                 if totalSize > 0 {
-                    let recordList = json["data"][0]["recordlist"].arrayValue
+                    let recordList = json["data"][0]["list"].arrayValue
                     weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         for json in recordList {
