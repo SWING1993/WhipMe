@@ -19,7 +19,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     
     // 微信首次登录
     public var unionId: String!
-    private var appOpenId: String!
+    public var appOpenId: String!
     
     private var btnAvatar: UIButton!
     private var txtNickname: UITextField!
@@ -35,9 +35,9 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         setup()
         
         if (NSString.isBlankString(self.unionId) == false) {
-            getWechatAccessToKen()
-            
             btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
+        } else {
+            btnSubmit.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
         }
     }
 
@@ -137,7 +137,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         btnSubmit.layer.cornerRadius = 4.0
         btnSubmit.layer.masksToBounds = true
         btnSubmit.setTitle("创  建", for: UIControlState.normal)
-        btnSubmit.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btnSubmit)
         btnSubmit.snp.updateConstraints { (make) in
             make.size.equalTo(rect_submit.size)
@@ -163,20 +162,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let alertControl = UIAlertController.init(title: msg, message: nil, preferredStyle: UIAlertControllerStyle.alert)
         alertControl.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alertControl, animated: true, completion: nil)
-    }
-    
-    func getWechatAccessToKen() {
-        
-        HttpAPIClient.apiWeChat(toCode: self.unionId, success: { (result) in
-            
-            print("weixin token is result:\(result)")
-            let json = JSON(result!)
-            self.appOpenId = String(describing: json["openid"])
-
-            print("appOpenId is"+self.appOpenId)
-        }, failed: { (error) in
-            print("weixin token is error:\(error)")
-        })
     }
     
     func clickWithAvatar() {
@@ -235,16 +220,27 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         }
         
         let params = ["unionId":self.unionId,
-                      "appOpenId":"",
+                      "appOpenId":self.appOpenId,
                       "nickname":nickName,
                       "icon":self.avatar,
                       "sex":sex_int,
                       "sign":"签名"]
         HttpAPIClient.apiClientPOST("addNickname", params: params, success: { (result) in
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-            ChatMessage.shareChat().loginJMessage()
+            let json = JSON(result!)
+            let data = json["data"][0]
             
+            if (data["ret"].intValue == 0) {
+                let user = data["userInfo"]
+                UserManager.storeUserWith(json: user)
+                
+                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.setupMainController()
+                ChatMessage.shareChat().loginJMessage()
+            } else {
+                if (NSString.isBlankString(data["desc"].stringValue) == false) {
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                }
+            }
         }) { (error) in
             Tool.showHUDTip(tipStr: "网络不给力")
         }

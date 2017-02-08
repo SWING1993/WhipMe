@@ -152,4 +152,18 @@
     return uuidString;
 }
 
+- (UIImage *)watermarkImage:(UIImage *)logo withName:(NSString *)mark
+{
+    UIGraphicsBeginImageContextWithOptions([self size], NO, 0.0);
+    //原图
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    //水印图
+    [logo drawInRect:CGRectMake((self.size.width-logo.size.width)/2.0, (self.size.height-logo.size.height)/2.0, logo.size.width, logo.size.height)];
+    
+    UIImage *newPic = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newPic;
+}
+
 @end

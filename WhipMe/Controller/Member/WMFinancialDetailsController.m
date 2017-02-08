@@ -25,6 +25,8 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     self.view.backgroundColor = [Define kColorBackGround];
     
     [self setup];
+    
+    [self qureyByMoneyList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +93,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.arrayContent.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,7 +107,6 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     MoneyRecordModel *model = [self.arrayContent objectAtIndex:indexPath.row];
 //    NSDictionary *model = @{@"title":@"充值", @"time":@"2016-11-18 13:56:12",@"money":@"30",@"type":@"1"};
     
-    cell.lblTime.text = model.createDate;
     NSString *str = @"";
     if (model.type == 0) {
         str = @"+";
@@ -116,6 +117,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
         cell.lblTitle.text = @"提现";
         cell.lblMoney.textColor = [Define kColorBlack];
     }
+    cell.lblTime.text = model.createDate ?:@"";
     cell.lblMoney.text = [NSString stringWithFormat:@"%@%.2f",str,[model.amount floatValue]];
     
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
@@ -147,8 +149,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryMoneyHis" params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
-        
+       
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             [weakSelf.arrayContent removeAllObjects];
@@ -164,7 +165,6 @@ static NSString *const identifier_cell = @"financialDetailsCell";
         }
     } Failed:^(NSError *error) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"%@",error);
     }];
 }
 

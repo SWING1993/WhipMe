@@ -144,7 +144,14 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    if ([NSString isBlankString:model.userId]) {
+        return;
+    }
+    QueryUserBlogC *controller = [[QueryUserBlogC alloc] init];
+    [controller.navigationItem setTitle:model.nickname];
+    [controller queryByUserBlogWithUserNo:model.userId];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)fansAndFocusCheck:(NSIndexPath *)indexPath {
@@ -186,7 +193,6 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:host_post params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
@@ -214,7 +220,6 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:host_path params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {

@@ -132,8 +132,7 @@ static NSString *identifier_collect = @"historicalReviewCell";
     //
     //
     //    [HttpAPIClient APIClientPOST:@"" params:param Success:^(id result) {
-    //        DebugLog(@"______result:%@",result);
-    //
+    //        
     //
     //    } Failed:^(NSError *error) {
     //        DebugLog(@"%@",error);

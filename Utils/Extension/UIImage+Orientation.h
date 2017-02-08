@@ -20,4 +20,6 @@
 
 + (NSString *)generateUuidString;
 
+- (UIImage *)watermarkImage:(UIImage *)img withName:(NSString *)mark;
+
 @end

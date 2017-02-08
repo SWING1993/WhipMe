@@ -462,7 +462,6 @@ static NSString *identifier_head = @"tableViewView_head";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryAccountById" params:param Success:^(id result) {
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {

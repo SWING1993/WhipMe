@@ -376,9 +376,9 @@ static NSInteger const readViewRadius = 4;
     _isPlaying = NO;
     self.index = 0;
     if ([_model.message isReceived]) {
-        [_messageContent.voiceConent setImage:[UIImage imageNamed:@"ReceiverVoiceNodePlaying.png"]];
+        [_messageContent.voiceConent setImage:[UIImage imageNamed:@"ReceiverVoiceNodePlaying"]];
     } else {
-        [_messageContent.voiceConent setImage:[UIImage imageNamed:@"SenderVoiceNodePlaying.png"]];
+        [_messageContent.voiceConent setImage:[UIImage imageNamed:@"SenderVoiceNodePlaying"]];
     }
     if (self.continuePlayer) {
         self.continuePlayer = NO;

@@ -18,6 +18,13 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
 @implementation WMUploadFile
 
 
++ (void)upToImage:(UIImage *)upImage handler:(QNUpCompletionHandler)handler failed:(void (^)(NSError *error))fail {
+    
+    UIImage *newImage = [upImage watermarkImage:[UIImage imageNamed:@"wmLOGO"] withName:nil];
+    NSData *imageData = [UIImage dataRepresentationImage:newImage];
+    [self upToData:imageData backInfo:handler fail:fail];
+}
+
 /**
  * 图片上传到七牛
  *  @param data     图片的data

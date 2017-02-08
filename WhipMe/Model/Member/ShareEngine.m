@@ -52,9 +52,7 @@ static WMShareEngine *objShare = nil;
         req.scope = @"snsapi_userinfo,snsapi_base";
         req.state = @"whipme";
         //第三方向微信终端发送一个SendAuthReq消息结构
-        BOOL flag = [WXApi sendReq:req];
-        
-        DebugLog(@"send is flag : %ld",(long)flag);
+        [WXApi sendReq:req];
     }
 }
 
