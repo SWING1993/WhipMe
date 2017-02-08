@@ -19,7 +19,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     
     // 微信首次登录
     public var unionId: String!
-    private var appOpenId: String!
+    public var appOpenId: String!
     
     private var btnAvatar: UIButton!
     private var txtNickname: UITextField!
@@ -35,8 +35,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         setup()
         
         if (NSString.isBlankString(self.unionId) == false) {
-            getWechatAccessToKen()
-            
             btnSubmit.addTarget(self, action: #selector(clickWithAddNickname), for: UIControlEvents.touchUpInside)
         } else {
             btnSubmit.addTarget(self, action: #selector(clickWithRegister), for: UIControlEvents.touchUpInside)
@@ -166,20 +164,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         self.present(alertControl, animated: true, completion: nil)
     }
     
-    func getWechatAccessToKen() {
-        
-        HttpAPIClient.apiWeChat(toCode: self.unionId, success: { (result) in
-            
-            print("weixin token is result:\(result)")
-            let json = JSON(result!)
-            self.appOpenId = String(describing: json["openid"])
-
-            print("appOpenId is"+self.appOpenId)
-        }, failed: { (error) in
-            print("weixin token is error:\(error)")
-        })
-    }
-    
     func clickWithAvatar() {
         
         let sheetAvatar = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -236,7 +220,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         }
         
         let params = ["unionId":self.unionId,
-                      "appOpenId":"",
+                      "appOpenId":self.appOpenId,
                       "nickname":nickName,
                       "icon":self.avatar,
                       "sex":sex_int,
@@ -245,7 +229,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             let json = JSON(result!)
             let data = json["data"][0]
             
-            print("微信第一次登录掉用:\(result)")
             if (data["ret"].intValue == 0) {
                 let user = data["userInfo"]
                 UserManager.storeUserWith(json: user)

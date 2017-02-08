@@ -13,6 +13,8 @@ static NSInteger const button_index = 7777;
 
 @interface WMLoginWayController () <WXApiEngineDelegate>
 
+@property (nonatomic, strong) NSString *unionId, *appOpenId;
+
 @end
 
 @implementation WMLoginWayController
@@ -170,6 +172,20 @@ static NSInteger const button_index = 7777;
     }
 }
 
+- (NSString *)unionId {
+    if (_unionId == nil) {
+        _unionId = [NSString string];
+    }
+    return _unionId;
+}
+
+- (NSString *)appOpenId {
+    if (_appOpenId == nil) {
+        _appOpenId = [NSString string];
+    }
+    return _appOpenId;
+}
+
 - (void)onClickWithItem:(UIButton *)sender {
     
     NSInteger _index = sender.tag%button_index;
@@ -194,42 +210,63 @@ static NSInteger const button_index = 7777;
         
     } else {
         // 0(用户同意)
-        NSDictionary *param = @{@"unionId":[NSString stringWithFormat:@"%@",response.code]};
-        [HttpAPIClient APIClientPOST:@"wlogin" params:param Success:^(id result) {
-            NSDictionary *data = result[@"data"][0];
-            if (data) {
-                NSInteger ret_code = [data[@"ret"] integerValue];
-                if (ret_code == 1) {
-                    DebugLog(@"用户首次登录");
-                    RegisterAndUserController *controller = [RegisterAndUserController new];
-                    controller.unionId = response.code;
-                    [self.navigationController pushViewController:controller animated:YES];
-                } else if (ret_code == 0) {
-                    DebugLog(@"用户登录成功");
-                    for (NSDictionary *obj in data[@"list"]) {
-                        [UserManager storeUserWithDict:obj];
-                        break;
-                    }
-                    AppDelegate *app_delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                    [app_delegate setupMainController];
-                    [[ChatMessage shareChat] loginJMessage];
-                } else if (ret_code == -1) {
-                    DebugLog(@"用户登录成功，有两个手机号");
-                    NSMutableArray *muArray = [NSMutableArray new];
-                    for (NSDictionary *obj in data[@"list"]) {
-                        UserManager *model = [UserManager mj_objectWithKeyValues:obj];
-                        [muArray addObject:model];
-                    }
-                    WMLoginViewController *controller = [WMLoginViewController new];
-                    [self.navigationController pushViewController:controller animated:YES];
-                } else {
-                    [Tool showHUDTipWithTipStr:@"用户登录失败!"];
-                }
+        WEAK_SELF
+        [HttpAPIClient APIWeChatToCode:response.code Success:^(id result) {
+            NSString *errmsg = result[@"errmsg"];
+            if (![NSString isBlankString:errmsg]) {
+                [Tool showHUDTipWithTipStr:errmsg];
+            } else {
+                weakSelf.appOpenId = [NSString stringWithFormat:@"%@",result[@"openid"]];
+                weakSelf.unionId = [NSString stringWithFormat:@"%@",result[@"unionid"]];
+                [weakSelf loginWithWeixin];
             }
         } Failed:^(NSError *error) {
             [Tool showHUDTipWithTipStr:@"网络不给力"];
         }];
+        
     }
+}
+
+- (void)loginWithWeixin {
+    if ([NSString isBlankString:self.unionId] || [NSString isBlankString:self.appOpenId]) {
+        [Tool showHUDTipWithTipStr:@"用户登录失败!"];
+        return;
+    }
+    NSDictionary *param = @{@"unionId":self.unionId};
+    WEAKSELF
+    [HttpAPIClient APIClientPOST:@"wlogin" params:param Success:^(id result) {
+        NSDictionary *data = result[@"data"][0];
+        if (data) {
+            NSInteger ret_code = [data[@"ret"] integerValue];
+            if (ret_code == 1) {
+                RegisterAndUserController *controller = [RegisterAndUserController new];
+                controller.unionId = weakSelf.unionId;
+                controller.appOpenId = weakSelf.appOpenId;
+                [weakSelf.navigationController pushViewController:controller animated:YES];
+            } else if (ret_code == 0) {
+                for (NSDictionary *obj in data[@"list"]) {
+                    [UserManager storeUserWithDict:obj];
+                    break;
+                }
+                AppDelegate *app_delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [app_delegate setupMainController];
+                [[ChatMessage shareChat] loginJMessage];
+            } else if (ret_code == -1) {
+                DebugLog(@"用户登录成功，有两个手机号");
+                NSMutableArray *muArray = [NSMutableArray new];
+                for (NSDictionary *obj in data[@"list"]) {
+                    UserManager *model = [UserManager mj_objectWithKeyValues:obj];
+                    [muArray addObject:model];
+                }
+                WMLoginViewController *controller = [WMLoginViewController new];
+                [weakSelf.navigationController pushViewController:controller animated:YES];
+            } else {
+                [Tool showHUDTipWithTipStr:@"用户登录失败!"];
+            }
+        }
+    } Failed:^(NSError *error) {
+        [Tool showHUDTipWithTipStr:@"网络不给力"];
+    }];
 }
 
 @end
