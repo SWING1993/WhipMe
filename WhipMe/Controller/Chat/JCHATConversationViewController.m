@@ -1067,34 +1067,12 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
 
 #pragma mark - SendMessageDelegate
 - (void)didStartRecordingVoiceAction {
-    [self startRecord];
+    [self.voiceRecordHUD startRecordingHUDAtView:self.view];
+    [self.voiceRecordHelper startRecordingWithPath:[self getRecorderPath] StartRecorderCompletion:^{
+    }];
 }
 
 - (void)didCancelRecordingVoiceAction {
-    [self cancelRecord];
-}
-
-- (void)didFinishRecordingVoiceAction {
-    [self finishRecorded];
-}
-
-- (void)didDragOutsideAction {
-    [self resumeRecord];
-}
-
-- (void)didDragInsideAction {
-    [self pauseRecord];
-}
-
-- (void)pauseRecord {
-    [self.voiceRecordHUD pauseRecord];
-}
-
-- (void)resumeRecord {
-    [self.voiceRecordHUD resaueRecord];
-}
-
-- (void)cancelRecord {
     WEAKSELF
     [self.voiceRecordHUD cancelRecordCompled:^(BOOL fnished) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
@@ -1105,11 +1083,16 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     }];
 }
 
-#pragma mark - Voice Recording Helper Method
-- (void)startRecord {
-    [self.voiceRecordHUD startRecordingHUDAtView:self.view];
-    [self.voiceRecordHelper startRecordingWithPath:[self getRecorderPath] StartRecorderCompletion:^{
-    }];
+- (void)didFinishRecordingVoiceAction {
+    [self finishRecorded];
+}
+
+- (void)didDragOutsideAction {
+    [self.voiceRecordHUD resaueRecord];
+}
+
+- (void)didDragInsideAction {
+    [self.voiceRecordHUD pauseRecord];
 }
 
 - (void)finishRecorded {

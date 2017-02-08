@@ -74,33 +74,33 @@
 - (void)changeanimation:(double)lowPassResults;
 {
     if (0<lowPassResults<=0.06) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000"]];
     } else if (0.06<lowPassResults<=0.13) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000"]];
     } else if (0.13<lowPassResults<=0.20) {
         [signalIV setImage:[UIImage imageNamed:@"RecordingSignal001"]];
     } else if (0.20<lowPassResults<=0.27) {
         [signalIV setImage:[UIImage imageNamed:@"RecordingSignal001"]];
     } else if (0.27<lowPassResults<=0.34) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal002.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal002"]];
     } else if (0.34<lowPassResults<=0.41) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal003.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal003"]];
     } else if (0.41<lowPassResults<=0.48) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal004.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal004"]];
     } else if (0.48<lowPassResults<=0.55) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal005.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal005"]];
     } else if (0.55<lowPassResults<=0.62) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal005.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal005"]];
     } else if (0.62<lowPassResults<=0.69) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal006.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal006"]];
     } else if (0.69<lowPassResults<=0.76) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal007.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal007"]];
     } else if (0.76<lowPassResults<=0.83) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal007.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal007"]];
     } else if (0.83<lowPassResults<=0.9) {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal008.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal008"]];
     } else {
-        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000.png"]];
+        [signalIV setImage:[UIImage imageNamed:@"RecordingSignal000"]];
     }
 }
 

@@ -82,23 +82,9 @@
 		C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A66B321D990E5C00612E16 /* LoginWayController.swift */; };
 		C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */; };
 		C5A829141D93D30500EBF46E /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A829131D93D30500EBF46E /* UIImage+Orientation.m */; };
-		C5AB3CC21E2F1B8900ED29C2 /* RecordingSignal000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CB91E2F1B8900ED29C2 /* RecordingSignal000@2x.png */; };
-		C5AB3CC31E2F1B8900ED29C2 /* RecordingSignal001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBA1E2F1B8900ED29C2 /* RecordingSignal001@2x.png */; };
-		C5AB3CC41E2F1B8900ED29C2 /* RecordingSignal002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBB1E2F1B8900ED29C2 /* RecordingSignal002@2x.png */; };
-		C5AB3CC51E2F1B8900ED29C2 /* RecordingSignal003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBC1E2F1B8900ED29C2 /* RecordingSignal003@2x.png */; };
-		C5AB3CC61E2F1B8900ED29C2 /* RecordingSignal004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBD1E2F1B8900ED29C2 /* RecordingSignal004@2x.png */; };
-		C5AB3CC71E2F1B8900ED29C2 /* RecordingSignal005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBE1E2F1B8900ED29C2 /* RecordingSignal005@2x.png */; };
-		C5AB3CC81E2F1B8900ED29C2 /* RecordingSignal006@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CBF1E2F1B8900ED29C2 /* RecordingSignal006@2x.png */; };
-		C5AB3CC91E2F1B8900ED29C2 /* RecordingSignal007@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CC01E2F1B8900ED29C2 /* RecordingSignal007@2x.png */; };
-		C5AB3CCA1E2F1B8900ED29C2 /* RecordingSignal008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AB3CC11E2F1B8900ED29C2 /* RecordingSignal008@2x.png */; };
 		C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */; };
 		C5B0F5901E1B50B800B87EAA /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */; };
 		C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */; };
-		C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */; };
-		C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */; };
-		C5B343591E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */; };
-		C5B3435A1E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */; };
-		C5B3435B1E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */; };
 		C5C177861E2CADE700891C0D /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177831E2CADE700891C0D /* YLGIFImage.m */; };
 		C5C177871E2CADE700891C0D /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C177851E2CADE700891C0D /* YLImageView.m */; };
 		C5C177891E2CAE5900891C0D /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C177881E2CAE5900891C0D /* CoreImage.framework */; };
@@ -316,26 +302,12 @@
 		C5A829091D936D9C00EBF46E /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C5A829121D93D30500EBF46E /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
 		C5A829131D93D30500EBF46E /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
-		C5AB3CB91E2F1B8900ED29C2 /* RecordingSignal000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal000@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBA1E2F1B8900ED29C2 /* RecordingSignal001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal001@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBB1E2F1B8900ED29C2 /* RecordingSignal002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal002@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBC1E2F1B8900ED29C2 /* RecordingSignal003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal003@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBD1E2F1B8900ED29C2 /* RecordingSignal004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal004@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBE1E2F1B8900ED29C2 /* RecordingSignal005@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal005@2x.png"; sourceTree = "<group>"; };
-		C5AB3CBF1E2F1B8900ED29C2 /* RecordingSignal006@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal006@2x.png"; sourceTree = "<group>"; };
-		C5AB3CC01E2F1B8900ED29C2 /* RecordingSignal007@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal007@2x.png"; sourceTree = "<group>"; };
-		C5AB3CC11E2F1B8900ED29C2 /* RecordingSignal008@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingSignal008@2x.png"; sourceTree = "<group>"; };
 		C5B0F58B1E1B505E00B87EAA /* HKPickerPassengerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPickerPassengerView.h; sourceTree = "<group>"; };
 		C5B0F58C1E1B505E00B87EAA /* HKPickerPassengerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPickerPassengerView.m; sourceTree = "<group>"; };
 		C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		C5B0F58F1E1B50B800B87EAA /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		C5B343451E2DB3F200A16B56 /* JCHATAlertToSendImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATAlertToSendImage.h; sourceTree = "<group>"; };
 		C5B343461E2DB3F200A16B56 /* JCHATAlertToSendImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATAlertToSendImage.m; sourceTree = "<group>"; };
-		C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying@2x.png"; sourceTree = "<group>"; };
-		C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying000@2x.png"; sourceTree = "<group>"; };
-		C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying001@2x.png"; sourceTree = "<group>"; };
-		C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying002@2x.png"; sourceTree = "<group>"; };
-		C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying003@2x.png"; sourceTree = "<group>"; };
 		C5C177821E2CADE700891C0D /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
 		C5C177831E2CADE700891C0D /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
 		C5C177841E2CADE700891C0D /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
@@ -782,7 +754,6 @@
 		C546FE1A1D82989700012FB4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				C5B343511E2E382E00A16B56 /* Image */,
 				C5C177BB1E2CBCB900891C0D /* CellView */,
 				C5C177AA1E2CBAA300891C0D /* RecordView */,
 				C5C177A11E2CBA1E00891C0D /* JCHATMessageTextView.h */,
@@ -886,27 +857,6 @@
 				C551A1CF1E38988400CBB2B2 /* WMLoginViewController.m */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		C5B343511E2E382E00A16B56 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				C5B343521E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png */,
-				C5B343531E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png */,
-				C5B343541E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png */,
-				C5B343551E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png */,
-				C5B343561E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png */,
-				C5AB3CB91E2F1B8900ED29C2 /* RecordingSignal000@2x.png */,
-				C5AB3CBA1E2F1B8900ED29C2 /* RecordingSignal001@2x.png */,
-				C5AB3CBB1E2F1B8900ED29C2 /* RecordingSignal002@2x.png */,
-				C5AB3CBC1E2F1B8900ED29C2 /* RecordingSignal003@2x.png */,
-				C5AB3CBD1E2F1B8900ED29C2 /* RecordingSignal004@2x.png */,
-				C5AB3CBE1E2F1B8900ED29C2 /* RecordingSignal005@2x.png */,
-				C5AB3CBF1E2F1B8900ED29C2 /* RecordingSignal006@2x.png */,
-				C5AB3CC01E2F1B8900ED29C2 /* RecordingSignal007@2x.png */,
-				C5AB3CC11E2F1B8900ED29C2 /* RecordingSignal008@2x.png */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		C5C177811E2CADE700891C0D /* YLGIFImage */ = {
@@ -1289,32 +1239,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5B343571E2E383700A16B56 /* ReceiverVoiceNodePlaying@2x.png in Resources */,
-				C5AB3CC91E2F1B8900ED29C2 /* RecordingSignal007@2x.png in Resources */,
-				C5AB3CC61E2F1B8900ED29C2 /* RecordingSignal004@2x.png in Resources */,
-				C5AB3CC51E2F1B8900ED29C2 /* RecordingSignal003@2x.png in Resources */,
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
-				C5AB3CC71E2F1B8900ED29C2 /* RecordingSignal005@2x.png in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
-				C5AB3CC21E2F1B8900ED29C2 /* RecordingSignal000@2x.png in Resources */,
-				C5B343581E2E383700A16B56 /* ReceiverVoiceNodePlaying000@2x.png in Resources */,
 				C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
 				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
-				C5AB3CC41E2F1B8900ED29C2 /* RecordingSignal002@2x.png in Resources */,
 				C5C177901E2CB7EF00891C0D /* JCHATConversationViewController.xib in Resources */,
 				C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */,
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
-				C5AB3CC31E2F1B8900ED29C2 /* RecordingSignal001@2x.png in Resources */,
-				C5B343591E2E383700A16B56 /* ReceiverVoiceNodePlaying001@2x.png in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
-				C5B3435B1E2E383700A16B56 /* ReceiverVoiceNodePlaying003@2x.png in Resources */,
-				C5AB3CCA1E2F1B8900ED29C2 /* RecordingSignal008@2x.png in Resources */,
-				C5B3435A1E2E383700A16B56 /* ReceiverVoiceNodePlaying002@2x.png in Resources */,
-				C5AB3CC81E2F1B8900ED29C2 /* RecordingSignal006@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

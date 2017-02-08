@@ -165,17 +165,17 @@ static NSString *identifier_cell = @"setingTableViewCell";
             [self.navigationController pushViewController:controller animated:YES];
         }
     } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1) {
-//        WEAK_SELF
-//        UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//        [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            [weakSelf clickWithLogout];
-//        }]];
-//        [alertExit addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            
-//        }]];
-//        [self presentViewController:alertExit animated:YES completion:nil];
-        WMExitAlertView *alertView = [[WMExitAlertView alloc] initWithTitle:@"你确定要退出鞭挞我吗？" delegate:self cancel:@"退出" confirm:@"再鞭挞一下"];
-        [alertView show];
+        WEAK_SELF
+        UIAlertController *alertExit = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertExit addAction:[UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf clickWithLogout];
+        }]];
+        [alertExit addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        [self presentViewController:alertExit animated:YES completion:nil];
+//        WMExitAlertView *alertView = [[WMExitAlertView alloc] initWithTitle:@"你确定要退出鞭挞我吗？" delegate:self cancel:@"退出" confirm:@"再鞭挞一下"];
+//        [alertView show];
     }
 }
 
