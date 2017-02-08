@@ -366,7 +366,10 @@ static NSString *identifier_cell = @"userInfoViewCell";
             
             NSMutableDictionary *dict_value = [model mj_keyValues];
             [UserManager storeUserWithDict:dict_value];
-            [[ChatMessage shareChat] updateJUserInfo];
+            
+            if (model.supervisor == NO) {
+                [[ChatMessage shareChat] updateJUserInfo];
+            }
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
