@@ -39,8 +39,16 @@
     return self;
 }
 
++ (HKTriangleView *)viewTriangleWithTip:(NSString *)tip {
+    HKTriangleView * viewTriangle = [[HKTriangleView alloc] initWithFrame:CGRectMake(([Define screenWidth] - 200.0)/2.0, ([Define screenHeight]-160.0) - 130.0, 200.0, 160.0)];
+    viewTriangle.backgroundColor = [UIColor clearColor];
+    viewTriangle.title = tip;
+    return viewTriangle;
+}
+
 - (void)setup {
     
+    self.backgroundColor = [UIColor clearColor];
     _imageLogo = [[UIImageView alloc] init];
     [_imageLogo setBackgroundColor:[UIColor clearColor]];
     [_imageLogo setContentMode:UIViewContentModeScaleAspectFill];
@@ -174,5 +182,7 @@
 - (CGFloat)viewTatio:(CGFloat)ratio {
     return (ratio/200.0)*self.kWidth;
 }
+
+
 
 @end

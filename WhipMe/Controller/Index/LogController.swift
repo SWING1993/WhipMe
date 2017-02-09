@@ -249,9 +249,17 @@ class LogController: UIViewController {
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let cameraPicker = UIImagePickerController.init()
                 cameraPicker.delegate = weakSelf
-                cameraPicker.allowsEditing = (weakSelf != nil)
+                cameraPicker.allowsEditing = false
                 cameraPicker.sourceType = .camera
                 weakSelf?.present(cameraPicker, animated: true, completion: {
+                    let view = HKTriangleView()
+                    view.title = self.myWhipM.themeName
+                    cameraPicker.view.addSubview(view)
+                    view.snp.makeConstraints({ (make) in
+                        make.size.equalTo(CGSize.init(width: 200, height: 160))
+                        make.centerX.equalTo(cameraPicker.view)
+                        make.bottom.equalTo(-130)
+                    })
                 })
             }
         })
@@ -445,7 +453,18 @@ extension LogController :UITableViewDelegate {
 extension LogController :UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.photo = image
+        
+        /*
+        UIImage *fixImage = [UIImage fixOrientation:image];
+        UIImage *triangleImage = [fixImage watermarkLogo:self.viewTriangle make:self.viewTriangle.frame width:self.kWidth heith:self.kHeight];
+        */
+        let view = HKTriangleView()
+        view.title = self.myWhipM.themeName
+//        let x = Define.screenWidth() - 200.0)/2.0
+        view.frame = CGRect.init(x: (Define.screenWidth() - 200)/2.0, y: Define.screenHeight() - 300, width: 200, height: 160)
+        let fixImage = UIImage.fixOrientation(image)
+        let triangleImage = fixImage?.watermarkLogo(view, make: view.frame, width: Define.screenWidth(), heith: Define.screenHeight())
+        self.photo = triangleImage
         self.myLogTable.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
         picker.dismiss(animated: true, completion: nil)
     }

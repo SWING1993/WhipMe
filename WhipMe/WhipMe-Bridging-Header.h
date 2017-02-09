@@ -23,6 +23,8 @@
 #import "WMUploadFile.h"
 #import "TopUpViewController.h"
 #import "MJPhotoBrowser.h"
+#import "HKTriangleView.h"
+
 //
 #import "NSDate+Extension.h"
 #import "NSString+Common.h"

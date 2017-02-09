@@ -16,4 +16,6 @@
 @property (nonatomic, strong) UIImage *logo;
 @property (nonatomic, strong) NSString *time, *title;
 
++ (HKTriangleView *)viewTriangleWithTip:(NSString *)tip;
+
 @end

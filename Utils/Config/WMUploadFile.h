@@ -15,8 +15,6 @@
 
 + (void)upToData:(NSData *)data backInfo:(QNUpCompletionHandler)backInfo fail:(void (^)(NSError *error))fail;
 
-+ (void)upToImage:(UIImage *)upImage handler:(QNUpCompletionHandler)handler failed:(void (^)(NSError *error))fail;
-
 + (NSString *)isNeedRequestToGetDomain;
 
 + (NSString *)kImageBaseUrl:(NSString *)imgPath;
