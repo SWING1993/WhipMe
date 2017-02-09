@@ -25,8 +25,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         setup()
         
-        self.textNickname.text = "15856089859"
-        self.textPassword.text = "123"
+//        self.textNickname.text = "15856089859"
+//        self.textPassword.text = "123"
     }
     
     override func didReceiveMemoryWarning() {

@@ -137,6 +137,7 @@
 		C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */; };
 		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
+		C5FCD9FF1E4C6050009E45F6 /* HKTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FCD9FE1E4C6050009E45F6 /* HKTriangleView.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
 		E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */; };
 		E40D70C71DE6D2E40087B9EF /* TaCecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40D70C61DE6D2E40087B9EF /* TaCecordController.swift */; };
@@ -404,6 +405,8 @@
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
+		C5FCD9FD1E4C6050009E45F6 /* HKTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKTriangleView.h; sourceTree = "<group>"; };
+		C5FCD9FE1E4C6050009E45F6 /* HKTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTriangleView.m; sourceTree = "<group>"; };
 		C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhipMe.entitlements; sourceTree = "<group>"; };
 		E408D9911D8FB786006F2A75 /* HotAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAddCell.swift; sourceTree = "<group>"; };
 		E408D9951D90C85F006F2A75 /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
@@ -1006,6 +1009,8 @@
 		E4189ED91D8E73C200A619A6 /* Index */ = {
 			isa = PBXGroup;
 			children = (
+				C5FCD9FD1E4C6050009E45F6 /* HKTriangleView.h */,
+				C5FCD9FE1E4C6050009E45F6 /* HKTriangleView.m */,
 				E4C9B87A1D92591600A4C14D /* AlarmClockCell */,
 				E408D9901D8FB76D006F2A75 /* Hot_add */,
 				E4189EDA1D8E73EE00A619A6 /* Custom_add */,
@@ -1442,6 +1447,7 @@
 				C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
+				C5FCD9FF1E4C6050009E45F6 /* HKTriangleView.m in Sources */,
 				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
 				C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */,
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,

@@ -20,6 +20,7 @@
 
 + (NSString *)generateUuidString;
 
-- (UIImage *)watermarkImage:(UIImage *)img withName:(NSString *)mark;
++ (UIImage *)convertViewToImage:(UIView *)v;
+- (UIImage *)watermarkLogo:(UIView *)logo make:(CGRect)makeSize width:(CGFloat)kWidth heith:(CGFloat)kHeight;
 
 @end

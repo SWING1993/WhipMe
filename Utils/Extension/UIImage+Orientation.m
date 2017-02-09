@@ -142,9 +142,7 @@
     return image;
 }
 
-
-+ (NSString *)generateUuidString
-{
++ (NSString *)generateUuidString {
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
     CFRelease(uuid);
@@ -152,18 +150,34 @@
     return uuidString;
 }
 
-- (UIImage *)watermarkImage:(UIImage *)logo withName:(NSString *)mark
-{
+- (UIImage *)watermarkLogo:(UIView *)logo make:(CGRect)makeSize width:(CGFloat)kWidth heith:(CGFloat)kHeight {
+    
+    UIImage *img = [UIImage convertViewToImage:logo];
+    CGFloat ratioA = CGRectGetWidth(makeSize)/kWidth;
+    CGFloat ratioB = CGRectGetHeight(makeSize)/CGRectGetWidth(makeSize);
+    CGFloat ratioC = 130.0/kHeight;
+    CGFloat widthA = ratioA*self.size.width;
+    CGFloat heightA = ratioB*widthA;
+    CGFloat originY = self.size.height - heightA - ratioC*self.size.height;
+    CGFloat originX = (self.size.width - widthA)/2.0;
+    CGRect  rect_A = CGRectMake(floorf(originX), floorf(originY), floorf(widthA), floorf(heightA));
+    
     UIGraphicsBeginImageContextWithOptions([self size], NO, 0.0);
-    //原图
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
-    //水印图
-    [logo drawInRect:CGRectMake((self.size.width-logo.size.width)/2.0, (self.size.height-logo.size.height)/2.0, logo.size.width, logo.size.height)];
+    [img drawInRect:rect_A];
     
     UIImage *newPic = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return newPic;
+}
+
++ (UIImage *)convertViewToImage:(UIView *)v {
+    
+    UIGraphicsBeginImageContext(v.bounds.size);
+    [v.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end
