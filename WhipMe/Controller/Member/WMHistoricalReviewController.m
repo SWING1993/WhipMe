@@ -20,7 +20,6 @@ static NSString *identifier_collect = @"historicalReviewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"历史回顾";
     self.view.backgroundColor = [Define kColorBackGround];
     
     [self setup];

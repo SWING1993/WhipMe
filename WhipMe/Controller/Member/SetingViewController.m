@@ -152,7 +152,10 @@ static NSString *identifier_cell = @"setingTableViewCell";
         WMUserInfoViewController *controller = [[WMUserInfoViewController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 3) {
-        
+        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeHelpCenter];
+        [self.navigationController pushViewController:controller animated:YES];
+//        WMHelpCenterController *controller = [[WMHelpCenterController alloc] init];
+//        [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
         WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeLocal];
         [self.navigationController pushViewController:controller animated:YES];
@@ -183,6 +186,8 @@ static NSString *identifier_cell = @"setingTableViewCell";
     [UserManager removeData];
     [JMSGUser logout:^(id resultObject, NSError *error) {
     }];
+    [WMUploadFile removeQiniuUpKey];
+    
     AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDegate setupLoginController];
 }

@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSUInteger, WMWebViewType) {
     WMWebViewTypeNetwork = 0,
     WMWebViewTypeLocal = 1,
+    WMWebViewTypeHelpCenter = 2,
 };
 
 @interface WMWebViewController : UIViewController <UIWebViewDelegate>

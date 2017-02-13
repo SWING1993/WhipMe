@@ -69,6 +69,19 @@ static ChatMessage *_chatObj = nil;
     }];
 }
 
+- (void)updateLoginPwd {
+    UserManager *info = [UserManager shared];
+    if ([NSString isBlankString:info.pwdim]) {
+        return;
+    }
+    [JMSGUser loginWithUsername:info.userId password:@"123456" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGUser updateMyPasswordWithNewPassword:info.pwdim oldPassword:@"123456" completionHandler:^(id resultObject, NSError *error) {
+            
+        }];
+    }];
+    
+}
+
 - (void)registerJMessage
 {
     UserManager *info = [UserManager shared];
@@ -80,33 +93,24 @@ static ChatMessage *_chatObj = nil;
     [JMSGUser registerWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         if (error == nil) {
             [weakSelf loginJMessage];
+            [weakSelf imResultJMessage];
         } else {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     }];
 }
 
-- (void)updateLoginPwd {
+- (void)imResultJMessage {
     UserManager *info = [UserManager shared];
-    if ([NSString isBlankString:info.pwdim]) {
-        return;
-    }
-    [JMSGUser loginWithUsername:info.userId password:@"123456" completionHandler:^(id resultObject, NSError *error) {
-        [JMSGUser updateMyPasswordWithNewPassword:info.pwdim oldPassword:@"123456" completionHandler:^(id resultObject, NSError *error) {
-           
-        }];
-    }];
-    
-}
-
-- (void)registerJMessage:(NSString *)username pwd:(NSString *)password
-{
-    if ([NSString isBlankString:username] || [NSString isBlankString:password]) {
+    if ([NSString isBlankString:info.userId] || [NSString isBlankString:info.pwdim]) {
         return;
     }
     
-    [JMSGUser registerWithUsername:username password:password completionHandler:^(id resultObject, NSError *error) {
-        DebugLog(@"%@",error);
+    NSDictionary *param = @{@"userId":info.userId,@"frontend":@"ios"};
+    [HttpAPIClient APIClientPOST:@"imResult" params:param Success:^(id result) {
+        
+    } Failed:^(NSError *error) {
+        
     }];
 }
 

@@ -138,7 +138,6 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             //用户取消
         } else if response.errCode == -4 {
             //用户拒绝授权
-            
         } else {
             // 0(用户同意)
             HttpAPIClient.apiClientPOST("wlogin", params: ["unionId":response.code], success: { (result) in
@@ -148,14 +147,11 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                     let data = json["data"][0]
                     
                     if (data["ret"].intValue == 1) {
-                        print("用户首次登录")
-                        
                         let controller = RegisterAndUserController()
                         controller.unionId = response.code
                         self.navigationController?.pushViewController( controller, animated: true)
                         
                     } else if (data["ret"].intValue == 0) {
-                        print("用户登录成功")
                         let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.setupMainController()
                         ChatMessage.shareChat().loginJMessage()
@@ -164,7 +160,6 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
                     }
                 }
             }) { (error) in
-                print("wlogin error:\(error)")
                 Tool.showHUDTip(tipStr: "网络不给力")
             }
         }

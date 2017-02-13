@@ -52,10 +52,7 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
             } option:aQNUploadOption];
             
         } doLaterFail:^(NSError *error) {
-            NSUserDefaults *useDefault = [NSUserDefaults standardUserDefaults];
-            [useDefault removeObjectForKey:SG_QiniuUpToken];
-            [useDefault removeObjectForKey:SG_QiniuUpTokenTime];
-            [useDefault synchronize];
+            [self removeQiniuUpKey];
             fail(error);
         }];
     }
@@ -111,11 +108,17 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
     }
 }
 
++ (void)removeQiniuUpKey {
+    NSUserDefaults *useDefault = [NSUserDefaults standardUserDefaults];
+    [useDefault removeObjectForKey:SG_QiniuUpToken];
+    [useDefault removeObjectForKey:SG_QiniuUpTokenTime];
+    [useDefault synchronize];
+}
+
 + (void)getUptoken:(void (^ __nonnull) (NSString *upToken))doLaterSuccess doLaterFail:(FailedBlock)doLaterFaill
 {
     NSDictionary *params = @{@"bucketName":@"btw-app"};
     [HttpAPIClient getAPIClient:@"/uploadTokenServlet" param:params Success:^(id result) {
-        DebugLog(@"____result:%@",result);
         if (result[@"token"]) {
             NSString *domain = [NSString stringWithFormat:@"%@",result[@"domain"]];
             NSString *upToken = [NSString stringWithFormat:@"%@",result[@"token"]];

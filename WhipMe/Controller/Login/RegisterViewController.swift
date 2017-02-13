@@ -24,9 +24,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = Define.kColorBackGround()
         
         setup()
-        
-//        self.textNickname.text = "15856089859"
-//        self.textPassword.text = "123"
     }
     
     override func didReceiveMemoryWarning() {
@@ -161,7 +158,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("validateCode", params: ["mobile":mobileStr,"code":password], success: { (result) in
-            print("手机号用户注册 result:\(result)")
             let json = JSON(result!)
             let data = json["data"][0]
             
@@ -171,12 +167,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 controller.password = password
                 self.navigationController?.pushViewController( controller, animated: true)
             } else {
-                Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                if (NSString.isBlankString(data["desc"].stringValue) == false) {
+                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                }
             }
         }) { (error) in
-            print("手机号用户注册 error:\(error)")
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
-        
     }
     
     func clickWithAgreement()  {
@@ -199,11 +196,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
-            print("result:\(result)")
-            
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
-            print("error:\(error)")
+            
         }
     }
     

@@ -17,8 +17,6 @@
 
 - (void)registerJMessage;
 
-- (void)registerJMessage:(NSString *)username pwd:(NSString *)password;
-
 - (void)updateJUserInfo;
 
 @end
