@@ -43,9 +43,9 @@ class AddTaskM: NSObject {
     var nickname: String = ""
     var icon: String = ""
     var plan: String = ""
-    var startDate: Date = Date()
-    var endDate: Date = Date()
-    var clockTime: Date = Date()
+    var startDate: Date?
+    var endDate: Date?
+    var clockTime: Date?
     var privacy: PrivacyType = .all
     var type: String = "3"
     var supervisor: String = ""
@@ -125,12 +125,13 @@ class AddWhipController: UIViewController {
                 Tool.showHUDTip(tipStr: "请填写标题后再提交!")
                 return
             }
+            /*
+
             if (weakSelf?.addTask.plan.length)! <= 0 {
                 Tool.showHUDTip(tipStr: "请填写内容后再提交!")
                 return
             }
             
-            /*
             themeName":"主题名称",
             "creator":"创建人的userId",
             "plan":"计划",
@@ -143,9 +144,26 @@ class AddWhipController: UIViewController {
             "guarantee":"保证金"
              */
             
-            let startDate: String = weakSelf!.addTask.startDate.string(custom: "yyyy-MM-dd")
-            let endDate: String = weakSelf!.addTask.endDate.string(custom: "yyyy-MM-dd")
-            let clockTime: String = weakSelf!.addTask.clockTime.string(custom: "HHmm")
+            var startDate: String = ""
+            if let date = weakSelf!.addTask.startDate {
+                startDate = date.string(custom: "yyyy-MM-dd")
+            } else {
+                Tool.showHUDTip(tipStr: "请选择开始时间")
+                return
+            }
+            
+            var endDate: String = ""
+            if let date = weakSelf!.addTask.endDate {
+                endDate = date.string(custom: "yyyy-MM-dd")
+            } else {
+                Tool.showHUDTip(tipStr: "请选择结束时间")
+                return
+            }
+            
+            var clockTime: String = ""
+            if let date = weakSelf!.addTask.clockTime {
+                clockTime = date.string(custom: "HHmm")
+            }
             
             var privacy: String = ""
             switch self.addTask.privacy {
@@ -176,21 +194,26 @@ class AddWhipController: UIViewController {
                 "supervisorIcon":self.addTask.supervisorIcon,
                 "guarantee":self.addTask.guarantee
             ]
-            print(params)
-            HttpAPIClient.apiClientPOST("addTask", params: params, success: { (result) in
-                if let resultData = result {
-                    let json = JSON(resultData)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret == 0 {
-                        Tool.showHUDTip(tipStr: "添加成功")
-                        _ = weakSelf?.navigationController?.popToRootViewController(animated: true)
-                    } else {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+//            print(params)
+
+            let alert = UIAlertView.init(title: "确认提交你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
+            alert.bk_addButton(withTitle: "确认", handler: {
+                HttpAPIClient.apiClientPOST("addTask", params: params, success: { (result) in
+                    if let resultData = result {
+                        let json = JSON(resultData)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            Tool.showHUDTip(tipStr: "提交成功")
+                            _ = weakSelf?.navigationController?.popToRootViewController(animated: true)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
                     }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
                 }
-            }) { (error) in
-                Tool.showHUDTip(tipStr: "网络不给力")
-            }
+            });
+            alert.show()
         }
     }
     
@@ -300,7 +323,6 @@ class AddWhipController: UIViewController {
     
     fileprivate func prepareCustomTable() {
         customTable.backgroundColor = kColorBackGround
-
         customTable.tag = 100
         customTable.register(FirstAddCustomCell.self, forCellReuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
         customTable.register(SecondAddCustomCell.self, forCellReuseIdentifier: SecondAddCustomCell.cellReuseIdentifier())
@@ -329,7 +351,7 @@ class AddWhipController: UIViewController {
         segmentedView.selectedSegmentIndex = 0
         segmentedView.addTarget(self, action:#selector(clickWithSegmentedItem), for: UIControlEvents.valueChanged)
         self.navigationItem.titleView = segmentedView
-        
+
         customTable.isHidden = true
         hotTable.isHidden = false
     }

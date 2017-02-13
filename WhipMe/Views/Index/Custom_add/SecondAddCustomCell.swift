@@ -148,18 +148,18 @@ extension SecondAddCustomCell:UITableViewDataSource {
                 let formatter = DateFormatter()
                 formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = addTask.startDate.string(format: .custom("yyyy.MM.dd"))
+                cell.detailTextLabel?.text = addTask.startDate?.string(format: .custom("yyyy.MM.dd"))
             break
         
         case 1:
                 let formatter = DateFormatter()
                 formatter.timeZone = NSTimeZone.system
                 formatter.dateFormat = "yyyy.MM.dd"
-                cell.detailTextLabel?.text = addTask.endDate.string(format: .custom("yyyy.MM.dd"))
+                cell.detailTextLabel?.text = addTask.endDate?.string(format: .custom("yyyy.MM.dd"))
             break
         
         case 2:
-                cell.detailTextLabel?.text = addTask.clockTime.string(format: .custom("HH:mm"))
+                cell.detailTextLabel?.text = addTask.clockTime?.string(format: .custom("HH:mm"))
             break
         
         case 3:

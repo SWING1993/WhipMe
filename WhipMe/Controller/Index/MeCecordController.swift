@@ -204,7 +204,11 @@ class MeCecordController: UIViewController {
 extension MeCecordController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
+        if section == 1 {
+            if self.myWhipM.guarantee == 0 {
+                return 0
+            }
+        } else if section == 3 {
             return self.friendCircleModels.count
         }
         return 1
@@ -212,7 +216,7 @@ extension MeCecordController:UITableViewDataSource {
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     /// Prepares the cells within the tableView.
@@ -221,16 +225,24 @@ extension MeCecordController:UITableViewDataSource {
             let cell: MeLogCell = MeLogCell.init(style: UITableViewCellStyle.default, reuseIdentifier: MeLogCell.cellReuseIdentifier())
             if self.friendCircleModels.count > 0 {
                 let model:FriendCircleM = self.friendCircleModels.first!
-                cell.label2.text = "上次记录："+model.createDate
+                cell.label2.text = "上次记录：" + model.createDate
             } else {
                 cell.label2.text = "暂无记录"
             }
             return cell
         } else if indexPath.section == 1 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
-            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "system_monitoring")
+            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "")
             cell.titleL.text =  myWhipM.supervisorName + "监督中"
             cell.subTitleL.text = "自由服务费："+String(describing: myWhipM.guarantee)+"元"
+            return cell
+        } else if indexPath.section == 2 {
+            let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
+            cell.avatarV.image = UIImage.init(named: "community_icon")
+            cell.avatarV.snp.updateConstraints({ (make) in
+                make.size.equalTo(CGSize.init(width: 25, height: 25))
+            })
+            cell.titleL.text =  "社区动态"
             return cell
         } else {
             let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
@@ -249,10 +261,10 @@ extension MeCecordController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return MeLogCell.cellHeight()
-        } else if indexPath.section == 1 {
-            return SuperviseCell.cellHeight()
-        } else {
+        } else if indexPath.section == 3 {
             return self.cellHeights[indexPath.row]
+        } else {
+            return SuperviseCell.cellHeight()
         }
     }
     
@@ -262,7 +274,6 @@ extension MeCecordController: UITableViewDelegate {
             logC.myWhipM = self.myWhipM;
             self.navigationController?.pushViewController(logC, animated: true)
         }
-        
     }
 
 }

@@ -114,6 +114,7 @@ class FriendCircleController: UIViewController {
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if let dataResult = result {
+                print(dataResult)
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {

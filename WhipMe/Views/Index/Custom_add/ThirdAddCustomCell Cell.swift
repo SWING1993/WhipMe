@@ -28,7 +28,7 @@ class ThirdAddCustomCell: NormalCell {
         
         if self.addTask.type == "1" {
             addBtn.setImage(UIImage.init(named: "system_monitoring"), for: .normal)
-            addLabel.text = "监督人:系统监督\n自由服务费:"+self.addTask.guarantee+"元"
+            addLabel.text = "监督人:客服监督\n自由服务费:"+self.addTask.guarantee+"元"
         }
     }
     

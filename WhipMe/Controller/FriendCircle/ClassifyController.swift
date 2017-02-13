@@ -78,7 +78,7 @@ class ClassifyController: UIViewController {
     fileprivate func prepareTableView() {
         recommendTable.backgroundColor = kColorBackGround
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
-        recommendTable.register(MeLogCell.self, forCellReuseIdentifier: MeLogCell.cellReuseIdentifier())
+        recommendTable.register(SuperviseCell.self, forCellReuseIdentifier: SuperviseCell.cellReuseIdentifier())
         recommendTable.dataSource = self
         recommendTable.delegate = self
         recommendTable.separatorStyle = .none
@@ -148,34 +148,46 @@ class ClassifyController: UIViewController {
 extension ClassifyController: UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return self.friendCircleModels.count
     }
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
-        let model:FriendCircleM = self.friendCircleModels[indexPath.row]
-        cell.setRecommendData(model: model)
-        cell.commentSuccess = { () -> Void in
-            self.setupRequest()
+        if indexPath.section == 0 {
+            let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
+            cell.avatarV.image = UIImage.init(named: "community_icon")
+            cell.avatarV.snp.updateConstraints({ (make) in
+                make.size.equalTo(CGSize.init(width: 25, height: 25))
+            })
+            cell.titleL.text =  "社区动态"
+            return cell
+        } else {
+            let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
+            let model:FriendCircleM = self.friendCircleModels[indexPath.row]
+            cell.setRecommendData(model: model)
+            cell.commentSuccess = { () -> Void in
+                self.setupRequest()
+            }
+            return cell
         }
-        return cell
     }
 }
 
 /// UITableViewDelegate methods.
 extension ClassifyController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return SuperviseCell.cellHeight()
+        }
         return self.cellHeights[indexPath.row]
     }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
 }
 
