@@ -11,6 +11,7 @@
 		4F677DA01DA0EDD6004D54EA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F677D9F1DA0EDD6004D54EA /* libc++.tbd */; };
 		4F677DA51DA10F5F004D54EA /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677DA41DA10F5F004D54EA /* NSString+Validate.m */; };
 		8F8F647A783A41F3C96B8AD4 /* Pods_WhipMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FC22642FF3694F4358528 /* Pods_WhipMe.framework */; };
+		C501BAFC1E515D2500A5EB6C /* HelpCenter.html in Resources */ = {isa = PBXBuildFile; fileRef = C501BAFB1E515D2500A5EB6C /* HelpCenter.html */; };
 		C506DC321D8FE46F00785BE8 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C506DC311D8FE46F00785BE8 /* JMessage.framework */; };
 		C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A49881D9A06180003CE2D /* PhoneCodeButton.m */; };
 		C50A498B1D9A1B4D0003CE2D /* RegisterAndUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50A498A1D9A1B4D0003CE2D /* RegisterAndUserController.swift */; };
@@ -197,6 +198,7 @@
 		4F677DA41DA10F5F004D54EA /* NSString+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validate.m"; sourceTree = "<group>"; };
 		A030685417F6EAA902A8D211 /* Pods-WhipMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.release.xcconfig"; sourceTree = "<group>"; };
 		AB9F213A8BB6602942F5D4EF /* Pods-WhipMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhipMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhipMe/Pods-WhipMe.debug.xcconfig"; sourceTree = "<group>"; };
+		C501BAFB1E515D2500A5EB6C /* HelpCenter.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HelpCenter.html; sourceTree = "<group>"; };
 		C506DC311D8FE46F00785BE8 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
 		C50A49871D9A06180003CE2D /* PhoneCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodeButton.h; sourceTree = "<group>"; };
 		C50A49881D9A06180003CE2D /* PhoneCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodeButton.m; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				C5C47C2F1E25D2DE00EEA35D /* error.html */,
 				C5C47C2D1E25D2D300EEA35D /* 404.jpg */,
 				C5C47C2B1E25CAEF00EEA35D /* userAgreement.html */,
+				C501BAFB1E515D2500A5EB6C /* HelpCenter.html */,
 			);
 			name = web_user;
 			sourceTree = "<group>";
@@ -1216,6 +1219,9 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -1256,6 +1262,7 @@
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
+				C501BAFC1E515D2500A5EB6C /* HelpCenter.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

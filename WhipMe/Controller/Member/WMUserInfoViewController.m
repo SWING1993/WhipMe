@@ -339,6 +339,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[NSString stringWithFormat:@"%@",self.userModel.userId] forKey:@"userId"];
+    [param setObject:@"ios" forKey:@"frontend"];
     
     // 获取修改的key
     NSString *str_key = [self keyWithEditType:keyType];

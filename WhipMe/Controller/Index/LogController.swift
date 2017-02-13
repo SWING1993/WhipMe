@@ -318,7 +318,7 @@ class LogController: UIViewController {
                 Tool.showHUDTip(tipStr: "请填写内容后再发送！")
                 return
             }
-            
+            self.view.endEditing(false)
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = "发送中..."
 

@@ -71,7 +71,7 @@
     if (self.isBounces) {
         [self.webViewWM.scrollView setBounces:NO];
     }
-    if (self.webType == WMWebViewTypeLocal) {
+    if (self.webType == WMWebViewTypeLocal || self.webType == WMWebViewTypeHelpCenter) {
         [self loadLocalHtml];
     } else {
         [self startLoad];
@@ -95,11 +95,16 @@
 - (void)loadLocalHtml {
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
-    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"userAgreement" ofType:@"html"];
-    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     
-    [self.webViewWM loadHTMLString:htmlCont baseURL:baseURL];
     [self.navigationItem setTitle:@"用户协议"];
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"userAgreement" ofType:@"html"];
+    if (self.webType == WMWebViewTypeHelpCenter) {
+        [self.navigationItem setTitle:@"帮助中心"];
+        htmlPath = [[NSBundle mainBundle] pathForResource:@"HelpCenter" ofType:@"html"];
+    }
+    
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+    [self.webViewWM loadHTMLString:htmlCont baseURL:baseURL];
 }
 
 - (void)loadErrorHtml {

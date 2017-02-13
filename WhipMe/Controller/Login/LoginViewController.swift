@@ -26,8 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         WMUploadFile.isNeedRequestToGetDomain()
         
         setup()
-//        self.textNickname.text = "15856089859"
-//        self.textPassword.text = "123"
     }
 
     override func didReceiveMemoryWarning() {

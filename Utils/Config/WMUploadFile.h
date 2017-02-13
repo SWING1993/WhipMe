@@ -19,4 +19,6 @@
 
 + (NSString *)kImageBaseUrl:(NSString *)imgPath;
 
++ (void)removeQiniuUpKey;
+
 @end

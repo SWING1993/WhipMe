@@ -13,6 +13,11 @@
 #import "WMHistoricalReviewController.h"
 #import "WMFansAndFocusController.h"
 
+typedef NS_ENUM(NSUInteger, MyTaskType) {
+    MyTaskTypeZero = 0,
+    MyTaskTypeOne = 1,
+};
+
 CGFloat const kHead_WH = 60.0;
 NSInteger const kItem_Tag = 7777;
 
@@ -20,11 +25,15 @@ NSInteger const kItem_Tag = 7777;
 
 @property (nonatomic, strong) UITableView *tableViewWM;
 @property (nonatomic, strong) UIView *superviseView, *growView, *viewHead, *view_item;
-
-@property (nonatomic, strong) NSMutableArray *arraySupervise, *arrayGrow;
+/** 历史监督 */
+@property (nonatomic, strong) NSMutableArray *arraySupervise;
+/** 历史养成 */
+@property (nonatomic, strong) NSMutableArray *arrayGrow;
 
 @property (nonatomic, strong) UIImageView *imageHead, *iconWallet;
 @property (nonatomic, strong) UILabel *lblUserName, *lblDescribe, *lblFansNum, *lblFocusNum, *lblWallet;
+
+@property (nonatomic, strong) NSIndexPath *index_delete;
 
 @end
 
@@ -322,14 +331,23 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.arraySupervise.count;
+        return self.arraySupervise.count+1;
     }
-    return self.arrayGrow.count;
+    return self.arrayGrow.count+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return [MemberHeadViewCell cellHeight];
+    }
+    mySuperviseModel *model = nil;
+    if (indexPath.section == 0) {
+        model = [self.arraySupervise objectAtIndex:indexPath.row-1];
+    } else {
+        model = [self.arrayGrow objectAtIndex:indexPath.row-1];
+    }
+    if (model && model.threeDay.count == 0) {
+        return 72.0;
     }
     return 190.0;
 }
@@ -347,10 +365,10 @@ static NSString *identifier_head = @"tableViewView_head";
     MemberTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_member];
     [cell setMemberDelegate:self];
     if (indexPath.section == 0) {
-        [cell setModel:self.arraySupervise[indexPath.row]];
+        [cell setModel:self.arraySupervise[indexPath.row-1]];
         [cell setData_Supervision];
     } else {
-        [cell setModel:self.arrayGrow[indexPath.row]];
+        [cell setModel:self.arrayGrow[indexPath.row-1]];
         [cell setData];
     }
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
@@ -363,11 +381,46 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 1) {
-        WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
+    WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
+    if (indexPath.section == 0) {
+        [controller.navigationItem setTitle:@"历史监督"];
+        controller.arrayContent = [self.arraySupervise mutableCopy];
+    } else {
+        [controller.navigationItem setTitle:@"历史养成"];
         controller.arrayContent = [self.arrayGrow mutableCopy];
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
+    }
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DebugLog(@"Action - tableView");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        _index_delete = indexPath;
+        mySuperviseModel *model = nil;
+        MyTaskType type = MyTaskTypeZero;
+        if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
+            model = [self.arraySupervise objectAtIndex:indexPath.row-1];
+        } else {
+            type = MyTaskTypeOne;
+            if (self.arrayGrow.count > indexPath.row-1) {
+                model = [self.arrayGrow objectAtIndex:indexPath.row-1];
+            }
+        }
+        [self removeTask:model flag:type];
     }
 }
 
@@ -411,6 +464,33 @@ static NSString *identifier_head = @"tableViewView_head";
 }
 
 #pragma mark - Network
+/** 获取用户账户余额 */
+- (void)queryAccountByWallet {
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"userId":user.userId ?: @""};
+    
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:@"queryAccountById" params:param Success:^(id result) {
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            CGFloat float_wallet = [data[@"account"] floatValue];
+            UserManager *model = [UserManager shared];
+            model.wallet = [NSString stringWithFormat:@"%.2f",float_wallet];
+            [weakSelf setData:model];
+            
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        
+    }];
+}
+
 - (void)queryByUserInfo {
     UserManager *user = [UserManager shared];
     NSDictionary *param = @{@"userId":user.userId ?: @""};
@@ -418,8 +498,7 @@ static NSString *identifier_head = @"tableViewView_head";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserInfo" params:param Success:^(id result) {
         [self.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
-        
+       
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             NSDictionary *info = [data objectForKey:@"userInfo"];
@@ -455,23 +534,41 @@ static NSString *identifier_head = @"tableViewView_head";
     }];
 }
 
-/** 获取用户账户余额 */
-- (void)queryAccountByWallet {
+/*taskType : 此任务是（0：历史养成  1：历史监督）*/
+- (void)removeTask:(mySuperviseModel *)model flag:(MyTaskType)type {
+    if (model == nil) {
+        return;
+    }
     UserManager *user = [UserManager shared];
-    NSDictionary *param = @{@"userId":user.userId ?: @""};
-    
+    NSDictionary *param = @{@"loginId":user.userId ?: @"",
+                            @"taskId":model.taskId ?: @"",
+                            @"taskType":[NSString stringWithFormat:@"%ld",(long)type],
+                            };
     WEAK_SELF
-    [HttpAPIClient APIClientPOST:@"queryAccountById" params:param Success:^(id result) {
-        
+    [HttpAPIClient APIClientPOST:@"removeTask" params:param Success:^(id result) {
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
-            CGFloat float_wallet = [data[@"account"] floatValue];
-            UserManager *model = [UserManager shared];
-            model.wallet = [NSString stringWithFormat:@"%.2f",float_wallet];
-            [weakSelf setData:model];
-            
-            NSMutableDictionary *dict_value = [model mj_keyValues];
-            [UserManager storeUserWithDict:dict_value];
+            if (type == MyTaskTypeZero) {
+                if (self.arraySupervise.count > self.index_delete.row-1) {
+                    [self.arraySupervise removeObjectAtIndex:self.index_delete.row-1];
+                }
+                UITableViewCell *cell = [weakSelf.tableViewWM cellForRowAtIndexPath:weakSelf.index_delete];
+                if (cell && [self.arraySupervise count] > 0) {
+                    [weakSelf.tableViewWM deleteRowsAtIndexPaths:@[weakSelf.index_delete] withRowAnimation:UITableViewRowAnimationFade];
+                } else {
+                    [weakSelf.tableViewWM reloadData];
+                }
+            } else {
+                if (self.arrayGrow.count > self.index_delete.row-1) {
+                    [self.arrayGrow removeObjectAtIndex:self.index_delete.row-1];
+                }
+                UITableViewCell *cell = [weakSelf.tableViewWM cellForRowAtIndexPath:weakSelf.index_delete];
+                if (cell && [self.arrayGrow count] > 0) {
+                    [weakSelf.tableViewWM deleteRowsAtIndexPaths:@[weakSelf.index_delete] withRowAnimation:UITableViewRowAnimationFade];
+                } else {
+                    [weakSelf.tableViewWM reloadData];
+                }
+            }
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {
                 [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];

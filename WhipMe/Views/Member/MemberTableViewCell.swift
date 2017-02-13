@@ -148,16 +148,28 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblTitle.text = self.model.nickname
         lblNumber.text = "被鞭挞\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
+        imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         
-        self.collectionViewWM.reloadData();
+        if (self.model.threeDay.count == 0) {
+            self.collectionViewWM.isHidden = true
+        } else {
+            self.collectionViewWM.isHidden = false
+            self.collectionViewWM.reloadData();
+        }
     }
     
     open func setData_Supervision() {
         lblTitle.text = self.model.nickname
         lblNumber.text = "已鞭挞\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
+        imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         
-        self.collectionViewWM.reloadData();
+        if (self.model.threeDay.count == 0) {
+            self.collectionViewWM.isHidden = true
+        } else {
+            self.collectionViewWM.isHidden = false
+            self.collectionViewWM.reloadData();
+        }
     }
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
