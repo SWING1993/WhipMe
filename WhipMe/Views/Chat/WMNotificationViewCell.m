@@ -30,16 +30,30 @@
 
 - (void)setup {
     WEAK_SELF
-    _lblTitle = [UILabel new];
-    _lblTitle.backgroundColor = [UIColor clearColor];
-    _lblTitle.textAlignment = NSTextAlignmentLeft;
-    _lblTitle.textColor = [Define kColorBlack];
-    _lblTitle.font = [UIFont systemFontOfSize:16.0];
-    [self.contentView addSubview:self.lblTitle];
-    [self.lblTitle mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.contentView).offset(10.0);
+//    _lblTitle = [UILabel new];
+//    _lblTitle.backgroundColor = [UIColor clearColor];
+//    _lblTitle.textAlignment = NSTextAlignmentLeft;
+//    _lblTitle.textColor = [Define kColorBlack];
+//    _lblTitle.font = [UIFont systemFontOfSize:16.0];
+//    [self.contentView addSubview:self.lblTitle];
+//    [self.lblTitle mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(weakSelf.contentView).offset(10.0);
+//        make.left.equalTo(weakSelf.contentView).offset(15.0);
+//        make.width.equalTo(weakSelf.contentView).multipliedBy(0.5).offset(-20.0);
+//        make.height.mas_equalTo(20.0);
+//    }];
+    
+    _lblContent = [UILabel new];
+    _lblContent.backgroundColor = [UIColor clearColor];
+    _lblContent.textAlignment = NSTextAlignmentLeft;
+    _lblContent.textColor = [Define kColorBlack];
+    _lblContent.font = [UIFont systemFontOfSize:14.0];
+    _lblContent.numberOfLines = 0;
+    [self.contentView addSubview:self.lblContent];
+    [self.lblContent mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.contentView).offset(15.0);
         make.left.equalTo(weakSelf.contentView).offset(15.0);
-        make.width.equalTo(weakSelf.contentView).multipliedBy(0.5).offset(-20.0);
+        make.width.equalTo(weakSelf.contentView).offset(-30.0);
         make.height.mas_equalTo(20.0);
     }];
     
@@ -50,23 +64,9 @@
     _lblDate.font = [UIFont systemFontOfSize:14.0];
     [self.contentView addSubview:self.lblDate];
     [self.lblDate mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.contentView).offset(10.0);
+        make.bottom.equalTo(weakSelf.contentView).offset(-10.0);
         make.right.equalTo(weakSelf.contentView).offset(-15.0);
-        make.width.equalTo(weakSelf.contentView).multipliedBy(0.5).offset(-20.0);
-        make.height.mas_equalTo(20.0);
-    }];
-    
-    _lblContent = [UILabel new];
-    _lblContent.backgroundColor = [UIColor clearColor];
-    _lblContent.textAlignment = NSTextAlignmentLeft;
-    _lblContent.textColor = [Define kColorLight];
-    _lblContent.font = [UIFont systemFontOfSize:14.0];
-    _lblContent.numberOfLines = 0;
-    [self.contentView addSubview:self.lblContent];
-    [self.lblContent mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.lblTitle.mas_bottom).offset(10.0);
-        make.left.equalTo(weakSelf.contentView).offset(15.0);
-        make.width.equalTo(weakSelf.contentView).offset(-30.0);
+        make.width.equalTo(weakSelf.lblContent.mas_width);
         make.height.mas_equalTo(20.0);
     }];
 }
@@ -88,7 +88,7 @@
 - (void)setCellModel:(NotificationModel *)model {
     _cellModel = model;
     
-    [self.lblTitle setText:model.nid];
+//    [self.lblTitle setText:model.nid];
     [self.lblDate setText:model.createDate];
     if ([NSString isBlankString:model.content]) {
         [self.lblContent setAttributedText:nil];
@@ -99,7 +99,7 @@
     }
     NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];
     pStyle.lineSpacing = 5.0f;
-    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14.0], NSParagraphStyleAttributeName:pStyle, NSForegroundColorAttributeName:[Define kColorLight]};
+    NSDictionary *attribute = @{NSFontAttributeName:self.lblContent.font, NSParagraphStyleAttributeName:pStyle, NSForegroundColorAttributeName:self.lblContent.textColor};
     
     CGSize size_h = [model.content boundingRectWithSize:CGSizeMake([Define screenWidth]-30.0, MAXFLOAT)
                                    options:NSStringDrawingUsesLineFragmentOrigin

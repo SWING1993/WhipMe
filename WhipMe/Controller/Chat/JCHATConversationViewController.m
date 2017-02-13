@@ -480,7 +480,18 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
         [[JCHATAudioPlayerHelper shareInstance] stopAudio];
     }
     if (self.navigationController.viewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+        BOOL flag = NO;
+        for (UIViewController *control in self.navigationController.viewControllers) {
+            if ([control isKindOfClass:NSClassFromString(@"WMFriendsListController")]) {
+                flag = YES;
+                break;
+            }
+        }
+        if (flag) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     } else {
         [self dismissViewControllerAnimated:YES completion:^{
             

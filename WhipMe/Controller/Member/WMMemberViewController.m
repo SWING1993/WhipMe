@@ -317,7 +317,7 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据哦！" attributes:attribute];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"尚未有任何历史记录！" attributes:attribute];
     return string;
 }
 

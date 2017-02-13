@@ -137,7 +137,7 @@ NSInteger sortType(id object1,id object2,void *cha) {
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"尚无任何私信！" attributes:attribute];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无任何私信！" attributes:attribute];
     return string;
 }
 
