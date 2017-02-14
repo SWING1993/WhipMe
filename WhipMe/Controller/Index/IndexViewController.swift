@@ -302,9 +302,10 @@ class WhipCell: UITableViewCell {
     }
     
     func needReloaTW() {
-        if self.needReload != nil {
-            self.needReload!()
-        }
+        NotificationCenter.default.post(name: NSNotification.Name("needReloaTW"), object: nil)
+//        if self.needReload != nil {
+//            self.needReload!()
+//        }
     }
 }
 
@@ -551,6 +552,7 @@ class IndexViewController: UIViewController {
     fileprivate func setup() {
         self.navigationItem.title = "鞭挞我"
         self.view.backgroundColor = Define.kColorBackGround()
+        NotificationCenter.default.addObserver(self, selector: #selector(setupAPI), name: NSNotification.Name(rawValue: "needReloaTW"), object: nil)
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
         if UserManager.shared.isManager == false {
