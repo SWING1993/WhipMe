@@ -296,9 +296,15 @@ class WhipCell: UITableViewCell {
     class func whipOtherReuseIdentifier() -> String {
         return "WhipOtherCell"
     }
-    
+   
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func needReloaTW() {
+        if self.needReload != nil {
+            self.needReload!()
+        }
     }
 }
 
@@ -315,13 +321,7 @@ extension WhipCell: UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        weak var weakSelf = self
         let cell: WhipMeCell = WhipMeCell.init(style: .subtitle, reuseIdentifier: self.myReuseIdentifier)
-//        cell.bk_(whenTapped: {
-//            if self.needReload != nil {
-//                self.needReload!()
-//            }
-//        })
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         cell.themeV.setImageWith(urlString: whipM.themeIcon, placeholderImage: "zaoqi")
         cell.themeL.text = whipM.themeName
@@ -332,17 +332,6 @@ extension WhipCell: UITableViewDataSource {
         // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
-            
-            /*
-             "supervisor":"登录人ID",
-             "supervisorName":"登录人昵称",
-             "supervisorIcon":"登录人头像",
-             "taskId”:”任务ID",
-             "accept”:”接受还是拒绝（1：拒绝   2：接受）"
-             "creator”:”这个任务的创建人昵称"
-             "creatorId”:”这个任务的创建人ID"
-
- */
             // 拒绝
             cell.refuseBtn.bk_(whenTapped: {
                 if UserManager.shared.isManager == true {
@@ -360,15 +349,12 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if weakSelf?.needReload != nil {
-                                    weakSelf?.needReload!()
-                                }
+                               self.needReloaTW()
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             }
                         }
                     }) { (error) in
-                        print(error!)
                         Tool.showHUDTip(tipStr: "网络不给力")
                     }
                 } else {
@@ -381,15 +367,12 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if weakSelf?.needReload != nil {
-                                    weakSelf?.needReload!()
-                                }
+                                self.needReloaTW()
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             }
                         }
                     }) { (error) in
-                        print(error!)
                         Tool.showHUDTip(tipStr: "网络不给力")
                     }
                 }
@@ -412,15 +395,12 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if weakSelf?.needReload != nil {
-                                    weakSelf?.needReload!()
-                                }
+                                self.needReloaTW()
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             }
                         }
                     }) { (error) in
-                        print(error!)
                         Tool.showHUDTip(tipStr: "网络不给力")
                     }
                 } else {
@@ -433,15 +413,12 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if weakSelf?.needReload != nil {
-                                    weakSelf?.needReload!()
-                                }
+                                self.needReloaTW()
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             }
                         }
                     }) { (error) in
-                        print(error!)
                         Tool.showHUDTip(tipStr: "网络不给力")
                     }
                 }
@@ -501,15 +478,47 @@ extension WhipCell: UITableViewDelegate {
         } else {
             return self.sectionHArr_Me.object(at: indexPath.row) as! CGFloat
         }
-        /*
-        let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
-        if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
-            return WhipMeCell.whipOtherCellHeight(model: whipM)
-
-        }else {
-            return WhipMeCell.whipMeCellHeight()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if self.myReuseIdentifier == WhipCell.whipMeReuseIdentifier() {
+            return true
+        } else {
+            return false
         }
-        */
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertView.init(title: "确认删除你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
+            alert.bk_addButton(withTitle: "确认", handler: {
+                let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
+                let param = ["userId":UserManager.shared.userId,
+                             "taskId":whipM.taskId]
+                HttpAPIClient.apiClientPOST("removeTask3", params: param, success: { (result) in
+                    tableView.setEditing(false, animated: true)
+                    if let dataResult = result {
+                        print(dataResult)
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            self.needReloaTW()
+                        } else {
+//                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            let log = UIAlertView.init(title: json["data"][0]["desc"].stringValue, message: nil, delegate: self, cancelButtonTitle: "确定")
+                            log.show()
+
+                        }
+                    }
+                }) { (error) in
+                    tableView.setEditing(false, animated: true)
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            });
+            alert.show()
+        }
     }
 }
 
@@ -556,15 +565,13 @@ class IndexViewController: UIViewController {
             let params = ["pageSize":"15","pageIndex":"1"]
             HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
                 if (result != nil) {
-                    print(result!)
+//                    print(result!)
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
                         let list  = json["data"][0]["list"].arrayObject
                         weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
                         weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-                        //weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
-                        //weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
                         weakSelf?.myTable.reloadData()
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -582,8 +589,6 @@ class IndexViewController: UIViewController {
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
                         let list  = json["data"][0]["list"].arrayObject
-                        //weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
-                        //weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
                         weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
                         weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
                         weakSelf?.myTable.reloadData()
