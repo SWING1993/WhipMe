@@ -79,12 +79,13 @@ class SuperviseCell: NormalCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.bgView.addSubview(avatarV)
+        avatarV.layer.cornerRadius = 20
+        avatarV.layer.masksToBounds = true
         avatarV.snp.makeConstraints({ (make) in
             make.size.equalTo(CGSize.init(width: 40, height: 40))
             make.left.equalTo(self.bgView.snp.left).offset(10)
             make.centerY.equalTo(self.bgView.snp.centerY)
         })
-        
         
         titleL.textAlignment = .left
         titleL.font = UIFont.systemFont(ofSize: 16)
@@ -104,7 +105,6 @@ class SuperviseCell: NormalCell {
             make.right.equalTo(self.bgView.snp.right).offset(-10)
             make.centerY.equalTo(self.bgView.snp.centerY)
         })
-
     }
     
     required init?(coder aDecoder: NSCoder) {

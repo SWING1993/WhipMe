@@ -42,6 +42,7 @@ class UserBlogHeaderV: UIView {
     var signL = UILabel()
     var focusNumL = UILabel()
     var fansNumL = UILabel()
+    var sexImageV = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,6 +66,13 @@ class UserBlogHeaderV: UIView {
             brower.currentPhotoIndex = 0
             brower.show()
         })
+        
+        self.addSubview(sexImageV)
+        sexImageV.snp.makeConstraints { (make) in
+            make.width.height.equalTo(17)
+            make.trailing.equalTo(avatarV)
+            make.bottom.equalTo(avatarV)
+        }
         
         signL.textColor = kColorTextLight
         signL.font = UIFont.systemFont(ofSize: 13)
@@ -367,6 +375,12 @@ class QueryUserBlogC: UIViewController {
                                 self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
                             }
                         }
+                        
+                        if self.userBlogM.userInfo["sex"] == "1" {
+                            self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-m")
+                        } else {
+                            self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-w")
+                        }
                         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
                         self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
                         self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
@@ -397,6 +411,11 @@ class QueryUserBlogC: UIViewController {
             if let growM = self.userBlogM.myGrow.first {
                 self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
             }
+        }
+        if self.userBlogM.userInfo["sex"] == "1" {
+            self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-m")
+        } else {
+            self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-w")
         }
         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
         self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
