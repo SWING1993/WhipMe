@@ -80,6 +80,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JPUSHService.showLocalNotification(atFront: notification, identifierKey: nil)
     }
     
+    //iOS10 Feature: the front desk agent notified method processing
+    @available(iOS 10.0, *)
+    private func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void){
+        let userInfo = notification.request.content.userInfo
+        print("userInfo10:\(userInfo)")
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler([.sound,.alert])
+    }
+    
+    //iOS10 Feature: proxy method of dealing with the backstage, click on the notification
+    @available(iOS 10.0, *)
+    private func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void){
+        let userInfo = response.notification.request.content.userInfo
+        print("userInfo10:\(userInfo)")
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler()
+    }
+    
     /** 微信回调 */
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         return WMShareEngine.sharedInstance().handleOpen(url)
@@ -146,6 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerUserNotification() {
         //iOS 10 使用以下方法注册，才能得到授权
+        UIApplication.shared.registerForRemoteNotifications()
         if #available(iOS 10.0, *) {
             let center  = UNUserNotificationCenter.current()
             //            center.delegate = self
@@ -171,8 +190,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-@available(iOS 10.0, *)
-extension UNUserNotificationCenterDelegate {
-    
-}
 

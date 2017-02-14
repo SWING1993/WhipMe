@@ -350,7 +350,6 @@ extension WhipCell: UITableViewDataSource {
                                  ]
                     HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
                         if let dataResult = result {
-                            print(dataResult)
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
@@ -371,7 +370,6 @@ extension WhipCell: UITableViewDataSource {
                                  "accept":"1"]
                     HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
                         if let dataResult = result {
-                            print(dataResult)
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
@@ -402,7 +400,6 @@ extension WhipCell: UITableViewDataSource {
                                  ]
                     HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
                         if let dataResult = result {
-                            print(dataResult)
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
@@ -423,7 +420,6 @@ extension WhipCell: UITableViewDataSource {
                                  "accept":"2"]
                     HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
                         if let dataResult = result {
-                            print(dataResult)
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
@@ -550,7 +546,6 @@ class IndexViewController: UIViewController {
             let params = ["pageSize":"15","pageIndex":"1"]
             HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
                 if (result != nil) {
-                    print(result!)
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -571,7 +566,6 @@ class IndexViewController: UIViewController {
             let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
             HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
                 if (result != nil) {
-                    print(result!)
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -592,7 +586,6 @@ class IndexViewController: UIViewController {
             let params = ["userId":UserManager.shared.userId]
             HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
                 if (result != nil) {
-                    print(result!)
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
