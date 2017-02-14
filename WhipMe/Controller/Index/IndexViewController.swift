@@ -315,7 +315,13 @@ extension WhipCell: UITableViewDataSource {
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        weak var weakSelf = self
         let cell: WhipMeCell = WhipMeCell.init(style: .subtitle, reuseIdentifier: self.myReuseIdentifier)
+//        cell.bk_(whenTapped: {
+//            if self.needReload != nil {
+//                self.needReload!()
+//            }
+//        })
         let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
         cell.themeV.setImageWith(urlString: whipM.themeIcon, placeholderImage: "zaoqi")
         cell.themeL.text = whipM.themeName
@@ -354,8 +360,8 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if self.needReload != nil {
-                                    self.needReload!()
+                                if weakSelf?.needReload != nil {
+                                    weakSelf?.needReload!()
                                 }
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -375,8 +381,8 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if self.needReload != nil {
-                                    self.needReload!()
+                                if weakSelf?.needReload != nil {
+                                    weakSelf?.needReload!()
                                 }
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -406,8 +412,8 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if self.needReload != nil {
-                                    self.needReload!()
+                                if weakSelf?.needReload != nil {
+                                    weakSelf?.needReload!()
                                 }
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -427,8 +433,8 @@ extension WhipCell: UITableViewDataSource {
                             let json = JSON(dataResult)
                             let ret  = json["data"][0]["ret"].intValue
                             if ret == 0 {
-                                if self.needReload != nil {
-                                    self.needReload!()
+                                if weakSelf?.needReload != nil {
+                                    weakSelf?.needReload!()
                                 }
                             } else {
                                 Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
