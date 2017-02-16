@@ -205,7 +205,7 @@ extension MeCecordController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            if self.myWhipM.guarantee == 0 {
+            if self.myWhipM.accept == 0 {
                 return 0
             }
         } else if section == 3 {

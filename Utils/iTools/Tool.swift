@@ -12,6 +12,9 @@ import Foundation
 class Tool: NSObject {
     
     class func showHUDTip(tipStr: String) {
+        let tip = UIAlertView.init(title: tipStr, message: "", delegate: nil, cancelButtonTitle: "确定")
+        tip.show()
+        /*
         let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
         hud.mode = MBProgressHUDMode.text
         hud.label.text = tipStr
@@ -19,6 +22,7 @@ class Tool: NSObject {
         hud.margin = 10.0
         hud.removeFromSuperViewOnHide = true
         hud.hide(animated: true, afterDelay: 2)
+ */
     }
 }
 

@@ -129,14 +129,12 @@ class TaCecordController: UIViewController {
         }
         
         
-        if self.myWhipM.result == 0 && self.myWhipM.accept == 2 {
+        if self.myWhipM.accept == 2 {
             self.bottomView.isHidden = false
         } else {
             self.bottomView.isHidden = true
         }
-        
-//        if UserManager.shared.isManager ==
-        
+            
         okBtn.bk_(whenTapped: {
             let param = ["userId":UserManager.shared.userId,
                          "taskId":self.myWhipM.taskId,
@@ -280,7 +278,7 @@ class TaCecordController: UIViewController {
         rightLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(line.snp.bottom).offset(10)
             make.right.equalTo(-22)
-            make.width.equalTo(140)
+            make.left.equalTo(leftLabel.snp.right).offset(10)
             make.height.equalTo(20)
         })
         

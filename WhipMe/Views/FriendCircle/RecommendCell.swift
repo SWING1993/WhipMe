@@ -459,7 +459,7 @@ extension RecommendCell:UITableViewDataSource {
         let contentStr = model.nickname+": "+model.content
         let nickNameStr = model.nickname+": "
         let contentAttStr = NSMutableAttributedString.init(string: contentStr)
-        contentAttStr.setAttributes([NSForegroundColorAttributeName:kColorGreen,NSFontAttributeName:UIFont.systemFont(ofSize: 13)], range: NSMakeRange(0, nickNameStr.length))
+        contentAttStr.setAttributes([NSForegroundColorAttributeName:kColorGary,NSFontAttributeName:UIFont.systemFont(ofSize: 13)], range: NSMakeRange(0, nickNameStr.length))
         cell.textLabel?.attributedText = contentAttStr
         return cell
     }
