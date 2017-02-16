@@ -101,7 +101,7 @@ class WhipMeCell: UITableViewCell {
             make.width.equalTo(40)
         }
         
-        subTitle.font = UIFont.systemFont(ofSize: 10)
+        subTitle.font = UIFont.systemFont(ofSize: 12)
         self.contentView.addSubview(subTitle)
         subTitle.snp.makeConstraints { (make) in
             make.left.equalTo(themeV.snp.right).offset(16)
@@ -421,6 +421,7 @@ extension WhipCell: UITableViewDataSource {
                 }
             })
 
+            cell.subTitle.textColor = kColorGary
             if whipM.accept == 0 {
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.config()
@@ -444,6 +445,7 @@ extension WhipCell: UITableViewDataSource {
         // 鞭挞我
         else {
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
+            cell.subTitle.textColor = kColorBlue
             if whipM.accept == 0 {
                 cell.goingL.text = "待确认"
                 cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
@@ -599,6 +601,7 @@ class IndexViewController: UIViewController {
             let params = ["userId":UserManager.shared.userId]
             HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
                 if (result != nil) {
+                    print(result!)
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {

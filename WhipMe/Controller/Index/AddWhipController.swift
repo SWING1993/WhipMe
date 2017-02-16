@@ -125,13 +125,11 @@ class AddWhipController: UIViewController {
                 Tool.showHUDTip(tipStr: "请填写标题后再提交!")
                 return
             }
-            /*
-
             if (weakSelf?.addTask.plan.length)! <= 0 {
                 Tool.showHUDTip(tipStr: "请填写内容后再提交!")
                 return
             }
-            
+            /*
             themeName":"主题名称",
             "creator":"创建人的userId",
             "plan":"计划",

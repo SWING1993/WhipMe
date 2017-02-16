@@ -38,7 +38,7 @@ class ThirdAddCustomCell: NormalCell {
         self.selectionStyle = .none
         
         addBtn.layer.masksToBounds = true
-        addBtn.layer.shadowRadius = 25.5
+        addBtn.layer.cornerRadius = 25.5
         addBtn.setImage(UIImage.init(named: "add_superintendent"), for: .normal)
         bgView.addSubview(addBtn)
         addBtn.snp.makeConstraints { (make) in

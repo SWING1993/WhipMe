@@ -24,6 +24,7 @@
 #import "TopUpViewController.h"
 #import "MJPhotoBrowser.h"
 #import "HKTriangleView.h"
+#import "WMAddFriendController.h"
 
 //
 #import "NSDate+Extension.h"

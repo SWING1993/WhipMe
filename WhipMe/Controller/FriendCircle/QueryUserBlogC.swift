@@ -330,6 +330,7 @@ class QueryUserBlogC: UIViewController {
                 let params = [
                     "focus":growM.creator,
                     "me":UserManager.shared.userId,
+                    "nickname":UserManager.shared.nickname
                     ]
                 HttpAPIClient.apiClientPOST("focusUser", params: params, success: { (result) in
                     if let dataResult = result {

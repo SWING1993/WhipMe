@@ -218,6 +218,16 @@ class AddPeopleController: UIViewController {
         cancleBtn.bk_init(withTitle: "取消", style: .plain) { (sender) in
             weakSelf?.dismiss(animated: true, completion: nil)
         }
+        
+        let addBtn = UIBarButtonItem.init(image: UIImage.init(named: "add_friends"), style: .done, target: self, action: #selector(addPeople))
+        if UserManager.shared.isManager == false {
+            self.navigationItem.rightBarButtonItem = addBtn
+        }
+    }
+    
+    func addPeople() {
+        let vc = WMAddFriendController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

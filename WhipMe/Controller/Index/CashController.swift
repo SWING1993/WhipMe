@@ -14,7 +14,7 @@ class CashController: UIViewController {
     var addTask = AddTaskM()
     var myTable = UITableView()
     let rechargeTextFiele = UITextField()
-    var account = "0.00"
+    var account : Double = 0.00
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -57,11 +57,9 @@ class CashController: UIViewController {
             self.rechargeTextFiele.endEditing(true)
             if let guarantee = self.rechargeTextFiele.text {
                 if let value1: Double = Double(guarantee) {
-                    if let value2: Double = Double(self.account) {
-                        if value1 > value2 {
-                            Tool.showHUDTip(tipStr: "余额不足！")
-                            return
-                        }
+                    if value1 > self.account || value1 == 0 {
+                        Tool.showHUDTip(tipStr: "余额不足！")
+                        return
                     }
                 } else {
                     Tool.showHUDTip(tipStr: "请填写正确的金额！")
@@ -91,7 +89,7 @@ class CashController: UIViewController {
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
-                    self.account = json["data"][0]["account"].stringValue
+                    self.account = json["data"][0]["account"].doubleValue
                     self.myTable.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -133,7 +131,7 @@ extension CashController: UITableViewDataSource {
             })
 
             let cashL = UILabel()
-            cashL.text = "余额：¥"+self.account
+            cashL.text = "余额：¥"+String(self.account)
             cashL.font = UIFont.systemFont(ofSize: 16)
             cell.bgView.addSubview(cashL)
             cashL.snp.makeConstraints({ (make) in
@@ -201,6 +199,15 @@ extension CashController: UITableViewDataSource {
                 make.size.equalTo(CGSize.init(width: 20, height: 20))
                 make.centerY.equalTo(iconV)
                 make.right.equalTo(-15)
+            })
+            
+            let line = UIView()
+            line.backgroundColor = kColorLine
+            cell.bgView.addSubview(line)
+            line.snp.makeConstraints({ (make) in
+                make.height.equalTo(0.5)
+                make.left.right.equalTo(0)
+                make.top.equalTo(iconV.snp.bottom).offset(5)
             })
             
             let label2 = UILabel()
