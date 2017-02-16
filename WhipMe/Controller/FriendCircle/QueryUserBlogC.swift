@@ -277,6 +277,8 @@ class QueryUserBlogC: UIViewController {
     var userBlogM = UserBlogM.init()
     var myTable = UITableView()
     var userHeaderV = UserBlogHeaderV()
+    var isFocus : Bool = false
+    var fansNum : Int = 0
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
@@ -290,9 +292,24 @@ class QueryUserBlogC: UIViewController {
         
         let backBtn: UIBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: self, action: #selector(QueryUserBlogC.goBack))
         self.navigationItem.leftBarButtonItem = backBtn
-        
-        let rightBtn: UIBarButtonItem = UIBarButtonItem.init(title: "关注", style: .plain, target: self, action: #selector(QueryUserBlogC.follow))
+    }
+    
+    func resetFollowBtn() {
+        let rightBtn: UIBarButtonItem
+        if self.isFocus {
+            rightBtn = self.cancelFocusBtn()
+        } else {
+            rightBtn = self.focusBtn()
+        }
         self.navigationItem.rightBarButtonItem = rightBtn
+    }
+    
+    func focusBtn() -> UIBarButtonItem {
+        return UIBarButtonItem.init(title: "加关注", style: .plain, target: self, action: #selector(QueryUserBlogC.follow))
+    }
+    
+    func cancelFocusBtn() -> UIBarButtonItem {
+        return UIBarButtonItem.init(title: "取消关注", style: .plain, target: self, action: #selector(QueryUserBlogC.cancelFollow))
     }
     
     func goBack() {
@@ -339,6 +356,40 @@ class QueryUserBlogC: UIViewController {
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
                             Tool.showHUDTip(tipStr: "关注成功")
+                            self.isFocus = true
+                            self.resetFollowBtn()
+                            self.fansNum = self.fansNum + 1
+                            self.userHeaderV.fansNumL.text = String(self.fansNum)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
+        }
+    }
+    
+    func cancelFollow() {
+        if self.userBlogM.myGrow.count > 0 {
+            if let growM = self.userBlogM.myGrow.first {
+                let params = [
+                    "userId":growM.creator,
+                    "me":UserManager.shared.userId
+                ]
+                HttpAPIClient.apiClientPOST("cancelUser", params: params, success: { (result) in
+                    if let dataResult = result {
+                        print(dataResult)
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            Tool.showHUDTip(tipStr: "取消关注成功")
+                            self.isFocus = false
+                            self.resetFollowBtn()
+                            self.fansNum = self.fansNum - 1
+                            self.userHeaderV.fansNumL.text = String(self.fansNum)
+
                         } else {
                             Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                         }
@@ -377,6 +428,14 @@ class QueryUserBlogC: UIViewController {
                             }
                         }
                         
+                        if self.userBlogM.userInfo["focus"] == "0" {
+                            self.isFocus = false
+                            self.resetFollowBtn()
+                        } else {
+                            self.isFocus = true
+                            self.resetFollowBtn()
+                        }
+                        
                         if self.userBlogM.userInfo["sex"] == "1" {
                             self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-m")
                         } else {
@@ -385,6 +444,7 @@ class QueryUserBlogC: UIViewController {
                         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
                         self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
                         self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
+                        self.fansNum = Int(self.userBlogM.userInfo["fansNum"]!)!
                         self.myTable.reloadData()
                     }
                 } else {
@@ -400,6 +460,7 @@ class QueryUserBlogC: UIViewController {
     
 
     fileprivate func prepareViews() {
+        
         self.myTable.backgroundColor = kColorBackGround
         self.myTable.separatorStyle = .none
         self.myTable.register(UserBlogCell.self, forCellReuseIdentifier: UserBlogCell.cellReuseIdentifier())
@@ -413,6 +474,14 @@ class QueryUserBlogC: UIViewController {
                 self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
             }
         }
+        
+        if self.userBlogM.userInfo["focus"] == "0" {
+            self.isFocus = false
+            self.resetFollowBtn()
+        } else {
+            self.isFocus = true
+            self.resetFollowBtn()
+        }
         if self.userBlogM.userInfo["sex"] == "1" {
             self.userHeaderV.sexImageV.image = UIImage.init(named: "gender-m")
         } else {
@@ -421,6 +490,8 @@ class QueryUserBlogC: UIViewController {
         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
         self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
         self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
+        self.fansNum = Int(self.userBlogM.userInfo["fansNum"]!)!
+
         self.myTable.tableHeaderView = self.userHeaderV
         
         self.myTable.snp.makeConstraints { (make) in
