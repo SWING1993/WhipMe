@@ -399,9 +399,11 @@ extension AddWhipController:UITableViewDataSource {
                 let cell: FirstAddCustomCell = FirstAddCustomCell.init(style: UITableViewCellStyle.default, reuseIdentifier: FirstAddCustomCell.cellReuseIdentifier())
                 
                 if self.queryHorThemeName.isEmpty == false {
-                    self.addTask.themeName = self.queryHorThemeName
-                    cell.titleT.text = self.queryHorThemeName
                     cell.titleT.isEnabled = false;
+                    self.addTask.themeName = self.queryHorThemeName
+                    cell.titleT.text = self.addTask.themeName
+                    cell.contentT.text = self.addTask.plan
+
                 } else {
                     cell.titleT.text = self.addTask.themeName
                     cell.contentT.text = self.addTask.plan

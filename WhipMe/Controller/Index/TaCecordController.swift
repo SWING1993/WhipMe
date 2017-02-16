@@ -92,7 +92,6 @@ class TaCecordController: UIViewController {
             make.bottom.equalTo(-60)
         }
         
-        let bottomView = UIView()
         bottomView.backgroundColor = kColorWhite
         self.view.addSubview(bottomView)
         bottomView.snp.makeConstraints { (make) in
@@ -129,10 +128,10 @@ class TaCecordController: UIViewController {
         }
         
         
-        if self.myWhipM.accept == 2 {
-            self.bottomView.isHidden = false
+        if self.myWhipM.accept == 0 {
+            bottomView.isHidden = true
         } else {
-            self.bottomView.isHidden = true
+            bottomView.isHidden = false
         }
             
         okBtn.bk_(whenTapped: {
@@ -241,11 +240,23 @@ class TaCecordController: UIViewController {
         let contentH :CGFloat = content.getHeightWith(UIFont.systemFont(ofSize: 14), constrainedTo: CGSize.init(width: Define.screenWidth() - 48, height: CGFloat.greatestFiniteMagnitude))
         contentL.snp.makeConstraints({ (make) in
             make.top.equalTo(avatarV.snp.bottom).offset(15)
-            make.right.equalTo(-15)
-            make.left.equalTo(15)
+            make.right.equalTo(-22)
+            make.left.equalTo(22)
             make.height.equalTo(contentH)
         })
         
+        
+        let timeLabel = UILabel()
+        timeLabel.textColor = kColorGary
+        timeLabel.textAlignment = .left
+        timeLabel.font = UIFont.systemFont(ofSize: 13)
+        headView.addSubview(timeLabel)
+        timeLabel.snp.makeConstraints({ (make) in
+            make.top.equalTo(contentL.snp.bottom).offset(10)
+            make.right.equalTo(-22)
+            make.left.equalTo(22)
+            make.height.equalTo(20)
+        })
         
         let line = UIView.init()
         line.backgroundColor = Define.RGBColorAlphaFloat(153, g: 153, b: 153, a: 0.5)
@@ -253,7 +264,7 @@ class TaCecordController: UIViewController {
         line.snp.makeConstraints { (make) in
             make.left.equalTo(22)
             make.right.equalTo(-22)
-            make.top.equalTo(contentL.snp.bottom).offset(15)
+            make.top.equalTo(timeLabel.snp.bottom).offset(10)
             make.height.equalTo(0.5)
         }
 
@@ -270,25 +281,141 @@ class TaCecordController: UIViewController {
             make.height.equalTo(20)
         })
         
-        let rightLabel = UILabel()
-        rightLabel.textColor = kColorGary
-        rightLabel.textAlignment = .right
-        rightLabel.font = UIFont.systemFont(ofSize: 13)
-        headView.addSubview(rightLabel)
-        rightLabel.snp.makeConstraints({ (make) in
-            make.top.equalTo(line.snp.bottom).offset(10)
+        let refuseBtn: UIButton = UIButton()
+        let acceptBtn: UIButton = UIButton()
+        
+        acceptBtn.backgroundColor = kColorBlue
+        acceptBtn.layer.cornerRadius = 11
+        acceptBtn.layer.masksToBounds = true
+        acceptBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        acceptBtn.setTitleColor(kColorWhite, for: .normal)
+        acceptBtn.setTitle("接受", for: .normal)
+        headView.addSubview(acceptBtn)
+        acceptBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(22)
+            make.width.equalTo(50)
             make.right.equalTo(-22)
-            make.left.equalTo(leftLabel.snp.right).offset(10)
-            make.height.equalTo(20)
+            make.centerY.equalTo(leftLabel)
+        }
+        
+        
+        refuseBtn.backgroundColor = kColorGolden
+        refuseBtn.layer.cornerRadius = 11
+        refuseBtn.layer.masksToBounds = true
+        refuseBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        refuseBtn.setTitleColor(kColorWhite, for: .normal)
+        refuseBtn.setTitle("拒绝", for: .normal)
+        headView.addSubview(refuseBtn)
+        refuseBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(22)
+            make.width.equalTo(50)
+            make.right.equalTo(acceptBtn.snp.left).offset(-12)
+            make.centerY.equalTo(leftLabel)
+        }
+        
+        // 拒绝
+        refuseBtn.bk_(whenTapped: {
+            if UserManager.shared.isManager == true {
+                let param = ["supervisor":UserManager.shared.userId,
+                             "supervisorName":UserManager.shared.nickname,
+                             "supervisorIcon":UserManager.shared.icon,
+                             "taskId":model.taskId,
+                             "creator":model.nickname,
+                             "creatorId":model.creator,
+                             "accept":"1",
+                             ]
+                HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
+                    if let dataResult = result {
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            } else {
+                let param = ["userId":UserManager.shared.userId,
+                             "taskId":model.taskId,
+                             "accept":"1"]
+                HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
+                    if let dataResult = result {
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
         })
+        
+        // 同意
+        acceptBtn.bk_(whenTapped: {
+            if UserManager.shared.isManager == true {
+                let param = ["supervisor":UserManager.shared.userId,
+                             "supervisorName":UserManager.shared.nickname,
+                             "supervisorIcon":UserManager.shared.icon,
+                             "taskId":model.taskId,
+                             "creator":model.nickname,
+                             "creatorId":model.creator,
+                             "accept":"2",
+                             ]
+                HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
+                    if let dataResult = result {
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            } else {
+                let param = ["userId":UserManager.shared.userId,
+                             "taskId":model.taskId,
+                             "accept":"2"]
+                HttpAPIClient.apiClientPOST("handleTask", params: param, success: { (result) in
+                    if let dataResult = result {
+                        let json = JSON(dataResult)
+                        let ret  = json["data"][0]["ret"].intValue
+                        if ret == 0 {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        } else {
+                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                        }
+                    }
+                }) { (error) in
+                    Tool.showHUDTip(tipStr: "网络不给力")
+                }
+            }
+        })
+
         
         avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"
         leftLabel.text = "自由服务费："+String(describing: model.guarantee)+"元"
-        rightLabel.text = model.endDate+"结束"
-        headView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: (130+contentH))
+        timeLabel.text = "开始:"+model.startDate+"/"+"结束:"+model.endDate
+        headView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: (155+contentH))
+        if model.accept == 0 {
+            acceptBtn.isHidden = false
+            refuseBtn.isHidden = false
+        } else {
+            acceptBtn.isHidden = true
+            refuseBtn.isHidden = true
+        }
         return headView
     }
 }
