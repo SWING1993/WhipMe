@@ -137,6 +137,10 @@ class ClassifyController: UIViewController {
     public func disMiss() {
         self.dismiss(animated: true) {        }
     }
+    
+    public func navBack() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

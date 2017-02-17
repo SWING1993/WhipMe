@@ -243,6 +243,7 @@ class LogController: UIViewController {
     }
     
     func choosePhoto() {
+        self.view.endEditing(false)
         weak var weakSelf = self
         let sheet = UIActionSheet.init(title: nil, delegate: nil, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
         sheet.bk_addButton(withTitle: "拍照", handler: {

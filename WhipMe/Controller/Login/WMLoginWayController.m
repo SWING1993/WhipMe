@@ -138,7 +138,7 @@ static NSInteger const button_index = 7777;
     [viewButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.and.width.equalTo(weakSelf.view);
         make.height.mas_equalTo(120.0);
-        make.top.equalTo(weakSelf.view).offset(456.0);
+        make.top.equalTo(weakSelf.view).offset(MIN(456.0, [Define screenHeight]-140.0));
     }];
 
     NSArray *arrayTitle = @[@{@"title":@"新建用户",@"icon":@"button_create_off",},

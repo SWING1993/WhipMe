@@ -89,7 +89,11 @@ class TaCecordController: UIViewController {
         view.addSubview(recommendTable)
         recommendTable.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view)
-            make.bottom.equalTo(-60)
+            if self.myWhipM.accept == 0 {
+                make.bottom.equalTo(0)
+            } else {
+                make.bottom.equalTo(-60)
+            }
         }
         
         bottomView.backgroundColor = kColorWhite
@@ -356,7 +360,18 @@ class TaCecordController: UIViewController {
                 }
             }
         })
-        
+//        "method":"adminHandleTask",
+//        "param":{
+//            "supervisor":"登录人ID",
+//            "supervisorName":"登录人昵称",
+//            "supervisorIcon":"登录人头像",
+//            "taskId”:”任务ID",
+//            "accept”:”接受还是拒绝（1：拒绝   2：接受）"
+//            "creator”:”这个任务的创建人昵称"
+//            "creatorId”:”这个任务的创建人ID"
+//            
+//        }
+
         // 同意
         acceptBtn.bk_(whenTapped: {
             if UserManager.shared.isManager == true {
@@ -368,6 +383,7 @@ class TaCecordController: UIViewController {
                              "creatorId":model.creator,
                              "accept":"2",
                              ]
+                print("\(param)")
                 HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
                     if let dataResult = result {
                         let json = JSON(dataResult)

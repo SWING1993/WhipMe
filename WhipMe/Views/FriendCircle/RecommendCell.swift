@@ -355,7 +355,7 @@ class RecommendCell: NormalCell {
                 make.top.equalTo(contentL.snp.bottom)
             })
         }else {
-            self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "")
+            self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "nilTouSu")
         }
         self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         self.contentL.text = model.content

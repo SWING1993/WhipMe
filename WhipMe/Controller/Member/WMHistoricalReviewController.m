@@ -92,9 +92,9 @@ static NSString *identifier_collect = @"historicalReviewCell";
     
     HistoricalReviewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier_collect forIndexPath:indexPath];
     
-    //    mySuperviseModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    //    [cell setCountWithTitle:[NSString stringWithFormat:@"%ld",(long)[model.recordNum integerValue]]];
-    //    [cell.imageIcon setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[Define kDefaultImageHead]];
+    mySuperviseModel *model = [self.arrayContent objectAtIndex:indexPath.row];
+    [cell setCountWithTitle:[NSString stringWithFormat:@"%ld",(long)[model.recordNum integerValue]]];
+    [cell.imageIcon setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[Define kDefaultPlaceImage]];
     
     [cell setCountWithTitle:@"4"];
     [cell setLikeWithTitle:@"64"];
@@ -125,19 +125,6 @@ static NSString *identifier_collect = @"historicalReviewCell";
 }
 
 #pragma mark - Network
-- (void)queryByHistorical {
-    //    UserManager *user = [UserManager shared];
-    //    NSDictionary *param = @{@"userId":user.userId ?: @""};
-    //
-    //
-    //    [HttpAPIClient APIClientPOST:@"" params:param Success:^(id result) {
-    //        
-    //
-    //    } Failed:^(NSError *error) {
-    //        DebugLog(@"%@",error);
-    //    }];
-}
-
 - (void)deleteTask {
     UserManager *user = [UserManager shared];
     NSString *login_id = [NSString stringWithFormat:@"%@",user.userId];

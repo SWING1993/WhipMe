@@ -564,6 +564,7 @@ class IndexViewController: UIViewController {
         if UserManager.shared.isManager == true {
             let params = ["pageSize":"15","pageIndex":"1"]
             HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
+                print(result!)
                 if (result != nil) {
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue
@@ -582,6 +583,7 @@ class IndexViewController: UIViewController {
             
             let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
             HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
+                print(result!)
                 if (result != nil) {
                     let json = JSON(result!)
                     let ret  = json["data"][0]["ret"].intValue

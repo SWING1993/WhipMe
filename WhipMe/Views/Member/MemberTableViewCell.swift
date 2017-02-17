@@ -11,6 +11,7 @@ import UIKit
 
 @objc protocol MemberTableCellDelegate: NSObjectProtocol {
     func memberTableView(cell: MemberTableViewCell, threeDay: NSArray, row: Int)
+    func memberTableView(cell: MemberTableViewCell, model: mySuperviseModel)
 }
 
 class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -98,6 +99,9 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
             make.width.equalTo(self.lblTitle.snp.width).offset(-70.0)
             make.height.equalTo(13)
         }
+        let tapTopic = UITapGestureRecognizer.init(target: self, action: #selector(onClickWithTopic))
+        lblTopic.addGestureRecognizer(tapTopic)
+        lblTopic.isUserInteractionEnabled = true
         
         lblNumber = UILabel.init()
         lblNumber.backgroundColor = UIColor.clear
@@ -171,6 +175,13 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
             self.collectionViewWM.reloadData();
         }
     }
+    
+    func onClickWithTopic() {
+        if (self.memberDelegate != nil) {
+            self.memberDelegate.memberTableView(cell: self, model: self.model)
+        }
+    }
+    
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -194,7 +205,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView .deselectItem(at: indexPath, animated: true)
         if (self.memberDelegate != nil) {
-            self.memberDelegate .memberTableView(cell: self, threeDay: self.model.threeDay, row: indexPath.row)
+            self.memberDelegate.memberTableView(cell: self, threeDay: self.model.threeDay, row: indexPath.row)
         }
     }
     

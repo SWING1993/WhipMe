@@ -9,7 +9,8 @@
 #import "WMAddFriendController.h"
 #import "FansAndFocusModel.h"
 
-@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+//DZNEmptyDataSetDelegate, DZNEmptyDataSetSource
+@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, strong) UISearchBar *viewSearch;
 @property (nonatomic, strong) NSMutableArray *arrayContent;
@@ -25,7 +26,7 @@ static NSString *identifier_cell = @"addFriendsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"添加好友";
+    self.navigationItem.title = @"添加关注";
     self.view.backgroundColor = [Define kColorBackGround];
     
     [self setup];
@@ -88,8 +89,8 @@ static NSString *identifier_cell = @"addFriendsCell";
     _tableViewWM.layer.masksToBounds = true;
     _tableViewWM.delegate = self;
     _tableViewWM.dataSource = self;
-    _tableViewWM.emptyDataSetSource = self;
-    _tableViewWM.emptyDataSetDelegate = self;
+//    _tableViewWM.emptyDataSetSource = self;
+//    _tableViewWM.emptyDataSetDelegate = self;
     _tableViewWM.tableFooterView = [UIView new];
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -138,20 +139,20 @@ static NSString *identifier_cell = @"addFriendsCell";
     [self.view endEditing:NO];
 }
 
-#pragma mark - DZNEmptyDataSetSource
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"no_data"];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据哦！" attributes:attribute];
-    return string;
-}
-
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-    return YES;
-}
+//#pragma mark - DZNEmptyDataSetSource
+//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+//    return [UIImage imageNamed:@"no_data"];
+//}
+//
+//- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+//    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:rgb(212.0, 212.0, 212.0)};
+//    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"暂无数据哦！" attributes:attribute];
+//    return string;
+//}
+//
+//- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+//    return YES;
+//}
 
 #pragma mark - UITableViewDelegate and Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -196,13 +197,8 @@ static NSString *identifier_cell = @"addFriendsCell";
 - (void)didSelectCellIndexPath:(NSIndexPath *)indexPath {
     _selectPath = indexPath;
     FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    [self focusByUser:[NSString stringWithFormat:@"%@",model.userId]];
+    [self focusByUser:[NSString stringWithFormat:@"%@",model.userId] nickname:model.nickname];
 }
-//    let controller : FriendsListController = FriendsListController()
-//    controller.controlModel = WMFriendsListViewModel.addFriend
-//    controller.hidesBottomBarWhenPushed = true
-//    self.navigationController?.pushViewController(controller, animated: true)
-
 
 #pragma mark - set get
 - (NSMutableArray *)arrayContent {
@@ -241,12 +237,12 @@ static NSString *identifier_cell = @"addFriendsCell";
     }];
 }
 
-- (void)focusByUser:(NSString *)userNo {
-    if ([NSString isBlankString:userNo]) {
+- (void)focusByUser:(NSString *)userNo nickname:(NSString *)nickname{
+    if ([NSString isBlankString:userNo] || [NSString isBlankString:nickname]) {
         return;
     }
     UserManager *user = [UserManager shared];
-    NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":userNo};
+    NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":userNo, @"nickname":nickname};
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"focusUser" params:param Success:^(id result) {

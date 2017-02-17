@@ -229,7 +229,7 @@ class UserBlogCell: NormalCell {
             if let threeDayDic = self.myGrowM.threeDay.first {
                 if let picture = threeDayDic["picture"] {
                     print(picture)
-                    self.firstPic.setImageWith(urlString: picture, placeholderImage: "")
+                    self.firstPic.setImageWith(urlString: picture, placeholderImage: "nilTouSu")
                 }
             }
         }
@@ -237,14 +237,14 @@ class UserBlogCell: NormalCell {
         if self.myGrowM.threeDay.count > 1 {
             let threeDayDic = self.myGrowM.threeDay[1]
             if let picture = threeDayDic["picture"] {
-                self.secondPic.setImageWith(urlString: picture, placeholderImage: "")
+                self.secondPic.setImageWith(urlString: picture, placeholderImage: "nilTouSu")
             }
         }
         
         if self.myGrowM.threeDay.count > 2 {
             let threeDayDic = self.myGrowM.threeDay[2]
             if let picture = threeDayDic["picture"] {
-                self.thirdPic.setImageWith(urlString: picture, placeholderImage: "")
+                self.thirdPic.setImageWith(urlString: picture, placeholderImage: "nilTouSu")
             }
         }
     }

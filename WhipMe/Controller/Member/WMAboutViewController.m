@@ -163,7 +163,7 @@
     [lblDetail setNumberOfLines:0];
     [self.viewCurrent addSubview:lblDetail];
     
-    NSString *str_detail = @"微信：1234512\n微博：213513\n网址：www.BTW.com";
+    NSString *str_detail = @"官方微信号：biantawo\n微信公众号：鞭挞我\nQQ群：214532421";
     NSMutableParagraphStyle *pStyle_2 = [NSMutableParagraphStyle new];
     [pStyle_2 setLineSpacing:5.0f];
     [pStyle_2 setAlignment:NSTextAlignmentLeft];

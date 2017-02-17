@@ -349,7 +349,6 @@ static NSString *identifier_cell = @"userInfoViewCell";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"editUserInfo" params:param Success:^(id result) {
-        DebugLog(@"_______result:%@",result);
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             
@@ -377,7 +376,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
             }
         }
     } Failed:^(NSError *error) {
-        DebugLog(@"_______error:%@",error);
+        [Tool showHUDTipWithTipStr:@"网络不给力"];
     }];
     
 }

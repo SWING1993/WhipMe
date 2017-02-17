@@ -381,16 +381,16 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
-    if (indexPath.section == 0) {
-        [controller.navigationItem setTitle:@"历史监督"];
-        controller.arrayContent = [self.arraySupervise mutableCopy];
-    } else {
-        [controller.navigationItem setTitle:@"历史养成"];
-        controller.arrayContent = [self.arrayGrow mutableCopy];
-    }
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+//    WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
+//    if (indexPath.section == 0) {
+//        [controller.navigationItem setTitle:@"历史监督"];
+//        controller.arrayContent = [self.arraySupervise mutableCopy];
+//    } else {
+//        [controller.navigationItem setTitle:@"历史养成"];
+//        controller.arrayContent = [self.arrayGrow mutableCopy];
+//    }
+//    controller.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -448,6 +448,19 @@ static NSString *identifier_head = @"tableViewView_head";
     [brower show];
 }
 
+- (void)memberTableViewWithCell:(MemberTableViewCell *)cell model:(mySuperviseModel *)model {
+    WhipM *whip = [[WhipM alloc] init];
+    whip.themeId = model.themeId;
+    whip.themeName = model.themeName;
+    
+    ClassifyController *controller = [ClassifyController new];
+    controller.myWhipM = whip;
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+
+    DebugLog(@"_____%@",model.themeName);
+}
+
 #pragma mark - set get
 - (NSMutableArray *)arrayGrow {
     if (!_arrayGrow) {
@@ -497,8 +510,8 @@ static NSString *identifier_head = @"tableViewView_head";
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryUserInfo" params:param Success:^(id result) {
+        DebugLog(@"____result:%@",result);
         [self.tableViewWM.mj_header endRefreshing];
-       
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             NSDictionary *info = [data objectForKey:@"userInfo"];

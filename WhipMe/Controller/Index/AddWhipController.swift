@@ -129,18 +129,10 @@ class AddWhipController: UIViewController {
                 Tool.showHUDTip(tipStr: "请填写内容后再提交!")
                 return
             }
-            /*
-            themeName":"主题名称",
-            "creator":"创建人的userId",
-            "plan":"计划",
-            "startDate":"任务开始时间2016-01-01",
-            "endDate":"任务结束时间2016-01-01",
-            "clockTime":"闹钟时间（4位数表示18:30 用 1830）",
-            "privacy":"隐私(1所有人公开2关注人公开3只向自己公开)",
-            "type":"监督类型(1: 平台监督 2：好友监督 3：无监督)",
-            "supervisor":"监督人的userId",
-            "guarantee":"保证金"
-             */
+            if (weakSelf?.addTask.plan.length)! >= 200 {
+                Tool.showHUDTip(tipStr: "内容最长可为200字!")
+                return
+            }
             
             var startDate: String = ""
             if let date = weakSelf!.addTask.startDate {
@@ -483,7 +475,7 @@ extension AddWhipController:UITableViewDataSource {
             let model:QueryHotThemeM = self.queryHotThemeMArr[indexPath.section]
             cell.titleL.text = model.themeName
             cell.subTitleL.text = "已有" + model.num + "位参加"
-            cell.cellImage.setImageWith(urlString: model.themeIcon, placeholderImage: "")
+            cell.cellImage.setImageWith(urlString: model.themeIcon, placeholderImage: "nilTouSu")
             return cell
         }
         

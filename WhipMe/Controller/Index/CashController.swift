@@ -54,11 +54,15 @@ class CashController: UIViewController {
         self.navigationItem.rightBarButtonItem = OKBtn
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
+            self.view.endEditing(false)
             self.rechargeTextFiele.endEditing(true)
             if let guarantee = self.rechargeTextFiele.text {
                 if let value1: Double = Double(guarantee) {
-                    if value1 > self.account || value1 == 0 {
+                    if value1 > self.account{
                         Tool.showHUDTip(tipStr: "余额不足！")
+                        return
+                    } else if value1 < 1.0 || value1 > 100.0 {
+                        Tool.showHUDTip(tipStr: "服务费范围必须在1-100元以内")
                         return
                     }
                 } else {
@@ -102,7 +106,10 @@ class CashController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(false)
     }
 }
 

@@ -157,15 +157,18 @@ static NSString *const identifier_cell = @"fansAndFocusViewCell";
 - (void)fansAndFocusCheck:(NSIndexPath *)indexPath {
     _selectPath = indexPath;
     FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    if ([NSString isBlankString:model.userId]) {
-        return;
-    }
     
     UserManager *user = [UserManager shared];
     if (model.focus == NO) {
-        NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId};
+        if ([NSString isBlankString:model.userId] || [NSString isBlankString:model.nickname]) {
+            return;
+        }
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId, @"nickname":model.nickname};
         [self focusAndCancelByUser:param hostPost:@"focusUser"];
     } else {
+        if ([NSString isBlankString:model.userId]) {
+            return;
+        }
         NSDictionary *param = @{@"me":user.userId ?: @"", @"userId":model.userId};
         [self focusAndCancelByUser:param hostPost:@"cancelUser"];
     }

@@ -173,6 +173,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
+            print("\(result)")
             if (result != nil) {
                 let json = JSON(result!)
                 let data  = json["data"][0]
@@ -215,15 +216,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
             print("result:\(result)")
-            
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
             Tool.showHUDTip(tipStr: "网络不给力")
         }
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

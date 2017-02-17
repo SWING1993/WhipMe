@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
    
     func applicationWillResignActive(_ application: UIApplication) {
-        
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
         ChatMessage.shareChat().loginJMessage()
     }
 

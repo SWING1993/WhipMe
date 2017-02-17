@@ -232,7 +232,7 @@ extension MeCecordController:UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
-            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "")
+            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "nilTouSu")
             cell.titleL.text =  myWhipM.supervisorName + "监督中"
             cell.subTitleL.text = "自由服务费："+String(describing: myWhipM.guarantee)+"元"
             return cell

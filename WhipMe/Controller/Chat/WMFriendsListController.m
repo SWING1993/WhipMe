@@ -121,15 +121,16 @@ static NSString *identifier_cell = @"addFriendsCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WEAK_SELF
+//    WEAK_SELF
     FriendsListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_cell];
-    [cell setPath:indexPath];
-    [cell setIndexCellViewPath:^(NSIndexPath * _Nonnull path) {
-        [weakSelf didSelectCellIndexPath:path];
-    }];
+//    [cell setPath:indexPath];
+//    [cell setIndexCellViewPath:^(NSIndexPath * _Nonnull path) {
+//        [weakSelf didSelectCellIndexPath:path];
+//    }];
     
     FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
     [cell setCellFriendWithModel:model];
+    [cell.btnStatus setHidden:YES];
     
     return cell;
 }
@@ -157,14 +158,18 @@ static NSString *identifier_cell = @"addFriendsCell";
 - (void)didSelectCellIndexPath:(NSIndexPath *)indexPath {
     _selectPath = indexPath;
     FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    if ([NSString isBlankString:model.userId]) {
-        return;
-    }
+    
     UserManager *user = [UserManager shared];
     if (model.focus == NO) {
-        NSDictionary *param = @{@"me":user.userId ?: @"", @"userId":model.userId};
+        if ([NSString isBlankString:model.userId] || [NSString isBlankString:model.nickname]) {
+            return;
+        }
+        NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId, @"nickname":model.nickname};
         [self focusAndCancelByUser:param hostPost:@"focusUser"];
     } else {
+        if ([NSString isBlankString:model.userId]) {
+            return;
+        }
         NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":model.userId};
         [self focusAndCancelByUser:param hostPost:@"cancelUser"];
     }
