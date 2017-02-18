@@ -116,27 +116,24 @@ static WMShareEngine *objShare = nil;
 }
 
 - (void)shareWithScene:(int)scene withImage:(UIImage *)image {
-    //创建发送对象实例
-    SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
-    sendReq.bText = NO;//不使用文本信息
-    sendReq.scene = scene;//0 = 好友列表 1 = 朋友圈 2 = 收藏
+    // 压缩宽高像素
+    UIImage *image_wh = [UIImage scaleImage:image];
+    // 压缩内存
+    NSData  *img_data = [UIImage dataRepresentationImage:image_wh];
     
-    //创建分享内容对象
-    WXMediaMessage *urlMessage = [WXMediaMessage message];
-    urlMessage.title = @"分享标题";//分享标题
-    urlMessage.description = @"分享描述";//分享描述
-    [urlMessage setThumbImage:image];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
+    WXImageObject *imageObject = [WXImageObject object];
+    imageObject.imageData = img_data;
     
-    //创建多媒体对象
-    WXWebpageObject *webObj = [WXWebpageObject object];
-    webObj.webpageUrl = @"分享链接";//分享链接
     
-    //完成发送对象实例
-    urlMessage.mediaObject = webObj;
-    sendReq.message = urlMessage;
+    WXMediaMessage *_message = [WXMediaMessage message];
+    _message.mediaObject = imageObject;
     
-    //发送分享信息
-    [WXApi sendReq:sendReq];
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText = false;
+    req.scene = scene;
+    req.message = _message;
+    
+    [WXApi sendReq:req];
 }
 
 //创建package签名
@@ -182,15 +179,6 @@ static WMShareEngine *objShare = nil;
     req.bText = false;
     req.message = _message;
     req.scene = scene;
-    
-    [WXApi sendReq:req];
-}
-
-- (void)sendShareTextMessage:(NSString *)string withType:(int)scene {
-    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-    req.bText = true;
-    req.scene = scene;
-    req.text = [NSString stringWithFormat:@"%@",string];
     
     [WXApi sendReq:req];
 }
