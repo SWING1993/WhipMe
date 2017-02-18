@@ -197,7 +197,7 @@ static NSString *identifier_cell = @"addFriendsCell";
 - (void)didSelectCellIndexPath:(NSIndexPath *)indexPath {
     _selectPath = indexPath;
     FansAndFocusModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    [self focusByUser:[NSString stringWithFormat:@"%@",model.userId] nickname:model.nickname];
+    [self focusByUser:[NSString stringWithFormat:@"%@",model.userId]];
 }
 
 #pragma mark - set get
@@ -237,12 +237,12 @@ static NSString *identifier_cell = @"addFriendsCell";
     }];
 }
 
-- (void)focusByUser:(NSString *)userNo nickname:(NSString *)nickname{
-    if ([NSString isBlankString:userNo] || [NSString isBlankString:nickname]) {
+- (void)focusByUser:(NSString *)userNo {
+    if ([NSString isBlankString:userNo]) {
         return;
     }
     UserManager *user = [UserManager shared];
-    NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":userNo, @"nickname":nickname};
+    NSDictionary *param = @{@"me":user.userId ?: @"", @"focus":userNo, @"nickname":user.nickname};
     
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"focusUser" params:param Success:^(id result) {
