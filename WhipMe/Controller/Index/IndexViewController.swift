@@ -303,9 +303,6 @@ class WhipCell: UITableViewCell {
     
     func needReloaTW() {
         NotificationCenter.default.post(name: NSNotification.Name("needReloaTW"), object: nil)
-//        if self.needReload != nil {
-//            self.needReload!()
-//        }
     }
 }
 
@@ -553,53 +550,51 @@ class IndexViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupAPI), name: NSNotification.Name(rawValue: "needReloaTW"), object: nil)
         prepareTableView()
         let addBtn = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(clickWithRightBarItem))
-        if UserManager.shared.isManager == false {
-            self.navigationItem.rightBarButtonItem = addBtn
-        }
+        self.navigationItem.rightBarButtonItem = addBtn
     }
     
     func setupAPI() {
         self.myTable.mj_header.endRefreshing()
         weak var weakSelf = self
-        if UserManager.shared.isManager == true {
-            let params = ["pageSize":"15","pageIndex":"1"]
-            HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
-                print(result!)
-                if (result != nil) {
-                    let json = JSON(result!)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret == 0 {
-                        let list  = json["data"][0]["list"].arrayObject
-                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
-                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-                        weakSelf?.myTable.reloadData()
-                    } else {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                    }
-                }
-            }) { (error) in
-                Tool.showHUDTip(tipStr: "网络不给力")
-            }
-            
-            let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
-            HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
-                print(result!)
-                if (result != nil) {
-                    let json = JSON(result!)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret == 0 {
-                        let list  = json["data"][0]["list"].arrayObject
-                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
-                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
-                        weakSelf?.myTable.reloadData()
-                    } else {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                    }
-                }
-            }) { (error) in
-                Tool.showHUDTip(tipStr: "网络不给力")
-            }
-        } else {
+//        if UserManager.shared.isManager == true {
+//            let params = ["pageSize":"15","pageIndex":"1"]
+//            HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
+//                print(result!)
+//                if (result != nil) {
+//                    let json = JSON(result!)
+//                    let ret  = json["data"][0]["ret"].intValue
+//                    if ret == 0 {
+//                        let list  = json["data"][0]["list"].arrayObject
+//                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
+//                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+//                        weakSelf?.myTable.reloadData()
+//                    } else {
+//                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+//                    }
+//                }
+//            }) { (error) in
+//                Tool.showHUDTip(tipStr: "网络不给力")
+//            }
+//            
+//            let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
+//            HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
+//                print(result!)
+//                if (result != nil) {
+//                    let json = JSON(result!)
+//                    let ret  = json["data"][0]["ret"].intValue
+//                    if ret == 0 {
+//                        let list  = json["data"][0]["list"].arrayObject
+//                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
+//                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+//                        weakSelf?.myTable.reloadData()
+//                    } else {
+//                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+//                    }
+//                }
+//            }) { (error) in
+//                Tool.showHUDTip(tipStr: "网络不给力")
+//            }
+//        } else {
             let params = ["userId":UserManager.shared.userId]
             HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
                 if (result != nil) {
@@ -621,7 +616,7 @@ class IndexViewController: UIViewController {
             }) { (error) in
                 Tool.showHUDTip(tipStr: "网络不给力")
             }
-        }
+//        }
     }
     
     fileprivate func prepareTableView() {
@@ -695,17 +690,17 @@ extension IndexViewController:UITableViewDataSource {
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.biantawoList)
         cell.checkPlan = { clickIndexPath in
-            if UserManager.shared.isManager == true {
-                let taCecordC = TaCecordController.init()
-                taCecordC.hidesBottomBarWhenPushed = true
-                taCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
-                weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
-            } else {
+//            if UserManager.shared.isManager == true {
+//                let taCecordC = TaCecordController.init()
+//                taCecordC.hidesBottomBarWhenPushed = true
+//                taCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
+//                weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
+//            } else {
                 let meCecordC = MeCecordController.init()
                 meCecordC.hidesBottomBarWhenPushed = true
                 meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
                 weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
-            }
+//            }
         }
         cell.needReload = { Void in
             self.setupAPI()

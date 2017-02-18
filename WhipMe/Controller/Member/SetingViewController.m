@@ -40,6 +40,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
     [super viewWillAppear:animated];
     _userModel = [UserManager shared];
     _isManager = [self.userModel.supervisor integerValue] > 0 ? YES : NO;
+//    _isManager = YES;
     [self.tableViewWM reloadData];
 }
 

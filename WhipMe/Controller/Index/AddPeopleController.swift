@@ -220,9 +220,8 @@ class AddPeopleController: UIViewController {
         }
         
         let addBtn = UIBarButtonItem.init(image: UIImage.init(named: "add_friends"), style: .done, target: self, action: #selector(addPeople))
-        if UserManager.shared.isManager == false {
-            self.navigationItem.rightBarButtonItem = addBtn
-        }
+        self.navigationItem.rightBarButtonItem = addBtn
+
     }
     
     func addPeople() {

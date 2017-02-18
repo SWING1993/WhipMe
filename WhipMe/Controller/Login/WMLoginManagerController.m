@@ -132,13 +132,17 @@
             // 调用通知刷新 “鞭挞我” 的信息
             // DDPostNotification(@"")
             
-            [UIView animateWithDuration:0.35 animations:^{
-                UIViewController *keyWindow = [[UIApplication sharedApplication].keyWindow rootViewController];
-                MainTabBarController *tabBarControl = (MainTabBarController *)keyWindow;
-                tabBarControl.selectedIndex = 0;
-            } completion:^(BOOL finished) {
-                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-            }];
+            ManagerIndexController *managerVC = [[ManagerIndexController alloc] init];
+            UINavigationController *managerNav = [[UINavigationController alloc] initWithRootViewController:managerVC];
+            [weakSelf presentViewController:managerNav animated:YES completion:NULL];
+            
+//            [UIView animateWithDuration:0.35 animations:^{
+//                UIViewController *keyWindow = [[UIApplication sharedApplication].keyWindow rootViewController];
+//                MainTabBarController *tabBarControl = (MainTabBarController *)keyWindow;
+//                tabBarControl.selectedIndex = 0;
+//            } completion:^(BOOL finished) {
+//                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//            }];
             
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {

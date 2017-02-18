@@ -163,6 +163,7 @@
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
 		E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44E73961D9CB8C5007A73D8 /* Photos.framework */; };
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
+		E472556B1E58870E002F8D3F /* ManagerIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556A1E58870E002F8D3F /* ManagerIndexController.swift */; };
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -442,6 +443,7 @@
 		E44E739A1D9D002E007A73D8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIClient.h; sourceTree = "<group>"; };
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
+		E472556A1E58870E002F8D3F /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
+				E472556A1E58870E002F8D3F /* ManagerIndexController.swift */,
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
 				E4A8EF041DE5883000E16B26 /* CashController.swift */,
@@ -1460,6 +1463,7 @@
 				E449AC841DAB8D200095B8C2 /* MBProgressHUD.m in Sources */,
 				C5451C9D1E49B4E600A7AF79 /* QBAlbumsViewController.m in Sources */,
 				E43D0FB11DD07875001A0B36 /* SVProgressAnimatedView.m in Sources */,
+				E472556B1E58870E002F8D3F /* ManagerIndexController.swift in Sources */,
 				C5C47C361E26185500EEA35D /* WMFriendsListController.m in Sources */,
 				C5C47C391E26293200EEA35D /* WMPrivateChatController.m in Sources */,
 				C5C177C41E2CBD0700891C0D /* ChatBubbleLayer.m in Sources */,
