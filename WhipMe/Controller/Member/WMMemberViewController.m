@@ -381,16 +381,25 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    WMHistoricalReviewController *controller = [WMHistoricalReviewController new];
-//    if (indexPath.section == 0) {
-//        [controller.navigationItem setTitle:@"历史监督"];
-//        controller.arrayContent = [self.arraySupervise mutableCopy];
-//    } else {
-//        [controller.navigationItem setTitle:@"历史养成"];
-//        controller.arrayContent = [self.arrayGrow mutableCopy];
-//    }
-//    controller.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:controller animated:YES];
+    mySuperviseModel *model = nil;
+    if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
+        model = [self.arraySupervise objectAtIndex:indexPath.row-1];
+    } else {
+        if (self.arrayGrow.count > indexPath.row-1) {
+            model = [self.arrayGrow objectAtIndex:indexPath.row-1];
+        }
+    }
+    if (model == nil) {
+        return;
+    }
+    WhipM *whip = [[WhipM alloc] init];
+    whip.taskId = model.taskId;
+    whip.themeName = model.themeName;
+    
+    TaskDetailController *controller = [TaskDetailController new];
+    controller.myWhipM = whip;
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
