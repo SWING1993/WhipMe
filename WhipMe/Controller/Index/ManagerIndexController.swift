@@ -54,7 +54,7 @@ class ManagerIndexController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupAPI), name: NSNotification.Name(rawValue: "needReloaTW"), object: nil)
         prepareTableView()
         let backBtn = UIBarButtonItem.init(title: "返回", style: .done, target: self, action: #selector(disMiss))
-        self.navigationItem.rightBarButtonItem = backBtn
+        self.navigationItem.leftBarButtonItem = backBtn
 
     }
     
@@ -169,10 +169,10 @@ extension ManagerIndexController:UITableViewDataSource {
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.needSuperviseList)
         cell.checkPlan = { clickIndexPath in
-            let taCecordC = TaCecordController.init()
-            taCecordC.hidesBottomBarWhenPushed = true
-            taCecordC.myWhipM = weakSelf?.needSuperviseList.object(at: clickIndexPath.row) as! WhipM
-            weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
+            let detailC = ManagerIndexDetailController.init()
+            detailC.hidesBottomBarWhenPushed = true
+            detailC.myWhipM = weakSelf?.needSuperviseList.object(at: clickIndexPath.row) as! WhipM
+            weakSelf?.navigationController?.pushViewController(detailC, animated: true)
         }
         cell.needReload = { Void in
             self.setupAPI()

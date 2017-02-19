@@ -164,6 +164,7 @@
 		E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44E73961D9CB8C5007A73D8 /* Photos.framework */; };
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
 		E472556B1E58870E002F8D3F /* ManagerIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556A1E58870E002F8D3F /* ManagerIndexController.swift */; };
+		E472556D1E594599002F8D3F /* ManagerIndexDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */; };
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -444,6 +445,7 @@
 		E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIClient.h; sourceTree = "<group>"; };
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
 		E472556A1E58870E002F8D3F /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexController.swift; sourceTree = "<group>"; };
+		E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexDetailController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 			children = (
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
 				E472556A1E58870E002F8D3F /* ManagerIndexController.swift */,
+				E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */,
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
 				E4A8EF041DE5883000E16B26 /* CashController.swift */,
@@ -1343,6 +1346,7 @@
 				C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
 				C542FE421E24BBA6000A66CB /* WMFansAndFocusController.m in Sources */,
+				E472556D1E594599002F8D3F /* ManagerIndexDetailController.swift in Sources */,
 				C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */,
 				C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */,
 				C5C1781D1E2CC21500891C0D /* JCHATSendMsgController.m in Sources */,

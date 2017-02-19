@@ -444,6 +444,9 @@ extension WhipCell: UITableViewDataSource {
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             cell.subTitle.textColor = kColorBlue
             if whipM.accept == 0 {
+                if UserManager.shared.isManager == true {
+                    cell.goingL.isHidden = true
+                }
                 cell.goingL.text = "待确认"
                 cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorYellow
