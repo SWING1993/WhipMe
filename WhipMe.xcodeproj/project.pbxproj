@@ -165,6 +165,7 @@
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
 		E472556B1E58870E002F8D3F /* ManagerIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556A1E58870E002F8D3F /* ManagerIndexController.swift */; };
 		E472556D1E594599002F8D3F /* ManagerIndexDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */; };
+		E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556E1E59518F002F8D3F /* TaskDetailController.swift */; };
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
@@ -446,6 +447,7 @@
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
 		E472556A1E58870E002F8D3F /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexController.swift; sourceTree = "<group>"; };
 		E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexDetailController.swift; sourceTree = "<group>"; };
+		E472556E1E59518F002F8D3F /* TaskDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E48C0BE01D87D2B900802C6B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/RxSwift/RxSwift.framework"; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 			children = (
 				C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */,
 				E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */,
+				E472556E1E59518F002F8D3F /* TaskDetailController.swift */,
 				E446ECF41E4431F00097336F /* ShareController.swift */,
 				E4DEACC61E485C650038E8EF /* ClassifyController.swift */,
 			);
@@ -1390,6 +1393,7 @@
 				C5451C9F1E49B4E600A7AF79 /* QBAssetsViewController.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
+				E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */,
 				C5451C9E1E49B4E600A7AF79 /* QBAssetCell.m in Sources */,

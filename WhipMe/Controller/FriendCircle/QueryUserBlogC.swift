@@ -561,5 +561,18 @@ extension QueryUserBlogC: UITableViewDataSource {
         let growM = self.userBlogM.mySupervise[indexPath.row]
         return UserBlogCell.cellHeight(model: growM)
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var growM : GrowM = GrowM()
+        if indexPath.section == 0 {
+            growM = self.userBlogM.myGrow[indexPath.row]
+        } else {
+            growM = self.userBlogM.mySupervise[indexPath.row]
+        }
+        let taskDetailVC = TaskDetailController()
+        let whipM: WhipM = WhipM()
+        whipM.taskId = growM.taskId
+        whipM.themeName = growM.themeName
+        taskDetailVC.myWhipM = whipM
+        self.navigationController?.pushViewController(taskDetailVC, animated: true)
+    }
 }
