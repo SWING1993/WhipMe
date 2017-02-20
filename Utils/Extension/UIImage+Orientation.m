@@ -8,11 +8,11 @@
 
 #import "UIImage+Orientation.h"
 
+#define k_scale_wh 800.0
+
 @implementation UIImage (Orientation)
 
-
-+ (UIImage *)fixOrientation:(UIImage *)aImage
-{
++ (UIImage *)fixOrientation:(UIImage *)aImage {
     if (aImage.imageOrientation == UIImageOrientationUp)
         return aImage;
     
@@ -84,23 +84,19 @@
     return img;
 }
 
-
-+ (UIImage *)scaleImage:(UIImage *)image
-{
-    
-    if (MAX(image.size.height, image.size.width) < 1280.0f)
-    {
++ (UIImage *)scaleImage:(UIImage *)image {
+    if (MAX(image.size.height, image.size.width) < k_scale_wh) {
         return image;
     }
     
     CGSize newImageS = CGSizeZero;
     if (image.size.height > image.size.width) {
-        newImageS.height = 1280.0f;
-        float ratio = 1280.0f / image.size.height;
+        newImageS.height = k_scale_wh;
+        float ratio = k_scale_wh / image.size.height;
         newImageS.width = image.size.width * ratio;
     } else {
-        newImageS.width = 1280.0f;
-        float ratio = 1280.0f / image.size.width;
+        newImageS.width = k_scale_wh;
+        float ratio = k_scale_wh / image.size.width;
         newImageS.height = image.size.height * ratio;
     }
     
@@ -108,25 +104,24 @@
     [image drawInRect:CGRectMake(0, 0, newImageS.width, newImageS.height)];
     UIImage *scaleImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return scaleImage;
 }
 /** 压缩图片内存大小 */
-+ (NSData *)dataRepresentationImage:(UIImage *)image
-{
++ (NSData *)dataRepresentationImage:(UIImage *)image {
     if (!image) {
         return [NSData data];
     }
-    float ratioValue = 1.0;
+    float ratioValue = 0.3;
     NSData *imageData = UIImageJPEGRepresentation(image, ratioValue);
-    while (imageData.length > 200 * 1024 && ratioValue >= 0.1) {
-        ratioValue = ratioValue - 0.4;
+    while (imageData.length > 100 * 1024 && ratioValue >= 0.03) {
+        ratioValue = ratioValue - 0.07;
         imageData = UIImageJPEGRepresentation(image, ratioValue);
     }
     return imageData;
 }
 
-+ (UIImage *)fullToFilePath:(NSString *)imageName
-{
++ (UIImage *)fullToFilePath:(NSString *)imageName {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingFormat:@"/%@", imageName];
     
@@ -168,6 +163,7 @@
     
     UIImage *newPic = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return newPic;
 }
 
@@ -176,7 +172,7 @@
     // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
     UIGraphicsBeginImageContextWithOptions(s, NO, [UIScreen mainScreen].scale);
     [v.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage*image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }

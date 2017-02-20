@@ -26,7 +26,7 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
 + (void)upToData:(NSData *)data backInfo:(QNUpCompletionHandler)backInfo fail:(FailedBlock)fail
 {
     QNUploadOption *aQNUploadOption = nil;
-    
+    WEAKSELF
     NSString *strUptoken = [WMUploadFile isNeedRequestToGetUptoken];
     QNConfiguration *config = [QNConfiguration build:^(QNConfigurationBuilder *builder) {
         builder.zone = [QNZone zone2];
@@ -37,6 +37,7 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
             if (resp) {
                 backInfo(info, key, resp);
             } else {
+                [weakSelf removeQiniuUpKey];
                 fail(info.error);
             }
         } option:aQNUploadOption];
@@ -47,12 +48,13 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
                 if (resp) {
                     backInfo(info, key, resp);
                 } else {
+                    [weakSelf removeQiniuUpKey];
                     fail(info.error);
                 }
             } option:aQNUploadOption];
             
         } doLaterFail:^(NSError *error) {
-            [self removeQiniuUpKey];
+            [weakSelf removeQiniuUpKey];
             fail(error);
         }];
     }
@@ -104,7 +106,7 @@ static NSString *const SG_QiniuUpTokenTime = @"SG_QiniuUpTokenTime";
     if ([NSString isBlankString:strBaseUrl] == NO) {
         return [NSString stringWithFormat:@"%@%@",strBaseUrl, imgPath];
     } else {
-        return [NSString stringWithFormat:@"http://ok0tksr2d.bkt.clouddn.com/%@",imgPath];
+        return [NSString stringWithFormat:@"http://qnimg.superspv.com/%@",imgPath];
     }
 }
 

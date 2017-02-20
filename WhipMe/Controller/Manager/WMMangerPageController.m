@@ -153,7 +153,7 @@
 #pragma mark - set get
 - (NSArray<NSString *> *)buttonText {
     if (!_buttonText) {
-        _buttonText = [NSArray arrayWithObjects:@"私信",@"通知", nil];
+        _buttonText = [NSArray arrayWithObjects:@"抢单",@"监督", nil];
     }
     return _buttonText;
 }

@@ -454,16 +454,17 @@ extension LogController :UITableViewDelegate {
 extension LogController :UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let fixImage = UIImage.fixOrientation(image)
+        let fix_img = UIImage.fixOrientation(image)
+        let scale_img = UIImage.scale(fix_img)
         
         if (picker.sourceType == UIImagePickerControllerSourceType.camera) {
             let view = HKTriangleView()
             view.title = self.myWhipM.themeName
             view.frame = CGRect.init(x: (Define.screenWidth() - 200)/2.0, y: Define.screenHeight() - 300, width: 200, height: 160)
-            let triangleImage = fixImage?.watermarkLogo(view, make: view.frame, width: Define.screenWidth(), heith: Define.screenHeight())
+            let triangleImage = scale_img?.watermarkLogo(view, make: view.frame, width: Define.screenWidth(), heith: Define.screenHeight())
             self.photo = triangleImage
         } else {
-            self.photo = fixImage
+            self.photo = scale_img
         }
         self.myLogTable.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
         picker.dismiss(animated: true, completion: nil)

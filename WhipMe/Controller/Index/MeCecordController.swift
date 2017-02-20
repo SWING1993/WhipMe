@@ -234,7 +234,7 @@ extension MeCecordController:UITableViewDataSource {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
             cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "nilTouSu")
             if (self.myWhipM.type == 1) {
-                cell.titleL.text =  "小编君监督中"
+                cell.titleL.text =  "小鞭君监督中"
             } else {
                 cell.titleL.text =  myWhipM.supervisorName + "监督中"
             }

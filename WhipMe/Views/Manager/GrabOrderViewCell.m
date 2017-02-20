@@ -173,14 +173,14 @@
     return MAX(85.0+44.0, floorf(size_h.height + 1.0) + 10.0);
 }
 
-//拒绝
+// 同意
 - (void)onclickWithAccept {
-    [self clickWithHandleTask:@"1"];
+    [self clickWithHandleTask:@"2"];
 }
 
-// 同意
+// 拒绝
 - (void)onclickWithrefuse {
-    [self clickWithHandleTask:@"2"];
+    [self clickWithHandleTask:@"1"];
 }
 
 - (void)clickWithHandleTask:(NSString *)accept {

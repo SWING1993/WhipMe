@@ -21,6 +21,7 @@
 + (NSString *)generateUuidString;
 
 + (UIImage *)convertViewToImage:(UIView *)v;
+
 - (UIImage *)watermarkLogo:(UIView *)logo make:(CGRect)makeSize width:(CGFloat)kWidth heith:(CGFloat)kHeight;
 
 @end
