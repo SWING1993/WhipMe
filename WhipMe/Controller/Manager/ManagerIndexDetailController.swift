@@ -193,6 +193,7 @@ class ManagerIndexDetailController: UIViewController {
         
         avatarV.layer.cornerRadius = 36.0/2
         avatarV.layer.masksToBounds = true
+        avatarV.isUserInteractionEnabled = true
         headView.addSubview(avatarV)
         avatarV.snp.makeConstraints({ (make) in
             make.left.top.equalTo(18)
@@ -214,15 +215,12 @@ class ManagerIndexDetailController: UIViewController {
                     if ret == 0 {
                         let dataJson = json["data"][0]
                         let string = String(describing: dataJson)
-                        print(string)
+                        
                         if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                             let queryUserBlogC = QueryUserBlogC.init()
                             queryUserBlogC.navigationItem.title = model.nickname
                             queryUserBlogC.userBlogM = userBlogM
-                            let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
-                            kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
-                                
-                            })
+                            self.navigationController?.pushViewController(queryUserBlogC, animated: true)
                         }
                     } else {
                         Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
