@@ -143,8 +143,8 @@ class MeCecordController: UIViewController {
     
     fileprivate func setupRequest() {
         weak var weakSelf = self
-        let params = ["taskId":self.myWhipM.taskId,"pageSize":"30","pageIndex":"1"]
-        HttpAPIClient.apiClientPOST("queryRecordByTaskId", params: params, success: { (result) in
+        let params = ["themeId":self.myWhipM.themeId,"pageSize":"30","pageIndex":"1"]
+        HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
