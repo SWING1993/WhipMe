@@ -77,7 +77,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblTitle.textColor = kColorBlack
         lblTitle.font = UIFont.systemFont(ofSize: 15.0)
         lblTitle.textAlignment = NSTextAlignment.left
-        lblTitle.text = "樱花派"
+//        lblTitle.text = "樱花派"
         viewCurrent.addSubview(lblTitle)
         lblTitle.snp.updateConstraints { (make) in
             make.left.equalTo(self.imageHead.snp.right).offset(14.0)
@@ -91,12 +91,12 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblTopic.textColor = Define.RGBColorFloat(42, g: 195, b: 130)
         lblTopic.font = UIFont.systemFont(ofSize: 11.0)
         lblTopic.textAlignment = NSTextAlignment.left
-        lblTopic.text = "#早起#"
+//        lblTopic.text = "#早起#"
         viewCurrent.addSubview(lblTopic)
         lblTopic.snp.updateConstraints { (make) in
             make.left.equalTo(self.lblTitle.snp.left)
             make.top.equalTo(self.lblTitle.snp.bottom).offset(5.0)
-            make.width.equalTo(self.lblTitle.snp.width).offset(-70.0)
+            make.width.equalTo(170.0)
             make.height.equalTo(13)
         }
         let tapTopic = UITapGestureRecognizer.init(target: self, action: #selector(onClickWithTopic))
@@ -108,7 +108,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblNumber.textColor = Define.RGBColorFloat(42, g: 195, b: 130)
         lblNumber.font = UIFont.systemFont(ofSize: 11.0)
         lblNumber.textAlignment = NSTextAlignment.right
-        lblNumber.text = "已鞭挞118次"
+//        lblNumber.text = "已鞭挞118次"
         viewCurrent.addSubview(lblNumber)
         lblNumber.snp.updateConstraints { (make) in
             make.left.equalTo(self.lblTitle.snp.left)
@@ -153,11 +153,28 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblNumber.text = "被鞭挞\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
         imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
+        if let str_topic : NSString = lblTopic.text as NSString? {
+            let size_w: CGSize = str_topic.size(attributes: [NSFontAttributeName:lblTopic.font])
+            lblTopic.snp.updateConstraints { (make) in
+                make.width.equalTo(min(170.0, floor(size_w.width)+20.0))
+            }
+        }
         
         if (self.model.threeDay.count == 0) {
             self.collectionViewWM.isHidden = true
         } else {
             self.collectionViewWM.isHidden = false
+            if (self.model.threeDay.count < 3) {
+                var view_w: Float = 25.0
+                if (self.model.threeDay.count == 1) {
+                    view_w = 245.0
+                } else if (self.model.threeDay.count == 2) {
+                    view_w = 133.0
+                }
+                self.collectionViewWM.snp.updateConstraints { (make) in
+                    make.width.equalTo(self.viewCurrent).offset(-view_w)
+                }
+            }
             self.collectionViewWM.reloadData();
         }
     }
@@ -167,11 +184,29 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblNumber.text = "已鞭挞\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
         imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
+        if let str_topic : NSString = lblTopic.text as NSString? {
+            let size_w: CGSize = str_topic.size(attributes: [NSFontAttributeName:lblTopic.font])
+            lblTopic.snp.updateConstraints { (make) in
+                make.width.equalTo(min(170.0, floor(size_w.width)+20.0))
+            }
+        }
         
         if (self.model.threeDay.count == 0) {
             self.collectionViewWM.isHidden = true
         } else {
             self.collectionViewWM.isHidden = false
+            
+            if (self.model.threeDay.count < 3) {
+                var view_w: Float = 25.0
+                if (self.model.threeDay.count == 1) {
+                    view_w = 245.0
+                } else if (self.model.threeDay.count == 2) {
+                    view_w = 130.0
+                }
+                self.collectionViewWM.snp.updateConstraints { (make) in
+                    make.width.equalTo(self.viewCurrent).offset(-view_w)
+                }
+            }
             self.collectionViewWM.reloadData();
         }
     }

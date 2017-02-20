@@ -154,7 +154,7 @@ class MeCecordController: UIViewController {
                     return
                 }
                 if totalSize > 0 {
-                    let recordList = json["data"][0]["recordlist"].arrayValue
+                    let recordList = json["data"][0]["list"].arrayValue
                     weakSelf?.friendCircleModels = {
                         var temps: [FriendCircleM] = []
                         for json in recordList {

@@ -531,7 +531,7 @@ class QueryUserBlogC: UIViewController {
 
 extension QueryUserBlogC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 1 {
             return self.userBlogM.myGrow.count
         } else {
             return self.userBlogM.mySupervise.count
@@ -546,7 +546,7 @@ extension QueryUserBlogC: UITableViewDelegate {
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UserBlogCell = UserBlogCell.init(style: UITableViewCellStyle.default, reuseIdentifier: UserBlogCell.cellReuseIdentifier())
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             let growM = self.userBlogM.myGrow[indexPath.row]
             cell.setMyGrowMWith(model: growM)
         } else {
@@ -559,7 +559,7 @@ extension QueryUserBlogC: UITableViewDelegate {
 
 extension QueryUserBlogC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             let growM = self.userBlogM.myGrow[indexPath.row]
             return UserBlogCell.cellHeight(model: growM)
         }
@@ -568,16 +568,22 @@ extension QueryUserBlogC: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var growM : GrowM = GrowM()
-        if indexPath.section == 0 {
+        var control_title : String = ""
+        let info : UserManager = UserManager.shared
+        if indexPath.section == 1 {
             growM = self.userBlogM.myGrow[indexPath.row]
+            control_title = info.nickname+"历史养成"
         } else {
             growM = self.userBlogM.mySupervise[indexPath.row]
+            control_title = info.nickname+"历史监督"
         }
+        
         let taskDetailVC = TaskDetailController()
         let whipM: WhipM = WhipM()
         whipM.taskId = growM.taskId
         whipM.themeName = growM.themeName
         taskDetailVC.myWhipM = whipM
+        taskDetailVC.navigationItem.title = control_title
         self.navigationController?.pushViewController(taskDetailVC, animated: true)
     }
 }

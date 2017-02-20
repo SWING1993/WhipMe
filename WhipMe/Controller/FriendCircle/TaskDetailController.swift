@@ -28,7 +28,7 @@ class TaskDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.myWhipM.themeName
+//        self.navigationItem.title = self.myWhipM.themeName
         self.view.backgroundColor = kColorBackGround
         prepareTableView()
     }
@@ -95,30 +95,30 @@ class TaskDetailController: UIViewController {
 extension TaskDetailController:UITableViewDataSource {
     // Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
+//        if section == 0 {
+//            return 1
+//        } else {
             return self.friendCircleModels.count
-        }
+//        }
     }
     
     /// Returns the number of sections.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     /// Prepares the cells within the tableView.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.section == 0 {
-            let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
-            cell.avatarV.image = UIImage.init(named: "community_icon")
-            cell.avatarV.snp.updateConstraints({ (make) in
-                make.size.equalTo(CGSize.init(width: 25, height: 25))
-            })
-            cell.titleL.text =  "社区动态"
-            return cell
-        } else {
+//        if indexPath.section == 0 {
+//            let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
+//            cell.avatarV.image = UIImage.init(named: "community_icon")
+//            cell.avatarV.snp.updateConstraints({ (make) in
+//                make.size.equalTo(CGSize.init(width: 25, height: 25))
+//            })
+//            cell.titleL.text =  "社区动态"
+//            return cell
+//        } else {
             let cell: RecommendCell = RecommendCell.init(style: UITableViewCellStyle.default, reuseIdentifier: RecommendCell.cellReuseIdentifier())
             let model:FriendCircleM = self.friendCircleModels[indexPath.row]
             cell.setRecommendData(model: model)
@@ -126,18 +126,18 @@ extension TaskDetailController:UITableViewDataSource {
                 self.setupRequest()
             }
             return cell
-        }
+//        }
     }
 }
 
 /// UITableViewDelegate methods.
 extension TaskDetailController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return SuperviseCell.cellHeight()
-        } else {
+//        if indexPath.section == 0 {
+//            return SuperviseCell.cellHeight()
+//        } else {
             return self.cellHeights[indexPath.row]
-        }
+//        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }

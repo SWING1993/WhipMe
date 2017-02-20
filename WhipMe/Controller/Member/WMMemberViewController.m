@@ -382,11 +382,15 @@ static NSString *identifier_head = @"tableViewView_head";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     mySuperviseModel *model = nil;
+    NSString *control_title = @"";
+    UserManager *info = [UserManager shared];
     if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
         model = [self.arraySupervise objectAtIndex:indexPath.row-1];
+        control_title = [NSString stringWithFormat:@"%@历史监督",info.nickname];
     } else {
         if (self.arrayGrow.count > indexPath.row-1) {
             model = [self.arrayGrow objectAtIndex:indexPath.row-1];
+            control_title = [NSString stringWithFormat:@"%@历史养成",info.nickname];
         }
     }
     if (model == nil) {
@@ -397,6 +401,7 @@ static NSString *identifier_head = @"tableViewView_head";
     whip.themeName = model.themeName;
     
     TaskDetailController *controller = [TaskDetailController new];
+    controller.navigationItem.title = control_title;
     controller.myWhipM = whip;
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
