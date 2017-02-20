@@ -445,8 +445,8 @@
 		E44E739A1D9D002E007A73D8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIClient.h; sourceTree = "<group>"; };
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
-		E472556A1E58870E002F8D3F /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexController.swift; sourceTree = "<group>"; };
-		E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexDetailController.swift; sourceTree = "<group>"; };
+		E472556A1E58870E002F8D3F /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerIndexController.swift; path = ../Index/ManagerIndexController.swift; sourceTree = "<group>"; };
+		E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerIndexDetailController.swift; path = ../Index/ManagerIndexDetailController.swift; sourceTree = "<group>"; };
 		E472556E1E59518F002F8D3F /* TaskDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -616,6 +616,7 @@
 		C546FE0F1D82989700012FB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E47255891E5A8934002F8D3F /* Manager */,
 				C5A1869D1D921A0D000866AB /* Login */,
 				C546FE1E1D82992B00012FB4 /* Root */,
 				C546FE121D82989700012FB4 /* Index */,
@@ -663,8 +664,6 @@
 			isa = PBXGroup;
 			children = (
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
-				E472556A1E58870E002F8D3F /* ManagerIndexController.swift */,
-				E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */,
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
 				E4A8EF041DE5883000E16B26 /* CashController.swift */,
@@ -1087,6 +1086,15 @@
 				E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		E47255891E5A8934002F8D3F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E472556A1E58870E002F8D3F /* ManagerIndexController.swift */,
+				E472556C1E594599002F8D3F /* ManagerIndexDetailController.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {

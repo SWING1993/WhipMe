@@ -490,7 +490,12 @@ class QueryUserBlogC: UIViewController {
         self.userHeaderV.fansNumL.text = self.userBlogM.userInfo["fansNum"]
         self.userHeaderV.focusNumL.text = self.userBlogM.userInfo["focusNum"]
         self.userHeaderV.signL.text = self.userBlogM.userInfo["sign"]
-        self.fansNum = Int(self.userBlogM.userInfo["fansNum"]!)!
+
+        if let num = self.userBlogM.userInfo["fansNum"] {
+            if let numInt = Int(num) {
+                self.fansNum = Int(numInt)
+            }
+        }
 
         self.myTable.tableHeaderView = self.userHeaderV
         
