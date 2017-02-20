@@ -30,7 +30,7 @@ NSInteger const kItem_Tag = 7777;
 /** 历史养成 */
 @property (nonatomic, strong) NSMutableArray *arrayGrow;
 
-@property (nonatomic, strong) UIImageView *imageHead, *iconWallet;
+@property (nonatomic, strong) UIImageView *imageHead, *iconWallet, *sexView;
 @property (nonatomic, strong) UILabel *lblUserName, *lblDescribe, *lblFansNum, *lblFocusNum, *lblWallet;
 
 @property (nonatomic, strong) NSIndexPath *index_delete;
@@ -57,6 +57,12 @@ static NSString *identifier_head = @"tableViewView_head";
 
 - (void)setData:(UserManager *)userInfo {
     [self.imageHead setImageWithURL:[NSURL URLWithString:userInfo.icon ?:@""] placeholderImage:[Define kDefaultImageHead]];
+    
+    if (userInfo.sex == 1) {
+        self.sexView.image = [UIImage imageNamed:@"gender-m"];
+    } else {
+        self.sexView.image = [UIImage imageNamed:@"gender-w"];
+    }
     
     if ([NSString isBlankString:userInfo.nickname]) {
         self.lblUserName.text = @"学习者";
@@ -125,6 +131,13 @@ static NSString *identifier_head = @"tableViewView_head";
         make.top.equalTo(weakSelf.viewHead).offset(14.0);
         make.size.mas_equalTo(CGSizeMake(kHead_WH, kHead_WH));
     }];
+    _sexView = [[UIImageView alloc] init];
+    [_viewHead addSubview:_sexView];
+    [_sexView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(17);
+        make.trailing.bottom.mas_equalTo(_imageHead);
+    }];
+    
     
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWithHead)];
     [self.imageHead addGestureRecognizer:tapGr];

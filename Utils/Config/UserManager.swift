@@ -38,7 +38,7 @@ class UserManager: NSObject {
     var supervisor: String = ""
     var type: String = ""
     var age: String = ""
-    var sex: Bool = false //0.女  1.男
+    var sex: Int = 0 //0.女  1.男
     var icon: String = ""
     var username: String = ""
     var nickname: String = ""
