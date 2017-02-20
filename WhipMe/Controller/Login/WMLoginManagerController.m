@@ -7,6 +7,7 @@
 //
 
 #import "WMLoginManagerController.h"
+#import "WMMangerPageController.h"
 
 @interface WMLoginManagerController () <UITextFieldDelegate>
 
@@ -129,20 +130,9 @@
             NSMutableDictionary *dict_value = [model mj_keyValues];
             [UserManager storeUserWithDict:dict_value];
             
-            // 调用通知刷新 “鞭挞我” 的信息
-            // DDPostNotification(@"")
-            
-            ManagerIndexController *managerVC = [[ManagerIndexController alloc] init];
-            UINavigationController *managerNav = [[UINavigationController alloc] initWithRootViewController:managerVC];
-            [weakSelf presentViewController:managerNav animated:YES completion:NULL];
-            
-//            [UIView animateWithDuration:0.35 animations:^{
-//                UIViewController *keyWindow = [[UIApplication sharedApplication].keyWindow rootViewController];
-//                MainTabBarController *tabBarControl = (MainTabBarController *)keyWindow;
-//                tabBarControl.selectedIndex = 0;
-//            } completion:^(BOOL finished) {
-//                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//            }];
+            UIPageViewController *clubPage = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            WMMangerPageController *managerVC = [[WMMangerPageController alloc] initWithRootViewController:clubPage];
+            [weakSelf presentViewController:managerVC animated:YES completion:NULL];
             
         } else {
             if ([NSString isBlankString:data[@"desc"]] == NO) {

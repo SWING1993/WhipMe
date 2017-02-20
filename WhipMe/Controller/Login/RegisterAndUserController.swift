@@ -144,18 +144,18 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
             make.top.equalTo(txtNickname.snp.bottom).offset(110.0)
         }
         
-        btnAgreement = UIButton.init(type: UIButtonType.custom)
-        btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = kTitleFont
-        btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
-        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
-        self.view.addSubview(btnAgreement)
-        btnAgreement.snp.updateConstraints { (make) in
-            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
-            make.bottom.equalTo(self.view).offset(-20.0)
-            make.centerX.equalTo(self.view)
-        }
+//        btnAgreement = UIButton.init(type: UIButtonType.custom)
+//        btnAgreement.backgroundColor = UIColor.clear
+//        btnAgreement.titleLabel?.font = kTitleFont
+//        btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
+//        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
+//        btnAgreement.setTitleColor(Define.kColorBlue(), for: UIControlState.normal)
+//        self.view.addSubview(btnAgreement)
+//        btnAgreement.snp.updateConstraints { (make) in
+//            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
+//            make.bottom.equalTo(self.view).offset(-20.0)
+//            make.centerX.equalTo(self.view)
+//        }
     }
     
     func showIsMessage(msg: String)  {
