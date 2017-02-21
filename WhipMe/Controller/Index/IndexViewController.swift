@@ -63,7 +63,6 @@ class WhipMeCell: UITableViewCell {
         self.selectionStyle = .none
         self.backgroundColor = kColorWhite
         
-        
         headV.layer.cornerRadius = 40/2
         headV.layer.masksToBounds = true
         headV.isUserInteractionEnabled = true
@@ -80,7 +79,6 @@ class WhipMeCell: UITableViewCell {
             make.centerY.equalTo(headV.snp.centerY)
             make.left.equalTo(18)
         }
-        
         
         themeL.font = UIFont.systemFont(ofSize: 14)
         self.contentView.addSubview(themeL)

@@ -79,6 +79,7 @@ class SuperviseCell: NormalCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.bgView.addSubview(avatarV)
+        avatarV.isUserInteractionEnabled = true
         avatarV.layer.cornerRadius = 20
         avatarV.layer.masksToBounds = true
         avatarV.snp.makeConstraints({ (make) in
@@ -233,6 +234,42 @@ extension MeCecordController:UITableViewDataSource {
         } else if indexPath.section == 1 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
             cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "nilTouSu")
+            if myWhipM.supervisor.length > 2 {
+                cell.avatarV.bk_(whenTapped: { () -> Void in
+                    let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+                    hud.label.text = "加载中..."
+                    let params = [
+                        "userId":self.myWhipM.supervisor,
+                        "loginId":UserManager.shared.userId,
+                        ]
+                    HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                        hud.hide(animated: true)
+                        if let dataResult = result {
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                let dataJson = json["data"][0]
+                                let string = String(describing: dataJson)
+                                print(string)
+                                if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+                                    let queryUserBlogC = QueryUserBlogC.init()
+                                    queryUserBlogC.navigationItem.title = self.myWhipM.supervisorName
+                                    queryUserBlogC.userBlogM = userBlogM
+                                    let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+                                    kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
+                                        
+                                    })
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        hud.hide(animated: true)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                })
+            }
             if (self.myWhipM.type == 1) {
                 cell.titleL.text =  "小鞭君监督中"
             } else {
