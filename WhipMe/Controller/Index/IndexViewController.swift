@@ -586,7 +586,6 @@ extension WhipCell: UITableViewDelegate {
 //                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             let log = UIAlertView.init(title: json["data"][0]["desc"].stringValue, message: nil, delegate: self, cancelButtonTitle: "确定")
                             log.show()
-
                         }
                     }
                 }) { (error) in

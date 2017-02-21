@@ -220,7 +220,7 @@ extension CashController: UITableViewDataSource {
             let label2 = UILabel()
             label2.text = "自由服务费说明：自由服务费是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还自由服务费，未达成任务，则归监督人所有。\n自由服务费金额在1-100元之间。"
             label2.numberOfLines = 0
-            label2.font = UIFont.systemFont(ofSize: 11)
+            label2.font = UIFont.systemFont(ofSize: 13)
             label2.textColor = kYellow
             cell.bgView.addSubview(label2)
             label2.snp.makeConstraints({ (make) in
@@ -239,7 +239,7 @@ extension CashController: UITableViewDelegate {
         if indexPath.section == 0 {
             return 80.0
         }
-        return 125.0
+        return 135.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

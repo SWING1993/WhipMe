@@ -75,13 +75,13 @@ class ThirdAddCustomCell: NormalCell {
         })
         
         let subTitleL = UILabel.init()
-        subTitleL.text = "功能介绍：可以找系统或好友监督，交一定的自由服务费，达成后退还，达不成，自由服务费归监督人所有。"
-        subTitleL.numberOfLines = 2
-        subTitleL.textColor = kColorGary
-        subTitleL.font = UIFont.systemFont(ofSize: 10)
+        subTitleL.text = "功能介绍：可以找鞭挞我平台客服小鞭君或者好友监督，交一定的自由服务费，完成后退还，未完成，自由服务费归监督人所有。"
+        subTitleL.numberOfLines = 0
+        subTitleL.textColor = kYellow
+        subTitleL.font = UIFont.systemFont(ofSize: 12)
         bgView.addSubview(subTitleL)
         subTitleL.snp.makeConstraints({ (make) in
-            make.height.equalTo(30)
+            make.height.equalTo(50)
             make.left.equalTo(15)
             make.right.equalTo(-10)
             make.bottom.equalTo(-10)
@@ -99,12 +99,11 @@ class ThirdAddCustomCell: NormalCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
     class func cellHeight() -> CGFloat {
-        return 176
+        return 196
     }
     
     class func cellReuseIdentifier() -> String {
