@@ -130,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.debugMode = false;
         config.channel = "appStore_V\(verison_str)"
         Bugly.start(withAppId: Define.appKeyBugly(), config: config)
+        Bugly.setUserIdentifier(UserManager.shared.mobile)
         
         // 实时修复线上 bug
         JSPatch.start(withAppKey: "b12b0364eb920d55")

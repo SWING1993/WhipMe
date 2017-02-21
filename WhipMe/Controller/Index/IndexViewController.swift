@@ -570,7 +570,7 @@ extension WhipCell: UITableViewDelegate {
             let alert = UIAlertView.init(title: "确认删除你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
             alert.bk_addButton(withTitle: "确认", handler: {
                 let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
-                let param = ["userId":UserManager.shared.userId,
+                let param = ["loginId":UserManager.shared.userId,
                              "taskId":whipM.taskId]
                 HttpAPIClient.apiClientPOST("removeTask3", params: param, success: { (result) in
                     tableView.setEditing(false, animated: true)
@@ -581,7 +581,6 @@ extension WhipCell: UITableViewDelegate {
                         if ret == 0 {
                             self.needReloaTW()
                         } else {
-//                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                             let log = UIAlertView.init(title: json["data"][0]["desc"].stringValue, message: nil, delegate: self, cancelButtonTitle: "确定")
                             log.show()
                         }
