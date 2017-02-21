@@ -65,7 +65,7 @@ class ManagerIndexController: UIViewController {
     func setupAPI() {
         self.myTable.mj_header.endRefreshing()
         weak var weakSelf = self
-        let params = ["pageSize":"15","pageIndex":"1"]
+        let params = ["pageSize":"100","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
             print(result!)
             if (result != nil) {
@@ -84,7 +84,7 @@ class ManagerIndexController: UIViewController {
             Tool.showHUDTip(tipStr: "网络不给力")
         }
         
-        let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
+        let params2 = ["pageSize":"100","pageIndex":"1","userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
             print(result!)
             if (result != nil) {

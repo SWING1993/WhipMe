@@ -40,7 +40,7 @@ class TaCecordController: UIViewController {
     
     fileprivate func setupRequest() {
         weak var weakSelf = self
-        let params = ["taskId":self.myWhipM.taskId,"pageSize":"30","pageIndex":"1"]
+        let params = ["taskId":self.myWhipM.taskId,"pageSize":"100","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryRecordByTaskId", params: params, success: { (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)

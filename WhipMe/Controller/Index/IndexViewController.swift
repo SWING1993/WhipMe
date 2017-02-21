@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 import SwiftyJSON
 import MJRefresh
+import HandyJSON
 
 class WhipM: NSObject {
     
@@ -65,12 +66,14 @@ class WhipMeCell: UITableViewCell {
         
         headV.layer.cornerRadius = 40/2
         headV.layer.masksToBounds = true
+        headV.isUserInteractionEnabled = true
         self.contentView .addSubview(headV)
         headV.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
             make.top.equalTo(15)
             make.right.equalTo(-9)
         }
+        
         self.contentView .addSubview(themeV)
         themeV.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
@@ -327,9 +330,47 @@ extension WhipCell: UITableViewDataSource {
         cell.themeL.snp.updateConstraints { (make) in
             make.width.equalTo(themeLWidth)
         }
+        
         // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
+            cell.headV.bk_(whenTapped: { () -> Void in
+                if whipM.creator.length > 2 {
+                    let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+                    hud.label.text = "加载中..."
+                    let params = [
+                        "userId":whipM.creator,
+                        "loginId":UserManager.shared.userId,
+                        ]
+                    HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                        hud.hide(animated: true)
+                        if let dataResult = result {
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                let dataJson = json["data"][0]
+                                let string = String(describing: dataJson)
+                                print(string)
+                                if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+                                    let queryUserBlogC = QueryUserBlogC.init()
+                                    queryUserBlogC.navigationItem.title = whipM.nickname
+                                    queryUserBlogC.userBlogM = userBlogM
+                                    let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+                                    kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
+                                        
+                                    })
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        hud.hide(animated: true)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                }
+            })
+
             // 拒绝
             cell.refuseBtn.bk_(whenTapped: {
                 if UserManager.shared.isManager == true {
@@ -442,6 +483,43 @@ extension WhipCell: UITableViewDataSource {
         // 鞭挞我
         else {
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
+            cell.headV.bk_(whenTapped: { () -> Void in
+                if whipM.supervisor.length > 2 {
+                    let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+                    hud.label.text = "加载中..."
+                    let params = [
+                        "userId":whipM.supervisor,
+                        "loginId":UserManager.shared.userId,
+                        ]
+                    HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+                        hud.hide(animated: true)
+                        if let dataResult = result {
+                            let json = JSON(dataResult)
+                            let ret  = json["data"][0]["ret"].intValue
+                            if ret == 0 {
+                                let dataJson = json["data"][0]
+                                let string = String(describing: dataJson)
+                                print(string)
+                                if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+                                    let queryUserBlogC = QueryUserBlogC.init()
+                                    queryUserBlogC.navigationItem.title = whipM.supervisorName
+                                    queryUserBlogC.userBlogM = userBlogM
+                                    let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+                                    kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
+                                        
+                                    })
+                                }
+                            } else {
+                                Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                            }
+                        }
+                    }) { (error) in
+                        hud.hide(animated: true)
+                        Tool.showHUDTip(tipStr: "网络不给力")
+                    }
+                }
+            })
+
             cell.subTitle.textColor = kColorBlue
             if whipM.accept == 0 {
                 if UserManager.shared.isManager == true {

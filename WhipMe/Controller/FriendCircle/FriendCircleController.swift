@@ -66,7 +66,7 @@ class FriendCircleController: UIViewController {
         self.focusList.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
-            "pageSize":"20",
+            "pageSize":"100",
             "pageIndex":"1",
             "userId":UserManager.shared.userId
             ]
@@ -109,7 +109,7 @@ class FriendCircleController: UIViewController {
         self.recommendTable.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
-            "pageSize":"20",
+            "pageSize":"100",
             "pageIndex":"1",
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
@@ -233,8 +233,7 @@ class FriendCircleController: UIViewController {
 
 /// TableViewDataSource methods.
 extension FriendCircleController:UITableViewDataSource {
-    // Determines the number of rows in the tableView.
-    
+    /// Determines the number of rows in the tableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 100 {
             return self.friendCircleModels.count
