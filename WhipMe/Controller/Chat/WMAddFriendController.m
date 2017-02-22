@@ -10,9 +10,10 @@
 #import "FansAndFocusModel.h"
 
 //DZNEmptyDataSetDelegate, DZNEmptyDataSetSource
-@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface WMAddFriendController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (nonatomic, strong) UISearchBar *viewSearch;
+@property (nonatomic, strong) UITextField *viewSearch;
+@property (nonatomic, strong) UIButton *btnCancel;
 @property (nonatomic, strong) NSMutableArray *arrayContent;
 @property (nonatomic, strong) UITableView *tableViewWM;
 
@@ -51,11 +52,9 @@ static NSString *identifier_cell = @"addFriendsCell";
 
 - (void)setup {
     WEAK_SELF
-    _viewSearch = [UISearchBar new];
+    _viewSearch = [UITextField new];
     _viewSearch.backgroundColor = [UIColor whiteColor];
-    _viewSearch.barTintColor = [UIColor clearColor];
-    _viewSearch.barStyle = UIBarStyleBlackTranslucent;
-    _viewSearch.keyboardType = UIKeyboardTypeEmailAddress;
+    _viewSearch.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _viewSearch.delegate = self;
     _viewSearch.layer.cornerRadius = 25.0;
     _viewSearch.layer.masksToBounds = true;
@@ -67,17 +66,19 @@ static NSString *identifier_cell = @"addFriendsCell";
         make.height.mas_equalTo(50.0);
     }];
     
-    //清除UISearchBar的子视图背景
-    for (UIView *view in self.viewSearch.subviews) {
-        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-            [view removeFromSuperview];
-            break;
-        }
-        if ([view isKindOfClass:NSClassFromString(@"UIView")] && view.subviews.count > 0) {
-            [[view.subviews objectAtIndex:0] removeFromSuperview];
-            break;
-        }
-    }
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20.0, 50.0)];
+    [leftView setBackgroundColor:[UIColor clearColor]];
+    [self.viewSearch setLeftView:leftView];
+    [self.viewSearch setLeftViewMode:UITextFieldViewModeAlways];
+    
+    _btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_btnCancel setFrame:CGRectMake(0, 0, 50.0, 50.0)];
+    [_btnCancel setBackgroundColor:[UIColor clearColor]];
+    [_btnCancel setImage:[UIImage imageNamed:@"search_icon"] forState:UIControlStateNormal];
+    [_btnCancel setAdjustsImageWhenHighlighted:false];
+    [_btnCancel addTarget:self action:@selector(clickWithCancel) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewSearch setRightView:self.btnCancel];
+    [self.viewSearch setRightViewMode:UITextFieldViewModeAlways];
     
     _tableViewWM = [UITableView new];
     _tableViewWM.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -112,26 +113,25 @@ static NSString *identifier_cell = @"addFriendsCell";
     return [NSString stringWithFormat:@"%@%@",text, searchText];
 }
 
-#pragma mark - UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    [self queryByName:searchBar.text];
+- (void)clickWithCancel {
+    [self.viewSearch resignFirstResponder];
+    [self queryByName:self.viewSearch.text];
 }
 
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    NSString *text_str = [searchBar.text stringByReplacingCharactersInRange:range withString:text];
-    if ([text_str length] > 30) {
-        searchBar.text = [text_str substringToIndex:30];
-        return NO;
-    }
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self queryByName:textField.text];
     return YES;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-}
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    NSString *text_str = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if ([text_str length] > 30) {
+        textField.text = [text_str substringToIndex:30];
+        return NO;
+    }
     return YES;
 }
 

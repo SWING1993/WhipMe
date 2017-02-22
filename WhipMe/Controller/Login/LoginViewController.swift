@@ -173,7 +173,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
-            print("\(result)")
             if (result != nil) {
                 let json = JSON(result!)
                 let data  = json["data"][0]

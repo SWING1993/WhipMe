@@ -364,7 +364,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         
         let imageData: NSData = UIImage.dataRepresentationImage(newImge) as NSData
         WMUploadFile.up(to: imageData as Data!, backInfo: { (info, key, resp) in
-            //图片上传失败!
+            
             if (resp == nil) {
                 Tool.showHUDTip(tipStr: "\(info?.error)")
             } else {

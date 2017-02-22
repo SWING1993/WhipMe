@@ -633,67 +633,26 @@ class IndexViewController: UIViewController {
     func setupAPI() {
         self.myTable.mj_header.endRefreshing()
         weak var weakSelf = self
-//        if UserManager.shared.isManager == true {
-//            let params = ["pageSize":"15","pageIndex":"1"]
-//            HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
-//                print(result!)
-//                if (result != nil) {
-//                    let json = JSON(result!)
-//                    let ret  = json["data"][0]["ret"].intValue
-//                    if ret == 0 {
-//                        let list  = json["data"][0]["list"].arrayObject
-//                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: list)
-//                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-//                        weakSelf?.myTable.reloadData()
-//                    } else {
-//                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-//                    }
-//                }
-//            }) { (error) in
-//                Tool.showHUDTip(tipStr: "网络不给力")
-//            }
-//            
-//            let params2 = ["pageSize":"15","pageIndex":"1","userId":UserManager.shared.userId]
-//            HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
-//                print(result!)
-//                if (result != nil) {
-//                    let json = JSON(result!)
-//                    let ret  = json["data"][0]["ret"].intValue
-//                    if ret == 0 {
-//                        let list  = json["data"][0]["list"].arrayObject
-//                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: list)
-//                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
-//                        weakSelf?.myTable.reloadData()
-//                    } else {
-//                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-//                    }
-//                }
-//            }) { (error) in
-//                Tool.showHUDTip(tipStr: "网络不给力")
-//            }
-//        } else {
-            let params = ["userId":UserManager.shared.userId]
-            HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
-                if (result != nil) {
-                    print(result!)
-                    let json = JSON(result!)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret == 0 {
-                        let woList  = json["data"][0]["biantawoList"].arrayObject
-                        let taList  = json["data"][0]["biantataList"].arrayObject
-                        weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
-                        weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
-                        weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
-                        weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
-                        weakSelf?.myTable.reloadData()
-                    } else {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                    }
+        let params = ["userId":UserManager.shared.userId]
+        HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let woList  = json["data"][0]["biantawoList"].arrayObject
+                    let taList  = json["data"][0]["biantataList"].arrayObject
+                    weakSelf?.biantataList = WhipM.mj_objectArray(withKeyValuesArray: taList)
+                    weakSelf?.biantawoList = WhipM.mj_objectArray(withKeyValuesArray: woList)
+                    weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
+                    weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
+                    weakSelf?.myTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
-            }) { (error) in
-                Tool.showHUDTip(tipStr: "网络不给力")
             }
-//        }
+        }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
+        }
     }
     
     fileprivate func prepareTableView() {

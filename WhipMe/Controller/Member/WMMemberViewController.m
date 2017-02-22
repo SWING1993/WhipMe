@@ -440,9 +440,10 @@ static NSString *identifier_head = @"tableViewView_head";
         mySuperviseModel *model = nil;
         MyTaskType type = MyTaskTypeZero;
         if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
+            type = MyTaskTypeOne;
             model = [self.arraySupervise objectAtIndex:indexPath.row-1];
         } else {
-            type = MyTaskTypeOne;
+            type = MyTaskTypeZero;
             if (self.arrayGrow.count > indexPath.row-1) {
                 model = [self.arrayGrow objectAtIndex:indexPath.row-1];
             }
@@ -588,7 +589,7 @@ static NSString *identifier_head = @"tableViewView_head";
     [HttpAPIClient APIClientPOST:@"removeTask" params:param Success:^(id result) {
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
-            if (type == MyTaskTypeZero) {
+            if (type == MyTaskTypeOne) {
                 if (self.arraySupervise.count > self.index_delete.row-1) {
                     [self.arraySupervise removeObjectAtIndex:self.index_delete.row-1];
                 }
