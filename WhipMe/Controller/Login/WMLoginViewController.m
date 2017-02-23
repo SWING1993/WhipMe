@@ -136,6 +136,7 @@ static NSInteger const wm_button_index = 7777;
         [itemButton.layer setMasksToBounds:YES];
         [itemButton setAdjustsImageWhenHighlighted:NO];
         [itemButton addTarget:self action:@selector(onClickWithItem:) forControlEvents:UIControlEventTouchUpInside];
+        [itemButton setTag:wm_button_index+i];
         [self.view addSubview:itemButton];
         [itemButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo([Define screenWidth] - 36.0);

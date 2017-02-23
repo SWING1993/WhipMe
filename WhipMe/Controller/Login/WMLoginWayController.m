@@ -252,13 +252,12 @@ static NSInteger const button_index = 7777;
                 [app_delegate setupMainController];
                 [[ChatMessage shareChat] loginJMessage];
             } else if (ret_code == -1) {
-                DebugLog(@"用户登录成功，有两个手机号");
                 NSMutableArray *muArray = [NSMutableArray new];
                 for (NSDictionary *obj in data[@"list"]) {
                     UserManager *model = [UserManager mj_objectWithKeyValues:obj];
                     [muArray addObject:model];
                 }
-                WMLoginViewController *controller = [WMLoginViewController new];
+                WMLoginViewController *controller = [[WMLoginViewController alloc] initWithUsers:muArray];
                 [weakSelf.navigationController pushViewController:controller animated:YES];
             } else {
                 [Tool showHUDTipWithTipStr:@"用户登录失败!"];
