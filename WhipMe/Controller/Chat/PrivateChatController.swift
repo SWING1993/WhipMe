@@ -66,7 +66,7 @@ class PrivateChatController: UIViewController, JMessageDelegate {
     
     func getConversationList() {
         
-        JMSGConversation.allConversations { (result, error) in
+        JMSGConversation.allConversations({ (result, error) in
             
             print("resutl : \(result) error is \(error)")
             
@@ -75,12 +75,12 @@ class PrivateChatController: UIViewController, JMessageDelegate {
                 self.arrayContent = NSMutableArray.init(array: result as! NSArray)
             }
             
-//            let sortKey: NSSortDescriptor = NSSortDescriptor.init(key: "latestMessage.timestamp", ascending: true)
-//            self.arrayContent.sorted(by: { (model1 JMSGConversation, model2 JMSGConversation) -> Bool in
-//                return model1 < model2
-//            })
+            //            let sortKey: NSSortDescriptor = NSSortDescriptor.init(key: "latestMessage.timestamp", ascending: true)
+            //            self.arrayContent.sorted(by: { (model1 JMSGConversation, model2 JMSGConversation) -> Bool in
+            //                return model1 < model2
+            //            })
             
-        }
+        })
     }
     
     // MARK: - JMessageDelegate

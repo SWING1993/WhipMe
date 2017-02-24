@@ -35,6 +35,8 @@ static ChatMessage *_chatObj = nil;
         return;
     }
     
+    [JPUSHService setAlias:info.userId callbackSelector:nil object:nil];
+    
     WEAK_SELF
     [JMSGUser loginWithUsername:info.userId password:info.pwdim completionHandler:^(id resultObject, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

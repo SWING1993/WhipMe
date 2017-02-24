@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import <JMessage/JMSGConstants.h>
+#import <JMessage/JMSGUser.h>
 
 @class JMSGMessage;
 @class JMSGAbstractContent;
@@ -127,15 +128,24 @@ JMSG_ASSUME_NONNULL_BEGIN
 + (BOOL)deleteGroupConversationWithGroupId:(NSString *)groupId;
 
 /*!
- * @abstract 返回 conversation 列表（异步）
+ * @abstract 返回 conversation 列表（异步,已排序）
  *
  * @param handler 结果回调。正常返回时 resultObject 的类型为 NSArray，数组里成员的类型为 JMSGConversation
  *
- * @discussion 当前是返回所有的 conversation 列表。
+ * @discussion 当前是返回所有的 conversation 列表，默认是已经排序。
  * 我们设计上充分考虑到性能问题，数据库无关联表查询，性能应该不会差。
  * 但考虑到潜在的性能问题可能，此接口还是异步返回
  */
 + (void)allConversations:(JMSGCompletionHandler)handler;
+
+/*!
+ * @abstract 返回 conversation 列表（异步,没有排序）
+ *
+ * @param handler 结果回调。正常返回时 resultObject 的类型为 NSArray，数组里成员的类型为 JMSGConversation
+ *
+ * @discussion 返回所有的 conversation 列表，返回是没有排序的列表。
+ */
++ (void)allConversationsByDefault:(JMSGCompletionHandler)handler;
 
 
 
@@ -145,7 +155,6 @@ JMSG_ASSUME_NONNULL_BEGIN
 
 /*!
  * @abstract 会话标题
- * @discussion 会话头像没有属性字段, 应通过 avatarData: 方法异步去获取。
  */
 @property(nonatomic, strong, readonly) NSString * JMSG_NULLABLE title;
 
@@ -226,8 +235,7 @@ JMSG_ASSUME_NONNULL_BEGIN
  * - offset = nil, limit = 100，表示从最新开始取 100 条记录。
  * - offset = 100, limit = nil，表示从最新第 100 条开始，获取余下所有记录。
  */
-- (NSArray JMSG_GENERIC(__kindof JMSGMessage *) *)messageArrayFromNewestWithOffset:(NSNumber *JMSG_NULLABLE)offset
-                                                                             limit:(NSNumber *JMSG_NULLABLE)limit;
+- (NSArray JMSG_GENERIC(__kindof JMSGMessage *) *)messageArrayFromNewestWithOffset:(NSNumber *JMSG_NULLABLE)offset limit:(NSNumber *JMSG_NULLABLE)limit;
 
 /*!
  * @abstract 异步获取所有消息记录
@@ -304,7 +312,7 @@ JMSG_ASSUME_NONNULL_BEGIN
  *
  * @param message 通过消息创建类接口，创建好的消息对象
  *
- * @discussion 发送消息的多个接口，都未在方法上直接提供回调。你应通过 xxx 方法来注册消息发送结果。
+ * @discussion 发送消息的多个接口，都未在方法上直接提供回调。你应通过 JMSGMessageDelegate中的onReceiveMessage: error:方法来注册消息发送结果
  */
 - (void)sendMessage:(JMSGMessage *)message;
 
@@ -330,6 +338,28 @@ JMSG_ASSUME_NONNULL_BEGIN
  */
 - (void)sendVoiceMessage:(NSData *)voiceData
                 duration:(NSNumber *)duration;
+
+/*!
+ * @abstract 发送文件消息
+ * @param voiceData 文件消息数据
+ * @param fileName 文件名
+ * @discussion 快捷发送消息接口。如果发送文件消息不需要附加 extra，则使用此接口更方便。
+ */
+- (void)sendFileMessage:(NSData *)fileData
+               fileName:(NSString *)fileName;
+
+/*!
+ * @abstract 发送地理位置消息
+ * @param latitude 纬度
+ * @param longitude 经度
+ * @param scale 缩放比例
+ * @param address 详细地址
+ * @discussion 快捷发送消息接口。如果发送文件消息不需要附加 extra，则使用此接口更方便。
+ */
+- (void)sendLocationMessage:(NSNumber *)latitude
+                  longitude:(NSNumber *)longitude
+                      scale:(NSNumber *)scale
+                    address:(NSString *)address;
 
 /*!
  * @abstract 异步获取会话头像
@@ -360,6 +390,13 @@ JMSG_ASSUME_NONNULL_BEGIN
  * @discussion 把未读数设置为 0
  */
 - (void)clearUnreadCount;
+
+/*!
+ * @abstract 获取当前所有会话的未读消息的总数
+ *
+ * @discussion 获取所有会话未读消息总数
+ */
++ (NSNumber *)getAllUnreadCount;
 
 /*!
  * @abstract 获取最后一条消息的内容文本
