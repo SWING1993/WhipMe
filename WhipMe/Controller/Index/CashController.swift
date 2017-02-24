@@ -55,14 +55,13 @@ class CashController: UIViewController {
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "完成", style: .plain) { (sender) in
             self.view.endEditing(false)
-            self.rechargeTextFiele.endEditing(true)
             if let guarantee = self.rechargeTextFiele.text {
                 if let value1: Double = Double(guarantee) {
                     if value1 > self.account{
                         Tool.showHUDTip(tipStr: "余额不足！")
                         return
-                    } else if value1 < 1.0 || value1 > 100.0 {
-                        Tool.showHUDTip(tipStr: "服务费范围必须在1-100元以内")
+                    } else if value1 > 100.0 {
+                        Tool.showHUDTip(tipStr: "服务费范围必须在0-100元以内")
                         return
                     }
                 } else {
@@ -218,7 +217,7 @@ extension CashController: UITableViewDataSource {
             })
             
             let label2 = UILabel()
-            label2.text = "自由服务费说明：自由服务费是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还自由服务费，未达成任务，则归监督人所有。\n自由服务费金额在1-100元之间。"
+            label2.text = "自由服务费说明：自由服务费是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还自由服务费，未达成任务，则归监督人所有。\n自由服务费金额在0-100元之间。"
             label2.numberOfLines = 0
             label2.font = UIFont.systemFont(ofSize: 13)
             label2.textColor = kYellow

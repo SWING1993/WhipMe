@@ -13,7 +13,6 @@
 #endif /* WMConfig_h */
 
 static NSString *const KQueryAccountWalletNotification = @"queryAccountWalletNotification";
-static NSString *const kAllConversationsNotification = @"getAllConversationListNotification";
 
 static NSString * const st_chatViewControllerTittle = @"会话";
 static const NSInteger st_chatTabTag = 10;

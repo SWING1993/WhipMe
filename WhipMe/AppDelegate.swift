@@ -10,13 +10,14 @@ import UIKit
 import SwiftDate
 import UserNotifications
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, JPUSHRegisterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, JPUSHRegisterDelegate, JMessageDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false)
         JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
+        JMessage.add(self, with: nil)
         self.registerUserNotification()
         self.thirdPartySDK()
         self.customizeAppearance()
@@ -203,6 +204,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JPUSHRegisterDelegate {
 //            JPUSHService.setBadge(number)
 //        }
     }
+    
+    func onReceive(_ message: JMSGMessage!, error: Error!) {
+        NotificationCenter.default.post(name: NSNotification.Name(Define.kUserUnReadCountNotification()), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(Define.kAllConversationsNotification()), object: nil)
+    }
+    
     
 }
 

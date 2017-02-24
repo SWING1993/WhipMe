@@ -204,12 +204,12 @@
     
     if (error != nil) {
         [_conversation clearUnreadCount];
-        NSString *alert = [JCHATStringUtils errorAlert:error];
-        if (alert == nil) {
-            alert = [error description];
-        }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [Tool showHUDTipWithTipStr:alert];
+//        NSString *alert = [JCHATStringUtils errorAlert:error];
+//        if (alert == nil) {
+//            alert = [error description];
+//        }
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        [Tool showHUDTipWithTipStr:alert];
         return;
     }
     JCHATChatModel *model = _allMessageDic[message.msgId];

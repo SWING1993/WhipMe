@@ -56,7 +56,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.currentPageIndex == 0) {
-        DDPostNotification(kAllConversationsNotification);
+        DDPostNotification([Define kAllConversationsNotification]);
     }
 }
 
@@ -96,7 +96,6 @@
 
 #pragma mark - Action
 - (void)clickWithNavItem:(UISegmentedControl *)sender {
-    DebugLog(@"_____index:%ld",(long)sender.selectedSegmentIndex);
     NSInteger tempIndex = sender.selectedSegmentIndex;
     self.currentPageIndex = tempIndex;
     [self.pageController setViewControllers:@[[self.viewControllerArray objectAtIndex:tempIndex]]

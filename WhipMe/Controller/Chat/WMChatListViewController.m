@@ -23,8 +23,8 @@ static NSString *identifier_cell = @"ChatConversationListCell";
     [super viewDidLoad];
     [self.view setBackgroundColor:[Define kColorBackGround]];
     
-    DDRemoveNotificationWithName(kAllConversationsNotification);
-    DDAddNotification(@selector(getConversationList), kAllConversationsNotification);
+    DDRemoveNotificationWithName([Define kAllConversationsNotification]);
+    DDAddNotification(@selector(getConversationList), [Define kAllConversationsNotification]);
     
     [self setup];
 }
@@ -35,8 +35,8 @@ static NSString *identifier_cell = @"ChatConversationListCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    DDPostNotification([Define kUserUnReadCountNotification]);
     [self getConversationList];
-    
     [[ChatMessage shareChat] loginJMessage];
 }
 
@@ -189,9 +189,7 @@ NSInteger sortType(id object1,id object2,void *cha) {
     return UITableViewCellEditingStyleDelete;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DebugLog(@"Action - tableView");
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         JMSGConversation *conversation = [self.arrayContent objectAtIndex:indexPath.row];
         
@@ -211,9 +209,6 @@ NSInteger sortType(id object1,id object2,void *cha) {
         }
     }
 }
-
-#pragma mark - JMessageDelegate
-
 
 #pragma mark - set get
 - (NSMutableArray<JMSGConversation *> *)arrayContent {

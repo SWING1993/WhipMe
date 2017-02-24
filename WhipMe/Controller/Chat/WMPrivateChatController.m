@@ -30,6 +30,8 @@
         self.navigationBar.translucent = NO;
         self.currentPageIndex = 0;
         self.isPageScrollingFlag = NO;
+        
+        DDPostNotification([Define kUserUnReadCountNotification]);
     }
     return self;
 }
@@ -56,7 +58,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.currentPageIndex == 0) {
-        DDPostNotification(kAllConversationsNotification);
+        DDPostNotification([Define kAllConversationsNotification]);
     }
 }
 
@@ -96,9 +98,8 @@
 
 #pragma mark - Action
 - (void)clickWithNavItem:(UISegmentedControl *)sender {
-    DebugLog(@"_____index:%ld",(long)sender.selectedSegmentIndex);
+
     NSInteger tempIndex = sender.selectedSegmentIndex;
-    
     if (tempIndex == 0) {
         self.pageController.navigationItem.rightBarButtonItem = self.rightBarItem;
     } else {

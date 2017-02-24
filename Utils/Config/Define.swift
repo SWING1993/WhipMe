@@ -143,6 +143,14 @@ class Define: NSObject {
         return "badge"
     }
     
+    class func kUserUnReadCountNotification() -> String {
+        return "userUnReadCountKey"
+    }
+    
+    class func kAllConversationsNotification() -> String {
+        return "allConversationListNotification"
+    }
+    
     // rdg 颜色的定义
     class func RGBColorFloat(_ r: CGFloat, g: CGFloat, b: CGFloat) ->UIColor {
         return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)

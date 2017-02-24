@@ -135,18 +135,10 @@ static NSString *identifier_cell = @"notificationViewCell";
     }
 }
 
-
 #pragma mark - set get
 - (NSMutableArray<NotificationModel *> *)arrayContent {
     if (!_arrayContent) {
         _arrayContent = [NSMutableArray array];
-        
-//        for (NSInteger i=0; i<20; i++) {
-//            NSString *id_str = [NSString stringWithFormat:@"1013101%ld%ld",(long)arc4random()%10,(long)arc4random()%10];
-//            NSDictionary *dict = @{@"nid":id_str,@"content":@"前阵子，万众瞩目的《琅琊榜2》放出了大波剧照，黄晓明一身戎装，帅到飞起，令人眼前一亮。",@"createDate":@"2017-01-14 12:30:00"};
-//            NotificationModel *model = [NotificationModel mj_objectWithKeyValues:dict];
-//            [_arrayContent addObject:model];
-//        }
     }
     return _arrayContent;
 }
@@ -159,7 +151,6 @@ static NSString *identifier_cell = @"notificationViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryNotification" params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
@@ -190,7 +181,6 @@ static NSString *identifier_cell = @"notificationViewCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"removeNotification" params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"______result:%@",result);
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] integerValue] == 0) {
             [Tool showHUDTipWithTipStr:@"删除成功！"];

@@ -12,6 +12,10 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(clickBadge), name: NSNotification.Name(rawValue: Define.kUserUnReadCountNotification()), object: nil)
+        
         let navIndex: UINavigationController = UINavigationController.init(rootViewController: IndexViewController())
         let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
         let navMember: UINavigationController = UINavigationController.init(rootViewController: WMMemberViewController())
@@ -42,5 +46,23 @@ class MainTabBarController: UITabBarController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    override func delete(_ sender: Any?) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func clickBadge() {
+        let unCount: Int = JMSGConversation.getAllUnreadCount().intValue
+        
+        DispatchQueue.main.async {
+            if unCount <= 0 {
+                self.viewControllers?[2].tabBarItem.badgeValue = nil
+            } else if unCount > 99 {
+                self.viewControllers?[2].tabBarItem.badgeValue = "99+"
+            } else {
+                self.viewControllers?[2].tabBarItem.badgeValue = String(unCount)
+            }
+        }
+    }
+    
 }
