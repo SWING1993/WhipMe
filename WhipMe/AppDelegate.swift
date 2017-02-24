@@ -10,15 +10,15 @@ import UIKit
 import SwiftDate
 import UserNotifications
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, JPUSHRegisterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false)
         JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-        self.thirdPartySDK()
         self.registerUserNotification()
+        self.thirdPartySDK()
         self.customizeAppearance()
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         application.applicationIconBadgeNumber = 0
-        ChatMessage.shareChat().loginJMessage()
+//        ChatMessage.shareChat().loginJMessage()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -58,16 +58,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JMessage.registerDeviceToken(deviceToken)
         JPUSHService.registerDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        print("Notification is 1 \(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Notification is 2 \(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -78,14 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("Action - didReceiveLocalNotification")
-        JPUSHService.showLocalNotification(atFront: notification, identifierKey: nil)
     }
     
     //iOS10 Feature: the front desk agent notified method processing
     @available(iOS 10.0, *)
     private func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void){
         let userInfo = notification.request.content.userInfo
-        print("userInfo10:\(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
         completionHandler([.sound,.alert])
     }
@@ -94,9 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 10.0, *)
     private func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void){
         let userInfo = response.notification.request.content.userInfo
-        print("userInfo10:\(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
         completionHandler()
+    }
+    
+    // MARK: - JPUSHRegisterDelegate
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        
+    }
+    
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        
     }
     
     /** 微信回调 */
@@ -178,8 +185,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         } else {
             let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
-            JPUSHService.register(forRemoteNotificationTypes:types.rawValue, categories: nil)
+            JMessage.register(forRemoteNotificationTypes: types.rawValue, categories: nil)
+            
         }
+        
+        let types_push: JPAuthorizationOptions = [JPAuthorizationOptions.alert, JPAuthorizationOptions.sound, JPAuthorizationOptions.badge]
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(types_push.rawValue)
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
     }
     
     func resetApplicationBadge() {
@@ -190,6 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            JPUSHService.setBadge(number)
 //        }
     }
+    
 }
 
 

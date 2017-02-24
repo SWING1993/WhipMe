@@ -91,20 +91,20 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
             origin_y += 93.0
         }
         
-        let btnAgreement = UIButton.init(type: UIButtonType.custom)
-        btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = kTitleFont
-        btnAgreement.tag = arrayTitle.count + button_index;
-        btnAgreement.addTarget(self, action: #selector(clickWithItem(sender:)), for: UIControlEvents.touchUpInside)
-        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
-        btnAgreement.setTitleColor(kColorGray, for: UIControlState.normal)
-        btnAgreement.setTitleColor(kColorGary, for: UIControlState.highlighted)
-        viewButton.addSubview(btnAgreement)
-        btnAgreement.snp.updateConstraints { (make) in
-            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
-            make.bottom.equalTo(viewButton).offset(-20.0)
-            make.centerX.equalTo(viewButton)
-        }
+//        let btnAgreement = UIButton.init(type: UIButtonType.custom)
+//        btnAgreement.backgroundColor = UIColor.clear
+//        btnAgreement.titleLabel?.font = kTitleFont
+//        btnAgreement.tag = arrayTitle.count + button_index;
+//        btnAgreement.addTarget(self, action: #selector(clickWithItem(sender:)), for: UIControlEvents.touchUpInside)
+//        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
+//        btnAgreement.setTitleColor(kColorGray, for: UIControlState.normal)
+//        btnAgreement.setTitleColor(kColorGary, for: UIControlState.highlighted)
+//        viewButton.addSubview(btnAgreement)
+//        btnAgreement.snp.updateConstraints { (make) in
+//            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
+//            make.bottom.equalTo(viewButton).offset(-20.0)
+//            make.centerX.equalTo(viewButton)
+//        }
     }
     
     func showIsMessage(msg: String)  {

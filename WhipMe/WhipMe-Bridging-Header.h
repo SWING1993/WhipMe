@@ -8,6 +8,7 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "CustomIOSAlertView.h"
 #import <JMessage/JMessage.h>
+#import "JPUSHService.h"
 #import "FastCoder.h"
 #import <ChameleonFramework/Chameleon.h>
 #import "WXApi.h"
@@ -25,6 +26,7 @@
 #import "MJPhotoBrowser.h"
 #import "HKTriangleView.h"
 #import "WMAddFriendController.h"
+#import <UserNotifications/UserNotifications.h>
 
 //
 #import "NSDate+Extension.h"
