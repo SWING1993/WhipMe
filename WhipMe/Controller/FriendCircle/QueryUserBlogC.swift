@@ -569,13 +569,12 @@ extension QueryUserBlogC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var growM : GrowM = GrowM()
         var control_title : String = ""
-        let info : UserManager = UserManager.shared
         if indexPath.section == 1 {
             growM = self.userBlogM.myGrow[indexPath.row]
-            control_title = info.nickname+"历史养成"
+            control_title = "历史养成"
         } else {
             growM = self.userBlogM.mySupervise[indexPath.row]
-            control_title = info.nickname+"历史监督"
+            control_title = "历史监督"
         }
         
         let taskDetailVC = TaskDetailController()

@@ -396,14 +396,13 @@ static NSString *identifier_head = @"tableViewView_head";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     mySuperviseModel *model = nil;
     NSString *control_title = @"";
-    UserManager *info = [UserManager shared];
     if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
         model = [self.arraySupervise objectAtIndex:indexPath.row-1];
-        control_title = [NSString stringWithFormat:@"%@历史监督",info.nickname];
+        control_title = @"历史监督";
     } else {
         if (self.arrayGrow.count > indexPath.row-1) {
             model = [self.arrayGrow objectAtIndex:indexPath.row-1];
-            control_title = [NSString stringWithFormat:@"%@历史养成",info.nickname];
+            control_title = @"历史养成";
         }
     }
     if (model == nil) {

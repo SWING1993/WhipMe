@@ -98,6 +98,7 @@ class SuperviseCell: NormalCell {
 
         })
         
+        subTitleL.textColor = Define.kColorRed()
         subTitleL.textAlignment = .right
         subTitleL.font = UIFont.systemFont(ofSize: 13)
         self.bgView.addSubview(subTitleL)

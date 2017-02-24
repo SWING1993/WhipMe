@@ -113,19 +113,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(origin_y)
         }
         
-        btnAgreement = UIButton.init(type: UIButtonType.custom)
-        btnAgreement.backgroundColor = UIColor.clear
-        btnAgreement.titleLabel?.font = kTitleFont
-        btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
-        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
-        btnAgreement.setTitleColor(Define.kColorGary(), for: UIControlState.highlighted)
-        self.view.addSubview(btnAgreement)
-        btnAgreement.snp.updateConstraints { (make) in
-            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
-            make.bottom.equalTo(self.view).offset(-20.0)
-            make.centerX.equalTo(self.view)
-        }
+//        btnAgreement = UIButton.init(type: UIButtonType.custom)
+//        btnAgreement.backgroundColor = UIColor.clear
+//        btnAgreement.titleLabel?.font = kTitleFont
+//        btnAgreement.addTarget(self, action: #selector(clickWithAgreement), for: UIControlEvents.touchUpInside)
+//        btnAgreement.setTitle("用户协议", for: UIControlState.normal)
+//        btnAgreement.setTitleColor(Define.kColorGray(), for: UIControlState.normal)
+//        btnAgreement.setTitleColor(Define.kColorGary(), for: UIControlState.highlighted)
+//        self.view.addSubview(btnAgreement)
+//        btnAgreement.snp.updateConstraints { (make) in
+//            make.size.equalTo(CGSize.init(width: 65.0, height: 30.0))
+//            make.bottom.equalTo(self.view).offset(-20.0)
+//            make.centerX.equalTo(self.view)
+//        }
         
     }
     
