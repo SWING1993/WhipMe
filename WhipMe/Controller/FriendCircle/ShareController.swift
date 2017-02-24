@@ -12,7 +12,7 @@ import CoreGraphics
 class ShareController: UIViewController {
     
     var myFriendCircleM = FriendCircleM()
-    var captureHeight: CGFloat = 0.0
+    var captureHeight: CGFloat = 150.0
     fileprivate var myTable = UITableView()
 
     override func viewDidLoad() {
@@ -82,6 +82,48 @@ class ShareController: UIViewController {
             make.top.left.right.equalTo(self.view)
             make.bottom.equalTo(bottomView.snp.top)
         }
+        
+        let qrcodeView = UIView()
+        qrcodeView.backgroundColor = kColorWhite
+        qrcodeView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: 150)
+        myTable.tableFooterView = qrcodeView
+        
+        let qrcodeImageView = UIImageView()
+        qrcodeImageView.contentMode = .scaleAspectFill
+        qrcodeImageView.image = UIImage.init(named: "QRcode")
+        qrcodeView.addSubview(qrcodeImageView)
+        qrcodeImageView.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize.init(width: 81, height: 81))
+            make.centerY.equalTo(qrcodeView)
+            make.right.equalTo(kRightMargin)
+        }
+        
+        let title1 =  UILabel()
+        title1.textColor = kColorGary
+        title1.textAlignment = .right
+        title1.font = UIFont.systemFont(ofSize: 14)
+        title1.text = "长按识别二维码，下载鞭挞我"
+        qrcodeView.addSubview(title1)
+        title1.snp.makeConstraints { (make) in
+            make.bottom.equalTo(qrcodeView.snp.centerY)
+            make.right.equalTo(qrcodeImageView.snp.left).offset(-20)
+            make.left.equalTo(20)
+            make.height.equalTo(40)
+        }
+        
+        let title2 =  UILabel()
+        title2.textColor = kColorGary
+        title2.textAlignment = .right
+        title2.font = UIFont.systemFont(ofSize: 16)
+        title2.text = "开启你的坚持故事"
+        qrcodeView.addSubview(title2)
+        title2.snp.makeConstraints { (make) in
+            make.top.equalTo(qrcodeView.snp.centerY)
+            make.right.equalTo(qrcodeImageView.snp.left).offset(-20)
+            make.left.equalTo(20)
+            make.height.equalTo(40)
+        }
+        
     }
     
     func goBack() {
@@ -106,20 +148,7 @@ class ShareController: UIViewController {
     
     func capture() -> UIImage {
         var captureImage = UIImage()
-
-        //截取全屏
-        UIGraphicsBeginImageContext(CGSize.init(width: Define.screenWidth(), height: Define.screenHeight()))
-        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        //截取所需区域
-        let captureRect: CGRect = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: captureHeight)
-        if let sourceImageRef: CGImage = image.cgImage {
-            if let newImageRef: CGImage = sourceImageRef.cropping(to: captureRect) {
-                captureImage = UIImage.init(cgImage: newImageRef)
-            }
-        }
+        captureImage = UIImage.convertView(toImage: self.myTable)
         return captureImage
     }
 
@@ -165,8 +194,9 @@ extension ShareController: UITableViewDelegate {
         }
         let content: NSString = NSString.init(string: self.myFriendCircleM.content)
         height += content.getHeightWith(UIFont.systemFont(ofSize: 14), constrainedTo: CGSize.init(width: Define.screenWidth() - 48, height: CGFloat.greatestFiniteMagnitude))
-        captureHeight = height
-        return captureHeight
+        captureHeight = 150
+        captureHeight += height
+        return height
     }
 }
 
