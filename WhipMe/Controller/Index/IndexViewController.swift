@@ -26,7 +26,7 @@ class WhipM: NSObject {
     var createDate: String = ""
     var startDate: String = ""
     var endDate: String = ""
-
+    var clockTime: String = ""
     
     var creator: String = ""
     var icon: String = ""
@@ -480,6 +480,8 @@ extension WhipCell: UITableViewDataSource {
         }
         // 鞭挞我
         else {
+            whipM.clockTime = "1336"
+            AppDelegate.registerNotification(myWhipM: whipM)
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             cell.headV.bk_(whenTapped: { () -> Void in
                 if whipM.supervisor.length > 2 {
@@ -636,6 +638,7 @@ class IndexViewController: UIViewController {
         let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("biantawoList", params: params, success: { (result) in
             if (result != nil) {
+                print(result!)
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {

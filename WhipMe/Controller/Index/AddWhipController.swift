@@ -184,7 +184,7 @@ class AddWhipController: UIViewController {
                 "supervisorIcon":self.addTask.supervisorIcon,
                 "guarantee":self.addTask.guarantee
             ]
-//            print(params)
+            print(params)
 
             let alert = UIAlertView.init(title: "确认提交你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
             alert.bk_addButton(withTitle: "确认", handler: {

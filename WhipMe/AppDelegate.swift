@@ -211,6 +211,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JPUSHRegisterDelegate, JM
     }
     
     
+//    class func removeNotification(myWhipM: WhipM) -> Void {
+//        DispatchQueue.global().async {
+//            if #available(iOS 10.0, *) {
+//                // 使用 UNUserNotificationCenter 来管理通知
+//                
+//                
+//                let identifiers =  plan.alarmWeeks.map({ (value) -> String in
+//                    let indentifier = plan.themeName + String(value)
+//                    return indentifier
+//                })
+//                let center = UNUserNotificationCenter.current()
+//                center.removeDeliveredNotifications(withIdentifiers: identifiers)
+//                center.removePendingNotificationRequests(withIdentifiers: identifiers)
+//                print("删除通知：\(identifiers)")
+//                
+//            } else {
+//                // Fallback on earlier versions
+//            }
+//        }
+//    }
+    
+    class func registerNotification(myWhipM: WhipM) -> Void {
+        if myWhipM.clockTime.length != 4 {
+            return
+        }
+        DispatchQueue.global().async {
+            if #available(iOS 10.0, *) {
+                let center = UNUserNotificationCenter.current()
+                let content = UNMutableNotificationContent.init()
+                content.title = NSString.localizedUserNotificationString(forKey: myWhipM.themeName, arguments: nil)
+                content.body = NSString.localizedUserNotificationString(forKey: myWhipM.plan, arguments: nil)
+                content.sound = UNNotificationSound.default()
+                var components = DateComponents.init()
+                let hour = (myWhipM.clockTime as NSString).substring(from: 2)
+                components.hour = Int(hour)
+                let minute = (myWhipM.clockTime as NSString).substring(to: 2)
+                components.minute = Int(minute)
+                components.second = 0
+                let identifier = myWhipM.taskId
+                let trigger = UNCalendarNotificationTrigger.init(dateMatching:components , repeats: true)
+                let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
+                center.add(request, withCompletionHandler: { (error) in
+                    print("error : \(error)")
+                })
+                print("成功添加" + identifier + myWhipM.clockTime + "的本地通知")
+            } else {
+                // Fallback on earlier versions
+                //                let notification = UILocalNotification.init()
+                //                let date = Date.init(timeIntervalSinceNow: alertItme)
+                //                print(Date.init(timeIntervalSinceNow: alertItme))
+                //                notification.fireDate = date
+                //                notification.timeZone = NSTimeZone.local
+                //                notification.repeatInterval = .day
+                //                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+        }
+    }
+    
+    
 }
 
 
