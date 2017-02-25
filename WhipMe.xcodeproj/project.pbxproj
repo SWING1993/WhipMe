@@ -148,6 +148,7 @@
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */; };
 		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
+		C5F673CE1E613F7C006EA57B /* WMShareImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F673CD1E613F7C006EA57B /* WMShareImageView.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
 		C5FCD9FF1E4C6050009E45F6 /* HKTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FCD9FE1E4C6050009E45F6 /* HKTriangleView.m */; };
 		E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408D9911D8FB786006F2A75 /* HotAddCell.swift */; };
@@ -433,6 +434,8 @@
 		C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAboutViewController.m; sourceTree = "<group>"; };
 		C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginManagerController.h; sourceTree = "<group>"; };
 		C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginManagerController.m; sourceTree = "<group>"; };
+		C5F673CC1E613F7C006EA57B /* WMShareImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareImageView.h; sourceTree = "<group>"; };
+		C5F673CD1E613F7C006EA57B /* WMShareImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareImageView.m; sourceTree = "<group>"; };
 		C5F9BD751DD0147D000250E8 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		C5F9BD761DD0147D000250E8 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		C5F9BD781DD01B63000250E8 /* Whipme-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Whipme-PrefixHeader.pch"; path = "WhipMe/Whipme-PrefixHeader.pch"; sourceTree = "<group>"; };
@@ -833,6 +836,8 @@
 		C546FE1D1D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C5F673CC1E613F7C006EA57B /* WMShareImageView.h */,
+				C5F673CD1E613F7C006EA57B /* WMShareImageView.m */,
 				C542FE4A1E24CAB1000A66CB /* MyFansAndFocusCell.swift */,
 				C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */,
 				C516C6871E238412000BA12B /* MemberHeadViewCell.swift */,
@@ -1417,6 +1422,7 @@
 				C5C177861E2CADE700891C0D /* YLGIFImage.m in Sources */,
 				C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */,
 				E4D97E4E1D991E32006D3188 /* NormalCell.swift in Sources */,
+				C5F673CE1E613F7C006EA57B /* WMShareImageView.m in Sources */,
 				C542FE421E24BBA6000A66CB /* WMFansAndFocusController.m in Sources */,
 				C570C6A41E5AD7CE009CF43B /* WMSuperviseController.m in Sources */,
 				C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */,

@@ -155,8 +155,6 @@ static NSString *identifier_cell = @"setingTableViewCell";
     } else if (indexPath.row == 3) {
         WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeHelpCenter];
         [self.navigationController pushViewController:controller animated:YES];
-//        WMHelpCenterController *controller = [[WMHelpCenterController alloc] init];
-//        [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
         WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeLocal];
         [self.navigationController pushViewController:controller animated:YES];
