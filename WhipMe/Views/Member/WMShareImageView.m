@@ -40,16 +40,16 @@
     [_viewBottom setAlpha:0.5];
     [self.imageCustom addSubview:self.viewBottom];
     
-    _imgCode = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"download"]];
+    _imgCode = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"QRcode"]];
     [_imgCode setBackgroundColor:[UIColor clearColor]];
     [_imgCode setContentMode:UIViewContentModeScaleAspectFill];
     [_imgCode setClipsToBounds:YES];
     [self.imageCustom addSubview:_imgCode];
     
     _lblName = [UILabel new];
-    [_lblName setText:@"by研究生"];
+    [_lblName setText:@"by"];
     [_lblName setTextAlignment:NSTextAlignmentRight];
-    [_lblName setTextColor:[UIColor grayColor]];
+    [_lblName setTextColor:[UIColor colorWithWhite:0.7 alpha:1.0]];
     [_lblName setFont:[UIFont systemFontOfSize:10.0]];
     [self.imageCustom addSubview:_lblName];
     
@@ -72,7 +72,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     WEAKSELF
-    DebugLog(@"______________________________");
     [self.viewBottom mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.and.width.equalTo(weakSelf.imageCustom);
         make.height.mas_equalTo(100.0);
@@ -106,7 +105,7 @@
 
 - (void)setName:(NSString *)name {
     _name = name;
-    [self.lblName setText:name];
+    [self.lblName setText:[NSString stringWithFormat:@"by%@",name]];
 }
 
 - (void)setImage:(UIImage *)image {
@@ -117,6 +116,7 @@
     CGFloat ratio_h = image.size.height*ratio_r;
     
     [self.imageCustom setSize:CGSizeMake(self.imageCustom.width, ratio_h)];
+    [self setSize:self.imageCustom.size];
 }
 
 

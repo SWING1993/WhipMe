@@ -150,7 +150,7 @@
     UIImage *img = [UIImage convertViewToImage:logo];
     CGFloat ratioA = CGRectGetWidth(makeSize)/kWidth;
     CGFloat ratioB = CGRectGetHeight(makeSize)/CGRectGetWidth(makeSize);
-    CGFloat ratioC = 130.0/kHeight;
+    CGFloat ratioC = 150.0/kHeight;
     CGFloat widthA = ratioA*self.size.width;
     CGFloat heightA = ratioB*widthA;
     CGFloat originY = self.size.height - heightA - ratioC*self.size.height;
