@@ -480,7 +480,6 @@ extension WhipCell: UITableViewDataSource {
         }
         // 鞭挞我
         else {
-            AppDelegate.registerNotification(myWhipM: whipM)
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             cell.headV.bk_(whenTapped: { () -> Void in
                 if whipM.supervisor.length > 2 {
@@ -581,6 +580,7 @@ extension WhipCell: UITableViewDelegate {
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
                             self.needReloaTW()
+                            AppDelegate.removeNotification(myWhipM: whipM)
                         } else {
                             let log = UIAlertView.init(title: json["data"][0]["desc"].stringValue, message: nil, delegate: self, cancelButtonTitle: "确定")
                             log.show()
@@ -648,6 +648,12 @@ class IndexViewController: UIViewController {
                     weakSelf?.sectionH_0 = WhipCell.cellHeight(array: self.biantataList, type: WhipCell.whipOtherReuseIdentifier())
                     weakSelf?.sectionH_1 = WhipCell.cellHeight(array: self.biantawoList, type: WhipCell.whipMeReuseIdentifier())
                     weakSelf?.myTable.reloadData()
+  
+                    if let array = weakSelf?.biantawoList {
+                        for whipM in array {
+                            AppDelegate.registerNotification(myWhipM: whipM as! WhipM)
+                        }
+                    }
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                 }
@@ -728,17 +734,10 @@ extension IndexViewController:UITableViewDataSource {
         let cell: WhipCell = WhipCell.init(style: .default, reuseIdentifier: WhipCell.whipMeReuseIdentifier())
         cell.setDataWith(array: self.biantawoList)
         cell.checkPlan = { clickIndexPath in
-//            if UserManager.shared.isManager == true {
-//                let taCecordC = TaCecordController.init()
-//                taCecordC.hidesBottomBarWhenPushed = true
-//                taCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
-//                weakSelf?.navigationController?.pushViewController(taCecordC, animated: true)
-//            } else {
                 let meCecordC = MeCecordController.init()
                 meCecordC.hidesBottomBarWhenPushed = true
                 meCecordC.myWhipM = weakSelf?.biantawoList.object(at: clickIndexPath.row) as! WhipM
                 weakSelf?.navigationController?.pushViewController(meCecordC, animated: true)
-//            }
         }
         cell.needReload = { Void in
             self.setupAPI()

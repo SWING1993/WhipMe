@@ -263,8 +263,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         print("error : \(error)")
                     }
                 })
-                print(components)
-                print("成功添加" + identifier + myWhipM.clockTime + "的本地通知")
             } else {
                 // Fallback on earlier versions
                 let notification = UILocalNotification.init()
