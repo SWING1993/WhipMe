@@ -246,7 +246,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if #available(iOS 10.0, *) {
                 let content = UNMutableNotificationContent.init()
                 content.title = NSString.localizedUserNotificationString(forKey: title, arguments: nil)
-                content.sound = UNNotificationSound.default()
+                content.sound = UNNotificationSound.init(named: "小节奏 - 短信铃声.m4r")
                 Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
                 let minute = (myWhipM.clockTime as NSString).substring(from: 2)
                 let hour = (myWhipM.clockTime as NSString).substring(to: 2)
@@ -270,7 +270,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 notification.fireDate = date as Date?
                 notification.timeZone = TimeZoneName.asiaShanghai.timeZone
                 notification.repeatInterval = .day
-                notification.soundName = UILocalNotificationDefaultSoundName;
+                notification.soundName = "小节奏 - 短信铃声.m4r";
                 notification.alertBody = title;
                 UIApplication.shared.scheduleLocalNotification(notification)
             }

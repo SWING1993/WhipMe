@@ -162,6 +162,7 @@
 		E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */; };
 		E425F3C01D95030C00B17581 /* LeftTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3BF1D95030C00B17581 /* LeftTextCell.swift */; };
 		E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E425F3C11D95032200B17581 /* CenterTextCell.swift */; };
+		E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */ = {isa = PBXBuildFile; fileRef = E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */; };
 		E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D0F9E1DCC317F001A0B36 /* UserManager.swift */; };
 		E43D0FA31DCC3461001A0B36 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */; };
 		E43D0FB01DD07875001A0B36 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43D0FA81DD07875001A0B36 /* SVIndefiniteAnimatedView.m */; };
@@ -454,6 +455,7 @@
 		E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		E425F3BF1D95030C00B17581 /* LeftTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTextCell.swift; sourceTree = "<group>"; };
 		E425F3C11D95032200B17581 /* CenterTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterTextCell.swift; sourceTree = "<group>"; };
+		E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "小节奏 - 短信铃声.m4r"; sourceTree = "<group>"; };
 		E43D0F9E1DCC317F001A0B36 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E43D0FA21DCC3461001A0B36 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E43D0FA71DD07875001A0B36 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
 				E4AB21FE1D82566A0044943E /* Info.plist */,
 				C53619511D825AC80065707C /* WhipMe-Bridging-Header.h */,
@@ -1334,6 +1337,7 @@
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
+				E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */,
 				C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
 				E43D0FB21DD07875001A0B36 /* SVProgressHUD.bundle in Resources */,
