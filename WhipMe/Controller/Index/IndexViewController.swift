@@ -519,6 +519,17 @@ extension WhipCell: UITableViewDataSource {
             })
 
             cell.subTitle.textColor = kColorBlue
+            let label = UILabel()
+            label.adjustsFontSizeToFitWidth = true
+            label.textColor = kColorGary
+            label.text = "开始：" + whipM.startDate + "/结束：" + whipM.endDate
+            label.font = cell.subTitle.font
+            cell.contentView.addSubview(label)
+            label.snp.makeConstraints({ (make) in
+                make.size.equalTo(cell.subTitle)
+                make.left.equalTo(cell.subTitle)
+                make.top.equalTo(cell.subTitle.snp.bottom).offset(-3)
+            })
             if whipM.accept == 0 {
                 if UserManager.shared.isManager == true {
                     cell.goingL.isHidden = true
