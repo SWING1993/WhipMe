@@ -13,6 +13,7 @@
 #import "WMHistoricalReviewController.h"
 #import "WMFansAndFocusController.h"
 
+
 typedef NS_ENUM(NSUInteger, MyTaskType) {
     MyTaskTypeZero = 0,
     MyTaskTypeOne = 1,
@@ -262,6 +263,11 @@ static NSString *identifier_head = @"tableViewView_head";
     SetingViewController *controller = [SetingViewController new];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
 }
 
 - (void)clickWithHead {

@@ -46,6 +46,7 @@
 #import "WMConfig.h"
 #import "JCHATStringUtils.h"
 #import "ViewUtil.h"
+#import "WMShareImageView.h"
 
 #import "WMMemberViewController.h"
 #import "WMWebViewController.h"

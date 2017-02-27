@@ -14,6 +14,8 @@ class ShareController: UIViewController {
     var myFriendCircleM = FriendCircleM()
     var captureHeight: CGFloat = 150.0
     fileprivate var myTable = UITableView()
+    fileprivate var imageShare = WMShareImageView()
+    fileprivate var imageTemp = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +72,7 @@ class ShareController: UIViewController {
             make.centerY.equalTo(bottomView.snp.centerY)
             make.right.equalTo(btn1.snp.left).offset(-20)
         }
-
+        
         myTable = UITableView.init()
         myTable.backgroundColor = kColorWhite
         myTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
@@ -124,6 +126,24 @@ class ShareController: UIViewController {
             make.height.equalTo(40)
         }
         
+        imageShare = WMShareImageView()
+        self.view.addSubview(imageShare)
+        imageShare.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.top.equalTo(self.myTable.snp.bottom).offset(100.0);
+        }
+        
+        imageTemp = UIImageView()
+        imageTemp.isHidden = true
+        if (NSString.isBlankString(self.myFriendCircleM.picture) == false) {
+            imageTemp.setImageWith(urlString: self.myFriendCircleM.picture, placeholderImage: "nilTouSu")
+        }
+        self.view.addSubview(imageTemp)
+        imageTemp.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+        
     }
     
     func goBack() {
@@ -131,6 +151,7 @@ class ShareController: UIViewController {
     }
     
     func shareWX(btn: UIButton) {
+        
         if btn.tag == 1 {
             // 朋友圈
             WMShareEngine.sharedInstance().share(withScene: 1, with: self.capture())
@@ -148,7 +169,22 @@ class ShareController: UIViewController {
     
     func capture() -> UIImage {
         var captureImage = UIImage()
-        captureImage = UIImage.convertView(toImage: self.myTable)
+        if (NSString.isBlankString(self.myFriendCircleM.picture)) {
+            captureImage = UIImage.convertView(toImage: self.myTable)
+        } else {
+            if self.imageTemp.image != nil {
+                self.imageShare.image = self.imageTemp.image
+                self.imageShare.name = self.myFriendCircleM.nickname
+                
+                let image_save: UIImage = UIImage.convertView(toImage: self.imageShare)
+                let image_scale: UIImage = UIImage.scale(image_save)
+                let data_min: Data = UIImage.dataRepresentationImage(image_scale)
+                captureImage = UIImage.init(data: data_min)!
+                
+            } else {
+                captureImage = UIImage.convertView(toImage: self.myTable)
+            }
+        }
         return captureImage
     }
 
