@@ -480,7 +480,6 @@ extension WhipCell: UITableViewDataSource {
         }
         // 鞭挞我
         else {
-            whipM.clockTime = "1336"
             AppDelegate.registerNotification(myWhipM: whipM)
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             cell.headV.bk_(whenTapped: { () -> Void in

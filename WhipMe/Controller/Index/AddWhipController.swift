@@ -193,7 +193,6 @@ class AddWhipController: UIViewController {
                         let json = JSON(resultData)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
-                            Tool.showHUDTip(tipStr: "提交成功")
                             _ = weakSelf?.navigationController?.popToRootViewController(animated: true)
                         } else {
                             Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
