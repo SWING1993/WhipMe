@@ -29,6 +29,7 @@
     [self.navigationItem setTitle:@"我的钱包"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setup];
+    [self setData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +38,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setData];
+    [self queryAccountByWallet];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -156,6 +157,33 @@
     }
     CashViewController *controller = [[CashViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+/** 获取用户账户余额 */
+- (void)queryAccountByWallet {
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"userId":user.userId ?: @""};
+    
+    WEAK_SELF
+    [HttpAPIClient APIClientPOST:@"queryAccountById" params:param Success:^(id result) {
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            CGFloat float_wallet = [data[@"account"] floatValue];
+            UserManager *model = [UserManager shared];
+            model.wallet = [NSString stringWithFormat:@"%.2f",float_wallet];
+            [weakSelf setData];
+            
+            NSMutableDictionary *dict_value = [model mj_keyValues];
+            [UserManager storeUserWithDict:dict_value];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        
+    }];
 }
 
 @end

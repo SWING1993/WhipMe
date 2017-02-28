@@ -105,20 +105,25 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     FinancialDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_cell];
     
     MoneyRecordModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-//    NSDictionary *model = @{@"title":@"充值", @"time":@"2016-11-18 13:56:12",@"money":@"30",@"type":@"1"};
-    
-    NSString *str = @"";
+    //0：充值  1：提现   2: 自由服务费增加   3：自由服务费扣除
     if (model.type == 0) {
-        str = @"+";
+        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",[model.amount floatValue]];
         cell.lblTitle.text = @"充值";
         cell.lblMoney.textColor = [Define kColorBlue];
-    } else {
-        str = @"-";
+    } else if (model.type == 1) {
+        cell.lblMoney.text = [NSString stringWithFormat:@"-%.2f",[model.amount floatValue]];
         cell.lblTitle.text = @"提现";
+        cell.lblMoney.textColor = [Define kColorBlack];
+    } else if (model.type == 2) {
+        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",[model.amount floatValue]];
+        cell.lblTitle.text = @"自由服务费增加";
+        cell.lblMoney.textColor = [Define kColorBlue];
+    } else if (model.type == 3) {
+        cell.lblMoney.text = [NSString stringWithFormat:@"%.2f",[model.amount floatValue]];
+        cell.lblTitle.text = @"自由服务费扣除";
         cell.lblMoney.textColor = [Define kColorBlack];
     }
     cell.lblTime.text = model.createDate ?:@"";
-    cell.lblMoney.text = [NSString stringWithFormat:@"%@%.2f",str,[model.amount floatValue]];
     
     if (indexPath.row+1 == [tableView numberOfRowsInSection:indexPath.section]) {
         cell.lineView.hidden = YES;
@@ -149,7 +154,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryMoneyHis" params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-       
+        DebugLog(@"___result:%@",result);
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             [weakSelf.arrayContent removeAllObjects];
