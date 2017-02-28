@@ -106,20 +106,27 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     
     MoneyRecordModel *model = [self.arrayContent objectAtIndex:indexPath.row];
     //0：充值  1：提现   2: 自由服务费增加   3：自由服务费扣除
+    CGFloat money = [model.amount floatValue];
     if (model.type == 0) {
-        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",[model.amount floatValue]];
+        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",fabs(money)];
         cell.lblTitle.text = @"充值";
         cell.lblMoney.textColor = [Define kColorBlue];
     } else if (model.type == 1) {
-        cell.lblMoney.text = [NSString stringWithFormat:@"-%.2f",[model.amount floatValue]];
+        if (money > 0) {
+            money = -money;
+        }
+        cell.lblMoney.text = [NSString stringWithFormat:@"%.2f",money];
         cell.lblTitle.text = @"提现";
         cell.lblMoney.textColor = [Define kColorBlack];
     } else if (model.type == 2) {
-        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",[model.amount floatValue]];
+        cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",fabs(money)];
         cell.lblTitle.text = @"自由服务费增加";
         cell.lblMoney.textColor = [Define kColorBlue];
     } else if (model.type == 3) {
-        cell.lblMoney.text = [NSString stringWithFormat:@"%.2f",[model.amount floatValue]];
+        if (money > 0) {
+            money = -money;
+        }
+        cell.lblMoney.text = [NSString stringWithFormat:@"%.2f",money];
         cell.lblTitle.text = @"自由服务费扣除";
         cell.lblMoney.textColor = [Define kColorBlack];
     }
@@ -154,7 +161,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     WEAK_SELF
     [HttpAPIClient APIClientPOST:@"queryMoneyHis" params:param Success:^(id result) {
         [weakSelf.tableViewWM.mj_header endRefreshing];
-        DebugLog(@"___result:%@",result);
+        
         NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
         if ([data[@"ret"] intValue] == 0) {
             [weakSelf.arrayContent removeAllObjects];
