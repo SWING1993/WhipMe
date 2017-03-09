@@ -23,7 +23,6 @@ pod 'SDWebImage'
 pod 'ChameleonFramework'
 pod 'HandyJSON', '~> 1.5.2'
 pod 'Qiniu', '~> 7.1'
-pod 'JSPatchPlatform'
 
 
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'

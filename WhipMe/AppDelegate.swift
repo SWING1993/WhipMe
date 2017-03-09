@@ -150,9 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Bugly.start(withAppId: Define.appKeyBugly(), config: config)
         Bugly.setUserIdentifier(UserManager.shared.mobile)
         
-        // 实时修复线上 bug
-        JSPatch.start(withAppKey: "b12b0364eb920d55")
-        JSPatch.sync()
     }
     
     func customizeAppearance() {
