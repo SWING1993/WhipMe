@@ -23,12 +23,12 @@ class ThirdAddCustomCell: NormalCell {
         
         if self.addTask.type == "2" {
             addBtn.sd_setImage(with: URL.init(string: self.addTask.supervisorIcon), for: .normal, placeholderImage: nil)
-            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n自由服务费:"+self.addTask.guarantee+"元"
+            addLabel.text = "监督人:"+self.addTask.supervisorName+"\n保证金:"+self.addTask.guarantee+"元"
         }
         
         if self.addTask.type == "1" {
             addBtn.setImage(UIImage.init(named: "system_monitoring"), for: .normal)
-            addLabel.text = "监督人:客服监督\n自由服务费:"+self.addTask.guarantee+"元"
+            addLabel.text = "监督人:客服监督\n保证金:"+self.addTask.guarantee+"元"
         }
     }
     
@@ -75,7 +75,7 @@ class ThirdAddCustomCell: NormalCell {
         })
         
         let subTitleL = UILabel.init()
-        subTitleL.text = "功能介绍：可以找鞭挞我平台客服小鞭君或者好友监督，交一定的自由服务费，完成后退还，未完成，自由服务费归监督人所有。"
+        subTitleL.text = "功能介绍：可以找鞭挞我平台客服小鞭君或者好友监督，交一定的保证金，完成后退还，未完成，保证金归监督人所有。"
         subTitleL.numberOfLines = 0
         subTitleL.textColor = kYellow
         subTitleL.font = UIFont.systemFont(ofSize: 12)

@@ -135,7 +135,7 @@ class ManagerIndexDetailController: UIViewController {
             HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
                 hud.hide(animated: true)
                 if let dataResult = result {
-                    print(dataResult)
+                    
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -161,7 +161,7 @@ class ManagerIndexDetailController: UIViewController {
             HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
                 hud.hide(animated: true)
                 if let dataResult = result {
-                    print(dataResult)
+                    
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -317,7 +317,7 @@ class ManagerIndexDetailController: UIViewController {
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"
-        leftLabel.text = "自由服务费："+String(describing: model.guarantee)+"元"
+        leftLabel.text = "保证金："+String(describing: model.guarantee)+"元"
         timeLabel.text = "开始:"+model.startDate+"/"+"结束:"+model.endDate
         headView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: (155+contentH))
 

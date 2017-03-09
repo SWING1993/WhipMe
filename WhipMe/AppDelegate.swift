@@ -83,11 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("did Fail To Register For Remote Notifications With Error: \(error)")
+        //print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        print("Action - didReceiveLocalNotification")
+        //print("Action - didReceiveLocalNotification")
     }
     
     //iOS10 Feature: the front desk agent notified method processing
@@ -226,7 +226,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let center = UNUserNotificationCenter.current()
                 center.removeDeliveredNotifications(withIdentifiers: [identifier])
                 center.removePendingNotificationRequests(withIdentifiers: [identifier])
-                print("删除通知：\(identifier)")
             } else {
                 // Fallback on earlier versions
                 UIApplication.shared.cancelAllLocalNotifications()
@@ -257,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
                     if (error != nil) {
-                        print("error : \(error)")
+                        //print("error : \(error)")
                     }
                 })
             } else {

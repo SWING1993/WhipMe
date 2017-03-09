@@ -105,7 +105,7 @@ static NSString *const identifier_cell = @"financialDetailsCell";
     FinancialDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_cell];
     
     MoneyRecordModel *model = [self.arrayContent objectAtIndex:indexPath.row];
-    //0：充值  1：提现   2: 自由服务费增加   3：自由服务费扣除
+    //0：充值  1：提现   2: 保证金增加   3：保证金扣除
     CGFloat money = [model.amount floatValue];
     if (model.type == 0) {
         cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",fabs(money)];
@@ -120,14 +120,14 @@ static NSString *const identifier_cell = @"financialDetailsCell";
         cell.lblMoney.textColor = [Define kColorBlack];
     } else if (model.type == 2) {
         cell.lblMoney.text = [NSString stringWithFormat:@"+%.2f",fabs(money)];
-        cell.lblTitle.text = @"自由服务费增加";
+        cell.lblTitle.text = @"保证金增加";
         cell.lblMoney.textColor = [Define kColorBlue];
     } else if (model.type == 3) {
         if (money > 0) {
             money = -money;
         }
         cell.lblMoney.text = [NSString stringWithFormat:@"%.2f",money];
-        cell.lblTitle.text = @"自由服务费扣除";
+        cell.lblTitle.text = @"保证金扣除";
         cell.lblMoney.textColor = [Define kColorBlack];
     }
     cell.lblTime.text = model.createDate ?:@"";

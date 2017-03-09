@@ -29,7 +29,7 @@ class CashController: UIViewController {
     }
     
     func steup() {
-        self.navigationItem.title = "自由服务费设置"
+        self.navigationItem.title = "保证金设置"
         self.view.backgroundColor = kColorBackGround
         
         myTable.register(NormalCell.self, forCellReuseIdentifier: "myCell")
@@ -61,7 +61,7 @@ class CashController: UIViewController {
                         Tool.showHUDTip(tipStr: "余额不足！")
                         return
                     } else if value1 > 100.0 {
-                        Tool.showHUDTip(tipStr: "服务费范围必须在0-100元以内")
+                        Tool.showHUDTip(tipStr: "保证金范围必须在0-100元以内")
                         return
                     }
                 } else {
@@ -69,7 +69,7 @@ class CashController: UIViewController {
                     return
                 }
                 
-                let tipStr = "确认自由服务费为"+guarantee+"元，完成任务将退还，未完成任务将不退还。"
+                let tipStr = "确认保证金为"+guarantee+"元，完成任务将退还，未完成任务将不退还。"
                 let tip = UIAlertView.init(title: tipStr, message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
                 tip.show()
                 tip.bk_setHandler({ 
@@ -88,7 +88,7 @@ class CashController: UIViewController {
         ]
         HttpAPIClient.apiClientPOST("queryAccountById", params: params, success: { (result) in
             if let dataResult = result {
-                print(dataResult)
+                
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
@@ -177,7 +177,7 @@ extension CashController: UITableViewDataSource {
             })
             
             let cashL = UILabel()
-            cashL.text = "自由服务费"
+            cashL.text = "保证金"
             cashL.font = UIFont.systemFont(ofSize: 16)
             cell.bgView.addSubview(cashL)
             cashL.snp.makeConstraints({ (make) in
@@ -217,7 +217,7 @@ extension CashController: UITableViewDataSource {
             })
             
             let label2 = UILabel()
-            label2.text = "自由服务费说明：自由服务费是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还自由服务费，未达成任务，则归监督人所有。\n自由服务费金额在0-100元之间。"
+            label2.text = "保证金说明：保证金是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还保证金，未达成任务，则归监督人所有。\n保证金金额在0-100元之间。"
             label2.numberOfLines = 0
             label2.font = UIFont.systemFont(ofSize: 13)
             label2.textColor = kYellow

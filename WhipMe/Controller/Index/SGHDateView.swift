@@ -28,7 +28,7 @@ class SGHDateView: NSObject {
         alertView?.delegate = self
         
         alertView?.onButtonTouchUpInside = { alertView, buttonIndex in
-            print(buttonIndex)
+            
             if buttonIndex == 1 {
                 if self.okBlock != nil {
                     let date = self.picker.date

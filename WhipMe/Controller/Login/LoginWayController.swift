@@ -114,7 +114,6 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
     }
     
     func clickWithItem(sender: UIButton) {
-        print("\(self.classForCoder) is click \(sender)")
         
         let _index: Int = sender.tag%button_index
         
@@ -141,7 +140,7 @@ class LoginWayController: UIViewController, WXApiEngineDelegate {
         } else {
             // 0(用户同意)
             HttpAPIClient.apiClientPOST("wlogin", params: ["unionId":response.code], success: { (result) in
-                print("wlogin result:\(result)")
+                
                 if (result != nil) {
                     let json = JSON(result!)
                     let data = json["data"][0]

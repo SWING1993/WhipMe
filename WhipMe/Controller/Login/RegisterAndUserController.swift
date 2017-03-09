@@ -198,8 +198,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         txtNickname.resignFirstResponder()
         let nickName: String = (txtNickname.text?.stringByTrimingWhitespace())!
         
-        print("nickname is \(nickName)")
-        
         if (NSString.isBlankString(self.avatar)) {
             showIsMessage(msg: "请设置头像!")
             return
@@ -279,7 +277,7 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "YYYY-MM-dd"
         let customDate = dateformatter.string(from: currentdate)
-        print(customDate)
+        
         let params = ["mobile":mobileStr,
                       "icon":self.avatar,
                       "nickname":nickName,
@@ -315,7 +313,6 @@ class RegisterAndUserController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - UIActionSheet
     func actionSheet(buttonIndex: Int) {
-        print("sheet is index:\(buttonIndex)")
         
         if buttonIndex == 0 {
             return

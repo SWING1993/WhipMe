@@ -212,7 +212,7 @@
     [self.headV setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[Define kDefaultImageHead]];
     
     self.subTitle.text = [NSString stringWithFormat:@"开始:%@/结束:%@",model.startDate,model.endDate];
-    self.guaranteeL.text = [NSString stringWithFormat:@"自由服务费：%.2f元",model.guarantee];
+    self.guaranteeL.text = [NSString stringWithFormat:@"保证金：%.2f元",model.guarantee];
   
     self.contentL.text = model.plan;
     

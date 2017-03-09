@@ -52,9 +52,7 @@ class PrivateChatController: UIViewController, JMessageDelegate {
     }
     
     func clickWithNavItem(_ sender: UISegmentedControl) {
-       
-        print(sender.numberOfSegments+sender.selectedSegmentIndex)
-
+        //print(sender.numberOfSegments+sender.selectedSegmentIndex)
     }
 
     func clickWithRightBarItem() {
@@ -67,8 +65,6 @@ class PrivateChatController: UIViewController, JMessageDelegate {
     func getConversationList() {
         
         JMSGConversation.allConversations({ (result, error) in
-            
-            print("resutl : \(result) error is \(error)")
             
             self.arrayContent.removeAllObjects()
             if (result != nil) {
@@ -87,46 +83,46 @@ class PrivateChatController: UIViewController, JMessageDelegate {
     
     // JMSGDBMigrateDelegate 数据库升级通知
     func onDBMigrateStart() {
-        print("onDBmigrateStart in appdelegate")
+        //print("onDBmigrateStart in appdelegate")
     }
     
     func onDBMigrateFinishedWithError(_ error: Error!) {
-        print("onDBmigrateFinish in appdelegate")
+        //print("onDBmigrateFinish in appdelegate")
         getConversationList()
     }
     
     // JMSGMessageDelegate 消息相关的变更通知
     // 发送消息结果返回回调
     func onSendMessageResponse(_ message: JMSGMessage!, error: Error!) {
-        print("Action -- onSendMessageResponse \(message) , error:\(error)")
+        //print("Action -- onSendMessageResponse \(message) , error:\(error)")
     }
     
     // 接收消息(服务器端下发的)回调
     func onReceive(_ message: JMSGMessage!, error: Error!) {
-        print("Action -- onReceivemessage \(message), error:\(error)")
+        //print("Action -- onReceivemessage \(message), error:\(error)")
         
         getConversationList()
     }
     
     // 接收消息媒体文件下载失败的回调
     func onReceiveMessageDownloadFailed(_ message: JMSGMessage!) {
-        print("Action -- onReceiveMessageDownloadFailed \(message)")
+        //print("Action -- onReceiveMessageDownloadFailed \(message)")
     }
 
     // JMSGConversationDelegate 会话相关变更通知
     // 会话信息变更通知
     func onConversationChanged(_ conversation: JMSGConversation!) {
-        print("Action -- onConversationChanged")
+        //print("Action -- onConversationChanged")
     }
     
     // 当前剩余的全局未读数
     func onUnreadChanged(_ newCount: UInt) {
-        print("Action -- onUnreadChanged")
+        //print("Action -- onUnreadChanged")
     }
     
     // MARK: - 懒加载
     lazy var arrayContent: NSMutableArray! = {
-        print("只走一次")
+        //print("只走一次")
         var arrayContent = NSMutableArray()
         return arrayContent
     }()

@@ -132,7 +132,7 @@ class MyFansAndFocusCell: UITableViewCell {
     
     func cell(model: FansAndFocusModel, style: Bool) {
         
-        self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultPlaceImage())
+        self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         if (NSString.isBlankString(model.nickname)) {
             self.lblTitle.text = ""
         } else {
@@ -159,7 +159,7 @@ class MyFansAndFocusCell: UITableViewCell {
     
     func cellFocus(model: FansAndFocusModel, style: Bool) {
         
-        self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultPlaceImage())
+        self.imageIcon.setImageWith(NSURL.init(string: model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         if (NSString.isBlankString(model.nickname)) {
             self.lblTitle.text = ""
         } else {

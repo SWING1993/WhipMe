@@ -36,7 +36,6 @@ class PlanM: NSObject {
         }
         plans.add(value)
         plans.storeValue(withKey: kPlan)
-        print(value.themeName)
     }
     
     class func deletePlan(index: Int) {

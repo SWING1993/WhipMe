@@ -251,7 +251,7 @@ extension MeCecordController:UITableViewDataSource {
                             if ret == 0 {
                                 let dataJson = json["data"][0]
                                 let string = String(describing: dataJson)
-                                print(string)
+                                
                                 if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                                     let queryUserBlogC = QueryUserBlogC.init()
                                     queryUserBlogC.navigationItem.title = self.myWhipM.supervisorName
@@ -276,7 +276,7 @@ extension MeCecordController:UITableViewDataSource {
             } else {
                 cell.titleL.text =  myWhipM.supervisorName + "监督中"
             }
-            cell.subTitleL.text = "自由服务费："+String(describing: myWhipM.guarantee)+"元"
+            cell.subTitleL.text = "保证金："+String(describing: myWhipM.guarantee)+"元"
             return cell
         } else if indexPath.section == 2 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())

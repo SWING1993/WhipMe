@@ -348,7 +348,7 @@ extension WhipCell: UITableViewDataSource {
                             if ret == 0 {
                                 let dataJson = json["data"][0]
                                 let string = String(describing: dataJson)
-                                print(string)
+                                
                                 if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                                     let queryUserBlogC = QueryUserBlogC.init()
                                     queryUserBlogC.navigationItem.title = whipM.nickname
@@ -461,7 +461,7 @@ extension WhipCell: UITableViewDataSource {
             if whipM.accept == 0 {
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.config()
-                cell.guaranteeL.text = "自由服务费："+String(describing: whipM.guarantee)+"元"
+                cell.guaranteeL.text = "保证金："+String(describing: whipM.guarantee)+"元"
             } else if (whipM.accept == 1){
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
                 cell.goingL.text = "已拒绝"
@@ -497,7 +497,7 @@ extension WhipCell: UITableViewDataSource {
                             if ret == 0 {
                                 let dataJson = json["data"][0]
                                 let string = String(describing: dataJson)
-                                print(string)
+                                
                                 if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                                     let queryUserBlogC = QueryUserBlogC.init()
                                     queryUserBlogC.navigationItem.title = whipM.supervisorName
@@ -535,12 +535,12 @@ extension WhipCell: UITableViewDataSource {
                     cell.goingL.isHidden = true
                 }
                 cell.goingL.text = "待确认"
-                cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
+                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorYellow
 
             } else if whipM.accept == 1 {
                 cell.goingL.text = "已拒绝"
-                cell.subTitle.text = "自由服务费:"+String(describing: whipM.guarantee)+"元"
+                cell.subTitle.text = "保证金:"+String(describing: whipM.guarantee)+"元"
                 cell.goingL.backgroundColor = kColorRed
             } else {
                 cell.goingL.isHidden = true
@@ -586,7 +586,7 @@ extension WhipCell: UITableViewDelegate {
                 HttpAPIClient.apiClientPOST("removeTask3", params: param, success: { (result) in
                     tableView.setEditing(false, animated: true)
                     if let dataResult = result {
-                        print(dataResult)
+                        
                         let json = JSON(dataResult)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
@@ -760,7 +760,7 @@ extension IndexViewController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension IndexViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        //print(indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

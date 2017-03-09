@@ -184,8 +184,7 @@ class AddWhipController: UIViewController {
                 "supervisorIcon":self.addTask.supervisorIcon,
                 "guarantee":self.addTask.guarantee
             ]
-            print(params)
-
+            
             let alert = UIAlertView.init(title: "确认提交你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
             alert.bk_addButton(withTitle: "确认", handler: {
                 HttpAPIClient.apiClientPOST("addTask", params: params, success: { (result) in
@@ -210,7 +209,7 @@ class AddWhipController: UIViewController {
         weak var weakSelf = self
         HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
             if let resultData = result {
-                print(resultData)
+                
                 let json = JSON(resultData)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {

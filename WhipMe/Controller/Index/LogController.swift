@@ -357,7 +357,7 @@ class LogController: UIViewController {
         weak var weakSelf = self
         HttpAPIClient.apiClientPOST("addRecord", params: params, success: { (result) in
             if (result != nil) {
-                print(result!)
+                
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret != 0 {
@@ -481,24 +481,24 @@ extension LogController :UINavigationControllerDelegate {
 
 extension LogController :CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last!)
+        
         manager.stopUpdatingLocation()
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(locations.last!) { (placemarks, error) in
             if error == nil {
                 let mark = placemarks?.last
-                print(mark?.name! as Any)
+                
                 self.location = (mark?.name)!
                 let cell:LogLocationCell = self.myLogTable.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! LogLocationCell
                 cell.locationL.text = self.location
             }else {
-                print(error!)
+                //print(error!)
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        //print(error)
     }
 
 }

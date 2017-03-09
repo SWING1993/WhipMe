@@ -216,7 +216,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         HttpAPIClient.apiClientPOST("sendCode", params: ["mobile":mobileStr], success: { (result) in
-            print("result:\(result)")
+            
             self.verify_codeBtn.startUpTimer()
         }) { (error) in
             Tool.showHUDTip(tipStr: "网络不给力")
@@ -228,7 +228,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func delete(_ sender: Any?) {
-        print(self.classForCoder)
         self.verify_codeBtn.invalidateTimer()
     }
     

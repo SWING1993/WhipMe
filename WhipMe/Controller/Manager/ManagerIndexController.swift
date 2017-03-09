@@ -67,7 +67,7 @@ class ManagerIndexController: UIViewController {
         weak var weakSelf = self
         let params = ["pageSize":"100","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("needHandleList", params: params, success: { (result) in
-            print(result!)
+            
             if (result != nil) {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
@@ -86,7 +86,7 @@ class ManagerIndexController: UIViewController {
         
         let params2 = ["pageSize":"100","pageIndex":"1","userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("needSuperviseList", params: params2, success: { (result) in
-            print(result!)
+            
             if (result != nil) {
                 let json = JSON(result!)
                 let ret  = json["data"][0]["ret"].intValue
@@ -185,7 +185,7 @@ extension ManagerIndexController:UITableViewDataSource {
 /// UITableViewDelegate methods.
 extension ManagerIndexController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        //print(indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

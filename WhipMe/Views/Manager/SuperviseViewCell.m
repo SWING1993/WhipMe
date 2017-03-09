@@ -119,11 +119,11 @@
     self.subTitle.textColor = [Define kColorBlue];
     if (model.accept == 0) {
         self.goingL.text = @"待确认";
-        self.subTitle.text = [NSString stringWithFormat:@"自由服务费:%.2f元",model.guarantee];
+        self.subTitle.text = [NSString stringWithFormat:@"保证金:%.2f元",model.guarantee];
         self.goingL.backgroundColor = [Define kColorYellow];
     } else if (model.accept == 1) {
         self.goingL.text = @"已拒绝";
-        self.subTitle.text = [NSString stringWithFormat:@"自由服务费:%.2f元",model.guarantee];
+        self.subTitle.text = [NSString stringWithFormat:@"保证金:%.2f元",model.guarantee];
         self.goingL.backgroundColor = [Define kColorRed];
     } else {
         self.subTitle.text = [NSString stringWithFormat:@"被鞭挞%ld次",(long)model.recordNum];

@@ -38,7 +38,7 @@ class ClassifyController: UIViewController {
         let params = ["themeId":self.myWhipM.themeId,"pageSize":"100","pageIndex":"1"]
         HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
             if let dataResult = result {
-                print(dataResult)
+                
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 let totalSize = json["data"][0]["totalSize"].intValue
@@ -70,7 +70,6 @@ class ClassifyController: UIViewController {
                 }
             }
         }) { (error) in
-            print(error!)
             Tool.showHUDTip(tipStr: "网络不给力")
         }
     }

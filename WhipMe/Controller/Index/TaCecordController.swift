@@ -144,7 +144,7 @@ class TaCecordController: UIViewController {
                          "result":"2"]
             HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
                 if let dataResult = result {
-                    print(dataResult)
+                    
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -155,7 +155,6 @@ class TaCecordController: UIViewController {
                     }
                 }
             }) { (error) in
-                print(error!)
                 Tool.showHUDTip(tipStr: "网络不给力")
             }
 
@@ -167,7 +166,7 @@ class TaCecordController: UIViewController {
                          "result":"1"]
             HttpAPIClient.apiClientPOST("assessTask", params: param, success: { (result) in
                 if let dataResult = result {
-                    print(dataResult)
+                    
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
@@ -178,7 +177,7 @@ class TaCecordController: UIViewController {
                     }
                 }
             }) { (error) in
-                print(error!)
+                
                 Tool.showHUDTip(tipStr: "网络不给力")
             }
         })
@@ -221,7 +220,7 @@ class TaCecordController: UIViewController {
                         if ret == 0 {
                             let dataJson = json["data"][0]
                             let string = String(describing: dataJson)
-                            print(string)
+                            
                             if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                                 let queryUserBlogC = QueryUserBlogC.init()
                                 queryUserBlogC.navigationItem.title = model.nickname
@@ -421,7 +420,7 @@ class TaCecordController: UIViewController {
                              "creatorId":model.creator,
                              "accept":"2",
                              ]
-                print("\(param)")
+                
                 HttpAPIClient.apiClientPOST("adminHandleTask", params: param, success: { (result) in
                     if let dataResult = result {
                         let json = JSON(dataResult)
@@ -460,7 +459,7 @@ class TaCecordController: UIViewController {
         contentL.text = model.plan
         nickNameL.text = model.nickname
         topicL.text = "#"+model.themeName+"#"
-        leftLabel.text = "自由服务费："+String(describing: model.guarantee)+"元"
+        leftLabel.text = "保证金："+String(describing: model.guarantee)+"元"
         timeLabel.text = "开始:"+model.startDate+"/"+"结束:"+model.endDate
         headView.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: (155+contentH))
         if model.accept == 0 {

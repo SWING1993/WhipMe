@@ -150,7 +150,7 @@ class AddPeopleController: UIViewController {
         let params = ["userId":UserManager.shared.userId]
         HttpAPIClient.apiClientPOST("querySupervisor", params: params, success: { (result) in
             if let resultData = result {
-                print(resultData)
+                
                 let json = JSON(resultData)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {

@@ -71,7 +71,7 @@ class RecommendCell: NormalCell {
                     if ret == 0 {
                         let dataJson = json["data"][0]
                         let string = String(describing: dataJson)
-                        print(string)
+                        
                         if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                             let queryUserBlogC = QueryUserBlogC.init()
                             queryUserBlogC.navigationItem.title = self.myRecommendM.nickname
@@ -257,7 +257,7 @@ class RecommendCell: NormalCell {
                 
                 HttpAPIClient.apiClientPOST("addLike", params: params, success: { (result) in
                     if (result != nil) {
-                        print(result!)
+                        
                         let json = JSON(result!)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
@@ -305,7 +305,7 @@ class RecommendCell: NormalCell {
                 ]
                 HttpAPIClient.apiClientPOST("addComment", params: params, success: { (result) in
                     if (result != nil) {
-                        print(result!)
+                        
                         let json = JSON(result!)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {

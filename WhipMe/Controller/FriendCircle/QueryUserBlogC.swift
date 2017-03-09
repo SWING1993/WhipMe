@@ -228,7 +228,6 @@ class UserBlogCell: NormalCell {
         if self.myGrowM.threeDay.count > 0 {
             if let threeDayDic = self.myGrowM.threeDay.first {
                 if let picture = threeDayDic["picture"] {
-                    print(picture)
                     self.firstPic.setImageWith(urlString: picture, placeholderImage: "nilTouSu")
                 }
             }
@@ -351,7 +350,6 @@ class QueryUserBlogC: UIViewController {
                     ]
                 HttpAPIClient.apiClientPOST("focusUser", params: params, success: { (result) in
                     if let dataResult = result {
-                        print(dataResult)
                         let json = JSON(dataResult)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
@@ -380,7 +378,7 @@ class QueryUserBlogC: UIViewController {
                 ]
                 HttpAPIClient.apiClientPOST("cancelUser", params: params, success: { (result) in
                     if let dataResult = result {
-                        print(dataResult)
+                        
                         let json = JSON(dataResult)
                         let ret  = json["data"][0]["ret"].intValue
                         if ret == 0 {
@@ -419,7 +417,7 @@ class QueryUserBlogC: UIViewController {
                 if ret == 0 {
                     let dataJson = json["data"][0]
                     let string = String(describing: dataJson)
-                    print(string)
+                    
                     if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                         self.userBlogM = userBlogM
                         if self.userBlogM.myGrow.count > 0 {
