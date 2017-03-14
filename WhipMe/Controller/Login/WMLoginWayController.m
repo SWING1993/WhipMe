@@ -64,7 +64,8 @@ static NSInteger const button_index = 7777;
     [imageLogo mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(152/2.0, 152/2.0));
         make.centerX.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view).offset(80.0);
+        CGFloat oirign_y = kScreenH < 568.0 ? 40.0 : 80.0;
+        make.top.equalTo(weakSelf.view).offset(oirign_y);
     }];
     
     UIImageView *image_btw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btw_name"]];
@@ -75,9 +76,10 @@ static NSInteger const button_index = 7777;
     [image_btw mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(123/2.0, 36/2.0));
         make.centerX.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view).offset(168.0);
+        CGFloat oirign_y = kScreenH < 568.0 ? 128.0 : 168.0;
+        make.top.equalTo(weakSelf.view).offset(oirign_y);
     }];
-
+    
     UILabel *lblMessage = [[UILabel alloc] init];
     [lblMessage setBackgroundColor:[UIColor clearColor]];
     [lblMessage setTextAlignment:NSTextAlignmentLeft];
@@ -93,7 +95,8 @@ static NSInteger const button_index = 7777;
     [lblMessage mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(16.0, floorf(size_h_msg.height+1.0)));
         make.centerX.equalTo(weakSelf.view).offset(-8.0);
-        make.top.equalTo(image_btw.mas_bottom).offset(30.0);
+        CGFloat oirign_y = kScreenH < 568.0 ? 10.0 : 30.0;
+        make.top.equalTo(image_btw.mas_bottom).offset(oirign_y);
     }];
     
     UILabel *lblMessage2 = [[UILabel alloc] init];
@@ -138,15 +141,17 @@ static NSInteger const button_index = 7777;
     [viewButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.and.width.equalTo(weakSelf.view);
         make.height.mas_equalTo(120.0);
-        make.top.equalTo(weakSelf.view).offset(MIN(456.0, [Define screenHeight]-140.0));
+        make.top.equalTo(weakSelf.view).offset(MIN(456.0, kScreenH-140.0));
     }];
-
+    
     NSArray *arrayTitle = @[@{@"title":@"新建用户",@"icon":@"button_create_off",},
                             @{@"title":@"手机登录",@"icon":@"button_phone_off",},
                             @{@"title":@"微信登录",@"icon":@"button_weixin_off",}];
-    CGFloat origin_x = ([Define screenWidth]-84.0*3-40.0)/2.0;
+    CGFloat origin_x = (kScreenW-84.0*3-40.0)/2.0;
     for (NSInteger i=0; i<arrayTitle.count; i++) {
         NSDictionary *dict = [arrayTitle objectAtIndex:i];
+        CGFloat oirign_y1 = kScreenH < 568.0 ? 15.0 : 0;
+        CGFloat oirign_y = kScreenH < 568.0 ? 5.0 : 20.0;
         
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [itemButton setBackgroundColor:[UIColor clearColor]];
@@ -155,14 +160,13 @@ static NSInteger const button_index = 7777;
         [itemButton setTitleColor:[Define kColorBlack] forState:UIControlStateNormal];
         [itemButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
         [itemButton setTitleEdgeInsets:UIEdgeInsetsMake(100.0, -84.0, 0, 0)];
-        [itemButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 20.0, 0)];
+        [itemButton setImageEdgeInsets:UIEdgeInsetsMake(oirign_y1, 0, oirign_y, 0)];
         [itemButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
         [itemButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
         [itemButton setAdjustsImageWhenHighlighted:NO];
         [itemButton setTag:i+button_index];
         [itemButton addTarget:self action:@selector(onClickWithItem:) forControlEvents:UIControlEventTouchUpInside];
         [viewButton addSubview:itemButton];
-        
         [itemButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.and.height.equalTo(viewButton);
             make.width.mas_equalTo(84.0);
