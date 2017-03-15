@@ -112,10 +112,10 @@ class AddWhipController: UIViewController {
             prepareSegmented()
             prepareHotTable()
             loadHotThemeData()
-        }
-        else {
+        } else {
             self.navigationItem.rightBarButtonItem = self.submitBtn
         }
+        
         prepareCustomTable()
         NotificationCenter.default.addObserver(self, selector: #selector(setSupervisor), name: NSNotification.Name(rawValue: AddWhipController.addSupervisorKey()), object: nil)
         
@@ -204,7 +204,6 @@ class AddWhipController: UIViewController {
             alert.show()
         }
     }
-    
     fileprivate func loadHotThemeData() {
         weak var weakSelf = self
         HttpAPIClient.apiClientPOST("queryHotThemeList", params: nil, success: { (result) in
