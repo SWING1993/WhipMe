@@ -219,8 +219,9 @@ extension CashController: UITableViewDataSource {
             let label2 = UILabel()
             if let str : String = UserDefaults.standard.object(forKey: "queryDepositDes") as! String? {
                 label2.text = str
+            } else {
+                label2.text = "保证金说明：保证金是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还保证金，未达成任务，则归监督人所有。\n保证金金额在0-100元之间。"
             }
-//            label2.text = "保证金说明：保证金是用来约束并打赏监督者或被监督者的随机筹码，如果完成任务，则退还保证金，未达成任务，则归监督人所有。\n保证金金额在0-100元之间。"
             label2.numberOfLines = 0
             label2.font = UIFont.systemFont(ofSize: 13)
             label2.textColor = kYellow

@@ -75,10 +75,10 @@ class ThirdAddCustomCell: NormalCell {
         })
         
         let subTitleL = UILabel.init()
-        if let str : String = UserDefaults.standard.object(forKey: "queryTaskDes") as! String? {
-            subTitleL.text = str
-        }
-//        "功能介绍：可以找鞭挞我平台客服小鞭君或者好友监督，交一定的保证金，完成后退还，未完成，保证金归监督人所有。"
+//        if let str : String = UserDefaults.standard.object(forKey: "queryTaskDes") as! String? {
+//            subTitleL.text = str
+//        }
+        subTitleL.text = "功能介绍：可以找鞭挞我平台客服小鞭君或者好友监督，交一定的保证金，完成后退还，未完成，保证金归监督人所有。"
         subTitleL.numberOfLines = 0
         subTitleL.textColor = kYellow
         subTitleL.font = UIFont.systemFont(ofSize: 12)

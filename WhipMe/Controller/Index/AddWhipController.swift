@@ -377,7 +377,13 @@ extension AddWhipController:UITableViewDataSource {
         if tableView.tag == 101 {
             return self.queryHotThemeMArr.count
         }
-        return 4
+        if let str : String = UserDefaults.standard.object(forKey: "queryTaskDes") as! String? {
+            if NSString.isBlankString(str)==true {
+                return 2
+            }
+            return 3
+        }
+        return 3
     }
     
     /// Prepares the cells within the tableView.

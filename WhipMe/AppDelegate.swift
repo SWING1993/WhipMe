@@ -58,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if ret == 0 {
                     let queryTaskDes = json["data"][0]["explain"].stringValue
                     UserDefaults.standard.set(queryTaskDes, forKey: "queryTaskDes")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "queryTaskDes")
                 }
             }
         }) { (error) in
@@ -73,6 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if ret == 0 {
                     let queryDepositDes = json["data"][0]["explain"].stringValue
                     UserDefaults.standard.set(queryDepositDes, forKey: "queryDepositDes")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "queryDepositDes")
                 }
             }
         }) { (error) in

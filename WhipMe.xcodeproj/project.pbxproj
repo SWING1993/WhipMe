@@ -712,6 +712,8 @@
 		C546FE131D82989700012FB4 /* Member */ = {
 			isa = PBXGroup;
 			children = (
+				C516C67A1E233021000BA12B /* WMMemberViewController.h */,
+				C516C67B1E233021000BA12B /* WMMemberViewController.m */,
 				C555E7791DE5827600A443A0 /* MyWalletViewController.h */,
 				C555E77A1DE5827600A443A0 /* MyWalletViewController.m */,
 				C555E77C1DE5935900A443A0 /* TopUpViewController.h */,
@@ -724,8 +726,6 @@
 				C54E77E11DE69290007F886B /* WMUserInfoViewController.m */,
 				C5602A0D1DEE66D6006BA184 /* WMUserEditViewController.h */,
 				C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */,
-				C516C67A1E233021000BA12B /* WMMemberViewController.h */,
-				C516C67B1E233021000BA12B /* WMMemberViewController.m */,
 				C542FE311E247C73000A66CB /* WMHistoricalReviewController.h */,
 				C542FE321E247C73000A66CB /* WMHistoricalReviewController.m */,
 				C542FE3A1E24B5F8000A66CB /* WMFinancialDetailsController.h */,

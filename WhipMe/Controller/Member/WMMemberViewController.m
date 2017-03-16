@@ -210,8 +210,15 @@ static NSString *identifier_head = @"tableViewView_head";
     UIImage *image_normal = [UIImage imageWithDraw:rgb(247, 247, 247) sizeMake:CGRectMake(0, 0, 20.0, 20.0)];
     image_normal = [image_normal stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     CGFloat origin_x = 0.0f;
-    CGFloat size_item_w = [Define screenWidth]/3.0;
     NSInteger item_tag = kItem_Tag;
+    
+    NSString *cashMsg = [[NSUserDefaults standardUserDefaults] objectForKey:@"queryTaskDes"];
+    if ([NSString isBlankString:cashMsg]) {
+        titles = [NSArray arrayWithObjects:@"关注",@"粉丝", nil];
+        item_tag += 1;
+    }
+    CGFloat size_item_w = [Define screenWidth]/titles.count;
+    
     for (NSString *itemStr in titles) {
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [itemButton setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
