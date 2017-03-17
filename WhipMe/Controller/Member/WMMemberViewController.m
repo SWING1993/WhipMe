@@ -216,6 +216,9 @@ static NSString *identifier_head = @"tableViewView_head";
     if ([NSString isBlankString:cashMsg]) {
         titles = [NSArray arrayWithObjects:@"关注",@"粉丝", nil];
         item_tag += 1;
+        [self.iconWallet setHidden:YES];
+    } else {
+        [self.iconWallet setHidden:NO];
     }
     CGFloat size_item_w = [Define screenWidth]/titles.count;
     

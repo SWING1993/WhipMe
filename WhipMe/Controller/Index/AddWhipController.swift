@@ -383,7 +383,7 @@ extension AddWhipController:UITableViewDataSource {
             }
             return 3
         }
-        return 3
+        return 2
     }
     
     /// Prepares the cells within the tableView.
