@@ -99,14 +99,14 @@
     [self.view addSubview:self.viewCurrent];
     [self.viewCurrent mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.and.width.equalTo(weakSelf.view);
-        make.height.mas_equalTo(420/2.0);
+        make.height.mas_equalTo(324/2.0);
         make.top.equalTo(weakSelf.btnBanner.mas_bottom);
     }];
     
-    //1198087202
-    NSArray *titles = [NSArray arrayWithObjects:@"检查更新",@"联系我们", nil];
+    //1198087202  @"检查更新",
+    NSArray *titles = [NSArray arrayWithObjects:@"联系我们", nil];
     CGFloat origin_y = 0.0f;
-    for (NSInteger i=0; i<titles.count; i++) {
+    for (NSInteger i=1; i<=titles.count; i++) {
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [itemButton setBackgroundColor:[UIColor whiteColor]];
         [itemButton setAdjustsImageWhenHighlighted:NO];
@@ -114,7 +114,7 @@
         [itemButton.titleLabel setFont:[UIFont systemFontOfSize:16.0]];
         [itemButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [itemButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 15.0, 0, 0)];
-        [itemButton setTitle:titles[i] forState:UIControlStateNormal];
+        [itemButton setTitle:titles[i-1] forState:UIControlStateNormal];
         [itemButton setTag:i+kItemTag];
         [itemButton addTarget:self action:@selector(onClickWithItem:) forControlEvents:UIControlEventTouchUpInside];
         [self.viewCurrent addSubview:itemButton];
