@@ -320,18 +320,16 @@ class QueryUserBlogC: UIViewController {
     }
     
     func clickWithChatMsg() {
-        if let growM = self.userBlogM.myGrow.first {
-            if (NSString.isBlankString(growM.creator)) {
-                return
-            }
+//        #bugbug
+        if let userid = self.userBlogM.userInfo["id"] {
             let controller: JCHATConversationViewController = JCHATConversationViewController()
             controller.superViewController = self
             controller.hidesBottomBarWhenPushed = true
-            JMSGConversation.createSingleConversation(withUsername: growM.creator, completionHandler: { (resultObject, error) in
+            JMSGConversation.createSingleConversation(withUsername: userid, completionHandler: { (resultObject, error) in
                 if (error == nil) {
                     controller.conversation = resultObject as! JMSGConversation!
                     let chatNav = UINavigationController.init(rootViewController: controller)
-                    self.present(chatNav, animated: true, completion: { 
+                    self.present(chatNav, animated: true, completion: {
                         
                     })
                 }
@@ -341,60 +339,56 @@ class QueryUserBlogC: UIViewController {
     
     // 添加关注
     func follow() {
-        if self.userBlogM.myGrow.count > 0 {
-            if let growM = self.userBlogM.myGrow.first {
-                let params = [
-                    "focus":growM.creator,
-                    "me":UserManager.shared.userId,
-                    "nickname":UserManager.shared.nickname
-                    ]
-                HttpAPIClient.apiClientPOST("focusUser", params: params, success: { (result) in
-                    if let dataResult = result {
-                        let json = JSON(dataResult)
-                        let ret  = json["data"][0]["ret"].intValue
-                        if ret == 0 {
-                            Tool.showHUDTip(tipStr: "关注成功")
-                            self.isFocus = true
-                            self.resetFollowBtn()
-                            self.fansNum = self.fansNum + 1
-                            self.userHeaderV.fansNumL.text = String(self.fansNum)
-                        } else {
-                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                        }
+        if let userId = self.userBlogM.userInfo["userId"] {
+            let params = [
+                "focus":userId,
+                "me":UserManager.shared.userId,
+                "nickname":UserManager.shared.nickname
+            ]
+            HttpAPIClient.apiClientPOST("focusUser", params: params, success: { (result) in
+                if let dataResult = result {
+                    let json = JSON(dataResult)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        Tool.showHUDTip(tipStr: "关注成功")
+                        self.isFocus = true
+                        self.resetFollowBtn()
+                        self.fansNum = self.fansNum + 1
+                        self.userHeaderV.fansNumL.text = String(self.fansNum)
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
-                }) { (error) in
-                    Tool.showHUDTip(tipStr: "网络不给力")
                 }
+            }) { (error) in
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
         }
     }
     
     func cancelFollow() {
-        if self.userBlogM.myGrow.count > 0 {
-            if let growM = self.userBlogM.myGrow.first {
-                let params = [
-                    "userId":growM.creator,
-                    "me":UserManager.shared.userId
-                ]
-                HttpAPIClient.apiClientPOST("cancelUser", params: params, success: { (result) in
-                    if let dataResult = result {
+        if let userId = self.userBlogM.userInfo["userId"] {
+            let params = [
+                "userId":userId,
+                "me":UserManager.shared.userId
+            ]
+            HttpAPIClient.apiClientPOST("cancelUser", params: params, success: { (result) in
+                if let dataResult = result {
+                    
+                    let json = JSON(dataResult)
+                    let ret  = json["data"][0]["ret"].intValue
+                    if ret == 0 {
+                        Tool.showHUDTip(tipStr: "取消关注成功")
+                        self.isFocus = false
+                        self.resetFollowBtn()
+                        self.fansNum = self.fansNum - 1
+                        self.userHeaderV.fansNumL.text = String(self.fansNum)
                         
-                        let json = JSON(dataResult)
-                        let ret  = json["data"][0]["ret"].intValue
-                        if ret == 0 {
-                            Tool.showHUDTip(tipStr: "取消关注成功")
-                            self.isFocus = false
-                            self.resetFollowBtn()
-                            self.fansNum = self.fansNum - 1
-                            self.userHeaderV.fansNumL.text = String(self.fansNum)
-
-                        } else {
-                            Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                        }
+                    } else {
+                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     }
-                }) { (error) in
-                    Tool.showHUDTip(tipStr: "网络不给力")
                 }
+            }) { (error) in
+                Tool.showHUDTip(tipStr: "网络不给力")
             }
         }
     }
@@ -420,10 +414,9 @@ class QueryUserBlogC: UIViewController {
                     
                     if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
                         self.userBlogM = userBlogM
-                        if self.userBlogM.myGrow.count > 0 {
-                            if let growM = self.userBlogM.myGrow.first {
-                                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
-                            }
+                        
+                        if let icon = self.userBlogM.userInfo["icon"] {
+                            self.userHeaderV.avatarV.setImageWith(urlString: icon, placeholderImage: Define.kDefaultHeadStr())
                         }
                         
                         if self.userBlogM.userInfo["focus"] == "0" {
@@ -467,10 +460,8 @@ class QueryUserBlogC: UIViewController {
         self.view.addSubview(self.myTable)
         
         self.userHeaderV.frame = CGRect.init(x: 0, y: 0, width: Define.screenWidth(), height: kUserHeight)
-        if self.userBlogM.myGrow.count > 0 {
-            if let growM = self.userBlogM.myGrow.first {
-                self.userHeaderV.avatarV.setImageWith(urlString: growM.icon, placeholderImage: Define.kDefaultHeadStr())
-            }
+        if let icon = self.userBlogM.userInfo["icon"] {
+            self.userHeaderV.avatarV.setImageWith(urlString: icon, placeholderImage: Define.kDefaultHeadStr())
         }
         
         if self.userBlogM.userInfo["focus"] == "0" {
@@ -513,8 +504,8 @@ class QueryUserBlogC: UIViewController {
             make.right.equalTo(self.view).offset(-10.0)
         }
         // 自己锝隐藏
-        if let growM = self.userBlogM.myGrow.first {
-            if (UserManager.shared.userId == growM.creator) {
+        if let userId = self.userBlogM.userInfo["userId"] {
+            if (UserManager.shared.userId == userId) {
                 btnChatMsg.isHidden = true
             } else {
                 btnChatMsg.isHidden = false

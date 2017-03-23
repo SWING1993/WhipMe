@@ -66,6 +66,7 @@ class RecommendCell: NormalCell {
             HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
                 hud.hide(animated: true)
                 if let dataResult = result {
+                    print(dataResult)
                     let json = JSON(dataResult)
                     let ret  = json["data"][0]["ret"].intValue
                     if ret == 0 {
