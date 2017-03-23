@@ -68,6 +68,7 @@ class FriendCircleController: UIViewController {
     func setupFocusRequest() {
         self.focusPageNum = 1
         self.focusList.mj_header.endRefreshing()
+        self.focusList.mj_footer.resetNoMoreData()
         weak var weakSelf = self
         let params = [
             "pageSize":"25",
@@ -90,7 +91,6 @@ class FriendCircleController: UIViewController {
                         }
                         return temps
                     }()
-                    
                     weakSelf?.focusCellHeights = {
                         var tempHeights:[CGFloat] = []
                         for model in self.focusModels {
@@ -124,7 +124,9 @@ class FriendCircleController: UIViewController {
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayValue
-                    
+                    if list.count == 0 {
+                        self.focusList.mj_footer.endRefreshingWithNoMoreData()
+                    }
                     for json in list {
                         let jsonString = String(describing: json)
                         if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
@@ -133,7 +135,6 @@ class FriendCircleController: UIViewController {
                             weakSelf?.focusCellHeights.append(cellHeight)
                         }
                     }
-
                     weakSelf?.focusList.reloadData()
                 } else {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
@@ -149,6 +150,7 @@ class FriendCircleController: UIViewController {
     func setupRecommendRequest() {
         self.recommendPageNum = 1
         self.recommendTable.mj_header.endRefreshing()
+        self.recommendTable.mj_footer.resetNoMoreData()
         weak var weakSelf = self
         let params = [
             "pageSize":"25",
@@ -156,7 +158,6 @@ class FriendCircleController: UIViewController {
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if let dataResult = result {
-                
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
@@ -171,7 +172,6 @@ class FriendCircleController: UIViewController {
                         }
                         return temps
                     }()
-                    
                     weakSelf?.cellHeights = {
                         var tempHeights:[CGFloat] = []
                         for model in self.friendCircleModels {
@@ -205,7 +205,9 @@ class FriendCircleController: UIViewController {
                 let ret  = json["data"][0]["ret"].intValue
                 if ret == 0 {
                     let list = json["data"][0]["list"].arrayValue
-                    
+                    if list.count == 0 {
+                        self.recommendTable.mj_footer.endRefreshingWithNoMoreData()
+                    }
                     for json in list {
                         let jsonString = String(describing: json)
                         if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {

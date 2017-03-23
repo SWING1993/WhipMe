@@ -145,41 +145,39 @@ class MeCecordController: UIViewController {
     }
     
     func setupRequest() {
-        recommendTable.mj_header.endRefreshing()
         self.pageNum = 1
+        recommendTable.mj_footer.resetNoMoreData()
+        recommendTable.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = ["themeId":self.myWhipM.themeId,"pageSize":"20","pageIndex":String(self.pageNum)]
         HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
-                let totalSize = json["data"][0]["totalSize"].intValue
                 if ret != 0 {
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     return
                 }
-                if totalSize > 0 {
-                    let recordList = json["data"][0]["list"].arrayValue
-                    weakSelf?.friendCircleModels = {
-                        var temps: [FriendCircleM] = []
-                        for json in recordList {
-                            let jsonString = String(describing: json)
-                            if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
-                                temps.append(model)
-                            }
+                let recordList = json["data"][0]["list"].arrayValue
+                weakSelf?.friendCircleModels = {
+                    var temps: [FriendCircleM] = []
+                    for json in recordList {
+                        let jsonString = String(describing: json)
+                        if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                            temps.append(model)
                         }
-                        return temps
-                    }()
-                    weakSelf?.cellHeights = {
-                        var tempHeights:[CGFloat] = []
-                        for model in self.friendCircleModels {
-                            let cellHeight = RecommendCell.cellHeight(model: model )
-                            tempHeights.append(cellHeight)
-                        }
-                        return tempHeights
-                    }()
-                    weakSelf?.recommendTable.reloadData()
-                }
+                    }
+                    return temps
+                }()
+                weakSelf?.cellHeights = {
+                    var tempHeights:[CGFloat] = []
+                    for model in self.friendCircleModels {
+                        let cellHeight = RecommendCell.cellHeight(model: model )
+                        tempHeights.append(cellHeight)
+                    }
+                    return tempHeights
+                }()
+                weakSelf?.recommendTable.reloadData()
             }
         }) { (error) in
             Tool.showHUDTip(tipStr: "网络不给力")
@@ -195,24 +193,24 @@ class MeCecordController: UIViewController {
             if let dataResult = result {
                 let json = JSON(dataResult)
                 let ret  = json["data"][0]["ret"].intValue
-                let totalSize = json["data"][0]["totalSize"].intValue
                 if ret != 0 {
                     self.pageNum = self.pageNum - 1
                     Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
                     return
                 }
-                if totalSize > 0 {
-                    let recordList = json["data"][0]["list"].arrayValue
-                    for json in recordList {
-                        let jsonString = String(describing: json)
-                        if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
-                            weakSelf?.friendCircleModels.append(model)
-                            let cellHeight = RecommendCell.cellHeight(model: model )
-                            weakSelf?.cellHeights.append(cellHeight)
-                        }
-                    }
-                    weakSelf?.recommendTable.reloadData()
+                let recordList = json["data"][0]["list"].arrayValue
+                if recordList.count == 0 {
+                    self.recommendTable.mj_footer.endRefreshingWithNoMoreData()
                 }
+                for json in recordList {
+                    let jsonString = String(describing: json)
+                    if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                        weakSelf?.friendCircleModels.append(model)
+                        let cellHeight = RecommendCell.cellHeight(model: model )
+                        weakSelf?.cellHeights.append(cellHeight)
+                    }
+                }
+                weakSelf?.recommendTable.reloadData()
             }
         }) { (error) in
             self.pageNum = self.pageNum - 1
