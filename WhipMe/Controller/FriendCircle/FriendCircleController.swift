@@ -16,7 +16,7 @@ import MJRefresh
 
 class FriendCircleM: HandyJSON {
     var comment: NSArray = NSArray.init()
-    var recordIdNum: Int = 0
+    var recordNum: Int = 0
     var commentNum: Int = 0
     var likeNum: Int = 0
     var shareNum: Int = 0

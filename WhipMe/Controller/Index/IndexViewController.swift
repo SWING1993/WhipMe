@@ -631,6 +631,7 @@ class IndexViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        queryDepositDes()
     }
     
     fileprivate func setup() {
@@ -672,6 +673,43 @@ class IndexViewController: UIViewController {
             Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
+    
+    func queryDepositDes() -> Void {
+        // 任务说明
+        HttpAPIClient.apiClientPOST("queryTaskDes", params: nil, success: { (result) in
+            if let dataResult = result {
+                print(dataResult)
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let queryTaskDes = json["data"][0]["explain"].stringValue
+                    UserDefaults.standard.set(queryTaskDes, forKey: "queryTaskDes")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "queryTaskDes")
+                }
+            }
+        }) { (error) in
+            
+        }
+        
+        // 充值说明
+        HttpAPIClient.apiClientPOST("queryDepositDes", params: nil, success: { (result) in
+            if let dataResult = result {
+                print(dataResult)
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let queryDepositDes = json["data"][0]["explain"].stringValue
+                    UserDefaults.standard.set(queryDepositDes, forKey: "queryDepositDes")
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "queryDepositDes")
+                }
+            }
+        }) { (error) in
+            
+        }
+    }
+
     
     fileprivate func prepareTableView() {
         myTable.backgroundColor = kColorBackGround

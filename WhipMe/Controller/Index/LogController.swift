@@ -315,7 +315,8 @@ class LogController: UIViewController {
         
         weak var weakSelf = self
         OKBtn.bk_init(withTitle: "发送", style: .plain) { (sender) in
-            if self.content.isEmpty {
+            _ = self.resignFirstResponder()
+            if self.content.isEmpty && self.photo == nil {
                 Tool.showHUDTip(tipStr: "请填写内容后再发送！")
                 return
             }

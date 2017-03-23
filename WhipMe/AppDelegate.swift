@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.customizeAppearance()
         
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
-        queryDepositDes()
         if #available(iOS 10.0, *) {
             _ =  [UNUserNotificationCenter.current() .requestAuthorization(options: .alert, completionHandler: { (granted, error) in
                 if granted {
@@ -48,42 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func queryDepositDes() -> Void {
-        // 任务说明
-        HttpAPIClient.apiClientPOST("queryTaskDes", params: nil, success: { (result) in
-            if let dataResult = result {
-                print(dataResult)
-                let json = JSON(dataResult)
-                let ret  = json["data"][0]["ret"].intValue
-                if ret == 0 {
-                    let queryTaskDes = json["data"][0]["explain"].stringValue
-                    UserDefaults.standard.set(queryTaskDes, forKey: "queryTaskDes")
-                } else {
-                    UserDefaults.standard.removeObject(forKey: "queryTaskDes")
-                }
-            }
-        }) { (error) in
-        
-        }
-        
-        // 充值说明
-        HttpAPIClient.apiClientPOST("queryDepositDes", params: nil, success: { (result) in
-            if let dataResult = result {
-                print(dataResult)
-                let json = JSON(dataResult)
-                let ret  = json["data"][0]["ret"].intValue
-                if ret == 0 {
-                    let queryDepositDes = json["data"][0]["explain"].stringValue
-                    UserDefaults.standard.set(queryDepositDes, forKey: "queryDepositDes")
-                } else {
-                    UserDefaults.standard.removeObject(forKey: "queryDepositDes")
-                }
-            }
-        }) { (error) in
-            
-        }
-    }
-   
+      
     func applicationWillResignActive(_ application: UIApplication) {
         application.applicationIconBadgeNumber = 0
     }

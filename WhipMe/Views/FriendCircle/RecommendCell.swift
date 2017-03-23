@@ -362,7 +362,7 @@ class RecommendCell: NormalCell {
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"
         self.timeL.text = model.createDate
-        self.pageView.text = String(model.recordIdNum) + "次"
+        self.pageView.text = String(model.recordNum) + "次"
         
         if model.position.isEmpty {
             self.locationB.text = ""
