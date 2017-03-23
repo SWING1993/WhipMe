@@ -321,11 +321,11 @@ class QueryUserBlogC: UIViewController {
     
     func clickWithChatMsg() {
 //        #bugbug
-        if let userid = self.userBlogM.userInfo["id"] {
+        if let userId = self.userBlogM.userInfo["userId"] {
             let controller: JCHATConversationViewController = JCHATConversationViewController()
             controller.superViewController = self
             controller.hidesBottomBarWhenPushed = true
-            JMSGConversation.createSingleConversation(withUsername: userid, completionHandler: { (resultObject, error) in
+            JMSGConversation.createSingleConversation(withUsername: userId, completionHandler: { (resultObject, error) in
                 if (error == nil) {
                     controller.conversation = resultObject as! JMSGConversation!
                     let chatNav = UINavigationController.init(rootViewController: controller)
