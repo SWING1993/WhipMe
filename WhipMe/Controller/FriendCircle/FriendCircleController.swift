@@ -49,6 +49,9 @@ class FriendCircleController: UIViewController {
     fileprivate var focusModels: [FriendCircleM] = [];
     fileprivate var focusCellHeights: [CGFloat] = []
     
+    fileprivate var focusPageNum: Int = 1
+    fileprivate var recommendPageNum: Int = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -63,11 +66,12 @@ class FriendCircleController: UIViewController {
     }
     
     func setupFocusRequest() {
+        self.focusPageNum = 1
         self.focusList.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
-            "pageSize":"100",
-            "pageIndex":"1",
+            "pageSize":"25",
+            "pageIndex":String(self.focusPageNum),
             "userId":UserManager.shared.userId
             ]
         HttpAPIClient.apiClientPOST("biantaquanFocusList", params: params, success: { (result) in
@@ -105,12 +109,50 @@ class FriendCircleController: UIViewController {
         }
     }
     
+    func loadMostFocus() {
+        self.focusPageNum = self.focusPageNum + 1
+        self.focusList.mj_footer.endRefreshing()
+        weak var weakSelf = self
+        let params = [
+            "pageSize":"25",
+            "pageIndex":String(self.focusPageNum),
+            "userId":UserManager.shared.userId
+        ]
+        HttpAPIClient.apiClientPOST("biantaquanFocusList", params: params, success: { (result) in
+            if let dataResult = result {
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let list = json["data"][0]["list"].arrayValue
+                    
+                    for json in list {
+                        let jsonString = String(describing: json)
+                        if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                            weakSelf?.focusModels.append(model)
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            weakSelf?.focusCellHeights.append(cellHeight)
+                        }
+                    }
+
+                    weakSelf?.focusList.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    self.focusPageNum = self.focusPageNum - 1
+                }
+            }
+        }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
+            self.focusPageNum = self.focusPageNum - 1
+        }
+    }
+    
     func setupRecommendRequest() {
+        self.recommendPageNum = 1
         self.recommendTable.mj_header.endRefreshing()
         weak var weakSelf = self
         let params = [
-            "pageSize":"100",
-            "pageIndex":"1",
+            "pageSize":"25",
+            "pageIndex":String(self.recommendPageNum)
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if let dataResult = result {
@@ -147,6 +189,44 @@ class FriendCircleController: UIViewController {
              Tool.showHUDTip(tipStr: "网络不给力")
         }
     }
+    
+    func loadMostRecommend() {
+        self.recommendPageNum = self.recommendPageNum + 1
+        self.recommendTable.mj_footer.endRefreshing()
+        weak var weakSelf = self
+        let params = [
+            "pageSize":"25",
+            "pageIndex":String(self.recommendPageNum),
+            "userId":UserManager.shared.userId
+        ]
+        HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
+            if let dataResult = result {
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    let list = json["data"][0]["list"].arrayValue
+                    
+                    for json in list {
+                        let jsonString = String(describing: json)
+                        if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                            weakSelf?.friendCircleModels.append(model)
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            weakSelf?.cellHeights.append(cellHeight)
+                            print(cellHeight)
+                        }
+                    }
+                    weakSelf?.recommendTable.reloadData()
+                } else {
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    self.recommendPageNum = self.recommendPageNum - 1
+                }
+            }
+        }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
+            self.recommendPageNum = self.recommendPageNum - 1
+        }
+    }
+
     
     fileprivate func prepareSegmented() {
         let titles_nav: NSArray = ["推荐","关注"]
@@ -206,10 +286,17 @@ class FriendCircleController: UIViewController {
         let leftHeader = MJRefreshNormalHeader()
         leftHeader.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.setupRecommendRequest))
         self.recommendTable.mj_header = leftHeader
-        
+        let leftFooter = MJRefreshAutoNormalFooter()
+        leftFooter.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.loadMostRecommend))
+        self.recommendTable.mj_footer = leftFooter
+
         let rightHeader = MJRefreshNormalHeader()
         rightHeader.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.setupFocusRequest))
         self.focusList.mj_header = rightHeader
+        let rightFooter = MJRefreshAutoNormalFooter()
+        rightFooter.setRefreshingTarget(self, refreshingAction: #selector(FriendCircleController.loadMostFocus))
+        self.focusList.mj_footer = rightFooter
+
     }
     
     override func didReceiveMemoryWarning() {

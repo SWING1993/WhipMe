@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 import SwiftyJSON
 import HandyJSON
+import MJRefresh
 
 class MeLogCell: NormalCell {
     var logV: UIImageView = UIImageView.init()
@@ -130,7 +131,7 @@ class MeCecordController: UIViewController {
     fileprivate var recommendTable = UITableView.init()
     fileprivate var cellHeights: [CGFloat] = []
     fileprivate var friendCircleModels: [FriendCircleM] = [];
-
+    fileprivate var pageNum:Int = 1
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupRequest()
@@ -143,9 +144,11 @@ class MeCecordController: UIViewController {
         prepareTableView()
     }
     
-    fileprivate func setupRequest() {
+    func setupRequest() {
+        recommendTable.mj_header.endRefreshing()
+        self.pageNum = 1
         weak var weakSelf = self
-        let params = ["themeId":self.myWhipM.themeId,"pageSize":"100","pageIndex":"1"]
+        let params = ["themeId":self.myWhipM.themeId,"pageSize":"20","pageIndex":String(self.pageNum)]
         HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
@@ -183,6 +186,40 @@ class MeCecordController: UIViewController {
         }
     }
     
+    func loadMoreData() {
+        recommendTable.mj_footer.endRefreshing()
+        self.pageNum = self.pageNum + 1
+        weak var weakSelf = self
+        let params = ["themeId":self.myWhipM.themeId,"pageSize":"20","pageIndex":String(self.pageNum)]
+        HttpAPIClient.apiClientPOST("queryListByThemeId", params: params, success: { (result) in
+            if let dataResult = result {
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                let totalSize = json["data"][0]["totalSize"].intValue
+                if ret != 0 {
+                    self.pageNum = self.pageNum - 1
+                    Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+                    return
+                }
+                if totalSize > 0 {
+                    let recordList = json["data"][0]["list"].arrayValue
+                    for json in recordList {
+                        let jsonString = String(describing: json)
+                        if let model = JSONDeserializer<FriendCircleM>.deserializeFrom(json: jsonString) {
+                            weakSelf?.friendCircleModels.append(model)
+                            let cellHeight = RecommendCell.cellHeight(model: model )
+                            weakSelf?.cellHeights.append(cellHeight)
+                        }
+                    }
+                    weakSelf?.recommendTable.reloadData()
+                }
+            }
+        }) { (error) in
+            self.pageNum = self.pageNum - 1
+            Tool.showHUDTip(tipStr: "网络不给力")
+        }
+    }
+    
     fileprivate func prepareTableView() {
         recommendTable.backgroundColor = kColorBackGround
         recommendTable.register(RecommendCell.self, forCellReuseIdentifier: RecommendCell.cellReuseIdentifier())
@@ -194,6 +231,13 @@ class MeCecordController: UIViewController {
         recommendTable.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+        
+        let rightHeader = MJRefreshNormalHeader()
+        rightHeader.setRefreshingTarget(self, refreshingAction: #selector(MeCecordController.setupRequest))
+        self.recommendTable.mj_header = rightHeader
+        let rightFooter = MJRefreshAutoNormalFooter()
+        rightFooter.setRefreshingTarget(self, refreshingAction: #selector(MeCecordController.loadMoreData))
+        self.recommendTable.mj_footer = rightFooter
     }
     
     override func didReceiveMemoryWarning() {
