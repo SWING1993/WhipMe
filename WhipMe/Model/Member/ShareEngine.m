@@ -25,6 +25,10 @@ static WMShareEngine *objShare = nil;
     return objShare;
 }
 
++ (BOOL)isWXAppInstalled {
+    return [WXApi isWXAppInstalled];
+}
+
 - (void)registerApp {
     [WXApi registerApp:[Define appIDWeChat]];
 }
@@ -41,7 +45,7 @@ static WMShareEngine *objShare = nil;
 //构造SendAuthReq结构体
 - (void)sendAuthRequest:(id<WXApiEngineDelegate>)delegate {
     self.delegate = delegate;
-    if ([WXApi isWXAppInstalled] == NO) {
+    if ([WMShareEngine isWXAppInstalled] == NO) {
         UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"没有安装微信" message:nil preferredStyle:UIAlertControllerStyleAlert];
         [alertControl addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             

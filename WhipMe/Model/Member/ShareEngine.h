@@ -23,6 +23,9 @@
 
 + (WMShareEngine *)sharedInstance;
 
+// 坚持当前是否安装微信app
++ (BOOL)isWXAppInstalled;
+
 - (void)registerApp;
 
 - (BOOL)handleOpenURL:(NSURL *)url;

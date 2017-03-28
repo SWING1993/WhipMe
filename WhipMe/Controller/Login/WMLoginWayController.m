@@ -14,6 +14,7 @@ static NSInteger const button_index = 7777;
 @interface WMLoginWayController () <WXApiEngineDelegate>
 
 @property (nonatomic, strong) NSString *unionId, *appOpenId;
+@property (nonatomic, strong) NSMutableArray *arrayTitle;
 
 @end
 
@@ -144,12 +145,18 @@ static NSInteger const button_index = 7777;
         make.top.equalTo(weakSelf.view).offset(MIN(456.0, kScreenH-140.0));
     }];
     
-    NSArray *arrayTitle = @[@{@"title":@"新建用户",@"icon":@"button_create_off",},
-                            @{@"title":@"手机登录",@"icon":@"button_phone_off",},
-                            @{@"title":@"微信登录",@"icon":@"button_weixin_off",}];
-    CGFloat origin_x = (kScreenW-84.0*3-40.0)/2.0;
-    for (NSInteger i=0; i<arrayTitle.count; i++) {
-        NSDictionary *dict = [arrayTitle objectAtIndex:i];
+    CGFloat mar_x = 20.0;
+    if ([WMShareEngine isWXAppInstalled] == NO) {
+        if (self.arrayTitle.count == 3) {
+            [self.arrayTitle removeObjectAtIndex:2];
+            mar_x = 60.0;
+        }
+    }
+    
+    NSInteger a_count = self.arrayTitle.count;
+    CGFloat origin_x = (kScreenW-84.0*a_count-(a_count-1)*mar_x)/2.0;
+    for (NSInteger i=0; i<self.arrayTitle.count; i++) {
+        NSDictionary *dict = [self.arrayTitle objectAtIndex:i];
         CGFloat oirign_y1 = kScreenH < 568.0 ? 15.0 : 0;
         CGFloat oirign_y = kScreenH < 568.0 ? 5.0 : 20.0;
         
@@ -172,7 +179,7 @@ static NSInteger const button_index = 7777;
             make.width.mas_equalTo(84.0);
             make.left.equalTo(viewButton).offset(origin_x);
         }];
-        origin_x += 84.0 + 20.0;
+        origin_x += 84.0 + mar_x;
     }
 }
 
@@ -188,6 +195,16 @@ static NSInteger const button_index = 7777;
         _appOpenId = [NSString string];
     }
     return _appOpenId;
+}
+
+- (NSMutableArray *)arrayTitle {
+    if (_arrayTitle == nil) {
+        NSDictionary *item1 = @{@"title":@"新建用户",@"icon":@"button_create_off"};
+        NSDictionary *item2 = @{@"title":@"手机登录",@"icon":@"button_phone_off"};
+        NSDictionary *item3 = @{@"title":@"微信登录",@"icon":@"button_weixin_off"};
+        _arrayTitle = [NSMutableArray arrayWithObjects:item1, item2, item3, nil];
+    }
+    return _arrayTitle;
 }
 
 - (void)onClickWithItem:(UIButton *)sender {
