@@ -154,7 +154,8 @@ class FriendCircleController: UIViewController {
         weak var weakSelf = self
         let params = [
             "pageSize":"25",
-            "pageIndex":String(self.recommendPageNum)
+            "pageIndex":String(self.recommendPageNum),
+            "loginId":UserManager.shared.userId
             ]
         HttpAPIClient.apiClientPOST("biantaquanList", params: params, success: { (result) in
             if let dataResult = result {

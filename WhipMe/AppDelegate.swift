@@ -25,6 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.thirdPartySDK()
         self.customizeAppearance()
         
+        HttpAPIClient.apiClientPOST("queryReportItem", params: nil, success: { (result) in
+            if let dataResult = result {
+                let json = JSON(dataResult)
+                let ret  = json["data"][0]["ret"].intValue
+                if ret == 0 {
+                    UserDefaults.standard.set(dataResult, forKey: "queryReportItem")
+                }
+            }
+        }) { (error) in
+        }
+
         Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
         if #available(iOS 10.0, *) {
             _ =  [UNUserNotificationCenter.current() .requestAuthorization(options: .alert, completionHandler: { (granted, error) in

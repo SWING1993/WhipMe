@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import HandyJSON
 import CoreGraphics
 
 class ShareController: UIViewController {
@@ -31,6 +33,9 @@ class ShareController: UIViewController {
     func prepareTableView() {
         let backBtn: UIBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: self, action: #selector(ShareController.goBack))
         self.navigationItem.leftBarButtonItem = backBtn
+        
+        let reportBtn: UIBarButtonItem = UIBarButtonItem.init(title: "举报", style: .plain, target: self, action: #selector(ShareController.reportAction))
+        self.navigationItem.rightBarButtonItem = reportBtn
         
         let bottomView = UIView()
         bottomView.backgroundColor = Define.RGBColorFloat(52, g: 53, b: 54)
@@ -148,6 +153,28 @@ class ShareController: UIViewController {
     
     func goBack() {
         self.dismiss(animated: true) { }
+    }
+    
+    func reportAction() {
+        let sheet: UIActionSheet = UIActionSheet.init(title: "举报", delegate: self as? UIActionSheetDelegate, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
+        let dataDict : NSDictionary = (UserDefaults.standard.object(forKey: "queryReportItem") as! NSDictionary)
+        let json = JSON(dataDict)
+        let dataArr = json["data"][0]["list"].arrayValue
+        for item in dataArr {
+            let reportItemDes = item["reportItemDes"].stringValue
+            let reportItemId = item["reportItemId"].stringValue
+            let params = ["reportItemId":reportItemId,"loginId":UserManager.shared.userId,"recordId":self.myFriendCircleM.recordId]
+            sheet.bk_addButton(withTitle: reportItemDes, handler: {
+                HttpAPIClient.apiClientPOST("uploadReport", params: params, success: { (result) in
+                    if let dataResult = result {
+                        print(dataResult)
+                        Tool.showHUDTip(tipStr: "举报成功，谢谢您的支持！")
+                    }
+                }) { (error) in
+                }
+            })
+        }
+        sheet.show(in: self.view)
     }
     
     func shareWX(btn: UIButton) {
