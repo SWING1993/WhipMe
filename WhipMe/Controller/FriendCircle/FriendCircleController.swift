@@ -318,7 +318,6 @@ class FriendCircleController: UIViewController {
             setupFocusRequest()
         }
     }
-    
 }
 
 /// TableViewDataSource methods.

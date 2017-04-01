@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "创建账号"
+        self.navigationItem.title = "手机登陆"
         self.view.backgroundColor = Define.kColorBackGround()
         
         WMUploadFile.isNeedRequestToGetDomain()
