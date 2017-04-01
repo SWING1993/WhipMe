@@ -74,9 +74,9 @@ static NSString * const FORMAT_TODAY = @"ahh:mm";
     case kJMSGErrorSDKParamPasswordInvalid:
       errorAlert = @"用户密码不合法";
       break;
-//    case kJMSGErrorSDKParamAvatarNil:
-//      errorAlert = @"用户头像属性为空";
-//      break;
+    case kJMSGErrorTcpUserInBlacklist:
+      errorAlert = @"该用户已将你加入黒名单里";
+      break;
     case kJMSGErrorSDKUserNotLogin:
       errorAlert = @"用户没有登录";
       break;

@@ -47,7 +47,8 @@
     _allMessageDic = @{}.mutableCopy;
     _allmessageIdArr = @[].mutableCopy;
     _imgDataArr = @[].mutableCopy;
-//    self.navigationItem.title = _conversation.title;
+    self.navigationItem.title = _conversation.title;
+    
     [self setupView];
     [self addNotification];
     [self addDelegate];
@@ -139,19 +140,9 @@
 - (void)setupNavigation {
     [_conversation clearUnreadCount];
     
-//    _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [_rightBtn setFrame:navigationRightButtonRect];
-//    if (_conversation.conversationType == kJMSGConversationTypeSingle) {
-//        [_rightBtn setImage:[UIImage imageNamed:@"userDetail"] forState:UIControlStateNormal];
-//    } else {
-//        [self updateGroupConversationTittle:nil];
-//        if ([((JMSGGroup *)_conversation.target) isMyselfGroupMember]) {
-//            [_rightBtn setImage:[UIImage imageNamed:@"groupDetail"] forState:UIControlStateNormal];
-//        } else _rightBtn.hidden = YES;
-//    }
-    
-//    [_rightBtn addTarget:self action:@selector(addFriends) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBtn];//为导航栏添加右侧按钮
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStyleDone target:self action:@selector(clickWithMore)];
+    [rightBar setTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = rightBar;
     
     UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
     [leftBar setTintColor:[UIColor whiteColor]];
@@ -204,12 +195,12 @@
     
     if (error != nil) {
         [_conversation clearUnreadCount];
-//        NSString *alert = [JCHATStringUtils errorAlert:error];
-//        if (alert == nil) {
-//            alert = [error description];
-//        }
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        [Tool showHUDTipWithTipStr:alert];
+        NSString *alert = [JCHATStringUtils errorAlert:error];
+        if (alert == nil) {
+            alert = [error description];
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Tool showHUDTipWithTipStr:alert];
         return;
     }
     JCHATChatModel *model = _allMessageDic[message.msgId];
@@ -499,7 +490,107 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     }
 }
 
-- (void)pressVoiceBtnToHideKeyBoard {///!!!
+- (void)clickWithMore {
+    WEAK_SELF
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertControl addAction:[UIAlertAction actionWithTitle:@"清空聊天记录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf emptyTheChatRecord];
+    }]];
+    
+    JMSGUser *jUser = (JMSGUser *)self.conversation.target;
+    NSString *str_title = jUser.isInBlacklist ? @"移除黑名单" : @"加入黑名单";
+    [alertControl addAction:[UIAlertAction actionWithTitle:str_title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf addBlackLists:jUser.isInBlacklist];
+    }]];
+    [alertControl addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    [self presentViewController:alertControl animated:YES completion:nil];
+}
+
+- (void)emptyTheChatRecord {
+    WEAKSELF
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"是否清空所有聊天记录" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertView addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf.conversation deleteAllMessages];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }]];
+    [alertView addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    [self presentViewController:alertView animated:YES completion:nil];
+}
+
+- (void)addBlackLists:(BOOL)isFlag {
+    NSString *strTitle = @"加入黑名单";
+    NSString *strMessage = @"加入黑名单后，你们相互看不到对方的记录，也不再接收对方的私信";
+    if (isFlag) {
+        strTitle = @"移除黑名单";
+        strMessage = nil;
+    }
+    WEAKSELF
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:strTitle message:strMessage preferredStyle:UIAlertControllerStyleAlert];
+    [alertView addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (isFlag) {
+            [weakSelf removeUserToBlack];
+        } else {
+            [weakSelf addUsersToBlack];
+        }
+    }]];
+    [alertView addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    [self presentViewController:alertView animated:YES completion:nil];
+}
+
+- (void)addUsersToBlack {
+    WEAKSELF
+    JMSGUser *jUser = (JMSGUser *)self.conversation.target;
+    [JMSGUser addUsersToBlacklist:[NSArray arrayWithObject:jUser.username ?:@""] completionHandler:^(id resultObject, NSError *error) {
+        DebugLog(@"resultObject:%@  error:%@",resultObject, error);
+    }];
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"loginId":user.userId ?:@"", @"userId":jUser.username ?:@""};
+    
+    [HttpAPIClient APIClientPOST:@"addBlack" params:param Success:^(id result) {
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            [Tool showHUDTipWithTipStr:@"成功加入黑名单！"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
+
+- (void)removeUserToBlack {
+    WEAKSELF
+    JMSGUser *jUser = (JMSGUser *)self.conversation.target;
+    [JMSGUser delUsersFromBlacklist:[NSArray arrayWithObject:jUser.username ?:@""] completionHandler:^(id resultObject, NSError *error) {
+        DebugLog(@"resultObject:%@  error:%@",resultObject, error);
+    }];
+    UserManager *user = [UserManager shared];
+    NSDictionary *param = @{@"loginId":user.userId ?:@"", @"userId":jUser.username ?:@""};
+    
+    [HttpAPIClient APIClientPOST:@"removeBlack" params:param Success:^(id result) {
+        
+        NSDictionary *data = [[result objectForKey:@"data"] objectAtIndex:0];
+        if ([data[@"ret"] intValue] == 0) {
+            [Tool showHUDTipWithTipStr:@"成功移除黑名单！"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        } else {
+            if ([NSString isBlankString:data[@"desc"]] == NO) {
+                [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"%@",data[@"desc"]]];
+            }
+        }
+    } Failed:^(NSError *error) {
+        DebugLog(@"%@",error);
+    }];
+}
+
+- (void)pressVoiceBtnToHideKeyBoard {
     [self.toolBarContainer.toolbar.textView resignFirstResponder];
     _toolBarHeightConstrait.constant = 45;
     [self dropToolBar];
@@ -509,16 +600,6 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
     JCHATMessageTextView *inputview = self.toolBarContainer.toolbar.textView;
     [inputview becomeFirstResponder];
     [self layoutAndAnimateMessageInputTextView:inputview];
-}
-
-#pragma mark - 增加朋友
-- (void)addFriends
-{
-    //    JCHATGroupDetailViewController *groupDetailCtl = [[JCHATGroupDetailViewController alloc] init];
-    //    groupDetailCtl.hidesBottomBarWhenPushed = YES;
-    //    groupDetailCtl.conversation = _conversation;
-    //    groupDetailCtl.sendMessageCtl = self;
-    //    [self.navigationController pushViewController:groupDetailCtl animated:YES];
 }
 
 #pragma mark - AddBtnDelegate 调用相册 / 调用相机
