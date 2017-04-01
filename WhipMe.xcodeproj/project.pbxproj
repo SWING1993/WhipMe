@@ -611,6 +611,7 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
 				E4AB21FE1D82566A0044943E /* Info.plist */,
@@ -1211,7 +1212,6 @@
 		E4AB21F11D82566A0044943E /* WhipMe */ = {
 			isa = PBXGroup;
 			children = (
-				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				C546FE0F1D82989700012FB4 /* Controller */,
 				C546FE141D82989700012FB4 /* Model */,
 				C546FE191D82989700012FB4 /* Views */,
@@ -1674,6 +1674,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1712,6 +1713,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Utils/ThirdParty/JMessage",
@@ -1734,6 +1736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipmes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

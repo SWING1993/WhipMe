@@ -21,7 +21,7 @@ pod 'PLeakSniffer'
 pod 'NJKWebViewProgress'
 pod 'SDWebImage'
 pod 'ChameleonFramework'
-pod 'HandyJSON', '~> 1.5.2'
+pod 'HandyJSON'
 pod 'Qiniu', '~> 7.1'
 
 
