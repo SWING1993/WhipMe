@@ -18,6 +18,8 @@
 		C50D29B01DDEAF1400F32B38 /* FinancialDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */; };
 		C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */; };
 		C5129D641DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */; };
+		C51375EF1E8F3FFA002D7C42 /* WMBlackListManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C51375EE1E8F3FFA002D7C42 /* WMBlackListManagerController.m */; };
+		C51375F31E8F4FED002D7C42 /* BlackListManagerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C51375F21E8F4FED002D7C42 /* BlackListManagerViewCell.m */; };
 		C516C67C1E233021000BA12B /* WMMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C516C67B1E233021000BA12B /* WMMemberViewController.m */; };
 		C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */; };
 		C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6871E238412000BA12B /* MemberHeadViewCell.swift */; };
@@ -220,6 +222,10 @@
 		C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialDetailsCell.swift; sourceTree = "<group>"; };
 		C50EE1B81D8FA5B7005D5839 /* FriendsListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewCell.swift; sourceTree = "<group>"; };
 		C5129D631DDDBB48004DEA4D /* HistoricalReviewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalReviewCollectionCell.swift; sourceTree = "<group>"; };
+		C51375ED1E8F3FFA002D7C42 /* WMBlackListManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBlackListManagerController.h; sourceTree = "<group>"; };
+		C51375EE1E8F3FFA002D7C42 /* WMBlackListManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBlackListManagerController.m; sourceTree = "<group>"; };
+		C51375F11E8F4FED002D7C42 /* BlackListManagerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackListManagerViewCell.h; sourceTree = "<group>"; };
+		C51375F21E8F4FED002D7C42 /* BlackListManagerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackListManagerViewCell.m; sourceTree = "<group>"; };
 		C516C67A1E233021000BA12B /* WMMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMemberViewController.h; sourceTree = "<group>"; };
 		C516C67B1E233021000BA12B /* WMMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMemberViewController.m; sourceTree = "<group>"; };
 		C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -734,6 +740,8 @@
 				C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */,
 				C5ECDB9B1E35CB92005C0018 /* WMAboutViewController.h */,
 				C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */,
+				C51375ED1E8F3FFA002D7C42 /* WMBlackListManagerController.h */,
+				C51375EE1E8F3FFA002D7C42 /* WMBlackListManagerController.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -852,6 +860,8 @@
 				C50D29AF1DDEAF1400F32B38 /* FinancialDetailsCell.swift */,
 				C554AD1F1E37190D00B3CF44 /* WMExitAlertView.h */,
 				C554AD201E37190D00B3CF44 /* WMExitAlertView.m */,
+				C51375F11E8F4FED002D7C42 /* BlackListManagerViewCell.h */,
+				C51375F21E8F4FED002D7C42 /* BlackListManagerViewCell.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -1470,6 +1480,7 @@
 				C5A8290A1D936D9C00EBF46E /* UserInfoTableViewCell.swift in Sources */,
 				C542FE451E24BDFD000A66CB /* FansAndFocusModel.m in Sources */,
 				C5451C9F1E49B4E600A7AF79 /* QBAssetsViewController.m in Sources */,
+				C51375F31E8F4FED002D7C42 /* BlackListManagerViewCell.m in Sources */,
 				C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */,
 				C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */,
 				E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */,
@@ -1491,6 +1502,7 @@
 				C5B343471E2DB3F200A16B56 /* JCHATAlertToSendImage.m in Sources */,
 				C5C177A91E2CBA6200891C0D /* JCHATRawAudioDataPlayer.m in Sources */,
 				E408D9961D90C85F006F2A75 /* PrivacyViewController.swift in Sources */,
+				C51375EF1E8F3FFA002D7C42 /* WMBlackListManagerController.m in Sources */,
 				C50EE1B91D8FA5B7005D5839 /* FriendsListViewCell.swift in Sources */,
 				C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */,
 				C54E77E51DE6E388007F886B /* ShareEngine.m in Sources */,
