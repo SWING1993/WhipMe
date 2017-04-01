@@ -68,8 +68,9 @@ class CashController: UIViewController {
                     Tool.showHUDTip(tipStr: "请填写正确的金额！")
                     return
                 }
-                
-                let tipStr = "确认保证金为"+guarantee+"元，完成任务将退还，未完成任务将不退还。"
+                let value1: Double = Double(guarantee)!
+                let tipStr = "确认保证金为\(value1)元，完成任务将退还，未完成任务将不退还。"
+//                let tipStr = "确认保证金为"+guarantee+"元，完成任务将退还，未完成任务将不退还。"
                 let tip = UIAlertView.init(title: tipStr, message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
                 tip.show()
                 tip.bk_setHandler({ 
