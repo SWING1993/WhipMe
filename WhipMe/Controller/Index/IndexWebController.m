@@ -36,6 +36,7 @@
 }
 
 - (void)getAddressBook {
+    
     ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
     if (authStatus == kABAuthorizationStatusDenied) {
         // 没权限
@@ -77,18 +78,19 @@
     NSDictionary *params = @{@"card":@"111",@"datas":datas};
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
-    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer   = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer  = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
-    manager.responseSerializer.acceptableContentTypes = [NSSet
-       setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        NSLog(@"success:%@",result);
+        DebugLog(@"success:%@",result);
+        id data = [result mj_JSONObject];
+         DebugLog(@"data:%@",data);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        NSLog(@"error:%@",error);
+        DebugLog(@"error:%@",error);
     }];
 }
 
