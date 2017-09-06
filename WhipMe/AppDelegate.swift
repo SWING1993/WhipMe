@@ -47,12 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Fallback on earlier versions
         }
         window = UIWindow.init(frame: UIScreen.main.bounds)
+        let indexControl: IndexWebController = IndexWebController()
+        let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
+        self.window?.rootViewController = indexNav
         
-        if (NSString.isBlankString(UserManager.shared.userId) == false) {
-            setupMainController()
-        } else {
-            setupLoginController()
-        }
+//        if (NSString.isBlankString(UserManager.shared.userId) == false) {
+//            setupMainController()
+//        } else {
+//            setupLoginController()
+//        }
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
         return true

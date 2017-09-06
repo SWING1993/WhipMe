@@ -178,6 +178,11 @@
 		E44C76001DAB8B5A0038C715 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C75FF1DAB8B5A0038C715 /* Tool.swift */; };
 		E44E73971D9CB8C5007A73D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44E73961D9CB8C5007A73D8 /* Photos.framework */; };
 		E45753A11DC1CFAA0045F55B /* HttpAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */; };
+		E45CD65D1F5FD6C600D02E53 /* IndexWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD65C1F5FD6C600D02E53 /* IndexWebController.m */; };
+		E45CD65F1F5FD7A100D02E53 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45CD65E1F5FD7A100D02E53 /* JavaScriptCore.framework */; };
+		E45CD6681F5FD9C700D02E53 /* CoreAddressBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6621F5FD9C700D02E53 /* CoreAddressBookVC.m */; };
+		E45CD6691F5FD9C700D02E53 /* JXAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6651F5FD9C700D02E53 /* JXAddressBook.m */; };
+		E45CD66A1F5FD9C700D02E53 /* JXPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6671F5FD9C700D02E53 /* JXPersonInfo.m */; };
 		E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556E1E59518F002F8D3F /* TaskDetailController.swift */; };
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
@@ -482,6 +487,15 @@
 		E44E739A1D9D002E007A73D8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E457539F1DC1CFAA0045F55B /* HttpAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIClient.h; sourceTree = "<group>"; };
 		E45753A01DC1CFAA0045F55B /* HttpAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpAPIClient.m; sourceTree = "<group>"; };
+		E45CD65B1F5FD6C600D02E53 /* IndexWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexWebController.h; sourceTree = "<group>"; };
+		E45CD65C1F5FD6C600D02E53 /* IndexWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexWebController.m; sourceTree = "<group>"; };
+		E45CD65E1F5FD7A100D02E53 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E45CD6611F5FD9C700D02E53 /* CoreAddressBookVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreAddressBookVC.h; sourceTree = "<group>"; };
+		E45CD6621F5FD9C700D02E53 /* CoreAddressBookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreAddressBookVC.m; sourceTree = "<group>"; };
+		E45CD6641F5FD9C700D02E53 /* JXAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXAddressBook.h; sourceTree = "<group>"; };
+		E45CD6651F5FD9C700D02E53 /* JXAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXAddressBook.m; sourceTree = "<group>"; };
+		E45CD6661F5FD9C700D02E53 /* JXPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPersonInfo.h; sourceTree = "<group>"; };
+		E45CD6671F5FD9C700D02E53 /* JXPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPersonInfo.m; sourceTree = "<group>"; };
 		E472556E1E59518F002F8D3F /* TaskDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -524,6 +538,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E45CD65F1F5FD7A100D02E53 /* JavaScriptCore.framework in Frameworks */,
 				C56490C71E5FE10000041192 /* UserNotifications.framework in Frameworks */,
 				C56490BC1E5FDFDD00041192 /* libresolv.tbd in Frameworks */,
 				C56490C41E5FE0AD00041192 /* jcore-ios-1.1.1.a in Frameworks */,
@@ -704,6 +719,8 @@
 		C546FE121D82989700012FB4 /* Index */ = {
 			isa = PBXGroup;
 			children = (
+				E45CD65B1F5FD6C600D02E53 /* IndexWebController.h */,
+				E45CD65C1F5FD6C600D02E53 /* IndexWebController.m */,
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
 				E4189ED71D8E6AE000A619A6 /* AddWhipController.swift */,
 				E4E2302D1DDDA500007EF8AC /* AddPeopleController.swift */,
@@ -1049,6 +1066,7 @@
 		DF3182C0EA9A0BB160551313 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E45CD65E1F5FD7A100D02E53 /* JavaScriptCore.framework */,
 				C56490C61E5FE10000041192 /* UserNotifications.framework */,
 				C56490BB1E5FDFDD00041192 /* libresolv.tbd */,
 				C5C1778A1E2CAE5F00891C0D /* ImageIO.framework */,
@@ -1117,6 +1135,7 @@
 		E4189EE11D8E7CE400A619A6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E45CD6601F5FD9C700D02E53 /* CoreAddressBookVC */,
 				C56490C01E5FE0AD00041192 /* JPush */,
 				C5451C841E49B4E600A7AF79 /* QBImagePicker */,
 				C5C1781E1E2CC7F300891C0D /* MJPhotoBrowser */,
@@ -1158,6 +1177,27 @@
 				E449AC811DAB8D200095B8C2 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		E45CD6601F5FD9C700D02E53 /* CoreAddressBookVC */ = {
+			isa = PBXGroup;
+			children = (
+				E45CD6611F5FD9C700D02E53 /* CoreAddressBookVC.h */,
+				E45CD6621F5FD9C700D02E53 /* CoreAddressBookVC.m */,
+				E45CD6631F5FD9C700D02E53 /* Lib */,
+			);
+			path = CoreAddressBookVC;
+			sourceTree = "<group>";
+		};
+		E45CD6631F5FD9C700D02E53 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				E45CD6641F5FD9C700D02E53 /* JXAddressBook.h */,
+				E45CD6651F5FD9C700D02E53 /* JXAddressBook.m */,
+				E45CD6661F5FD9C700D02E53 /* JXPersonInfo.h */,
+				E45CD6671F5FD9C700D02E53 /* JXPersonInfo.m */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		E47255891E5A8934002F8D3F /* Manager */ = {
@@ -1473,6 +1513,7 @@
 				C546FE331D82A35600012FB4 /* Define.swift in Sources */,
 				C50A49891D9A06180003CE2D /* PhoneCodeButton.m in Sources */,
 				C5C177B61E2CBAA300891C0D /* XHVoiceRecordHelper.m in Sources */,
+				E45CD6691F5FD9C700D02E53 /* JXAddressBook.m in Sources */,
 				C5C1782E1E2CC7F300891C0D /* MJPhotoBrowser.m in Sources */,
 				C546FE271D829A7300012FB4 /* MainTabBarController.swift in Sources */,
 				C542FE3F1E24B8DE000A66CB /* MoneyRecordModel.m in Sources */,
@@ -1486,6 +1527,7 @@
 				E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */,
 				E4C9B86D1D921F7200A4C14D /* SGHDateView.swift in Sources */,
 				C570C6A61E5AD7CE009CF43B /* WMGrabOrderController.m in Sources */,
+				E45CD66A1F5FD9C700D02E53 /* JXPersonInfo.m in Sources */,
 				C5C47C3C1E26299300EEA35D /* WMChatListViewController.m in Sources */,
 				C5451C9E1E49B4E600A7AF79 /* QBAssetCell.m in Sources */,
 				C5B0F58D1E1B505E00B87EAA /* HKPickerPassengerView.m in Sources */,
@@ -1525,6 +1567,7 @@
 				C5C1782C1E2CC7F300891C0D /* MJPhoto.m in Sources */,
 				C570C6A51E5AD7CE009CF43B /* WMMangerPageController.m in Sources */,
 				C5A186A71D921A56000866AB /* RegisterViewController.swift in Sources */,
+				E45CD6681F5FD9C700D02E53 /* CoreAddressBookVC.m in Sources */,
 				C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */,
 				C5C177A01E2CB9ED00891C0D /* JCHATRecordAnimationView.m in Sources */,
 				E425F3C21D95032200B17581 /* CenterTextCell.swift in Sources */,
@@ -1559,6 +1602,7 @@
 				C542FE3C1E24B5F8000A66CB /* WMFinancialDetailsController.m in Sources */,
 				E43D0FB31DD07875001A0B36 /* SVProgressHUD.m in Sources */,
 				C5A66B331D990E5C00612E16 /* LoginWayController.swift in Sources */,
+				E45CD65D1F5FD6C600D02E53 /* IndexWebController.m in Sources */,
 				C5FCD9FF1E4C6050009E45F6 /* HKTriangleView.m in Sources */,
 				C555E77E1DE5935900A443A0 /* TopUpViewController.m in Sources */,
 				C542FE4B1E24CAB1000A66CB /* MyFansAndFocusCell.swift in Sources */,
