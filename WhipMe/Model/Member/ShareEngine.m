@@ -171,7 +171,7 @@ static WMShareEngine *objShare = nil;
     UIImage *image = [UIImage imageNamed:icon];
     
     WXMediaMessage *_message = [WXMediaMessage message];
-    _message.title = aTitle ?:@"鞭挞我";
+    _message.title = aTitle ?:@"速速花";
     _message.description = aMessage ?:@"先定一个能达到的小目标...";
     _message.thumbData = imgData ?: UIImageJPEGRepresentation(image, 0.3);
     

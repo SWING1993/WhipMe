@@ -224,7 +224,7 @@ class UserBlogCell: NormalCell {
         self.myGrowM = model
         themeLabel.text = self.myGrowM.themeName
         dateLabel.text = self.myGrowM.startDate + " - " + self.myGrowM.endDate
-        recordNumLabel.text = "已鞭挞" + self.myGrowM.recordNum + "次"
+        recordNumLabel.text = "已监督" + self.myGrowM.recordNum + "次"
         if self.myGrowM.threeDay.count > 0 {
             if let threeDayDic = self.myGrowM.threeDay.first {
                 if let picture = threeDayDic["picture"] {

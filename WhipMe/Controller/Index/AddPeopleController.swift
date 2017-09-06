@@ -100,7 +100,7 @@ class SystemView: UIView {
         }
         
         let title = UILabel()
-        title.text = "小鞭君"
+        title.text = "管家"
         title.font = UIFont.systemFont(ofSize: 16)
         title.textAlignment = .center
         bgview.addSubview(title)

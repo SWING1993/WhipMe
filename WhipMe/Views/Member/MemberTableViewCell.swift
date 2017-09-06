@@ -91,7 +91,6 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblTopic.textColor = Define.RGBColorFloat(42, g: 195, b: 130)
         lblTopic.font = UIFont.systemFont(ofSize: 11.0)
         lblTopic.textAlignment = NSTextAlignment.left
-//        lblTopic.text = "#早起#"
         viewCurrent.addSubview(lblTopic)
         lblTopic.snp.updateConstraints { (make) in
             make.left.equalTo(self.lblTitle.snp.left)
@@ -108,7 +107,6 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         lblNumber.textColor = Define.RGBColorFloat(42, g: 195, b: 130)
         lblNumber.font = UIFont.systemFont(ofSize: 11.0)
         lblNumber.textAlignment = NSTextAlignment.right
-//        lblNumber.text = "已鞭挞118次"
         viewCurrent.addSubview(lblNumber)
         lblNumber.snp.updateConstraints { (make) in
             make.left.equalTo(self.lblTitle.snp.left)
@@ -150,7 +148,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     open func setData() {
         lblTitle.text = self.model.nickname
-        lblNumber.text = "被鞭挞\(self.model.recordNum)次"
+        lblNumber.text = "被监督\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
         imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         if let str_topic : NSString = lblTopic.text as NSString? {
@@ -181,7 +179,7 @@ class MemberTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     open func setData_Supervision() {
         lblTitle.text = self.model.nickname
-        lblNumber.text = "已鞭挞\(self.model.recordNum)次"
+        lblNumber.text = "已监督\(self.model.recordNum)次"
         lblTopic.text = "#\(self.model.themeName)#"
         imageHead.setImageWith(NSURL.init(string: self.model.icon) as! URL, placeholderImage: Define.kDefaultImageHead())
         if let str_topic : NSString = lblTopic.text as NSString? {

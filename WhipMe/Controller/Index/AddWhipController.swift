@@ -185,7 +185,7 @@ class AddWhipController: UIViewController {
                 "guarantee":self.addTask.guarantee
             ]
             
-            let alert = UIAlertView.init(title: "确认提交你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
+            let alert = UIAlertView.init(title: "确认提交你的计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
             alert.bk_addButton(withTitle: "确认", handler: {
                 HttpAPIClient.apiClientPOST("addTask", params: params, success: { (result) in
                     if let resultData = result {

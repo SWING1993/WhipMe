@@ -126,7 +126,7 @@
         self.subTitle.text = [NSString stringWithFormat:@"保证金:%.2f元",model.guarantee];
         self.goingL.backgroundColor = [Define kColorRed];
     } else {
-        self.subTitle.text = [NSString stringWithFormat:@"被鞭挞%ld次",(long)model.recordNum];
+        self.subTitle.text = [NSString stringWithFormat:@"被监督%ld次",(long)model.recordNum];
     }
     
 }

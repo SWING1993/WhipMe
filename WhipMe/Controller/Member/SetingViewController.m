@@ -127,7 +127,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
         cell.lblTitle.text = @"用户协议";
         margin_x = 15.0;
     } else if (indexPath.row == 6) {
-        cell.lblTitle.text = @"关于鞭挞我";
+        cell.lblTitle.text = @"关于速速花";
         margin_x = self.isManager ? 15.0 : 0.0f;
     } else if (indexPath.row == 7) {
         if (self.isManager == NO) {

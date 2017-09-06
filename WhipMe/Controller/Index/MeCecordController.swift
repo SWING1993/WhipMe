@@ -314,7 +314,7 @@ extension MeCecordController:UITableViewDataSource {
                 })
             }
             if (self.myWhipM.type == 1) {
-                cell.titleL.text =  "小鞭君监督中"
+                cell.titleL.text =  "管家监督中"
             } else {
                 cell.titleL.text =  myWhipM.supervisorName + "监督中"
             }
