@@ -18,7 +18,9 @@
 
 @end
 
-@interface IndexWebController ()
+@interface IndexWebController ()<UIWebViewDelegate>
+
+@property (nonatomic, strong) UIWebView *webViewWM;
 
 @end
 
@@ -27,13 +29,90 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setup];
     [self getAddressBook];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)dealloc {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    DebugLog(@"%@",NSStringFromClass(self.class));
 }
+
+- (void)setup {
+    WEAK_SELF
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    self.webViewWM = [[UIWebView alloc] initWithFrame:CGRectZero];
+    self.webViewWM.scalesPageToFit = YES;
+    self.webViewWM.delegate = self;
+    [self.webViewWM.scrollView setBounces:NO];
+
+    [self.view addSubview:self.webViewWM];
+    [self.webViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakSelf.view);
+    }];
+    [self startLoad];
+}
+
+- (void)startLoad {
+    if (self.webViewWM.isLoading) {
+        return;
+    }
+    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+    [self.webViewWM loadRequest:request];
+}
+
+//- (void)loadLocalHtml {
+//    NSString *path = [[NSBundle mainBundle] bundlePath];
+//    NSURL *baseURL = [NSURL fileURLWithPath:path];
+//
+//    [self.navigationItem setTitle:@"用户协议"];
+//    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"userAgreement" ofType:@"html"];
+//    if (self.webType == WMWebViewTypeHelpCenter) {
+//        [self.navigationItem setTitle:@"帮助中心"];
+//        htmlPath = [[NSBundle mainBundle] pathForResource:@"HelpCenter" ofType:@"html"];
+//    }
+//
+//    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+//    [self.webViewWM loadHTMLString:htmlCont baseURL:baseURL];
+//}
+
+- (void)loadErrorHtml {
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"error" ofType:@"html"];
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+    
+    [self.webViewWM loadHTMLString:htmlCont baseURL:baseURL];
+}
+
+#pragma mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if ([NSString isBlankString:webTitle] == NO) {
+        self.navigationItem.title = webTitle;
+    }
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    if([error code] == NSURLErrorCancelled) {
+        return;
+    }
+}
+
 
 - (void)getAddressBook {
     ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
@@ -77,11 +156,12 @@
     NSDictionary *params = @{@"card":@"111",@"datas":datas};
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
-    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
+//    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
-    manager.responseSerializer.acceptableContentTypes = [NSSet
-       setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
+    [manager.responseSerializer setAcceptableContentTypes:nil];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet
+//       setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
