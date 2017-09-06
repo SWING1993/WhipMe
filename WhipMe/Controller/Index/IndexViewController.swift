@@ -811,7 +811,7 @@ extension IndexViewController: UITableViewDelegate {
 
 extension IndexViewController: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
-        let emptyStr = NSAttributedString.init(string: "您还没有添加任何习惯哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 17)])
+        let emptyStr = NSAttributedString.init(string: "您还没有添加任何计划哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 17)])
         return emptyStr
     }
     /*
