@@ -27,7 +27,6 @@
 #import "WMAddFriendController.h"
 #import <UserNotifications/UserNotifications.h>
 
-//
 #import "NSDate+Extension.h"
 #import "NSString+Common.h"
 #import "NSString+Validate.h"

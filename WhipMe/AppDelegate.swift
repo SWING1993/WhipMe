@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.registerUserNotification()
         self.thirdPartySDK()
         self.customizeAppearance()
-        
+        HttpAPIClient.setupXHLaunchAd()
         HttpAPIClient.apiClientPOST("queryReportItem", params: nil, success: { (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)

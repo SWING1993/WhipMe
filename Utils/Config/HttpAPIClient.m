@@ -7,6 +7,7 @@
 //
 
 #import "HttpAPIClient.h"
+#import <XHLaunchAd/XHLaunchAd.h>
 
 NSString *const kBaseUrl = @"http://www.superspv.com";
 
@@ -89,5 +90,34 @@ static NSInteger const kSecondsOut = 10;
         failed == nil ?: failed(error);
     }];
 }
+
++ (void)setupXHLaunchAd {
+    //配置广告数据
+    XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
+    //广告停留时间
+    imageAdconfiguration.duration = 3.f;
+    //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
+    NSString *urlStr = @"http://www.kayouxiang.com/q/images/adver.jpg";
+    imageAdconfiguration.imageNameOrURLString = urlStr;
+    //广告点击打开链接
+    //    imageAdconfiguration.openURLString = [configM mj_JSONString];
+    //allowReturn 添加跳过按钮
+    //    imageAdconfiguration.customSkipView = [self customSkipViewAllowReturn:YES];
+    
+    
+    //广告frame
+    imageAdconfiguration.frame = CGRectMake(0, 0, kScreenW, kScreenH);
+    //缓存机制(仅对网络图片有效)
+    imageAdconfiguration.imageOption = XHLaunchAdImageOnlyLoad;
+    //图片填充模式
+    imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
+    //广告显示完成动画
+    imageAdconfiguration.showFinishAnimate = ShowFinishAnimateFadein;
+    //后台返回时,是否显示广告
+    imageAdconfiguration.showEnterForeground = NO;
+    //显示开屏广告
+    [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
+}
+
 
 @end

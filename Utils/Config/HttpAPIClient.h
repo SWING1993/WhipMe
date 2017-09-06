@@ -24,5 +24,6 @@ typedef void (^FailedBlock)(NSError *error);
 
 + (void)APIWeChatToCode:(NSString *)code Success:(SuccessBlock)success Failed:(FailedBlock)failed;
 
++ (void)setupXHLaunchAd;
 
 @end
