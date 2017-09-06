@@ -13,7 +13,7 @@ import RxSwift
 class SecondAddCustomCell: NormalCell {
     
     //接收上个页面穿过来的闭包块
-    let itmes = ["开始时间", "结束时间", "闹钟设置", "隐私习惯"]
+    let itmes = ["开始时间", "结束时间", "闹钟设置", "隐私"]
     var backClosure:((IndexPath) -> Void)?
     var alarmClockBlock : ((AddTaskM) -> Void)?
     var privacydBlock : ((AddTaskM) -> Void)?

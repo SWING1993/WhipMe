@@ -27,7 +27,7 @@ class FirstAddCustomCell: NormalCell {
             titleT = UITextField.init()
             titleT.textColor = Define.kColorBlack()
             titleT.font = UIFont.systemFont(ofSize: 14.5)
-            titleT.placeholder = "请输入鞭挞名称"
+            titleT.placeholder = "请输入名称"
             self.bgView.addSubview(titleT)
             titleT.snp.makeConstraints({ (make) in
                 make.height.equalTo(45)
@@ -51,7 +51,7 @@ class FirstAddCustomCell: NormalCell {
         if contentT == nil {
             contentT = UIPlaceHolderTextView.init()
             contentT.font = UIFont.systemFont(ofSize: 14)
-            contentT.placeholder = "请详细描述您的鞭挞计划"
+            contentT.placeholder = "请详细描述您的计划"
             self.bgView.addSubview(contentT)
             contentT.snp.makeConstraints({ (make) in
                 make.height.equalTo(155)

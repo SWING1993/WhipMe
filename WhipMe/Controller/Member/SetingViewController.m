@@ -8,7 +8,6 @@
 
 #import "SetingViewController.h"
 #import "WMUserInfoViewController.h"
-#import "WMAboutViewController.h"
 #import "WMLoginManagerController.h"
 #import "WMExitAlertView.h"
 #import "WMBlackListManagerController.h"
@@ -72,16 +71,13 @@ static NSString *identifier_cell = @"setingTableViewCell";
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.isManager ? 10 : 9;
+    return self.isManager ? 7 : 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = 0.0;
-    NSInteger rowManager = self.isManager ? 8 : 7;
+    NSInteger rowManager = self.isManager ? 5 : 4;
     if (indexPath.row == 0) {
         rowHeight = 10.0;
     } else if (indexPath.row == 2 || indexPath.row == rowManager) {
@@ -121,15 +117,6 @@ static NSString *identifier_cell = @"setingTableViewCell";
         cell.lblTitle.text = @"黑名单管理";
         margin_x = 15.0;
     } else if (indexPath.row == 4) {
-        cell.lblTitle.text = @"帮助中心";
-        margin_x = 15.0;
-    } else if (indexPath.row == 5) {
-        cell.lblTitle.text = @"用户协议";
-        margin_x = 15.0;
-    } else if (indexPath.row == 6) {
-        cell.lblTitle.text = @"关于鞭挞我";
-        margin_x = self.isManager ? 15.0 : 0.0f;
-    } else if (indexPath.row == 7) {
         if (self.isManager == NO) {
             cell.lblTitle.text = @"";
             cell.backgroundColor = [UIColor clearColor];
@@ -152,7 +139,6 @@ static NSString *identifier_cell = @"setingTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-    
     if (indexPath.row == 1) {
         WMUserInfoViewController *controller = [[WMUserInfoViewController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
@@ -160,15 +146,12 @@ static NSString *identifier_cell = @"setingTableViewCell";
         WMBlackListManagerController *controller = [[WMBlackListManagerController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.row == 4) {
-        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeHelpCenter];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (indexPath.row == 5) {
-        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeLocal];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (indexPath.row == 6) {
-        WMAboutViewController *controller = [WMAboutViewController new];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (indexPath.row == 7) {
+//        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeHelpCenter];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    } else if (indexPath.row == 5) {
+//        WMWebViewController *controller = [[WMWebViewController alloc] initWithWebType:WMWebViewTypeLocal];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    } else if (indexPath.row == 6) {
         if (self.isManager == YES) {
             WMLoginManagerController *controller = [WMLoginManagerController new];
             [self.navigationController pushViewController:controller animated:YES];

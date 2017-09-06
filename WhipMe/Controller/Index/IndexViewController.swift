@@ -220,10 +220,10 @@ class WhipCell: UITableViewCell {
         let tip = UILabel.init()
         
         if reuseIdentifier == WhipCell.whipMeReuseIdentifier() {
-            tip.text = "鞭挞我"
+            tip.text = "速速花"
             tip.backgroundColor = kColorBlack
         } else {
-            tip.text = "鞭挞他"
+            tip.text = "速速花"
             tip.backgroundColor = kColorRed
         }
        
@@ -329,7 +329,6 @@ extension WhipCell: UITableViewDataSource {
             make.width.equalTo(themeLWidth)
         }
         
-        // 鞭挞他
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
             cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
             cell.headV.bk_(whenTapped: { () -> Void in
@@ -467,7 +466,7 @@ extension WhipCell: UITableViewDataSource {
                 cell.goingL.text = "已拒绝"
                 cell.subTitle.text = "开始:"+whipM.startDate+"/结束:"+whipM.endDate
             } else {
-                cell.subTitle.text = "被鞭挞"+String(describing: whipM.recordNum)+"次"
+                cell.subTitle.text = "被监督"+String(describing: whipM.recordNum)+"次"
                 if whipM.result == 2 {
                     cell.goingL.text = "已结束"
                     cell.goingL.backgroundColor = kColorRed
@@ -477,9 +476,7 @@ extension WhipCell: UITableViewDataSource {
                     cell.goingL.backgroundColor = kColorGreen
                 }
             }
-        }
-        // 鞭挞我
-        else {
+        } else {
             cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
             cell.headV.bk_(whenTapped: { () -> Void in
                 if whipM.supervisor.length > 2 {
@@ -544,7 +541,7 @@ extension WhipCell: UITableViewDataSource {
                 cell.goingL.backgroundColor = kColorRed
             } else {
                 cell.goingL.isHidden = true
-                cell.subTitle.text = "被鞭挞"+String(describing: whipM.recordNum)+"次"
+                cell.subTitle.text = "被监督"+String(describing: whipM.recordNum)+"次"
             }
         }
         return cell
@@ -578,7 +575,7 @@ extension WhipCell: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertView.init(title: "确认删除你的鞭挞计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
+            let alert = UIAlertView.init(title: "确认删除你的计划？", message: nil, delegate: self, cancelButtonTitle: "取消")
             alert.bk_addButton(withTitle: "确认", handler: {
                 let whipM: WhipM = self.modelArray.object(at: indexPath.row) as! WhipM
                 let param = ["loginId":UserManager.shared.userId,
@@ -635,7 +632,7 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func setup() {
-        self.navigationItem.title = "鞭挞我"
+        self.navigationItem.title = "速速花"
         self.view.backgroundColor = Define.kColorBackGround()
         NotificationCenter.default.addObserver(self, selector: #selector(setupAPI), name: NSNotification.Name(rawValue: "needReloaTW"), object: nil)
         prepareTableView()
@@ -814,7 +811,7 @@ extension IndexViewController: UITableViewDelegate {
 
 extension IndexViewController: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString {
-        let emptyStr = NSAttributedString.init(string: "您还没有添加任何习惯哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 17)])
+        let emptyStr = NSAttributedString.init(string: "您还没有添加任何计划哦\n快来添加吧！", attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 17)])
         return emptyStr
     }
     /*

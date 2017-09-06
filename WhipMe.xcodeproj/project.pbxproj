@@ -148,7 +148,6 @@
 		C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
-		C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */; };
 		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
 		C5F673CE1E613F7C006EA57B /* WMShareImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F673CD1E613F7C006EA57B /* WMShareImageView.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
@@ -442,8 +441,6 @@
 		C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationController.m; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
-		C5ECDB9B1E35CB92005C0018 /* WMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAboutViewController.h; sourceTree = "<group>"; };
-		C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAboutViewController.m; sourceTree = "<group>"; };
 		C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginManagerController.h; sourceTree = "<group>"; };
 		C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginManagerController.m; sourceTree = "<group>"; };
 		C5F673CC1E613F7C006EA57B /* WMShareImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareImageView.h; sourceTree = "<group>"; };
@@ -756,8 +753,6 @@
 				C542FE3B1E24B5F8000A66CB /* WMFinancialDetailsController.m */,
 				C542FE401E24BBA6000A66CB /* WMFansAndFocusController.h */,
 				C542FE411E24BBA6000A66CB /* WMFansAndFocusController.m */,
-				C5ECDB9B1E35CB92005C0018 /* WMAboutViewController.h */,
-				C5ECDB9C1E35CB92005C0018 /* WMAboutViewController.m */,
 				C51375ED1E8F3FFA002D7C42 /* WMBlackListManagerController.h */,
 				C51375EE1E8F3FFA002D7C42 /* WMBlackListManagerController.m */,
 			);
@@ -1343,7 +1338,7 @@
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 3FBZXR8H37;
+						DevelopmentTeam = NMADYQ28WF;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1460,7 +1455,6 @@
 				C5C177C51E2CBD0700891C0D /* ChatImageBubble.m in Sources */,
 				C5451CA41E49B4E600A7AF79 /* QBVideoIconView.m in Sources */,
 				C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */,
-				C5ECDB9D1E35CB92005C0018 /* WMAboutViewController.m in Sources */,
 				E4C9B8851D93690C00A4C14D /* NSObject+StoreValue.m in Sources */,
 				E446ECF51E4431F00097336F /* ShareController.swift in Sources */,
 				C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */,
@@ -1729,7 +1723,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				DEVELOPMENT_TEAM = NMADYQ28WF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1750,7 +1744,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipmes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tutu.susuhua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1768,7 +1762,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FBZXR8H37;
+				DEVELOPMENT_TEAM = NMADYQ28WF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1789,7 +1783,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whipme.whipmes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tutu.susuhua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhipMe/WhipMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
