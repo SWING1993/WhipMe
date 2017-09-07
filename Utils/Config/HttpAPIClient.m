@@ -91,6 +91,26 @@ static NSInteger const kSecondsOut = 10;
     }];
 }
 
+
++ (void)startIndexSuccess:(SuccessBlock)success Failed:(FailedBlock)failed {
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.requestSerializer   = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer  = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
+    [manager POST:@"/indexs" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        id data = [result mj_JSONObject];
+        DebugLog(@"success:%@",data);
+        success(result);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        DebugLog(@"error:%@",error);
+        failed(error);
+    }];
+}
+
 + (void)setupXHLaunchAd {
     //配置广告数据
     XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];

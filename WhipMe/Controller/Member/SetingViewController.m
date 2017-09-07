@@ -176,7 +176,7 @@ static NSString *identifier_cell = @"setingTableViewCell";
     [WMUploadFile removeQiniuUpKey];
     
     AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDegate setupLoginController];
+    [appDegate setupMainController];
 }
 
 #pragma mark - WMExitAlertViewDelegate

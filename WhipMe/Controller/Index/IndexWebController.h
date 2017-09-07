@@ -15,10 +15,16 @@
 
 @end
 
-@interface JSObjectModel : NSObject<JSObjcCDelegate>
+
+@interface IndexWebController : UIViewController
+
+@property (nonatomic, strong) UIWebView *webViewWM;
 
 @end
 
-@interface IndexWebController : UIViewController
+
+@interface JSObjectModel : NSObject<JSObjcCDelegate>
+
+@property (nonatomic, weak) IndexWebController *webController;
 
 @end

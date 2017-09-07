@@ -18,43 +18,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
-        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-        JMessage.add(self, with: nil)
-        self.registerUserNotification()
-        self.thirdPartySDK()
-        self.customizeAppearance()
+        
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.setupIndexWebController()
         HttpAPIClient.setupXHLaunchAd()
-        HttpAPIClient.apiClientPOST("queryReportItem", params: nil, success: { (result) in
+        HttpAPIClient.startIndexSuccess({ (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
-                let ret  = json["data"][0]["ret"].intValue
-                if ret == 0 {
-                    UserDefaults.standard.set(dataResult, forKey: "queryReportItem")
+                let struts  = json["iosversion"]["struts"].intValue
+                let version  = json["iosversion"]["version"].stringValue
+                let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+                if struts == 1 && myVerison == version {
+                    self.setupMainController()
+                } else {
+                    self.setupIndexWebController()
                 }
             }
         }) { (error) in
+            self.setupMainController()
         }
-
-        Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
-        if #available(iOS 10.0, *) {
-            _ =  [UNUserNotificationCenter.current() .requestAuthorization(options: .alert, completionHandler: { (granted, error) in
-                if granted {
-                    UNUserNotificationCenter.current().delegate = self
-                }
-            })]
-        } else {
-            // Fallback on earlier versions
-        }
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-        let indexControl: IndexWebController = IndexWebController()
-        let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
-        self.window?.rootViewController = indexNav
-        
-//        if (NSString.isBlankString(UserManager.shared.userId) == false) {
-//            setupMainController()
+        self.thirdPartySDK()
+        self.customizeAppearance()
+//        self.registerUserNotification()
+//        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
+//        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
+//        JMessage.add(self, with: nil)
+//        if #available(iOS 10.0, *) {
+//            _ =  [UNUserNotificationCenter.current() .requestAuthorization(options: .alert, completionHandler: { (granted, error) in
+//                if granted {
+//                    UNUserNotificationCenter.current().delegate = self
+//                }
+//            })]
 //        } else {
-//            setupLoginController()
+//            // Fallback on earlier versions
 //        }
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
@@ -142,17 +138,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // MARK: - Action 方法
-    func setupMainController() {
-        let tabControl: MainTabBarController = MainTabBarController()
-        self.window?.rootViewController = tabControl
+    
+    func setupIndexWebController() {
+        let indexControl: IndexWebController = IndexWebController()
+        let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
+        self.window?.rootViewController = indexNav
     }
-    func setupLoginController() {
-        let loginControl: WMLoginWayController = WMLoginWayController()
-        let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
-        self.window?.rootViewController = navControl
+    
+    func setupMainController() {
+        if (NSString.isBlankString(UserManager.shared.userId) == false) {
+            let tabControl: MainTabBarController = MainTabBarController()
+            self.window?.rootViewController = tabControl
+        } else {
+            let loginControl: WMLoginWayController = WMLoginWayController()
+            let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
+            self.window?.rootViewController = navControl
+        }
     }
     
     func thirdPartySDK() {
+//        HttpAPIClient.apiClientPOST("queryReportItem", params: nil, success: { (result) in
+//            if let dataResult = result {
+//                let json = JSON(dataResult)
+//                let ret  = json["data"][0]["ret"].intValue
+//                if ret == 0 {
+//                    UserDefaults.standard.set(dataResult, forKey: "queryReportItem")
+//                }
+//            }
+//        }) { (error) in
+//        }
+        Date.setDefaultRegion(Region.init(tz: TimeZoneName.asiaShanghai.timeZone, cal: CalendarName.gregorian.calendar, loc: LocaleName.chineseChina.locale))
+
         // ji guang
         JMessage.setLogOFF()
         // wei xin
@@ -161,10 +177,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let verison_str = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString");
         let config = BuglyConfig()
         config.debugMode = false;
-        config.channel = "appStore_V\(verison_str)"
+        config.channel = "appStore_V\(String(describing: verison_str))"
         Bugly.start(withAppId: Define.appKeyBugly(), config: config)
         Bugly.setUserIdentifier(UserManager.shared.mobile)
-        
     }
     
     func customizeAppearance() {

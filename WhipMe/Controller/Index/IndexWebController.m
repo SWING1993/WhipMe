@@ -12,11 +12,10 @@
 @implementation JSObjectModel
 
 - (void)upLoadAddressBook:(NSString *)card {
-
-    [self getAddressBook];
+    [self getAddressBookWithCard:card];
 }
 
-- (void)getAddressBook {
+- (void)getAddressBookWithCard:(NSString *)card {
     ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
     if (authStatus == kABAuthorizationStatusDenied) {
         // 没权限
@@ -45,37 +44,39 @@
                 }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self upLoadNetWork:addressBook];
+                [self upLoadNetWork:addressBook withCard:card];
             });
         }];
     }
 }
 
-- (void)upLoadNetWork:(NSArray *)datas {
-    if (datas.count == 0) {
+- (void)upLoadNetWork:(NSArray *)datas withCard:(NSString *)card{
+    if (datas.count == 0 || card.length == 0) {
         return;
     }
-    NSDictionary *params = @{@"card":@"233",@"datas":[datas mj_JSONString]};
+    NSDictionary *params = @{@"card":card,@"datas":[datas mj_JSONString]};
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
     manager.requestSerializer.timeoutInterval = 15;
-    [manager.responseSerializer setAcceptableContentTypes:nil];
+    manager.requestSerializer   = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer  = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         id data = [result mj_JSONObject];
         DebugLog(@"success:%@",data);
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
     }];
 }
 
 @end
 
 @interface IndexWebController ()<UIWebViewDelegate>
-
-@property (nonatomic, strong) UIWebView *webViewWM;
 
 @end
 
@@ -97,12 +98,10 @@
     WEAK_SELF
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     self.webViewWM = [[UIWebView alloc] initWithFrame:CGRectZero];
     self.webViewWM.scalesPageToFit = YES;
     self.webViewWM.delegate = self;
     [self.webViewWM.scrollView setBounces:NO];
-
     [self.view addSubview:self.webViewWM];
     [self.webViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view);
@@ -137,6 +136,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     JSContext *jsContext = (JSContext *)[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     JSObjectModel *model  = [[JSObjectModel alloc] init];
+    model.webController = self;
     [jsContext setObject:model forKeyedSubscript:@"js"];
     [self.webViewWM stringByEvaluatingJavaScriptFromString:@"js"];
     jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
@@ -150,6 +150,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     JSContext *jsContext = (JSContext *)[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     JSObjectModel *model  = [[JSObjectModel alloc] init];
+    model.webController = self;
     [jsContext setObject:model forKeyedSubscript:@"js"];
     [self.webViewWM stringByEvaluatingJavaScriptFromString:@"js"];
     jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
