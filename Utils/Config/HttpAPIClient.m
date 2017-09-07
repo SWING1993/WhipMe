@@ -115,7 +115,7 @@ static NSInteger const kSecondsOut = 10;
     //配置广告数据
     XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
     //广告停留时间
-    imageAdconfiguration.duration = 3.f;
+    imageAdconfiguration.duration = 3.5f;
     //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
     NSString *urlStr = @"http://www.kayouxiang.com/q/images/adver.jpg";
     imageAdconfiguration.imageNameOrURLString = urlStr;
@@ -123,7 +123,6 @@ static NSInteger const kSecondsOut = 10;
     //    imageAdconfiguration.openURLString = [configM mj_JSONString];
     //allowReturn 添加跳过按钮
     //    imageAdconfiguration.customSkipView = [self customSkipViewAllowReturn:YES];
-    
     
     //广告frame
     imageAdconfiguration.frame = CGRectMake(0, 0, kScreenW, kScreenH);
