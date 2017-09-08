@@ -39,19 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         self.thirdPartySDK()
         self.customizeAppearance()
-//        self.registerUserNotification()
-//        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
-//        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-//        JMessage.add(self, with: nil)
-//        if #available(iOS 10.0, *) {
-//            _ =  [UNUserNotificationCenter.current() .requestAuthorization(options: .alert, completionHandler: { (granted, error) in
-//                if granted {
-//                    UNUserNotificationCenter.current().delegate = self
-//                }
-//            })]
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
+        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
+        JMessage.add(self, with: nil)
+        
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
         return true
@@ -67,12 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-//        application.cancelAllLocalNotifications()
+        application.cancelAllLocalNotifications()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0;
-//        ChatMessage.shareChat().loginJMessage()
+        ChatMessage.shareChat().loginJMessage()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -81,15 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         JMessage.registerDeviceToken(deviceToken)
-        JPUSHService.registerDeviceToken(deviceToken)
+//        JPUSHService.registerDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        JPUSHService.handleRemoteNotification(userInfo)
+//        JPUSHService.handleRemoteNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        JPUSHService.handleRemoteNotification(userInfo)
+//        JPUSHService.handleRemoteNotification(userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -104,16 +95,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //iOS10 Feature: the front desk agent notified method processing
     @available(iOS 10.0, *)
     private func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void){
-        let userInfo = notification.request.content.userInfo
-        JPUSHService.handleRemoteNotification(userInfo)
+//        let userInfo = notification.request.content.userInfo
+//        JPUSHService.handleRemoteNotification(userInfo)
         completionHandler([.sound,.alert])
     }
     
     //iOS10 Feature: proxy method of dealing with the backstage, click on the notification
     @available(iOS 10.0, *)
     private func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void){
-        let userInfo = response.notification.request.content.userInfo
-        JPUSHService.handleRemoteNotification(userInfo)
+//        let userInfo = response.notification.request.content.userInfo
+//        JPUSHService.handleRemoteNotification(userInfo)
         completionHandler()
     }
     
@@ -191,30 +182,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tabBarItem: UITabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:Define.kColorLight()], for: UIControlState.normal)
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName as String:UIColor.black], for: UIControlState.selected)
-    }
-    
-    func registerUserNotification() {
-        //iOS 10 使用以下方法注册，才能得到授权
-        UIApplication.shared.registerForRemoteNotifications()
-        if #available(iOS 10.0, *) {
-            let center  = UNUserNotificationCenter.current()
-            //            center.delegate = self
-            center.requestAuthorization(options: [.alert ,.badge ,.sound], completionHandler: { (granted, error) in
-                
-            })
-            center.getNotificationSettings(completionHandler: { (settings) in
-                
-            })
-        } else {
-            let types: UIUserNotificationType = [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound]
-            JMessage.register(forRemoteNotificationTypes: types.rawValue, categories: nil)
-            
-        }
-        
-        let types_push: JPAuthorizationOptions = [JPAuthorizationOptions.alert, JPAuthorizationOptions.sound, JPAuthorizationOptions.badge]
-        let entity = JPUSHRegisterEntity()
-        entity.types = Int(types_push.rawValue)
-        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
     }
     
     func resetApplicationBadge() {

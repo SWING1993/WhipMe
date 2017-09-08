@@ -177,8 +177,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let json = JSON(result!)
                 let data  = json["data"][0]
                 if (data["ret"].intValue != 0) {
-                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
-                    return;
+//                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
+//                    return;
                 }
                 let info = data["userInfo"]
                 UserManager.storeUserWith(json: info)

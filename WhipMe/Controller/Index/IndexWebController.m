@@ -109,6 +109,11 @@
         make.edges.equalTo(weakSelf.view);
     }];
     [self startLoad];
+    
+    
+//    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ZongDa" ofType:@"plist"]];
+//    DebugLog(@"____data1:%@",data);
+    
 }
 
 - (void)startLoad {

@@ -9,6 +9,7 @@
 #import "SetingViewController.h"
 #import "WMUserInfoViewController.h"
 #import "WMLoginManagerController.h"
+#import "WMLoginWayController.h"
 #import "WMExitAlertView.h"
 #import "WMBlackListManagerController.h"
 
@@ -175,8 +176,10 @@ static NSString *identifier_cell = @"setingTableViewCell";
     }];
     [WMUploadFile removeQiniuUpKey];
     
+    WMLoginWayController *controller = [WMLoginWayController new];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     AppDelegate *appDegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDegate setupMainController];
+    [appDegate.window setRootViewController:navController];
 }
 
 #pragma mark - WMExitAlertViewDelegate

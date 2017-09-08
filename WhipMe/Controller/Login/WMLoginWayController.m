@@ -146,12 +146,12 @@ static NSInteger const button_index = 7777;
     }];
     
     CGFloat mar_x = 20.0;
-    if ([WMShareEngine isWXAppInstalled] == NO) {
+//    if ([WMShareEngine isWXAppInstalled] == NO) {
         if (self.arrayTitle.count == 3) {
             [self.arrayTitle removeObjectAtIndex:2];
             mar_x = 60.0;
         }
-    }
+//    }
     
     NSInteger a_count = self.arrayTitle.count;
     CGFloat origin_x = (kScreenW-84.0*a_count-(a_count-1)*mar_x)/2.0;
