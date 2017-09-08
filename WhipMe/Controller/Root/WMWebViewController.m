@@ -52,7 +52,7 @@
 }
 
 - (void)dealloc {
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+//    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     DebugLog(@"%@",NSStringFromClass(self.class));
 }
 

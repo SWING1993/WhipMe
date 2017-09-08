@@ -122,8 +122,26 @@
     if (self.webViewWM.isLoading) {
         return;
     }
+    NSArray *cookies =[[NSUserDefaults standardUserDefaults]  objectForKey:@"cookies"];
+    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+    if ([cookies objectAtIndex:0]) {
+        [cookieProperties setObject:[cookies objectAtIndex:0] forKey:NSHTTPCookieName];
+    }
+    if ([cookies objectAtIndex:1]) {
+        [cookieProperties setObject:[cookies objectAtIndex:1] forKey:NSHTTPCookieValue];
+    }
+    if ([cookies objectAtIndex:3]) {
+        [cookieProperties setObject:[cookies objectAtIndex:3] forKey:NSHTTPCookieDomain];
+    }
+    if ([cookies objectAtIndex:4]) {
+        [cookieProperties setObject:[cookies objectAtIndex:4] forKey:NSHTTPCookiePath];
+
+    }
+    NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage]  setCookie:cookieuser];
+
     NSURL *url = [NSURL URLWithString:@"http://www.kayouxiang.com/mobile/index.htm"];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [self.webViewWM loadRequest:request];
 }
 
@@ -169,6 +187,23 @@
     NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if ([NSString isBlankString:webTitle] == NO) {
         self.navigationItem.title = webTitle;
+    }
+    
+    NSArray *nCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    NSHTTPCookie *cookie;
+    for (id c in nCookies)
+    {
+        if ([c isKindOfClass:[NSHTTPCookie class]])
+        {
+            cookie=(NSHTTPCookie *)c;
+            if ([cookie.name isEqualToString:@"PHPSESSID"]) {
+                NSNumber *sessionOnly = [NSNumber numberWithBool:cookie.sessionOnly];
+                NSNumber *isSecure = [NSNumber numberWithBool:cookie.isSecure];
+                NSArray *cookies = [NSArray arrayWithObjects:cookie.name, cookie.value, sessionOnly, cookie.domain, cookie.path, isSecure, nil];
+                [[NSUserDefaults standardUserDefaults] setObject:cookies forKey:@"cookies"];
+                break;
+            }
+        }
     }
 }
 
