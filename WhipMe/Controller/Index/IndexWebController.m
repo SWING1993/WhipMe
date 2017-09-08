@@ -196,7 +196,7 @@
         if ([c isKindOfClass:[NSHTTPCookie class]])
         {
             cookie=(NSHTTPCookie *)c;
-            if ([cookie.name isEqualToString:@"PHPSESSID"]) {
+            if ([cookie.name isEqualToString:@"JSESSIONID"]) {
                 NSNumber *sessionOnly = [NSNumber numberWithBool:cookie.sessionOnly];
                 NSNumber *isSecure = [NSNumber numberWithBool:cookie.isSecure];
                 NSArray *cookies = [NSArray arrayWithObjects:cookie.name, cookie.value, sessionOnly, cookie.domain, cookie.path, isSecure, nil];
