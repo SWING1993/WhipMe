@@ -66,9 +66,6 @@ class Define: NSObject {
     class func channelJMessage() -> String {
         return "appstore"
     }
-    class func appKeyBugly() -> String {
-        return "0d6f1c4eca"
-    }
     
     class func kDefaultHeadStr() -> String {
         return "default_head"

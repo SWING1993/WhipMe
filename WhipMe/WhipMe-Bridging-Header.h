@@ -17,7 +17,6 @@
 #import <YTKKeyValueStore/YTKKeyValueStore.h>
 #import <MJExtension/MJExtension.h>
 #import "SVProgressHUD.h"
-#import <Bugly/Bugly.h>
 #import <PLeakSniffer/PLeakSniffer.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "WMUploadFile.h"

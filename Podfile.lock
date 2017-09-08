@@ -29,7 +29,6 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bugly (2.4.7)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
@@ -67,7 +66,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - BlocksKit
-  - Bugly
   - ChameleonFramework
   - HandyJSON
   - Masonry
@@ -89,7 +87,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bugly: 2c256069145f550171907c5cb1c0f84ad291f6c1
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   HandyJSON: dcc98115467462a4749db81bc8a9052607600bdf
@@ -110,6 +107,6 @@ SPEC CHECKSUMS:
   XHLaunchAd: 20dcb0888f7e5bf4183b2920d3cd92a14afd7c26
   YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
 
-PODFILE CHECKSUM: 3d8bc580e12e781134b92188846f9e4f1aad702d
+PODFILE CHECKSUM: 8905040bb06d6eab884c056f7f3778749f1f8171
 
 COCOAPODS: 1.2.0
