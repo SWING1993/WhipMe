@@ -22,21 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.setupIndexWebController()
         HttpAPIClient.setupXHLaunchAd()
-        HttpAPIClient.startIndexSuccess({ (result) in
-            if let dataResult = result {
-                let json = JSON(dataResult)
-                let struts  = json["iosversion"]["struts"].intValue
-                let version  = json["iosversion"]["version"].stringValue
-                let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                if struts == 1 && myVerison == version {
-                    self.setupMainController()
-                } else {
-                    self.setupIndexWebController()
-                }
-            }
-        }) { (error) in
-            self.setupMainController()
-        }
+        self.setupMainController()
+
+//        HttpAPIClient.startIndexSuccess({ (result) in
+//            if let dataResult = result {
+//                let json = JSON(dataResult)
+//                let struts  = json["iosversion"]["struts"].intValue
+//                let version  = json["iosversion"]["version"].stringValue
+//                let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+//                if struts == 1 && myVerison == version {
+//                    self.setupMainController()
+//                } else {
+//                    self.setupIndexWebController()
+//                }
+//            }
+//        }) { (error) in
+//            self.setupMainController()
+//        }
         self.thirdPartySDK()
         self.customizeAppearance()
         JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
