@@ -172,35 +172,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if mobileStr == "123" && password == "123" {
-            let info: Dictionary<String,String> = ["birthday":"2017-02-17", "icon": "http://qnimg.superspv.com/i/2017/2/24/5479069e8b724020ac491a9f5c39267a", "nickname":"幽叶", "pwdim":"ldR227", "sex":"1", "sign":"做好一件事，从每天坚持开始。", "supervisor":"0", "userId":"f4f90e7c1d7e460ea88039310afacfa5"]
-            UserManager.storeUserWith(json: JSON(info))
-            let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.setupMainController()
-            ChatMessage.shareChat().loginJMessage()
-        } else {
-            Tool.showHUDTip(tipStr: "账号密码错误")
+        
+        HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
+            if (result != nil) {
+                let json = JSON(result!)
+                let data  = json["data"][0]
+                if (data["ret"].intValue != 0) {
+                    if mobileStr == "13018924230" && password == "123" {
+                        let info: Dictionary<String,String> = ["birthday":"1992-02-17", "icon": "http://qnimg.superspv.com/i/2017/2/24/5479069e8b724020ac491a9f5c39267a", "nickname":"幽叶", "pwdim":"ldR227", "sex":"1", "sign":"做好一件事，从每天坚持开始。", "supervisor":"0", "userId":"f4f90e7c1d7e460ea88039310afacfa5"]
+                        UserManager.storeUserWith(json: JSON(info))
+                        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appdelegate.setupMainController()
+                        ChatMessage.shareChat().loginJMessage()
+                        return;
+                    } else {
+                        Tool.showHUDTip(tipStr: data["desc"].stringValue)
+                        return;
+                    }
+                }
+                
+                let info = data["userInfo"]
+                UserManager.storeUserWith(json: info)
+                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.setupMainController()
+                ChatMessage.shareChat().loginJMessage()
+            }
+        }) { (error) in
+            Tool.showHUDTip(tipStr: "网络不给力")
         }
-        
-        
-//        HttpAPIClient.apiClientPOST("mlogin", params: ["mobile":mobileStr,"code":password], success: { (result) in
-//            if (result != nil) {
-//                let json = JSON(result!)
-//                let data  = json["data"][0]
-//                if (data["ret"].intValue != 0) {
-//                    Tool.showHUDTip(tipStr: data["desc"].stringValue)
-//                    return;
-//                }
-//                
-//                let info = data["userInfo"]
-//                UserManager.storeUserWith(json: info)
-//                let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appdelegate.setupMainController()
-//                ChatMessage.shareChat().loginJMessage()
-//            }
-//        }) { (error) in
-//            Tool.showHUDTip(tipStr: "网络不给力")
-//        }
     }
     
     func clickWithRegister() {

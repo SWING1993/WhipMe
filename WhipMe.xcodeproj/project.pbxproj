@@ -52,6 +52,8 @@
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
 		C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
+		C54B2F811F68DA23003D9445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */; };
+		C54B2F851F68DB86003D9445 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C54B2F841F68DB86003D9445 /* bg.png */; };
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
 		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
@@ -284,6 +286,8 @@
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
 		C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C54B2F841F68DB86003D9445 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		C54DF9101D9BB4E20067BC9F /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		C54E77DD1DE68C41007F886B /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
 		C54E77DE1DE68C41007F886B /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C54B2F841F68DB86003D9445 /* bg.png */,
+				C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */,
 				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
@@ -1381,7 +1387,9 @@
 			files = (
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
+				C54B2F851F68DB86003D9445 /* bg.png in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
+				C54B2F811F68DA23003D9445 /* LaunchScreen.storyboard in Resources */,
 				E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */,
 				C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
@@ -1721,7 +1729,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1762,7 +1769,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

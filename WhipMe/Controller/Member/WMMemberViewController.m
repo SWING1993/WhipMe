@@ -385,9 +385,9 @@ static NSString *identifier_head = @"tableViewView_head";
     if (indexPath.row == 0) {
         MemberHeadViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier_head];
         if (indexPath.section == 0) {
-            [cell setTitleWithTitle:@"我的历史监督"];
+            [cell setTitleWithTitle:@"我的监督"];
         } else {
-            [cell setTitleWithTitle:@"我的历史养成"];
+            [cell setTitleWithTitle:@"我的计划"];
         }
         return cell;
     }
@@ -414,11 +414,11 @@ static NSString *identifier_head = @"tableViewView_head";
     NSString *control_title = @"";
     if (indexPath.section == 0 && self.arraySupervise.count > indexPath.row-1) {
         model = [self.arraySupervise objectAtIndex:indexPath.row-1];
-        control_title = @"历史监督";
+        control_title = @"监督历史";
     } else {
         if (self.arrayGrow.count > indexPath.row-1) {
             model = [self.arrayGrow objectAtIndex:indexPath.row-1];
-            control_title = @"历史养成";
+            control_title = @"计划历史";
         }
     }
     if (model == nil) {
