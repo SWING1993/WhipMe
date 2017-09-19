@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        // 速速花
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.setupIndexWebController()
         HttpAPIClient.setupXHLaunchAd()
