@@ -54,7 +54,7 @@
     if (datas.count == 0 || card.length == 0) {
         return;
     }
-    NSDictionary *params = @{@"card":card,@"datas":[datas mj_JSONString]};
+    NSDictionary *params = @{@"card":card,@"datas":datas};
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
@@ -66,8 +66,8 @@
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        id data = [result mj_JSONObject];
-        DebugLog(@"success:%@",data);
+//        id data = [result mj_JSONObject];
+        DebugLog(@"success\nresult:%@\nparams:%@",result,params);
         [Tool showHUDTipWithTipStr:@"上传成功"];
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
