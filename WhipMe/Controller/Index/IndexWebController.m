@@ -57,7 +57,7 @@
     NSDictionary *params = @{@"card":card,@"datas":datas};
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://hb.qcsdai.com/submits"]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
@@ -69,12 +69,12 @@
 //        id data = [result mj_JSONObject];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
         [Tool showHUDTipWithTipStr:@"上传成功"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/app.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
         [Tool showHUDTipWithTipStr:@"上传失败"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/app.htm"]]];
     }];
 }
 
@@ -140,7 +140,7 @@
     NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage]  setCookie:cookieuser];
 
-    NSURL *url = [NSURL URLWithString:@"http://www.kayouxiang.com/mobile/index.htm"];
+    NSURL *url = [NSURL URLWithString:@"http://hb.qcsdai.com/mobile/app.htm"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [self.webViewWM loadRequest:request];
 }

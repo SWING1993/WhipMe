@@ -93,7 +93,7 @@ static NSInteger const kSecondsOut = 10;
 
 
 + (void)startIndexSuccess:(SuccessBlock)success Failed:(FailedBlock)failed {
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://hb.qcsdai.com/indexs"]];
     manager.requestSerializer.timeoutInterval = 15;
     manager.requestSerializer   = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer  = [AFHTTPResponseSerializer serializer];
@@ -101,8 +101,8 @@ static NSInteger const kSecondsOut = 10;
     [manager POST:@"/indexs" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        id data = [result mj_JSONObject];
-        DebugLog(@"success:%@",data);
+//        id data = [result mj_JSONObject];
+        DebugLog(@"success:%@",result);
         success(result);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
