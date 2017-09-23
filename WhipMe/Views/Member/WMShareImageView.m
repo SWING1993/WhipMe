@@ -54,7 +54,7 @@
     [self.imageCustom addSubview:_lblName];
     
     _lblDetail = [UILabel new];
-    [_lblDetail setText:@"长按识别二维码，下载速速花"];
+    [_lblDetail setText:@"长按识别二维码，下载乐贝壳"];
     [_lblDetail setTextAlignment:NSTextAlignmentRight];
     [_lblDetail setTextColor:[UIColor whiteColor]];
     [_lblDetail setFont:[UIFont systemFontOfSize:12.0]];

@@ -220,10 +220,10 @@ class WhipCell: UITableViewCell {
         let tip = UILabel.init()
         
         if reuseIdentifier == WhipCell.whipMeReuseIdentifier() {
-            tip.text = "速速花"
+            tip.text = "乐贝壳"
             tip.backgroundColor = kColorBlack
         } else {
-            tip.text = "速速花"
+            tip.text = "乐贝壳"
             tip.backgroundColor = kColorRed
         }
        
@@ -632,7 +632,7 @@ class IndexViewController: UIViewController {
     }
     
     fileprivate func setup() {
-        self.navigationItem.title = "速速花"
+        self.navigationItem.title = "乐贝壳"
         self.view.backgroundColor = Define.kColorBackGround()
         NotificationCenter.default.addObserver(self, selector: #selector(setupAPI), name: NSNotification.Name(rawValue: "needReloaTW"), object: nil)
         prepareTableView()

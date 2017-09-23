@@ -109,7 +109,7 @@ class ShareController: UIViewController {
         title1.textColor = kColorGary
         title1.textAlignment = .right
         title1.font = UIFont.systemFont(ofSize: 14)
-        title1.text = "长按识别二维码，下载速速花"
+        title1.text = "长按识别二维码，下载乐贝壳"
         qrcodeView.addSubview(title1)
         title1.snp.makeConstraints { (make) in
             make.bottom.equalTo(qrcodeView.snp.centerY)
