@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DDInitPassController">
+            <connections>
+                <outlet property="achieveBtn" destination="ZSD-4z-syN" id="4QS-Gi-LlN"/>
+                <outlet property="firstPassWordField" destination="or4-YS-TgR" id="ars-wK-BnL"/>
+                <outlet property="secondPassWordField" destination="wif-u3-rqd" id="gjJ-P8-60k"/>
+                <outlet property="view" destination="iN0-l3-epB" id="mbi-By-TVs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="or4-YS-TgR">
+                    <rect key="frame" x="20" y="60" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1qt-08-mtL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wif-u3-rqd">
+                    <rect key="frame" x="20" y="120" width="280" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSD-4z-syN">
+                    <rect key="frame" x="20" y="200" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="aMb-K8-5VF"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="or4-YS-TgR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="6vQ-5K-4bc"/>
+                <constraint firstItem="wif-u3-rqd" firstAttribute="width" secondItem="or4-YS-TgR" secondAttribute="width" id="7FN-GL-ijx"/>
+                <constraint firstItem="ZSD-4z-syN" firstAttribute="top" secondItem="wif-u3-rqd" secondAttribute="bottom" constant="40" id="EVo-yo-fUF"/>
+                <constraint firstItem="ZSD-4z-syN" firstAttribute="trailing" secondItem="wif-u3-rqd" secondAttribute="trailing" id="GPG-Ys-b1M"/>
+                <constraint firstItem="ZSD-4z-syN" firstAttribute="leading" secondItem="wif-u3-rqd" secondAttribute="leading" id="Re7-ZL-RIr"/>
+                <constraint firstItem="wif-u3-rqd" firstAttribute="height" secondItem="or4-YS-TgR" secondAttribute="height" id="oZV-OC-1BN"/>
+                <constraint firstItem="wif-u3-rqd" firstAttribute="leading" secondItem="or4-YS-TgR" secondAttribute="leading" id="r3q-SU-DNM"/>
+                <constraint firstAttribute="trailing" secondItem="or4-YS-TgR" secondAttribute="trailing" constant="20" id="uGB-Ob-Nsu"/>
+                <constraint firstItem="or4-YS-TgR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="ymd-lB-0Wj"/>
+                <constraint firstItem="wif-u3-rqd" firstAttribute="top" secondItem="or4-YS-TgR" secondAttribute="bottom" constant="20" id="ziM-bI-sN8"/>
+            </constraints>
+            <point key="canvasLocation" x="332" y="356"/>
+        </view>
+    </objects>
+</document>
