@@ -188,7 +188,6 @@
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
 		E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */; };
-		E4A367EB1F70F6F90073ECBD /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E4A367EA1F70F6F90073ECBD /* bg.png */; };
 		E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8EF041DE5883000E16B26 /* CashController.swift */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
 		E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AB21F91D82566A0044943E /* Assets.xcassets */; };
@@ -464,6 +463,7 @@
 		E4189EDF1D8E746400A619A6 /* ThirdAddCustomCell Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThirdAddCustomCell Cell.swift"; sourceTree = "<group>"; };
 		E4189EE21D8E7D0600A619A6 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		E4189EE31D8E7D0600A619A6 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		E4196A881F79E69300E9BC59 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		E425F3BF1D95030C00B17581 /* LeftTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTextCell.swift; sourceTree = "<group>"; };
 		E425F3C11D95032200B17581 /* CenterTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterTextCell.swift; sourceTree = "<group>"; };
 		E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "小节奏 - 短信铃声.m4r"; sourceTree = "<group>"; };
@@ -505,7 +505,6 @@
 		E48C0BEC1D87E33400802C6B /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+expanded.h"; sourceTree = "<group>"; };
 		E48C0BED1D87E33400802C6B /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+expanded.m"; sourceTree = "<group>"; };
 		E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeCecordController.swift; sourceTree = "<group>"; };
-		E4A367EA1F70F6F90073ECBD /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		E4A8EF041DE5883000E16B26 /* CashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashController.swift; sourceTree = "<group>"; };
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AB21F21D82566A0044943E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WhipMe/AppDelegate.swift; sourceTree = "<group>"; };
@@ -633,7 +632,7 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E4A367EA1F70F6F90073ECBD /* bg.png */,
+				E4196A881F79E69300E9BC59 /* bg.png */,
 				C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */,
 				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
@@ -1387,7 +1386,6 @@
 			files = (
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
-				E4A367EB1F70F6F90073ECBD /* bg.png in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
 				C54B2F811F68DA23003D9445 /* LaunchScreen.storyboard in Resources */,
 				E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */,
