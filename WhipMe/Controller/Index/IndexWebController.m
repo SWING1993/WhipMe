@@ -69,12 +69,12 @@
 //        id data = [result mj_JSONObject];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
         [Tool showHUDTipWithTipStr:@"上传成功"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/app.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
         [Tool showHUDTipWithTipStr:@"上传失败"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/app.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     }];
 }
 
