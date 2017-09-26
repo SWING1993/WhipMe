@@ -52,7 +52,6 @@
 		C546FE2B1D829D5000012FB4 /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */; };
 		C546FE2D1D829D6A00012FB4 /* FriendCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */; };
 		C546FE331D82A35600012FB4 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546FE321D82A35600012FB4 /* Define.swift */; };
-		C54B2F811F68DA23003D9445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */; };
 		C54DF9111D9BB4E20067BC9F /* PlanM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DF9101D9BB4E20067BC9F /* PlanM.swift */; };
 		C54E77DF1DE68C41007F886B /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77DE1DE68C41007F886B /* SetingViewController.m */; };
 		C54E77E21DE69290007F886B /* WMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54E77E11DE69290007F886B /* WMUserInfoViewController.m */; };
@@ -149,6 +148,8 @@
 		C5C47C3F1E2629D400EEA35D /* WMNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */; };
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
+		C5E262B21F76910400B073C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */; };
+		C5E262B41F76932E00B073C7 /* 750x1334@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5E262B31F76932E00B073C7 /* 750x1334@2x.png */; };
 		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
 		C5F673CE1E613F7C006EA57B /* WMShareImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F673CD1E613F7C006EA57B /* WMShareImageView.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
@@ -285,7 +286,6 @@
 		C546FE2A1D829D5000012FB4 /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
 		C546FE2C1D829D6A00012FB4 /* FriendCircleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleController.swift; sourceTree = "<group>"; };
 		C546FE321D82A35600012FB4 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
-		C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C54DF9101D9BB4E20067BC9F /* PlanM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanM.swift; sourceTree = "<group>"; };
 		C54E77DD1DE68C41007F886B /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
 		C54E77DE1DE68C41007F886B /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
@@ -443,6 +443,8 @@
 		C5C47C3E1E2629D400EEA35D /* WMNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNotificationController.m; sourceTree = "<group>"; };
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
+		C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C5E262B31F76932E00B073C7 /* 750x1334@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "750x1334@2x.png"; sourceTree = "<group>"; };
 		C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginManagerController.h; sourceTree = "<group>"; };
 		C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginManagerController.m; sourceTree = "<group>"; };
 		C5F673CC1E613F7C006EA57B /* WMShareImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareImageView.h; sourceTree = "<group>"; };
@@ -631,7 +633,8 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C54B2F801F68DA23003D9445 /* LaunchScreen.storyboard */,
+				C5E262B31F76932E00B073C7 /* 750x1334@2x.png */,
+				C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */,
 				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
@@ -1385,7 +1388,7 @@
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
-				C54B2F811F68DA23003D9445 /* LaunchScreen.storyboard in Resources */,
+				C5E262B21F76910400B073C7 /* LaunchScreen.storyboard in Resources */,
 				E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */,
 				C5451C9B1E49B4E600A7AF79 /* QBImagePicker.strings in Resources */,
 				C5C1782D1E2CC7F300891C0D /* MJPhotoBrowser.bundle in Resources */,
@@ -1393,6 +1396,7 @@
 				C5C177901E2CB7EF00891C0D /* JCHATConversationViewController.xib in Resources */,
 				C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */,
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
+				C5E262B41F76932E00B073C7 /* 750x1334@2x.png in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,

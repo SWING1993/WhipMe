@@ -88,7 +88,7 @@ static NSInteger const button_index = 7777;
     [lblMessage setFont:[UIFont systemFontOfSize:12.0]];
     [lblMessage setNumberOfLines:0];
     [self.view addSubview:lblMessage];
-    NSString *str_msg = @"先定一个能达到的";
+    NSString *str_msg = @"先定一个能达到的小目标";
     NSDictionary *attribute = @{NSFontAttributeName:lblMessage.font, NSForegroundColorAttributeName:lblMessage.textColor};
     CGSize size_h_msg = [str_msg boundingRectWithSize:CGSizeMake(16.0, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil].size;
     NSMutableAttributedString *att_msg = [[NSMutableAttributedString alloc] initWithString:str_msg attributes:attribute];
@@ -106,6 +106,7 @@ static NSInteger const button_index = 7777;
     [lblMessage2 setTextColor:[Define RGBColorFloat:251 g:127 b:119]];
     [lblMessage2 setFont:[UIFont boldSystemFontOfSize:18.0]];
     [lblMessage2 setNumberOfLines:0];
+    [lblMessage2 setHidden:YES];
     [self.view addSubview:lblMessage2];
     NSString *str_msg2 = @"小目标";
     NSDictionary *attribute2 = @{NSFontAttributeName:lblMessage2.font, NSForegroundColorAttributeName:lblMessage2.textColor};
@@ -119,22 +120,22 @@ static NSInteger const button_index = 7777;
         make.top.equalTo(lblMessage.mas_bottom).offset(-24.0);
     }];
     
-    CGFloat origin_y = -5.0;
-    for (NSInteger i=0; i<3; i++) {
-        UILabel *itemLbl = [UILabel new];
-        [itemLbl setBackgroundColor:[UIColor clearColor]];
-        [itemLbl setTextColor:lblMessage2.textColor];
-        [itemLbl setFont:[UIFont boldSystemFontOfSize:20.0]];
-        [itemLbl setTextAlignment:lblMessage2.textAlignment];
-        [itemLbl setText:@"."];
-        [self.view addSubview:itemLbl];
-        [itemLbl mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(20.0, 20.0));
-            make.left.equalTo(lblMessage2.mas_left).offset(7.0);
-            make.top.equalTo(lblMessage2.mas_bottom).offset(origin_y);
-        }];
-        origin_y += 8.0f;
-    }
+//    CGFloat origin_y = -5.0;
+//    for (NSInteger i=0; i<3; i++) {
+//        UILabel *itemLbl = [UILabel new];
+//        [itemLbl setBackgroundColor:[UIColor clearColor]];
+//        [itemLbl setTextColor:lblMessage2.textColor];
+//        [itemLbl setFont:[UIFont boldSystemFontOfSize:20.0]];
+//        [itemLbl setTextAlignment:lblMessage2.textAlignment];
+//        [itemLbl setText:@"."];
+//        [self.view addSubview:itemLbl];
+//        [itemLbl mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(20.0, 20.0));
+//            make.left.equalTo(lblMessage2.mas_left).offset(7.0);
+//            make.top.equalTo(lblMessage2.mas_bottom).offset(origin_y);
+//        }];
+//        origin_y += 8.0f;
+//    }
     
     UIView *viewButton = [UIView new];
     [viewButton setBackgroundColor:[UIColor clearColor]];
