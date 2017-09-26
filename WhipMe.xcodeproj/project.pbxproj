@@ -24,6 +24,7 @@
 		C516C6891E238412000BA12B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */; };
 		C516C68A1E238412000BA12B /* MemberHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6871E238412000BA12B /* MemberHeadViewCell.swift */; };
 		C516C68B1E238412000BA12B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C6881E238412000BA12B /* MemberTableViewCell.swift */; };
+		C522A3C91F7A66C100C426DE /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C522A3C81F7A66C100C426DE /* bg.png */; };
 		C52701AF1DDC59060021F989 /* mySuperviseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52701AE1DDC59060021F989 /* mySuperviseModel.swift */; };
 		C52C17FB1E2A0277000E8CAF /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FA1E2A0277000E8CAF /* NotificationModel.m */; };
 		C52C17FE1E2A07EA000E8CAF /* WMNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52C17FD1E2A07EA000E8CAF /* WMNotificationViewCell.m */; };
@@ -149,7 +150,6 @@
 		C5D669A31D86436B008EE189 /* UIView+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A21D86436B008EE189 /* UIView+Size.swift */; };
 		C5D669A51D864695008EE189 /* UIImage+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D669A41D864695008EE189 /* UIImage+Draw.swift */; };
 		C5E262B21F76910400B073C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */; };
-		C5E262B41F76932E00B073C7 /* 750x1334@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5E262B31F76932E00B073C7 /* 750x1334@2x.png */; };
 		C5ECDBA11E35EAD8005C0018 /* WMLoginManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */; };
 		C5F673CE1E613F7C006EA57B /* WMShareImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F673CD1E613F7C006EA57B /* WMShareImageView.m */; };
 		C5F9BD771DD0147D000250E8 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9BD761DD0147D000250E8 /* ChatMessage.m */; };
@@ -237,6 +237,7 @@
 		C516C6861E238412000BA12B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		C516C6871E238412000BA12B /* MemberHeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHeadViewCell.swift; sourceTree = "<group>"; };
 		C516C6881E238412000BA12B /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		C522A3C81F7A66C100C426DE /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		C52701AE1DDC59060021F989 /* mySuperviseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySuperviseModel.swift; sourceTree = "<group>"; };
 		C52C17F91E2A0277000E8CAF /* NotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
 		C52C17FA1E2A0277000E8CAF /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
@@ -444,7 +445,6 @@
 		C5D669A21D86436B008EE189 /* UIView+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Size.swift"; path = "../iTools/UIView+Size.swift"; sourceTree = "<group>"; };
 		C5D669A41D864695008EE189 /* UIImage+Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Draw.swift"; path = "../iTools/UIImage+Draw.swift"; sourceTree = "<group>"; };
 		C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C5E262B31F76932E00B073C7 /* 750x1334@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "750x1334@2x.png"; sourceTree = "<group>"; };
 		C5ECDB9F1E35EAD8005C0018 /* WMLoginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginManagerController.h; sourceTree = "<group>"; };
 		C5ECDBA01E35EAD8005C0018 /* WMLoginManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginManagerController.m; sourceTree = "<group>"; };
 		C5F673CC1E613F7C006EA57B /* WMShareImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareImageView.h; sourceTree = "<group>"; };
@@ -633,7 +633,7 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C5E262B31F76932E00B073C7 /* 750x1334@2x.png */,
+				C522A3C81F7A66C100C426DE /* bg.png */,
 				C5E262B11F76910400B073C7 /* LaunchScreen.storyboard */,
 				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
@@ -1387,6 +1387,7 @@
 			files = (
 				C5C47C301E25D2DE00EEA35D /* error.html in Resources */,
 				C5C177981E2CB80E00891C0D /* JCHATMoreView.xib in Resources */,
+				C522A3C91F7A66C100C426DE /* bg.png in Resources */,
 				C5C47C2C1E25CAEF00EEA35D /* userAgreement.html in Resources */,
 				C5E262B21F76910400B073C7 /* LaunchScreen.storyboard in Resources */,
 				E433D1B01E63F92C000B9761 /* 小节奏 - 短信铃声.m4r in Resources */,
@@ -1396,7 +1397,6 @@
 				C5C177901E2CB7EF00891C0D /* JCHATConversationViewController.xib in Resources */,
 				C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */,
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
-				C5E262B41F76932E00B073C7 /* 750x1334@2x.png in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
