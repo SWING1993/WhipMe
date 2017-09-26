@@ -268,7 +268,7 @@
 }
 
 - (void)showAlertMessage {
-    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"如需提现，请先关注微信公众号“速速花”！" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"如需提现，请先关注微信公众号“乐贝壳”！" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertControl addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }]];
     [self presentViewController:alertControl animated:YES completion:nil];

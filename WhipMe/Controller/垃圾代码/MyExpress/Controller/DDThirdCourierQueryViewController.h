@@ -1,0 +1,17 @@
+//
+//  ThirdCourierQueryViewController.h
+//  DuDu Courier
+//
+//  Created by yangg on 16/2/23.
+//  Copyright © 2016年 yangg. All rights reserved.
+//
+
+/**
+    第三方快递查询视图
+ */
+
+#import "DDRootViewController.h"
+
+@interface DDThirdCourierQueryViewController : DDRootViewController
+
+@end
