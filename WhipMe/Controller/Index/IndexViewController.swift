@@ -733,6 +733,7 @@ class IndexViewController: UIViewController {
     
     func clickWithRightBarItem() {
         let addWhipC = AddWhipController.init()
+        addWhipC.hideHot = true
         addWhipC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(addWhipC, animated: true)
     }

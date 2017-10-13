@@ -138,8 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func setupMainController() {
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
-            let tabControl: MainTabBarController = MainTabBarController()
-            self.window?.rootViewController = tabControl
+//            let tabControl: MainTabBarController = MainTabBarController()
+//            self.window?.rootViewController = tabControl
+            let indexControl: IndexViewController = IndexViewController()
+            let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
+            self.window?.rootViewController = indexNav
         } else {
             let loginControl: WMLoginWayController = WMLoginWayController()
             let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
