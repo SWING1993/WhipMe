@@ -56,41 +56,41 @@ class RecommendCell: NormalCell {
             make.height.width.equalTo(36)
         })
         
-        avatarV.bk_(whenTapped: { () -> Void in
-            let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
-            hud.label.text = "加载中..."
-            let params = [
-                "userId":self.myRecommendM.creator,
-                "loginId":UserManager.shared.userId,
-            ]
-            HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
-                hud.hide(animated: true)
-                if let dataResult = result {
-                    print(dataResult)
-                    let json = JSON(dataResult)
-                    let ret  = json["data"][0]["ret"].intValue
-                    if ret == 0 {
-                        let dataJson = json["data"][0]
-                        let string = String(describing: dataJson)
-                        
-                        if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
-                            let queryUserBlogC = QueryUserBlogC.init()
-                            queryUserBlogC.navigationItem.title = self.myRecommendM.nickname
-                            queryUserBlogC.userBlogM = userBlogM
-                            let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
-                            kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
-                                
-                            })
-                        }
-                    } else {
-                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
-                    }
-                }
-            }) { (error) in
-                hud.hide(animated: true)
-                Tool.showHUDTip(tipStr: "网络不给力")
-            }
-        })
+//        avatarV.bk_(whenTapped: { () -> Void in
+//            let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
+//            hud.label.text = "加载中..."
+//            let params = [
+//                "userId":self.myRecommendM.creator,
+//                "loginId":UserManager.shared.userId,
+//            ]
+//            HttpAPIClient.apiClientPOST("queryUserBlog", params: params, success: { (result) in
+//                hud.hide(animated: true)
+//                if let dataResult = result {
+//                    print(dataResult)
+//                    let json = JSON(dataResult)
+//                    let ret  = json["data"][0]["ret"].intValue
+//                    if ret == 0 {
+//                        let dataJson = json["data"][0]
+//                        let string = String(describing: dataJson)
+//
+//                        if let userBlogM = JSONDeserializer<UserBlogM>.deserializeFrom(json: string) {
+//                            let queryUserBlogC = QueryUserBlogC.init()
+//                            queryUserBlogC.navigationItem.title = self.myRecommendM.nickname
+//                            queryUserBlogC.userBlogM = userBlogM
+//                            let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
+//                            kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
+//
+//                            })
+//                        }
+//                    } else {
+//                        Tool.showHUDTip(tipStr: json["data"][0]["desc"].stringValue)
+//                    }
+//                }
+//            }) { (error) in
+//                hud.hide(animated: true)
+//                Tool.showHUDTip(tipStr: "网络不给力")
+//            }
+//        })
 
         nickNameL = UILabel.init()
         nickNameL.font = UIFont.systemFont(ofSize: 16)
