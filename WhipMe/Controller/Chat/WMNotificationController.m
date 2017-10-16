@@ -62,8 +62,8 @@ static NSString *identifier_cell = @"notificationViewCell";
     [self.view addSubview:self.tableViewWM];
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.equalTo(weakSelf.view);
-        make.width.mas_equalTo([Define screenWidth]);
-        make.height.mas_equalTo([Define screenHeight]-64.0 - 49.0);
+        make.width.mas_equalTo(kScreenW);
+        make.height.mas_equalTo(kScreenH-kNaviHeight - 49.0);
     }];
     [self.tableViewWM registerClass:[WMNotificationViewCell class] forCellReuseIdentifier:identifier_cell];
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

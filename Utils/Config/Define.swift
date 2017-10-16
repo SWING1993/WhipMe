@@ -42,9 +42,6 @@ let kColorCyanOff: UIColor = Define.RGBColorFloat(48.0, g:203.0, b:135.0)
 //25a56c
 let kColorCyanOn: UIColor = Define.RGBColorFloat(37.0, g:165.0, b:108.0)
 
-
-let kNaviHeight: CGFloat = 64.0
-
 let kLeftMargin: CGFloat = 9.0
 let kRightMargin: CGFloat = -9.0
 let kTopMargin :CGFloat = 4.5

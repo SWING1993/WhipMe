@@ -138,11 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func setupMainController() {
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
-//            let tabControl: MainTabBarController = MainTabBarController()
-//            self.window?.rootViewController = tabControl
-            let indexControl: IndexViewController = IndexViewController()
-            let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
-            self.window?.rootViewController = indexNav
+            let tabControl: MainTabBarController = MainTabBarController()
+            self.window?.rootViewController = tabControl
+//            let indexControl: IndexViewController = IndexViewController()
+//            let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
+//            self.window?.rootViewController = indexNav
         } else {
             let loginControl: WMLoginWayController = WMLoginWayController()
             let navControl: UINavigationController = UINavigationController.init(rootViewController: loginControl)
@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let barButtonAppearance: UIBarButtonItem = UIBarButtonItem.appearance()
         barButtonAppearance.tintColor = UIColor.white
-        barButtonAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60.0), for: UIBarMetrics.default)
+//        barButtonAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60.0), for: UIBarMetrics.default)
         
         //去除 TabBar 自带的顶部阴影
         let tabBarAppearance: UITabBar = UITabBar.appearance()

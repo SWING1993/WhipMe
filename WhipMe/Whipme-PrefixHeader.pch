@@ -14,7 +14,6 @@
 #import "WhipMe-Swift.h"
 
 
-
 // 字符串是否为空
 #define kStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
 // 数组是否为空
@@ -37,6 +36,11 @@
 
 #define kScreenW [[UIScreen mainScreen] bounds].size.width
 #define kScreenH [[UIScreen mainScreen] bounds].size.height
+
+#define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
+#define kNavigationBarHeight 44
+#define kNaviHeight (kNavigationBarHeight+kStatusBarHeight)
+#define kTabBarHeight 49.0f
 
 #define WEAK_SELF __weak typeof(self) weakSelf = self;
 

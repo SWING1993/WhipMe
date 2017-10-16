@@ -60,7 +60,7 @@ static NSString *identifier_cell = @"userInfoViewCell";
     
     [self.tableViewWM registerClass:[UserInfoTableViewCell class] forCellReuseIdentifier:identifier_cell];
     
-    CGRect frame = CGRectMake(0, [Define screenHeight], [Define screenWidth], [Define screenHeight] - 64.0);
+    CGRect frame = CGRectMake(0, kScreenH, kScreenW, kScreenH - kNaviHeight);
     _pickerPassenger = [[HKPickerPassengerView alloc] initWithFrame:frame title:nil delegate:self type:HKPickerPassengerViewTypeBirthday];
     [self.view addSubview:self.pickerPassenger];
 }

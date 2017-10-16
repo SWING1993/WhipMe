@@ -17,28 +17,28 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(clickBadge), name: NSNotification.Name(rawValue: Define.kUserUnReadCountNotification()), object: nil)
         
         let navIndex: UINavigationController = UINavigationController.init(rootViewController: IndexViewController())
-//        let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
-//        let navMember: UINavigationController = UINavigationController.init(rootViewController: WMMemberViewController())
+        let navFriend: UINavigationController = UINavigationController.init(rootViewController: FriendCircleController())
+        let navMember: UINavigationController = UINavigationController.init(rootViewController: WMMemberViewController())
         let chatPageControl: UIPageViewController = UIPageViewController.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         let navChat: UINavigationController = WMPrivateChatController.init(rootViewController: chatPageControl)
         
         navIndex.title = "乐贝壳";
-//        navFriend.title = "发现";
+        navFriend.title = "发现";
         navChat.title = "消息";
-//        navMember.title = "我的";
+        navMember.title = "我的";
         
         navIndex.tabBarItem.image = UIImage.init(named: "button_we_off")
-//        navFriend.tabBarItem.image = UIImage.init(named: "button_friend_off")
+        navFriend.tabBarItem.image = UIImage.init(named: "button_friend_off")
         navChat.tabBarItem.image = UIImage.init(named: "button_chat_off")
-//        navMember.tabBarItem.image = UIImage.init(named: "button_my_off")
+        navMember.tabBarItem.image = UIImage.init(named: "button_my_off")
         
         navIndex.tabBarItem.selectedImage = UIImage.init(named: "button_we_on")
-//        navFriend.tabBarItem.selectedImage = UIImage.init(named: "button_friend_on")
+        navFriend.tabBarItem.selectedImage = UIImage.init(named: "button_friend_on")
         navChat.tabBarItem.selectedImage = UIImage.init(named: "button_chat_on")
-//        navMember.tabBarItem.selectedImage = UIImage.init(named: "button_my_on")
+        navMember.tabBarItem.selectedImage = UIImage.init(named: "button_my_on")
         
-//        self.viewControllers = [navIndex,navFriend,navChat,navMember];
-        self.viewControllers = [navIndex,navChat];
+        self.viewControllers = [navIndex,navFriend,navChat,navMember];
+//        self.viewControllers = [navIndex,navChat];
         self.tabBar.tintColor = UIColor.black
         self.selectedIndex  = 0;
         

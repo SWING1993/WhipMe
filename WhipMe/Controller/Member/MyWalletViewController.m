@@ -59,7 +59,7 @@
     
     CGFloat originY = 90.0;
     if ([Define screenWidth] == 320.0) {
-        originY = ([Define screenHeight] - 64.0 - 160.0 - 100.0 - kSize_Icon)/2.0;
+        originY = (kScreenH - kNaviHeight - 160.0 - 100.0 - kSize_Icon)/2.0;
     }
     WEAK_SELF
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(onClickWithRight)];

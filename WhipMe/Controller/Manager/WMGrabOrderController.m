@@ -62,7 +62,7 @@ static NSString *identifier_cell = @"GrabOrderViewCell";
     [self.tableViewWM mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.equalTo(weakSelf.view);
         make.width.mas_equalTo([Define screenWidth]);
-        make.height.mas_equalTo([Define screenHeight]-64.0 - 49.0);
+        make.height.mas_equalTo([Define screenHeight]- kScreenH - 49.0);
     }];
     [self.tableViewWM registerClass:[GrabOrderViewCell class] forCellReuseIdentifier:identifier_cell];
     self.tableViewWM.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
