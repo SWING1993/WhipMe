@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // 乐贝壳
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.setupIndexWebController()
+        self.setupMainController()
 //        HttpAPIClient.setupXHLaunchAd()
         HttpAPIClient.startIndexSuccess({ (result) in
             if let dataResult = result {
