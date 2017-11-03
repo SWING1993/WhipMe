@@ -13,7 +13,7 @@ import SwiftyJSON
 import HandyJSON
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, JPUSHRegisterDelegate, JMessageDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         self.thirdPartySDK()
         self.customizeAppearance()
-        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
-        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-        JMessage.add(self, with: nil)
+//        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
+//        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
+//        JMessage.add(self, with: nil)
         
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
@@ -105,18 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        JPUSHService.handleRemoteNotification(userInfo)
         completionHandler()
     }
-    
-    // MARK: - JPUSHRegisterDelegate
-    @available(iOS 10.0, *)
-    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
-        
-    }
-    
-    @available(iOS 10.0, *)
-    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
-        
-    }
-    
+ 
     /** 微信回调 */
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         return WMShareEngine.sharedInstance().handleOpen(url)
@@ -136,8 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func setupMainController() {
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
-//            let tabControl: MainTabBarController = MainTabBarController()
-//            self.window?.rootViewController = tabControl
             let indexControl: IndexViewController = IndexViewController()
             let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
             self.window?.rootViewController = indexNav
