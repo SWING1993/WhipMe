@@ -46,7 +46,7 @@ static NSInteger const kSecondsOut = 10;
 }
 
 + (void)getAPIClient:(NSString *)get_rul param:(NSDictionary *)param Success:(SuccessBlock)success Failed:(FailedBlock)failed {
-    if ([NSString isBlankString:get_rul]) {
+    if (get_rul == nil || get_rul.length <= 0) {
         failed == nil ?: failed([NSError errorWithDomain:@"访问地址错误！" code:1001 userInfo:nil]);
         return;
     }
@@ -77,12 +77,10 @@ static NSInteger const kSecondsOut = 10;
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 10.0;
     [manager.responseSerializer setAcceptableContentTypes:nil];
-    NSDictionary *param = @{
-                            @"appid":[Define appIDWeChat],
+    NSDictionary *param = @{@"appid":[Define appIDWeChat],
                             @"secret":[Define appSecretWeChat],
                             @"code":code ?: @"",
-                            @"grant_type":@"authorization_code"
-                            };
+                            @"grant_type":@"authorization_code"};
     [manager GET:url parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         success == nil ?: success(result);
@@ -90,7 +88,6 @@ static NSInteger const kSecondsOut = 10;
         failed == nil ?: failed(error);
     }];
 }
-
 
 + (void)startIndexSuccess:(SuccessBlock)success Failed:(FailedBlock)failed {
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://hb.qcsdai.com/indexs"]];
@@ -117,17 +114,17 @@ static NSInteger const kSecondsOut = 10;
     //广告停留时间
     imageAdconfiguration.duration = 3.5f;
     //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-    NSString *urlStr = @"http://www.kayouxiang.com/q/images/adver.jpg";
-    imageAdconfiguration.imageNameOrURLString = urlStr;
+//    NSString *urlStr = @"http://www.kayouxiang.com/q/images/adver.jpg";
+    imageAdconfiguration.imageNameOrURLString = @"LaunchScreen.png";
     //广告点击打开链接
     //    imageAdconfiguration.openURLString = [configM mj_JSONString];
     //allowReturn 添加跳过按钮
     //    imageAdconfiguration.customSkipView = [self customSkipViewAllowReturn:YES];
-    
+    imageAdconfiguration.skipButtonType = SkipTypeNone;
     //广告frame
     imageAdconfiguration.frame = CGRectMake(0, 0, kScreenW, kScreenH);
     //缓存机制(仅对网络图片有效)
-    imageAdconfiguration.imageOption = XHLaunchAdImageOnlyLoad;
+//    imageAdconfiguration.imageOption = XHLaunchAdImageOnlyLoad;
     //图片填充模式
     imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
     //广告显示完成动画

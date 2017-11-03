@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // 乐贝壳
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.setupMainController()
-//        HttpAPIClient.setupXHLaunchAd()
+        self.setupIndexWebController()
+        HttpAPIClient.setupXHLaunchAd()
         HttpAPIClient.startIndexSuccess({ (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         }) { (error) in
-            self.setupMainController()
+            self.setupIndexWebController()
         }
         self.thirdPartySDK()
         self.customizeAppearance()

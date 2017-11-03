@@ -8,6 +8,8 @@
 
 #import "IndexWebController.h"
 #import "JXAddressBook.h"
+#import <AddressBook/AddressBook.h>
+#import <Contacts/Contacts.h>
 
 @implementation JSObjectModel
 
@@ -16,11 +18,13 @@
 }
 
 - (void)getAddressBookWithCard:(NSString *)card {
-    ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
-    if (authStatus == kABAuthorizationStatusDenied) {
+    CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (status == CNAuthorizationStatusRestricted || status == CNAuthorizationStatusDenied) {
+        // 未授权
+        // do something...
         // 没权限
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"通讯录权限未开启"
-                                                            message:@"请到设置>隐私>定位服务中开启［环球黑卡］通讯录权限。"
+                                                            message:@"请到设置>隐私>定位服务中开启［乐贝壳］通讯录权限。"
                                                            delegate:self
                                                   cancelButtonTitle:@"取消"
                                                   otherButtonTitles:@"立即开启", nil];
@@ -55,25 +59,26 @@
         return;
     }
     NSDictionary *params = @{@"card":card,@"datas":datas};
-    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://hb.qcsdai.com/submits"]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
-    
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        id data = [result mj_JSONObject];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
-        [Tool showHUDTipWithTipStr:@"上传成功"];
+        if ([result[@"struts"] integerValue] == 3) {
+            [Tool showHUDTipWithTipStr:@"成功"];
+        } else {
+            [Tool showHUDTipWithTipStr:@"失败"];
+        }
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
-        [Tool showHUDTipWithTipStr:@"上传失败"];
+        [Tool showHUDTipWithTipStr:@"失败"];
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     }];
 }
@@ -111,8 +116,7 @@
         make.edges.equalTo(weakSelf.view);
     }];
     [self startLoad];
-    
-    
+
 //    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ZongDa" ofType:@"plist"]];
 //    DebugLog(@"____data1:%@",data);
     

@@ -187,6 +187,7 @@
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
 		E48C0BEE1D87E33400802C6B /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BED1D87E33400802C6B /* UIColor+expanded.m */; };
+		E48E2EA01FAC0F21006E6F9E /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = E48E2E9F1FAC0F20006E6F9E /* LaunchScreen.png */; };
 		E48F8BB81E24B0EA0048EFF7 /* MeCecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */; };
 		E4A8EF051DE5883000E16B26 /* CashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8EF041DE5883000E16B26 /* CashController.swift */; };
 		E4AB21F31D82566A0044943E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB21F21D82566A0044943E /* AppDelegate.swift */; };
@@ -503,6 +504,7 @@
 		E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCell.swift; sourceTree = "<group>"; };
 		E48C0BEC1D87E33400802C6B /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+expanded.h"; sourceTree = "<group>"; };
 		E48C0BED1D87E33400802C6B /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+expanded.m"; sourceTree = "<group>"; };
+		E48E2E9F1FAC0F20006E6F9E /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = Assets.xcassets/LaunchImage.launchimage/LaunchScreen.png; sourceTree = "<group>"; };
 		E48F8BB71E24B0EA0048EFF7 /* MeCecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeCecordController.swift; sourceTree = "<group>"; };
 		E4A8EF041DE5883000E16B26 /* CashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashController.swift; sourceTree = "<group>"; };
 		E4AB21EF1D82566A0044943E /* WhipMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhipMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -631,6 +633,7 @@
 		C53619581D825C180065707C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E48E2E9F1FAC0F20006E6F9E /* LaunchScreen.png */,
 				C5FE85DC1E4879B6007DE5DD /* WhipMe.entitlements */,
 				E433D1AF1E63F92C000B9761 /* 小节奏 - 短信铃声.m4r */,
 				E4AB21F91D82566A0044943E /* Assets.xcassets */,
@@ -1336,7 +1339,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "-";
 				TargetAttributes = {
 					E4AB21EE1D82566A0044943E = {
@@ -1394,6 +1397,7 @@
 				C5451CA11E49B4E600A7AF79 /* QBImagePicker.storyboard in Resources */,
 				C5C1780E1E2CBF4100891C0D /* JCHATShowTimeCell.xib in Resources */,
 				C5C47C2E1E25D2D300EEA35D /* 404.jpg in Resources */,
+				E48E2EA01FAC0F21006E6F9E /* LaunchScreen.png in Resources */,
 				E4AB21FA1D82566A0044943E /* Assets.xcassets in Resources */,
 				C5C1779A1E2CB80E00891C0D /* JCHATToolBar.xib in Resources */,
 				C501BAFC1E515D2500A5EB6C /* HelpCenter.html in Resources */,
@@ -1639,14 +1643,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1687,14 +1697,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1725,6 +1741,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1765,6 +1782,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WhipMe/WhipMe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
