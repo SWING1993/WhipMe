@@ -30,12 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 if struts == 1 && myVerison == version {
                     self.setupMainController()
-                } else {
-                    self.setupIndexWebController()
                 }
             }
         }) { (error) in
-            self.setupIndexWebController()
+            self.setupMainController()
         }
         self.thirdPartySDK()
         self.customizeAppearance()
