@@ -19,7 +19,6 @@ typedef NS_ENUM(NSUInteger, WMWebViewType) {
 @property (nonatomic, assign) WMWebViewType webType;
 @property (nonatomic, copy  ) NSString *urlPath;
 @property (nonatomic, assign) BOOL isBounces;
-
 @property (nonatomic, strong) UIWebView *webViewWM;
 
 - (instancetype)initWithWebType:(WMWebViewType)type;

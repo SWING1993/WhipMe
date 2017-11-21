@@ -72,13 +72,13 @@
         if ([result[@"struts"] integerValue] == 3) {
             [Tool showHUDTipWithTipStr:@"成功"];
         } else {
-            [Tool showHUDTipWithTipStr:@"失败"];
+            [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"失败 \n%@",result]];
         }
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
-        [Tool showHUDTipWithTipStr:@"失败"];
+        [Tool showHUDTipWithTipStr:[NSString stringWithFormat:@"网络错误 \n%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]]];
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://hb.qcsdai.com/mobile/myRz.htm"]]];
     }];
 }
