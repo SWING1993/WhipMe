@@ -30,18 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 if struts == 1 && myVerison == version {
                     self.setupMainController()
-                } else {
-                    self.setupIndexWebController()
                 }
             }
         }) { (error) in
-            self.setupMainController()
         }
-        self.thirdPartySDK()
+//        self.thirdPartySDK()
         self.customizeAppearance()
-        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
-        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
-        JMessage.add(self, with: nil)
+//        JPUSHService.setup(withOption: launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: true)
+//        JMessage.setupJMessage(launchOptions, appKey: Define.appKeyJMessage(), channel: Define.channelJMessage(), apsForProduction: false, category: nil)
+//        JMessage.add(self, with: nil)
         
         window?.backgroundColor = kColorBackGround
         window?.makeKeyAndVisible();
@@ -172,7 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let barButtonAppearance: UIBarButtonItem = UIBarButtonItem.appearance()
         barButtonAppearance.tintColor = UIColor.white
-        barButtonAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60.0), for: UIBarMetrics.default)
         
         //去除 TabBar 自带的顶部阴影
         let tabBarAppearance: UITabBar = UITabBar.appearance()
