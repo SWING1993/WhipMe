@@ -65,8 +65,6 @@
 		C555E7811DE5BA4D00A443A0 /* CashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C555E7801DE5BA4D00A443A0 /* CashViewController.m */; };
 		C5602A0F1DEE66D6006BA184 /* WMUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */; };
 		C56490BC1E5FDFDD00041192 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C56490BB1E5FDFDD00041192 /* libresolv.tbd */; };
-		C56490C41E5FE0AD00041192 /* jcore-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C56490C11E5FE0AD00041192 /* jcore-ios-1.1.1.a */; };
-		C56490C51E5FE0AD00041192 /* jpush-ios-3.0.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C56490C21E5FE0AD00041192 /* jpush-ios-3.0.2.a */; };
 		C56490C71E5FE10000041192 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56490C61E5FE10000041192 /* UserNotifications.framework */; };
 		C570C69C1E5AD6C7009CF43B /* ManagerIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570C69A1E5AD6C7009CF43B /* ManagerIndexController.swift */; };
 		C570C69D1E5AD6C7009CF43B /* ManagerIndexDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570C69B1E5AD6C7009CF43B /* ManagerIndexDetailController.swift */; };
@@ -310,9 +308,6 @@
 		C5602A0D1DEE66D6006BA184 /* WMUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserEditViewController.h; sourceTree = "<group>"; };
 		C5602A0E1DEE66D6006BA184 /* WMUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserEditViewController.m; sourceTree = "<group>"; };
 		C56490BB1E5FDFDD00041192 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		C56490C11E5FE0AD00041192 /* jcore-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.1.a"; sourceTree = "<group>"; };
-		C56490C21E5FE0AD00041192 /* jpush-ios-3.0.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.2.a"; sourceTree = "<group>"; };
-		C56490C31E5FE0AD00041192 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		C56490C61E5FE10000041192 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		C570C69A1E5AD6C7009CF43B /* ManagerIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexController.swift; sourceTree = "<group>"; };
 		C570C69B1E5AD6C7009CF43B /* ManagerIndexDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerIndexDetailController.swift; sourceTree = "<group>"; };
@@ -542,7 +537,6 @@
 				E45CD65F1F5FD7A100D02E53 /* JavaScriptCore.framework in Frameworks */,
 				C56490C71E5FE10000041192 /* UserNotifications.framework in Frameworks */,
 				C56490BC1E5FDFDD00041192 /* libresolv.tbd in Frameworks */,
-				C56490C41E5FE0AD00041192 /* jcore-ios-1.1.1.a in Frameworks */,
 				C59B2A2F1D8F83900055F026 /* AudioToolbox.framework in Frameworks */,
 				C5C1778B1E2CAE5F00891C0D /* ImageIO.framework in Frameworks */,
 				C5C177891E2CAE5900891C0D /* CoreImage.framework in Frameworks */,
@@ -558,7 +552,6 @@
 				C59B2A2B1D8F837A0055F026 /* SystemConfiguration.framework in Frameworks */,
 				C59B2A291D8F83710055F026 /* CoreAudio.framework in Frameworks */,
 				C59B2A271D8F83610055F026 /* CoreGraphics.framework in Frameworks */,
-				C56490C51E5FE0AD00041192 /* jpush-ios-3.0.2.a in Frameworks */,
 				C59B2A251D8F83530055F026 /* CoreTelephony.framework in Frameworks */,
 				C59B2A231D8F83410055F026 /* CoreFoundation.framework in Frameworks */,
 				C59B2A201D8F83320055F026 /* AVFoundation.framework in Frameworks */,
@@ -922,16 +915,6 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		C56490C01E5FE0AD00041192 /* JPush */ = {
-			isa = PBXGroup;
-			children = (
-				C56490C11E5FE0AD00041192 /* jcore-ios-1.1.1.a */,
-				C56490C21E5FE0AD00041192 /* jpush-ios-3.0.2.a */,
-				C56490C31E5FE0AD00041192 /* JPUSHService.h */,
-			);
-			path = JPush;
-			sourceTree = "<group>";
-		};
 		C570C6A71E5AD91C009CF43B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1137,7 +1120,6 @@
 			isa = PBXGroup;
 			children = (
 				E45CD6601F5FD9C700D02E53 /* CoreAddressBookVC */,
-				C56490C01E5FE0AD00041192 /* JPush */,
 				C5451C841E49B4E600A7AF79 /* QBImagePicker */,
 				C5C1781E1E2CC7F300891C0D /* MJPhotoBrowser */,
 				C5C177811E2CADE700891C0D /* YLGIFImage */,

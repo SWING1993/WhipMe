@@ -8,7 +8,6 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "CustomIOSAlertView.h"
 #import <JMessage/JMessage.h>
-#import "JPUSHService.h"
 #import "FastCoder.h"
 #import <ChameleonFramework/Chameleon.h>
 #import "WXApi.h"
