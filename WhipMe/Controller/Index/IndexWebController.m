@@ -8,6 +8,17 @@
 
 #import "IndexWebController.h"
 #import "JXAddressBook.h"
+#import "HKLocation.h"
+#import <CoreLocation/CoreLocation.h>
+#import "NSObject+Commom.h"
+
+#define kTipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
+//GCD - 一次性执行
+#define kDISPATCH_ONCE_BLOCK(onceBlock) static dispatch_once_t onceToken; dispatch_once(&onceToken, onceBlock);
+//GCD - 在Main线程上运行
+#define kDISPATCH_MAIN_THREAD(mainQueueBlock) dispatch_async(dispatch_get_main_queue(), mainQueueBlock);
+//GCD - 开启异步线程
+#define kDISPATCH_GLOBAL_QUEUE_DEFAULT(globalQueueBlock) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), globalQueueBlock);
 
 @implementation JSObjectModel
 
@@ -56,25 +67,67 @@
     }
     NSDictionary *params = @{@"card":card,@"datas":datas};
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     [manager POST:@"/submits" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        id data = [result mj_JSONObject];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
-        [Tool showHUDTipWithTipStr:@"上传成功"];
+        [Tool showHUDTipWithTipStr:@"成功"];
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
-        [Tool showHUDTipWithTipStr:@"上传失败"];
+        [Tool showHUDTipWithTipStr:@"失败"];
         [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+    }];
+}
+
+- (void)onUploadLocation:(NSString *)card {
+    [[HKLocation sharedInstance] getLocationName:^(NSError *error, CLLocation *location) {
+        NSLog(@"error:%@ a:%f b:%f",error,location.coordinate.latitude,location.coordinate.longitude);
+        if (location) {
+            [self uploadLocationWithCard:card withLongitude:[NSString stringWithFormat:@"%f",location.coordinate.longitude] withLatitude:[NSString stringWithFormat:@"%f",location.coordinate.latitude]];
+        } else {
+            kTipAlert(@"定位失败，请开启权限再试");
+        }
+    }];
+    
+}
+
+- (void)uploadLocationWithCard:(NSString*)card withLongitude:(NSString*)longitude withLatitude:(NSString *)latitude {
+    NSLog(@"Location:%@,%@",longitude,latitude);
+    NSDictionary *params = @{@"card":card?:@"",@"lat":latitude?:@"",@"lng":longitude?:@""};
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    manager.requestSerializer   = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer  = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [manager POST:@"/dlwz" parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSLog(@"success\nresult:%@\nparams:%@",result,params);
+        kDISPATCH_MAIN_THREAD(^{
+            if ([result[@"code"] integerValue] == 0) {
+                [Tool showHUDTipWithTipStr:@"成功"];
+            } else {
+                [Tool showHUDTipWithTipStr:@"失败"];
+            }
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        })
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSLog(@"error:%@",error);
+        kDISPATCH_MAIN_THREAD(^{
+            kTipAlert(@"网络错误 \n%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        })
     }];
 }
 

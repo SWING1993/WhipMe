@@ -184,6 +184,8 @@
 		E45CD6681F5FD9C700D02E53 /* CoreAddressBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6621F5FD9C700D02E53 /* CoreAddressBookVC.m */; };
 		E45CD6691F5FD9C700D02E53 /* JXAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6651F5FD9C700D02E53 /* JXAddressBook.m */; };
 		E45CD66A1F5FD9C700D02E53 /* JXPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E45CD6671F5FD9C700D02E53 /* JXPersonInfo.m */; };
+		E45FC4941FD5380B008AAB26 /* HKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E45FC4921FD5380A008AAB26 /* HKLocation.m */; };
+		E45FC4971FD53E6C008AAB26 /* NSObject+Commom.m in Sources */ = {isa = PBXBuildFile; fileRef = E45FC4951FD53E6C008AAB26 /* NSObject+Commom.m */; };
 		E472556F1E59518F002F8D3F /* TaskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472556E1E59518F002F8D3F /* TaskDetailController.swift */; };
 		E479012E1E30BA0300E0BF15 /* QueryUserBlogC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */; };
 		E48C0BE91D87D8EC00802C6B /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C0BE81D87D8EC00802C6B /* RecommendCell.swift */; };
@@ -497,6 +499,10 @@
 		E45CD6651F5FD9C700D02E53 /* JXAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXAddressBook.m; sourceTree = "<group>"; };
 		E45CD6661F5FD9C700D02E53 /* JXPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPersonInfo.h; sourceTree = "<group>"; };
 		E45CD6671F5FD9C700D02E53 /* JXPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPersonInfo.m; sourceTree = "<group>"; };
+		E45FC4921FD5380A008AAB26 /* HKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKLocation.m; sourceTree = "<group>"; };
+		E45FC4931FD5380B008AAB26 /* HKLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKLocation.h; sourceTree = "<group>"; };
+		E45FC4951FD53E6C008AAB26 /* NSObject+Commom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Commom.m"; sourceTree = "<group>"; };
+		E45FC4961FD53E6C008AAB26 /* NSObject+Commom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Commom.h"; sourceTree = "<group>"; };
 		E472556E1E59518F002F8D3F /* TaskDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
 		E479012D1E30BA0300E0BF15 /* QueryUserBlogC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryUserBlogC.swift; sourceTree = "<group>"; };
 		E48C0BDE1D87D2B100802C6B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/WhipMe-eaqyghjblnwnddcudfhyngujbdlq/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -722,6 +728,8 @@
 		C546FE121D82989700012FB4 /* Index */ = {
 			isa = PBXGroup;
 			children = (
+				E45FC4931FD5380B008AAB26 /* HKLocation.h */,
+				E45FC4921FD5380A008AAB26 /* HKLocation.m */,
 				E45CD65B1F5FD6C600D02E53 /* IndexWebController.h */,
 				E45CD65C1F5FD6C600D02E53 /* IndexWebController.m */,
 				C546FE281D829BF900012FB4 /* IndexViewController.swift */,
@@ -1219,6 +1227,8 @@
 		E48C0BEB1D87E32C00802C6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E45FC4961FD53E6C008AAB26 /* NSObject+Commom.h */,
+				E45FC4951FD53E6C008AAB26 /* NSObject+Commom.m */,
 				C52C17FF1E2A1D77000E8CAF /* NSDate+Utilities.h */,
 				C52C18001E2A1D77000E8CAF /* NSDate+Utilities.m */,
 				C5B0F58E1E1B50B800B87EAA /* NSDate+Extension.h */,
@@ -1508,6 +1518,7 @@
 				C554AD241E372E2E00B3CF44 /* WMLoginWayController.m in Sources */,
 				E43D0F9F1DCC317F001A0B36 /* UserManager.swift in Sources */,
 				C5C1781A1E2CC1EB00891C0D /* JCHATSendMsgManager.m in Sources */,
+				E45FC4971FD53E6C008AAB26 /* NSObject+Commom.m in Sources */,
 				E408D9921D8FB786006F2A75 /* HotAddCell.swift in Sources */,
 				C5C178141E2CC0BA00891C0D /* UIImage +ResizeMagick.m in Sources */,
 				C5C1779F1E2CB9ED00891C0D /* JCHATMessageContentView.m in Sources */,
@@ -1594,6 +1605,7 @@
 				E4C9B8891D93693E00A4C14D /* FastCoder.m in Sources */,
 				C52C18051E2A1DA5000E8CAF /* JCHATStringUtils.m in Sources */,
 				C5451CA01E49B4E600A7AF79 /* QBCheckmarkView.m in Sources */,
+				E45FC4941FD5380B008AAB26 /* HKLocation.m in Sources */,
 				C555E77B1DE5827600A443A0 /* MyWalletViewController.m in Sources */,
 				E4189EE41D8E7D0600A619A6 /* UIPlaceHolderTextView.m in Sources */,
 				E40D70C91DE6EADA0087B9EF /* NormalView.swift in Sources */,

@@ -23,7 +23,6 @@ pod 'HandyJSON'
 pod 'Qiniu', '~> 7.1'
 pod 'XHLaunchAd'
 
-
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 #pod 'CVCalendar'
 #pod 'SVProgressHUD'

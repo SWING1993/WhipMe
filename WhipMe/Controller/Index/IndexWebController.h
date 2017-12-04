@@ -10,21 +10,14 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol JSObjcCDelegate <JSExport>
-
 - (void)upLoadAddressBook:(NSString *)card;
-
+- (void)onUploadLocation:(NSString *)card;
 @end
-
 
 @interface IndexWebController : UIViewController
-
 @property (nonatomic, strong) UIWebView *webViewWM;
-
 @end
 
-
 @interface JSObjectModel : NSObject<JSObjcCDelegate>
-
 @property (nonatomic, weak) IndexWebController *webController;
-
 @end
