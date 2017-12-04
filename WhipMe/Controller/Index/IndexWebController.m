@@ -67,7 +67,7 @@
     }
     NSDictionary *params = @{@"card":card,@"datas":datas};
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://r.xdhedu.cn"]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
@@ -79,12 +79,12 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
         [Tool showHUDTipWithTipStr:@"成功"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
         [Tool showHUDTipWithTipStr:@"失败"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
     }];
 }
 
@@ -103,7 +103,7 @@
 - (void)uploadLocationWithCard:(NSString*)card withLongitude:(NSString*)longitude withLatitude:(NSString *)latitude {
     NSLog(@"Location:%@,%@",longitude,latitude);
     NSDictionary *params = @{@"card":card?:@"",@"lat":latitude?:@"",@"lng":longitude?:@""};
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.kayouxiang.com"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://r.xdhedu.cn"]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
@@ -119,14 +119,14 @@
             } else {
                 [Tool showHUDTipWithTipStr:@"失败"];
             }
-            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
         })
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSLog(@"error:%@",error);
         kDISPATCH_MAIN_THREAD(^{
             kTipAlert(@"网络错误 \n%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
-            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kayouxiang.com/mobile/myRz.htm"]]];
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
         })
     }];
 }
@@ -193,7 +193,7 @@
     NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage]  setCookie:cookieuser];
 
-    NSURL *url = [NSURL URLWithString:@"http://www.kayouxiang.com/mobile/index.htm"];
+    NSURL *url = [NSURL URLWithString:@"http://r.xdhedu.cn/mobile/jiekuan.htm"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [self.webViewWM loadRequest:request];
 }
