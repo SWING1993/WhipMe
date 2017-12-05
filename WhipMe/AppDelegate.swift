@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // 速速花
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.setupIndexWebController()
-        HttpAPIClient.setupXHLaunchAd()
+//        HttpAPIClient.setupXHLaunchAd()
         HttpAPIClient.startIndexSuccess({ (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
