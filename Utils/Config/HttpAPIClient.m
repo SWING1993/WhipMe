@@ -93,7 +93,7 @@ static NSInteger const kSecondsOut = 10;
 
 
 + (void)startIndexSuccess:(SuccessBlock)success Failed:(FailedBlock)failed {
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://r.xdhedu.cn"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kAppBaseUrl]];
     manager.requestSerializer.timeoutInterval = 15;
     manager.requestSerializer   = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer  = [AFHTTPResponseSerializer serializer];

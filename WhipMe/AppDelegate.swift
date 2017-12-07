@@ -137,6 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (NSString.isBlankString(UserManager.shared.userId) == false) {
             let indexControl: IndexViewController = IndexViewController()
             let indexNav: UINavigationController = UINavigationController.init(rootViewController: indexControl)
+//            let tabbar: MainTabBarController = MainTabBarController()
             self.window?.rootViewController = indexNav
         } else {
             let loginControl: WMLoginWayController = WMLoginWayController()

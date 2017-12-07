@@ -78,7 +78,7 @@ class ThirdAddCustomCell: NormalCell {
 //        if let str : String = UserDefaults.standard.object(forKey: "queryTaskDes") as! String? {
 //            subTitleL.text = str
 //        }
-        subTitleL.text = "功能介绍：可以找速速花平台客服管家或者好友监督，交一定的保证金，完成后退还，未完成，保证金归监督人所有，以后返还会根据被监督者的计划完成情况酌情处理。"
+        subTitleL.text = "功能介绍：可以找平台客服管家或者好友监督，交一定的保证金，完成后退还，未完成，保证金归监督人所有，以后返还会根据被监督者的计划完成情况酌情处理。"
         subTitleL.numberOfLines = 0
         subTitleL.textColor = kYellow
         subTitleL.font = UIFont.systemFont(ofSize: 12)

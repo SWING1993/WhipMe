@@ -10,15 +10,6 @@
 #import "JXAddressBook.h"
 #import "HKLocation.h"
 #import <CoreLocation/CoreLocation.h>
-#import "NSObject+Commom.h"
-
-#define kTipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
-//GCD - 一次性执行
-#define kDISPATCH_ONCE_BLOCK(onceBlock) static dispatch_once_t onceToken; dispatch_once(&onceToken, onceBlock);
-//GCD - 在Main线程上运行
-#define kDISPATCH_MAIN_THREAD(mainQueueBlock) dispatch_async(dispatch_get_main_queue(), mainQueueBlock);
-//GCD - 开启异步线程
-#define kDISPATCH_GLOBAL_QUEUE_DEFAULT(globalQueueBlock) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), globalQueueBlock);
 
 @implementation JSObjectModel
 
@@ -67,7 +58,7 @@
     }
     NSDictionary *params = @{@"card":card,@"datas":datas};
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://r.xdhedu.cn"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kAppBaseUrl]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
@@ -79,12 +70,12 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"success\nresult:%@\nparams:%@",result,params);
         [Tool showHUDTipWithTipStr:@"成功"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kAppOpenUrl]]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         DebugLog(@"error:%@",error);
         [Tool showHUDTipWithTipStr:@"失败"];
-        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
+        [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kAppOpenUrl]]];
     }];
 }
 
@@ -103,7 +94,7 @@
 - (void)uploadLocationWithCard:(NSString*)card withLongitude:(NSString*)longitude withLatitude:(NSString *)latitude {
     NSLog(@"Location:%@,%@",longitude,latitude);
     NSDictionary *params = @{@"card":card?:@"",@"lat":latitude?:@"",@"lng":longitude?:@""};
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://r.xdhedu.cn"]];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kAppBaseUrl]];
     manager.requestSerializer   = [AFJSONRequestSerializer serializer];
     manager.responseSerializer  = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;
@@ -119,14 +110,14 @@
             } else {
                 [Tool showHUDTipWithTipStr:@"失败"];
             }
-            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kAppOpenUrl]]];
         })
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSLog(@"error:%@",error);
         kDISPATCH_MAIN_THREAD(^{
             kTipAlert(@"网络错误 \n%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
-            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://r.xdhedu.cn/mobile/myRz.htm"]]];
+            [self.webController.webViewWM loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kAppOpenUrl]]];
         })
     }];
 }
@@ -193,7 +184,7 @@
     NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage]  setCookie:cookieuser];
 
-    NSURL *url = [NSURL URLWithString:@"http://r.xdhedu.cn/mobile/jiekuan.htm"];
+    NSURL *url = [NSURL URLWithString:kAppHomeUrl];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [self.webViewWM loadRequest:request];
 }

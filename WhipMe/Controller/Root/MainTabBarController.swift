@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
         let chatPageControl: UIPageViewController = UIPageViewController.init(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         let navChat: UINavigationController = WMPrivateChatController.init(rootViewController: chatPageControl)
         
-        navIndex.title = "速速花";
+        navIndex.title = "主页";
         navFriend.title = "发现";
         navChat.title = "消息";
         navMember.title = "我的";
