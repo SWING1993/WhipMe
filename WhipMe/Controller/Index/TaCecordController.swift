@@ -204,6 +204,7 @@ class TaCecordController: UIViewController {
             make.left.top.equalTo(18)
             make.height.width.equalTo(36)
         })
+        /*
         if model.creator.length > 2 {
             avatarV.bk_(whenTapped: { () -> Void in
                 let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
@@ -240,6 +241,7 @@ class TaCecordController: UIViewController {
                 }
             })
         }
+ */
 
         
         nickNameL.font = UIFont.systemFont(ofSize: 16)

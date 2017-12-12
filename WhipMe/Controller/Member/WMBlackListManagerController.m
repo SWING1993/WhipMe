@@ -107,10 +107,10 @@
     if ([NSString isBlankString:model.userId]) {
         return;
     }
-    QueryUserBlogC *controller = [[QueryUserBlogC alloc] init];
-    [controller.navigationItem setTitle:model.nickname];
-    [controller queryByUserBlogWithUserNo:model.userId];
-    [self.navigationController pushViewController:controller animated:YES];
+//    QueryUserBlogC *controller = [[QueryUserBlogC alloc] init];
+//    [controller.navigationItem setTitle:model.nickname];
+//    [controller queryByUserBlogWithUserNo:model.userId];
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - BlackListManagerViewCellDelegate

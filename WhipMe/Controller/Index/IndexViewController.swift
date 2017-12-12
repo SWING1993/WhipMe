@@ -330,7 +330,9 @@ extension WhipCell: UITableViewDataSource {
         }
         
         if self.myReuseIdentifier == WhipCell.whipOtherReuseIdentifier() {
-            cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
+//            cell.headV.setImageWith(urlString: whipM.icon, placeholderImage: "")
+            cell.headV.image = UIImage.init(named: "default_head")
+            /*
             cell.headV.bk_(whenTapped: { () -> Void in
                 if whipM.creator.length > 2 {
                     let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
@@ -354,7 +356,7 @@ extension WhipCell: UITableViewDataSource {
                                     queryUserBlogC.userBlogM = userBlogM
                                     let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
                                     kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
-                                        
+
                                     })
                                 }
                             } else {
@@ -367,7 +369,7 @@ extension WhipCell: UITableViewDataSource {
                     }
                 }
             })
-
+*/
             // 拒绝
             cell.refuseBtn.bk_(whenTapped: {
                 if UserManager.shared.isManager == true {
@@ -477,7 +479,9 @@ extension WhipCell: UITableViewDataSource {
                 }
             }
         } else {
-            cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
+//            cell.headV.setImageWith(urlString: whipM.supervisorIcon, placeholderImage: "")
+            cell.headV.image = UIImage.init(named: "default_head")
+            /*
             cell.headV.bk_(whenTapped: { () -> Void in
                 if whipM.supervisor.length > 2 {
                     let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
@@ -501,7 +505,7 @@ extension WhipCell: UITableViewDataSource {
                                     queryUserBlogC.userBlogM = userBlogM
                                     let blogNav = UINavigationController.init(rootViewController: queryUserBlogC)
                                     kKeyWindows?.rootViewController?.present(blogNav, animated: true, completion: {
-                                        
+             
                                     })
                                 }
                             } else {
@@ -514,6 +518,7 @@ extension WhipCell: UITableViewDataSource {
                     }
                 }
             })
+ */
 
             cell.subTitle.textColor = kColorBlue
             let label = UILabel()
@@ -733,6 +738,8 @@ class IndexViewController: UIViewController {
     
     func clickWithRightBarItem() {
         let addWhipC = AddWhipController.init()
+//        addWhipC.queryHorThemeName = self.myWhipM.themeName
+        addWhipC.hideHot = true
         addWhipC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(addWhipC, animated: true)
     }

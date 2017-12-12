@@ -56,6 +56,7 @@ class RecommendCell: NormalCell {
             make.height.width.equalTo(36)
         })
         
+        /*
         avatarV.bk_(whenTapped: { () -> Void in
             let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
             hud.label.text = "加载中..."
@@ -91,6 +92,7 @@ class RecommendCell: NormalCell {
                 Tool.showHUDTip(tipStr: "网络不给力")
             }
         })
+ */
 
         nickNameL = UILabel.init()
         nickNameL.font = UIFont.systemFont(ofSize: 16)
@@ -358,7 +360,8 @@ class RecommendCell: NormalCell {
         }else {
             self.pictrueView.setImageWith(urlString: model.picture, placeholderImage: "nilTouSu")
         }
-        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
+        self.avatarV.image = UIImage.init(named: "default_head")
+//        self.avatarV.setImageWith(urlString: model.icon, placeholderImage: Define.kDefaultHeadStr())
         self.contentL.text = model.content
         self.nickNameL.text = model.nickname
         self.topicL.text = "#"+model.themeName+"#"

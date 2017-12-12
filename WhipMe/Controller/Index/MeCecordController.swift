@@ -276,8 +276,11 @@ extension MeCecordController:UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell: SuperviseCell = SuperviseCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: SuperviseCell.cellReuseIdentifier())
-            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "nilTouSu")
+//            cell.avatarV.setImageWith(urlString: myWhipM.supervisorIcon, placeholderImage: "nilTouSu")
+            cell.avatarV.image = UIImage.init(named: "default_head")
+
             if myWhipM.supervisor.length > 2 {
+                /*
                 cell.avatarV.bk_(whenTapped: { () -> Void in
                     let hud = MBProgressHUD.showAdded(to: kKeyWindows!, animated: true)
                     hud.label.text = "加载中..."
@@ -312,6 +315,7 @@ extension MeCecordController:UITableViewDataSource {
                         Tool.showHUDTip(tipStr: "网络不给力")
                     }
                 })
+ */
             }
             if (self.myWhipM.type == 1) {
                 cell.titleL.text =  "管家监督中"
