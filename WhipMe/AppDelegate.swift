@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HttpAPIClient.startIndexSuccess({ (result) in
             if let dataResult = result {
                 let json = JSON(dataResult)
+                print(json)
                 let struts  = json["iosversion"]["struts"].intValue
                 let version  = json["iosversion"]["version"].stringValue
                 let myVerison = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
