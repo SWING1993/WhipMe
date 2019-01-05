@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>birthday</key>
+	<string>2017-02-17</string>
+	<key>icon</key>
+	<string>http://qnimg.superspv.com/i/2017/2/24/5479069e8b724020ac491a9f5c39267a</string>
+	<key>nickname</key>
+	<string>幽叶</string>
+	<key>pwdim</key>
+	<string>ldR227</string>
+	<key>sex</key>
+	<integer>1</integer>
+	<key>sign</key>
+	<string>做好一件事，从每天坚持开始。</string>
+	<key>supervisor</key>
+	<integer>0</integer>
+	<key>userId</key>
+	<string>f4f90e7c1d7e460ea88039310afacfa5</string>
+</dict>
+</plist>
